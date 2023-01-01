@@ -24,8 +24,8 @@ abort_price=50.1 # abort and never charge if actual price is same or higher than
 
 use_start_stop_logic=0 # Set to 1 to activate start/stop logic (start_stop_price).
 fritz_dect_at_start_stop=0 # You can add a additional load (like water heater) with AVM Fritz DECT200/210 switch sockets if you like.
-charge_at_solar_breakeven_logic=1 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
-fritz_dect_at_solar_breakeven_logic=1
+charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
+fritz_dect_at_solar_breakeven_logic=0
 charge_at_lowest_price=0 # set 1 to charge at lowest price per day no matter which start/stop price was defined 
 fritz_dect_at_lowest_price=0
 charge_at_second_lowest_price=0
@@ -75,21 +75,21 @@ entsoe_eu_api_security_token=YOURAPIKEY
 fbox="192.168.178.1"
 user="fritz1234"
 passwd="YOURPASSWORD"
-sockets=("YOURSOCKETID1" "YOURSOCKETID2 or 0" "0" "0" "0" "0")
+sockets=("087610414914" "087610409479" "0" "0" "0" "0")
 
 # further Api parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%-d)2300
 yestermonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%-m)
 yesteryear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%-Y)
-today=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%-d)2300
-today2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%-d)
-todaymonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%-m)
-todayyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%-Y)
-tomorrow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%-d)2300
-tomorrow2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%-d)
-tomorrowmonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%-m)
-tomorrowyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%-Y)
-getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%-H)
+today=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%d)2300
+today2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%d)
+todaymonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%m)
+todayyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%Y)
+tomorrow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)2300
+tomorrow2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)
+tomorrowmonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%m)
+tomorrowyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%Y)
+getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%H)
 now_entsoe_linenumber=$(($getnow+1))
 link1=https://api.awattar.$awattar/v1/marketdata/current.yaml
 link2=http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include
@@ -126,8 +126,8 @@ echo >> $file1
 	[ "$(echo "$line" | grep "data_price_hour_rel_.*_amount: ")" ]&& echo "$(echo $line |  cut -f3 -d'[' | cut -f1 -d']' | sed -n 's|data_price_hour_rel_.*_amount: \(.*\)|\1|p')">> $file6
 	done
         sort -g $file6 >> $file7
-        printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >>  $file6
-        printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >>  $file7
+        printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  $file6
+        printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  $file7
   else
     echo "could not get prices"
     exit 1
@@ -149,8 +149,8 @@ function download_awattar_prices_tomorrow {
 	[ "$(echo "$line" | grep "data_price_hour_rel_.*_amount: ")" ]&& echo "$(echo $line |  cut -f3 -d'[' | cut -f1 -d']' | sed -n 's|data_price_hour_rel_.*_amount: \(.*\)|\1|p')">> $file6
 	done
       sort -g "$file6" >> "$file7"
-      printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >>  "$file6"
-      printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >>  "$file7"
+      printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  "$file6"
+      printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  "$file7"
     fi
   else
     echo "could not get prices"
@@ -169,10 +169,10 @@ function download_entsoe_prices_today {
     sort -g $file10 >> $file11
     cp $file10 $file8 
     sort -g $file8 >> $file12
-    printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >> $file8
-    printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >> $file12
-    printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >> $file10
-    printf "date_now_day: $(echo $( TZ=$TZ date +%-d ))" >> $file11
+    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file8
+    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file12
+    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file10
+    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file11
   else
     echo "could not get price data"
     exit 1
@@ -201,11 +201,11 @@ function download_entsoe_prices_tomorrow {
       # Concatenate and sort data
       cat $file13 >> $file8
       sort -g $file8 > $file12
-      echo "date_now_day: $(echo $(TZ=$TZ date +%-d))" >> $file8
+      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file8
       sort -g $file13 >> $file9
-      echo "date_now_day: $(echo $(TZ=$TZ date +%-d))" >> $file12
-      echo "date_now_day: $(echo $(TZ=$TZ date +%-d))" >> $file13
-      echo "date_now_day: $(echo $(TZ=$TZ date +%-d))" >> $file9
+      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file12
+      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file13
+      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file9
     else
       rm $file5
       echo "$file5 was empty, we have to try it again until the new prices are online."
@@ -231,7 +231,7 @@ fi
 
 function get_current_awattar_day { current_awattar_day=$(sed -n 3{p} $file1 | grep -Eo '[0-9]+'); }
 function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3{p} $file2 | grep -Eo '[0-9]+'); }
-function get_current_price_awattar { current_price=$(sed -n $((2*$(TZ=$TZ date +%-H)+39)){p} $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1); }
+function get_current_price_awattar { current_price=$(sed -n $((2*$(TZ=$TZ date +%H)+39)){p} $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1); }
 function get_lowest_price_awattar { lowest_price=$(sed -n 1{p} $file7 ); }
 function get_second_lowest_price_awattar { second_lowest_price=$(sed -n 2{p} $file7 ); }
 function get_third_lowest_price_awattar { third_lowest_price=$(sed -n 3{p} $file7 ); }
@@ -282,7 +282,7 @@ if (( ( $select_pricing_api == 1 ) )); then
 if test -f "$file1"; then
   # test if data is current
   get_current_awattar_day
-  if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
+  if [ "$current_awattar_day" = "$(TZ=$TZ date +%d)" ]; then
     echo "Awattar today-data is up to date."
   else
     echo "Awattar today-data is outdated, fetching new data."
@@ -302,7 +302,7 @@ if (( ( $select_pricing_api == 2 ) )); then
 if test -f "$file4"; then
   # test if data is current
   get_current_entsoe_day
-  if [ "$current_entsoe_day" = "$(TZ=$TZ date +%-d)" ]; then
+  if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
     echo "Entsoe today-data is up to date."
   else
     echo "Entsoe today-data is outdated, fetching new data."
@@ -326,7 +326,7 @@ if (( ( $select_pricing_api == 1 ) )); then
 if test -f "$file2"; then
   # test if data is current
   get_current_awattar_day2
-  if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
+  if [ "$current_awattar_day2" = "$(TZ=$TZ date +%d)" ]; then
     echo "Awattar tomorrow-data is up to date."
   else
     echo "Awattar tomorrow-data is outdated, fetching new data."
@@ -345,7 +345,7 @@ if (( ( $select_pricing_api == 2 ) )); then
 if test -f "$file5"; then
   # test if data is current
   get_current_entsoe_day2
-  if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%-d)" ]; then
+  if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%d)" ]; then
     echo "Entsoe tomorrow-data is up to date."
   else
     echo "Entsoe tomorrow-data is outdated, fetching new data."
