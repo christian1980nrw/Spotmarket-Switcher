@@ -78,7 +78,7 @@ passwd="YOURPASSWORD"
 sockets=("087610414914" "087610409479" "0" "0" "0" "0")
 
 # further Api parameters (no need to edit)
-yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%-d)2300
+yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
 yestermonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%m)
 yesteryear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%Y)
 today=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%d)2300
