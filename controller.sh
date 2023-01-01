@@ -282,7 +282,7 @@ if (( ( $select_pricing_api == 1 ) )); then
 if test -f "$file1"; then
   # test if data is current
   get_current_awattar_day
-  if [ "$current_awattar_day" = "$(TZ=$TZ date +%d)" ]; then
+  if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
     echo "Awattar today-data is up to date."
   else
     echo "Awattar today-data is outdated, fetching new data."
@@ -326,7 +326,7 @@ if (( ( $select_pricing_api == 1 ) )); then
 if test -f "$file2"; then
   # test if data is current
   get_current_awattar_day2
-  if [ "$current_awattar_day2" = "$(TZ=$TZ date +%d)" ]; then
+  if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
     echo "Awattar tomorrow-data is up to date."
   else
     echo "Awattar tomorrow-data is outdated, fetching new data."
