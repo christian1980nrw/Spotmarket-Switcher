@@ -13,9 +13,9 @@
 
 ##### Configuration part...
 #Please note that this script is only for hourly based tariff data, please create your own fork if you need 15 minutes based data.
+#After every API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
 
 #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / netto prices excl. tax).
-
 stop_price=4.1 # stop above this price
 start_price=2.0 # start below this price
 feedin_price=9.87 # your feed-in-tariff of your solar system
