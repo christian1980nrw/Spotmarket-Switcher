@@ -75,7 +75,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 fbox="192.168.178.1"
 user="fritz1234"
 passwd="YOURPASSWORD"
-sockets=("YOURSOCKETID1" "YOURSOCKETID2 or 0" "0" "0" "0" "0")
+sockets=("YOURSOCKETID1" "YOURSOCKETID2" "0" "0" "0" "0")
 
 # further Api parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
@@ -114,106 +114,69 @@ file13=/tmp/entsoe_tomorrow_prices.txt
 echo "Maybe we are still charging from last script runtime. Stopping scheduled charging."
 dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7
 
-function download_awattar_prices_today {
-  echo "Please be patient. First we wait 30 Seconds in case if the system clock is not syncronized."
-  sleep 30
+download_awattar_prices() {
+  local url=$1
+  local file=$2
+  local output_file=$3
+  local sleep_time=$4
 
-  curl "$link1" > "$file1"
-  if test -f "$file1"; then
-    echo "$file1 downloaded"
-echo >> $file1
-	cat $file1 | while read line;do
-	[ "$(echo "$line" | grep "data_price_hour_rel_.*_amount: ")" ]&& echo "$(echo $line |  cut -f3 -d'[' | cut -f1 -d']' | sed -n 's|data_price_hour_rel_.*_amount: \(.*\)|\1|p')">> $file6
-	done
-        sort -g $file6 >> $file7
-        printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  $file6
-        printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  $file7
+  echo "Please be patient. First we wait $sleep_time Seconds in case if the system clock is not syncronized."
+  sleep "$sleep_time"
+
+  curl "$url" > "$file"
+  if test -f "$file"; then
+    echo "$file downloaded"
+    echo >> "$file"
+    awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" > "$output_file"
+    sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
+    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >>  "$output_file"
+    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "${output_file%.*}_sorted.${output_file##*.}"
   else
     echo "could not get prices"
     exit 1
   fi
-}
-
-function download_awattar_prices_tomorrow {
-  curl "$link2" > "$file2"
-  if test -f "$file2"; then
-    echo "$file2 downloaded"
-    echo >> "$file2"
     if [[ $( wc -l < "$file1" ) == $( wc -l < "$file2" ) ]]; then
       rm "$file2"
       echo "$file2 has no tomorrow data, we have to try it again until the new prices are online."
-    else
-      rm "$file6"
-      rm "$file7"
-      cat $file2 | while read line;do
-	[ "$(echo "$line" | grep "data_price_hour_rel_.*_amount: ")" ]&& echo "$(echo $line |  cut -f3 -d'[' | cut -f1 -d']' | sed -n 's|data_price_hour_rel_.*_amount: \(.*\)|\1|p')">> $file6
-	done
-      sort -g "$file6" >> "$file7"
-      printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  "$file6"
-      printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >>  "$file7"
     fi
-  else
-    echo "could not get prices"
-    exit 1
-  fi
 }
 
-function download_entsoe_prices_today {
-  curl "$link4" > $file4
-  if test -f "$file4"; then
-    echo "$file4 downloaded"
-    [ -s $file4 ]  && >nul || echo "Error: $file4 is empty, please check your API Key."
-    awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' $file4 >> $file10
-    sed -i '1,96d' $file10
-    sed -i '25,120d' $file10
-    sort -g $file10 >> $file11
-    cp $file10 $file8 
-    sort -g $file8 >> $file12
-    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file8
-    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file12
-    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file10
-    printf "date_now_day: $(echo $( TZ=$TZ date +%d ))" >> $file11
+download_entsoe_prices() {
+  local url=$1
+  local file=$2
+  local output_file=$3
+  local entsoetomorrow=$4
+
+  curl "$url" > "$file"
+  if test -f "$file"; then
+    echo "$file downloaded"
+    [ -s "$file" ] && > /dev/null || echo "Error: $file is empty, please check your API Key."
+    awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' "$file" >> "$output_file"
+    sed -i '1,96d' "$output_file"
+    sed -i '25,120d' "$output_file"
+    sort -g "$output_file" >> "${output_file%.*}_sorted.${output_file##*.}"
+    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "$output_file"
+    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "${output_file%.*}_sorted.${output_file##*.}"
   else
     echo "could not get price data"
     exit 1
   fi
-}
 
-
-function download_entsoe_prices_tomorrow {
-  # Use curl to download file
-  curl $link5 -o $file5;
-  if test -f "$file5"; then
-    echo "$file5 downloaded"
-
-    # Check if file contains next day prices
-    if  grep -q "PT60M" "$file5" ; then
-      echo 'Next day prices available.' ; 
-      
-      # Use Awk to extract and filter data
-      awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' $file5 >> $file13
-
-      # Remove unnecessary lines
-      sed -i '1,96d' $file13
-      sed -i '25,120d' $file13
-      sed -i '25d' $file8
-
-      # Concatenate and sort data
-      cat $file13 >> $file8
-      sort -g $file8 > $file12
-      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file8
-      sort -g $file13 >> $file9
-      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file12
-      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file13
-      echo "date_now_day: $(echo $(TZ=$TZ date +%d))" >> $file9
-    else
-      rm $file5
-      echo "$file5 was empty, we have to try it again until the new prices are online."
-    fi
-
-  else
-    echo "could not get price data"
-    exit 1
+  # Check if tomorrow file contains next day prices
+  if [ $entsoetomorrow=1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 2 ]; then
+    cat $file10 > $file8
+echo >> $file8
+if [ -f "$file13" ]; then
+  cat "$file13" >> "$file8"
+echo >> $file8
+fi
+sed -i '25d 50d' $file8
+sort -g $file8 > $file12
+printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "$file8"
+printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "$file12"
+else
+      echo "$output_file was empty, we have to try it again until the new prices are online."
+rm $file5 $file9 $file13 >> /dev/null
   fi
 }
 
@@ -286,13 +249,11 @@ if test -f "$file1"; then
     echo "Awattar today-data is up to date."
   else
     echo "Awattar today-data is outdated, fetching new data."
-    rm $file1
-    rm $file6
-    rm $file7
-    download_awattar_prices_today
+    rm $file1 $file6 $file7
+    download_awattar_prices "$link1" "$file1" "$file6" 30
   fi
 else # data file1 does not exist
-  download_awattar_prices_today
+    download_awattar_prices "$link1" "$file1" "$file6" 30
 fi
 fi
 
@@ -306,16 +267,12 @@ if test -f "$file4"; then
     echo "Entsoe today-data is up to date."
   else
     echo "Entsoe today-data is outdated, fetching new data."
-    rm $file4
-    rm $file8
-    rm $file10
-    rm $file11
-    rm $file12
-    download_entsoe_prices_today
+    rm $file4 $file8 $file10 $file11 $file12
+    download_entsoe_prices "$link4" "$file4" "$file10" 0
 
   fi
 else # Entsoe data does not exist
-  download_entsoe_prices_today
+  download_entsoe_prices "$link4" "$file4" "$file10" 0
 fi
 fi
 
@@ -331,14 +288,12 @@ if test -f "$file2"; then
   else
     echo "Awattar tomorrow-data is outdated, fetching new data."
     rm $file3
-    download_awattar_prices_tomorrow
+    download_awattar_prices "$link2" "$file2" "$file6" 2
   fi
 else # data file2 does not exist
-  download_awattar_prices_tomorrow
-
+    download_awattar_prices "$link2" "$file2" "$file6" 2
 fi
 fi
-
 if (( ( $select_pricing_api == 2 ) )); then
 
 # test if Entsoe tomorrow data exists
@@ -349,13 +304,11 @@ if test -f "$file5"; then
     echo "Entsoe tomorrow-data is up to date."
   else
     echo "Entsoe tomorrow-data is outdated, fetching new data."
-    rm $file5
-    rm $file9
-    rm $file13
-    download_entsoe_prices_tomorrow
+    rm $file5 $file8 $file9 $file12 $file13
+    download_entsoe_prices "$link5" "$file5" "$file13" 1
   fi
 else # data file5 does not exist
-  download_entsoe_prices_tomorrow
+  download_entsoe_prices "$link5" "$file5" "$file13" 1
 fi
 fi
 fi
@@ -435,9 +388,8 @@ charging_conditions=(
   "charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer"
 )
 
-
 execute_charging=0
-
+execute_fritz_dect_on=0
 
 # Check if any charging condition is met
 for condition in "${charging_conditions[@]}"; do
@@ -446,7 +398,6 @@ for condition in "${charging_conditions[@]}"; do
     break
   fi
 done
-
 
 fritz_dect_conditions=(
 "fritz_dect_at_start_stop == 1 && start_price_integer > current_price_integer"
@@ -458,8 +409,6 @@ fritz_dect_conditions=(
 "fritz_dect_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
 "fritz_dect_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer"
 )
-
-execute_fritz_dect_on=0
 
 # Check if any Fritz DECT condition is met
 for fritz_dect_condition in "${fritz_dect_conditions[@]}"; do
@@ -493,7 +442,6 @@ if [ "$sid" = "0000000000000000" ]; then
     printf "Error: Login failed.\n"
     exit 1
 fi
-
 printf "Login successful.\n\n"
 
 # Iterate over each socket
@@ -524,7 +472,6 @@ for socket in "${sockets[@]}"; do
     if [ "$socket" = "0" ]; then
         continue
     fi
-
     curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" >/dev/null
 done
 fi
