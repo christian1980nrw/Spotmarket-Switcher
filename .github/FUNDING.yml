@@ -1,6 +1,5 @@
 # These are supported funding model platforms
 
-github: christian1980nrw
-custom:
-  - "https://paypal.me/christian1980nrw"
+github: [christian1980nrw]
+custom: ["https://paypal.me/christian1980nrw"]
 
