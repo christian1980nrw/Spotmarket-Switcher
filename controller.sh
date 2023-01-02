@@ -135,7 +135,7 @@ download_awattar_prices() {
     echo "could not get prices"
     exit 1
   fi
-    if [[ $( wc -l < "$file1" ) == $( wc -l < "$file2" ) ]]; then
+    if [ -f "$file2" ] && [[ $( wc -l < "$file1" ) == $( wc -l < "$file2" ) ]]; then
       rm "$file2"
       echo "$file2 has no tomorrow data, we have to try it again until the new prices are online."
     fi
