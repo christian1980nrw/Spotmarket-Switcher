@@ -75,7 +75,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 fbox="192.168.178.1"
 user="fritz1234"
 passwd="YOURPASSWORD"
-sockets=("YOURSOCKETID1" "YOURSOCKETID2" "0" "0" "0" "0")
+sockets=("YOURSOCKETID1" "YOURSOCKETID2 OR 0" "0" "0" "0" "0")
 
 # further Api parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
