@@ -75,7 +75,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 fbox="192.168.178.1"
 user="fritz1234"
 passwd="YOURPASSWORD"
-sockets=("YOURSOCKETID1" "YOURSOCKETID2 OR 0" "0" "0" "0" "0")
+sockets=("YOURSOCKETID1" "YOURSOCKETID2 or 0" "0" "0" "0" "0")
 
 # further Api parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
@@ -194,23 +194,23 @@ fi
 
 function get_current_awattar_day { current_awattar_day=$(sed -n 3{p} $file1 | grep -Eo '[0-9]+'); }
 function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3{p} $file2 | grep -Eo '[0-9]+'); }
-function get_current_price_awattar { current_price=$(sed -n $((2*$(TZ=$TZ date +%H)+39)){p} $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1); }
-function get_lowest_price_awattar { lowest_price=$(sed -n 1{p} $file7 ); }
-function get_second_lowest_price_awattar { second_lowest_price=$(sed -n 2{p} $file7 ); }
-function get_third_lowest_price_awattar { third_lowest_price=$(sed -n 3{p} $file7 ); }
-function get_fourth_lowest_price_awattar { fourth_lowest_price=$(sed -n 4{p} $file7 ); }
-function get_fifth_lowest_price_awattar { fifth_lowest_price=$(sed -n 5{p} $file7 ); }
-function get_sixth_lowest_price_awattar { sixth_lowest_price=$(sed -n 6{p} $file7 ); }
+function get_awattar_prices { current_price=$(sed -n $((2*$(TZ=$TZ date +%H)+39)){p} $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1);
+lowest_price=$(sed -n 1{p} $file7 );
+second_lowest_price=$(sed -n 2{p} $file7 );
+third_lowest_price=$(sed -n 3{p} $file7 );
+fourth_lowest_price=$(sed -n 4{p} $file7 );
+fifth_lowest_price=$(sed -n 5{p} $file7 );
+sixth_lowest_price=$(sed -n 6{p} $file7 ); }
 
 function get_current_entsoe_day { current_entsoe_day=$(sed -n 25{p} $file10 | grep -Eo '[0-9]+'); }
 function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25{p} $file13 | grep -Eo '[0-9]+'); }
-function get_current_price_entsoe { current_price=$(sed -n $now_entsoe_linenumber{p} $file10); }
-function get_lowest_price_entsoe { lowest_price=$(sed -n 1{p} $file12 ); }
-function get_second_lowest_price_entsoe { second_lowest_price=$(sed -n 2{p} $file12 ); }
-function get_third_lowest_price_entsoe { third_lowest_price=$(sed -n 3{p} $file12 ); }
-function get_fourth_lowest_price_entsoe { fourth_lowest_price=$(sed -n 4{p} $file12 ); }
-function get_fifth_lowest_price_entsoe { fifth_lowest_price=$(sed -n 5{p} $file12 ); }
-function get_sixth_lowest_price_entsoe { sixth_lowest_price=$(sed -n 6{p} $file12 ); }
+function get_entsoe_prices { current_price=$(sed -n $now_entsoe_linenumber{p} $file10);
+lowest_price=$(sed -n 1{p} $file12 );
+second_lowest_price=$(sed -n 2{p} $file12 );
+third_lowest_price=$(sed -n 3{p} $file12 );
+fourth_lowest_price=$(sed -n 4{p} $file12 );
+fifth_lowest_price=$(sed -n 5{p} $file12 );
+sixth_lowest_price=$(sed -n 6{p} $file12 ); }
 
 function get_prices_integer_awattar {
 for var in lowest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
@@ -315,25 +315,13 @@ fi
 
 if (( ( $select_pricing_api == 1 ) )); then
 Unit="Cent/kWh"
-get_current_price_awattar
-get_lowest_price_awattar
-get_second_lowest_price_awattar
-get_third_lowest_price_awattar
-get_fourth_lowest_price_awattar
-get_fifth_lowest_price_awattar
-get_sixth_lowest_price_awattar
+get_awattar_prices
 get_prices_integer_awattar
 fi
 
 if (( ( $select_pricing_api == 2 ) )); then
 Unit="EUR/MWh"
-get_current_price_entsoe
-get_lowest_price_entsoe
-get_second_lowest_price_entsoe
-get_third_lowest_price_entsoe
-get_fourth_lowest_price_entsoe
-get_fifth_lowest_price_entsoe
-get_sixth_lowest_price_entsoe
+get_entsoe_prices
 get_prices_integer_entsoe
 fi
 
