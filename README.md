@@ -24,7 +24,7 @@ https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show (choos
 ## Installation
 
 If you are using Victron Venus OS: Execute victron-venus-os-install.sh, it will download and install the Spotmarket-Switcher.
-After that you can edit the variables of /data/etc/Spotmarket-Switcher/controller.sh and continue with step 3.
+After that you can edit the variables ( vi /data/etc/Spotmarket-Switcher/controller.sh ) and continue with step 3.
 
 If you are using another OS:
 1. Copy the shell script (controller.sh) into a custom location and change the variables according to your needs.
