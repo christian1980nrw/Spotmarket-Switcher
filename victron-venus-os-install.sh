@@ -9,4 +9,4 @@ chmod +x /data/rc.local
 
 echo Installation finished. Spotmarket-Switcher will be executed every full hour. 
 echo Please edit the file /data/etc/Spotmarket-Switcher/controller.sh and change it to your needs.
-echo Note: This installation will survive a firmware update.
+echo Note: This installation will survive a Venus OS firmware update.
