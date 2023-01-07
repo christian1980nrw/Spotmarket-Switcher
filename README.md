@@ -22,7 +22,11 @@ https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show (choos
 ![grafik](https://user-images.githubusercontent.com/6513794/209883987-5660ebb9-07aa-4aaa-a6c9-a6d650482610.png)
 
 ## Installation
-1. Copy the shell script into a custom location and change the variables according to your needs.
+
+If you are using Victron Venus OS: Execute victron-venus-os-install.sh, it will download and install the Spotmarket-Switcher.
+
+If you are using another OS:
+1. Copy the shell script (controller.sh) into a custom location and change the variables according to your needs.
 2. Create a crontab or another way to run this script after a new hour has started.
 3. Create a ESS charge schedule (see screenshot) at the first position. In my example the battery will be charged at night up to 50% if activated.
    Please deactivate it after creating. Please check if the system time (at the screenshot) is correct.
