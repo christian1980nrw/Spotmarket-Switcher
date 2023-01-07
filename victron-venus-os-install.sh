@@ -2,10 +2,10 @@
 mkdir /data/etc/Spotmarket-Switcher
 mkdir /data/etc/Spotmarket-Switcher/service
 cd /data/etc/Spotmarket-Switcher
-curl -s https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh
+curl https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh -o controller.sh
 chmod +x ./controller.sh
 cd /data/etc/Spotmarket-Switcher/service
-curl -s https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
+curl https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run -o run
 chmod +x ./run
 ln -s  /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher
 echo >> /data/rc.local
