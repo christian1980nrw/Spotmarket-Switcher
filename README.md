@@ -42,7 +42,7 @@ crontab -e and insert the folowing line
 0 * * * * /path/to/controller.sh
 ```
 
-Please Sponsor this project: https://paypal.me/christian1980nrw
+Please sponsor this project: https://paypal.me/christian1980nrw
 If you live in Germany and would like to switch to a dynamic electricity tariff, you can support me and take out the tariff via the following link.
 We both get a 50 euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e
 In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the app.
