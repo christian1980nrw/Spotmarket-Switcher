@@ -1,4 +1,4 @@
 #!/bin/sh
 sleep 25
-#Add crontab (only if it dosnt exist)
+#Add crontab at system start (only if it doesnt exist)
 echo '(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -' >> /data/rc.local
