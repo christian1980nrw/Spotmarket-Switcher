@@ -1,5 +1,5 @@
 #!/bin/sh
-#sleep 25
+sleep 25
 code='(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -'
 code2='(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -'
 count=$(grep -Fc "$code" /data/rc.local)
