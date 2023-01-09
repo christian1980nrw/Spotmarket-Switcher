@@ -4,3 +4,4 @@ sleep 25
 awk '!seen["(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -"]++' /data/rc.local > /data/rc.local.tmp && mv /data/rc.local.tmp /data/rc.local
 #Add crontab at system start only if it doesnt exist
 echo '(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -' >> /data/rc.local
+chmod +x /data/rc.local
