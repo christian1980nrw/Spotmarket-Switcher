@@ -1,6 +1,6 @@
 #!/bin/sh
 sleep 25
 #remove double lines to correct a bug of a old version of the run script
-awk 'seen["(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -"]++ == 0' /data/rc.local > /data/rc.local.tmp && mv /data/rc.local.tmp /data/rc.local
+awk '!seen["(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -"]++' /data/rc.local > /data/rc.local.tmp && mv /data/rc.local.tmp /data/rc.local
 #Add crontab at system start only if it doesnt exist
 echo '(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -' >> /data/rc.local
