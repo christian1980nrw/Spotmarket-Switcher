@@ -304,7 +304,7 @@ if test -f "$file5"; then
     echo "Entsoe tomorrow-data is up to date."
   else
     echo "Entsoe tomorrow-data is outdated, fetching new data."
-    rm $file5 $file8 $file9 $file12 $file13
+    rm $file5 $file9 $file13
     download_entsoe_prices "$link5" "$file5" "$file13" 1
   fi
 else # data file5 does not exist
