@@ -89,7 +89,7 @@ tomorrow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)2300
 tomorrow2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)
 tomorrowmonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%m)
 tomorrowyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%Y)
-getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%H)
+getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%k)
 now_entsoe_linenumber=$(($getnow+1))
 link1=https://api.awattar.$awattar/v1/marketdata/current.yaml
 link2=http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include
