@@ -109,6 +109,10 @@ file10=/tmp/entsoe_today_prices.txt
 file11=/tmp/entsoe_today_prices_sorted.txt
 file12=/tmp/entsoe_prices_sorted.txt
 file13=/tmp/entsoe_tomorrow_prices.txt
+LOG_FILE="/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+MAX_SIZE=1000 # 1 MB
+LOG_FILES_TO_KEEP=2
+
 
 ########## Begin of the script...
 echo "Maybe we are still charging from last script runtime. Stopping scheduled charging."
@@ -306,6 +310,8 @@ if test -f "$file5"; then
     echo "Entsoe tomorrow-data is outdated, fetching new data."
     rm $file5 $file9 $file13
     download_entsoe_prices "$link5" "$file5" "$file13" 1
+#   cp "$file10" "$file8"
+#   cp "$file11" "$file12"
   fi
 else # data file5 does not exist
   download_entsoe_prices "$link5" "$file5" "$file13" 1
@@ -332,8 +338,8 @@ get_solarenergy_tomorrow
 fi
 
 echo Please verify correct system time and timezone:
-TZ=$TZ date
-echo "Current price is" $current_price" $Unit netto."
+TZ=$TZ date | tee -a $LOG_FILE
+echo "Current price is" $current_price" $Unit netto." | tee -a $LOG_FILE
 echo "Lowest price will be" $lowest_price" $Unit netto."
 echo "Second lowest price will be" $second_lowest_price" $Unit netto."
 echo "Third lowest price will be" $third_lowest_price" $Unit netto."
@@ -341,8 +347,8 @@ echo "Fourth lowest price will be" $fourth_lowest_price" $Unit netto."
 echo "Fifth lowest price will be" $fifth_lowest_price" $Unit netto."
 echo "Sixth lowest price will be" $sixth_lowest_price" $Unit netto."
 if (( ( $use_solarweather_api_to_abort == 1 ) )); then
-echo "Solarenergy today will be" $solarenergy_today" megajoule per sqaremeter."
-echo "Solarenergy tomorrow will be" $solarenergy_tomorrow" megajoule per squaremeter."
+echo "Solarenergy today will be" $solarenergy_today" megajoule per sqaremeter."  | tee -a $LOG_FILE
+echo "Solarenergy tomorrow will be" $solarenergy_tomorrow" megajoule per squaremeter."  | tee -a $LOG_FILE
 [ -s $file3 ]  && >nul || echo "Error: $file3 is empty, please check your API Key if download is still not possible tomorrow."
 find $file3 -size 0 -delete
 fi
@@ -352,16 +358,16 @@ if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); th
   exit 1
 fi
 if ((abort_price_integer <= current_price_integer)); then
-  echo "Current price is too high. Abort."
+  echo "Current price is too high. Abort."  | tee -a $LOG_FILE
   exit 0
 fi
 if ((use_solarweather_api_to_abort == 1)); then
   if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-    echo "There is enough sun today. Abort."
+    echo "There is enough sun today. Abort."  | tee -a $LOG_FILE
     exit 0
   fi
   if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-    echo "There is enough sun tomorrow. Abort."
+    echo "There is enough sun tomorrow. Abort."  | tee -a $LOG_FILE
     exit 0
   fi
 fi
@@ -383,7 +389,7 @@ execute_fritz_dect_on=0
 for condition in "${charging_conditions[@]}"; do
   if (( $condition )); then
     execute_charging=1
-    break
+  break
   fi
 done
 
@@ -402,18 +408,19 @@ fritz_dect_conditions=(
 for fritz_dect_condition in "${fritz_dect_conditions[@]}"; do
   if (( $fritz_dect_condition == 1 )); then
     execute_fritz_dect_on=1
-    break
+  break
   fi
 done
 
 # If any charging condition is met, start charging
 if (( execute_charging == 1 )); then
-  echo "starting charging"
+echo " Executing 1 hour charging." | tee -a $LOG_FILE
   dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7
 fi
 
 # If any Fritz DECT condition is met, execute Fritz DECT on command
   if (( execute_fritz_dect_on == 1 )); then
+echo " Executing 1 hour switching." | tee -a $LOG_FILE
 
 # Get session ID (SID)
 sid=""
@@ -427,11 +434,10 @@ hash=$(echo -n "$challenge-$passwd" |sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum 
 sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" \
     | grep -o "<SID>[a-z0-9]\{16\}" |  cut -d'>' -f 2)
 if [ "$sid" = "0000000000000000" ]; then
-    printf "Error: Login failed.\n"
+    printf "Error: Login to Fritzbox failed.\n" | tee -a $LOG_FILE
     exit 1
 fi
-printf "Login successful.\n\n"
-
+printf "Login to Fritzbox successful.\n\n" | tee -a $LOG_FILE
 # Iterate over each socket
 for socket in "${sockets[@]}"; do
     if [ "$socket" = "0" ]; then
@@ -442,13 +448,11 @@ for socket in "${sockets[@]}"; do
     connected=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchpresent")
     state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
-    printf "Socket $socket: "
     if [ "$connected" = "1" ]; then
-        printf "$state\n"
-        printf "Turning on for almost 60 minutes and then off again...\n"
+        printf "Turning socket $socket on for almost 60 minutes and then off again...\n" | tee -a $LOG_FILE
         curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon" >/dev/null
     else
-        printf "Not connected\n"
+        printf "Socket $socket is not connected\n" | tee -a $LOG_FILE
     fi
 done
 
@@ -462,4 +466,14 @@ for socket in "${sockets[@]}"; do
     fi
     curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" >/dev/null
 done
+fi
+
+# doing logrotation
+echo >> $LOG_FILE
+if [ -f "$LOG_FILE" ]; then
+  if [ $(du -k "$LOG_FILE" | awk '{print $1}') -gt "$MAX_SIZE" ]; then
+    mv "$LOG_FILE" "$LOG_FILE".$(date +%Y%m%d%H%M%S)
+    touch "$LOG_FILE"
+    ls -1t "$LOG_FILE"* | tail -n +$((LOG_FILES_TO_KEEP + 1)) | xargs --no-run-if-empty rm
+  fi
 fi
