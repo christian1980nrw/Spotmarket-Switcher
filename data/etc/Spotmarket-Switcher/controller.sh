@@ -310,6 +310,8 @@ if test -f "$file5"; then
     echo "Entsoe tomorrow-data is outdated, fetching new data."
     rm $file5 $file9 $file13
     download_entsoe_prices "$link5" "$file5" "$file13" 1
+       cp "$file10" "$file8"
+       cp "$file11" "$file12"
   fi
 else # data file5 does not exist
   download_entsoe_prices "$link5" "$file5" "$file13" 1
