@@ -1,7 +1,7 @@
 # Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Switcher
 (deutsche Übersetzung am Ende / German translation at the end)
 
-Shell script that manages Victron Venus OS ESS-Systems and/or AVM Fritz!DECT200 and 210 switchable sockets so that it charges/switches, 
+Shell script that manages Victron Venus OS ESS-Systems and/or Shelly Plug S and/or AVM Fritz!DECT200 and 210 switchable sockets so that it charges/switches, 
 when spot-market prices at Tibber or Awattar are low. 
 If you have spot-market energy prices, you are able to charge your battery if the price is lower
 than your own feed-in tariff or you can use cheap prices of wind energy at night.
@@ -56,7 +56,7 @@ If you need the tibber app, please scan this with your smartphone.
 Thanks and regards, Christian
 
 
-Dieses Skript dient dazu, ein Victron Venus OS Energiespeichersystem (ESS) zu verwalten, indem der Akku geladen wird, wenn die Energiepreise niedrig sind. Es kann auch so konfiguriert werden, dass zusätzliche Last (wie beispielsweise ein Warmwasserspeicher) mithilfe von schaltbaren Steckdosen von AVM FRITZ!DECT 200 oder 210 aktiviert wird. Das Skript bezieht stündliche Energiepreise von einem deutschen Energieversorger, und ruft dort die EPEX Spot DE-LU oder AT stündlichen Preise ab. Es kann unterstützt jedoch auch die kostenlose Entso-E API, die ganz Europa abdeckt.
+Dieses Skript dient dazu, ein Victron Venus OS Energiespeichersystem (ESS) zu verwalten, indem der Akku geladen wird, wenn die Energiepreise niedrig sind. Es kann auch so konfiguriert werden, dass zusätzliche Last (wie beispielsweise ein Warmwasserspeicher) mithilfe von schaltbaren Steckdosen Typ Shelly Plug S oder AVM FRITZ!DECT 200 oder 210 aktiviert wird. Das Skript bezieht stündliche Energiepreise von einem deutschen Energieversorger, und ruft dort die EPEX Spot DE-LU oder AT stündlichen Preise ab. Es kann unterstützt jedoch auch die kostenlose Entso-E API, die ganz Europa abdeckt.
 
 Um das Skript zu verwenden, müssen Sie es in einen benutzerdefinierten Ort kopieren und die Variablen anpassen. Sie müssen auch eine Crontab oder eine ähnliche Mechanismus erstellen, um das Skript jede Stunde auszuführen. Darüber hinaus müssen Sie in der Victron Venus OS-System einen ESS-Ladetermin erstellen und ihn als erstes Element in der Liste positionieren. Es wird empfohlen, den Ladetermin nach der Erstellung zu deaktivieren.
 
