@@ -32,6 +32,7 @@ shellypasswd="YOURPASSWORD" # only if used
 use_victron_charger=0 # please activate with 1 or deactivate this charger-type with 0
 charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
 charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. Current and highest price will be compared and aborted if charging makes no sense.
 
 #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / netto prices excl. tax).
 stop_price=4.1 # stop above this price
@@ -50,7 +51,7 @@ charge_at_second_lowest_price=0
 switchablesockets_at_second_lowest_price=0
 charge_at_third_lowest_price=0
 switchablesockets_at_third_lowest_price=0
-charge_at_fourth_lowest_price=0
+charge_at_fourth_lowest_price=1
 switchablesockets_at_fourth_lowest_price=0
 charge_at_fifth_lowest_price=0
 switchablesockets_at_fifth_lowest_price=0
@@ -221,7 +222,10 @@ second_lowest_price=$(sed -n 2{p} $file7 );
 third_lowest_price=$(sed -n 3{p} $file7 );
 fourth_lowest_price=$(sed -n 4{p} $file7 );
 fifth_lowest_price=$(sed -n 5{p} $file7 );
-sixth_lowest_price=$(sed -n 6{p} $file7 ); }
+sixth_lowest_price=$(sed -n 6{p} $file7 ); 
+highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file7 $file7);
+}
+
 
 function get_current_entsoe_day { current_entsoe_day=$(sed -n 25{p} $file10 | grep -Eo '[0-9]+'); }
 function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25{p} $file13 | grep -Eo '[0-9]+'); }
@@ -231,10 +235,12 @@ second_lowest_price=$(sed -n 2{p} $file12 );
 third_lowest_price=$(sed -n 3{p} $file12 );
 fourth_lowest_price=$(sed -n 4{p} $file12 );
 fifth_lowest_price=$(sed -n 5{p} $file12 );
-sixth_lowest_price=$(sed -n 6{p} $file12 ); }
+sixth_lowest_price=$(sed -n 6{p} $file12 ); 
+highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file12 $file12);
+}
 
 function get_prices_integer_awattar {
-for var in lowest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
+for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
 do
     integer_var="${var}_integer"
     eval "$integer_var"=$(printf "%.0f\n" "${!var}e15")
@@ -244,7 +250,7 @@ done
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
 
-for var in lowest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
 do
     integer_var="${var}_integer"
     eval "$integer_var"=$(printf "%.0f\n" "${!var}e14")
@@ -371,17 +377,17 @@ echo Please verify correct system time and timezone:
 echo >> $LOG_FILE
 TZ=$TZ date | tee -a $LOG_FILE
 echo "Current price is" $current_price" $Unit netto." | tee -a $LOG_FILE
-echo "Lowest price will be" $lowest_price" $Unit netto."
-echo "Second lowest price will be" $second_lowest_price" $Unit netto."
-echo "Third lowest price will be" $third_lowest_price" $Unit netto."
-echo "Fourth lowest price will be" $fourth_lowest_price" $Unit netto."
-echo "Fifth lowest price will be" $fifth_lowest_price" $Unit netto."
-echo "Sixth lowest price will be" $sixth_lowest_price" $Unit netto."
+echo "Lowest price will be "$lowest_price" $Unit netto."
+echo "Highest price will be "$highest_price" $Unit netto."
+echo "Second lowest price will be "$second_lowest_price" $Unit netto."
+echo "Third lowest price will be "$third_lowest_price" $Unit netto."
+echo "Fourth lowest price will be "$fourth_lowest_price" $Unit netto."
+echo "Fifth lowest price will be "$fifth_lowest_price" $Unit netto."
+echo "Sixth lowest price will be "$sixth_lowest_price" $Unit netto."
 if (( ( $use_solarweather_api_to_abort == 1 ) )); then
 echo "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes. "  | tee -a $LOG_FILE
 echo "Solarenergy today will be" $solarenergy_today" megajoule per sqaremeter with "$cloudcover_today" percent clouds."  | tee -a $LOG_FILE
 echo "Solarenergy tomorrow will be" $solarenergy_tomorrow" megajoule per squaremeter with "$cloudcover_tomorrow" percent clouds."  | tee -a $LOG_FILE
-
 [ -s $file3 ]  && >nul || echo "Error: $file3 is empty, please check your API Key if download is still not possible tomorrow."
 find $file3 -size 0 -delete
 fi
@@ -449,10 +455,24 @@ for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
 done
 # If any charging condition is met, start charging
 if (( execute_charging == 1 && $use_victron_charger == 1 )); then
-echo " Executing 1 hour charging." | tee -a $LOG_FILE
+
+# Calculate the energy_loss_percent of the current_price_integer number
+percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}")
+
+# convert the result of the calculation to an integer
+percent_of_current_price_integer=$(printf "%.0f" $percent_of_current_price_integer)
+
+# Check if charging makes sense
+if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+  echo "Difference between highest price and current price is greater than $energy_loss_percent%." | tee -a $LOG_FILE
+  echo "Charging makes sense. Executing 1 hour charging." | tee -a $LOG_FILE
   $charger_command_turnon
+else
+  echo "Difference between highest price and current price is less than $energy_loss_percent%." | tee -a $LOG_FILE
+  echo "Charging makes no sense. Skipping charging." | tee -a $LOG_FILE
 fi
 
+fi
 # execute Fritz DECT on command
   if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 echo " Executing 1 hour Fritz switching." | tee -a $LOG_FILE
@@ -503,7 +523,7 @@ done
 
   fi
 if [ $execute_charging -eq 1 ] || [ $execute_switchablesockets_on -eq 1 ]; then
-# Wait for almost 60 minutes
+echo Waiting for almost 60 minutes...
 sleep 3560
 fi
 
