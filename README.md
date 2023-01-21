@@ -1,4 +1,4 @@
-# Victron-ESS & AVM-Fritz-DECT200-210 Spotmarket-Switcher
+# Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Switcher
 (deutsche Übersetzung am Ende / German translation at the end)
 
 Shell script that manages Victron Venus OS ESS-Systems and/or AVM Fritz!DECT200 and 210 switchable sockets so that it charges/switches, 
