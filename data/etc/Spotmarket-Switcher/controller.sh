@@ -224,6 +224,7 @@ fourth_lowest_price=$(sed -n 4{p} $file7 );
 fifth_lowest_price=$(sed -n 5{p} $file7 );
 sixth_lowest_price=$(sed -n 6{p} $file7 ); 
 highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file7 $file7);
+average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file7);
 }
 
 
@@ -237,6 +238,7 @@ fourth_lowest_price=$(sed -n 4{p} $file12 );
 fifth_lowest_price=$(sed -n 5{p} $file12 );
 sixth_lowest_price=$(sed -n 6{p} $file12 ); 
 highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file12 $file12);
+average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file12);
 }
 
 function get_prices_integer_awattar {
@@ -378,6 +380,7 @@ echo >> $LOG_FILE
 TZ=$TZ date | tee -a $LOG_FILE
 echo "Current price is" $current_price" $Unit netto." | tee -a $LOG_FILE
 echo "Lowest price will be "$lowest_price" $Unit netto."
+echo "The average price will be "$average_price" $Unit netto."
 echo "Highest price will be "$highest_price" $Unit netto."
 echo "Second lowest price will be "$second_lowest_price" $Unit netto."
 echo "Third lowest price will be "$third_lowest_price" $Unit netto."
