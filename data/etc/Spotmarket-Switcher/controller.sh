@@ -216,7 +216,7 @@ fi
 
 function get_current_awattar_day { current_awattar_day=$(sed -n 3{p} $file1 | grep -Eo '[0-9]+'); }
 function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3{p} $file2 | grep -Eo '[0-9]+'); }
-function get_awattar_prices { current_price=$(sed -n $((2*$(TZ=$TZ date +%H)+39)){p} $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1);
+function get_awattar_prices { current_price=$(sed -n $((2*$(TZ=$TZ date +%k)+39)){p} $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1);
 lowest_price=$(sed -n 1{p} $file7 );
 second_lowest_price=$(sed -n 2{p} $file7 );
 third_lowest_price=$(sed -n 3{p} $file7 );
