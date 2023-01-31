@@ -81,8 +81,7 @@ visualcrossing_api_key=YOURAPIKEY # Get your free key at https://www.visualcross
 awattar=de # enter de for Germany or at for Austria (no other countrys available, for other countrys use Entsoe API)
 
 # Entsoe Api setup
-# To find out your in and out domain key, export sample data as XML of your country at https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show
-# and open it with a Text editor or open https://eepublicdownloads.entsoe.eu/clean-documents/EDI/Library/Market_Areas_v2.1.pdf and get the Market Balance Area code of your country.
+# To find out your in and out domain key, go to https://www.entsoe.eu/data/energy-identification-codes-eic/eic-area-codes-map/ to find the Bidding Zone or open https://eepublicdownloads.entsoe.eu/clean-documents/EDI/Library/Market_Areas_v2.1.pdf and get the Market Balance Area code of your country.
 in_Domain=10Y1001A1001A82H # this is for Germany DE-LU
 out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
 entsoe_eu_api_security_token=YOURAPIKEY
