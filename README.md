@@ -60,7 +60,13 @@ Um das Skript zu verwenden, müssen Sie es in einen benutzerdefinierten Ort kopi
 
 Um das Skript zu installieren, müssen Sie die Crontab bearbeiten, indem Sie den Befehl "crontab -e" ausführen und eine Zeile einfügen, die das Skript jede Stunde ausführt. Beispielsweise wird "0 * * * * /pfad/zu/controller.sh" das Skript zu Beginn jeder Stunde ausführen.
 
-Es ist zu beachten, dass Sie einen Smart Meter oder einen Tracker wie Pulse benötigen, um einen dynamischen Stromtarif verwenden zu können. Sie können die Website von Tibber verwenden, um zu überprüfen, ob Ihr Zähler mit Pulse kompatibel ist. Wenn Sie an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie Tibber als Anbieter in Betracht ziehen. Sie können den Einladungscode "ojgfbx2e" verwenden, um einen Bonus von 50 Euro für Hardware zu erhalten. Selbstverständlich können Sie Ihren Bonus für die Pulse Bestellung verwenden. Warten Sie dazu ab bis der Belieferungstermin bestätigt wurde und der Bonus gutgeschrieben wurde.
+Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://paypal.me/christian1980nrw
+Wenn Sie in Deutschland leben und zu einem dynamischen Stromtarif wechseln möchten, können Sie mich unterstützen und den Tarif über folgenden Link abschließen.
+Wir bekommen beide 50 Euro Prämie für Hardware. Besuchen Sie https://invite.tibber.com/ojgfbx2e
+Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
+Bitte beachten Sie, dass Sie für einen dynamischen Tarif einen Smart Meter oder einen Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigen.
+Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde.
+Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen und einen klassischen Stromtarif mit nachfolgendem Link abschließen um 125 EUR Bonus für sich selbst und 50 EUR Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58 .
 
 
 Haftungsausschluss(Disclaimer):
