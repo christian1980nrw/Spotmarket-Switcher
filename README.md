@@ -42,16 +42,14 @@ crontab -e and insert the folowing line
 0 * * * * /path/to/controller.sh
 ```
 
-Please sponsor this project: https://paypal.me/christian1980nrw
+Please sponsor this project and support further development: https://paypal.me/christian1980nrw
 If you live in Germany and would like to switch to a dynamic electricity tariff, you can support me and take out the tariff via the following link.
 We both get a 50 euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e
 In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the app.
 Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for a hourly tariff.
 Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course you can use your bonus for the Pulse order. To do this, wait until the delivery date has been confirmed and the bonus has been credited.
-If you need the tibber app, please scan this with your smartphone.
 
-![grafik](https://user-images.githubusercontent.com/6513794/208248287-bce59608-2af5-4217-9990-e506cde19df4.png)
-
+If you need a cheap natural gas tariff or if you are not conviced to choose the dynamic Tibber tariff, you can still support this project and choose a classic electricity tariff with this link to get 125 EUR Bonus for yourself and 50 EUR Bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
 
 Thanks and regards, Christian
 
