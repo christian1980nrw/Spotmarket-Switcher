@@ -1,27 +1,29 @@
 #!/bin/bash
 
-# Haftungsausschluss(Disclaimer): Dieses Computerprogramm wird "wie es ist" bereitgestellt und der Nutzer trägt das volle Risiko bei der Nutzung.
-# Der Autor übernimmt keine Gewährleistung für die Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Brauchbarkeit des Programms für irgendeinen bestimmten Zweck.
-# Der Autor haftet weder für Schäden, die sich aus der Nutzung oder Unfähigkeit zur Nutzung des Programms ergeben, noch für Schäden, die aufgrund von Fehlern oder
-# Mängeln des Programms entstehen. Dies gilt auch für Schäden, die aufgrund von Verletzungen von Pflichten im Rahmen einer vertraglichen oder außervertraglichen
-# Verpflichtung entstehen.
-
 # Disclaimer: This computer program is provided "as is" and the user bears the full risk of using it.
 # The author makes no representations or warranties of any kind concerning the accuracy, reliability, completeness or suitability of the program for any particular purpose.
 # The author shall not be liable for any damages of any kind arising from the use or inability to use the program, including but not limited to direct, indirect, incidental,
 # special or consequential damages.
 
 # Please sponsor this project and support further development: https://paypal.me/christian1980nrw
-# If you live in Germany and would like to switch to a dynamic electricity tariff, you can support me and take out the tariff via the following link.
-# We both get a 50 euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e
-# In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the app.
-# Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for a hourly tariff.
-# Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course you can use your bonus for the Pulse order. 
-# To do this, wait until the delivery date has been confirmed and the bonus has been credited.
-# If you need a german cheap natural gas tariff or if you are not conviced to choose the dynamic tibber tariff, you can still support this project and choose
-# a classic electricity tariff with this link to get 125 EUR Bonus for yourself and 50 EUR Bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
 
-# Thanks and regards, Christian
+# Haftungsausschluss(Disclaimer): Dieses Computerprogramm wird "wie es ist" bereitgestellt und der Nutzer trägt das volle Risiko bei der Nutzung.
+# Der Autor übernimmt keine Gewährleistung für die Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Brauchbarkeit des Programms für irgendeinen bestimmten Zweck.
+# Der Autor haftet weder für Schäden, die sich aus der Nutzung oder Unfähigkeit zur Nutzung des Programms ergeben, noch für Schäden, die aufgrund von Fehlern oder
+# Mängeln des Programms entstehen. Dies gilt auch für Schäden, die aufgrund von Verletzungen von Pflichten im Rahmen einer vertraglichen oder außervertraglichen
+# Verpflichtung entstehen.
+
+# Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://paypal.me/christian1980nrw Wenn Sie in Deutschland leben und zu einem 
+# dynamischen Stromtarif wechseln möchten, können Sie mich unterstützen und den Tarif über folgenden Link abschließen. Wir bekommen beide 50 Euro Prämie für Hardware.
+# Besuchen Sie https://invite.tibber.com/ojgfbx2e Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
+# Bitte beachten Sie, dass Sie für einen dynamischen Tarif einen Smart Meter oder einen Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigen.
+# Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. 
+# Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde. 
+# Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen
+# und einen klassischen Stromtarif mit nachfolgendem Link abschließen um 125 EUR Bonus für sich selbst und 50 EUR Bonus für dieses Projekt zu erhalten:
+# https://share.octopusenergy.de/glass-raven-58
+
+# Thanks Christian
 
 ##### Configuration part...
 #Please note that this script is only for hourly based tariff data, please create your own fork if you need 15 minutes based data.
