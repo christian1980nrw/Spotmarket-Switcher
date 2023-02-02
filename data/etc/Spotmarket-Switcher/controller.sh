@@ -11,6 +11,18 @@
 # The author shall not be liable for any damages of any kind arising from the use or inability to use the program, including but not limited to direct, indirect, incidental,
 # special or consequential damages.
 
+# Please sponsor this project and support further development: https://paypal.me/christian1980nrw
+# If you live in Germany and would like to switch to a dynamic electricity tariff, you can support me and take out the tariff via the following link.
+# We both get a 50 euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e
+# In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the app.
+# Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for a hourly tariff.
+# Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course you can use your bonus for the Pulse order. 
+# To do this, wait until the delivery date has been confirmed and the bonus has been credited.
+# If you need a german cheap natural gas tariff or if you are not conviced to choose the dynamic tibber tariff, you can still support this project and choose
+# a classic electricity tariff with this link to get 125 EUR Bonus for yourself and 50 EUR Bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
+
+# Thanks and regards, Christian
+
 ##### Configuration part...
 #Please note that this script is only for hourly based tariff data, please create your own fork if you need 15 minutes based data.
 #After every API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
