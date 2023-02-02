@@ -49,7 +49,7 @@ In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the a
 Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for a hourly tariff.
 Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course you can use your bonus for the Pulse order. To do this, wait until the delivery date has been confirmed and the bonus has been credited.
 
-If you need a cheap natural gas tariff or if you are not conviced to choose the dynamic tibber tariff, you can still support this project and choose a classic electricity tariff with this link to get 125 EUR Bonus for yourself and 50 EUR Bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
+If you need a cheap natural gas tariff or if you are not conviced to choose the dynamic tibber tariff, you can still support this project and choose a classic electricity tariff with this link to get 125 euro bonus for yourself and 50 euro bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
 
 Thanks and regards, Christian
 
@@ -66,7 +66,7 @@ Wir bekommen beide 50 Euro Prämie für Hardware. Besuchen Sie https://invite.ti
 Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
 Bitte beachten Sie, dass Sie für einen dynamischen Tarif einen Smart Meter oder einen Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigen.
 Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde.
-Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen und einen klassischen Stromtarif mit nachfolgendem Link abschließen um 125 EUR Bonus für sich selbst und 50 EUR Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58 .
+Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen und einen klassischen Stromtarif mit nachfolgendem Link abschließen um 125 Euro Bonus für sich selbst und 50 Euro Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58 .
 
 
 Haftungsausschluss(Disclaimer):
