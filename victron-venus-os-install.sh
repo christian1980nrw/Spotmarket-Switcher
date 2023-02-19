@@ -23,3 +23,5 @@ echo The crontab will be changed automatically by the script /data/etc/Spotmarke
 echo Please edit the configuration file with vi /data/etc/Spotmarket-Switcher/controller.sh
 echo and change it to your needs.
 echo Note: This installation will survive a Venus OS firmware update.
+
+reboot
