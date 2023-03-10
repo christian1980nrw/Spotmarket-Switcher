@@ -22,6 +22,8 @@ echo Installation finished. Spotmarket-Switcher will be executed every full hour
 echo The crontab will be changed automatically by the script /data/etc/Spotmarket-Switcher/service/run
 echo Please edit the configuration file with vi /data/etc/Spotmarket-Switcher/controller.sh
 echo and change it to your needs.
-echo Note: This installation will survive a Venus OS firmware update.
+echo Note: This installation will survive a Venus OS firmware update. 
+echo Please do a extra reboot after every firmware update so that the crontab can be recreated automatically.
 
+sleep 20
 reboot
