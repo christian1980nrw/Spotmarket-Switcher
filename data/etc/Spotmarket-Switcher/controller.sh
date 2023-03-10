@@ -144,7 +144,7 @@ MAX_SIZE=1000 # 1 MB
 LOG_FILES_TO_KEEP=2
 
 ########## Begin of the script...
-
+echo >> $LOG_FILE
 if (( ( $use_victron_charger == 1 ) )); then
 echo "Maybe we are still charging from last script runtime. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a $LOG_FILE
 $charger_command_turnoff
@@ -390,7 +390,6 @@ get_suntime_today
 fi
 
 echo Please verify correct system time and timezone:
-echo >> $LOG_FILE
 TZ=$TZ date | tee -a $LOG_FILE
 echo "Current price is" $current_price" $Unit netto." | tee -a $LOG_FILE
 echo "Lowest price will be "$lowest_price" $Unit netto."
@@ -482,11 +481,11 @@ percent_of_current_price_integer=$(printf "%.0f" $percent_of_current_price_integ
 # Check if charging makes sense
 if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
   echo "Difference between highest price and current price is greater than $energy_loss_percent%." | tee -a $LOG_FILE
-  echo "Charging makes sense. Executing 1 hour charging. Battery SOC is at $SOC_percent %." | tee -a $LOG_FILE
+  echo "Charging makes sense. Executing 1 hour charging." | tee -a $LOG_FILE
   $charger_command_turnon
 else
   echo "Difference between highest price and current price is less than $energy_loss_percent%." | tee -a $LOG_FILE
-  echo "Charging makes no sense. Skipping charging. Battery SOC is at $SOC_percent %." | tee -a $LOG_FILE
+  echo "Charging makes no sense. Skipping charging." | tee -a $LOG_FILE
 
 fi
 
@@ -498,7 +497,7 @@ echo " Executing 1 hour Fritz switching." | tee -a $LOG_FILE
 sid=""
 challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
 	if [ -z "$challenge" ]; then
-    printf "Error: Could not retrieve challenge from login_sid.lua.\n"
+    printf "Error: Could not retrieve challenge from login_sid.lua.\n"  | tee -a $LOG_FILE
     exit 1
 	fi
 
@@ -538,11 +537,11 @@ do
     curl -u '$shellyuser:$shellypasswd' http://$ip/relay/0?turn=on
   fi
 done
-
   fi
-if [ use_shelly_wlan_sockets == 1 ] || [ use_fritz_dect_sockets == 1 ] && [ $execute_switchablesockets_on -eq 1 ]; then
-echo Waiting for almost 60 minutes...
-sleep 3560
+
+if ([ $use_shelly_wlan_sockets -eq 1 ] || [ $use_fritz_dect_sockets -eq 1 ]) && [ $execute_switchablesockets_on -eq 1 ]; then
+    echo "Waiting for almost 60 minutes..."
+    sleep 3560
 fi
 
   if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
