@@ -19,7 +19,7 @@ You currently do not need an access token! You can alternate use the free Entso-
 You can compare the prices here:
 https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show (choose delivery day and resolution PT60M).
 
-![grafik](https://user-images.githubusercontent.com/6513794/209883987-5660ebb9-07aa-4aaa-a6c9-a6d650482610.png)
+![grafik](https://user-images.githubusercontent.com/6513794/224440160-af9dd497-0008-43ad-80cc-612a1e0d588e.png)
 
 ## Installation
 
