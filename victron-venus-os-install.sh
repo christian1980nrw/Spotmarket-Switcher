@@ -24,6 +24,6 @@ echo Please edit the configuration file with vi /data/etc/Spotmarket-Switcher/co
 echo and change it to your needs.
 echo Note: This installation will survive a Venus OS firmware update. 
 echo Please do a extra reboot after every firmware update so that the crontab can be recreated automatically.
-
+echo The System will reboot in 20 seconds to finish the setup.
 sleep 20
 reboot
