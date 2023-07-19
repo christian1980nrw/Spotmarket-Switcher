@@ -20,7 +20,7 @@
 # Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. 
 # Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde. 
 # Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen
-# und einen klassischen Stromtarif mit nachfolgendem Link abschließen um 60 Euro Bonus für sich selbst und 50 Euro Bonus für dieses Projekt zu erhalten:
+# und einen klassischen Stromtarif von Octopusenergy mit nachfolgendem Link abschließen um 50 Euro Gutschein für sich selbst und 50 Euro Bonus für dieses Projekt zu erhalten:
 # https://share.octopusenergy.de/glass-raven-58
 
 # Thanks Christian
