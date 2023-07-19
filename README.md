@@ -66,7 +66,7 @@ Wir bekommen beide 50 Euro Prämie für Hardware. Besuchen Sie https://invite.ti
 Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
 Bitte beachten Sie, dass Sie für einen dynamischen Tarif einen Smart Meter oder einen Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigen.
 Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde.
-Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen und einen klassischen Stromtarif mit nachfolgendem Link abschließen um 60 Euro Bonus für sich selbst und 50 Euro Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58 .
+Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen und einen klassischen Stromtarif von Octopusenergy mit nachfolgendem Link abschließen um 50 Euro Gutschein für sich selbst und 50 Euro Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58 .
 
 
 Haftungsausschluss(Disclaimer):
