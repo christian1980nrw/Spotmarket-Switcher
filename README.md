@@ -42,7 +42,7 @@ crontab -e and insert the folowing line
 0 * * * * /path/to/controller.sh
 ```
 
-Please sponsor this project and support further development: https://paypal.me/christian1980nrw
+Please sponsor this project and support further development: https://revolut.me/christqki2 or https://paypal.me/christian1980nrw
 If you live in Germany and would like to switch to a dynamic electricity tariff, you can support me and take out the tariff via the following link.
 We both get a 50 euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e
 In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the app.
@@ -60,7 +60,7 @@ Um das Skript zu verwenden, müssen Sie es in einen benutzerdefinierten Ort kopi
 
 Um das Skript zu installieren, müssen Sie die Crontab bearbeiten, indem Sie den Befehl "crontab -e" ausführen und eine Zeile einfügen, die das Skript jede Stunde ausführt. Beispielsweise wird "0 * * * * /pfad/zu/controller.sh" das Skript zu Beginn jeder Stunde ausführen.
 
-Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://paypal.me/christian1980nrw
+Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://revolut.me/christqki2 oder https://paypal.me/christian1980nrw
 Wenn Sie in Deutschland leben und zu einem dynamischen Stromtarif wechseln möchten, können Sie mich unterstützen und den Tarif über folgenden Link abschließen.
 Wir bekommen beide 50 Euro Prämie für Hardware. Besuchen Sie https://invite.tibber.com/ojgfbx2e
 Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
