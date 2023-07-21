@@ -5,7 +5,7 @@
 # The author shall not be liable for any damages of any kind arising from the use or inability to use the program, including but not limited to direct, indirect, incidental,
 # special or consequential damages.
 
-# Please sponsor this project and support further development: https://paypal.me/christian1980nrw
+# Please sponsor this project and support further development: https://revolut.me/christqki2 or https://paypal.me/christian1980nrw
 
 # Haftungsausschluss(Disclaimer): Dieses Computerprogramm wird "wie es ist" bereitgestellt und der Nutzer trägt das volle Risiko bei der Nutzung.
 # Der Autor übernimmt keine Gewährleistung für die Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Brauchbarkeit des Programms für irgendeinen bestimmten Zweck.
@@ -13,7 +13,7 @@
 # Mängeln des Programms entstehen. Dies gilt auch für Schäden, die aufgrund von Verletzungen von Pflichten im Rahmen einer vertraglichen oder außervertraglichen
 # Verpflichtung entstehen.
 
-# Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://paypal.me/christian1980nrw Wenn Sie in Deutschland leben und zu einem 
+# Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://revolut.me/christqki2 oder https://paypal.me/christian1980nrw Wenn Sie in Deutschland leben und zu einem 
 # dynamischen Stromtarif wechseln möchten, können Sie mich unterstützen und den Tarif über folgenden Link abschließen. Wir bekommen beide 50 Euro Prämie für Hardware.
 # Besuchen Sie https://invite.tibber.com/ojgfbx2e Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
 # Bitte beachten Sie, dass Sie für einen dynamischen Tarif einen Smart Meter oder einen Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigen.
