@@ -49,7 +49,7 @@ In the tibber app, click at "i was invited" and enter the code ojgfbx2e in the a
 Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for a hourly tariff.
 Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course you can use your bonus for the Pulse order. To do this, wait until the delivery date has been confirmed and the bonus has been credited.
 
-If you need a cheap natural gas tariff or if you are not conviced to choose the dynamic tibber tariff, you can still support this project and choose a classic electricity tariff with this link to get 60 euro bonus for yourself and 50 euro bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
+If you need a cheap natural gas tariff or if you are not conviced to choose the dynamic tibber tariff, you can still support this project and choose a classic electricity tariff with this link to get 50 euro bonus for yourself and 50 euro bonus for this project: https://share.octopusenergy.de/glass-raven-58 .
 
 Thanks and regards, Christian
 
