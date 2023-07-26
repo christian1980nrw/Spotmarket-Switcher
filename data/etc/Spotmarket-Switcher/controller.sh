@@ -46,7 +46,7 @@ shellypasswd="YOURPASSWORD" # only if used
 use_victron_charger=0 # please activate with 1 or deactivate this charger-type with 0
 charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
 charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep int32 | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
 energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. Current and highest price will be compared and aborted if charging makes no sense.
 
 #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / netto prices excl. tax).
