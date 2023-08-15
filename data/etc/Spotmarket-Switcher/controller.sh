@@ -77,7 +77,7 @@ switchablesockets_at_fifth_lowest_price=0
 charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
 TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=1 # please enter 1 for awattar or 2 for entsoe / Awattar: only germany DE-LU or austrian AT prices, but no API key needed / Entsoe: much more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
+select_pricing_api=1 # please enter 1 for aWATTar or 2 for entsoe / Awattar: only germany DE-LU or austrian AT prices, but no API key needed / Entsoe: much more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
 include_second_day=0 # Set to 0 to compare only the today prices. 
 # Set include_second_day to 1 to compare today & tomorrow prices if they become available (today in the afternoon).
 # Please note: If you activate this and the prices decrease over several days,
@@ -184,7 +184,7 @@ download_awattar_prices() {
   local output_file=$3
   local sleep_time=$4
 
-  echo "I: Downloading awattar prices. Please be patient. We wait for $sleep_time seconds in case the system clock is not syncronized."
+  echo "I: Downloading aWATTar prices. Please be patient. We wait for $sleep_time seconds in case the system clock is not syncronized."
   sleep "$sleep_time"
 
   if ! curl "$url" > "$file"; then
@@ -197,7 +197,7 @@ download_awattar_prices() {
     printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >>  "$output_file"
     printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "${output_file%.*}_sorted.${output_file##*.}"
   else
-    echo "E: Could not get prices"
+    echo "E: Could not get aWATTar prices"
     exit 1
   fi
   if [ -f "$file2" ] && [[ $( wc -l < "$file1" ) == $( wc -l < "$file2" ) ]]; then
@@ -327,9 +327,9 @@ if (( ( $select_pricing_api == 1 ) )); then
     # test if data is current
     get_current_awattar_day
     if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
-      echo "I: Awattar today-data is up to date."
+      echo "I: aWATTar today-data is up to date."
     else
-      echo "I: Awattar today-data is outdated, fetching new data."
+      echo "I: aWATTar today-data is outdated, fetching new data."
       rm $file1 $file6 $file7
       download_awattar_prices "$link1" "$file1" "$file6" 30
     fi
@@ -365,9 +365,9 @@ if (( ( $include_second_day == 1 ) )); then
       # test if data is current
       get_current_awattar_day2
       if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
-        echo "I: Awattar tomorrow-data is up to date."
+        echo "I: aWATTar tomorrow-data is up to date."
       else
-        echo "I: Awattar tomorrow-data is outdated, fetching new data."
+        echo "I: aWATTar tomorrow-data is outdated, fetching new data."
         rm $file3
         download_awattar_prices "$link2" "$file2" "$file6" 2
       fi
