@@ -1,18 +1,29 @@
 #!/bin/sh
 
+# Stop execution upon uncaught errors
 set -e
 
-# Wait for 25 seconds
-sleep 25
+if [ -z "$DEBUG" ]; then
+    # Wait for 25 seconds
+    sleep 25
+fi
 
 # The file found at boot time by the OS that amends the crontab to execute the controller.sh script
-rc_local_file="/data/rc.local"
+if [ -z "$rc_local_file" ]; then
+    rc_local_file="/data/rc.local"
+fi
 
 code='(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -'
 code2='(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -'
 
 # Count number of occurences of the code to be executed in the rc.local file
-count=$(grep -Fc "$code" "$rc_local_file" )
+count=0
+if [ -e "$rc_local_file" ]; then
+    count=$(grep -Fc "$code" "$rc_local_file")
+else
+    echo "#!/bin/sh" > $rc_local_file
+    chmod +x $rc_local_file
+fi
 
 if [ $count -eq 0 ]; then
 
@@ -20,8 +31,10 @@ if [ $count -eq 0 ]; then
     # Add crontab immediately and at system start (only if it doesnt exist)
     echo >> "$rc_local_file"
     echo "$code" >> "$rc_local_file"
-    chmod +x "$rc_local_file"
-    (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
+
+    if  [ -z "$DEBUG" ]; then
+        (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
+    fi
 
 elif [ $count -gt 1 ]; then
 
@@ -31,5 +44,5 @@ elif [ $count -gt 1 ]; then
 
 fi
 
-# exit with success
+# Exit with success
 exit 0
