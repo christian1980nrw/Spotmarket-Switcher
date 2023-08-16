@@ -1,0 +1,16 @@
+name: Shell Script CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run shell script
+      run: |
+        chmod +x ./data/etc/Spotmarket-Switcher/controller.sh
+        ./data/etc/Spotmarket-Switcher/controller.sh
