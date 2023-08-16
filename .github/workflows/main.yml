@@ -3,14 +3,15 @@ name: Shell Script CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run shell script
-      run: |
-        chmod +x ./data/etc/Spotmarket-Switcher/controller.sh
-        ./data/etc/Spotmarket-Switcher/controller.sh
+    - name: Install ShellCheck
+      run: sudo apt-get install shellcheck
+
+    - name: Lint shell script
+      run: shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
