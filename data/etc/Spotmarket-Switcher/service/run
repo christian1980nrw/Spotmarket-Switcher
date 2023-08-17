@@ -1,22 +1,48 @@
 #!/bin/sh
-sleep 25
+
+# Stop execution upon uncaught errors
+set -e
+
+if [ -z "$DEBUG" ]; then
+    # Wait for 25 seconds
+    sleep 25
+fi
+
+# The file found at boot time by the OS that amends the crontab to execute the controller.sh script
+if [ -z "$rc_local_file" ]; then
+    rc_local_file="/data/rc.local"
+fi
+
 code='(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -'
 code2='(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -'
-count=$(grep -Fc "$code" /data/rc.local)
-if [[ $count = 0 ]]; then
-#add crontab immedeately and at system start (only if it doesnt exist)
-echo >> /data/rc.local
-echo "$code" >> /data/rc.local
-chmod +x /data/rc.local
-(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
+
+# Count number of occurences of the code to be executed in the rc.local file
+count=0
+if [ -e "$rc_local_file" ]; then
+    count=$(grep -Fc "$code" "$rc_local_file")
+else
+    echo "#!/bin/sh" > $rc_local_file
+    chmod +x $rc_local_file
+fi
+
+if [ $count -eq 0 ]; then
+
+    # The rc.local file does not feature the instruction, yet.
+    # Add crontab immediately and at system start (only if it doesnt exist)
+    echo >> "$rc_local_file"
+    echo "$code" >> "$rc_local_file"
+
+    if  [ -z "$DEBUG" ]; then
+        (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
+    fi
+
+elif [ $count -gt 1 ]; then
+
+    # Removing doublettes to correct for a bug of a older version of this run script
+    awk '!seen[$code2]++' $rc_local_file > $rc_local_file.tmp && mv $rc_local_file.tmp $rc_local_file
+    chmod +x "$rc_local_file"
+
+fi
+
+# Exit with success
 exit 0
-fi
-if [[ $count = 1 ]]; then
-# No need to do something, we are fine.
-exit 0
-fi
-if [[ $count -gt 1 ]]; then
-#remove double lines to correct a bug of a older version of this run script
-awk '!seen[$code2]++' /data/rc.local > /data/rc.local.tmp && mv /data/rc.local.tmp /data/rc.local
-chmod +x /data/rc.local
-fi
