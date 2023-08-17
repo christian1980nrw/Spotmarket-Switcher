@@ -6,14 +6,17 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    # Define the container to run the job in
+    container:
+      image: debian:stretch-slim
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install ShellCheck
-      run: sudo apt-get install shellcheck
-
-    - name: Lint shell script
+    - name: Install ShellCheck and lint script
       run: |
+        apt-get update
+        apt-get install -y shellcheck
         chmod +x ./data/etc/Spotmarket-Switcher/controller.sh
         shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
