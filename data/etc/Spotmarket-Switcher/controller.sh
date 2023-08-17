@@ -534,7 +534,7 @@ fi
 do
   if [ $ip != "0" ]; then
     echo " Executing 1 hour Shelly switching." | tee -a $LOG_FILE
-    curl -u '$shellyuser:$shellypasswd' http://$ip/relay/0?turn=on
+    curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on"
   fi
 done
   fi
@@ -549,7 +549,7 @@ fi
   for ip in "${shelly_ips[@]}"
 do
   if [ $ip != "0" ]; then
-    curl -u '$shellyuser:$shellypasswd' http://$ip/relay/0?turn=off
+    curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
   fi
 done
 
