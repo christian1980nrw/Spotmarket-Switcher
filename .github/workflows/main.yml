@@ -1,22 +1,16 @@
-name: Shell Script CI
-
-on: [push, pull_request]
+yaml
 
 jobs:
   lint:
     runs-on: ubuntu-latest
-
-    # Define the container to run the job in
     container:
-      image: debian:stretch-slim
+      image: koalaman/shellcheck:latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install ShellCheck and lint script
+    - name: Lint shell script
       run: |
-        apt-get update
-        apt-get install -y shellcheck
         chmod +x ./data/etc/Spotmarket-Switcher/controller.sh
         shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
