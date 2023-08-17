@@ -1,4 +1,6 @@
-yaml
+name: Shell Script CI
+
+on: [push, pull_request]
 
 jobs:
   lint:
@@ -11,6 +13,4 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Lint shell script
-      run: |
-        chmod +x ./data/etc/Spotmarket-Switcher/controller.sh
-        shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
+      run: shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
