@@ -4,7 +4,7 @@ set -e
 
 
 # DESTDIR is optionally set as an environment variable.
-if [ -n "$DESTDIR" -a "/" != "$DESTDIR" ] ; then
+if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     if which realpath > /dev/null; then
         # avoiding trouble when DESTDIR is not absolute because of changed directories
         DESTDIR=$(realpath $DESTDIR)
@@ -57,7 +57,7 @@ chmod +x ./run
 
 # $DESTDIR is always an absolut path
 if [ ! -d "$DESTDIR"/service ]; then
-    if [ -n "$DESTDIR" -a "/" != "$DESTDIR" ] ; then
+    if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
         echo "I: The '$DESTDIR/service' directory is not existing, as expected because of the custom DESTDIR setting."
         echo "   Skipping creation of symbolic link to the Sportmarket-Switcher to register this service."
     else
@@ -94,7 +94,7 @@ echo
 echo "Note: This installation will survive a Venus OS firmware update."
 echo "      Please do an extra reboot after every firmware update so that the crontab can be recreated automatically."
 echo
-if [ -n "$DESTDIR" -a "/" != "$DESTDIR" ] ; then
+if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     echo "Not auto-rebooting now since DESTDIR set to a value != '/'."
 else
     echo "The System will reboot in 20 seconds to finalize the setup."
