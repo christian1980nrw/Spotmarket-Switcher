@@ -19,5 +19,5 @@ jobs:
     - name: Install ShellCheck
       run: sudo apt-get install shellcheck
 
-    - name: Lint shell script
-      run: shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
+    - name: Lint all shell scripts
+      run: find . -name "*.sh" | xargs shellcheck
