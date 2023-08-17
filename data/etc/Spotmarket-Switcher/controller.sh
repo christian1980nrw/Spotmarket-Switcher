@@ -258,7 +258,7 @@ download_entsoe_prices() {
   echo "date_now_day: $timestamp" >> "${output_file%.*}_sorted.${output_file##*.}"
 
   # Check if tomorrow file contains next day prices
-  if [ $entsoetomorrow=1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 2 ]; then
+  if [ "$entsoetomorrow" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 2 ]; then
     cat $file10 > $file8
     echo >> $file8
     if [ -f "$file13" ]; then
@@ -557,7 +557,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}")
 
   # Convert the result of the calculation to an integer
-  percent_of_current_price_integer=$(printf "%.0f" $percent_of_current_price_integer)
+  percent_of_current_price_integer=$(printf "%.0f" "$percent_of_current_price_integer")
 
   # Check if charging makes sense
   # FIXME: highest_price_integer not defined
@@ -648,7 +648,7 @@ fi
 if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
-    if [ $ip != "0" ]; then
+    if [ "$ip" != "0" ]; then
       curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
     fi
   done
