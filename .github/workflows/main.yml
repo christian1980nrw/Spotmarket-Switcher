@@ -1,6 +1,12 @@
-name: Shell Script CI
+name: Shell Script CI (dev branch only)
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
 
 jobs:
   lint:
