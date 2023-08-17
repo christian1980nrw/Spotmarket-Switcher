@@ -6,12 +6,12 @@ INSTALLDIR="/"
 
 if [ -z "$INSTALLDIR" ]; then
     echo "E: INSTALLDIR is not set."
-    exit -1
+    exit 1
 fi
 
 if ! mkdir -p $INSTALLDIR/data/etc/Spotmarket-Switcher/service ; then
     echo "E: Could not create service directory '$INSTALLDIR/data/etc/Spotmarket-Switcher/service'."
-    exit -1
+    exit 1
 fi
 
 wgetOptions="--no-verbose --continue --no-directories --show-progress"
@@ -26,10 +26,10 @@ for url in \
     https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png \
     https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png
 do
-    echo "I: Downloading '$(basename $url)'"
+    echo "I: Downloading '$(basename "$url")'"
     if ! wget $wgetOptions "$url"; then
-        echo "E: Download of $(basename "$url") failed."
-        exit -1
+        echo "E: Download of '$(basename "$url")' failed."
+        exit 1
     fi
 done
 
