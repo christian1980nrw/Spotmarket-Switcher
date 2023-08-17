@@ -5,12 +5,13 @@ on: [push, pull_request]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    container:
-      image: koalaman/shellcheck:latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Install ShellCheck
+      run: sudo apt-get install shellcheck
 
     - name: Lint shell script
       run: shellcheck ./data/etc/Spotmarket-Switcher/controller.sh
