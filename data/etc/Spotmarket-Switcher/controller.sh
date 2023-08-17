@@ -159,7 +159,7 @@ fi
 
 for tool in $tools
 do
-  if ! which $tool > /dev/null; then
+  if ! which "$tool" > /dev/null; then
     echo "E: Please ensure the tool '$tool' is found."
     num_tools_missing=$((num_tools_missing+1))
     exit 1
