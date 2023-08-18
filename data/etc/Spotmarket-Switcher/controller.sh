@@ -592,7 +592,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     | grep -o "<SID>[a-z0-9]\{16\}" |  cut -d'>' -f 2)
 
   if [ "$sid" = "0000000000000000" ]; then
-    echo "E: Login to Fritzbox failed." | tee -a $"LOG_FILE"
+    echo "E: Login to Fritzbox failed." | tee -a "$LOG_FILE"
     exit 1
   fi
 
