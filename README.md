@@ -41,6 +41,7 @@ wget https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__Shelly-Plug
 Run it, with the additional options set so that it prepares everything in a subdirectory for you to inspect:
 ```
 DESTDIR=/tmp/foo sh victron-venus-os-install.sh
+If you are using Victron Venus OS, the correct installation directory should be / (the root directory).
 ```
 and you may then want to inspect the files installed in /tmp/foo.
 
