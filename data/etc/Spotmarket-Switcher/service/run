@@ -45,4 +45,7 @@ elif [ $count -gt 1 ]; then
 fi
 
 # Exit with success
+if [ -n "$DEBUG" ]; then
+  echo "[ OK ]"
+fi
 exit 0
