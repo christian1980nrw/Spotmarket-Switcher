@@ -670,8 +670,11 @@ fi
 if [ -f "$LOG_FILE" ]; then
   if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
     mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
-    touch "$LOG_FILE"
-    ls -1t "$LOG_FILE"* | tail -n +$((LOG_FILES_TO_KEEP + 1)) | xargs --no-run-if-empty rm
+    touch "$LOG_FILE"   
+    find . -maxdepth 1 -name "${LOG_FILE}*" -type f -exec ls -1t {} + | 
+    sed 's|^\./||' |
+    tail -n +$((LOG_FILES_TO_KEEP + 1)) | 
+    xargs --no-run-if-empty rm
   fi
 fi
 
