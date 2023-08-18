@@ -42,12 +42,11 @@ Run it, with the additional options set so that it prepares everything in a subd
 ```
 DESTDIR=/tmp/foo sh victron-venus-os-install.sh
 ```
-If you are using Victron Venus OS, the correct DESTDIR should be / (the root directory).
-and you may then want to inspect the files installed in /tmp/foo.
+After installation please look at the files installed in /tmp/foo. If you are using Victron Venus OS, the correct DESTDIR for a permanent installation should be / (the root directory).
 
 This software is prepared to run on the Venus OS, which is the operating system of Victron's control unit ("Cerbo") that is also availble independently as an Open Source project for the Raspberry Pi. It is running 24/7 and has CAN already built-in.
 Most users (all we know, including ourselves) currently run this software on a Raspberry Pi with an extra CAN-HAT.
-We anticipate that for its wider adoption the transition to a Cerbo GX (featuring a CAN interface built-in) will need to follow, and it will, it was just not tested, yet.
+It should also work with a Cerbo GX (featuring a CAN interface built-in).
 
 If you are inclined to only control household devices via IP switches, not the Victron devices via CAN, then not too much should be required to be changed to have this script run, say, on a Fritz!Box, an OpenWrt router or something else that is already running 24/7 in your household - we just did not get around to automate such setups, yet.
 
