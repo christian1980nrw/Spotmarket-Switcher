@@ -79,7 +79,7 @@ switchablesockets_at_fifth_lowest_price=0
 charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
 TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=1 # please enter 1 for aWATTar or 2 for entsoe / Awattar: only germany DE-LU or austrian AT prices, but no API key needed / Entsoe: much more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
+select_pricing_api=1 # Set to 1 for aWATTar or 2 for entsoe / aWATTar: only germany DE-LU or Austrian AT prices, but no API key needed / Entsoe: Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
 include_second_day=0 # Set to 0 to compare only the today prices. 
 # Set include_second_day to 1 to compare today & tomorrow prices if they become available (today in the afternoon).
 # Please note: If you activate this and the prices decrease over several days,
@@ -87,10 +87,10 @@ include_second_day=0 # Set to 0 to compare only the today prices.
 
 # Please set up Solar weather API to query solar yield
 use_solarweather_api_to_abort=0
-abort_solar_yield_today=4.5 # abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
-abort_solar_yield_tomorrow=5.5 # abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
+abort_solar_yield_today=4.5 # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
+abort_solar_yield_tomorrow=5.5 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
 #To find the kilowatt hour value from megajoules, divide by 3.6. 
-abort_suntime=700 # abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
+abort_suntime=700 # Abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
 latitude=51.530600 # Your location
 longitude=7.860575
 #You can use Google Maps to find the latitude and longitude of a location by searching for the address or location and then right-clicking
@@ -98,9 +98,9 @@ longitude=7.860575
 visualcrossing_api_key=YOURAPIKEY # Get your free key at https://www.visualcrossing.com/sign-up No credit card is required to sign up for your free 1000 records per day.
 
 # Awattar API setup
-awattar=de # enter de for Germany or at for Austria (no other countrys available, for other countrys use Entsoe API)
+awattar=de # Set to de for Germany or at for Austria (no other countrys available, for other countrys use Entsoe API)
 
-# Entsoe Api setup
+# Entsoe API setup
 # To find out your in and out domain key, go to https://www.entsoe.eu/data/energy-identification-codes-eic/eic-area-codes-map/ to find the Bidding Zone or open https://eepublicdownloads.entsoe.eu/clean-documents/EDI/Library/Market_Areas_v2.1.pdf and get the Market Balance Area code of your country.
 in_Domain=10Y1001A1001A82H # this is for Germany DE-LU
 out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
@@ -113,7 +113,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 # After That you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
 # The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
 
-# further Api parameters (no need to edit)
+# further API parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
 yestermonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%m)
 yesteryear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%Y)
@@ -184,7 +184,7 @@ unset num_tools_missing
 
 echo >> "$LOG_FILE"
 if [ 0 -lt "$use_victron_charger" ]; then
-  echo "I: Maybe we are still charging from last script runtime. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+  echo "I: Maybe we are still charging from this script's previous run. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
   $charger_command_turnoff
 fi
 
@@ -271,7 +271,7 @@ download_entsoe_prices() {
     echo "date_now_day: $timestamp" >> "$file8"
     echo "date_now_day: $timestamp" >> "$file12"
   else
-    echo "W: $output_file was empty, we have to try it again until the new prices are online."
+    echo "W: $output_file was empty, we have to try it again until the new entsoe prices are online."
     rm -f $file5 $file9 $file13 >> /dev/null
   fi
 }
@@ -291,7 +291,8 @@ function download_solarenergy {
     if ! test -f "$file3"; then
       echo "E: Could not find downloaded file '$file3' with solarenergy data."
       exit 1
-    elif [ -n "$DEBUG" ]; then
+    fi
+    if [ -n "$DEBUG" ]; then
       echo "D: Solarenergy data downloaded to file '$file3'."
     fi
   fi
@@ -490,17 +491,17 @@ fi
 
 # FIXME: abort_price_integer not defined
 if ((abort_price_integer <= current_price_integer)); then
-  echo "I: Current price is too high. Abort."  | tee -a "$LOG_FILE"
+  echo "I: Current price is too high. Abort." | tee -a "$LOG_FILE"
   exit 0
 fi
 
 if ((use_solarweather_api_to_abort == 1)); then
   if ((abort_suntime <= suntime_today)); then
-    echo "I: There are enough sun minutes today. Abort."  | tee -a "$LOG_FILE"
+    echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
     exit 0
   fi
   if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-    echo "I: There is enough solarenergy today. Abort."  | tee -a "$LOG_FILE"
+    echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
     exit 0
   fi
   if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
@@ -562,7 +563,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Check if charging makes sense
   # FIXME: highest_price_integer not defined
   if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
-    echo "I: Difference between highest price and current price is greater than $energy_loss_percent%." | tee -a "$LOG_FILE"
+    echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
       echo "   Executing 1 hour charging." | tee -a "$LOG_FILE"
@@ -571,7 +572,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
       echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a "$LOG_FILE"
     fi
   else
-    echo "I: Difference between highest price and current price is less than $energy_loss_percent%." | tee -a "$LOG_FILE"
+    echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
   fi
 fi
@@ -592,7 +593,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     | grep -o "<SID>[a-z0-9]\{16\}" |  cut -d'>' -f 2)
 
   if [ "$sid" = "0000000000000000" ]; then
-    echo "E: Login to Fritzbox failed." | tee -a "$LOG_FILE"
+    echo "E: Login to Fritz!Box failed." | tee -a "$LOG_FILE"
     exit 1
   fi
 
