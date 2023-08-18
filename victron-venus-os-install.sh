@@ -2,12 +2,15 @@
 
 set -e
 
-
 # DESTDIR is optionally set as an environment variable.
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     if which realpath > /dev/null; then
-        # avoiding trouble when DESTDIR is not absolute because of changed directories
-        DESTDIR=$(realpath "$DESTDIR")
+        RESOLVED_DESTDIR=$(realpath "$DESTDIR")
+        if [ "$RESOLVED_DESTDIR" != "$DESTDIR" ]; then
+            echo "W: The provided installation path ($DESTDIR) is a symbolic link that points to $RESOLVED_DESTDIR."
+            echo "   The script will use the resolved path for installation."
+        fi
+        DESTDIR="$RESOLVED_DESTDIR"
     else
         if ! echo "$DESTDIR" | grep -q "^/"; then
             echo "E: The DESTDIR passed from environment variable must be absolute or realpath must be available."
@@ -17,6 +20,7 @@ if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     echo
     echo "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
     echo "   This is meant to support testing and packaging, not for a true installation."
+    echo "   If you are using Victron Venus OS, the correct installation directory should be  '/'."
     echo "   No harm is expected to be caused, you anyway have 5 seconds to cancel now with CTRL-C."
     sleep 5
     echo "I: Will now continue. Still, you can interrupt at any time."
