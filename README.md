@@ -2,7 +2,7 @@
 
 This software provides an extension of the
 - Victron Venus OS ESS-Systems and/or
-- Shelly Plug S and/or
+- Shelly products ( like Shelly Plug S or Shelly Plus1PM ) and/or
 - AVM Fritz!DECT200 and 210 switchable sockets 
 to be active (charging batteries, switch-on power) when spot-market prices are low.
 
