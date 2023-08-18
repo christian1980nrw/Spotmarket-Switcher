@@ -38,7 +38,7 @@ for url in \
     https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh
 do
     echo "I: Downloading '$(basename "$url")'"
-    if ! wget "$wgetOptions" "$url"; then
+    if ! wget $wgetOptions "$url"; then
         echo "E: Download of '$(basename "$url")' failed."
         exit 1
     fi
@@ -49,7 +49,7 @@ chmod +x ./controller.sh
 url=https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
 echo "I: Downloading 'run' script to service subdirectory"
 cd service
-if ! wget "$wgetOptions" $url; then
+if ! wget $wgetOptions $url; then
   echo "E: Failure downloading run script from '$url'."
   exit 1
 fi
