@@ -38,7 +38,7 @@ for url in \
     https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh
 do
     echo "I: Downloading '$(basename "$url")'"
-    # This shellcheck directive only applies to this function to correct wget false positive TESTING
+    # This ShellCheck directive only applies to this function to correct wget false positive
     # shellcheck disable=SC2086
     SC_Exclude_1() {
     if ! wget $wgetOptions $url; then
@@ -46,6 +46,7 @@ do
         exit 1
     fi
     }
+    SC_Exclude_1
 done
 
 chmod +x ./controller.sh
@@ -53,14 +54,15 @@ chmod +x ./controller.sh
 url=https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
 echo "I: Downloading 'run' script to service subdirectory"
 cd service
-    # This shellcheck directive only applies to this function to correct wget false positive TESTING
-    # shellcheck disable=SC2086
-    SC_Exclude_2() {
+# This ShellCheck directive only applies to this function to correct wget false positive
+# shellcheck disable=SC2086
+SC_Exclude_2() {
 if ! wget $wgetOptions $url; then
   echo "E: Failure downloading run script from '$url'."
   exit 1
 fi
 }
+SC_Exclude_2
 chmod +x ./run
 
 # $DESTDIR is always an absolut path
