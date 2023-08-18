@@ -46,10 +46,12 @@ shellypasswd="YOURPASSWORD" # only if used
 
 # Solar Charger Setup (tested with Victron Venus OS)
 use_victron_charger=0 # please activate with 1 or deactivate this charger-type with 0
-charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
 if [ 0 -lt $use_victron_charger ]; then
-  SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+  charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+  charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+  if [ -z "$DEBUG" ]; then
+    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+  fi
 fi
 energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. Current and highest price will be compared and aborted if charging makes no sense.
 
@@ -124,9 +126,9 @@ tomorrow2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)
 tomorrowmonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%m)
 tomorrowyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%Y)
 getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%k)
-now_entsoe_linenumber=$(($getnow+1))
-link1=https://api.awattar.$awattar/v1/marketdata/current.yaml
-link2=http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include
+now_entsoe_linenumber=$((getnow+1))
+link1="https://api.awattar.$awattar/v1/marketdata/current.yaml"
+link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
 link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=solarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
 link4="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$yesteryear$yestermonth$yesterday&periodEnd=$todayyear$todaymonth$today"
 link5="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$todayyear$todaymonth$today&periodEnd=$tomorrowyear$tomorrowmonth$tomorrow"
@@ -143,11 +145,18 @@ file10=/tmp/entsoe_today_prices.txt
 file11=/tmp/entsoe_today_prices_sorted.txt
 file12=/tmp/entsoe_prices_sorted.txt
 file13=/tmp/entsoe_tomorrow_prices.txt
+
+########## Optional environmental variables
+
 if [ -z "$LOG_FILE" ]; then
   LOG_FILE="/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
 fi
-MAX_SIZE=1000 # 1 MB
-LOG_FILES_TO_KEEP=2
+if [ -z "$LOG_MAX_SIZE" ]; then
+  LOG_MAX_SIZE=1000 # 1 MB
+fi
+if [ -z "$LOG_FILES_TO_KEEP" ]; then
+  LOG_FILES_TO_KEEP=2
+fi
 
 ########## Testing series of preconditions prior to execution of script
 
@@ -172,9 +181,10 @@ fi
 unset num_tools_missing
 
 ########## Begin of the script...
-echo >> $LOG_FILE
+
+echo >> "$LOG_FILE"
 if [ 0 -lt "$use_victron_charger" ]; then
-  echo "I: Maybe we are still charging from last script runtime. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a $LOG_FILE
+  echo "I: Maybe we are still charging from last script runtime. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
   $charger_command_turnoff
 fi
 
@@ -184,25 +194,33 @@ download_awattar_prices() {
   local output_file=$3
   local sleep_time=$4
 
-  echo "I: Downloading aWATTar prices. Please be patient. We wait for $sleep_time seconds in case the system clock is not syncronized."
-  sleep "$sleep_time"
-
+  if [ -z "$DEBUG" ]; then
+    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
+    sleep "$sleep_time"
+  fi
   if ! curl "$url" > "$file"; then
-    echo "E: Download of prices from '$url' to '$file' failed."
-  elif test -f "$file"; then
-    echo "$file downloaded"
-    echo >> "$file"
-    awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" > "$output_file"
-    sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
-    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >>  "$output_file"
-    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "${output_file%.*}_sorted.${output_file##*.}"
-  else
-    echo "E: Could not get aWATTar prices"
+    echo "E: Download of aWATTar prices from '$url' to '$file' failed."
     exit 1
   fi
-  if [ -f "$file2" ] && [[ $( wc -l < "$file1" ) == $( wc -l < "$file2" ) ]]; then
-    rm "$file2"
-    echo "$file2 has no tomorrow data, we have to try it again until the new prices are online."
+
+  if ! test -f "$file"; then
+    echo "E: Could not get aWATTar prices from '$url' to feed file '$file'."
+    exit 1
+  fi
+
+  if [ -n "$DEBUG" ]; then
+    echo "D: Download of file '$file' from URL '$url' successful."
+  fi
+  echo >> "$file"
+  awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" > "$output_file"
+  sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
+  timestamp=$(TZ=$TZ date +%d)
+  echo "date_now_day: $timestamp" >> "$output_file"
+  echo "date_now_day: $timestamp" >> "${output_file%.*}_sorted.${output_file##*.}"
+
+  if [ -f "$file2" ] && [ "$( wc -l < "$file1" )" = "$( wc -l < "$file2" )" ]; then
+    rm -f "$file2"
+    echo "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online."
   fi
 }
 
@@ -212,23 +230,35 @@ download_entsoe_prices() {
   local output_file=$3
   local entsoetomorrow=$4
 
-  curl "$url" > "$file"
-  if test -f "$file"; then
-    echo "$file downloaded"
-    [ -s "$file" ] && > /dev/null || echo "E: $file is empty, please check your API Key."
-    awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' "$file" >> "$output_file"
-    sed -i '1,96d' "$output_file"
-    sed -i '25,120d' "$output_file"
-    sort -g "$output_file" >> "${output_file%.*}_sorted.${output_file##*.}"
-    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "$output_file"
-    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "${output_file%.*}_sorted.${output_file##*.}"
-  else
-    echo "E: Could not get entsoe price data."
+  if ! curl "$url" > "$file"; then
+    echo "E: Retrieval of entsoe data from '$url' into file '$file' failed."
+    exit 1
+  fi 
+
+  if ! test -f "$file"; then
+    echo "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
     exit 1
   fi
 
+  if [ -n "$DEBUG" ]; then echo "D: Entsoe file $file with price data downloaded"; fi
+
+  if [ ! -s "$file" ]; then
+    echo "E: Entsoe file $file is empty, please check your entsoe API Key."
+    exit 1
+  fi
+
+  if [ -n "$DEBUG" ]; then echo "D: Entsoe file $file with price data downloaded"; fi
+
+  awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' "$file" >> "$output_file"
+  sed -i '1,96d' "$output_file"
+  sed -i '25,120d' "$output_file"
+  sort -g "$output_file" >> "${output_file%.*}_sorted.${output_file##*.}"
+  timestamp=$(TZ=$TZ date +%d)
+  echo "date_now_day: $timestamp" >> "$output_file"
+  echo "date_now_day: $timestamp" >> "${output_file%.*}_sorted.${output_file##*.}"
+
   # Check if tomorrow file contains next day prices
-  if [ $entsoetomorrow=1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 2 ]; then
+  if [ "$entsoetomorrow" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 2 ]; then
     cat $file10 > $file8
     echo >> $file8
     if [ -f "$file13" ]; then
@@ -237,180 +267,188 @@ download_entsoe_prices() {
     fi
     sed -i '25d 50d' $file8
     sort -g $file8 > $file12
-    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "$file8"
-    printf "date_now_day: $(echo $(TZ=$TZ date +%d))" >> "$file12"
-    else
-    echo "$output_file was empty, we have to try it again until the new prices are online."
-    rm $file5 $file9 $file13 >> /dev/null
+    timestamp=$(TZ=$TZ date +%d)
+    echo "date_now_day: $timestamp" >> "$file8"
+    echo "date_now_day: $timestamp" >> "$file12"
+  else
+    echo "W: $output_file was empty, we have to try it again until the new prices are online."
+    rm -f $file5 $file9 $file13 >> /dev/null
   fi
 }
 
 function download_solarenergy {
-if (( ( $use_solarweather_api_to_abort == 1 ) )); then
-    curl $link3 -o $file3;
-  if test -f "$file3"; then
-    echo "$file3 downloaded"
-  else
-    echo "E: Could not get solarenergy data"
-    exit 1
+  if (( ( use_solarweather_api_to_abort == 1 ) )); then
+    if ! curl "$link3" -o "$file3"; then
+      echo "E: Download of solarenergy data from '$link3' failed."
+      exit 1
+    elif ! test -f "$file3"; then
+      echo "E: Could not get solarenergy data, missing file '$file3'."
+      exit 1
+    fi
+    if [ -n "$DEBUG" ]; then
+      echo "D: File3 $file3 downloaded"
+    fi
+    if ! test -f "$file3"; then
+      echo "E: Could not find downloaded file '$file3' with solarenergy data."
+      exit 1
+    elif [ -n "$DEBUG" ]; then
+      echo "D: Solarenergy data downloaded to file '$file3'."
+    fi
   fi
-fi
 }
 
-function get_current_awattar_day { current_awattar_day=$(head -n 3 $file1 | tail -n 1 | grep -Eo '[0-9]+'); }
-function get_current_awattar_day2 { current_awattar_day2=$(head -n 3 $file2 | tail -n 1 | grep -Eo '[0-9]+'); }
+function get_current_awattar_day { current_awattar_day=$(sed -n 3p $file1 | grep -Eo '[0-9]+'); }
+function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
 function get_awattar_prices {
-  current_price=$(head -n $((2*$(TZ=$TZ date +%k)+39)) $file1 | tail -n 1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
-  lowest_price=$(head -n 1 $file7 | tail -n 1 )
-  second_lowest_price=$(head -n 2 $file7 | tail -n 1 )
-  third_lowest_price=$(head -n 3 $file7 | tail -n 1 )
-  fourth_lowest_price=$(head -n 4 $file7 | tail -n 1 )
-  fifth_lowest_price=$(head -n 5 $file7 | tail -n 1 )
-  sixth_lowest_price=$(head -n 6 $file7 | tail -n 1 )
-  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file7 $file7)
-  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file7)
+  current_price=$(sed -n $((2*$(TZ=$TZ date +%k)+39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1);
+  lowest_price=$(sed -n 1p $file7 );
+  second_lowest_price=$(sed -n 2p $file7 );
+  third_lowest_price=$(sed -n 3p $file7 );
+  fourth_lowest_price=$(sed -n 4p $file7 );
+  fifth_lowest_price=$(sed -n 5p $file7 );
+  sixth_lowest_price=$(sed -n 6p $file7 ); 
+  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file7 $file7);
+  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file7);
 }
 
 
-function get_current_entsoe_day { current_entsoe_day=$(head -n 25 $file10 | tail -n 1 | grep -Eo '[0-9]+'); }
-function get_current_entsoe_day2 { current_entsoe_day2=$(head -n 25 $file13 | tail -n 1 | grep -Eo '[0-9]+'); }
+function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p $file10 | grep -Eo '[0-9]+'); }
+function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p $file13 | grep -Eo '[0-9]+'); }
 function get_entsoe_prices {
-  current_price=$(head -n $now_entsoe_linenumber $file10 | tail -n 1 )
-  lowest_price=$(head -n 1 $file12 )
-  second_lowest_price=$(head -n 2 $file12 | tail -n 1 )
-  third_lowest_price=$(head -n 3 $file12 | tail -n 1 )
-  fourth_lowest_price=$(head -n 4 $file12 | tail -n 1 )
-  fifth_lowest_price=$(head -n 5 $file12 | tail -n 1 )
-  sixth_lowest_price=$(head -n 6 $file12 | tail -n 1 )
-  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file12 $file12)
-  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file12)
+  current_price=$(sed -n ${now_entsoe_linenumber}p $file10);
+  lowest_price=$(sed -n 1p $file12 );
+  second_lowest_price=$(sed -n 2p $file12 );
+  third_lowest_price=$(sed -n 3p $file12 );
+  fourth_lowest_price=$(sed -n 4p $file12 );
+  fifth_lowest_price=$(sed -n 5p $file12 );
+  sixth_lowest_price=$(sed -n 6p $file12 ); 
+  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file12 $file12);
+  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file12);
 }
 
 function get_prices_integer_awattar {
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"=$(printf "%.0f\n" "${!var}e15")
+    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
   done
 }
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
-
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"=$(printf "%.0f\n" "${!var}e14")
+    eval "$integer_var"="$(printf "%.0f\n" "${!var}e14")"
   done
 
   for var in stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"=$(printf "%.0f\n" "${!var}e15")
+    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
   done
 }
 
-function get_solarenergy_today { solarenergy_today=$(sed '2!d' $file3 | cut -d',' -f2); solarenergy_today_integer=$( printf "%.0f\n" "${solarenergy_today}e15" ); abort_solar_yield_today_integer=$( printf "%.0f\n" "${abort_solar_yield_today}e15" ); }
-function get_solarenergy_tomorrow { solarenergy_tomorrow=$(sed '3!d' $file3 | cut -d',' -f2); solarenergy_tomorrow_integer=$( printf "%.0f\n" "${solarenergy_tomorrow}e15" ); abort_solar_yield_tomorrow_integer=$( printf "%.0f\n" "${abort_solar_yield_tomorrow}e15" );}
+function get_solarenergy_today {
+  solarenergy_today=$(sed '2!d' $file3 | cut -d',' -f2)
+  solarenergy_today_integer=$( printf "%.0f\n" "${solarenergy_today}e15" )
+  abort_solar_yield_today_integer=$( printf "%.0f\n" "${abort_solar_yield_today}e15" )
+}
+function get_solarenergy_tomorrow {
+  solarenergy_tomorrow=$(sed '3!d' $file3 | cut -d',' -f2)
+  solarenergy_tomorrow_integer=$( printf "%.0f\n" "${solarenergy_tomorrow}e15" )
+  abort_solar_yield_tomorrow_integer=$( printf "%.0f\n" "${abort_solar_yield_tomorrow}e15" )
+}
 function get_cloudcover_today { cloudcover_today=$(sed '2!d' $file3 | cut -d',' -f1);}
 function get_cloudcover_tomorrow { cloudcover_tomorrow=$(sed '3!d' $file3 | cut -d',' -f1);}
 function get_sunrise_today { sunrise_today=$(sed '2!d' $file3 | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }');}
 function get_sunset_today { sunset_today=$(sed '2!d' $file3 | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }');}
-function get_suntime_today { suntime_today=$(((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s))) / 60)); 
+function get_suntime_today {
+  suntime_today=$(((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s))) / 60))
 }
 
 
-if (( ( $select_pricing_api == 1 ) )); then
-
-  # test if Awattar today data exists
+if (( ( select_pricing_api == 1 ) )); then
+  # Test if Awattar today data exists
   if test -f "$file1"; then
-    # test if data is current
+    # Test if data is current
     get_current_awattar_day
     if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
       echo "I: aWATTar today-data is up to date."
     else
       echo "I: aWATTar today-data is outdated, fetching new data."
-      rm $file1 $file6 $file7
+      rm -f $file1 $file6 $file7
       download_awattar_prices "$link1" "$file1" "$file6" 30
     fi
-  else # data file1 does not exist
+  else # Data file1 does not exist
     download_awattar_prices "$link1" "$file1" "$file6" 30
   fi
-fi
-
-if (( ( $select_pricing_api == 2 ) )); then
-
-# test if Entsoe today data exists
-if test -f "$file4"; then
-  # test if data is current
-  get_current_entsoe_day
-  if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
-    echo "I: Entsoe today-data is up to date."
-  else
-    echo "I: Entsoe today-data is outdated, fetching new data."
-    rm $file4 $file8 $file10 $file11 $file12
+elif (( ( select_pricing_api == 2 ) )); then
+  # Test if Entsoe today data exists
+  if test -f "$file4"; then
+    # Test if data is current
+    get_current_entsoe_day
+    if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
+      echo "I: Entsoe today-data is up to date."
+    else
+      echo "I: Entsoe today-data is outdated, fetching new data."
+      rm -f "$file4" "$file8" "$file10" "$file11" "$file12"
+      download_entsoe_prices "$link4" "$file4" "$file10" 0
+    fi
+  else # Entsoe data does not exist
     download_entsoe_prices "$link4" "$file4" "$file10" 0
-
   fi
-else # Entsoe data does not exist
-  download_entsoe_prices "$link4" "$file4" "$file10" 0
-fi
 fi
 
-if (( ( $include_second_day == 1 ) )); then
+if (( ( include_second_day == 1 ) )); then
 
-  if (( ( $select_pricing_api == 1 ) )); then
-    # test if Awattar tomorrow data exists
+  if (( ( select_pricing_api == 1 ) )); then
+    # Test if Awattar tomorrow data exists
     if test -f "$file2"; then
-      # test if data is current
+      # Test if data is current
       get_current_awattar_day2
       if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
         echo "I: aWATTar tomorrow-data is up to date."
       else
         echo "I: aWATTar tomorrow-data is outdated, fetching new data."
-        rm $file3
+        rm -f $file3
         download_awattar_prices "$link2" "$file2" "$file6" 2
       fi
-    else # data file2 does not exist
+    else # Data file2 does not exist
       download_awattar_prices "$link2" "$file2" "$file6" 2
     fi
-  fi
-
-  if (( ( $select_pricing_api == 2 ) )); then
-
-    # test if Entsoe tomorrow data exists
+  elif (( ( select_pricing_api == 2 ) )); then
+    # Test if Entsoe tomorrow data exists
     if test -f "$file5"; then
-      # test if data is current
+      # Test if data is current
       get_current_entsoe_day2
       if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%d)" ]; then
         echo "I: Entsoe tomorrow-data is up to date."
       else
         echo "I: Entsoe tomorrow-data is outdated, fetching new data."
-        rm $file5 $file9 $file13
+        rm -f "$file5" "$file9" "$file13"
         download_entsoe_prices "$link5" "$file5" "$file13" 1
         cp "$file10" "$file8"
         cp "$file11" "$file12"
       fi
-    else # data file5 does not exist
+    else # Data file5 does not exist
       download_entsoe_prices "$link5" "$file5" "$file13" 1
     fi
   fi
 
-fi # (( ( $include_second_day == 1 ) ))
+fi # Include second day
 
-if (( ( $select_pricing_api == 1 ) )); then
+if (( ( select_pricing_api == 1 ) )); then
   Unit="Cent/kWh"
   get_awattar_prices
   get_prices_integer_awattar
-fi
-
-if (( ( $select_pricing_api == 2 ) )); then
+elif (( ( select_pricing_api == 2 ) )); then
   Unit="EUR/MWh"
   get_entsoe_prices
   get_prices_integer_entsoe
 fi
 
-if (( ( $use_solarweather_api_to_abort == 1 ) )); then
+if (( ( use_solarweather_api_to_abort == 1 ) )); then
   download_solarenergy
   get_solarenergy_today
   get_solarenergy_tomorrow
@@ -421,44 +459,52 @@ if (( ( $use_solarweather_api_to_abort == 1 ) )); then
   get_suntime_today
 fi
 
-echo W: Please verify correct system time and timezone:
-(echo -n "   Current date and time is "; TZ=$TZ date) | tee -a $LOG_FILE
-echo "   Current price is" $current_price" $Unit net." | tee -a $LOG_FILE
-echo "   Lowest price will be "$lowest_price" $Unit net."
-echo "   The average price will be "$average_price" $Unit net."
-echo "   Highest price will be "$highest_price" $Unit net."
-echo "   Second lowest price will be "$second_lowest_price" $Unit net."
-echo "   Third lowest price will be "$third_lowest_price" $Unit net."
-echo "   Fourth lowest price will be "$fourth_lowest_price" $Unit net."
-echo "   Fifth lowest price will be "$fifth_lowest_price" $Unit net."
-echo "   Sixth lowest price will be "$sixth_lowest_price" $Unit net."
-if (( ( $use_solarweather_api_to_abort == 1 ) )); then
-  echo "   Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes. "  | tee -a $LOG_FILE
-  echo "   Solarenergy today will be" $solarenergy_today" megajoule per sqaremeter with "$cloudcover_today" percent clouds."  | tee -a $LOG_FILE
-  echo "   Solarenergy tomorrow will be" $solarenergy_tomorrow" megajoule per squaremeter with "$cloudcover_tomorrow" percent clouds."  | tee -a $LOG_FILE
-  [ -s $file3 ]  && >nul || echo "Error: $file3 is empty, please check your API Key if download is still not possible tomorrow."
-  find $file3 -size 0 -delete
+printf "I: Please verify correct system time and timezone:\n   "
+TZ=$TZ date | tee -a "$LOG_FILE"
+echo
+echo "Current price is $current_price $Unit net." | tee -a "$LOG_FILE"
+echo "Lowest price will be $lowest_price $Unit net."
+echo "The average price will be $average_price $Unit net."
+echo "Highest price will be $highest_price $Unit net."
+echo "Second lowest price will be $second_lowest_price $Unit net."
+echo "Third lowest price will be $third_lowest_price $Unit net."
+echo "Fourth lowest price will be $fourth_lowest_price $Unit net."
+echo "Fifth lowest price will be $fifth_lowest_price $Unit net."
+echo "Sixth lowest price will be $sixth_lowest_price $Unit net."
+
+if (( ( use_solarweather_api_to_abort == 1 ) )); then
+  echo "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes." | tee -a "$LOG_FILE"
+  echo "Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds." | tee -a "$LOG_FILE"
+  echo "Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds." | tee -a "$LOG_FILE"
+  if [ ! -s $file3 ]; then
+    echo "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
+  fi
+  find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
 fi
 
+# FIXME: stop_price_integer not assigned
 if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
-  echo "E: Stop price cannot be lower than start price."
+  echo "E: stop - price cannot be lower than start price"
   exit 1
 fi
+
+# FIXME: abort_price_integer not defined
 if ((abort_price_integer <= current_price_integer)); then
-  echo "I: Current price is too high. Abort."  | tee -a $LOG_FILE
+  echo "I: Current price is too high. Abort."  | tee -a "$LOG_FILE"
   exit 0
 fi
+
 if ((use_solarweather_api_to_abort == 1)); then
   if ((abort_suntime <= suntime_today)); then
-    echo "I: There are enough sun minutes today. Abort."  | tee -a $LOG_FILE
+    echo "I: There are enough sun minutes today. Abort."  | tee -a "$LOG_FILE"
     exit 0
   fi
   if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-    echo "I: There is enough solarenergy today. Abort."  | tee -a $LOG_FILE
+    echo "I: There is enough solarenergy today. Abort."  | tee -a "$LOG_FILE"
     exit 0
   fi
   if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-    echo "I: There is enough sun tomorrow. Abort."  | tee -a $LOG_FILE
+    echo "I: There is enough sun tomorrow. Abort."  | tee -a "$LOG_FILE"
     exit 0
   fi
 fi
@@ -478,105 +524,123 @@ execute_charging=0
 execute_switchablesockets_on=0
 
 # Check if any charging condition is met
-for condition in "${charging_conditions[@]}"; do
-  if (( $condition )); then
+for condition in "${charging_conditions[@]}"
+do
+  if (( condition )); then
     execute_charging=1
     break
   fi
 done
+
 switchablesockets_conditions=(
-"switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer"
-"switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer"
-"switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer"
-"switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer"
-"switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer"
-"switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer"
-"switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
-"switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer"
+  "switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer"
+  "switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer"
+  "switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer  "
 )
 
 # Check if any switching condition is met
 for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
-  if (( $switchablesockets_condition == 1 )); then
+  if (( switchablesockets_condition == 1 )); then
     execute_switchablesockets_on=1
     break
   fi
 done
 
 # If any charging condition is met, start charging
-if (( execute_charging == 1 && $use_victron_charger == 1 )); then
-
+if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Calculate the energy_loss_percent of the current_price_integer number
   percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}")
 
-  # convert the result of the calculation to an integer
-  percent_of_current_price_integer=$(printf "%.0f" $percent_of_current_price_integer)
+  # Convert the result of the calculation to an integer
+  percent_of_current_price_integer=$(printf "%.0f" "$percent_of_current_price_integer")
 
   # Check if charging makes sense
+  # FIXME: highest_price_integer not defined
   if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
-    echo "I: Difference between highest price and current price is greater than $energy_loss_percent%." | tee -a $LOG_FILE
-    echo "   Charging makes sense." | tee -a $LOG_FILE
+    echo "I: Difference between highest price and current price is greater than $energy_loss_percent%." | tee -a "$LOG_FILE"
+    echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
-	  echo "   Executing 1 hour charging." | tee -a $LOG_FILE
-	  $charger_command_turnon
+      echo "   Executing 1 hour charging." | tee -a "$LOG_FILE"
+      $charger_command_turnon
     else
-	  echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a $LOG_FILE
+      echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a "$LOG_FILE"
     fi
   else
-    echo "I: Difference between highest price and current price is less than $energy_loss_percent%." | tee -a $LOG_FILE
-    echo "   Charging makes no sense. Skipping charging." | tee -a $LOG_FILE
+    echo "I: Difference between highest price and current price is less than $energy_loss_percent%." | tee -a "$LOG_FILE"
+    echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
   fi
 fi
 
-# execute Fritz DECT on command
+# Execute Fritz DECT on command
 if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
-  echo "I: Executing 1 hour Fritz switching." | tee -a $LOG_FILE
+  echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
   # Get session ID (SID)
   sid=""
   challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
   if [ -z "$challenge" ]; then
-    printf "Error: Could not retrieve challenge from login_sid.lua.\n"  | tee -a $LOG_FILE
+    printf "E: Could not retrieve challenge from login_sid.lua.\n"  | tee -a "$LOG_FILE"
     exit 1
   fi
 
-  hash=$(echo -n "$challenge-$passwd" |sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
+  hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
   sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" \
     | grep -o "<SID>[a-z0-9]\{16\}" |  cut -d'>' -f 2)
+
   if [ "$sid" = "0000000000000000" ]; then
-    printf "Error: Login to Fritzbox failed.\n" | tee -a $LOG_FILE
+    echo "E: Login to Fritzbox failed." | tee -a "$LOG_FILE"
     exit 1
   fi
-  printf "Login to Fritzbox successful.\n" | tee -a $LOG_FILE
+
+  if [ "$sid" = "0000000000000000" ]; then
+    exit 1
+  fi
+
+  if [ -n "$DEBUG" ]; then
+    echo "I: Login to Fritz!Box successful." | tee -a "$LOG_FILE"
+  fi
+
   # Iterate over each socket
-  for socket in "${sockets[@]}"; do
+  for socket in "${sockets[@]}"
+  do
     if [ "$socket" = "0" ]; then
-        continue
+      continue
     fi
 
     # Get state and connectivity of socket
     connected=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchpresent")
+    ##FIXME: state is ignored
     state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
     if [ "$connected" = "1" ]; then
-        printf "Turning socket $socket on for almost 60 minutes and then off again...\n" | tee -a $LOG_FILE
-        curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon" >/dev/null
+      echo "Turning socket $socket on for almost 60 minutes and then off again..." | tee -a "$LOG_FILE"
+      url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon"
+      if ! curl -s "$url" > /dev/null; then
+        echo "E: Could not call URL '$url' to switch on said switch - ignored."
+      fi
     else
-        printf "W: Socket $socket is not connected\n" | tee -a $LOG_FILE
+      echo "W: Socket $socket is not connected." | tee -a "$LOG_FILE"
     fi
+
   done
-fi # execute Fritz DECT on command
+
+fi # Execute Fritz DECT on command
 
 if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
-      echo " Executing 1 hour Shelly switching." | tee -a $LOG_FILE
+      echo " Executing 1 hour Shelly switching." | tee -a "$LOG_FILE"
       curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on"
     fi
   done
 fi
 
-if ([ $use_shelly_wlan_sockets -eq 1 ] || [ $use_fritz_dect_sockets -eq 1 ]) && [ $execute_switchablesockets_on -eq 1 ]; then
+if ([ "$use_shelly_wlan_sockets" -eq 1 ] || [ "$use_fritz_dect_sockets" -eq 1 ]) && [ "$execute_switchablesockets_on" -eq 1 ]; then
   echo "Waiting for almost 60 minutes..."
   sleep 3560
 fi
@@ -584,7 +648,7 @@ fi
 if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
-    if [ $ip != "0" ]; then
+    if [ "$ip" != "0" ]; then
       curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
     fi
   done
@@ -596,15 +660,21 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     if [ "$socket" = "0" ]; then
         continue
     fi
-    curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" > /dev/null
+    if ! curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" > /dev/null; then
+      echo "E: Could not execut switch-off of socket sid=$sid ain=$socket - ignored"
+    fi
   done
 fi
 
-# doing logrotation
+# Rotating log files
 if [ -f "$LOG_FILE" ]; then
-  if [ $(du -k "$LOG_FILE" | awk '{print $1}') -gt "$MAX_SIZE" ]; then
-    mv "$LOG_FILE" "$LOG_FILE".$(date +%Y%m%d%H%M%S)
+  if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
+    mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
     touch "$LOG_FILE"
     ls -1t "$LOG_FILE"* | tail -n +$((LOG_FILES_TO_KEEP + 1)) | xargs --no-run-if-empty rm
   fi
+fi
+
+if [ -n "$DEBUG" ]; then
+  echo "[ OK ]"
 fi
