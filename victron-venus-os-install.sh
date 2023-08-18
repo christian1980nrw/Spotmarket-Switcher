@@ -7,15 +7,15 @@ set -e
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     if which realpath > /dev/null; then
         # avoiding trouble when DESTDIR is not absolute because of changed directories
-        DESTDIR=$(realpath $DESTDIR)
+        DESTDIR=$(realpath "$DESTDIR")
     else
-        if ! echo $DESTDIR | grep -q "^/"; then
+        if ! echo "$DESTDIR" | grep -q "^/"; then
             echo "E: The DESTDIR passed from environment variable must be absolute or realpath must be available."
             exit 1
         fi
     fi
     echo
-    echo "W: The environment variable DESTDIR is set to the value $DESTDIR that is different from '/', the root directory."
+    echo "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
     echo "   This is meant to support testing and packaging, not for a true installation."
     echo "   No harm is expected to be caused, you anyway have 5 seconds to cancel now with CTRL-C."
     sleep 5
@@ -52,7 +52,10 @@ chmod +x ./controller.sh
 url=https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
 echo "I: Downloading 'run' script to service subdirectory"
 cd service
-wget $wgetOptions $url
+if ! wget $wgetOptions $url; then
+  echo "E: Failure downloading run script from '$url'."
+  exit 1
+fi
 chmod +x ./run
 
 # $DESTDIR is always an absolut path
