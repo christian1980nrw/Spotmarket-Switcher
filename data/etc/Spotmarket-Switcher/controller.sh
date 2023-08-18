@@ -182,9 +182,9 @@ unset num_tools_missing
 
 ########## Begin of the script...
 
-echo >> $LOG_FILE
+echo >> "$LOG_FILE"
 if [ 0 -lt "$use_victron_charger" ]; then
-  echo "I: Maybe we are still charging from last script runtime. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a $LOG_FILE
+  echo "I: Maybe we are still charging from last script runtime. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
   $charger_command_turnoff
 fi
 
@@ -220,7 +220,7 @@ download_awattar_prices() {
 
   if [ -f "$file2" ] && [ "$( wc -l < "$file1" )" = "$( wc -l < "$file2" )" ]; then
     rm -f "$file2"
-    echo "I: $file2 has no tomorrow data, we have to try it again until the new prices are online."
+    echo "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online."
   fi
 }
 
@@ -292,7 +292,7 @@ function download_solarenergy {
       echo "E: Could not find downloaded file '$file3' with solarenergy data."
       exit 1
     elif [ -n "$DEBUG" ]; then
-      echo "D: solarenergy data downloaded to file '$file3'."
+      echo "D: Solarenergy data downloaded to file '$file3'."
     fi
   fi
 }
@@ -369,9 +369,9 @@ function get_suntime_today {
 
 
 if (( ( select_pricing_api == 1 ) )); then
-  # test if Awattar today data exists
+  # Test if Awattar today data exists
   if test -f "$file1"; then
-    # test if data is current
+    # Test if data is current
     get_current_awattar_day
     if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
       echo "I: aWATTar today-data is up to date."
@@ -380,13 +380,13 @@ if (( ( select_pricing_api == 1 ) )); then
       rm -f $file1 $file6 $file7
       download_awattar_prices "$link1" "$file1" "$file6" 30
     fi
-  else # data file1 does not exist
+  else # Data file1 does not exist
     download_awattar_prices "$link1" "$file1" "$file6" 30
   fi
 elif (( ( select_pricing_api == 2 ) )); then
-  # test if Entsoe today data exists
+  # Test if Entsoe today data exists
   if test -f "$file4"; then
-    # test if data is current
+    # Test if data is current
     get_current_entsoe_day
     if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
       echo "I: Entsoe today-data is up to date."
@@ -403,9 +403,9 @@ fi
 if (( ( include_second_day == 1 ) )); then
 
   if (( ( select_pricing_api == 1 ) )); then
-    # test if Awattar tomorrow data exists
+    # Test if Awattar tomorrow data exists
     if test -f "$file2"; then
-      # test if data is current
+      # Test if data is current
       get_current_awattar_day2
       if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
         echo "I: aWATTar tomorrow-data is up to date."
@@ -414,13 +414,13 @@ if (( ( include_second_day == 1 ) )); then
         rm -f $file3
         download_awattar_prices "$link2" "$file2" "$file6" 2
       fi
-    else # data file2 does not exist
+    else # Data file2 does not exist
       download_awattar_prices "$link2" "$file2" "$file6" 2
     fi
   elif (( ( select_pricing_api == 2 ) )); then
-    # test if Entsoe tomorrow data exists
+    # Test if Entsoe tomorrow data exists
     if test -f "$file5"; then
-      # test if data is current
+      # Test if data is current
       get_current_entsoe_day2
       if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%d)" ]; then
         echo "I: Entsoe tomorrow-data is up to date."
@@ -431,12 +431,12 @@ if (( ( include_second_day == 1 ) )); then
         cp "$file10" "$file8"
         cp "$file11" "$file12"
       fi
-    else # data file5 does not exist
+    else # Data file5 does not exist
       download_entsoe_prices "$link5" "$file5" "$file13" 1
     fi
   fi
 
-fi # include second day
+fi # Include second day
 
 if (( ( select_pricing_api == 1 ) )); then
   Unit="Cent/kWh"
@@ -460,9 +460,9 @@ if (( ( use_solarweather_api_to_abort == 1 ) )); then
 fi
 
 printf "I: Please verify correct system time and timezone:\n   "
-TZ=$TZ date | tee -a $LOG_FILE
+TZ=$TZ date | tee -a "$LOG_FILE"
 echo
-echo "Current price is $current_price $Unit net." | tee -a $LOG_FILE
+echo "Current price is $current_price $Unit net." | tee -a "$LOG_FILE"
 echo "Lowest price will be $lowest_price $Unit net."
 echo "The average price will be $average_price $Unit net."
 echo "Highest price will be $highest_price $Unit net."
@@ -490,21 +490,21 @@ fi
 
 # FIXME: abort_price_integer not defined
 if ((abort_price_integer <= current_price_integer)); then
-  echo "I: Current price is too high. Abort."  | tee -a $LOG_FILE
+  echo "I: Current price is too high. Abort."  | tee -a "$LOG_FILE"
   exit 0
 fi
 
 if ((use_solarweather_api_to_abort == 1)); then
   if ((abort_suntime <= suntime_today)); then
-    echo "I: There are enough sun minutes today. Abort."  | tee -a $LOG_FILE
+    echo "I: There are enough sun minutes today. Abort."  | tee -a "$LOG_FILE"
     exit 0
   fi
   if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-    echo "I: There is enough solarenergy today. Abort."  | tee -a $LOG_FILE
+    echo "I: There is enough solarenergy today. Abort."  | tee -a "$LOG_FILE"
     exit 0
   fi
   if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-    echo "I: There is enough sun tomorrow. Abort."  | tee -a $LOG_FILE
+    echo "I: There is enough sun tomorrow. Abort."  | tee -a "$LOG_FILE"
     exit 0
   fi
 fi
@@ -576,7 +576,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   fi
 fi
 
-# execute Fritz DECT on command
+# Execute Fritz DECT on command
 if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
   echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
   # Get session ID (SID)
@@ -617,7 +617,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
     if [ "$connected" = "1" ]; then
-      echo "Turning socket $socket on for almost 60 minutes and then off again..." | tee -a $LOG_FILE
+      echo "Turning socket $socket on for almost 60 minutes and then off again..." | tee -a "$LOG_FILE"
       url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon"
       if ! curl -s "$url" > /dev/null; then
         echo "E: Could not call URL '$url' to switch on said switch - ignored."
@@ -628,13 +628,13 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
   done
 
-fi # execute Fritz DECT on command
+fi # Execute Fritz DECT on command
 
 if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
-      echo " Executing 1 hour Shelly switching." | tee -a $LOG_FILE
+      echo " Executing 1 hour Shelly switching." | tee -a "$LOG_FILE"
       curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on"
     fi
   done
@@ -660,11 +660,13 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     if [ "$socket" = "0" ]; then
         continue
     fi
-    curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" > /dev/null
+    if ! curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" > /dev/null; then
+      echo "E: Could not execut switch-off of socket sid=$sid ain=$socket - ignored"
+    fi
   done
 fi
 
-# doing logrotation
+# Rotating log files
 if [ -f "$LOG_FILE" ]; then
   if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
     mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
