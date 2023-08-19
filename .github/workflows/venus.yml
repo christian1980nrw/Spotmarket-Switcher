@@ -1,33 +1,79 @@
 name: venus
 on:
-  workflow_run:
-    workflows: [basic]
-    types:
-     - completed
+  workflow_dispatch:
+  pull_request:
 
 jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: victronenergy/venus-docker
+      options: --cpus 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+      - name: Install more UNIX tools
+        run: |
+          ls /etc
+          #sudo opkg update
+          #sudo opkg install wget
+          #sudo opkg install curl
+      - name: Execute Installation under Venus OS
+        run: |
+          echo pwd
+          pwd
+          echo ls
+          ls
+          echo victron-venus-install.sh
+          ./victron-venus-os-install.sh
+        env:
+          NO_REBOOT: 1
+      - name: Execute Control-Script under Venus OS
+        run: data/etc/Spotmarket-Switcher/controller.sh
+      - name: Execute Run-Script under Venus OS
+        run: data/etc/Spotmarket-Switcher/service/run
   docker:
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v3
-     - name: Install docker package
-       run: sudo apt-get install docker.io
-     - name: Start docker service
-       run: sudo systemctl start docker && sudo systemctl enable docker
-     - name: Allow me to use docker
-       run: sudo usermod -aG docker $(whoami)
-     - name: Show docker version
-       run: docker --version
-     - name: Retrieve docker image
-       run: docker pull victronenergy/venus-docker
-     - name: Run docker image
-       run: docker run -it --name venus-container -v "$(pwd)":/host victronenergy/venus-docker
-     - name: Execute Installation under Venus OS
-       run: ./victron-venus-os-install.sh
-     - name: Execute Control-Script under Venus OS
-       run: DEBUG=1 LOG_FILE="/tmp/testing_controller.log" data/etc/Spotmarket-Switcher/controller.sh
-     - name: Execute Run-Script under Venus OS
-       run: DEBUG=1 rc_local_file="/tmp/testing_rc.local" data/etc/Spotmarket-Switcher/service/run
-     - name: Be nice and exit the container
-       run: exit
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install docker package
+        run: |
+          sudo apt update
+          sudo apt install apt-transport-https ca-certificates curl software-properties-common aptitude
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+      - name: Add external repository
+        run: |
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          #echo "deb [arch=arm64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          sudo apt update
+          sudo apt install docker-ce docker-ce-cli containerd.io
+      - name: Start docker service
+        run: sudo systemctl start docker && sudo systemctl enable docker
+      - name: Allow me to use docker
+        run: sudo usermod -aG docker $(whoami)
+      - name: Show docker version
+        run: docker --version
+      - name: Retrieve docker image
+        run: docker pull victronenergy/venus-docker
+      - name: Run docker image
+        run: docker run -i --name venus-container -v "$(pwd)":/host victronenergy/venus-docker sh
+      - name: Check for dockerenv file
+        run: |
+          (ls /.dockerenv && echo I: Found dockerenv) || (echo W: No dockerenv)
+      - name: Show running instances and execute Installation under Venus OS
+        run: |
+          docker ps
+          echo -n pwd: ; pwd
+          ls -l
+          sudo NO_REBOOT=1 ./victron-venus-os-install.sh
+        env:
+          NO_REBOOT: 1
+      - name: Execute Control-Script under Venus OS
+        run: docker exec -i venus-container /data/etc/Spotmarket-Switcher/controller.sh
+      - name: Execute Run-Script under Venus OS
+        run: sudo data/etc/Spotmarket-Switcher/service/run
+      - name: Be nice and exit the container
+        run: exit

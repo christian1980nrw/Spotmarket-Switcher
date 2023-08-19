@@ -67,6 +67,20 @@ EOHELP
   fi
 fi
 
+# Checking preconditions for successful execution
+
+missing=""
+for tool in wget sed awk curl
+do
+  if ! which "$tool" > /dev/null; then
+    missing="$missing $tool"
+  fi
+done
+if [ -n "$missing" ]; then
+  echo "E: Install the following tools prior to the execution of this script: $missing"
+  exit 1
+fi
+
 # DESTDIR is optionally set as an environment variable.
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     if which realpath > /dev/null; then
@@ -174,13 +188,14 @@ echo
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     echo "I: Not auto-rebooting now since DESTDIR set to a value != '/'."
     exit 0
-elif [ -d /host ]; then
-    echo "I: Not auto-rebooting since /host exists, suggesting execution within docker"
+elif [ -e /.dockerenv ]; then
+    echo "I: Not auto-rebooting since /.dockerenv exists, suggesting execution within docker"
+    exit 0
+elif [ -n "$NO_REBOOT" ]; then
+    echo "I: Not rebooting the system since NO_REBOOT environment variable is set."
     exit 0
 else
-    echo "The System will reboot in 20 seconds to finalize the setup."
+    echo "W: The System will reboot in 20 seconds to finalize the setup."
     sleep 20
-    if [ -z "$NO_REBOOT" ]; then
-      reboot
-    fi
+    reboot
 fi
