@@ -1,35 +1,33 @@
 name: venus
 on:
   workflow_run:
-    workflows: ["Basic"]
-    branches: [dev]
-    types: 
-      - completed
+    workflows: [basic]
+    types:
+     - completed
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Install docker package
-      run:  sudo apt-get install docker.io
-    - name: Start docker service
-      run:  sudo systemctl start docker && sudo systemctl enable docker
-    - name: Allow me to use docker
-      run:  sudo usermod -aG docker $(whoami)
-    - name: Show docker version
-      run:  docker --version
-    - name: Retrieve docker image
-      run:  docker pull victronenergy/venus-docker
-    - name: Run docker image
-      run:  docker run -it --name venus-container -v "$(pwd)":/host victronenergy/venus-docker
-    - name: Execute Installation under Venus OS
-      run:  ./victron-venus-os-install.sh
-    - name: Execute Control-Script under Venus OS
-      run:  DEBUG=1 LOG_FILE="/tmp/testing_controller.log" data/etc/Spotmarket-Switcher/controller.sh
-    - name: Execute Run-Script under Venus OS
-      run:  DEBUG=1 rc_local_file="/tmp/testing_rc.local" data/etc/Spotmarket-Switcher/service/run
-    - name: Be nice and exit the container
-      run:  exit
-
+     - name: Checkout code
+       uses: actions/checkout@v3
+     - name: Install docker package
+       run: sudo apt-get install docker.io
+     - name: Start docker service
+       run: sudo systemctl start docker && sudo systemctl enable docker
+     - name: Allow me to use docker
+       run: sudo usermod -aG docker $(whoami)
+     - name: Show docker version
+       run: docker --version
+     - name: Retrieve docker image
+       run: docker pull victronenergy/venus-docker
+     - name: Run docker image
+       run: docker run -it --name venus-container -v "$(pwd)":/host victronenergy/venus-docker
+     - name: Execute Installation under Venus OS
+       run: ./victron-venus-os-install.sh
+     - name: Execute Control-Script under Venus OS
+       run: DEBUG=1 LOG_FILE="/tmp/testing_controller.log" data/etc/Spotmarket-Switcher/controller.sh
+     - name: Execute Run-Script under Venus OS
+       run: DEBUG=1 rc_local_file="/tmp/testing_rc.local" data/etc/Spotmarket-Switcher/service/run
+     - name: Be nice and exit the container
+       run: exit
