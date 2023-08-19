@@ -1,29 +1,101 @@
 #!/bin/bash
 
+License=$(cat <<EOLICENSE
+MIT License
+
+Copyright (c) 2023 christian1980nrw
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+EOLICENSE
+)
+
 set -e
 
-# Disclaimer: This computer program is provided "as is" and the user bears the full risk of using it.
-# The author makes no representations or warranties of any kind concerning the accuracy, reliability, completeness or suitability of the program for any particular purpose.
-# The author shall not be liable for any damages of any kind arising from the use or inability to use the program, including but not limited to direct, indirect, incidental,
-# special or consequential damages.
+if [ -z "$LANG" ]; then
+  export LANG="C"
+fi
+
+if test "-h" = "$1" || test "--help" = "$1"; then
+  if echo "$LANG" | grep -qi "^de"; then
+    cat <<EOHILFE
+Verwendung: $0 - ohne Argumente
+
+BESCHREIBUNG
+
+  Dieses Skript sollte auf einem System unter Venus OS ausgeführt werden, um die stündlich angepassten, am Vortag festgelegten Strompreise herunterzuladen und Ladevorgänge am Wechselrichter oder Smart Devices im Haus zu steuern. Ein regulärer Benutzer sollte dieses Skript nicht manuell bearbeiten. Es sollte mithilfe des Installations-Skripts des Projekts installiert und regelmäßig vom Cron-Dienst ausgeführt werden.
+
+OPTIONEN
+
+  -h | --help - Zeigt diese Hilfe an
+
+UMGEBUNGSVARIABLEN
+
+  DEBUG - Wenn auf einen beliebigen Wert gesetzt, werden keine Veränderungen am System vorgenommen und die Ausgaben auf der Konsole sind teilweise ausführlicher.
+
+  rc_local_file - Der Pfad zur Datei, über die der Service gestartet wird, kann festgelegt werden. Dies ist ausschließlich für Testzwecke vorgesehen.
+
+SIEHE AUCH
+
+  README_de.md
+  Homepage des Projekts auf https://github.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher
+
+WICHTIG - Haftungsausschluss (Disclaimer) und Lizenz
+
+  Dieses Computerprogramm wird "wie es ist" bereitgestellt, und der Nutzer trägt das volle Risiko bei der Nutzung. Der Autor übernimmt keine Gewährleistung für die Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Brauchbarkeit des Programms für irgendeinen bestimmten Zweck. Der Autor haftet weder für Schäden, die sich aus der Nutzung oder Unfähigkeit zur Nutzung des Programms ergeben, noch für Schäden, die aufgrund von Fehlern oder Mängeln des Programms entstehen. Dies gilt auch für Schäden, die aufgrund von Verletzungen von Pflichten im Rahmen einer vertraglichen oder außervertraglichen Verpflichtung entstehen.
+
+$(echo "$License" | sed -e 's/^/  /')
+
+UNTERSTÜTZUNG
+
+  Bitte unterstützen Sie dieses Projekt und tragen Sie zur Weiterentwicklung bei: https://revolut.me/christqki2 oder https://paypal.me/christian1980nrw. Wenn Sie in Deutschland leben und zu einem dynamischen Stromtarif wechseln möchten, können Sie das Projekt unterstützen und den Tarif über den folgenden Link abschließen. Wir beide erhalten eine Prämie von 50 Euro für Hardware. Besuchen Sie https://invite.tibber.com/ojgfbx2e. Klicken Sie in der Tibber-App auf "Ich wurde eingeladen" und geben Sie den Code ojgfbx2e in der App ein. Bitte beachten Sie, dass für einen dynamischen Tarif ein intelligenter Zähler oder ein Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigt wird. Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde.
+
+  Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt dennoch unterstützen und einen klassischen Stromtarif von Octopus Energy über den folgenden Link abschließen, um einen 50-Euro-Gutschein für sich selbst und einen 50-Euro-Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58.
+EOHILFE
+  else
+    cat <<EOHELP
+Usage: $0 - without arguments
+
+DESCRIPTION
+
+  This script should be executed on a system running under Venus OS to download hourly adjusted electricity prices determined on the previous day and control charging operations on the inverter or smart devices in the house. A regular user should not manually modify this script. It should be installed using the project's installation script and executed regularly by the cron service.
+
+OPTIONS
+
+  -h | --help - Show this help
+
+ENVIRONMENT VARIABLES
+
+  DEBUG - If set to any value, no system changes will be made, and console outputs will be more detailed.
+
+  rc_local_file - The path to the file through which the service is started can be specified. Intended solely for testing purposes.
+
+SEE ALSO
+
+  README_de.md
+  Project homepage on https://github.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher
+
+IMPORTANT - Disclaimer and License
+
+$(echo "$License" | sed -e 's/^/  /')
+
+SUPPORT
+
+  Please support this project and contribute to further development: https://revolut.me/christqki2 or https://paypal.me/christian1980nrw. If you live in Germany and wish to switch to a dynamic electricity tariff, you can support me and sign up for the tariff through the following link. We both receive a 50 Euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e. In the Tibber app, click "I was invited" and enter the code ojgfbx2e in the app. Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for an hourly tariff. Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course, you can use your bonus for the Pulse order. Wait until the delivery date is confirmed and the bonus is credited.
+
+  If you happen to need a cheap natural gas tariff or are not convinced to choose the dynamic Tibber tariff, you can still support this project and choose a classic electricity tariff using the following link to get a 50 Euro voucher for yourself and a 50 Euro bonus for this project: https://share.octopusenergy.de/glass-raven-58.
+EOHELP
+  fi
+
+  exit
+
+fi
 
 # Please sponsor this project and support further development: https://revolut.me/christqki2 or https://paypal.me/christian1980nrw
 
-# Haftungsausschluss(Disclaimer): Dieses Computerprogramm wird "wie es ist" bereitgestellt und der Nutzer trägt das volle Risiko bei der Nutzung.
-# Der Autor übernimmt keine Gewährleistung für die Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Brauchbarkeit des Programms für irgendeinen bestimmten Zweck.
-# Der Autor haftet weder für Schäden, die sich aus der Nutzung oder Unfähigkeit zur Nutzung des Programms ergeben, noch für Schäden, die aufgrund von Fehlern oder
-# Mängeln des Programms entstehen. Dies gilt auch für Schäden, die aufgrund von Verletzungen von Pflichten im Rahmen einer vertraglichen oder außervertraglichen
-# Verpflichtung entstehen.
-
-# Bitte sponsern Sie dieses Projekt und unterstützen Sie die Weiterentwicklung: https://revolut.me/christqki2 oder https://paypal.me/christian1980nrw Wenn Sie in Deutschland leben und zu einem 
-# dynamischen Stromtarif wechseln möchten, können Sie mich unterstützen und den Tarif über folgenden Link abschließen. Wir bekommen beide 50 Euro Prämie für Hardware.
-# Besuchen Sie https://invite.tibber.com/ojgfbx2e Klicken Sie in der tibber-App auf „Ich wurde eingeladen“ und geben Sie in der App den Code ojgfbx2e ein.
-# Bitte beachten Sie, dass Sie für einen dynamischen Tarif einen Smart Meter oder einen Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigen.
-# Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. 
-# Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde. 
-# Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt trotzdem unterstützen
-# und einen klassischen Stromtarif von Octopusenergy mit nachfolgendem Link abschließen um 50 Euro Gutschein für sich selbst und 50 Euro Bonus für dieses Projekt zu erhalten:
-# https://share.octopusenergy.de/glass-raven-58
 
 # Thanks Christian
 
