@@ -1,4 +1,4 @@
-name: Shell Script CI (dev branch only)
+name: Basic
 
 on:
   push:
