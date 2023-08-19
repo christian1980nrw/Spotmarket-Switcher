@@ -28,6 +28,45 @@ EOLICENSE
 
 set -e
 
+if [ -z "$LANG" ]; then
+  export LANG=C
+fi
+
+if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
+  if echo "$LANG" | grep -qi "^de" ; then
+    cat <<EOHILFE
+Optionen
+
+ -h | --help - Zeigt diese Hilfe
+
+Lizenz
+
+$(echo "$License" | sed -e 's/^/  /')
+
+Autor
+
+  Christian
+EOHILFE
+  else
+    cat <<EOHELP
+
+Description
+
+Options
+
+ -h | --help - Shows this help.
+
+License
+
+$(echo "$License" | sed -e 's/^/  /')
+
+Author
+
+  Christian
+EOHELP
+  fi
+fi
+
 # DESTDIR is optionally set as an environment variable.
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     if which realpath > /dev/null; then
