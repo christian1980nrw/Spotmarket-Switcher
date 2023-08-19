@@ -133,9 +133,15 @@ echo "Note: This installation will survive a Venus OS firmware update."
 echo "      Please do an extra reboot after every firmware update so that the crontab can be recreated automatically."
 echo
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
-    echo "Not auto-rebooting now since DESTDIR set to a value != '/'."
+    echo "I: Not auto-rebooting now since DESTDIR set to a value != '/'."
+    exit 0
+elif [ -d /host ]; then
+    echo "I: Not auto-rebooting since /host exists, suggesting execution within docker"
+    exit 0
 else
     echo "The System will reboot in 20 seconds to finalize the setup."
     sleep 20
-    reboot
+    if [ -z "$NO_REBOOT" ]; then
+      reboot
+    fi
 fi
