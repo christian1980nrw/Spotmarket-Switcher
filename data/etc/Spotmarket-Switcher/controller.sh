@@ -713,9 +713,11 @@ if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   done
 fi
 
-if ([ "$use_shelly_wlan_sockets" -eq 1 ] || [ "$use_fritz_dect_sockets" -eq 1 ]) && [ "$execute_switchablesockets_on" -eq 1 ]; then
-  echo "Waiting for almost 60 minutes..."
-  sleep 3560
+if [ "$use_shelly_wlan_sockets" -eq 1 ] || [ "$use_fritz_dect_sockets" -eq 1 ]; then
+  if [ "$execute_switchablesockets_on" -eq 1 ]; then
+    echo "Waiting for almost 60 minutes..."
+    sleep 3560
+  fi
 fi
 
 if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
