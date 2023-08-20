@@ -1,33 +1,40 @@
-name: Basic
-
+name: basic
 on:
   push:
-    branches:
-      - dev
   pull_request:
-    branches:
-      - dev
-
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Install ShellCheck
-      run:  sudo apt-get install shellcheck
-    - name: Lint all shell scripts
-      run:  find . -name "*.sh" | xargs shellcheck
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install yamllint
+        run: sudo apt-get install yamllint
+      - name: Yamllint all YAML files
+        run: find . -name "*.yml" | xargs -r yamllint
+      - name: Install ShellCheck
+        run: sudo apt-get install shellcheck
+      - name: Lint all shell scripts
+        run: find . -name "*.sh" | xargs -r shellcheck
   execute:
     runs-on: ubuntu-latest
-    steps: 
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Extend default set of UNIX tools
-      run:  sudo apt-get install wget curl dbus sed gawk
-    - name: Install
-      run:  DEBUG=1 DESTDIR="/tmp/testing" ./victron-venus-os-install.sh
-    - name: Control
-      run:  DEBUG=1 LOG_FILE="/tmp/testing_controller.log" data/etc/Spotmarket-Switcher/controller.sh
-    - name: Run
-      run:  DEBUG=1 rc_local_file="/tmp/testing_rc.local" data/etc/Spotmarket-Switcher/service/run
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Extend default set of UNIX tools
+        run: sudo apt-get install wget curl dbus sed gawk
+      - name: Install
+        run: ./victron-venus-os-install.sh
+        env:
+          DEBUG: 1
+          DESTDIR: /tmp/testing
+      - name: Control
+        run: data/etc/Spotmarket-Switcher/controller.sh
+        env:
+          DEBUG: 1
+          LOG_FILE: /tmp/testing_controller.log
+      - name: Run
+        run: data/etc/Spotmarket-Switcher/service/run
+        env:
+          DEBUG: 1
+          rc_local_file: /tmp/testing_rc.local
