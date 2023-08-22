@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 License=$(cat <<EOLICENSE
 MIT License
@@ -127,8 +127,9 @@ if ! mkdir -p "$DESTDIR"/data/etc/Spotmarket-Switcher/service ; then
     exit 1
 fi
 
-wgetOptions="--no-verbose --continue --no-directories --show-progress"
-cd "$DESTDIR"/data/etc/Spotmarket-Switcher
+downloadUrlToFile () {
+    local url=$1
+    local dest=$2
 
 for url in \
     https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh

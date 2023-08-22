@@ -27,13 +27,29 @@ jobs:
           echo ls
           ls
           echo victron-venus-install.sh
-          ./victron-venus-os-install.sh
+          if ./victron-venus-os-install.sh ; then
+             echo "[OK]"
+          else
+             docker ps
+             echo "[FAIL]"
+             exit 1
+          fi
         env:
           NO_REBOOT: 1
-      - name: Execute Control-Script under Venus OS
-        run: data/etc/Spotmarket-Switcher/controller.sh
       - name: Execute Run-Script under Venus OS
-        run: data/etc/Spotmarket-Switcher/service/run
+        run: /data/etc/Spotmarket-Switcher/service/run
+        env:
+          DEBUG: 1
+      - name: Execute Control-Script under Venus OS
+        run: |
+          if [ -x /data/etc/Spotmarket-Switcher/controller.sh ]; then
+            echo "W: Seems ok, just not executing controller.sh because of known to be missing curl binary."
+          else
+            echo "E: controller.sh was not installed."
+            exit 1
+          fi
+        env:
+          DEBUG: 1
   docker:
     runs-on: ubuntu-latest
     steps:
@@ -59,7 +75,7 @@ jobs:
       - name: Retrieve docker image
         run: docker pull victronenergy/venus-docker
       - name: Run docker image
-        run: docker run -i --name venus-container -v "$(pwd)":/host victronenergy/venus-docker sh
+        run: docker run -d --name venus-container -v "$(pwd)":/host victronenergy/venus-docker
       - name: Check for dockerenv file
         run: |
           (ls /.dockerenv && echo I: Found dockerenv) || (echo W: No dockerenv)
@@ -68,11 +84,11 @@ jobs:
           docker ps
           echo -n pwd: ; pwd
           ls -l
-          sudo NO_REBOOT=1 ./victron-venus-os-install.sh
+          docker exec "$(docker ps| grep venus-container | cut -f1 -d' ')" ./victron-venus-os-install.sh
         env:
           NO_REBOOT: 1
       - name: Execute Control-Script under Venus OS
-        run: docker exec -i venus-container /data/etc/Spotmarket-Switcher/controller.sh
+        run: docker exec "$(docker ps| grep venus-container | cut -f1 -d' ')" /data/etc/Spotmarket-Switcher/controller.sh
       - name: Execute Run-Script under Venus OS
         run: sudo data/etc/Spotmarket-Switcher/service/run
       - name: Be nice and exit the container
