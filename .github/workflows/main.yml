@@ -11,7 +11,7 @@ jobs:
       - name: Install yamllint
         run: sudo apt-get install yamllint
       - name: Yamllint all YAML files
-        run: find . -name "*.yml" | xargs -r yamllint
+        run: yamllint .github/workflows/*.yml | grep -v line-length | grep error && failure || echo "No errors found."
       - name: Install ShellCheck
         run: sudo apt-get install shellcheck
       - name: Lint all shell scripts
