@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 License=$(cat <<EOLICENSE
 MIT License
