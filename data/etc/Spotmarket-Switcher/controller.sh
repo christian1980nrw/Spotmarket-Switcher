@@ -186,6 +186,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 
 # Tibber API setup
 # To get the tibber_api_key please log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token . After that create a token by selecting the scopes you need (select "price").
+# Use this link to create a free account with your smartphone: https://tibber.com/de/invite/ojgfbx2e
 # Put your API Key into the function below.
 
 get_tibber_api() {
