@@ -76,7 +76,7 @@ ENVIRONMENT VARIABLES
 SEE ALSO
 
   README_de.md
-  Project homepage on https://github.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher
+  Project homepage on https://github.com/christian1980nrw/Spotmarket-Switcher
 
 IMPORTANT - Disclaimer and License
 
