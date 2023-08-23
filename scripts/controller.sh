@@ -138,7 +138,7 @@ use_start_stop_logic=0 # Set to 1 to activate start/stop logic (start_stop_price
 switchablesockets_at_start_stop=0 # You can add a additional load (like water heater) with AVM Fritz DECT200/210 switch sockets if you like.
 charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
 switchablesockets_at_solar_breakeven_logic=0
-charge_at_lowest_price=0 # set 1 to charge at lowest price per day no matter which start/stop price was defined 
+charge_at_lowest_price=0 # set 1 to charge at lowest price per day no matter which start/stop price was defined
 switchablesockets_at_lowest_price=0
 charge_at_second_lowest_price=0
 switchablesockets_at_second_lowest_price=0
@@ -152,7 +152,7 @@ charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
 TZ='Europe/Amsterdam' # Set Correct Timezone
 select_pricing_api=1 # Set to 1 for aWATTar or 2 for entsoe / aWATTar: only germany DE-LU or Austrian AT prices, but no API key needed / Entsoe: Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
-include_second_day=0 # Set to 0 to compare only the today prices. 
+include_second_day=0 # Set to 0 to compare only the today prices.
 # Set include_second_day to 1 to compare today & tomorrow prices if they become available (today in the afternoon).
 # Please note: If you activate this and the prices decrease over several days,
 # it is possible that there will be no charging or switching for several days until the lowest prices are reached.
@@ -161,7 +161,7 @@ include_second_day=0 # Set to 0 to compare only the today prices.
 use_solarweather_api_to_abort=0
 abort_solar_yield_today=4.5 # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
 abort_solar_yield_tomorrow=5.5 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
-#To find the kilowatt hour value from megajoules, divide by 3.6. 
+#To find the kilowatt hour value from megajoules, divide by 3.6.
 abort_suntime=700 # Abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
 latitude=51.530600 # Your location
 longitude=7.860575
@@ -179,7 +179,7 @@ out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
 entsoe_eu_api_security_token=YOURAPIKEY
 # How to get the free api_security_token: Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account. After that
 # send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
-# Indicate the email address you entered during registration in the email body. 
+# Indicate the email address you entered during registration in the email body.
 # The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
 # After That you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
 # The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
@@ -356,7 +356,7 @@ download_entsoe_prices() {
   if ! curl "$url" > "$file"; then
     echo "E: Retrieval of entsoe data from '$url' into file '$file' failed."
     exit 1
-  fi 
+  fi
 
   if ! test -f "$file"; then
     echo "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
@@ -480,22 +480,17 @@ function get_tibber_prices_integer {
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
+    eval "$integer_var"="$(euroToMillicent "${!var}")"
   done
 }
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
-  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price \
+             stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(printf "%.0f\n" "${!var}e14")"
-  done
-
-  for var in stop_price start_price feedin_price energy_fee abort_price
-  do
-    integer_var="${var}_integer"
-    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
+    eval "$integer_var"="$(euroToMillicent "${!var}")"
   done
 }
 
@@ -566,6 +561,29 @@ elif (( ( select_pricing_api == 3 ) )); then
         echo "I: Fetching today-data data from Tibber."
     download_tibber_prices "$link6" "$file14" 0
   fi											
+fi
+
+function euroToMillicent {
+  euro=$1
+  v=$(echo "$euro"|sed -r -e 's/(^[0-9]*)$/\100000/' -e 's/(^[0-9]*)[,.](.....)$/\1\2/' -e 's/(^[0-9]*)[,.](....)$/\1\20/' -e 's/(^[0-9]*)[,.](...)$/\1\200/' -e 's/(^[0-9]*)[,.](..)$/\1\2000/' -e 's/(^[0-9]*)[,.](.)$/\1\20000/')
+  if echo "$v" | grep -q '\.' ; then
+    echo "E: Could not translate '$euro' to an integer."
+    return 1
+  fi
+  echo "$v"
+  return 0
+}
+
+if [ "tests" == "$1" ]; then
+  
+  echo "I: Testing euro2cent"
+  for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23
+  do
+    echo -n "$i -> "
+    echo $(euroToMillicent $i)
+  done
+  exit 0
+
 fi
 
 if (( ( include_second_day == 1 ) )); then
