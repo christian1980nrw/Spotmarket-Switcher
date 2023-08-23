@@ -37,7 +37,7 @@ Wir hoffen, dass diese Software Intelligenz und Effizienz in Ihre Energieanlage 
 
 Die Einrichtung des Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarkt-Schalters ist ein unkomplizierter Vorgang. Wenn Sie bereits eine UNIX-basierte Maschine verwenden, wie macOS, Linux oder Windows mit dem Linux-Subsystem, befolgen Sie diese Schritte, um die Software zu installieren:
 
-1. Laden Sie das Installations-Skript aus dem GitHub-Repository herunter, indem Sie [diesen Link verwenden](https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/victron-venus-os-install.sh), oder führen Sie den folgenden Befehl in Ihrem Terminal aus:
+1. Laden Sie das Installations-Skript aus dem GitHub-Repository herunter, indem Sie [diesen Link verwenden](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), oder führen Sie den folgenden Befehl in Ihrem Terminal aus:
    ```
    wget https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/victron-venus-os-install.sh
    ```
