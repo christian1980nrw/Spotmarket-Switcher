@@ -33,7 +33,8 @@ code2='(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/contro
 # Count number of occurences of the code to be executed in the rc.local file
 count=0
 if [ -e "$rc_local_file" ]; then
-    count=$(grep -Fc "$code" "$rc_local_file")
+    # if grep finds no matching line the return code is != 0
+    count=$(grep -Fc "$code" "$rc_local_file" || echo 0)
 else
     echo "#!/bin/sh" > $rc_local_file
     chmod +x $rc_local_file
