@@ -70,16 +70,32 @@ fi
 # Checking preconditions for successful execution
 
 missing=""
-for tool in wget sed awk curl
+for tool in sed awk grep
 do
   if ! which "$tool" > /dev/null; then
     missing="$missing $tool"
   fi
 done
 if [ -n "$missing" ]; then
-  echo "E: Install the following tools prior to the execution of this script: $missing"
+  echo "E: Install the following tools prior to running this install script or the installed scripts: $missing"
   exit 1
 fi
+
+for tool in wget curl
+do
+  if ! which "$tool" > /dev/null; then
+    missing="$missing $tool"
+  fi
+done
+if [ -n "$missing" ]; then
+  echo "W: Install the following tools prior to the execution of the installed scripts: $missing."
+  echo "   Try running 'opkg install $missing'." 
+  echo
+  echo "   Now continuing with the installation, which will be fine per se, but you as the user are responsible to get those dependencies installed to prevent the control script from failing. Drop an issue at https://github.com/christian1980nrw/Spotmarket-Switcher/issues if this package shall somehow prepare you better."
+  echo
+fi
+
+
 
 # DESTDIR is optionally set as an environment variable.
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
@@ -184,6 +200,11 @@ echo
 echo "Note: This installation will survive a Venus OS firmware update."
 echo "      Please do an extra reboot after every firmware update so that the crontab can be recreated automatically."
 echo
+if [ -n "$missing" ]; then
+    echo "Note: Remember to install these missing executables: $missing"
+    echo
+fi
+
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
     echo "I: Not auto-rebooting now since DESTDIR set to a value != '/'."
     exit 0
