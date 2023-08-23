@@ -2,7 +2,7 @@
 
 Welcome to the Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Switcher repository! This software is designed to enhance the functionality of your energy setup by integrating:
 
-- [Victron]([(https://www.victronenergy.com/)) Venus OS Energy Storage Systems
+- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems
 - Shelly products (such as Shelly Plug S or Shelly Plus1PM)
 - AVM Fritz!DECT200 and 210 switchable sockets
 
