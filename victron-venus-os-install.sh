@@ -131,7 +131,7 @@ wgetOptions="--no-verbose --continue --no-directories --show-progress"
 cd "$DESTDIR"/data/etc/Spotmarket-Switcher
 
 for url in \
-    https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh
+    https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh
 do
     echo "I: Downloading '$(basename "$url")'"
     # This ShellCheck directive only applies to this function to correct wget false positive
@@ -147,7 +147,7 @@ done
 
 chmod +x ./controller.sh
 
-url=https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
+url=https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
 echo "I: Downloading 'run' script to service subdirectory"
 cd service
 # This ShellCheck directive only applies to this function to correct wget false positive
@@ -169,7 +169,7 @@ if [ ! -d "$DESTDIR"/service ]; then
     else
         echo "W: The '$DESTDIR/service' directory is not existing."
         echo "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
-        echo "   Check on https://github.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher/issues if that has already been reported."
+        echo "   Check on https://github.com/christian1980nrw/Spotmarket-Switcher/issues if that has already been reported."
     fi
 else
     if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
