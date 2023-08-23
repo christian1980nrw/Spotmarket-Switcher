@@ -177,6 +177,12 @@ awattar=de # Set to de for Germany or at for Austria (no other countrys availabl
 in_Domain=10Y1001A1001A82H # this is for Germany DE-LU
 out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
 entsoe_eu_api_security_token=YOURAPIKEY
+# How to get the free api_security_token: Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account. After that
+# send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
+# Indicate the email address you entered during registration in the email body. 
+# The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
+# After That you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
+# The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
 
 # Tibber API setup
 # To get the tibber_api_key please log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token . After that create a token by selecting the scopes you need (select "price").
@@ -195,13 +201,6 @@ get_tibber_api() {
         print
     }'
 }				  
-
-# How to get the free api_security_token: Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account. After that
-# send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
-# Indicate the email address you entered during registration in the email body. 
-# The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
-# After That you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
-# The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
 
 # further API parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
