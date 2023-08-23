@@ -30,7 +30,7 @@ BESCHREIBUNG
 
 OPTIONEN
 
-  -h | --help - Zeigt diese Hilfe an
+  -h | --help - Zeigt diese Hilfe an
 
 UMGEBUNGSVARIABLEN
 
@@ -178,6 +178,24 @@ in_Domain=10Y1001A1001A82H # this is for Germany DE-LU
 out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
 entsoe_eu_api_security_token=YOURAPIKEY
 
+# Tibber API setup
+# To get the tibber_api_key please log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token . After that create a token by selecting the scopes you need (select "price").
+# Put your API Key into the function below.
+
+get_tibber_api() {
+    curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
+    --header 'Content-Type: application/json'  \
+    --header 'Authorization: Bearer YOUR_API_KEY_HERE'  \
+    --data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' \
+    | awk '{
+        gsub(/"current":/, "\n&");
+        gsub(/"today":/, "\n&");
+        gsub(/"tomorrow":/, "\n&");
+        gsub(/"total":/, "\n&");
+        print
+    }'
+}				  
+
 # How to get the free api_security_token: Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account. After that
 # send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
 # Indicate the email address you entered during registration in the email body. 
@@ -198,12 +216,13 @@ tomorrow2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)
 tomorrowmonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%m)
 tomorrowyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%Y)
 getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%k)
-now_entsoe_linenumber=$((getnow+1))
+now_linenumber=$((getnow+1))
 link1="https://api.awattar.$awattar/v1/marketdata/current.yaml"
 link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
 link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=solarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
 link4="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$yesteryear$yestermonth$yesterday&periodEnd=$todayyear$todaymonth$today"
 link5="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$todayyear$todaymonth$today&periodEnd=$tomorrowyear$tomorrowmonth$tomorrow"
+link6="https://api.tibber.com/v1-beta/gql"										  
 file1=/tmp/awattar_today_prices.yaml
 file2=/tmp/awattar_tomorrow_prices.yaml
 file3=/tmp/expected_solarenergy.csv
@@ -217,6 +236,11 @@ file10=/tmp/entsoe_today_prices.txt
 file11=/tmp/entsoe_today_prices_sorted.txt
 file12=/tmp/entsoe_prices_sorted.txt
 file13=/tmp/entsoe_tomorrow_prices.txt
+file14=/tmp/tibber_prices.txt
+file15=/tmp/tibber_today_prices.txt
+file16=/tmp/tibber_today_prices_sorted.txt
+file17=/tmp/tibber_tomorrow_prices.txt
+file18=/tmp/tibber_tomorrow_prices_sorted.txt							 
 
 ########## Optional environmental variables
 
@@ -296,6 +320,32 @@ download_awattar_prices() {
   fi
 }
 
+download_tibber_prices() {
+  local url=$1
+  local file=$2
+
+  if ! get_tibber_api | tr -d '{}[]' > $file; then
+    echo "E: Download of Tibber prices from '$url' to '$file' failed."
+    exit 1
+  fi
+
+sed -n '/"today":/,/"tomorrow":/p' $file | sed '$d' | sed '/"today":/d' > $file15
+sort -t, -k1.9n $file15 > $file16
+sed -n '/"tomorrow":/,$p' $file | sed '/"tomorrow":/d' > $file17
+sort -t, -k1.9n $file17 > $file18
+
+  timestamp=$(TZ=$TZ date +%d)
+  echo "date_now_day: $timestamp" >> "$file15"
+  echo "date_now_day: $timestamp" >> "$file17"
+  
+    if [ ! -s "$file16" ]; then
+    echo "E: Tibber prices cannot be extracted to $file16, please check your Tibber API Key."
+	rm "$file"
+    exit 1
+  fi
+
+}
+
 download_entsoe_prices() {
   local url=$1
   local file=$2
@@ -350,6 +400,7 @@ download_entsoe_prices() {
 
 function download_solarenergy {
   if (( ( use_solarweather_api_to_abort == 1 ) )); then
+    echo "I: Refreshing solar-weather data."											
     if ! curl "$link3" -o "$file3"; then
       echo "E: Download of solarenergy data from '$link3' failed."
       exit 1
@@ -372,6 +423,7 @@ function download_solarenergy {
 
 function get_current_awattar_day { current_awattar_day=$(sed -n 3p $file1 | grep -Eo '[0-9]+'); }
 function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
+
 function get_awattar_prices {
   current_price=$(sed -n $((2*$(TZ=$TZ date +%k)+39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1);
   lowest_price=$(sed -n 1p $file7 );
@@ -384,11 +436,27 @@ function get_awattar_prices {
   average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file7);
 }
 
+function get_tibber_prices {
+  current_price=$(sed -n "${now_linenumber}s/.*\"total\":\([^,]*\),.*/\1/p" $file15);
+  lowest_price=$(sed -n '1s/.*"total":\([^,]*\),.*/\1/p' $file16)
+  second_lowest_price=$(sed -n '2s/.*"total":\([^,]*\),.*/\1/p' $file16)
+  third_lowest_price=$(sed -n '3s/.*"total":\([^,]*\),.*/\1/p' $file16)
+  fourth_lowest_price=$(sed -n '4s/.*"total":\([^,]*\),.*/\1/p' $file16)
+  fifth_lowest_price=$(sed -n '5s/.*"total":\([^,]*\),.*/\1/p' $file16)
+  sixth_lowest_price=$(sed -n '6s/.*"total":\([^,]*\),.*/\1/p' $file16)
+  highest_price=$(awk -F':' '{split($2, arr, ","); if (arr[1] > max) max = arr[1]} END {print max}' $file16);
+  average_price=$(awk -F':' '{sum+=$2} END {print sum/NR}' $file16);
+}
 
-function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p $file10 | grep -Eo '[0-9]+'); }
+																								 
 function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p $file13 | grep -Eo '[0-9]+'); }
+function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p $file10 | grep -Eo '[0-9]+'); }
+
+function get_current_tibber_day2 { current_tibber_day2=$(sed -n 25p $file17 | grep -Eo '[0-9]+'); }
+function get_current_tibber_day { current_tibber_day=$(sed -n 25p $file15 | grep -Eo '[0-9]+'); }
+
 function get_entsoe_prices {
-  current_price=$(sed -n ${now_entsoe_linenumber}p $file10);
+  current_price=$(sed -n ${now_linenumber}p $file10);
   lowest_price=$(sed -n 1p $file12 );
   second_lowest_price=$(sed -n 2p $file12 );
   third_lowest_price=$(sed -n 3p $file12 );
@@ -399,7 +467,15 @@ function get_entsoe_prices {
   average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file12);
 }
 
-function get_prices_integer_awattar {
+function get_awattar_prices_integer {
+  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
+  do
+    integer_var="${var}_integer"
+    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
+  done
+}
+
+function get_tibber_prices_integer {
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
@@ -454,6 +530,7 @@ if (( ( select_pricing_api == 1 ) )); then
       download_awattar_prices "$link1" "$file1" "$file6" 30
     fi
   else # Data file1 does not exist
+  echo "I: Fetching today-data data from aWATTar."												  
     download_awattar_prices "$link1" "$file1" "$file6" 30
   fi
 elif (( ( select_pricing_api == 2 ) )); then
@@ -469,8 +546,25 @@ elif (( ( select_pricing_api == 2 ) )); then
       download_entsoe_prices "$link4" "$file4" "$file10" 0
     fi
   else # Entsoe data does not exist
+												 
     download_entsoe_prices "$link4" "$file4" "$file10" 0
   fi
+elif (( ( select_pricing_api == 3 ) )); then
+  # Test if Tibber today data exists
+  if test -f "$file14"; then
+    # Test if data is current
+    get_current_tibber_day
+    if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
+      echo "I: Tibber today-data is up to date."
+    else
+      echo "I: Tibber today-data is outdated, fetching new data."
+      rm -f "$file14" "$file15" "$file16"
+      download_tibber_prices "$link6" "$file14" 0
+    fi
+  else # Tibber data does not exist
+        echo "I: Fetching today-data data from Tibber."
+    download_tibber_prices "$link6" "$file14" 0
+  fi											
 fi
 
 if (( ( include_second_day == 1 ) )); then
@@ -488,6 +582,7 @@ if (( ( include_second_day == 1 ) )); then
         download_awattar_prices "$link2" "$file2" "$file6" 2
       fi
     else # Data file2 does not exist
+	echo "I: aWATTar tomorrow-data does not exist, fetching data."														   
       download_awattar_prices "$link2" "$file2" "$file6" 2
     fi
   elif (( ( select_pricing_api == 2 ) )); then
@@ -505,20 +600,42 @@ if (( ( include_second_day == 1 ) )); then
         cp "$file11" "$file12"
       fi
     else # Data file5 does not exist
+		echo "I: Entsoe tomorrow-data does not exist, fetching data."														  
       download_entsoe_prices "$link5" "$file5" "$file13" 1
     fi
   fi
+  
+   elif (( ( select_pricing_api == 3 ) )); then
+    # Test if Tibber tomorrow data exists
+    if test -f "$file5"; then
+      # Test if data is current
+      get_current_tibber_day2
+      if [ "$current_tibber_day2" = "$(TZ=$TZ date +%d)" ]; then
+        echo "I: Tibber tomorrow-data is up to date."
+      else
+        echo "I: Tibber tomorrow-data is outdated, fetching new data."
+        rm -f "$file14" "$file17" "$file18"
+        download_tibber_prices "$link6" "$file14" 1
+      fi
+    else # Data file14 does not exist
+	   echo "I: Tibber tomorrow-data does not exist, fetching data."
+      download_tibber_prices "$link6" "$file14" 1
+  fi											   
 
 fi # Include second day
 
 if (( ( select_pricing_api == 1 ) )); then
-  Unit="Cent/kWh"
+  Unit="Cent/kWh net"
   get_awattar_prices
-  get_prices_integer_awattar
+  get_awattar_prices_integer
 elif (( ( select_pricing_api == 2 ) )); then
-  Unit="EUR/MWh"
+  Unit="EUR/MWh net"
   get_entsoe_prices
   get_prices_integer_entsoe
+elif (( ( select_pricing_api == 3 ) )); then
+  Unit="Cent/kWh total"
+  get_tibber_prices
+  get_tibber_prices_integer
 fi
 
 if (( ( use_solarweather_api_to_abort == 1 ) )); then
@@ -535,15 +652,15 @@ fi
 printf "I: Please verify correct system time and timezone:\n   "
 TZ=$TZ date | tee -a "$LOG_FILE"
 echo
-echo "Current price is $current_price $Unit net." | tee -a "$LOG_FILE"
-echo "Lowest price will be $lowest_price $Unit net."
-echo "The average price will be $average_price $Unit net."
-echo "Highest price will be $highest_price $Unit net."
-echo "Second lowest price will be $second_lowest_price $Unit net."
-echo "Third lowest price will be $third_lowest_price $Unit net."
-echo "Fourth lowest price will be $fourth_lowest_price $Unit net."
-echo "Fifth lowest price will be $fifth_lowest_price $Unit net."
-echo "Sixth lowest price will be $sixth_lowest_price $Unit net."
+echo "Current price is $current_price $Unit." | tee -a "$LOG_FILE"
+echo "Lowest price will be $lowest_price $Unit."
+echo "The average price will be $average_price $Unit."
+echo "Highest price will be $highest_price $Unit."
+echo "Second lowest price will be $second_lowest_price $Unit."
+echo "Third lowest price will be $third_lowest_price $Unit."
+echo "Fourth lowest price will be $fourth_lowest_price $Unit."
+echo "Fifth lowest price will be $fifth_lowest_price $Unit."
+echo "Sixth lowest price will be $sixth_lowest_price $Unit."
 
 if (( ( use_solarweather_api_to_abort == 1 ) )); then
   echo "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes." | tee -a "$LOG_FILE"
