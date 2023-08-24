@@ -472,7 +472,7 @@ function get_awattar_prices_integer {
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
   done
 }
 
