@@ -151,7 +151,10 @@ else
    if [ -n "$DEBUG" ]; then
      # Series of extra info in case the scripts directory is not nearby
      echo "D: ls \$SRCDIR"
-     ls "$SRCDIR"
+     if ! ls "$SRCDIR"; then
+       echo "D: pwd: $(pwd)"
+       ls
+     fi
    fi
    echo "I: Downloading 'controller.sh' from github repository - '$BRANCH' branch"
    downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/controller.sh "$DESTDIR"/data/etc/Spotmarket-Switcher/controller.sh
