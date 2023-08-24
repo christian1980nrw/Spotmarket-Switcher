@@ -286,10 +286,10 @@ if [ 0 -lt "$use_victron_charger" ]; then
 fi
 
 download_awattar_prices() {
-  local url=$1
-  local file=$2
-  local output_file=$3
-  local sleep_time=$4
+  local url="$1"
+  local file="$2"
+  local output_file="$3"
+  local sleep_time="$4"
 
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
@@ -322,36 +322,36 @@ download_awattar_prices() {
 }
 
 download_tibber_prices() {
-  local url=$1
-  local file=$2
+  local url="$1"
+  local file="$2"
 
-  if ! get_tibber_api | tr -d '{}[]' > $file; then
+  if ! get_tibber_api | tr -d '{}[]' > "$file"; then
     echo "E: Download of Tibber prices from '$url' to '$file' failed."
     exit 1
   fi
 
-sed -n '/"today":/,/"tomorrow":/p' $file | sed '$d' | sed '/"today":/d' > $file15
-sort -t, -k1.9n $file15 > $file16
-sed -n '/"tomorrow":/,$p' $file | sed '/"tomorrow":/d' > $file17
-sort -t, -k1.9n $file17 > $file18
+  sed -n '/"today":/,/"tomorrow":/p' "$file" | sed '$d' | sed '/"today":/d' > "$file15"
+  sort -t, -k1.9n $file15 > "$file16"
+  sed -n '/"tomorrow":/,$p' "$file" | sed '/"tomorrow":/d' > "$file17"
+  sort -t, -k1.9n $file17 > "$file18"
 
   timestamp=$(TZ=$TZ date +%d)
   echo "date_now_day: $timestamp" >> "$file15"
   echo "date_now_day: $timestamp" >> "$file17"
   
-    if [ ! -s "$file16" ]; then
-    echo "E: Tibber prices cannot be extracted to $file16, please check your Tibber API Key."
-	rm "$file"
+  if [ ! -s "$file16" ]; then
+    echo "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
+    rm "$file"
     exit 1
   fi
 
 }
 
 download_entsoe_prices() {
-  local url=$1
-  local file=$2
-  local output_file=$3
-  local entsoetomorrow=$4
+  local url="$1"
+  local file="$2"
+  local output_file="$3"
+  local entsoetomorrow="$4"
 
   if ! curl "$url" > "$file"; then
     echo "E: Retrieval of entsoe data from '$url' into file '$file' failed."
@@ -363,14 +363,14 @@ download_entsoe_prices() {
     exit 1
   fi
 
-  if [ -n "$DEBUG" ]; then echo "D: Entsoe file $file with price data downloaded"; fi
+  if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
   if [ ! -s "$file" ]; then
-    echo "E: Entsoe file $file is empty, please check your entsoe API Key."
+    echo "E: Entsoe file '$file' is empty, please check your entsoe API Key."
     exit 1
   fi
 
-  if [ -n "$DEBUG" ]; then echo "D: Entsoe file $file with price data downloaded"; fi
+  if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
   awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' "$file" >> "$output_file"
   sed -i '1,96d' "$output_file"
@@ -386,16 +386,16 @@ download_entsoe_prices() {
     echo >> $file8
     if [ -f "$file13" ]; then
       cat "$file13" >> "$file8"
-      echo >> $file8
+      echo >> "$file8"
     fi
-    sed -i '25d 50d' $file8
-    sort -g $file8 > $file12
+    sed -i '25d 50d' "$file8"
+    sort -g "$file8" > "$file12"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >> "$file8"
     echo "date_now_day: $timestamp" >> "$file12"
   else
     echo "W: $output_file was empty, we have to try it again until the new entsoe prices are online."
-    rm -f $file5 $file9 $file13 >> /dev/null
+    rm -f "$file5" "$file9" "$file13" >> /dev/null
   fi
 }
 
@@ -426,46 +426,46 @@ function get_current_awattar_day { current_awattar_day=$(sed -n 3p $file1 | grep
 function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
 
 function get_awattar_prices {
-  current_price=$(sed -n $((2*$(TZ=$TZ date +%k)+39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1);
-  lowest_price=$(sed -n 1p $file7 );
-  second_lowest_price=$(sed -n 2p $file7 );
-  third_lowest_price=$(sed -n 3p $file7 );
-  fourth_lowest_price=$(sed -n 4p $file7 );
-  fifth_lowest_price=$(sed -n 5p $file7 );
-  sixth_lowest_price=$(sed -n 6p $file7 ); 
-  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file7 $file7);
-  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file7);
+  current_price=$(sed -n $((2*$(TZ=$TZ date +%k)+39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
+  lowest_price=$(sed -n 1p "$file7")
+  second_lowest_price=$(sed -n 2p "$file7")
+  third_lowest_price=$(sed -n 3p "$file7")
+  fourth_lowest_price=$(sed -n 4p "$file7")
+  fifth_lowest_price=$(sed -n 5p "$file7")
+  sixth_lowest_price=$(sed -n 6p "$file7")
+  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' "$file7" "$file7")
+  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' "$file7")
 }
 
 function get_tibber_prices {
-  current_price=$(sed -n "${now_linenumber}s/.*\"total\":\([^,]*\),.*/\1/p" $file15);
+  current_price=$(sed -n "${now_linenumber}s/.*\"total\":\([^,]*\),.*/\1/p" "$file15")
   lowest_price=$(sed -n '1s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  second_lowest_price=$(sed -n '2s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  third_lowest_price=$(sed -n '3s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  fourth_lowest_price=$(sed -n '4s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  fifth_lowest_price=$(sed -n '5s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  sixth_lowest_price=$(sed -n '6s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  highest_price=$(awk -F':' '{split($2, arr, ","); if (arr[1] > max) max = arr[1]} END {print max}' $file16);
-  average_price=$(awk -F':' '{sum+=$2} END {print sum/NR}' $file16);
+  second_lowest_price=$(sed -n '2s/.*"total":\([^,]*\),.*/\1/p' "$file16")
+  third_lowest_price=$(sed -n '3s/.*"total":\([^,]*\),.*/\1/p' "$file16")
+  fourth_lowest_price=$(sed -n '4s/.*"total":\([^,]*\),.*/\1/p' "$file16")
+  fifth_lowest_price=$(sed -n '5s/.*"total":\([^,]*\),.*/\1/p' "$file16")
+  sixth_lowest_price=$(sed -n '6s/.*"total":\([^,]*\),.*/\1/p' "$file16")
+  highest_price=$(awk -F':' '{split($2, arr, ","); if (arr[1] > max) max = arr[1]} END {print max}' "$file16");
+  average_price=$(awk -F':' '{sum+=$2} END {print sum/NR}' "$file16");
 }
 
 																								 
-function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p $file13 | grep -Eo '[0-9]+'); }
-function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p $file10 | grep -Eo '[0-9]+'); }
+function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p "$file13" | grep -Eo '[0-9]+'); }
+function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
 
-function get_current_tibber_day2 { current_tibber_day2=$(sed -n 25p $file17 | grep -Eo '[0-9]+'); }
-function get_current_tibber_day { current_tibber_day=$(sed -n 25p $file15 | grep -Eo '[0-9]+'); }
+function get_current_tibber_day2 { current_tibber_day2=$(sed -n 25p "$file17" | grep -Eo '[0-9]+'); }
+function get_current_tibber_day { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
 function get_entsoe_prices {
-  current_price=$(sed -n ${now_linenumber}p $file10);
-  lowest_price=$(sed -n 1p $file12 );
-  second_lowest_price=$(sed -n 2p $file12 );
-  third_lowest_price=$(sed -n 3p $file12 );
-  fourth_lowest_price=$(sed -n 4p $file12 );
-  fifth_lowest_price=$(sed -n 5p $file12 );
-  sixth_lowest_price=$(sed -n 6p $file12 ); 
-  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' $file12 $file12);
-  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' $file12);
+  current_price=$(sed -n ${now_linenumber}p "$file10")
+  lowest_price=$(sed -n 1p "$file12")
+  second_lowest_price=$(sed -n 2p "$file12")
+  third_lowest_price=$(sed -n 3p "$file12")
+  fourth_lowest_price=$(sed -n 4p "$file12")
+  fifth_lowest_price=$(sed -n 5p "$file12")
+  sixth_lowest_price=$(sed -n 6p "$file12")
+  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' "$file12" "$file12")
+  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' "$file12")
 }
 
 function get_awattar_prices_integer {
