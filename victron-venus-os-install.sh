@@ -127,8 +127,6 @@ if ! mkdir -p "$DESTDIR"/data/etc/Spotmarket-Switcher/service ; then
     exit 1
 fi
 
-cd "$DESTDIR"/data/etc/Spotmarket-Switcher
-
 downloadToDest () {
     url="$1"
     dest="$2"
@@ -148,16 +146,21 @@ if [ -z "$branch" ]; then
     BRANCH=main
 fi
 if [ -x  "$SRCDIR/controller.sh" ]; then
-   cp "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/"
+   cp "$SRCDIR/controller.sh" "$DESTDIR"/data/etc/Spotmarket-Switcher/
 else
+   if [ -n "$DEBUG" ]; then
+     # Series of extra info in case the scripts directory is not nearby
+     echo "D: ls \$SRCDIR"
+     ls "$SRCDIR"
+   fi
    echo "I: Downloading 'controller.sh' from github repository - '$BRANCH' branch"
-   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/controller.sh "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/controller.sh "$DESTDIR"/data/etc/Spotmarket-Switcher/controller.sh
 fi
 if [ -x  "$SRCDIR/run" ]; then
    cp "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/"
 else
    echo "I: Downloading 'run' from github repository - '$BRANCH' branch"
-   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/service/run "$DESTDIR/data/etc/Spotmarket-Switcher/service/run"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/service/run "$DESTDIR"/data/etc/Spotmarket-Switcher/service/run
 fi
 
 # $DESTDIR is always an absolut path
