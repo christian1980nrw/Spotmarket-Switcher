@@ -238,7 +238,6 @@ file8=/tmp/entsoe_prices.txt
 file9=/tmp/entsoe_tomorrow_prices_sorted.txt
 file10=/tmp/entsoe_today_prices.txt
 file11=/tmp/entsoe_today_prices_sorted.txt
-file12=/tmp/entsoe_prices_sorted.txt
 file13=/tmp/entsoe_tomorrow_prices.txt
 file14=/tmp/tibber_prices.txt
 file15=/tmp/tibber_today_prices.txt
@@ -375,9 +374,19 @@ download_entsoe_prices() {
 
   if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
-  awk '/<price.amount>/ {print substr($0, index($0, ">") + 1, index($0, "</") - index($0, ">") - 1)}' "$file" >> "$output_file"
-  sed -i '1,96d' "$output_file"
-  sed -i '25,120d' "$output_file"
+awk '
+    /<Period>/ { capture=1 }
+    /<\/Period>/ { capture=0 }
+    capture && /<resolution>PT60M<\/resolution>/ { valid_period=1 }
+    valid_period && /<price.amount>/ {
+        gsub("<price.amount>", "", $0)
+        gsub("<\/price.amount>", "", $0)
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        print $0
+    }
+    valid_period && /<\/Period>/ { exit }
+' "$file" >> "$output_file"
+
   sort -g "$output_file" >> "${output_file%.*}_sorted.${output_file##*.}"
   timestamp=$(TZ=$TZ date +%d)
   echo "date_now_day: $timestamp" >> "$output_file"
@@ -392,13 +401,11 @@ download_entsoe_prices() {
       echo >> "$file8"
     fi
     sed -i '25d 50d' "$file8"
-    sort -g "$file8" > "$file12"
+    sort -g "$file8" > "$file11"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >> "$file8"
-    echo "date_now_day: $timestamp" >> "$file12"
-  else
-    echo "W: $output_file was empty, we have to try it again until the new entsoe prices are online."
-    rm -f "$file5" "$file9" "$file13" >> /dev/null
+    echo "date_now_day: $timestamp" >> "$file11"
+
   fi
 }
 
@@ -461,14 +468,14 @@ function get_current_tibber_day { current_tibber_day=$(sed -n 25p "$file15" | gr
 
 function get_entsoe_prices {
   current_price=$(sed -n ${now_linenumber}p "$file10")
-  lowest_price=$(sed -n 1p "$file12")
-  second_lowest_price=$(sed -n 2p "$file12")
-  third_lowest_price=$(sed -n 3p "$file12")
-  fourth_lowest_price=$(sed -n 4p "$file12")
-  fifth_lowest_price=$(sed -n 5p "$file12")
-  sixth_lowest_price=$(sed -n 6p "$file12")
-  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' "$file12" "$file12")
-  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' "$file12")
+  lowest_price=$(sed -n 1p "$file11")
+  second_lowest_price=$(sed -n 2p "$file11")
+  third_lowest_price=$(sed -n 3p "$file11")
+  fourth_lowest_price=$(sed -n 4p "$file11")
+  fifth_lowest_price=$(sed -n 5p "$file11")
+  sixth_lowest_price=$(sed -n 6p "$file11")
+  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' "$file11" "$file11")
+  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' "$file11")
 }
 
 function get_awattar_prices_integer {
@@ -547,7 +554,7 @@ elif (( ( select_pricing_api == 2 ) )); then
       echo "I: Entsoe today-data is up to date."
     else
       echo "I: Entsoe today-data is outdated, fetching new data."
-      rm -f "$file4" "$file8" "$file10" "$file11" "$file12"
+      rm -f "$file4" "$file8" "$file10" "$file11"
       download_entsoe_prices "$link4" "$file4" "$file10" 0
     fi
   else # Entsoe data does not exist
@@ -637,7 +644,6 @@ if (( ( include_second_day == 1 ) )); then
         rm -f "$file5" "$file9" "$file13"
         download_entsoe_prices "$link5" "$file5" "$file13" 1
         cp "$file10" "$file8"
-        cp "$file11" "$file12"
       fi
     else # Data file5 does not exist
       echo "I: Entsoe tomorrow-data does not exist, fetching data."
@@ -657,9 +663,6 @@ if (( ( include_second_day == 1 ) )); then
         rm -f "$file14" "$file17" "$file18"
         download_tibber_prices "$link6" "$file14" 1
       fi
-    else # Data file14 does not exist
-	   echo "I: Tibber tomorrow-data does not exist, fetching data."
-      download_tibber_prices "$link6" "$file14" 1
   fi
 
 fi # Include second day
