@@ -186,7 +186,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 
 # Tibber API setup
 # To get the tibber_api_key please log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token . After that create a token by selecting the scopes you need (select "price").
-# Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e 
+# Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
 # Currently no contract is needed to create a free Account that is able to access the API.
 # Put your API Key into the function below.
 
@@ -202,7 +202,7 @@ get_tibber_api() {
         gsub(/"total":/, "\n&");
         print
     }'
-}				  
+}
 
 # further API parameters (no need to edit)
 yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
@@ -223,7 +223,7 @@ link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
 link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=solarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
 link4="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$yesteryear$yestermonth$yesterday&periodEnd=$todayyear$todaymonth$today"
 link5="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$todayyear$todaymonth$today&periodEnd=$tomorrowyear$tomorrowmonth$tomorrow"
-link6="https://api.tibber.com/v1-beta/gql"										  
+link6="https://api.tibber.com/v1-beta/gql"
 file1=/tmp/awattar_today_prices.yaml
 file2=/tmp/awattar_tomorrow_prices.yaml
 file3=/tmp/expected_solarenergy.csv
@@ -241,7 +241,7 @@ file14=/tmp/tibber_prices.txt
 file15=/tmp/tibber_today_prices.txt
 file16=/tmp/tibber_today_prices_sorted.txt
 file17=/tmp/tibber_tomorrow_prices.txt
-file18=/tmp/tibber_tomorrow_prices_sorted.txt							 
+file18=/tmp/tibber_tomorrow_prices_sorted.txt
 
 ########## Optional environmental variables
 
@@ -338,7 +338,7 @@ download_tibber_prices() {
   timestamp=$(TZ=$TZ date +%d)
   echo "date_now_day: $timestamp" >> "$file15"
   echo "date_now_day: $timestamp" >> "$file17"
-  
+
   if [ ! -s "$file16" ]; then
     echo "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
     rm "$file"
@@ -449,7 +449,7 @@ function get_tibber_prices {
   average_price=$(awk -F':' '{sum+=$2} END {print sum/NR}' "$file16");
 }
 
-																								 
+
 function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p "$file13" | grep -Eo '[0-9]+'); }
 function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
 
@@ -486,11 +486,16 @@ function get_tibber_prices_integer {
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
-  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price \
-             stop_price start_price feedin_price energy_fee abort_price
+  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(euroToMillicent "${!var}")"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 14)"
+  done
+
+  for var in stop_price start_price feedin_price energy_fee abort_price
+  do
+    integer_var="${var}_integer"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
   done
 }
 
@@ -526,7 +531,7 @@ if (( ( select_pricing_api == 1 ) )); then
       download_awattar_prices "$link1" "$file1" "$file6" 30
     fi
   else # Data file1 does not exist
-  echo "I: Fetching today-data data from aWATTar."												  
+  echo "I: Fetching today-data data from aWATTar."
     download_awattar_prices "$link1" "$file1" "$file6" 30
   fi
 elif (( ( select_pricing_api == 2 ) )); then
@@ -542,7 +547,7 @@ elif (( ( select_pricing_api == 2 ) )); then
       download_entsoe_prices "$link4" "$file4" "$file10" 0
     fi
   else # Entsoe data does not exist
-												 
+
     download_entsoe_prices "$link4" "$file4" "$file10" 0
   fi
 elif (( ( select_pricing_api == 3 ) )); then
@@ -564,8 +569,20 @@ elif (( ( select_pricing_api == 3 ) )); then
 fi
 
 function euroToMillicent {
-  euro=$1
-  v=$(echo "$euro"|sed -r -e 's/(^[0-9]*)$/\100000/' -e 's/(^[0-9]*)[,.](.....)$/\1\2/' -e 's/(^[0-9]*)[,.](....)$/\1\20/' -e 's/(^[0-9]*)[,.](...)$/\1\200/' -e 's/(^[0-9]*)[,.](..)$/\1\2000/' -e 's/(^[0-9]*)[,.](.)$/\1\20000/')
+  euro="$1"
+  potency="$2"
+
+  if [ -z "$potency" ]; then
+    potency=14
+  fi
+
+  if echo "$euro" | grep -q '\,' ; then
+    echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
+    return 1
+  fi
+
+  v=$(LANG=C printf "%.0f" "${euro}e${potency}")
+
   if echo "$v" | grep -q '\.' ; then
     echo "E: Could not translate '$euro' to an integer."
     return 1
@@ -575,7 +592,7 @@ function euroToMillicent {
 }
 
 if [ "tests" == "$1" ]; then
-  
+
   echo "I: Testing euro2cent"
   for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23
   do
@@ -601,7 +618,7 @@ if (( ( include_second_day == 1 ) )); then
         download_awattar_prices "$link2" "$file2" "$file6" 2
       fi
     else # Data file2 does not exist
-	echo "I: aWATTar tomorrow-data does not exist, fetching data."														   
+      echo "I: aWATTar tomorrow-data does not exist, fetching data."
       download_awattar_prices "$link2" "$file2" "$file6" 2
     fi
   elif (( ( select_pricing_api == 2 ) )); then
@@ -619,11 +636,11 @@ if (( ( include_second_day == 1 ) )); then
         cp "$file11" "$file12"
       fi
     else # Data file5 does not exist
-		echo "I: Entsoe tomorrow-data does not exist, fetching data."														  
+      echo "I: Entsoe tomorrow-data does not exist, fetching data."
       download_entsoe_prices "$link5" "$file5" "$file13" 1
     fi
   fi
-  
+
    elif (( ( select_pricing_api == 3 ) )); then
     # Test if Tibber tomorrow data exists
     if test -f "$file5"; then
@@ -639,7 +656,7 @@ if (( ( include_second_day == 1 ) )); then
     else # Data file14 does not exist
 	   echo "I: Tibber tomorrow-data does not exist, fetching data."
       download_tibber_prices "$link6" "$file14" 1
-  fi											   
+  fi
 
 fi # Include second day
 
@@ -881,11 +898,11 @@ fi
 if [ -f "$LOG_FILE" ]; then
   if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
     mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
-    touch "$LOG_FILE"   
-    find . -maxdepth 1 -name "${LOG_FILE}*" -type f -exec ls -1t {} + | 
-    sed 's|^\./||' |
-    tail -n +$((LOG_FILES_TO_KEEP + 1)) | 
-    xargs --no-run-if-empty rm
+    touch "$LOG_FILE"
+    find . -maxdepth 1 -name "${LOG_FILE}*" -type f -exec ls -1t {} + |
+       sed 's|^\./||' |
+       tail -n +$((LOG_FILES_TO_KEEP + 1)) |
+       xargs --no-run-if-empty rm
   fi
 fi
 
