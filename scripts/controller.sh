@@ -147,6 +147,7 @@ switchablesockets_at_third_lowest_price=0
 charge_at_fourth_lowest_price=0
 switchablesockets_at_fourth_lowest_price=0
 charge_at_fifth_lowest_price=0
+							  
 switchablesockets_at_fifth_lowest_price=0
 charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
@@ -189,6 +190,8 @@ entsoe_eu_api_security_token=YOURAPIKEY
 # Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
 # Currently no contract is needed to create a free Account that is able to access the API.
 # Put your API Key into the function below.
+
+tibber_prices=energy # Set to "energy" to use the spotmarket-prices (default), set to "total" to use the total prices including taxes and fees, set to "tax" to use only the taxes and fees
 
 get_tibber_api() {
     curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
@@ -438,15 +441,15 @@ function get_awattar_prices {
 }
 
 function get_tibber_prices {
-  current_price=$(sed -n "${now_linenumber}s/.*\"total\":\([^,]*\),.*/\1/p" "$file15")
-  lowest_price=$(sed -n '1s/.*"total":\([^,]*\),.*/\1/p' $file16)
-  second_lowest_price=$(sed -n '2s/.*"total":\([^,]*\),.*/\1/p' "$file16")
-  third_lowest_price=$(sed -n '3s/.*"total":\([^,]*\),.*/\1/p' "$file16")
-  fourth_lowest_price=$(sed -n '4s/.*"total":\([^,]*\),.*/\1/p' "$file16")
-  fifth_lowest_price=$(sed -n '5s/.*"total":\([^,]*\),.*/\1/p' "$file16")
-  sixth_lowest_price=$(sed -n '6s/.*"total":\([^,]*\),.*/\1/p' "$file16")
-  highest_price=$(awk -F':' '{split($2, arr, ","); if (arr[1] > max) max = arr[1]} END {print max}' "$file16");
-  average_price=$(awk -F':' '{sum+=$2} END {print sum/NR}' "$file16");
+  current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
+  lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
+  second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
+  third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
+  fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
+  fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
+  sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
+  highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
+  average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16" | awk '{sum += $1} END {print sum/NR}')
 }
 
 
@@ -472,7 +475,7 @@ function get_awattar_prices_integer {
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(printf "%.0f\n" "${!var}e15")"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
   done
 }
 
@@ -480,9 +483,10 @@ function get_tibber_prices_integer {
   for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(euroToMillicent "${!var}")"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 16)"
   done
 }
+
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
@@ -669,7 +673,7 @@ elif (( ( select_pricing_api == 2 ) )); then
   get_entsoe_prices
   get_prices_integer_entsoe
 elif (( ( select_pricing_api == 3 ) )); then
-  Unit="Cent/kWh total"
+  Unit="EUR/kWh $tibber_prices price"
   get_tibber_prices
   get_tibber_prices_integer
 fi
