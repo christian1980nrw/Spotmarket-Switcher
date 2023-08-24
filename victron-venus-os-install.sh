@@ -132,7 +132,7 @@ downloadToDest () {
     dest="$2"
 
     echo "I: Downloading '$(basename "$url")'"
-    if ! wget --no-verbose --continue --no-directories --show-progress -O $dest $url ; then
+    if ! wget --no-verbose --continue --no-directories --show-progress -O "$dest" "$url" ; then
         echo "E: Download of '$(basename "$url")' failed."
         return 1
     fi
