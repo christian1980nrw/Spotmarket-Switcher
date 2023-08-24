@@ -36,11 +36,11 @@ if [ -e "$rc_local_file" ]; then
     # if grep finds no matching line the return code is != 0
     count=$(grep -Fc "$code" "$rc_local_file" || echo 0)
 else
-    echo "#!/bin/sh" > $rc_local_file
-    chmod +x $rc_local_file
+    echo "#!/bin/sh" > "$rc_local_file"
+    chmod +x "$rc_local_file"
 fi
 
-if [ $count -eq 0 ]; then
+if [ "$count" = "0" ]; then
 
     # The rc.local file does not feature the instruction, yet.
     # Add crontab immediately and at system start (only if it doesnt exist)
@@ -51,10 +51,10 @@ if [ $count -eq 0 ]; then
         (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
     fi
 
-elif [ $count -gt 1 ]; then
+elif [ "$count" != "1" ]; then
 
     # Removing doublettes to correct for a bug of a older version of this run script
-    awk '!seen[$code2]++' $rc_local_file > $rc_local_file.tmp && mv $rc_local_file.tmp $rc_local_file
+    awk '!seen[$code2]++' "$rc_local_file" > "$rc_local_file.tmp" && mv "$rc_local_file.tmp" "$rc_local_file"
     chmod +x "$rc_local_file"
 
 fi
