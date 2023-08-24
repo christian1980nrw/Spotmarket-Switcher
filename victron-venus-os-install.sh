@@ -127,39 +127,38 @@ if ! mkdir -p "$DESTDIR"/data/etc/Spotmarket-Switcher/service ; then
     exit 1
 fi
 
-wgetOptions="--no-verbose --continue --no-directories --show-progress"
 cd "$DESTDIR"/data/etc/Spotmarket-Switcher
 
-for url in \
-    https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh
-do
+downloadToDest () {
+    url="$1"
+    dest="$2"
+
     echo "I: Downloading '$(basename "$url")'"
-    # This ShellCheck directive only applies to this function to correct wget false positive
-    # shellcheck disable=SC2086
-    SC_Exclude_1() {
-    if ! wget $wgetOptions $url; then
+    if ! wget --no-verbose --continue --no-directories --show-progress -O $dest $url ; then
         echo "E: Download of '$(basename "$url")' failed."
-        exit 1
+        return 1
     fi
-    }
-    SC_Exclude_1
-done
-
-chmod +x ./controller.sh
-
-url=https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
-echo "I: Downloading 'run' script to service subdirectory"
-cd service
-# This ShellCheck directive only applies to this function to correct wget false positive
-# shellcheck disable=SC2086
-SC_Exclude_2() {
-if ! wget $wgetOptions $url; then
-  echo "E: Failure downloading run script from '$url'."
-  exit 1
-fi
+    chmod +x "$dest"
 }
-SC_Exclude_2
-chmod +x ./run
+
+if [ -z "$SRCDIR" ]; then
+    SRCDIR=scripts
+fi
+if [ -z "$branch" ]; then
+    BRANCH=main
+fi
+if [ -x  "$SRCDIR/controller.sh" ]; then
+   cp "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/"
+else
+   echo "I: Downloading 'controller.sh' from github repository - '$BRANCH' branch"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/controller.sh "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh"
+fi
+if [ -x  "$SRCDIR/run" ]; then
+   cp "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/"
+else
+   echo "I: Downloading 'run' from github repository - '$BRANCH' branch"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/$BRANCH/data/etc/Spotmarket-Switcher/service/run "$DESTDIR/data/etc/Spotmarket-Switcher/service/run"
+fi
 
 # $DESTDIR is always an absolut path
 if [ ! -d "$DESTDIR"/service ]; then

@@ -18,7 +18,7 @@ EOLICENSE
 set -e
 
 if [ -z "$DEBUG" ]; then
-    # Wait for 25 seconds
+    # Delaying for 25 seconds
     sleep 25
 fi
 

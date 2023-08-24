@@ -29,12 +29,12 @@ jobs:
           DEBUG: 1
           DESTDIR: /tmp/testing
       - name: Control
-        run: data/etc/Spotmarket-Switcher/controller.sh
+        run: scripts/controller.sh
         env:
           DEBUG: 1
           LOG_FILE: /tmp/testing_controller.log
       - name: Run
-        run: data/etc/Spotmarket-Switcher/service/run
+        run: scripts/run
         env:
           DEBUG: 1
           rc_local_file: /tmp/testing_rc.local
