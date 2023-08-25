@@ -238,6 +238,7 @@ file8=/tmp/entsoe_prices.txt
 file9=/tmp/entsoe_tomorrow_prices_sorted.txt
 file10=/tmp/entsoe_today_prices.txt
 file11=/tmp/entsoe_today_prices_sorted.txt
+file12=/tmp/tibber_prices_sorted.txt									
 file13=/tmp/entsoe_tomorrow_prices.txt
 file14=/tmp/tibber_prices.txt
 file15=/tmp/tibber_today_prices.txt
@@ -326,7 +327,12 @@ download_awattar_prices() {
 download_tibber_prices() {
   local url="$1"
   local file="$2"
-
+  local sleep_time="$3"
+  
+  if [ -z "$DEBUG" ]; then
+    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
+    sleep "$sleep_time"
+  fi
   if ! get_tibber_api | tr -d '{}[]' > "$file"; then
     echo "E: Download of Tibber prices from '$url' to '$file' failed."
     exit 1
@@ -334,6 +340,7 @@ download_tibber_prices() {
 
   sed -n '/"today":/,/"tomorrow":/p' "$file" | sed '$d' | sed '/"today":/d' > "$file15"
   sort -t, -k1.9n $file15 > "$file16"
+  cp "$file16" "$file12"
   sed -n '/"tomorrow":/,$p' "$file" | sed '/"tomorrow":/d' > "$file17"
   sort -t, -k1.9n $file17 > "$file18"
 
@@ -346,6 +353,7 @@ download_tibber_prices() {
     rm "$file"
     exit 1
   fi
+  
 
 }
 
@@ -449,21 +457,20 @@ function get_awattar_prices {
 
 function get_tibber_prices {
   current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
-  lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
-  second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
-  third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
-  fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
-  fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
-  sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16")
-  highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
-  average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file16" | awk '{sum += $1} END {print sum/NR}')
+  lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+  second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+  third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+  fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+  fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+  sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+  highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
+  average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
 
 
 function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p "$file13" | grep -Eo '[0-9]+'); }
 function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
 
-function get_current_tibber_day2 { current_tibber_day2=$(sed -n 25p "$file17" | grep -Eo '[0-9]+'); }
 function get_current_tibber_day { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
 function get_entsoe_prices {
@@ -539,11 +546,11 @@ if (( ( select_pricing_api == 1 ) )); then
     else
       echo "I: aWATTar today-data is outdated, fetching new data."
       rm -f $file1 $file6 $file7
-      download_awattar_prices "$link1" "$file1" "$file6" 30
+      download_awattar_prices "$link1" "$file1" "$file6" 20
     fi
   else # Data file1 does not exist
   echo "I: Fetching today-data data from aWATTar."
-    download_awattar_prices "$link1" "$file1" "$file6" 30
+    download_awattar_prices "$link1" "$file1" "$file6" 20
   fi
 elif (( ( select_pricing_api == 2 ) )); then
   # Test if Entsoe today data exists
@@ -571,11 +578,11 @@ elif (( ( select_pricing_api == 3 ) )); then
     else
       echo "I: Tibber today-data is outdated, fetching new data."
       rm -f "$file14" "$file15" "$file16"
-      download_tibber_prices "$link6" "$file14" 0
+      download_tibber_prices "$link6" "$file14" 20
     fi
   else # Tibber data does not exist
         echo "I: Fetching today-data data from Tibber."
-    download_tibber_prices "$link6" "$file14" 0
+    download_tibber_prices "$link6" "$file14" 20
   fi											
 fi
 
@@ -644,24 +651,32 @@ if (( ( include_second_day == 1 ) )); then
         rm -f "$file5" "$file9" "$file13"
         download_entsoe_prices "$link5" "$file5" "$file13" 1
         cp "$file10" "$file8"
+        cp "$file11" "$file11"
       fi
     else # Data file5 does not exist
       echo "I: Entsoe tomorrow-data does not exist, fetching data."
       download_entsoe_prices "$link5" "$file5" "$file13" 1
     fi
-  fi
+	
 
-   elif (( ( select_pricing_api == 3 ) )); then
+  elif (( ( select_pricing_api == 3 ) )); then
+   if [ ! -s "$file18" ]; then
+    rm -f "$file17" "$file18"
+    echo "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online."
+	rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
+	download_tibber_prices "$link6" "$file14" 2
+	sort -t, -k1.9n $file17 >> "$file12"
+  fi 
     # Test if Tibber tomorrow data exists
-    if test -f "$file5"; then
+    if test -f "$file17"; then
       # Test if data is current
-      get_current_tibber_day2
-      if [ "$current_tibber_day2" = "$(TZ=$TZ date +%d)" ]; then
-        echo "I: Tibber tomorrow-data is up to date."
-      else
-        echo "I: Tibber tomorrow-data is outdated, fetching new data."
-        rm -f "$file14" "$file17" "$file18"
-        download_tibber_prices "$link6" "$file14" 1
+      get_current_tibber_day
+																
+													 
+		  
+																	  
+										   
+												   
       fi
   fi
 
