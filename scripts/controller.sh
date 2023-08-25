@@ -724,13 +724,13 @@ if (( ( use_solarweather_api_to_abort == 1 ) )); then
   find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
 fi
 
-# FIXME: stop_price_integer not assigned
+# stop_price_integer cannot be found by shellcheck can be ignored, false positive
 if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
   echo "E: stop - price cannot be lower than start price"
   exit 1
 fi
 
-# FIXME: abort_price_integer not defined
+# abort_price_integer cannot be found by shellcheck can be ignored, false positive
 if ((abort_price_integer <= current_price_integer)); then
   echo "I: Current price is too high. Abort." | tee -a "$LOG_FILE"
   exit 0
