@@ -671,13 +671,7 @@ if (( ( include_second_day == 1 ) )); then
     if test -f "$file17"; then
       # Test if data is current
       get_current_tibber_day
-																
-													 
-		  
-																	  
-										   
-												   
-      fi
+    fi
   fi
 
 fi # Include second day
