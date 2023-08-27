@@ -1,6 +1,6 @@
 = Release Notes
 
-== Version "20230826"
+== Version "2.1"
 
  * New features
  - Retrieval of dynamic prices from [Tibber](https://tibber.com/)
