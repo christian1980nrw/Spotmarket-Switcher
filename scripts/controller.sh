@@ -409,7 +409,6 @@ awk '
 
   # Check if tomorrow file contains next day prices
   if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 3 ]; then
-  echo DEBUG2
     cat $file10 > $file8
 #    echo >> $file8
     if [ -f "$file13" ]; then
