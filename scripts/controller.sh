@@ -94,6 +94,10 @@ EOHELP
 
 fi
 
+																																  
+
+
+				  
 
 ##### Configuration part...
 #
@@ -144,7 +148,6 @@ switchablesockets_at_third_lowest_price=0
 charge_at_fourth_lowest_price=0
 switchablesockets_at_fourth_lowest_price=0
 charge_at_fifth_lowest_price=0
-							  
 switchablesockets_at_fifth_lowest_price=0
 charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
@@ -418,7 +421,6 @@ awk '
     sort -g "$file8" > "$file19"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >> "$file8"
-    echo "date_now_day: $timestamp" >> "$file11"
 
   fi
 }
@@ -476,7 +478,6 @@ function get_tibber_prices {
 
 
 function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
-function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p "$file9" | grep -Eo '[0-9]+'); }
 
 function get_current_tibber_day { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
@@ -507,7 +508,6 @@ function get_tibber_prices_integer {
     eval "$integer_var"="$(euroToMillicent "${!var}" 16)"
   done
 }
-
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
@@ -567,25 +567,28 @@ if (( ( select_pricing_api == 1 ) )); then
   echo "I: Fetching today-data data from aWATTar."
     download_awattar_prices "$link1" "$file1" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
   fi
-elif (( ( select_pricing_api == 2 ) )); then
+ fi
+  
+if (( ( select_pricing_api == 2 ) )); then
   # Test if Entsoe today data exists
-  if test -f "$file4"; then
+  if test -f "$file8"; then
     # Test if data is current
     get_current_entsoe_day
     if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
       echo "I: Entsoe today-data is up to date."
     else
-      echo "I: Entsoe today-data is outdated, fetching new data."
-      rm -f "$file4" "$file8" "$file10" "$file11"
+	  echo "I: Entsoe today-data is outdated, fetching new data."
+      rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
       download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
-	  cp "$file11" "$file19"
     fi
   else # Entsoe data does not exist
+        echo "I: Fetching today-data data from Entsoe."
+      download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
+  fi											
+fi
 
-    download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
-	 cp "$file11" "$file19"
-  fi
-elif (( ( select_pricing_api == 3 ) )); then
+
+if (( ( select_pricing_api == 3 ) )); then
   # Test if Tibber today data exists
   if test -f "$file14"; then
     # Test if data is current
@@ -602,6 +605,7 @@ elif (( ( select_pricing_api == 3 ) )); then
     download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
   fi											
 fi
+
 
 function euroToMillicent {
   euro="$1"
@@ -625,7 +629,6 @@ function euroToMillicent {
   echo "$v"
   return 0
 }
-
 
 # An independent segment to test the conversion of floats to integers
 if [ "tests" == "$1" ]; then
@@ -658,25 +661,17 @@ if (( ( include_second_day == 1 ) )); then
       echo "I: aWATTar tomorrow-data does not exist, fetching data."
       download_awattar_prices "$link2" "$file2" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
     fi
+					
   elif (( ( select_pricing_api == 2 ) )); then
       # Test if Entsoe tomorrow data exists
     if test -f "$file9"; then
-      # Test if data is current
-      get_current_entsoe_day2
-      if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%-d)" ]; then
-        echo "I: Entsoe tomorrow-data is up to date."
-      else
-        echo "I: Entsoe tomorrow-data is outdated, fetching new data."
-		   
-        download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
-      fi
+        echo "I: Entsoe tomorrow-data exists."
     else # Data file2 does not exist
       echo "I: Entsoe tomorrow-data does not exist, fetching data."
 		download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
     fi
-  
-
-  elif (( ( select_pricing_api == 3 ) )); then
+	
+   elif (( ( select_pricing_api == 3 ) )); then
    if [ ! -s "$file18" ]; then
     rm -f "$file17" "$file18"
     echo "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online."
@@ -684,15 +679,11 @@ if (( ( include_second_day == 1 ) )); then
 	download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
 	sort -t, -k1.9n $file17 >> "$file12"
   fi 
-    # Test if Tibber tomorrow data exists
-    if test -f "$file17"; then
-      # Test if data is current
-      get_current_tibber_day
-      fi
+
   fi
-
+  
 fi # Include second day
-
+																				 
 if (( ( select_pricing_api == 1 ) )); then
   Unit="Cent/kWh net"
   get_awattar_prices
