@@ -296,7 +296,7 @@ download_awattar_prices() {
   local sleep_time="$4"
 
   if [ -z "$DEBUG" ]; then
-    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
+    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
   fi
   if ! curl "$url" > "$file"; then
@@ -331,7 +331,7 @@ download_tibber_prices() {
   local sleep_time="$3"
   
   if [ -z "$DEBUG" ]; then
-    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
+    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
   fi
   if ! get_tibber_api | tr -d '{}[]' > "$file"; then
@@ -341,7 +341,6 @@ download_tibber_prices() {
 
   sed -n '/"today":/,/"tomorrow":/p' "$file" | sed '$d' | sed '/"today":/d' > "$file15"
   sort -t, -k1.9n $file15 > "$file16"
-  cp "$file16" "$file12"
   sed -n '/"tomorrow":/,$p' "$file" | sed '/"tomorrow":/d' > "$file17"
   sort -t, -k1.9n $file17 > "$file18"
   if [ "$include_second_day" = 0 ]; then
@@ -370,9 +369,9 @@ download_entsoe_prices() {
   local sleep_time="$4"
   
   if [ -z "$DEBUG" ]; then
-    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
+    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
-  fi	
+  fi
 
   if ! curl "$url" > "$file"; then
     echo "E: Retrieval of entsoe data from '$url' into file '$file' failed."
@@ -418,7 +417,6 @@ awk '
 #    echo >> $file8
     if [ -f "$file13" ]; then
       cat "$file13" >> "$file8"
- #     echo >> "$file8"
     fi
     sed -i '25d 50d' "$file8"
     sort -g "$file8" > "$file19"
@@ -431,7 +429,8 @@ awk '
 
 function download_solarenergy {
   if (( ( use_solarweather_api_to_abort == 1 ) )); then
-    echo "I: Refreshing solar-weather data."											
+    echo "I: Please be patient. First we wait some seconds so that we will not overload the Solarweather-API."
+    sleep $(( ( $RANDOM % 15 ) + 1 ))
     if ! curl "$link3" -o "$file3"; then
       echo "E: Download of solarenergy data from '$link3' failed."
       exit 1
@@ -558,11 +557,11 @@ if (( ( select_pricing_api == 1 ) )); then
     else
       echo "I: aWATTar today-data is outdated, fetching new data."
       rm -f $file1 $file6 $file7
-      download_awattar_prices "$link1" "$file1" "$file6" 20
+      download_awattar_prices "$link1" "$file1" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
     fi
   else # Data file1 does not exist
   echo "I: Fetching today-data data from aWATTar."
-    download_awattar_prices "$link1" "$file1" "$file6" 20
+    download_awattar_prices "$link1" "$file1" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
   fi
 elif (( ( select_pricing_api == 2 ) )); then
   # Test if Entsoe today data exists
@@ -574,12 +573,12 @@ elif (( ( select_pricing_api == 2 ) )); then
     else
       echo "I: Entsoe today-data is outdated, fetching new data."
       rm -f "$file4" "$file8" "$file10" "$file11"
-      download_entsoe_prices "$link4" "$file4" "$file10" 20
+      download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
 	  cp "$file11" "$file19"
     fi
   else # Entsoe data does not exist
 
-    download_entsoe_prices "$link4" "$file4" "$file10" 20
+    download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
 	 cp "$file11" "$file19"
   fi
 elif (( ( select_pricing_api == 3 ) )); then
@@ -592,11 +591,11 @@ elif (( ( select_pricing_api == 3 ) )); then
     else
       echo "I: Tibber today-data is outdated, fetching new data."
       rm -f "$file14" "$file15" "$file16"
-      download_tibber_prices "$link6" "$file14" 20
+      download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
     fi
   else # Tibber data does not exist
         echo "I: Fetching today-data data from Tibber."
-    download_tibber_prices "$link6" "$file14" 20
+    download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
   fi											
 fi
 
@@ -647,11 +646,11 @@ if (( ( include_second_day == 1 ) )); then
       else
         echo "I: aWATTar tomorrow-data is outdated, fetching new data."
         rm -f $file3
-        download_awattar_prices "$link2" "$file2" "$file6" 2
+        download_awattar_prices "$link2" "$file2" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
       fi
     else # Data file2 does not exist
       echo "I: aWATTar tomorrow-data does not exist, fetching data."
-      download_awattar_prices "$link2" "$file2" "$file6" 2
+      download_awattar_prices "$link2" "$file2" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
     fi
   elif (( ( select_pricing_api == 2 ) )); then
       # Test if Entsoe tomorrow data exists
@@ -662,28 +661,28 @@ if (( ( include_second_day == 1 ) )); then
         echo "I: Entsoe tomorrow-data is up to date."
       else
         echo "I: Entsoe tomorrow-data is outdated, fetching new data."
-										 
-        download_entsoe_prices "$link5" "$file5" "$file13" 2
+		   
+        download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
       fi
     else # Data file2 does not exist
       echo "I: Entsoe tomorrow-data does not exist, fetching data."
-		download_entsoe_prices "$link5" "$file5" "$file13" 2
+		download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
     fi
- 	
+  
 
   elif (( ( select_pricing_api == 3 ) )); then
    if [ ! -s "$file18" ]; then
     rm -f "$file17" "$file18"
     echo "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online."
 	rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
-	download_tibber_prices "$link6" "$file14" 2
+	download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
 	sort -t, -k1.9n $file17 >> "$file12"
   fi 
     # Test if Tibber tomorrow data exists
     if test -f "$file17"; then
       # Test if data is current
       get_current_tibber_day
-    fi
+      fi
   fi
 
 fi # Include second day
