@@ -26,7 +26,7 @@ Verwendung: $0 - ohne Argumente
 
 BESCHREIBUNG
 
-  Dieses Skript sollte auf einem System unter Venus OS ausgeführt werden, um die stündlich angepassten, am Vortag festgelegten Strompreise herunterzuladen und Ladevorgänge am Wechselrichter oder Smart Devices im Haus zu steuern. Ein regulärer Benutzer sollte dieses Skript nicht manuell bearbeiten. Es sollte mithilfe des Installations-Skripts des Projekts installiert und regelmäßig vom Cron-Dienst ausgeführt werden.
+  Dieses Skript erwartet, auf einem System unter Venus OS ausgeführt werden, um die stündlich angepassten, am Vortag festgelegten Strompreise herunterzuladen und Ladevorgänge am Wechselrichter oder Smart Devices im Haus zu steuern. Ein regulärer Benutzer sollte dieses Skript nicht manuell bearbeiten. Es sollte mithilfe des Installations-Skripts des Projekts installiert und regelmäßig vom cron-Dienst ausgeführt werden.
 
 OPTIONEN
 
@@ -94,14 +94,11 @@ EOHELP
 
 fi
 
-# Please sponsor this project and support further development: https://revolut.me/christqki2 or https://paypal.me/christian1980nrw
-
-
-# Thanks Christian
 
 ##### Configuration part...
-#Please note that this script is only for hourly based tariff data, please create your own fork if you need 15 minutes based data.
-#After every API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
+#
+# Note: This script is only for hourly-based tariff data, please create your own fork for higher resolutions like 15 minute intervals.
+#       After an API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
 
 # Switchable Sockets Setup (AVM Fritz DECT200/210 wireless sockets) if used (tested with FRITZ!OS: 07.29).
 use_fritz_dect_sockets=0 # please activate with 1 or deactivate this socket-type with 0
@@ -530,18 +527,26 @@ function get_prices_integer_entsoe {
 
 function get_solarenergy_today {
   solarenergy_today=$(sed '2!d' $file3 | cut -d',' -f2)
-  solarenergy_today_integer=$( printf "%.0f\n" "${solarenergy_today}e15" )
-  abort_solar_yield_today_integer=$( printf "%.0f\n" "${abort_solar_yield_today}e15" )
+  solarenergy_today_integer=$(euroToMillicent "${solarenergy_today}" 15)
+  abort_solar_yield_today_integer=$(euroToMillicent "${abort_solar_yield_today}" 15)
 }
 function get_solarenergy_tomorrow {
   solarenergy_tomorrow=$(sed '3!d' $file3 | cut -d',' -f2)
-  solarenergy_tomorrow_integer=$( printf "%.0f\n" "${solarenergy_tomorrow}e15" )
-  abort_solar_yield_tomorrow_integer=$( printf "%.0f\n" "${abort_solar_yield_tomorrow}e15" )
+  solarenergy_tomorrow_integer=$(euroToMillicent "$solarenergy_tomorrow" 15)
+  abort_solar_yield_tomorrow_integer=$(euroToMillicent "${abort_solar_yield_tomorrow}" 15)
 }
-function get_cloudcover_today { cloudcover_today=$(sed '2!d' $file3 | cut -d',' -f1);}
-function get_cloudcover_tomorrow { cloudcover_tomorrow=$(sed '3!d' $file3 | cut -d',' -f1);}
-function get_sunrise_today { sunrise_today=$(sed '2!d' $file3 | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }');}
-function get_sunset_today { sunset_today=$(sed '2!d' $file3 | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }');}
+function get_cloudcover_today {
+  cloudcover_today=$(sed '2!d' $file3 | cut -d',' -f1)
+}
+function get_cloudcover_tomorrow {
+  cloudcover_tomorrow=$(sed '3!d' $file3 | cut -d',' -f1)
+}
+function get_sunrise_today {
+  sunrise_today=$(sed '2!d' $file3 | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
+}
+function get_sunset_today {
+  sunset_today=$(sed '2!d' $file3 | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
+}
 function get_suntime_today {
   suntime_today=$(((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s))) / 60))
 }
@@ -622,9 +627,11 @@ function euroToMillicent {
   return 0
 }
 
+
+# An independent segment to test the conversion of floats to integers
 if [ "tests" == "$1" ]; then
 
-  echo "I: Testing euro2cent"
+  echo "I: Testing euroToMillicent"
   for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23
   do
     echo -n "$i -> "
