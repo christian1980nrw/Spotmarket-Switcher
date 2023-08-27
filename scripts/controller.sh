@@ -152,7 +152,7 @@ switchablesockets_at_fifth_lowest_price=0
 charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
 TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=1 # Set to 1 for aWATTar or 2 for entsoe / aWATTar: only germany DE-LU or Austrian AT prices, but no API key needed / Entsoe: Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
+select_pricing_api=1 # Set to 1 for aWATTar or 2 for entsoe or 3 for Tibber / aWATTar: only germany DE-LU or Austrian AT prices, but no API key needed / Entsoe: Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
 include_second_day=0 # Set to 0 to compare only the today prices.
 # Set include_second_day to 1 to compare today & tomorrow prices if they become available (today in the afternoon).
 # Please note: If you activate this and the prices decrease over several days,
@@ -238,13 +238,14 @@ file8=/tmp/entsoe_prices.txt
 file9=/tmp/entsoe_tomorrow_prices_sorted.txt
 file10=/tmp/entsoe_today_prices.txt
 file11=/tmp/entsoe_today_prices_sorted.txt
-file12=/tmp/tibber_prices_sorted.txt									
+file12=/tmp/tibber_prices_sorted.txt
 file13=/tmp/entsoe_tomorrow_prices.txt
 file14=/tmp/tibber_prices.txt
 file15=/tmp/tibber_today_prices.txt
 file16=/tmp/tibber_today_prices_sorted.txt
 file17=/tmp/tibber_tomorrow_prices.txt
 file18=/tmp/tibber_tomorrow_prices_sorted.txt
+file19=/tmp/entsoe_prices_sorted.txt
 
 ########## Optional environmental variables
 
@@ -343,6 +344,11 @@ download_tibber_prices() {
   cp "$file16" "$file12"
   sed -n '/"tomorrow":/,$p' "$file" | sed '/"tomorrow":/d' > "$file17"
   sort -t, -k1.9n $file17 > "$file18"
+  if [ "$include_second_day" = 0 ]; then
+  cp "$file16" "$file12"
+  else
+  grep '"total"' "$file14" | sort -t':' -k2 -n > "$file12"
+  fi
 
   timestamp=$(TZ=$TZ date +%d)
   echo "date_now_day: $timestamp" >> "$file15"
@@ -361,7 +367,12 @@ download_entsoe_prices() {
   local url="$1"
   local file="$2"
   local output_file="$3"
-  local entsoetomorrow="$4"
+  local sleep_time="$4"
+  
+  if [ -z "$DEBUG" ]; then
+    echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized."
+    sleep "$sleep_time"
+  fi	
 
   if ! curl "$url" > "$file"; then
     echo "E: Retrieval of entsoe data from '$url' into file '$file' failed."
@@ -393,23 +404,24 @@ awk '
         print $0
     }
     valid_period && /<\/Period>/ { exit }
-' "$file" >> "$output_file"
+' "$file" > "$output_file"
 
-  sort -g "$output_file" >> "${output_file%.*}_sorted.${output_file##*.}"
+  sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
   timestamp=$(TZ=$TZ date +%d)
   echo "date_now_day: $timestamp" >> "$output_file"
-  echo "date_now_day: $timestamp" >> "${output_file%.*}_sorted.${output_file##*.}"
+  #echo "date_now_day: $timestamp" >> "${output_file%.*}_sorted.${output_file##*.}"
 
   # Check if tomorrow file contains next day prices
-  if [ "$entsoetomorrow" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 2 ]; then
+  if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l < "$output_file")" -gt 3 ]; then
+  echo DEBUG2
     cat $file10 > $file8
-    echo >> $file8
+#    echo >> $file8
     if [ -f "$file13" ]; then
       cat "$file13" >> "$file8"
-      echo >> "$file8"
+ #     echo >> "$file8"
     fi
     sed -i '25d 50d' "$file8"
-    sort -g "$file8" > "$file11"
+    sort -g "$file8" > "$file19"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >> "$file8"
     echo "date_now_day: $timestamp" >> "$file11"
@@ -468,21 +480,21 @@ function get_tibber_prices {
 }
 
 
-function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p "$file13" | grep -Eo '[0-9]+'); }
 function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
+function get_current_entsoe_day2 { current_entsoe_day2=$(sed -n 25p "$file9" | grep -Eo '[0-9]+'); }
 
 function get_current_tibber_day { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
 function get_entsoe_prices {
   current_price=$(sed -n ${now_linenumber}p "$file10")
-  lowest_price=$(sed -n 1p "$file11")
-  second_lowest_price=$(sed -n 2p "$file11")
-  third_lowest_price=$(sed -n 3p "$file11")
-  fourth_lowest_price=$(sed -n 4p "$file11")
-  fifth_lowest_price=$(sed -n 5p "$file11")
-  sixth_lowest_price=$(sed -n 6p "$file11")
-  highest_price=$(awk 'NR == FNR{if(NR>1)a[FNR]=$0;next} END{print a[FNR-1]}' "$file11" "$file11")
-  average_price=$(awk '{sum+=$1} END {print sum/(NR-1)}' "$file11")
+  lowest_price=$(sed -n 1p "$file19")
+  second_lowest_price=$(sed -n 2p "$file19")
+  third_lowest_price=$(sed -n 3p "$file19")
+  fourth_lowest_price=$(sed -n 4p "$file19")
+  fifth_lowest_price=$(sed -n 5p "$file19")
+  sixth_lowest_price=$(sed -n 6p "$file19")
+  highest_price=$(awk 'BEGIN {max = 0} {if ($1>max) max=$1} END {print max}' "$file19")
+  average_price=$(awk 'NF>0 {sum+=$1; count++} END {if (count>0) print sum/count}' "$file19")
 }
 
 function get_awattar_prices_integer {
@@ -562,11 +574,13 @@ elif (( ( select_pricing_api == 2 ) )); then
     else
       echo "I: Entsoe today-data is outdated, fetching new data."
       rm -f "$file4" "$file8" "$file10" "$file11"
-      download_entsoe_prices "$link4" "$file4" "$file10" 0
+      download_entsoe_prices "$link4" "$file4" "$file10" 20
+	  cp "$file11" "$file19"
     fi
   else # Entsoe data does not exist
 
-    download_entsoe_prices "$link4" "$file4" "$file10" 0
+    download_entsoe_prices "$link4" "$file4" "$file10" 20
+	 cp "$file11" "$file19"
   fi
 elif (( ( select_pricing_api == 3 ) )); then
   # Test if Tibber today data exists
@@ -640,24 +654,22 @@ if (( ( include_second_day == 1 ) )); then
       download_awattar_prices "$link2" "$file2" "$file6" 2
     fi
   elif (( ( select_pricing_api == 2 ) )); then
-    # Test if Entsoe tomorrow data exists
-    if test -f "$file5"; then
+      # Test if Entsoe tomorrow data exists
+    if test -f "$file9"; then
       # Test if data is current
       get_current_entsoe_day2
-      if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%d)" ]; then
+      if [ "$current_entsoe_day2" = "$(TZ=$TZ date +%-d)" ]; then
         echo "I: Entsoe tomorrow-data is up to date."
       else
         echo "I: Entsoe tomorrow-data is outdated, fetching new data."
-        rm -f "$file5" "$file9" "$file13"
-        download_entsoe_prices "$link5" "$file5" "$file13" 1
-        cp "$file10" "$file8"
-        cp "$file11" "$file11"
+										 
+        download_entsoe_prices "$link5" "$file5" "$file13" 2
       fi
-    else # Data file5 does not exist
+    else # Data file2 does not exist
       echo "I: Entsoe tomorrow-data does not exist, fetching data."
-      download_entsoe_prices "$link5" "$file5" "$file13" 1
+		download_entsoe_prices "$link5" "$file5" "$file13" 2
     fi
-	
+ 	
 
   elif (( ( select_pricing_api == 3 ) )); then
    if [ ! -s "$file18" ]; then
