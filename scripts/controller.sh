@@ -664,12 +664,12 @@ if (( ( include_second_day == 1 ) )); then
 					
   elif (( ( select_pricing_api == 2 ) )); then
       # Test if Entsoe tomorrow data exists
-    if test -f "$file9"; then
-        echo "I: Entsoe tomorrow-data exists."
-    else # Data file2 does not exist
-      echo "I: Entsoe tomorrow-data does not exist, fetching data."
-		download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
-    fi
+	
+	if [ ! -s "$file9" ]; then
+    echo "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online."
+	rm -f "$file5" "$file9" "$file13"
+	download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
+    fi 
 	
    elif (( ( select_pricing_api == 3 ) )); then
    if [ ! -s "$file18" ]; then
