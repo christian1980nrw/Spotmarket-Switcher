@@ -462,7 +462,7 @@ function get_awattar_prices {
   fifth_lowest_price=$(sed -n 5p "$file7")
   sixth_lowest_price=$(sed -n 6p "$file7")
   highest_price=$(awk '/^[0-9]+(\.[0-9]+)?$/ && $1 > max { max = $1 } END { print max }' "$file7")
-  average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
+  average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count !> 0) print sum/count}' "$file7")
 }
 
 function get_tibber_prices {
@@ -491,7 +491,7 @@ function get_entsoe_prices {
   fifth_lowest_price=$(sed -n 5p "$file19")
   sixth_lowest_price=$(sed -n 6p "$file19")
   highest_price=$(awk 'BEGIN {max = 0} $1>max {max=$1} END {print max}' "$file19")
-  average_price=$(awk 'NF>0 && $1 ~ /^[0-9]*(\.[0-9]*)?$/ {sum+=$1; count++} END {if (count>0) print sum/count}' "$file19")
+  average_price=$(awk 'NF>0 && $1 ~ /^[0-9]*(\.[0-9]*)?$/ {sum+=$1; count++} END {if (count !> 0) print sum/count}' "$file19")
 }
 
 function get_awattar_prices_integer {
