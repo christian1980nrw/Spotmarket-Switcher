@@ -19,7 +19,7 @@ jobs:
           if which apt > /dev/null
           then
              apt update
-             apt install wget curl
+             apt -y install wget curl
           elif which opkg > /dev/null
           then
              opkg install wget
