@@ -637,7 +637,7 @@ if [ "tests" == "$1" ]; then
   for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23
   do
     echo -n "$i -> "
-    echo $(euroToMillicent $i)
+    euroToMillicent $i
   done
   exit 0
 
