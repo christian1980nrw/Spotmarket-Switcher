@@ -11,7 +11,10 @@ jobs:
       - name: Install yamllint
         run: sudo apt-get install yamllint
       - name: Yamllint all YAML files
-        run: yamllint .github/workflows/*.yml | grep -v line-length | grep error && failure || echo "No errors found."
+        run: |
+          yamllint .github/workflows/*.yml | \
+            grep -v line-length | \
+            grep error && failure || echo "No errors found."
   shellcheck:
     runs-on: ubuntu-latest
     container:
@@ -21,18 +24,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check for dockerenv file
-        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+        run: |
+          (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       - name: Show shellcheck version
         run: shellcheck --version
       - name: Lint all shell scripts
         run: find . -name "*.sh" | xargs -r shellcheck
   execute:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+          os: [ubuntu-latest, macos-latest]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Extend default set of UNIX tools
-        run: sudo apt-get install wget curl dbus sed gawk
+        run: |
+          if [ "ubuntu-latest" = ${{ matrix.os }} ]; then
+            sudo apt-get install wget curl dbus sed gawk
+          else
+            echo "I: Nothing to install for ${{ matrix.os }}"
+          fi
       - name: Install
         run: ./victron-venus-os-install.sh
         env:
