@@ -16,10 +16,17 @@ jobs:
         run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       - name: Install more UNIX tools
         run: |
-          ls /etc
-          #sudo opkg update
-          #sudo opkg install wget
-          #sudo opkg install curl
+          if which apt > /dev/null
+          then
+             apt update
+             apt install wet curl
+          elif which opkg > /dev/null
+          then
+             opkg install wget
+             opkg install curl
+          else
+             echo "W: Tests limited because of non-avail of wget and curl"
+          fi
       - name: Execute Installation under Venus OS
         run: |
           echo pwd
