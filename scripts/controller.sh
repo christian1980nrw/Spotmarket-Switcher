@@ -426,7 +426,7 @@ awk '
 }
 
 function download_solarenergy {
-  if (( ( use_solarweather_api_to_abort == 1 ) )); then
+  if (( use_solarweather_api_to_abort == 1 )); then
     echo "I: Please be patient. First we wait some seconds so that we will not overload the Solarweather-API."
     sleep $(( ( $RANDOM % 15 ) + 1 ))
     if ! curl "$link3" -o "$file3"; then
@@ -547,7 +547,7 @@ function get_sunset_today {
   sunset_today=$(sed '2!d' $file3 | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
 function get_suntime_today {
-  suntime_today=$(((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s))) / 60))
+  suntime_today=$(( ($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
 
 
@@ -722,7 +722,7 @@ echo "Fourth lowest price will be $fourth_lowest_price $Unit."
 echo "Fifth lowest price will be $fifth_lowest_price $Unit."
 echo "Sixth lowest price will be $sixth_lowest_price $Unit."
 
-if (( ( use_solarweather_api_to_abort == 1 ) )); then
+if (( use_solarweather_api_to_abort == 1 )); then
   echo "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes." | tee -a "$LOG_FILE"
   echo "Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds." | tee -a "$LOG_FILE"
   echo "Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds." | tee -a "$LOG_FILE"
