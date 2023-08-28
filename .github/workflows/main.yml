@@ -3,7 +3,7 @@ on:
   push:
   pull_request:
 jobs:
-  lint:
+  yamllint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -12,10 +12,18 @@ jobs:
         run: sudo apt-get install yamllint
       - name: Yamllint all YAML files
         run: yamllint .github/workflows/*.yml | grep -v line-length | grep error && failure || echo "No errors found."
+  shellcheck:
+    runs-on: ubuntu-latest
+    container:
+      image: koalaman/shellcheck-alpine
+      options: --cpus 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       - name: Show shellcheck version
         run: shellcheck --version
-      - name: Install ShellCheck
-        run: sudo apt-get install shellcheck
       - name: Lint all shell scripts
         run: find . -name "*.sh" | xargs -r shellcheck
   execute:
