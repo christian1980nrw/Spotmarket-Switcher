@@ -428,7 +428,8 @@ awk '
 function download_solarenergy {
   if (( use_solarweather_api_to_abort == 1 )); then
     echo "I: Please be patient. First we wait some seconds so that we will not overload the Solarweather-API."
-    sleep $(( ( $RANDOM % 15 ) + 1 ))
+    # Delaying a random time <=15s to reduce impact on site - download is not time-critical
+    sleep $(( RANDOM % 15 + 1 ))
     if ! curl "$link3" -o "$file3"; then
       echo "E: Download of solarenergy data from '$link3' failed."
       exit 1
@@ -551,7 +552,8 @@ function get_suntime_today {
 }
 
 
-if (( ( select_pricing_api == 1 ) )); then
+if (( select_pricing_api == 1 )); then
+
   # Test if Awattar today data exists
   if test -f "$file1"; then
     # Test if data is current
@@ -561,15 +563,14 @@ if (( ( select_pricing_api == 1 ) )); then
     else
       echo "I: aWATTar today-data is outdated, fetching new data."
       rm -f $file1 $file6 $file7
-      download_awattar_prices "$link1" "$file1" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
+      download_awattar_prices "$link1" "$file1" "$file6" $(( RANDOM % 21 + 10 ))
     fi
   else # Data file1 does not exist
-  echo "I: Fetching today-data data from aWATTar."
-    download_awattar_prices "$link1" "$file1" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
+    echo "I: Fetching today-data data from aWATTar."
+    download_awattar_prices "$link1" "$file1" "$file6" $(( RANDOM % 21 + 10 ))
   fi
- fi
   
-if (( ( select_pricing_api == 2 ) )); then
+elif (( select_pricing_api == 2 )); then
   # Test if Entsoe today data exists
   if test -f "$file8"; then
     # Test if data is current
@@ -579,16 +580,15 @@ if (( ( select_pricing_api == 2 ) )); then
     else
 	  echo "I: Entsoe today-data is outdated, fetching new data."
       rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
-      download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
+      download_entsoe_prices "$link4" "$file4" "$file10" $(( RANDOM % 21 + 10 ))
     fi
   else # Entsoe data does not exist
         echo "I: Fetching today-data data from Entsoe."
-      download_entsoe_prices "$link4" "$file4" "$file10" $(( ( $RANDOM % 21 ) + 10 ))
+      download_entsoe_prices "$link4" "$file4" "$file10" $(( RANDOM % 21 + 10 ))
   fi											
-fi
 
+elif (( select_pricing_api == 3 )); then
 
-if (( ( select_pricing_api == 3 ) )); then
   # Test if Tibber today data exists
   if test -f "$file14"; then
     # Test if data is current
@@ -598,11 +598,11 @@ if (( ( select_pricing_api == 3 ) )); then
     else
       echo "I: Tibber today-data is outdated, fetching new data."
       rm -f "$file14" "$file15" "$file16"
-      download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
+      download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
     fi
   else # Tibber data does not exist
         echo "I: Fetching today-data data from Tibber."
-    download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
+    download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
   fi											
 fi
 
@@ -643,9 +643,10 @@ if [ "tests" == "$1" ]; then
 
 fi
 
-if (( ( include_second_day == 1 ) )); then
+if (( include_second_day == 1 )); then
 
-  if (( ( select_pricing_api == 1 ) )); then
+  if (( select_pricing_api == 1 )); then
+
     # Test if Awattar tomorrow data exists
     if test -f "$file2"; then
       # Test if data is current
@@ -655,50 +656,51 @@ if (( ( include_second_day == 1 ) )); then
       else
         echo "I: aWATTar tomorrow-data is outdated, fetching new data."
         rm -f $file3
-        download_awattar_prices "$link2" "$file2" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
+        download_awattar_prices "$link2" "$file2" "$file6" $(( RANDOM % 21 + 10 ))
       fi
     else # Data file2 does not exist
       echo "I: aWATTar tomorrow-data does not exist, fetching data."
-      download_awattar_prices "$link2" "$file2" "$file6" $(( ( $RANDOM % 21 ) + 10 ))
+      download_awattar_prices "$link2" "$file2" "$file6" $(( RANDOM % 21 + 10 ))
     fi
 					
-  elif (( ( select_pricing_api == 2 ) )); then
-      # Test if Entsoe tomorrow data exists
-	
-	if [ ! -s "$file9" ]; then
-    echo "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online."
-	rm -f "$file5" "$file9" "$file13"
-	download_entsoe_prices "$link5" "$file5" "$file13" $(( ( $RANDOM % 21 ) + 10 ))
+  elif (( select_pricing_api == 2 )); then
+
+    # Test if Entsoe tomorrow data exists
+    if [ ! -s "$file9" ]; then
+      echo "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online."
+      rm -f "$file5" "$file9" "$file13"
+      download_entsoe_prices "$link5" "$file5" "$file13" $(( RANDOM % 21 + 10 ))
     fi 
 	
-   elif (( ( select_pricing_api == 3 ) )); then
-   if [ ! -s "$file18" ]; then
-    rm -f "$file17" "$file18"
-    echo "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online."
-	rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
-	download_tibber_prices "$link6" "$file14" $(( ( $RANDOM % 21 ) + 10 ))
-	sort -t, -k1.9n $file17 >> "$file12"
-  fi 
+  elif (( select_pricing_api == 3 )); then
+
+    if [ ! -s "$file18" ]; then
+      rm -f "$file17" "$file18"
+      echo "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online."
+      rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
+      download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
+      sort -t, -k1.9n $file17 >> "$file12"
+    fi 
 
   fi
   
 fi # Include second day
 																				 
-if (( ( select_pricing_api == 1 ) )); then
+if (( select_pricing_api == 1 )); then
   Unit="Cent/kWh net"
   get_awattar_prices
   get_awattar_prices_integer
-elif (( ( select_pricing_api == 2 ) )); then
+elif (( select_pricing_api == 2 )); then
   Unit="EUR/MWh net"
   get_entsoe_prices
   get_prices_integer_entsoe
-elif (( ( select_pricing_api == 3 ) )); then
+elif (( select_pricing_api == 3 )); then
   Unit="EUR/kWh $tibber_prices price"
   get_tibber_prices
   get_tibber_prices_integer
 fi
 
-if (( ( use_solarweather_api_to_abort == 1 ) )); then
+if (( use_solarweather_api_to_abort == 1 )); then
   download_solarenergy
   get_solarenergy_today
   get_solarenergy_tomorrow
