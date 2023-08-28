@@ -51,11 +51,6 @@ jobs:
           DEBUG: 1
       - name: Execute Control-Script under Venus OS
         run: |
-          if [ -x /data/etc/Spotmarket-Switcher/controller.sh ]; then
-            echo "W: Seems ok, just not executing controller.sh because of known to be missing curl binary."
-          else
-            echo "E: controller.sh was not installed."
-            exit 1
-          fi
+          /data/etc/Spotmarket-Switcher/controller.sh
         env:
           DEBUG: 1
