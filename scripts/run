@@ -1,21 +1,87 @@
 #!/bin/sh
 
 License=$(cat <<EOLICENSE
-MIT License
+  MIT License
 
-Copyright (c) 2023 christian1980nrw
+  Copyright (c) 2023 christian1980nrw
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  Permission is hereby granted, free of charge, to any person
+  obtaining a copy of this software and associated documentation
+  files (the "Software"), to deal in the Software without restriction,
+  including without limitation the rights to use, copy, modify,
+  merge, publish, distribute, sublicense, and/or sell copies of the
+  Software, and to permit persons to whom the Software is furnished
+  to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+  AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+  OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
 EOLICENSE
 )
 
-
 # Stop execution upon uncaught errors
 set -e
+
+if [ -z "$LANG" ]; then
+  export LANG=C
+fi
+
+if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
+  if echo "$LANG" | grep -qi "^de" ; then
+    cat <<EOHILFE
+
+Dieses Skript dient allein der technischen Unterstützung des controller Skripts und ist nicht vom Anwender zu nutzen.
+
+BESCHREIBUNG
+
+  Beim Neustart des Systems gehen Einstellungen verlorgen, die durch dieses boot Skript neu gesetzt werden.
+
+OPTIONEN
+
+  -h | --help - Zeigt diese Hilfe
+
+LIZENZ
+
+$License
+
+AUTOR
+
+  Christian
+EOHILFE
+  else
+    cat <<EOHELP
+
+This script is not meant to be started by the spotmarket-switcher's end users.
+
+DESCRIPTION
+
+  This script is meant to be executed by the operating system at boot time to ensure the crontab is configured.
+
+OPTIONS
+
+  -h | --help - Shows this help.
+
+LICENSE
+
+$License
+
+AUTHOR
+
+  Christian
+EOHELP
+  fi
+
+  exit
+
+fi
 
 if [ -z "$DEBUG" ]; then
     # Delaying for 25 seconds

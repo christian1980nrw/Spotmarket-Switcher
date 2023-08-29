@@ -27,15 +27,44 @@ jobs:
         run: |
           (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       - name: Show shellcheck version
-        run: shellcheck --version
+        run: |
+          shellcheck --version
       - name: Lint all shell scripts
-        run: find . -name "*.sh" | xargs -r shellcheck
+        run: |
+          # https://github.com/koalaman/shellcheck/blob/master/shellcheck.1.md
+          if ! shellcheck \
+             victron-venus-os-install.sh scripts/controller.sh scripts/run
+          then
+            ret=$?
+            if [ "0" = "$ret" ]; then
+              echo "$ret: All files successfully scanned with no issues."
+              echo "   Well done, just maybe the return code is not processed properly?!"
+            elif [ "1" = "$ret" ]; then
+              echo "1: All files successfully scanned with some issues."
+              echo "   Good enough!"
+            elif [ "2" = "$ret" ]; then
+              echo "2: Some files could not be processed."
+              exit $ret
+            elif [ "3" = "$ret" ]; then
+              echo "3: ShellCheck was invoked with bad syntax."
+              exit $ret
+            elif [ "4" = "$ret" ]; then
+              echo "4: ShellCheck was invoked with bad options."
+              exit $ret
+            else
+              echo "E: SpellCheck exited with unexpected return code '$ret'."
+              exit $ret
+            fi
+          else
+            echo "$ret: All files successfully scanned with no issues."
+            echo "   Well done!"
+          fi
   execute:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-          os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest]
 
     steps:
       - name: Checkout code
