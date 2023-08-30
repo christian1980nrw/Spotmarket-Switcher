@@ -35,32 +35,60 @@ fi
 if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
   if echo "$LANG" | grep -qi "^de" ; then
     cat <<EOHILFE
-Optionen
+OPTIONEN
 
  -h | --help - Zeigt diese Hilfe
 
-Lizenz
+UMGEBUNGSVARIABLEN
+
+  DEBUG - Für dieses Skript nicht relevant.
+
+  SRCDIR - Verzeichnis, in dem die zur installierenden Skripte 'run' und 'controller.sh' erwartet werden.
+
+  BRANCH - Der Branch des GitHub repository, in dem  die zu installierenden Skripte liegen - voreingestellt auf 'main', gern auch 'dev'.
+
+  DESTDIR - Pfad der den zu installierenden Dateien vorangestellt wird. So könnte beispielsweise in ein chroot Verzeichnis oder ein gemountetes Venus OS image installiert werden.
+
+  NO_REBOOT - Wenn gesetzt, so wird noch der Installation nicht neu gestartet.
+
+  LOG_FILE - Datei, über die alle Ereignisse mitprotokolliert werden. Kann gegebenenfallse auf /dev/null gesetzt werden.
+
+LIZENZ
 
 $License
 
-Autor
+AUTOR
 
   Christian
 EOHILFE
   else
     cat <<EOHELP
 
-Description
+DESCRIPTION
 
-Options
+OPTIONS
 
- -h | --help - Shows this help.
+   -h | --help - Shows this help.
 
-License
+ENVIRONMENT
+
+  DEBUG - Of minimal effect for this script, gives extra information on the file structure.
+ 
+  SRCDIR - Directory in which to expect the scripts run and controller.sh that are to be installed.
+
+  BRANCH - When downloading new versions of that script, the branch on GitHub from which the scripts shall be downloaded - usually 'main' (default) or 'dev'.
+
+  DESTDIR - Path that is preprended to the regular path of the installation, e.g. to facilitate the installation into a chroot environment, the DESTDIR variable would specify the file path to that changed root.
+
+  NO_REBOOT - If set, not reboot is initiated at the end of the install script.
+
+  LOG_FILE - File to which all events are logged, may be set to /dev/null.
+
+LICENSE
 
 $License
 
-Author
+AUTHOR
 
   Christian
 EOHELP
@@ -92,7 +120,7 @@ do
 done
 if [ -n "$missing" ]; then
   echo "W: Install the following tools prior to the execution of the installed scripts: $missing."
-  echo "   Try running 'opkg install $missing'." 
+  echo "   Try running 'opkg install $missing'."
   echo
   echo "   Now continuing with the installation, which will be fine per se, but you as the user are responsible to get those dependencies installed to prevent the control script from failing. Drop an issue at https://github.com/christian1980nrw/Spotmarket-Switcher/issues if this package shall somehow prepare you better."
   echo
