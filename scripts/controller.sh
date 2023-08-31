@@ -52,6 +52,12 @@ UMGEBUNGSVARIABLEN
 
   rc_local_file - Der Pfad zur Datei, über die der Service gestartet wird, kann festgelegt werden. Dies ist ausschließlich für Testzwecke vorgesehen.
 
+  LOG_FILE - In diese Datei werden alle auch auf der Konsole ausgegebenen Informationen gespeichert - voreingestellt auf "/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+
+  LOG_MAX_SIZE=1024  - Maximale Größe (in kb) der log Datei - voreingestellt auf 1 MB
+
+  LOG_FILES_TO_KEEP=2 - Wenn eine Log Datei zu groß wird, so wird eine neue angelegt - diese Variable legt fest, wie viele LOG-Dateien für einen Rückblick erhalten werden sollen.
+
 SIEHE AUCH
 
   README_de.md
@@ -86,6 +92,12 @@ ENVIRONMENT VARIABLES
   DEBUG - If set to any value, no system changes will be made, and console outputs will be more detailed.
 
   rc_local_file - The path to the file through which the service is started can be specified. Intended solely for testing purposes.
+
+  LOG_FILE - File storing all the data that was sent to the console - preset to "/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+
+  LOG_MAX_SIZE=1024  - Maximal size (in kb) of log file - preset to 1 MB
+
+  LOG_FILES_TO_KEEP=2 - When a log file becomes too large, a new file will be created. This variable determined the number of file to keep for a retrospection.
 
 SEE ALSO
 
@@ -267,7 +279,7 @@ if [ -z "$LOG_FILE" ]; then
   LOG_FILE="/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
 fi
 if [ -z "$LOG_MAX_SIZE" ]; then
-  LOG_MAX_SIZE=1000 # 1 MB
+  LOG_MAX_SIZE=1024 # 1 MB
 fi
 if [ -z "$LOG_FILES_TO_KEEP" ]; then
   LOG_FILES_TO_KEEP=2

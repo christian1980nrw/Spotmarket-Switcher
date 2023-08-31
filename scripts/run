@@ -48,6 +48,12 @@ OPTIONEN
 
   -h | --help - Zeigt diese Hilfe
 
+UMGEBUNGSVARIABLEN
+
+  DEBUG - Die crontab wird nicht verändert, wenn dieses Variable gesetzt ist, auch wird nicht 25s zu Beginn der Ausführung gewartet.
+
+  rc_local_file - Pfad der zu installierenden rc.local Datei - voreingestellt auf "/data/rc.local".
+
 LIZENZ
 
 $License
@@ -68,6 +74,12 @@ DESCRIPTION
 OPTIONS
 
   -h | --help - Shows this help.
+
+ENVIRONMENT
+
+  DEBUG - The crontab is not changed when DEBUG is set. Also, an initial 25s wait is not performed and an OK printed upon sucessful execution of the script.
+
+  rc_local_file - path to which the rc.local file should be installed, defaults to "/data/rc.local".
 
 LICENSE
 
