@@ -120,11 +120,6 @@ EOHELP
 
 fi
 
-																																  
-
-
-				  
-
 ##### Configuration part...
 #
 # Note: This script is only for hourly-based tariff data, please create your own fork for higher resolutions like 15 minute intervals.
@@ -355,7 +350,7 @@ download_tibber_prices() {
   local url="$1"
   local file="$2"
   local sleep_time="$3"
-  
+
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
@@ -384,7 +379,7 @@ download_tibber_prices() {
     rm "$file"
     exit 1
   fi
-  
+
 
 }
 
@@ -393,7 +388,7 @@ download_entsoe_prices() {
   local file="$2"
   local output_file="$3"
   local sleep_time="$4"
-  
+
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
@@ -595,7 +590,7 @@ if (( select_pricing_api == 1 )); then
     echo "I: Fetching today-data data from aWATTar."
     download_awattar_prices "$link1" "$file1" "$file6" $(( RANDOM % 21 + 10 ))
   fi
-  
+
 elif (( select_pricing_api == 2 )); then
   # Test if Entsoe today data exists
   if test -f "$file8"; then
@@ -696,7 +691,7 @@ if (( include_second_day == 1 )); then
       echo "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online."
       rm -f "$file5" "$file9" "$file13"
       download_entsoe_prices "$link5" "$file5" "$file13" $(( RANDOM % 21 + 10 ))
-    fi 
+    fi
 	
   elif (( select_pricing_api == 3 )); then
 
@@ -706,12 +701,12 @@ if (( include_second_day == 1 )); then
       rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
       download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
       sort -t, -k1.9n $file17 >> "$file12"
-    fi 
+    fi
 
   fi
-  
+
 fi # Include second day
-																				 
+
 if (( select_pricing_api == 1 )); then
   Unit="Cent/kWh net"
   get_awattar_prices
