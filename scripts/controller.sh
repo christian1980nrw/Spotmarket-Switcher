@@ -221,19 +221,43 @@ get_tibber_api() {
     }'
 }
 
+if [ -z "$UNAME" ]; then
+    UNAME=$(uname)
+fi
+if [ "Darwin" = "$UNAME" ]; then
+    echo "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
+fi
+
 # further API parameters (no need to edit)
-yesterday=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%d)2300
-yestermonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%m)
-yesteryear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") - 86400)) +%Y)
-today=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%d)2300
-today2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%d)
-todaymonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%m)
-todayyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%Y)
-tomorrow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)2300
-tomorrow2=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%d)
-tomorrowmonth=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%m)
-tomorrowyear=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") + 86400)) +%Y)
-getnow=$(TZ=$TZ date -d @$(( $(TZ=$TZ date +"%s") )) +%k)
+dateInSeconds=$(LC_ALL=C TZ=$TZ date +"%s")
+if [ "Darwin" = "$UNAME" ]; then
+   yesterday=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds - 86400)) +%d)2300
+   yestermonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds - 86400)) +%m)
+   yesteryear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds - 86400)) +%Y)
+   today=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds )) +%d)2300
+   today2=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds )) +%d)
+   todaymonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds )) +%m)
+   todayyear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds )) +%Y)
+   tomorrow=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds + 86400)) +%d)2300
+   tomorrow2=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds + 86400)) +%d)
+   tomorrowmonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds + 86400)) +%m)
+   tomorrowyear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds + 86400)) +%Y)
+   getnow=$(LC_ALL=C TZ=$TZ date -j -f "%s" $(( dateInSeconds )) +%k)
+else
+   yesterday=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds - 86400)) +%d)2300
+   yestermonth=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds - 86400)) +%m)
+   yesteryear=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds - 86400)) +%Y)
+   today=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds )) +%d)2300
+   today2=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds )) +%d)
+   todaymonth=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds )) +%m)
+   todayyear=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds )) +%Y)
+   tomorrow=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds + 86400)) +%d)2300
+   tomorrow2=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds + 86400)) +%d)
+   tomorrowmonth=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds + 86400)) +%m)
+   tomorrowyear=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds + 86400)) +%Y)
+   getnow=$(LC_ALL=C TZ=$TZ date -d @$(( dateInSeconds )) +%k)
+fi
+
 now_linenumber=$((getnow+1))
 link1="https://api.awattar.$awattar/v1/marketdata/current.yaml"
 link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
