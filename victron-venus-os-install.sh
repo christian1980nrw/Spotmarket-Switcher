@@ -73,7 +73,7 @@ OPTIONS
 ENVIRONMENT
 
   DEBUG - Of minimal effect for this script, gives extra information on the file structure.
- 
+
   SRCDIR - Directory in which to expect the scripts run and controller.sh that are to be installed.
 
   BRANCH - When downloading new versions of that script, the branch on GitHub from which the scripts shall be downloaded - usually 'main' (default) or 'dev'.

@@ -52,6 +52,12 @@ UMGEBUNGSVARIABLEN
 
   rc_local_file - Der Pfad zur Datei, über die der Service gestartet wird, kann festgelegt werden. Dies ist ausschließlich für Testzwecke vorgesehen.
 
+  LOG_FILE - In diese Datei werden alle auch auf der Konsole ausgegebenen Informationen gespeichert - voreingestellt auf "/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+
+  LOG_MAX_SIZE=1024  - Maximale Größe (in kb) der log Datei - voreingestellt auf 1 MB
+
+  LOG_FILES_TO_KEEP=2 - Wenn eine Log Datei zu groß wird, so wird eine neue angelegt - diese Variable legt fest, wie viele LOG-Dateien für einen Rückblick erhalten werden sollen.
+
 SIEHE AUCH
 
   README_de.md
@@ -87,6 +93,12 @@ ENVIRONMENT VARIABLES
 
   rc_local_file - The path to the file through which the service is started can be specified. Intended solely for testing purposes.
 
+  LOG_FILE - File storing all the data that was sent to the console - preset to "/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+
+  LOG_MAX_SIZE=1024  - Maximal size (in kb) of log file - preset to 1 MB
+
+  LOG_FILES_TO_KEEP=2 - When a log file becomes too large, a new file will be created. This variable determined the number of file to keep for a retrospection.
+
 SEE ALSO
 
   README_de.md
@@ -107,11 +119,6 @@ EOHELP
   exit
 
 fi
-
-																																  
-
-
-				  
 
 ##### Configuration part...
 #
@@ -291,7 +298,7 @@ if [ -z "$LOG_FILE" ]; then
   LOG_FILE="/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
 fi
 if [ -z "$LOG_MAX_SIZE" ]; then
-  LOG_MAX_SIZE=1000 # 1 MB
+  LOG_MAX_SIZE=1024 # 1 MB
 fi
 if [ -z "$LOG_FILES_TO_KEEP" ]; then
   LOG_FILES_TO_KEEP=2
@@ -367,7 +374,7 @@ download_tibber_prices() {
   local url="$1"
   local file="$2"
   local sleep_time="$3"
-  
+
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
@@ -396,7 +403,7 @@ download_tibber_prices() {
     rm "$file"
     exit 1
   fi
-  
+
 
 }
 
@@ -405,7 +412,7 @@ download_entsoe_prices() {
   local file="$2"
   local output_file="$3"
   local sleep_time="$4"
-  
+
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
@@ -607,7 +614,7 @@ if (( select_pricing_api == 1 )); then
     echo "I: Fetching today-data data from aWATTar."
     download_awattar_prices "$link1" "$file1" "$file6" $(( RANDOM % 21 + 10 ))
   fi
-  
+
 elif (( select_pricing_api == 2 )); then
   # Test if Entsoe today data exists
   if test -f "$file8"; then
@@ -708,7 +715,7 @@ if (( include_second_day == 1 )); then
       echo "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online."
       rm -f "$file5" "$file9" "$file13"
       download_entsoe_prices "$link5" "$file5" "$file13" $(( RANDOM % 21 + 10 ))
-    fi 
+    fi
 	
   elif (( select_pricing_api == 3 )); then
 
@@ -718,12 +725,12 @@ if (( include_second_day == 1 )); then
       rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
       download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
       sort -t, -k1.9n $file17 >> "$file12"
-    fi 
+    fi
 
   fi
-  
+
 fi # Include second day
-																				 
+
 if (( select_pricing_api == 1 )); then
   Unit="Cent/kWh net"
   get_awattar_prices
