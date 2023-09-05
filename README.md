@@ -18,7 +18,7 @@ By integrating this software, you have the opportunity to contribute to the clea
 - **Custom Rules:** Tailor the software to your needs based on factors like battery capacity, anticipated energy consumption, and predicted sunshine. This opens the door to leveraging cheap wind energy prices at night or during specific periods.
 - **Independent ESS Use:** This software promotes the use of energy storage systems (ESS) even without solar panel installations, adding value for all users, especially during the winter months.
 
-## Data Source and Extensibility
+## Data Source
 
 The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
 The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
