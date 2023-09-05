@@ -16,7 +16,7 @@ By integrating this software, you have the opportunity to contribute to the clea
 - **Renewable Priority:** Ensure your energy consumption aligns with renewable energy availability, avoiding non-renewable sources during periods of low sunlight and wind.
 - **Battery Optimization:** If you own a storage system, the software allows your battery to charge when electricity prices are lower than the feed-in tariff, making the most of cost-effective energy.
 - **Custom Rules:** Tailor the software to your needs based on factors like battery capacity, anticipated energy consumption, and predicted sunshine. This opens the door to leveraging cheap wind energy prices at night or during specific periods.
-- **Independent ESS Use:** This software promotes the use of energy storage systems (ESS) even without solar panel installations, adding value for all users, especially during the winter months.
+- **Independent ESS Use:** This software makes the use of energy storage systems (ESS) even without solar panel installations possible, adding value for all users, especially during the winter months.
 
 ## Data Source
 
