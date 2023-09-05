@@ -17,7 +17,7 @@ Durch die Integration dieser Software haben Sie die Möglichkeit, zur sauberen E
 -   **Erneuerbare Priorität:**Stellen Sie sicher, dass Ihr Energieverbrauch mit der Verfügbarkeit erneuerbarer Energien übereinstimmt, und meiden Sie nicht erneuerbare Energiequellen in Zeiten geringer Sonneneinstrahlung und wenig Wind.
 -   **Batterieoptimierung:**Wenn Sie über ein Speichersystem verfügen, ermöglicht die Software das Aufladen Ihrer Batterie, wenn die Strompreise unter dem Einspeisetarif liegen, und nutzen so kostengünstige Energie.
 -   **Benutzerdefinierte Regeln:**Passen Sie die Software anhand von Faktoren wie Batteriekapazität, voraussichtlichem Energieverbrauch und vorhergesagtem Sonnenschein an Ihre Bedürfnisse an. Dies eröffnet die Möglichkeit, nachts oder zu bestimmten Zeiten günstige Windenergiepreise zu nutzen.
--   **Unabhängige ESS-Nutzung:**Diese Software fördert die Nutzung von Energiespeichersystemen (ESS) auch ohne Solarpanel-Installationen und bietet so einen Mehrwert für alle Nutzer, insbesondere in den Wintermonaten.
+-   **Unabhängige ESS-Nutzung:**Diese Software ermöglicht die Nutzung von Energiespeichersystemen (ESS) auch ohne Solarpanel-Installationen und bietet so einen Mehrwert für alle Nutzer, insbesondere in den Wintermonaten.
 
 ## Datenquelle
 
