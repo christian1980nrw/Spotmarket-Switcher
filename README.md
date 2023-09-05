@@ -10,7 +10,7 @@ The primary goal of this software is to empower your system to respond to spot-m
 
 ## What This Software Offers
 
-For those who operate in environments with dynamic electricity prices, particularly in Europe where next-day price fluctuations are commonplace due to energy spot-markets, this software is a valuable asset. Popular energy providers like [Tibber referral link](https://tibber.com/de/invite/ojgfbx2e) or [aWATTar](https://www.awattar.com) relay these real-time price levels to end-users, enabling more economical and sustainable energy consumption.
+For those who operate in environments with dynamic electricity prices, particularly in Europe where next-day price fluctuations are commonplace due to energy spot-markets, this software is a valuable asset. Popular energy providers like [Tibber (referral link)](https://tibber.com/de/invite/ojgfbx2e) or [aWATTar](https://www.awattar.com) relay these real-time price levels to end-users, enabling more economical and sustainable energy consumption.
 
 By integrating this software, you have the opportunity to contribute to the clean energy cause or simply optimize your energy use. For instance:
 - **Renewable Priority:** Ensure your energy consumption aligns with renewable energy availability, avoiding non-renewable sources during periods of low sunlight and wind.
@@ -77,7 +77,7 @@ If you find this project valuable, please consider sponsoring and supporting fur
 - [Revolut](https://revolut.me/christqki2)
 - [PayPal](https://paypal.me/christian1980nrw)
 
-Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber referral link](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a tracker like Pulse [available here](https://tibber.com/de/store/produkt/pulse-ir) is required for an hourly tariff.
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a tracker like Pulse [available here](https://tibber.com/de/store/produkt/pulse-ir) is required for an hourly tariff.
 
 If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project through this [Octopus Energy referral link](https://share.octopusenergy.de/glass-raven-58) and receive a 50 euro bonus for yourself and the project.
 Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
