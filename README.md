@@ -57,17 +57,14 @@ For instructions on accessing the Venus OS, please refer to [https://www.victron
 ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 - If you're using another OS:
-  1. Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
-  2. Create a crontab or another scheduling method to run this script at the start of each hour.
-
-### Sample Crontab
-
-Use the following crontab entry to execute the control script every hour:
-
-Open your terminal and enter `crontab -e`, then insert the following line:
-```
-0 * * * * /path/to/controller.sh
-```
+  - Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
+  - Create a crontab or another scheduling method to run this script at the start of each hour.
+  - Sample Crontab:
+      Use the following crontab entry to execute the control script every hour:
+      Open your terminal and enter `crontab -e`, then insert the following line:
+      ```
+      0 * * * * /path/to/controller.sh
+      ```
 
 ### Support and Contribution
 
