@@ -10,7 +10,7 @@ The primary goal of this software is to empower your system to respond to spot-m
 
 ## What This Software Offers
 
-For those who operate in environments with dynamic electricity prices, particularly in Europe where next-day price fluctuations are commonplace due to energy spot-markets, this software is a valuable asset. Popular energy providers like [Tibber](https://www.tibber.com) or [aWATTar](https://www.awattar.com) relay these real-time price levels to end-users, enabling more economical and sustainable energy consumption.
+For those who operate in environments with dynamic electricity prices, particularly in Europe where next-day price fluctuations are commonplace due to energy spot-markets, this software is a valuable asset. Popular energy providers like [Tibber referral link](https://tibber.com/de/invite/ojgfbx2e) or [aWATTar](https://www.awattar.com) relay these real-time price levels to end-users, enabling more economical and sustainable energy consumption.
 
 By integrating this software, you have the opportunity to contribute to the clean energy cause or simply optimize your energy use. For instance:
 - **Renewable Priority:** Ensure your energy consumption aligns with renewable energy availability, avoiding non-renewable sources during periods of low sunlight and wind.
@@ -20,15 +20,9 @@ By integrating this software, you have the opportunity to contribute to the clea
 
 ## Data Source and Extensibility
 
-The software currently utilizes EPEX Spot DE-LU hourly prices provided by a Middle European energy provider. However, our vision extends beyond this horizon. We encourage contributions to extend the software's capabilities to embrace analogous services across other continents. If you're interested in enhancing the software's versatility, please help out with patches to incorporate pricing data from different regions.
-
-For those wishing to delve into the API integration, you can find essential information about using the API on our reference website: [aWATTar API Documentation](https://www.awattar.de/services/api). It's noteworthy that the API is free for the provider's customers, adhering to the fair use principle. An access token isn't currently required. Alternatively, the free Entso-E API, which covers all of Europe, can be employed.
-
-## Visualizing Electricity Prices
-
-To gain insights into electricity prices and make informed decisions, consider referring to the [Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). This platform allows you to visualize and analyze day-ahead prices with a resolution of PT60M. Stay empowered by staying informed.
-
-We hope this software brings added intelligence and efficiency to your energy setup. Let's work together towards a smarter, more sustainable energy future!
+The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
+The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
+Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). 
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
@@ -86,6 +80,7 @@ If you find this project valuable, please consider sponsoring and supporting fur
 Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber referral link](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a tracker like Pulse [available here](https://tibber.com/de/store/produkt/pulse-ir) is required for an hourly tariff.
 
 If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project through this [Octopus Energy referral link](https://share.octopusenergy.de/glass-raven-58) and receive a 50 euro bonus for yourself and the project.
+Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
 ## Disclaimer
 
