@@ -33,7 +33,7 @@ Setting up the Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Sw
 
 1. Download the install script from the GitHub repository by using [this hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
    ```
-   wget https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/victron-venus-os-install.sh
+   wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
    ```
 
 2. Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
