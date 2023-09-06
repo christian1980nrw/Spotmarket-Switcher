@@ -4,7 +4,7 @@
 
 [dänisch](README.da.md)-[Deutsch](README.de.md)-[Niederländisch](README.nl.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[norwegisch](README.no.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)
 
-## Willkommen im Spotmarket-Switcher-Repository!
+## Welcome to the Spotmarket-Switcher repository!
 
 Was macht diese Software?
 Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen dynamischen Energiepreise niedrig sind.
@@ -12,7 +12,7 @@ Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schalt
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
--   Shelly-Produkte (wie z[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus 13 Uhr](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-Produkte (wie z[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   Einkaufszentrum[Fritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)Und[210](https://avm.de/produkte/smart-home/fritzdect-210/)schaltbare Steckdosen
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie die MultiPlus-II-Serie
 
@@ -36,7 +36,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
 Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber an andere Linux-Varianten angepasst werden kann, wie Debian/Ubuntu auf einem Raspberry Pi oder einem anderen kleinen Board. Ein Spitzenkandidat ist das sicherlich[OpenWRT](https://www.openwrt.org). Für Testzwecke ist die Verwendung eines Desktop-Rechners in Ordnung, im 24/7-Einsatz ist jedoch der höhere Stromverbrauch besorgniserregend.
 
@@ -53,9 +53,9 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 -   Wenn Sie ein anderes Betriebssystem verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
-    -   Beispiel-Crontab:
-          Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
-          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, dann fügen Sie die folgende Zeile ein:
             0 * * * * /path/to/controller.sh
 
 ### Unterstützung und Beitrag
@@ -73,4 +73,4 @@ Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit h
 
 ## Haftungsausschluss
 
-Bitte beachten Sie die Nutzungsbedingungen unter<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Please note the terms of use at <https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
