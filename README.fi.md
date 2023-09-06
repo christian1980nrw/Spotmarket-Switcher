@@ -47,7 +47,7 @@ Katso ohjeet Venus-käyttöjärjestelmän käyttämiseen osoitteesta<https://www
 ### Asennuskomentosarjan suorittaminen
 
 -   Jos käytät Victron Venus OS:ää:
-    -   Suorituksen jälkeen`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
+    -   Suorituksen jälkeen`victron-venus-os-install.sh`, muokkaa muuttujia tekstieditorilla`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Aseta ESS-latausaikataulu (katso mukana tulevaa kuvakaappausta). Esimerkissä akku latautuu yöllä jopa 50 %, jos se on aktivoitu, muut vuorokauden latausajat jätetään huomiotta. Jos et halua, luo aikataulu kaikille vuorokauden 24 tunnille. Muista poistaa se käytöstä luomisen jälkeen. Varmista, että järjestelmän aika (kuten näytön oikeassa yläkulmassa näkyy) on oikea.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määrittäminä aikoina. Oletusarvoisesti poistettu käytöstä, komentosarja voi aktivoida sen tilapäisesti.
