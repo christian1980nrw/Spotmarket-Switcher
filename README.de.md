@@ -2,15 +2,21 @@
 
 ## README-Übersetzung
 
--   [Englisch](README.md)-[Deutsch](README.de.md)-[Französisch](README.fr.md)-[Spanisch](README.es.md)-[Schwedisch](README.sv.md)-[norwegisch](README.no.md)-[Dansk](README.da.md)
+-   [Englisch](README.md)-[Deutsch](README.de.md)-[Französisch](README.fr.md)-[Spanisch](README.es.md)-[Schwedisch](README.sv.md)-[norwegisch](README.no.md)-[dänisch](README.da.md)
 
-Willkommen im Spotmarket-Switcher-Repository! Diese Software wurde entwickelt, um die Funktionalität Ihres Energiesystems durch die Integration von Folgendem zu verbessern:
+Willkommen im Spotmarket-Switcher-Repository!
 
--   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme
+Was macht diese Software?
+Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen Energiepreise niedrig sind.
+Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
+Unterstützte Systeme sind derzeit:
+
 -   Shelly-Produkte (wie Shelly Plug S oder Shelly Plus1PM)
 -   AVM Fritz!DECT200 und 210 schaltbare Steckdosen
+-   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie Multiplus II.
 
-Das Hauptziel dieser Software besteht darin, Ihr System in die Lage zu versetzen, auf Spotmarkt-Strompreise zu reagieren und so intelligente Entscheidungen wie das Laden der Batterie und die Stromaktivierung auf der Grundlage von Zeiträumen mit niedrigen Preisen zu treffen. Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
+Der Code ist einfach, sodass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
+Bitte werfen Sie einen Blick auf die ersten Zeilen der Datei controller.sh, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
 
 ## Datenquelle
 
@@ -31,7 +37,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
-Please note that while this software is currently optimized for the Venus OS, it can be adapted to other setups, such as controlling household devices via IP switches. Future development might enhance compatibility with other systems.
+Bitte beachten Sie, dass diese Software derzeit zwar für das Venus OS optimiert ist, aber an andere Setups angepasst werden kann, beispielsweise die Steuerung von Haushaltsgeräten über IP-Switches. Zukünftige Entwicklungen könnten die Kompatibilität mit anderen Systemen verbessern.
 
 ### Zugriff auf Venus OS
 
