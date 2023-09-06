@@ -17,7 +17,7 @@ Les systèmes pris en charge sont actuellement :
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme Multiplus II.
 
 Le code est simple et peut facilement être adapté à d'autres systèmes de stockage d'énergie si vous êtes capable de contrôler la charge à l'aide de commandes du shell Linux.
-Veuillez jeter un œil aux premières lignes du fichier contrôleur.sh afin de voir ce qui peut être configuré par l'utilisateur.
+Veuillez jeter un œil sous la ligne 100 du fichier controller.sh afin de voir ce qui peut être configuré par l'utilisateur.
 
 ## La source de données
 
