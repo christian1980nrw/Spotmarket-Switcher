@@ -2,7 +2,7 @@
 
 ## Traducción LÉAME
 
-[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Greek ](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[sueco](README.sv.md)
+[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md) - [sueco](README.sv.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -12,7 +12,7 @@ Luego puede usar los enchufes para encender un tanque de agua caliente de manera
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
 
--   Productos Shelly (como[Tapón Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)o[Shelly Plus 13:00](https://shellyparts.de/products/shelly-plus-1pm))
+-   Productos Shelly (como[Tapón Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)o[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   centro comercial[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
 -   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como la serie MultiPlus-II
 
