@@ -2,7 +2,7 @@
 
 ## Traducción LÉAME
 
-[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[sueco](README.sv.md)
+[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[English ](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[sueco](README.sv.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -12,9 +12,9 @@ Luego puede usar los enchufes para encender un tanque de agua caliente de manera
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
 
--   Productos Shelly (como Shelly Plug S o Shelly Plus1PM)
--   AVM Fritz!DECT200 y 210 enchufes conmutables
--   [victron](https://www.victronenergy.com/)Sistemas de Almacenamiento de Energía Venus OS como Multiplus II.
+-   Productos Shelly (como[Tapón Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)o[Shelly Plus13:00](https://shellyparts.de/products/shelly-plus-1pm))
+-   centro comercial[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
+-   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como la serie MultiPlus-II
 
 El código es simple, por lo que puede adaptarse fácilmente a otros sistemas de almacenamiento de energía si puede controlar la carga mediante comandos de shell de Linux.
 Eche un vistazo debajo de la línea 100 del archivo controlador.sh para que pueda ver qué puede configurar el usuario.
@@ -38,7 +38,7 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
 
-Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otros dispositivos Linux como Raspberry PI. El desarrollo futuro podría mejorar la compatibilidad con otros sistemas.
+Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otras versiones de Linux, como Debian/Ubuntu en una Raspberry Pi u otra placa pequeña. Un candidato principal es sin duda[AbiertoWRT](https://www.openwrt.org). Usar una máquina de escritorio está bien para fines de prueba, pero cuando se usa las 24 horas del día, los 7 días de la semana, su mayor consumo de energía es motivo de preocupación.
 
 ### Acceso al sistema operativo Venus
 
@@ -49,7 +49,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 -   Si está utilizando el sistema operativo Victron Venus:
     -   Ejecutar`victron-venus-os-install.sh`para descargar e instalar Spotmarket-Switcher.
     -   Edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada; se ignoran otros momentos de carga del día. Si no lo desea, cree un horario para las 24 horas del día. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la captura de pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada; se ignoran otros momentos de carga del día. Si no lo desea, cree un horario para las 24 horas del día. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la parte superior derecha de la pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Carga automatizada en momentos con costos típicos de baja energía. Desactivado de forma predeterminada, puede activarse temporalmente mediante el script._
 
 -   Si estás usando otro sistema operativo:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
