@@ -4,11 +4,11 @@
 
 [dinamarquês](README.da.md)-[Alemão](README.de.md)-[Holandês](README.nl.md)-[Inglês](README.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[norueguês](README.no.md)-[Português](README.pt.md)-[Espanhol](README.es.md)-[sueco](README.sv.md)
 
-Bem-vindo ao repositório Spotmarket-Switcher!
+## Bem-vindo ao repositório Spotmarket-Switcher!
 
 O que este software está fazendo?
-Este é um script de shell do Linux e liga o carregador de bateria e/ou tomadas comutáveis ​​​​no momento certo se os preços de energia por hora estiverem baixos.
-Você pode então usar as tomadas para usar um tanque de água quente, por exemplo, de forma muito mais barata ou carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
+Este é um script de shell do Linux e liga o carregador de bateria e / ou tomadas comutáveis ​​​​no momento certo se os preços de energia dinâmica baseados em hora estiverem baixos.
+Você pode então usar as tomadas para usar um tanque de água quente, por exemplo, muito mais barato ou carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
 
@@ -49,12 +49,12 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Executar`victron-venus-os-install.sh`para baixar e instalar o Spotmarket-Switcher.
     -   Edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado na captura de tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado na captura de tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Se você estiver usando outro sistema operacional:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de Crontab:
+    -   Exemplo de crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:
             0 * * * * /path/to/controller.sh
