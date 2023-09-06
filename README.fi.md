@@ -8,7 +8,7 @@
 
 Mitä tämä ohjelmisto tekee?
 Tämä on linux-shell-skripti, joka käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
-Pistorasioiden avulla voit sitten käyttää esimerkiksi lämminvesivaraajaa paljon edullisemmin tai ladata akkuvaraston automaattisesti yöllä, kun verkkoon on saatavilla halpaa tuulienergiaa.
+Pistorasiasta voi sitten kytkeä esimerkiksi lämminvesivaraajan päälle paljon halvemmalla tai ladata akkuvaraston automaattisesti yöllä, kun verkkoon on saatavilla halpaa tuulienergiaa.
 Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti varatun akkuvaraston kautta.
 Tuetut järjestelmät ovat tällä hetkellä:
 
