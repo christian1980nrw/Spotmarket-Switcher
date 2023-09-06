@@ -8,7 +8,7 @@
 
 Wat doet deze software?
 Dit is een Linux shell-script waarmee u uw batterijlader en/of schakelbare stopcontacten op het juiste moment kunt inschakelen als uw uurgebaseerde dynamische energieprijzen laag zijn.
-Je kunt de stopcontacten dan gebruiken om bijvoorbeeld veel goedkoper een warmwatertank te gebruiken of de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het net beschikbaar is.
+Via de stopcontacten kun je dan bijvoorbeeld veel goedkoper een warmwatertank aanzetten of je kunt de accu-opslag 's nachts automatisch opladen als er goedkope windenergie op het net beschikbaar is.
 Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
 Ondersteunde systemen zijn momenteel:
 
