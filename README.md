@@ -10,7 +10,7 @@ The primary goal of this software is to empower your system to respond to spot-m
 
 ## What This Software Offers
 
-For those who operate in environments with dynamic electricity prices, particularly in Europe where next-day price fluctuations are commonplace due to energy spot-markets, this software is a valuable asset. Some energy providers forward these real-time price levels to end-users, enabling more economical and sustainable energy consumption.
+For those who use dynamic electricity prices, this software is a valuable asset.
 
 By integrating this software, you have the opportunity to contribute to the clean energy cause or simply optimize your energy use. For instance:
 - **Renewable Priority:** Ensure your energy consumption aligns with renewable energy availability, avoiding non-renewable sources during periods of low sunlight and wind.
