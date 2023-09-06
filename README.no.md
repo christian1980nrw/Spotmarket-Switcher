@@ -2,7 +2,7 @@
 
 ## README Oversettelse
 
-[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
+[Dansk ](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -12,7 +12,7 @@ Du kan da bruke stikkontaktene til å skru på en varmtvannsbeholder mye billige
 Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
 Støttede systemer er for øyeblikket:
 
--   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus1PM](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus kl. 13.00](https://shellyparts.de/products/shelly-plus-1pm))
 -   kjøpesenter[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som MultiPlus-II-serien
 
