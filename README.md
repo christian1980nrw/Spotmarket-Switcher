@@ -72,7 +72,7 @@ If you find this project valuable, please consider sponsoring and supporting fur
 - [Revolut](https://revolut.me/christqki2)
 - [PayPal](https://paypal.me/christian1980nrw)
 
-Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a tracker like [Pulse](https://tibber.com/de/store/produkt/pulse-ir) is required for an hourly tariff.
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a tracker like[ Pulse-IR ](https://tibber.com/de/store/produkt/pulse-ir)is required for an hourly tariff.
 
 If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project through this [Octopus Energy referral link](https://share.octopusenergy.de/glass-raven-58) and receive a 50 euro bonus for yourself and the project.
 Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
