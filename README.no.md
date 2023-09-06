@@ -2,13 +2,7 @@
 
 ## README Oversettelse
 
--   [Engelsk](README.md)
--   [tysk](README.de.md)
--   [fransk](README.fr.md)
--   [spansk](README.es.md)
--   [svensk](README.sv.md)
--   [Norwegian](README.no.md)
--   [dansk](README.da.md)
+-   [Engelsk](README.md)-[tysk](README.de.md)-[fransk](README.fr.md) - [spansk](README.es.md)-[svensk](README.sv.md)-[Norwegian](README.no.md)-[dansk](README.da.md)
 
 Velkommen til Spotmarket-Switcher-depotet! Denne programvaren er utviklet for å forbedre funksjonaliteten til energioppsettet ditt ved å integrere:
 
@@ -20,7 +14,7 @@ Hovedmålet med denne programvaren er å gjøre systemet ditt i stand til å sva
 
 ## Datakilde
 
-Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis APIer (Tibber, aWATTar & Entso-E).
+Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
 Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
@@ -51,7 +45,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
     -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist på skjermbildet) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Hvis du bruker et annet OS:
-    -   Copy the shell script (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
+    -   Kopier skallskriptet (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
     -   Opprett en crontab eller en annen planleggingsmetode for å kjøre dette skriptet ved starten av hver time.
     -   Eksempel på Crontab:
           Bruk følgende crontab-oppføring for å utføre kontrollskriptet hver time:
@@ -65,7 +59,7 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-I tillegg, hvis du er i Tyskland og er interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Både du og prosjektet vil motta en bonus på 50 euro for maskinvare. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
+I tillegg, hvis du er i Tyskland og er interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e). Både du og prosjektet vil motta en bonus på 50 euro for maskinvare. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
 Du mottar en bonus på 50 euro for deg selv og også for prosjektet.
