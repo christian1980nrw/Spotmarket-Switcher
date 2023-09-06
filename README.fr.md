@@ -4,7 +4,7 @@
 
 [danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)
 
-## Bienvenue dans le référentiel Spotmarket-Switcher !
+## Welcome to the Spotmarket-Switcher repository!
 
 Que fait ce logiciel ?
 Il s'agit d'un script shell Linux qui allume votre chargeur de batterie et/ou vos prises commutables au bon moment si vos prix horaires d'énergie dynamiques sont bas.
@@ -49,7 +49,8 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 -   Si vous utilisez le système d'exploitation Victron Venus :
     -   Exécuter`victron-venus-os-install.sh`pour télécharger et installer Spotmarket-Switcher.
     -   Modifiez les variables avec un éditeur de texte dans`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configurez un calendrier de charge ESS (reportez-vous à la capture d'écran fournie). Dans l'exemple, la batterie se charge la nuit jusqu'à 50 % si elle est activée, les autres moments de charge de la journée sont ignorés. Si vous ne le souhaitez pas, créez un horaire pour les 24 heures de la journée. Pensez à le désactiver après la création. Vérifiez que l'heure du système (comme indiqué dans la capture d'écran) est exacte.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the screenshot) is accurate.
+        ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Si vous utilisez un autre système d'exploitation :
     -   Copiez le script shell (`controller.sh`) vers un emplacement personnalisé et ajustez les variables en fonction de vos besoins.
