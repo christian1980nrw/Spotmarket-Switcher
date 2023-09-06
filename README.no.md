@@ -36,7 +36,7 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
 
 2.  Kjør installasjonsskriptet med flere alternativer for å forberede alt i en underkatalog for inspeksjonen din. For eksempel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Hvis du bruker Victron Venus OS, bør riktig DESTDIR være`/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
+    Hvis du bruker Victron Venus OS, bør riktig DESTDIR være`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
 
 Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses andre linux-enheter som en Raspberry PI. Fremtidig utvikling kan forbedre kompatibiliteten med andre systemer.
 
@@ -49,7 +49,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 -   Hvis du bruker Victron Venus OS:
     -   Henrette`victron-venus-os-install.sh`for å laste ned og installere Spotmarket-Switcher.
     -   Rediger variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist på skjermbildet) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist på skjermbildet) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Hvis du bruker et annet OS:
     -   Kopier skallskriptet (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
