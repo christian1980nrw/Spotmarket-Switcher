@@ -8,11 +8,12 @@ Bienvenue dans le référentiel Spotmarket-Switcher !
 
 Que fait ce logiciel ?
 Il s'agit d'un script shell Linux qui allume votre chargeur de batterie et/ou vos prises commutables au bon moment si vos prix horaires de l'énergie sont bas.
+Sie können dann mit den Steckdosen beispielsweise einen Warmwasserspeicher viel günstiger nutzen.
 Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
 Les systèmes pris en charge sont actuellement :
 
 -   Produits Shelly (tels que Shelly Plug S ou Shelly Plus1PM)
--   AVM Fritz!DECT200 et 210 prises commutables
+-   AVM Fritz!DECT200 and 210 switchable sockets
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme Multiplus II.
 
 Le code est simple et peut facilement être adapté à d'autres systèmes de stockage d'énergie si vous êtes capable de contrôler la charge à l'aide de commandes du shell Linux.
