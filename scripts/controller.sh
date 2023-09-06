@@ -173,7 +173,14 @@ switchablesockets_at_fifth_lowest_price=0
 charge_at_sixth_lowest_price=0
 switchablesockets_at_sixth_lowest_price=0
 TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=1 # Set to 1 for aWATTar or 2 for entsoe or 3 for Tibber / aWATTar: only germany DE-LU or Austrian AT prices, but no API key needed / Entsoe: Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
+select_pricing_api=1 # Set to
+# 1 for aWATTar or
+# 2 for entsoe or
+# 3 for Tibber
+#
+# Note:
+#   aWATTar: Provides only germany DE-LU or Austrian AT prices, but no API key needed
+#   Entsoe:  Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
 include_second_day=0 # Set to 0 to compare only the today prices.
 # Set include_second_day to 1 to compare today & tomorrow prices if they become available (today in the afternoon).
 # Please note: If you activate this and the prices decrease over several days,
@@ -183,12 +190,12 @@ include_second_day=0 # Set to 0 to compare only the today prices.
 use_solarweather_api_to_abort=0
 abort_solar_yield_today=4.5 # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
 abort_solar_yield_tomorrow=5.5 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
-#To find the kilowatt hour value from megajoules, divide by 3.6.
+# To find the kilowatt hour value from megajoules, divide by 3.6.
 abort_suntime=700 # Abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
 latitude=51.530600 # Your location
 longitude=7.860575
-#You can use Google Maps to find the latitude and longitude of a location by searching for the address or location and then right-clicking
-#on the location on the map. A pop-up menu will appear with the option to "What's here?" which will display the latitude and longitude of that location.
+# You can use Google Maps to find the latitude and longitude of a location by searching for the address or location and then right-clicking
+# on the location on the map. A pop-up menu will appear with the option to "What's here?" which will display the latitude and longitude of that location.
 visualcrossing_api_key=YOURAPIKEY # Get your free key at https://www.visualcrossing.com/sign-up No credit card is required to sign up for your free 1000 records per day.
 
 # Awattar API setup
@@ -199,20 +206,26 @@ awattar=de # Set to de for Germany or at for Austria (no other countrys availabl
 in_Domain=10Y1001A1001A82H # this is for Germany DE-LU
 out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
 entsoe_eu_api_security_token=YOURAPIKEY
-# How to get the free api_security_token: Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account. After that
-# send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
-# Indicate the email address you entered during registration in the email body.
-# The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
-# After That you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
+# How to get the free api_security_token:
+#  1. Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account.
+#  2. Send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
+#     Indicate the email address you entered during registration in the email body.
+#  3. The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
+#  4. Afterwards you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
 # The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
 
 # Tibber API setup
-# To get the tibber_api_key please log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token . After that create a token by selecting the scopes you need (select "price").
-# Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
-# Currently no contract is needed to create a free Account that is able to access the API.
-# Put your API Key into the function below.
+# To get the tibber_api_key
+#  1. log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token .
+#  2. Create a token by selecting the scopes you need (select "price").
+#  3. Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
+#     Currently no contract is needed to create a free Account that is able to access the API.
+#  4. Put your API Key into the function below.
 
-tibber_prices=energy # Set to "energy" to use the spotmarket-prices (default), set to "total" to use the total prices including taxes and fees, set to "tax" to use only the taxes and fees
+tibber_prices=energy # Set to
+#  "energy" to use the spotmarket-prices (default), set to
+#  "total" to use the total prices including taxes and fees, set to
+#  "tax" to use only the taxes and fees
 
 get_tibber_api() {
     curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
@@ -378,6 +391,8 @@ download_tibber_prices() {
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
+  else
+    echo "D: No delay of download of Tibber data since DEBUG variable set."
   fi
   if ! get_tibber_api | tr -d '{}[]' > "$file"; then
     echo "E: Download of Tibber prices from '$url' to '$file' failed."
@@ -403,8 +418,6 @@ download_tibber_prices() {
     rm "$file"
     exit 1
   fi
-
-
 }
 
 download_entsoe_prices() {
@@ -416,6 +429,8 @@ download_entsoe_prices() {
   if [ -z "$DEBUG" ]; then
     echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
     sleep "$sleep_time"
+  else
+    echo "D: No delay of download of entsoe data since DEBUG variable set."
   fi
 
   if ! curl "$url" > "$file"; then
@@ -472,9 +487,14 @@ awk '
 
 function download_solarenergy {
   if (( use_solarweather_api_to_abort == 1 )); then
-    echo "I: Please be patient. First we wait some seconds so that we will not overload the Solarweather-API."
-    # Delaying a random time <=15s to reduce impact on site - download is not time-critical
-    sleep $(( RANDOM % 15 + 1 ))
+    delay=$(( RANDOM % 15 + 1 ))
+    if [ -z "$DEBUG" ]; then
+      echo "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API."
+      # Delaying a random time <=15s to reduce impact on site - download is not time-critical
+      sleep "$delay"
+    else
+      echo "D: No delay of download of solarenergy data since DEBUG variable set."
+    fi
     if ! curl "$link3" -o "$file3"; then
       echo "E: Download of solarenergy data from '$link3' failed."
       exit 1
@@ -623,14 +643,14 @@ elif (( select_pricing_api == 2 )); then
     if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
       echo "I: Entsoe today-data is up to date."
     else
-	  echo "I: Entsoe today-data is outdated, fetching new data."
+      echo "I: Entsoe today-data is outdated, fetching new data."
       rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
       download_entsoe_prices "$link4" "$file4" "$file10" $(( RANDOM % 21 + 10 ))
     fi
   else # Entsoe data does not exist
-        echo "I: Fetching today-data data from Entsoe."
+      echo "I: Fetching today-data data from Entsoe."
       download_entsoe_prices "$link4" "$file4" "$file10" $(( RANDOM % 21 + 10 ))
-  fi											
+  fi
 
 elif (( select_pricing_api == 3 )); then
 
@@ -646,11 +666,10 @@ elif (( select_pricing_api == 3 )); then
       download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
     fi
   else # Tibber data does not exist
-        echo "I: Fetching today-data data from Tibber."
+    echo "I: Fetching today-data data from Tibber."
     download_tibber_prices "$link6" "$file14" $(( RANDOM % 21 + 10 ))
-  fi											
+  fi
 fi
-
 
 function euroToMillicent {
   euro="$1"
@@ -707,7 +726,7 @@ if (( include_second_day == 1 )); then
       echo "I: aWATTar tomorrow-data does not exist, fetching data."
       download_awattar_prices "$link2" "$file2" "$file6" $(( RANDOM % 21 + 10 ))
     fi
-					
+
   elif (( select_pricing_api == 2 )); then
 
     # Test if Entsoe tomorrow data exists
@@ -716,7 +735,7 @@ if (( include_second_day == 1 )); then
       rm -f "$file5" "$file9" "$file13"
       download_entsoe_prices "$link5" "$file5" "$file13" $(( RANDOM % 21 + 10 ))
     fi
-	
+
   elif (( select_pricing_api == 3 )); then
 
     if [ ! -s "$file18" ]; then
