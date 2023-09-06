@@ -2,7 +2,7 @@
 
 ## Traduction du fichier README
 
-[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md) - [Portugais](README.pt.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)
+[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
