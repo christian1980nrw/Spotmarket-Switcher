@@ -1,23 +1,93 @@
-name: Shell Script CI (dev branch only)
-
+name: basic
 on:
   push:
-    branches:
-      - dev
   pull_request:
-    branches:
-      - dev
-
 jobs:
-  lint:
+  yamllint:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install yamllint
+        run: sudo apt-get install yamllint
+      - name: Yamllint all YAML files
+        run: |
+          yamllint .github/workflows/*.yml | \
+            grep -v line-length | \
+            grep error && failure || echo "No errors found."
+  shellcheck:
+    runs-on: ubuntu-latest
+    container:
+      image: koalaman/shellcheck-alpine
+      options: --cpus 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Check for dockerenv file
+        run: |
+          (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+      - name: Show shellcheck version
+        run: |
+          shellcheck --version
+      - name: Lint all shell scripts
+        run: |
+          # https://github.com/koalaman/shellcheck/blob/master/shellcheck.1.md
+          if ! shellcheck \
+             victron-venus-os-install.sh scripts/controller.sh scripts/run
+          then
+            ret=$?
+            if [ "0" = "$ret" ]; then
+              echo "$ret: All files successfully scanned with no issues."
+              echo "   Well done, just maybe the return code is not processed properly?!"
+            elif [ "1" = "$ret" ]; then
+              echo "1: All files successfully scanned with some issues."
+              echo "   Good enough!"
+            elif [ "2" = "$ret" ]; then
+              echo "2: Some files could not be processed."
+              exit $ret
+            elif [ "3" = "$ret" ]; then
+              echo "3: ShellCheck was invoked with bad syntax."
+              exit $ret
+            elif [ "4" = "$ret" ]; then
+              echo "4: ShellCheck was invoked with bad options."
+              exit $ret
+            else
+              echo "E: SpellCheck exited with unexpected return code '$ret'."
+              exit $ret
+            fi
+          else
+            echo "$ret: All files successfully scanned with no issues."
+            echo "   Well done!"
+          fi
+  execute:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Install ShellCheck
-      run: sudo apt-get install shellcheck
-
-    - name: Lint all shell scripts
-      run: find . -name "*.sh" | xargs shellcheck
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Extend default set of UNIX tools
+        run: |
+          if [ "ubuntu-latest" = ${{ matrix.os }} ]; then
+            sudo apt-get install wget curl dbus sed gawk
+          else
+            echo "I: Nothing to install for ${{ matrix.os }}"
+          fi
+      - name: Install
+        run: ./victron-venus-os-install.sh
+        env:
+          DEBUG: 1
+          DESTDIR: /tmp/testing
+      - name: Control
+        run: scripts/controller.sh
+        env:
+          DEBUG: 1
+          LOG_FILE: /tmp/testing_controller.log
+      - name: Run
+        run: scripts/run
+        env:
+          DEBUG: 1
+          rc_local_file: /tmp/testing_rc.local

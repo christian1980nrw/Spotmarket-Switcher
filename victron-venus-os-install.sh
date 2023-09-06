@@ -1,67 +1,257 @@
 #!/bin/sh
 
+License=$(cat <<EOLICENSE
+   MIT License
+
+   Copyright (c) 2023 christian1980nrw
+
+   Permission is hereby granted, free of charge, to any person obtaining
+   a copy of this software and associated documentation files (the
+   "Software"), to deal in the Software without restriction, including
+   without limitation the rights to use, copy, modify, merge, publish,
+   distribute, sublicense, and/or sell copies of the Software, and to
+   permit persons to whom the Software is furnished to do so, subject to
+   the following conditions:
+
+   The above copyright notice and this permission notice shall be included
+   in all copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+   NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+   OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
+   THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+EOLICENSE
+)
+
 set -e
 
-INSTALLDIR="/"
-
-if [ -z "$INSTALLDIR" ]; then
-    echo "E: INSTALLDIR is not set."
-    exit 1
+if [ -z "$LANG" ]; then
+  export LANG=C
 fi
 
-if ! mkdir -p $INSTALLDIR/data/etc/Spotmarket-Switcher/service ; then
-    echo "E: Could not create service directory '$INSTALLDIR/data/etc/Spotmarket-Switcher/service'."
-    exit 1
+if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
+  if echo "$LANG" | grep -qi "^de" ; then
+    cat <<EOHILFE
+OPTIONEN
+
+ -h | --help - Zeigt diese Hilfe
+
+UMGEBUNGSVARIABLEN
+
+  DEBUG - Für dieses Skript nicht relevant.
+
+  SRCDIR - Verzeichnis, in dem die zur installierenden Skripte 'run' und 'controller.sh' erwartet werden.
+
+  BRANCH - Der Branch des GitHub repository, in dem  die zu installierenden Skripte liegen - voreingestellt auf 'main', gern auch 'dev'.
+
+  DESTDIR - Pfad der den zu installierenden Dateien vorangestellt wird. So könnte beispielsweise in ein chroot Verzeichnis oder ein gemountetes Venus OS image installiert werden.
+
+  NO_REBOOT - Wenn gesetzt, so wird noch der Installation nicht neu gestartet.
+
+  LOG_FILE - Datei, über die alle Ereignisse mitprotokolliert werden. Kann gegebenenfallse auf /dev/null gesetzt werden.
+
+LIZENZ
+
+$License
+
+AUTOR
+
+  Christian
+EOHILFE
+  else
+    cat <<EOHELP
+
+DESCRIPTION
+
+OPTIONS
+
+   -h | --help - Shows this help.
+
+ENVIRONMENT
+
+  DEBUG - Of minimal effect for this script, gives extra information on the file structure.
+
+  SRCDIR - Directory in which to expect the scripts run and controller.sh that are to be installed.
+
+  BRANCH - When downloading new versions of that script, the branch on GitHub from which the scripts shall be downloaded - usually 'main' (default) or 'dev'.
+
+  DESTDIR - Path that is preprended to the regular path of the installation, e.g. to facilitate the installation into a chroot environment, the DESTDIR variable would specify the file path to that changed root.
+
+  NO_REBOOT - If set, not reboot is initiated at the end of the install script.
+
+  LOG_FILE - File to which all events are logged, may be set to /dev/null.
+
+LICENSE
+
+$License
+
+AUTHOR
+
+  Christian
+EOHELP
+  fi
+
+  exit
+
 fi
 
-wgetOptions="--no-verbose --continue --no-directories --show-progress"
-cd $INSTALLDIR/data/etc/Spotmarket-Switcher
+# Checking preconditions for successful execution
 
-for url in \
-    https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/License.md \
-    https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/README.md \
-    https://github.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/blob/main/sample_apidata_to_debug_in_case_of_apichanges.zip?raw=true \
-    https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/victron-venus-os-install.sh \
-    https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/controller.sh \
-    https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png \
-    https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png
+missing=""
+for tool in sed awk grep
 do
-    echo "I: Downloading '$(basename "$url")'"
-    if ! wget $wgetOptions "$url"; then
-        echo "E: Download of '$(basename "$url")' failed."
-        exit 1
-    fi
+  if ! which "$tool" > /dev/null; then
+    missing="$missing $tool"
+  fi
 done
+if [ -n "$missing" ]; then
+  echo "E: Install the following tools prior to running this install script or the installed scripts: $missing"
+  exit 1
+fi
 
-chmod +x ./controller.sh
+for tool in wget curl
+do
+  if ! which "$tool" > /dev/null; then
+    missing="$missing $tool"
+  fi
+done
+if [ -n "$missing" ]; then
+  echo "W: Install the following tools prior to the execution of the installed scripts: $missing."
+  echo "   Try running 'opkg install $missing'."
+  echo
+  echo "   Now continuing with the installation, which will be fine per se, but you as the user are responsible to get those dependencies installed to prevent the control script from failing. Drop an issue at https://github.com/christian1980nrw/Spotmarket-Switcher/issues if this package shall somehow prepare you better."
+  echo
+fi
 
-cd service
-url=https://raw.githubusercontent.com/christian1980nrw/Victron-ESS__AVM-Fritz-DECT200-210__Spotmarket-Switcher/main/data/etc/Spotmarket-Switcher/service/run
-echo "I: Downloading 'run' script to service subdirectory"
-wget $wgetOptions $url
-chmod +x ./run
 
-if [ ! -d $INSTALLDIR/service ]; then
-    echo "W: The $INSTALLDIR/service directory is not existing."
-    echo "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
-    echo "   Check on https://github.com/christian1980nrw/Victron-ESS__Shelly-Plug-S__AVM-Fritz-DECT200-210__Spotmarket-Switcher/issues if that has already been reported."
+
+# DESTDIR is optionally set as an environment variable.
+if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
+    if which realpath > /dev/null; then
+        RESOLVED_DESTDIR=$(realpath "$DESTDIR")
+        if [ "$RESOLVED_DESTDIR" != "$DESTDIR" ]; then
+            echo "W: The provided installation path ($DESTDIR) is a symbolic link that points to $RESOLVED_DESTDIR."
+            echo "   The script will use the resolved path for installation."
+        fi
+        DESTDIR="$RESOLVED_DESTDIR"
+    else
+        if ! echo "$DESTDIR" | grep -q "^/"; then
+            echo "E: The DESTDIR passed from environment variable must be absolute or realpath must be available."
+            exit 1
+        fi
+    fi
+    echo
+    echo "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
+    echo "   This is meant to support testing and packaging, not for a true installation."
+    echo "   If you are using Victron Venus OS, the correct installation directory should be  '/'."
+    echo "   No harm is expected to be caused, you anyway have 5 seconds to cancel now with CTRL-C."
+    sleep 5
+    echo "I: Will now continue. Still, you can interrupt at any time."
+    echo
+fi
+
+if ! mkdir -p "$DESTDIR"/data/etc/Spotmarket-Switcher/service ; then
+    echo "E: Could not create service directory '$DESTDIR/data/etc/Spotmarket-Switcher/service'."
+    exit 1
+fi
+
+downloadToDest () {
+    url="$1"
+    dest="$2"
+
+    echo "I: Downloading '$(basename "$url")'"
+    if ! wget --no-verbose --continue --no-directories --show-progress -O "$dest" "$url" ; then
+        echo "E: Download of '$(basename "$url")' failed."
+        return 1
+    fi
+    chmod +x "$dest"
+}
+
+if [ -z "$SRCDIR" ]; then
+    SRCDIR=scripts
+fi
+if [ -z "$branch" ]; then
+    BRANCH=main
+fi
+if [ -x  "$SRCDIR/controller.sh" ]; then
+   cp "$SRCDIR/controller.sh" "$DESTDIR"/data/etc/Spotmarket-Switcher/
 else
-    if [ ! -L "$INSTALLDIR/service/Spotmarket-Switcher" ]; then
-        ln -s $INSTALLDIR/data/etc/Spotmarket-Switcher/service $INSTALLDIR/service/Spotmarket-Switcher
+   if [ -n "$DEBUG" ]; then
+     # Series of extra info in case the scripts directory is not nearby
+     echo "D: ls \$SRCDIR"
+     if ! ls "$SRCDIR"; then
+       echo "D: pwd: $(pwd)"
+       ls
+     fi
+   fi
+   echo "I: Downloading 'controller.sh' from github repository - '$BRANCH' branch"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/data/etc/Spotmarket-Switcher/controller.sh "$DESTDIR"/data/etc/Spotmarket-Switcher/controller.sh
+fi
+if [ -x  "$SRCDIR/run" ]; then
+   cp "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/"
+else
+   echo "I: Downloading 'run' from github repository - '$BRANCH' branch"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/data/etc/Spotmarket-Switcher/service/run "$DESTDIR"/data/etc/Spotmarket-Switcher/service/run
+fi
+
+# $DESTDIR is always an absolut path
+if [ ! -d "$DESTDIR"/service ]; then
+    if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
+        echo "I: The '$DESTDIR/service' directory is not existing, as expected because of the custom DESTDIR setting."
+        echo "   Skipping creation of symbolic link to the Sportmarket-Switcher to register this service."
+    else
+        echo "W: The '$DESTDIR/service' directory is not existing."
+        echo "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
+        echo "   Check on https://github.com/christian1980nrw/Spotmarket-Switcher/issues if that has already been reported."
+    fi
+else
+    if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
+        ln -s "$DESTDIR"/data/etc/Spotmarket-Switcher/service "$DESTDIR"/service/Spotmarket-Switcher
     fi
 fi
 
-if ! grep -q "Spotmarket-Switcher/service /service/Spotmarket-Switcher" $INSTALLDIR/data/rc.local; then
-    echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" >> $INSTALLDIR/data/rc.local
+if [ -e "$DESTDIR"/data/rc.local ]; then
+    if grep -q "Spotmarket-Switcher/service /service/Spotmarket-Switcher" "$DESTDIR"/data/rc.local; then
+        echo "I: Spotmarket-Switcher/service is already known to rc.local boot script - not added again."
+    else
+        echo "I: Adding link to Spotmarket-Switcher/service to rc.local boot script."
+        echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" >> "$DESTDIR"/data/rc.local
+    fi
+else
+    echo "I: Creating new data/rc.local boot script"
+    echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" > "$DESTDIR"/data/rc.local
+    chmod +x "$DESTDIR"/data/rc.local
 fi
-chmod +x $INSTALLDIR/data/rc.local
 
+echo
 echo "Installation completed. Spotmarket-Switcher will be executed every full hour."
-echo "The crontab will be changed automatically by the script $INSTALLDIR/data/etc/Spotmarket-Switcher/service/run ."
-echo "Please edit the configuration file with vi $INSTALLDIR/data/etc/Spotmarket-Switcher/controller.sh"
+echo "The crontab will be changed automatically by the script '$DESTDIR/data/etc/Spotmarket-Switcher/service/run' ."
+echo "Please edit the configuration file with a text editor, like"
+echo "  vi '$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh'"
 echo "and change it to your needs."
+echo
 echo "Note: This installation will survive a Venus OS firmware update."
-echo "Please do an extra reboot after every firmware update so that the crontab can be recreated automatically."
-echo "The System will reboot in 20 seconds to finalize the setup."
-sleep 20
-reboot
+echo "      Please do an extra reboot after every firmware update so that the crontab can be recreated automatically."
+echo
+if [ -n "$missing" ]; then
+    echo "Note: Remember to install these missing executables: $missing"
+    echo
+fi
+
+if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
+    echo "I: Not auto-rebooting now since DESTDIR set to a value != '/'."
+    exit 0
+elif [ -e /.dockerenv ]; then
+    echo "I: Not auto-rebooting since /.dockerenv exists, suggesting execution within docker"
+    exit 0
+elif [ -n "$NO_REBOOT" ]; then
+    echo "I: Not rebooting the system since NO_REBOOT environment variable is set."
+    exit 0
+else
+    echo "W: The System will reboot in 20 seconds to finalize the setup."
+    sleep 20
+    reboot
+fi
