@@ -2,7 +2,7 @@
 
 ## README Käännös
 
-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
+[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md) - [Virolainen](README.et.md)-[Finnish ](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
@@ -17,7 +17,7 @@ Tuetut järjestelmät ovat tällä hetkellä:
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten Multiplus II.
 
 Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta linuxin shell-komennoilla.
-Katso tiedoston controller.sh ensimmäiset rivit, jotta näet, mitä käyttäjä voi määrittää.
+Katso controller.sh-tiedoston rivin 100 alta, jotta näet, mitä käyttäjä voi määrittää.
 
 ## Tietolähde
 
@@ -52,14 +52,14 @@ Katso ohjeet Venus-käyttöjärjestelmän käyttämiseen osoitteesta<https://www
     -   Aseta ESS-latausaikataulu (katso mukana tulevaa kuvakaappausta). Esimerkissä akku latautuu yöllä jopa 50 %, jos se on aktivoitu, muut vuorokauden latausajat jätetään huomiotta. Jos et halua, luo aikataulu kaikille vuorokauden 24 tunnille. Muista poistaa se käytöstä luomisen jälkeen. Varmista, että järjestelmän aika (kuten kuvakaappauksessa) on oikea.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Jos käytät toista käyttöjärjestelmää:
-    -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
+    -   Kopioi komentotulkin komentosarja (`controller.sh`) to a custom location and adjust the variables according to your needs.
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
           Avaa terminaali ja syötä sisään`crontab -e`, lisää sitten seuraava rivi:
             0 * * * * /path/to/controller.sh
 
-### Tuki ja panos
+### Support and Contribution
 
 Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehityksen tukemista näiden linkkien kautta:
 
@@ -68,9 +68,9 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 
 Lisäksi, jos olet Saksassa ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e). Sekä sinä että projekti saavat 50 euron bonuksen laitteistosta. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Jos tarvitset maakaasutariffia tai haluat perinteisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
+Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat 50 euron bonuksen itsellesi ja myös projektiin.
-Octopusilla on se etu, että sopimukset ovat yleensä vain kuukausittain. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusin etuna on, että sopimukset ovat yleensä vain kuukausittain. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 ## Vastuuvapauslauseke
 
