@@ -12,12 +12,12 @@ Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schalt
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
--   Shelly products (such as Shelly Plug S or Shelly Plus1PM)
+-   Shelly-Produkte (wie Shelly Plug S oder Shelly Plus1PM)
 -   AVM Fritz!DECT200 und 210 schaltbare Steckdosen
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie Multiplus II.
 
 Der Code ist einfach, sodass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
-Bitte werfen Sie einen Blick auf die ersten Zeilen der Datei controller.sh, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
+Bitte schauen Sie unterhalb von Zeile 100 der Datei „controller.sh“ nach, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
 
 ## Datenquelle
 
