@@ -2,7 +2,7 @@
 
 ¡Bienvenido al repositorio de Spotmarket-Switcher! Este software está diseñado para mejorar la funcionalidad de su configuración de energía integrando:
 
--   [victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems
+-   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS
 -   Productos Shelly (como Shelly Plug S o Shelly Plus1PM)
 -   AVM Fritz!DECT200 y 210 enchufes conmutables
 
@@ -16,7 +16,7 @@ Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), C
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
-## Installation
+## Instalación
 
 Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando una máquina basada en UNIX, como macOS, Linux o Windows con el subsistema Linux, siga estos pasos para instalar el software:
 
@@ -29,7 +29,7 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
 
 Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otras configuraciones, como el control de dispositivos domésticos mediante conmutadores IP. El desarrollo futuro podría mejorar la compatibilidad con otros sistemas.
 
-### Access to Venus OS
+### Acceso al sistema operativo Venus
 
 Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consulte<https://www.victronenergy.com/live/ccgx:root_access>.
 
@@ -52,7 +52,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 
 Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desarrollo a través de estos enlaces:
 
--   [Revolut](https://revolut.me/christqki2)
+-   [revolución](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Además, si estás en Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e). Tanto tú como el proyecto recibiréis un bono de 50 euros en hardware. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>) .
