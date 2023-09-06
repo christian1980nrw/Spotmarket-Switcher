@@ -2,7 +2,7 @@
 
 ## README Översättning
 
--   [engelsk](README.md)-[tysk](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
+[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[spanska](README.es.md)-[Svenska](README.sv.md)
 
 Välkommen till Spotmarket-Switcher-förrådet!
 
@@ -12,7 +12,7 @@ Du kan då använda uttagen för att använda exempelvis en varmvattentank mycke
 Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
 System som stöds är för närvarande:
 
--   Shelly products (such as Shelly Plug S or Shelly Plus1PM)
+-   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
 -   AVM Fritz!DECT200 och 210 omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som Multiplus II.
 
@@ -31,7 +31,7 @@ Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien 
 
 Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNIX-baserad maskin, som macOS, Linux eller Windows med Linux-undersystemet, följ dessa steg för att installera programvaran:
 
-1.  Ladda ner installationsskriptet från GitHub-förvaret genom att använda[denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
+1.  Download the install script from the GitHub repository by using [denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kör installationsskriptet med ytterligare alternativ för att förbereda allt i en underkatalog för din inspektion. Till exempel:
