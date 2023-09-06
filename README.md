@@ -3,7 +3,7 @@
 ## README Translation
 [Dansk ](README.da.md) - [Deutsch ](README.de.md) - [Dutch ](README.nl.md) - [English ](README.md) - [Estonian ](README.et.md) - [Finnish ](README.fi.md) - [Français ](README.fr.md) - [Greek ](README.el.md) - [Italian ](README.it.md) - [Norsk ](README.no.md) - [Portuguese ](README.pt.md) - [Español ](README.es.md) - [Svenska ](README.sv.md)
 
-Welcome to the Spotmarket-Switcher repository!
+# Welcome to the Spotmarket-Switcher repository!
 
 What is this software doing? 
 This is a linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based energy prices are low.
