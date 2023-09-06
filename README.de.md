@@ -4,10 +4,10 @@
 
 [dänisch](README.da.md)-[Deutsch](README.de.md)-[Niederländisch](README.nl.md)-[Englisch](README.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[norwegisch](README.no.md)-[Portugiesisch](README.pt.md)-[Spanisch](README.es.md)-[Schwedisch](README.sv.md)
 
-Willkommen im Spotmarket-Switcher-Repository!
+## Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
-Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen Energiepreise niedrig sind.
+Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen dynamischen Energiepreise niedrig sind.
 Über die Steckdosen können Sie dann beispielsweise deutlich günstiger einen Warmwasserspeicher nutzen oder den Batteriespeicher nachts automatisch aufladen, wenn günstiger Windstrom am Netz verfügbar ist.
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
