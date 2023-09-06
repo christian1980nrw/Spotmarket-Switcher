@@ -2,7 +2,7 @@
 
 ## README-Übersetzung
 
-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Niederländisch](README.nl.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[norwegisch](README.no.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)
+[dänisch](README.da.md)-[Deutsch](README.de.md)-[Niederländisch](README.nl.md)-[Englisch](README.md)-[Spanisch](README.es.md) - [estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[norwegisch](README.no.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)
 
 ## Willkommen im Spotmarket-Switcher-Repository!
 
@@ -12,11 +12,11 @@ Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schalt
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
--   Shelly-Produkte (wie Shelly Plug S oder Shelly Plus1PM)
--   AVM Fritz!DECT200 und 210 schaltbare Steckdosen
--   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie Multiplus II.
+-   Shelly-Produkte (wie z[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus13 Uhr](https://shellyparts.de/products/shelly-plus-1pm))
+-   Einkaufszentrum[Fritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)Und[210](https://avm.de/produkte/smart-home/fritzdect-210/)schaltbare Steckdosen
+-   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie die MultiPlus-II-Serie
 
-Der Code ist einfach, sodass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
+Der Code ist einfach gehalten, so dass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
 Bitte schauen Sie unterhalb von Zeile 100 der Datei „controller.sh“ nach, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
 
 ## Datenquelle
@@ -38,7 +38,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
-Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber auch an andere Linux-Geräte wie einen Raspberry PI angepasst werden kann. Zukünftige Entwicklungen könnten die Kompatibilität mit anderen Systemen verbessern.
+Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber an andere Linux-Varianten angepasst werden kann, wie Debian/Ubuntu auf einem Raspberry Pi oder einem anderen kleinen Board. Ein Spitzenkandidat ist das sicherlich[OpenWRT](https://www.openwrt.org). Für Testzwecke ist die Verwendung eines Desktop-Rechners in Ordnung, im 24/7-Einsatz ist jedoch der höhere Stromverbrauch besorgniserregend.
 
 ### Zugriff auf Venus OS
 
@@ -49,14 +49,14 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 -   Wenn Sie Victron Venus OS verwenden:
     -   Ausführen`victron-venus-os-install.sh`um den Spotmarket-Switcher herunterzuladen und zu installieren.
     -   Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf, andere Ladezeiten am Tag werden ignoriert. Falls nicht gewünscht, erstellen Sie einen Zeitplan für alle 24 Stunden des Tages. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie im Screenshot gezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf, andere Ladezeiten am Tag werden ignoriert. Falls nicht gewünscht, erstellen Sie einen Zeitplan für alle 24 Stunden des Tages. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie oben rechts auf dem Bildschirm angezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automatisiertes Laden in Zeiten mit typischen niedrigen Energiekosten. Standardmäßig deaktiviert, kann vom Skript vorübergehend aktiviert werden._
 
 -   Wenn Sie ein anderes Betriebssystem verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
-    -   Sample Crontab:
-          Use the following crontab entry to execute the control script every hour:
-          Open your terminal and enter `crontab -e`, dann fügen Sie die folgende Zeile ein:
+    -   Beispiel-Crontab:
+          Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
+          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:
             0 * * * * /path/to/controller.sh
 
 ### Unterstützung und Beitrag
