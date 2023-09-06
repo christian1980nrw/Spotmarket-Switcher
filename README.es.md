@@ -4,10 +4,10 @@
 
 [danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[Español](README.es.md)-[sueco](README.sv.md)
 
-¡Bienvenido al repositorio de Spotmarket-Switcher!
+## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
 ¿Qué está haciendo este software?
-Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios de energía por horas son bajos.
+Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios dinámicos de energía por horas son bajos.
 A continuación, puede utilizar los enchufes para utilizar, por ejemplo, un depósito de agua caliente de forma mucho más económica o cargar automáticamente la batería por la noche, cuando hay energía eólica barata disponible en la red.
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
