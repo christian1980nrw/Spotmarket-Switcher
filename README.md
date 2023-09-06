@@ -1,7 +1,7 @@
 # Spotmarket-Switcher-Repository
 
 ## README Translation
-- [English](README.md) - [German](README.de.md) - [French](README.fr.md) - [Spanish](README.es.md) - [Swedish](README.sv.md) - [Norwegian](README.no.md) - [Danish](README.da.md)
+- [English](README.md) - [Deutsch](README.de.md) - [Français](README.fr.md) - [Español](README.es.md) - [Svenska](README.sv.md) - [Norsk](README.no.md) - [Dansk](README.da.md)
 
 Welcome to the Spotmarket-Switcher repository! This software is designed to enhance the functionality of your energy setup by integrating:
 
