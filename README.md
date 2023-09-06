@@ -7,6 +7,7 @@ Welcome to the Spotmarket-Switcher repository!
 
 What is this software doing? 
 This is a linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based energy prices are low.
+Sie können dann mit den Steckdosen beispielsweise einen Warmwasserspeicher viel günstiger nutzen.
 The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
 Supported systems are currently:
 
