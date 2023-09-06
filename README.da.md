@@ -19,7 +19,7 @@ Understøttede systemer er i øjeblikket:
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
 Tag et kig under linje 100 i controller.sh-filen, så du kan se, hvad der kan konfigureres af brugeren.
 
-## Data Source
+## Datakilde
 
 Softwaren bruger i øjeblikket EPEX Spot-timepriser leveret af tre gratis API'er (Tibber, aWATTar & Entso-E).
 Den integrerede gratis Entso-E API leverer energiprisdata for følgende lande:
@@ -48,7 +48,9 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 -   Hvis du bruger Victron Venus OS:
     -   Efter udførelse af`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)Automatisk opladning i tider med typiske lave energiomkostninger. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+
+Automatisk opladning i tider med typiske lave energiomkostninger. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
 
 -   Hvis du bruger et andet OS:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
