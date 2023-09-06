@@ -7,8 +7,8 @@
 Bem-vindo ao repositório Spotmarket-Switcher!
 
 O que este software está fazendo?
-Este é um script de shell do Linux e liga o carregador de bateria e / ou tomadas comutáveis ​​​​no momento certo se os preços de energia por hora estiverem baixos.
-Você pode então usar as tomadas para usar um tanque de água quente, por exemplo, muito mais barato ou carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
+Este é um script de shell do Linux e liga o carregador de bateria e/ou tomadas comutáveis ​​​​no momento certo se os preços de energia por hora estiverem baixos.
+Você pode então usar as tomadas para usar um tanque de água quente, por exemplo, de forma muito mais barata ou carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
 
