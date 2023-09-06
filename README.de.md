@@ -14,7 +14,7 @@ Für diejenigen, die in Umgebungen mit dynamischen Strompreisen tätig sind, ins
 
 Durch die Integration dieser Software haben Sie die Möglichkeit, zur sauberen Energie beizutragen oder einfach Ihren Energieverbrauch zu optimieren. Zum Beispiel:
 
--   **Erneuerbare Priorität:** Ensure your energy consumption aligns with renewable energy availability, avoiding non-renewable sources during periods of low sunlight and wind.
+-   **Erneuerbare Priorität:**Stellen Sie sicher, dass Ihr Energieverbrauch mit der Verfügbarkeit erneuerbarer Energien übereinstimmt, und meiden Sie nicht erneuerbare Energiequellen in Zeiten geringer Sonneneinstrahlung und wenig Wind.
 -   **Batterieoptimierung:**Wenn Sie über ein Speichersystem verfügen, ermöglicht die Software das Aufladen Ihrer Batterie, wenn die Strompreise unter dem Einspeisetarif liegen, und nutzen so kostengünstige Energie.
 -   **Benutzerdefinierte Regeln:**Passen Sie die Software anhand von Faktoren wie Batteriekapazität, voraussichtlichem Energieverbrauch und vorhergesagtem Sonnenschein an Ihre Bedürfnisse an. Dies eröffnet die Möglichkeit, nachts oder zu bestimmten Zeiten günstige Windenergiepreise zu nutzen.
 -   **Unabhängige ESS-Nutzung:**Diese Software ermöglicht die Nutzung von Energiespeichersystemen (ESS) auch ohne Solarpanel-Installationen und bietet so einen Mehrwert für alle Nutzer, insbesondere in den Wintermonaten.
@@ -66,7 +66,7 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass es sich um einen Smart Meter oder einen Tracker handelt[Impuls](https://tibber.com/de/store/produkt/pulse-ir)ist für einen Stundentarif erforderlich.
+Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass es sich um einen Smart Meter oder einen Tracker handelt[Puls-IR](https://tibber.com/de/store/produkt/pulse-ir)ist für einen Stundentarif erforderlich.
 
 Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem hierdurch unterstützen[Octopus Energy-Empfehlungslink](https://share.octopusenergy.de/glass-raven-58)und erhalte 50 Euro Bonus für dich und das Projekt.
 Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit haben. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
