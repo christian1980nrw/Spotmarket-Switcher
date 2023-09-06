@@ -2,13 +2,7 @@
 
 ## Traduction du fichier README
 
--   [Anglais](README.md)
--   [Allemand](README.de.md)
--   [Français](README.fr.md)
--   [Espagnol](README.es.md)
--   [suédois](README.sv.md)
--   [norvégien](README.no.md)
--   [danois](README.da.md)
+-   [Anglais](README.md)-[Allemand](README.de.md)-[Français](README.fr.md) - [Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
 
 Bienvenue dans le référentiel Spotmarket-Switcher ! Ce logiciel est conçu pour améliorer les fonctionnalités de votre configuration énergétique en intégrant :
 
@@ -18,7 +12,7 @@ Bienvenue dans le référentiel Spotmarket-Switcher ! Ce logiciel est conçu po
 
 L'objectif principal de ce logiciel est de permettre à votre système de réagir aux prix de l'électricité du marché au comptant, lui permettant ainsi de prendre des décisions intelligentes telles que le chargement de la batterie et l'activation de l'alimentation en fonction de périodes de bas prix. Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
 
-## La source de données
+## Data Source
 
 Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
