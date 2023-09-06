@@ -4,7 +4,7 @@
 
 [Dansk](README.da.md)-[tysk](README.de.md)-[hollandsk](README.nl.md)-[engelsk](README.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[spansk](README.es.md)-[svensk](README.sv.md)
 
-Velkommen til Spotmarket-Switcher-depotet!
+## Velkommen til Spotmarket-Switcher-depotet!
 
 Hvad laver denne software?
 Dette er et linux shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede energipriser er lave.
@@ -61,7 +61,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 ### Støtte og bidrag
 
-Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støtte yderligere udvikling gennem disse links:
+If you find this project valuable, please consider sponsoring and supporting further development through these links:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
