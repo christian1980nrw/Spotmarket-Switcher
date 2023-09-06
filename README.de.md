@@ -2,7 +2,7 @@
 
 ## README-Übersetzung
 
--   [Englisch](README.md)-[Deutsch](README.de.md)-[Französisch](README.fr.md)-[Spanisch](README.es.md)-[Schwedisch](README.sv.md)-[norwegisch](README.no.md)-[dänisch](README.da.md)
+-   [Englisch](README.md)-[Deutsch](README.de.md)-[Französisch](README.fr.md) - [Spanisch](README.es.md)-[Schwedisch](README.sv.md)-[norwegisch](README.no.md)-[dänisch](README.da.md)
 
 Willkommen im Spotmarket-Switcher-Repository!
 
@@ -31,14 +31,14 @@ Albanien (AL), Österreich (AT), Belgien (BE), Bosnien und Herz. (BA), Bulgarien
 
 Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Sie bereits einen UNIX-basierten Computer wie macOS, Linux oder Windows mit dem Linux-Subsystem ausführen, befolgen Sie diese Schritte, um die Software zu installieren:
 
-1.  Laden Sie das Installationsskript mithilfe von aus dem GitHub-Repository herunter[dieser Hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), oder führen Sie den folgenden Befehl in Ihrem Terminal aus:
+1.  Download the install script from the GitHub repository by using [dieser Hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), oder führen Sie den folgenden Befehl in Ihrem Terminal aus:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
-Bitte beachten Sie, dass diese Software derzeit zwar für das Venus OS optimiert ist, aber an andere Setups angepasst werden kann, beispielsweise die Steuerung von Haushaltsgeräten über IP-Switches. Zukünftige Entwicklungen könnten die Kompatibilität mit anderen Systemen verbessern.
+Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber auch an andere Linux-Geräte wie einen Raspberry PI angepasst werden kann. Zukünftige Entwicklungen könnten die Kompatibilität mit anderen Systemen verbessern.
 
 ### Zugriff auf Venus OS
 
@@ -59,7 +59,7 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
           Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:
             0 * * * * /path/to/controller.sh
 
-### Unterstützung und Beitrag
+### Support and Contribution
 
 Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die weitere Entwicklung über diese Links zu sponsern und zu unterstützen:
 
