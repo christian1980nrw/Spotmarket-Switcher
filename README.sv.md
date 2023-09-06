@@ -38,7 +38,7 @@ Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNI
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Om du använder Victron Venus OS bör rätt DESTDIR vara`/`(rotkatalogen). Utforska gärna de installerade filerna i`/tmp/foo`.
 
-Observera att även om den här programvaran för närvarande är optimerad för Venus OS, kan den anpassas till andra inställningar, som att styra hushållsenheter via IP-switchar. Framtida utveckling kan förbättra kompatibiliteten med andra system.
+Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra linux-enheter som en Raspberry PI. Framtida utveckling kan förbättra kompatibiliteten med andra system.
 
 ### Tillgång till Venus OS
 
