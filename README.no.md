@@ -8,7 +8,7 @@
 
 Hva gjør denne programvaren?
 Dette er et linux-shell-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte dynamiske energipriser er lave.
-Du kan da bruke stikkontaktene til å bruke for eksempel varmtvannstank mye billigere eller automatisk lade batterilageret om natten når billig vindenergi er tilgjengelig på nettet.
+Du kan da bruke stikkontaktene til å skru på for eksempel en varmtvannstank mye billigere eller du kan lade batterilageret automatisk om natten når billig vindenergi er tilgjengelig på nettet.
 Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
 Støttede systemer er for øyeblikket:
 
