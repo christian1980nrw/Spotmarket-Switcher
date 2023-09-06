@@ -54,9 +54,9 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 -   Wenn Sie ein anderes Betriebssystem verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
-    -   Beispiel-Crontab:
-          Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
-          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, dann fügen Sie die folgende Zeile ein:
             0 * * * * /path/to/controller.sh
 
 ### Unterstützung und Beitrag
