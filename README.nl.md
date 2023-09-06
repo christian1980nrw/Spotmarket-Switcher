@@ -7,14 +7,14 @@
 ## Welkom bij de Spotmarket-Switcher-repository!
 
 Wat doet deze software?
-Dit is een Linux shell-script waarmee u uw batterijlader en/of schakelbare stopcontacten op het juiste moment kunt inschakelen als uw uurgebaseerde dynamische energieprijzen laag zijn.
+Dit is een Linux-shellscript dat uw acculader en/of schakelbare stopcontacten op het juiste moment inschakelt als uw uurgebaseerde dynamische energieprijzen laag zijn.
 Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan te zetten of je kunt de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het elektriciteitsnet beschikbaar is.
 Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
 Ondersteunde systemen zijn momenteel:
 
--   Shelly-producten (zoals Shelly Plug S of Shelly Plus1PM)
--   AVM Fritz!DECT200 en 210 schakelbare stopcontacten
--   [Victron](https://www.victronenergy.com/)Venus OS-energieopslagsystemen zoals Multiplus II.
+-   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus13.00 uur](https://shellyparts.de/products/shelly-plus-1pm))
+-   winkelcentrum[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
+-   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de MultiPlus-II-serie
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
 Kijk eens onder regel 100 van het controller.sh-bestand, zodat u kunt zien wat door de gebruiker kan worden geconfigureerd.
@@ -27,7 +27,7 @@ Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
-## Installatie
+## Installation
 
 Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op UNIX gebaseerde machine gebruikt, zoals macOS, Linux of Windows met het Linux-subsysteem, volgt u deze stappen om de software te installeren:
 
@@ -38,7 +38,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Als u Victron Venus OS gebruikt, zou de juiste DESTDIR moeten zijn`/`(de hoofdmap). Voel je vrij om de geïnstalleerde bestanden te verkennen in`/tmp/foo`.
 
-Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-apparaten zoals een Raspberry PI. Toekomstige ontwikkelingen kunnen de compatibiliteit met andere systemen verbeteren.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
 
 ### Toegang tot Venus OS
 
@@ -49,7 +49,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 -   Als u Victron Venus OS gebruikt:
     -   Uitvoeren`victron-venus-os-install.sh`om de Spotmarket-Switcher te downloaden en te installeren.
     -   Bewerk de variabelen met een teksteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Stel een ESS-laadschema in (zie de meegeleverde schermafbeelding). In het voorbeeld laadt de batterij 's nachts tot 50% op, indien geactiveerd, andere oplaadtijden van de dag worden genegeerd. Indien niet gewenst, maak dan een schema voor alle 24 uur van de dag. Vergeet niet om het na het maken te deactiveren. Controleer of de systeemtijd (zoals weergegeven in de schermafbeelding) juist is.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Stel een ESS-laadschema in (zie de meegeleverde schermafbeelding). In het voorbeeld laadt de batterij 's nachts tot 50% op, indien geactiveerd, andere oplaadtijden van de dag worden genegeerd. Indien niet gewenst, maak dan een schema voor alle 24 uur van de dag. Vergeet niet om het na het maken te deactiveren. Controleer of de systeemtijd (zoals weergegeven in de rechterbovenhoek van het scherm) juist is.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Geautomatiseerd opladen tijdens tijden met typische lage energiekosten. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script._
 
 -   Als u een ander besturingssysteem gebruikt:
     -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
