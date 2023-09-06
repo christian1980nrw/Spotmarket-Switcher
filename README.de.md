@@ -68,8 +68,9 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 
 Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58). You receive a 50 euro bonus for yourself and also for the project.
-Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
+Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
+Sie erhalten eine Prämie von 50 Euro für sich selbst und auch für das Projekt.
+Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit haben. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
 ## Haftungsausschluss
 
