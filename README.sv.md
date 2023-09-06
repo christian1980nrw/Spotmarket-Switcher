@@ -13,7 +13,7 @@ Den förväntade solavkastningen kan tas med i beräkningen via en väder-API oc
 System som stöds är för närvarande:
 
 -   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
--   AVM Fritz!DECT200 och 210 omkopplingsbara uttag
+-   AVM Fritz!DECT200 and 210 switchable sockets
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som Multiplus II.
 
 Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med linux-skalkommandon.
@@ -31,7 +31,7 @@ Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien 
 
 Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNIX-baserad maskin, som macOS, Linux eller Windows med Linux-undersystemet, följ dessa steg för att installera programvaran:
 
-1.  Download the install script from the GitHub repository by using [denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
+1.  Ladda ner installationsskriptet från GitHub-förvaret genom att använda[denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kör installationsskriptet med ytterligare alternativ för att förbereda allt i en underkatalog för din inspektion. Till exempel:
