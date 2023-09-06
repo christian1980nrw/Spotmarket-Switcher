@@ -1,5 +1,9 @@
 # Spotmarket-Switcher-Repository
 
+## README Oversættelse
+
+-   [engelsk](README.md)-[tysk](README.de.md)-[fransk](README.fr.md)-[spansk](README.es.md)-[svensk](README.sv.md)-[Norsk](README.no.md)-[Danish](README.da.md)
+
 Velkommen til Spotmarket-Switcher-depotet! Denne software er designet til at forbedre funktionaliteten af ​​din energiopsætning ved at integrere:
 
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer
