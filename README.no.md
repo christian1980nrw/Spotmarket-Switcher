@@ -19,7 +19,7 @@ Støttede systemer er for øyeblikket:
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med linux-shell-kommandoer.
 Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
 
-## Datakilde
+## Data Source
 
 Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
@@ -36,11 +36,11 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
 
 2.  Kjør installasjonsskriptet med flere alternativer for å forberede alt i en underkatalog for inspeksjonen din. For eksempel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Hvis du bruker Victron Venus OS, bør riktig DESTDIR være`/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
 
 Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses andre linux-enheter som en Raspberry PI. Fremtidig utvikling kan forbedre kompatibiliteten med andre systemer.
 
-### Tilgang til Venus OS
+### Access to Venus OS
 
 For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live/ccgx:root_access>.
 
