@@ -2,7 +2,7 @@
 
 ## README Oversættelse
 
-[Dansk](README.da.md)-[tysk](README.de.md)-[hollandsk](README.nl.md)-[English ](README.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[Portuguese ](README.pt.md)-[spansk](README.es.md)-[svensk](README.sv.md)
+[Dansk](README.da.md)-[tysk](README.de.md)-[hollandsk](README.nl.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -31,12 +31,12 @@ Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG)
 
 Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører en UNIX-baseret maskine, såsom macOS, Linux eller Windows med Linux-undersystemet, skal du følge disse trin for at installere softwaren:
 
-1.  Download installationsscriptet fra GitHub-lageret ved at bruge[this hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
+1.  Download the install script from the GitHub repository by using [dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kør installationsscriptet med yderligere muligheder for at forberede alt i en undermappe til din inspektion. For eksempel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Hvis du bruger Victron Venus OS, skal den korrekte DESTDIR være`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
+    Hvis du bruger Victron Venus OS, skal den korrekte DESTDIR være`/`(rodmappen). Du er velkommen til at udforske de installerede filer i`/tmp/foo`.
 
 Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre linux-enheder som en Raspberry PI. Fremtidig udvikling kan forbedre kompatibiliteten med andre systemer.
 
