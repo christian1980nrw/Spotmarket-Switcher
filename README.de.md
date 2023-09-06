@@ -8,7 +8,7 @@
 
 Was macht diese Software?
 Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen dynamischen Energiepreise niedrig sind.
-Über die Steckdosen können Sie dann beispielsweise deutlich günstiger einen Warmwasserspeicher nutzen oder den Batteriespeicher nachts automatisch aufladen, wenn günstiger Windstrom am Netz verfügbar ist.
+Über die Steckdosen können Sie dann beispielsweise deutlich günstiger einen Warmwasserspeicher anschalten oder den Batteriespeicher nachts automatisch aufladen, wenn günstiger Windstrom am Netz verfügbar ist.
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
