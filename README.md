@@ -8,16 +8,6 @@ Welcome to the Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Sw
 
 The primary goal of this software is to empower your system to respond to spot-market electricity prices, allowing it to make intelligent decisions such as battery charging and power activation based on low pricing periods.
 
-## What This Software Offers
-
-For those who use dynamic electricity prices, this software is a valuable asset.
-
-By integrating this software, you have the opportunity to contribute to the clean energy cause or simply optimize your energy use. For instance:
-- **Renewable Priority:** Ensure your energy consumption aligns with renewable energy availability, avoiding non-renewable sources during periods of low sunlight and wind.
-- **Battery Optimization:** If you own a storage system, the software allows your battery to charge when electricity prices are lower than the feed-in tariff, making the most of cost-effective energy.
-- **Custom Rules:** Tailor the software to your needs based on factors like battery capacity, anticipated energy consumption, and predicted sunshine. This opens the door to leveraging cheap wind energy prices at night or during specific periods.
-- **Independent ESS Use:** This software makes the use of energy storage systems (ESS) even without solar panel installations possible, adding value for all users, especially during the winter months.
-
 ## Data Source
 
 The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
