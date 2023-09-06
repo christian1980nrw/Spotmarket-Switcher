@@ -3,13 +3,19 @@
 ## README Translation
 - [English](README.md) - [Deutsch](README.de.md) - [Français](README.fr.md) - [Español](README.es.md) - [Svenska](README.sv.md) - [Norsk](README.no.md) - [Dansk](README.da.md)
 
-Welcome to the Spotmarket-Switcher repository! This software is designed to enhance the functionality of your energy setup by integrating:
+Welcome to the Spotmarket-Switcher repository!
 
-- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems
+What is this software doing? 
+This is a linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based energy prices are low.
+The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+Supported systems are currently:
+
 - Shelly products (such as Shelly Plug S or Shelly Plus1PM)
 - AVM Fritz!DECT200 and 210 switchable sockets
-
-The primary goal of this software is to empower your system to respond to spot-market electricity prices, allowing it to make intelligent decisions such as battery charging and power activation based on low pricing periods. The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
+  
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by linux shell commands.
+Please have a look at the first lines of the controller.sh file so that you can see what can be configured by the user.
 
 ## Data Source
 
