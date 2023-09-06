@@ -26,3 +26,15 @@ jobs:
         uses: dephraiim/translate-readme@main
         with:
           LANG: es
+      - name: Adding README - Swedish
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: sv
+      - name: Adding README - Norwegian
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: no
+      - name: Adding README - Danish
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: da
