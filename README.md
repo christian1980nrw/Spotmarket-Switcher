@@ -51,8 +51,7 @@ For instructions on accessing the Venus OS, please refer to [https://www.victron
 ### Execution of the Install Script
 
 - If you're using Victron Venus OS:
-  - Execute `victron-venus-os-install.sh` to download and install the Spotmarket-Switcher.
-  - Edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh`.
+  - After execution of the `victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh`.
   - Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
 ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 *Automated charging during times with typical low-energy costs. Deactivated by default, may be temporarily activated by the script.*
