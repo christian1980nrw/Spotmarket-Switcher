@@ -12,11 +12,11 @@ Seejärel saate pistikupesade abil sooja veepaagi palju soodsamalt sisse lülita
 Oodatavat päikeseenergiat saab arvesse võtta ilmastiku API ja vastavalt reserveeritud aku salvestusruumi kaudu.
 Toetatud süsteemid on praegu:
 
--   Shelly tooted (nt Shelly Plug S või Shelly Plus1PM)
--   AVM Fritz!DECT200 ja 210 lülitatavad pistikupesad
--   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu Multiplus II.
+-   Shelly tooted (nt[Shelly pistik S](https://shellyparts.de/products/shelly-plus-plug-s)või[Shelly Plus1PM](https://shellyparts.de/products/shelly-plus-1pm))
+-   kaubanduskeskus[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)lülitatavad pistikupesad
+-   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu MultiPlus-II seeria
 
-Kood on lihtne, nii et seda saab hõlpsasti kohandada muude energiasalvestussüsteemidega, kui saate laadimist juhtida linuxi shelli käskude abil.
+Kood on lihtne, nii et seda saab hõlpsasti kohandada muude energiasalvestussüsteemidega, kui saate laadida laadimist Linuxi kestakäskude abil.
 Palun vaadake faili controller.sh rida 100 alt, et saaksite näha, mida kasutaja saab seadistada.
 
 ## Andmeallikas
@@ -38,7 +38,7 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Kui kasutate operatsioonisüsteemi Victron Venus, peaks DESTDIR olema õige`/`(juurkataloog). Tutvuge installitud failidega`/tmp/foo`.
 
-Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada teistele Linuxi seadmetele, näiteks Raspberry PI-le. Edasine arendus võib parandada ühilduvust teiste süsteemidega.
+Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muudele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi-l või mõnel muul väikesel tahvlil. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
 
 ### Juurdepääs Venus OS-ile
 
@@ -47,9 +47,9 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 ### Installi skripti täitmine
 
 -   Kui kasutate operatsioonisüsteemi Victron Venus:
-    -   Käivitage`victron-venus-os-install.sh` to download and install the Spotmarket-Switcher.
+    -   Käivitage`victron-venus-os-install.sh`Spotmarket-Switcheri allalaadimiseks ja installimiseks.
     -   Muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraanipildil) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automaatne laadimine tüüpiliste madala energiakuluga aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida._
 
 -   Kui kasutate teist OS-i:
     -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
