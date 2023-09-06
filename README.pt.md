@@ -7,8 +7,8 @@
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
 O que este software está fazendo?
-Este é um script de shell do Linux e liga o carregador de bateria e / ou tomadas comutáveis ​​​​no momento certo se os preços de energia dinâmica baseados em hora estiverem baixos.
-Você pode então usar as tomadas para usar um tanque de água quente, por exemplo, muito mais barato ou carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
+Este é um script de shell do Linux e liga o carregador de bateria e/ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica baseados em hora estiverem baixos.
+Você pode então usar as tomadas para ligar um tanque de água quente, por exemplo, de forma muito mais barata, ou pode carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
 
@@ -36,25 +36,25 @@ Configurar o Spotmarket-Switcher é um processo simples. Se você já estiver ex
 
 2.  Execute o script do instalador com opções adicionais para preparar tudo em um subdiretório para sua inspeção. Por exemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Se você estiver usando Victron Venus OS, o DESTDIR correto deve ser`/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
 
 Observe que, embora este software esteja atualmente otimizado para o sistema operacional Venus, ele pode ser adaptado para outros dispositivos Linux, como Raspberry PI. O desenvolvimento futuro poderá melhorar a compatibilidade com outros sistemas.
 
 ### Acesso ao sistema operacional Venus
 
-Para obter instruções sobre como acessar o Venus OS, consulte<https://www.victronenergy.com/live/ccgx:root_access>.
+For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Execução do script de instalação
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Executar`victron-venus-os-install.sh`para baixar e instalar o Spotmarket-Switcher.
     -   Edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado na captura de tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado na captura de tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Se você estiver usando outro sistema operacional:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de crontab:
+    -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:
             0 * * * * /path/to/controller.sh
