@@ -12,7 +12,7 @@ Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan t
 Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
 Ondersteunde systemen zijn momenteel:
 
--   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus13.00 uur](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus 13.00 uur](https://shellyparts.de/products/shelly-plus-1pm))
 -   winkelcentrum[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de MultiPlus-II-serie
 
@@ -65,7 +65,7 @@ Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te spons
 -   [Revolutie](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Als u zich bovendien in Duitsland bevindt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Zowel jij als het project ontvangen een bonus van 50 euro voor hardware. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Als u zich bovendien in Duitsland bevindt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e). Zowel jij als het project ontvangen een bonus van 50 euro voor hardware. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
 Je ontvangt een bonus van 50 euro voor jezelf en ook voor het project.
