@@ -38,7 +38,7 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Hvis du bruker Victron Venus OS, bør riktig DESTDIR være`/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
 
-Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses andre oppsett, for eksempel å kontrollere husholdningsenheter via IP-svitsjer. Fremtidig utvikling kan forbedre kompatibiliteten med andre systemer.
+Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses andre linux-enheter som en Raspberry PI. Fremtidig utvikling kan forbedre kompatibiliteten med andre systemer.
 
 ### Tilgang til Venus OS
 
