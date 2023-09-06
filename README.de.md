@@ -8,13 +8,13 @@ Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
 Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen Energiepreise niedrig sind.
-Über die Steckdosen können Sie dann beispielsweise deutlich günstiger einen Warmwasserspeicher nutzen.
+Über die Steckdosen können Sie dann beispielsweise deutlich günstiger einen Warmwasserspeicher nutzen oder den Batteriespeicher nachts automatisch aufladen, wenn günstiger Windstrom am Netz verfügbar ist.
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
 -   Shelly-Produkte (wie Shelly Plug S oder Shelly Plus1PM)
 -   AVM Fritz!DECT200 und 210 schaltbare Steckdosen
--   [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
+-   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie Multiplus II.
 
 Der Code ist einfach, sodass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
 Bitte werfen Sie einen Blick auf die ersten Zeilen der Datei controller.sh, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
