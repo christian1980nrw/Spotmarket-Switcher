@@ -42,7 +42,7 @@ Setting up the Spotmarket-Switcher is a straightforward process. If you are alre
    ```
    If you're using Victron Venus OS, the correct DESTDIR should be `/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
 
-Please note that while this software is currently optimized for the Venus OS, it can be adapted to other setups, such as controlling household devices via IP switches. Future development might enhance compatibility with other systems.
+Please note that while this software is currently optimized for the Venus OS, it can be adapted to other linux devices like a Raspberry PI. Future development might enhance compatibility with other systems.
 
 ### Access to Venus OS
 
