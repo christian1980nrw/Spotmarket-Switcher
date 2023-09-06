@@ -2,13 +2,13 @@
 
 ## README Översättning
 
--   [engelsk](README.md)-[tysk](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
+-   [engelsk](README.md)-[Deutsch](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
 
 Välkommen till Spotmarket-Switcher-förrådet!
 
 Vad gör denna programvara?
 Detta är ett linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade energipriser är låga.
-Du kan då använda uttagen för att använda till exempel en varmvattentank, mycket billigare.
+Du kan då använda uttagen för att använda exempelvis en varmvattentank mycket billigare eller automatiskt ladda batterilagret nattetid när billig vindenergi finns tillgänglig på nätet.
 Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
 System som stöds är för närvarande:
 
