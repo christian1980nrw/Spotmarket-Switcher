@@ -2,15 +2,21 @@
 
 ## README Översättning
 
--   [engelsk](README.md) - [Deutsch](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
+-   [engelsk](README.md)-[tysk](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
 
-Välkommen till Spotmarket-Switcher-förrådet! Denna programvara är utformad för att förbättra funktionaliteten i din energiinstallation genom att integrera:
+Välkommen till Spotmarket-Switcher-förrådet!
 
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem
+Vad gör denna programvara?
+Detta är ett linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade energipriser är låga.
+Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
+System som stöds är för närvarande:
+
 -   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
 -   AVM Fritz!DECT200 och 210 omkopplingsbara uttag
+-   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som Multiplus II.
 
-Det primära målet med denna programvara är att ge ditt system möjlighet att reagera på elpriser på spotmarknaden, så att det kan fatta intelligenta beslut som batteriladdning och strömaktivering baserat på lågprisperioder. Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
+Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med linux-skalkommandon.
+Ta en titt på de första raderna i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
 
 ## Datakälla
 
@@ -24,7 +30,7 @@ Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien 
 
 Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNIX-baserad maskin, som macOS, Linux eller Windows med Linux-undersystemet, följ dessa steg för att installera programvaran:
 
-1.  Ladda ner installationsskriptet från GitHub-förvaret genom att använda[denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
+1.  Ladda ner installationsskriptet från GitHub-förvaret genom att använda[denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kör installationsskriptet med ytterligare alternativ för att förbereda allt i en underkatalog för din inspektion. Till exempel:
@@ -67,4 +73,4 @@ Octopus har fördelen att kontrakten oftast bara har en månatlig löptid. De ä
 
 ## varning
 
-Please note the terms of use at <https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Observera användarvillkoren på<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
