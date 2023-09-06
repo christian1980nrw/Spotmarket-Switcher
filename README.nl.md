@@ -2,15 +2,15 @@
 
 ## README-vertaling
 
-[Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Noors](README.no.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)
+[Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md) - [Italiaans](README.it.md)-[Noors](README.no.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
-Wat doet deze software?
-Dit is een Linux shell-script waarmee u uw batterijlader en/of schakelbare stopcontacten op het juiste moment kunt inschakelen als uw uurgebaseerde dynamische energieprijzen laag zijn.
-Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan te zetten of je kunt de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het elektriciteitsnet beschikbaar is.
-Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
-Ondersteunde systemen zijn momenteel:
+What is this software doing? 
+This is a linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
+You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
+The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+Supported systems are currently:
 
 -   Shelly-producten (zoals Shelly Plug S of Shelly Plus1PM)
 -   AVM Fritz!DECT200 en 210 schakelbare stopcontacten
@@ -42,7 +42,7 @@ Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor 
 
 ### Toegang tot Venus OS
 
-Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victronenergy.com/live/ccgx:root_access>.
+For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Uitvoering van het installatiescript
 
