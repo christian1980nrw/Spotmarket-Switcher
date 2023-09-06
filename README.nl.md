@@ -2,7 +2,7 @@
 
 ## README-vertaling
 
-[Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Noors](README.no.md) - [Portugees](README.pt.md)-[Spaans](README.es.md)-[Zweeds](README.sv.md)
+[Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md) - [Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Noors](README.no.md)-[Portugees](README.pt.md)-[Spaans](README.es.md)-[Zweeds](README.sv.md)
 
 Welkom bij de Spotmarket-Switcher-repository!
 
@@ -66,7 +66,7 @@ Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te spons
 -   [Revolutie](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Als u zich bovendien in Duitsland bevindt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e). Zowel jij als het project ontvangen een bonus van 50 euro voor hardware. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e). Zowel jij als het project ontvangen een bonus van 50 euro voor hardware. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
 Je ontvangt een bonus van 50 euro voor jezelf en ook voor het project.
