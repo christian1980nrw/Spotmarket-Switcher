@@ -17,7 +17,7 @@ I sistemi supportati sono attualmente:
 -   [Victron](https://www.victronenergy.com/)Sistemi di accumulo di energia Venus OS come Multiplus II.
 
 Il codice è semplice in modo che possa essere facilmente adattato ad altri sistemi di accumulo di energia se si è in grado di controllare la ricarica tramite i comandi della shell di Linux.
-Dai un'occhiata alle prime righe del file controller.sh in modo da poter vedere cosa può essere configurato dall'utente.
+Dai un'occhiata sotto la riga 100 del file controller.sh in modo da poter vedere cosa può essere configurato dall'utente.
 
 ## Fonte di dati
 
@@ -51,7 +51,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
     -   Modifica le variabili con un editor di testo in`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Configurare un programma di addebito ESS (fare riferimento allo screenshot fornito). Nell'esempio la batteria si ricarica di notte fino al 50% se attivata, gli altri tempi di ricarica della giornata vengono ignorati. Se non lo desideri, crea una pianificazione per tutte le 24 ore del giorno. Ricordati di disattivarlo dopo la creazione. Verificare che l'ora del sistema (come mostrato nello screenshot) sia accurata.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
--   Se utilizzi un altro sistema operativo:
+-   If you're using another OS:
     -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
@@ -66,7 +66,7 @@ Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e s
 -   [Rivoluzione](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Inoltre, se ti trovi in ​​Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e). Sia tu che il progetto riceverete un bonus di 50 euro per l'hardware. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (link di riferimento)](https://share.octopusenergy.de/glass-raven-58).
 Ricevi un bonus di 50 euro per te e anche per il progetto.
