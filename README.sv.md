@@ -2,13 +2,7 @@
 
 ## README Översättning
 
--   [engelsk](README.md)
--   [tysk](README.de.md)
--   [franska](README.fr.md)
--   [spanska](README.es.md)
--   [svenska](README.sv.md)
--   [norska](README.no.md)
--   [danska](README.da.md)
+-   [engelsk](README.md)-[tysk](README.de.md)-[franska](README.fr.md)-[Spanish](README.es.md)-[svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
 
 Välkommen till Spotmarket-Switcher-förrådet! Denna programvara är utformad för att förbättra funktionaliteten i din energiinstallation genom att integrera:
 
@@ -22,7 +16,7 @@ Det primära målet med denna programvara är att ge ditt system möjlighet att 
 
 Mjukvaran använder för närvarande EPEX Spot timpriser som tillhandahålls av tre gratis API:er (Tibber, aWATTar & Entso-E).
 Den integrerade kostnadsfria Entso-E API tillhandahåller energiprisdata för följande länder:
-Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjeckien (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgien (GE), Tyskland (DE), Grekland (GR), Ungern (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldavien (MD), Montenegro (ME), Nederländerna (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slovakien (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Turkiet (TR), Ukraina (UA), Storbritannien (UK) se[Transparens Entso-E-plattform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjeckien (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgien (GE), Tyskland (DE), Grekland (GR), Ungern (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldavien (MD), Montenegro (ME), Nederländerna (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slovakien (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Turkiet (TR), Ukraina (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
@@ -33,19 +27,19 @@ Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNI
 1.  Ladda ner installationsskriptet från GitHub-förvaret genom att använda[denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Kör installationsskriptet med ytterligare alternativ för att förbereda allt i en underkatalog för din inspektion. Till exempel:
+2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Om du använder Victron Venus OS bör rätt DESTDIR vara`/`(rotkatalogen). Utforska gärna de installerade filerna i`/tmp/foo`.
 
 Observera att även om den här programvaran för närvarande är optimerad för Venus OS, kan den anpassas till andra inställningar, som att styra hushållsenheter via IP-switchar. Framtida utveckling kan förbättra kompatibiliteten med andra system.
 
-### Tillgång till Venus OS
+### Access to Venus OS
 
 För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Körning av installationsskriptet
 
--   If you're using Victron Venus OS:
+-   Om du använder Victron Venus OS:
     -   Kör`victron-venus-os-install.sh`för att ladda ner och installera Spotmarket-Switcher.
     -   Redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
@@ -65,7 +59,7 @@ Om du tycker att det här projektet är värdefullt, vänligen överväg att spo
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Dessutom, om du är i Tyskland och är intresserad av att byta till en dynamisk eltariff, kan du stödja projektet genom att registrera dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e). Både du och projektet kommer att få en bonus på 50 euro för hårdvara. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e). Både du och projektet kommer att få en bonus på 50 euro för hårdvara. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortfarande stödja projektet[Octopus Energy (referenslänk)](https://share.octopusenergy.de/glass-raven-58).
 Du får en bonus på 50 euro för dig själv och även för projektet.
