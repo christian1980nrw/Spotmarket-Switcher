@@ -2,7 +2,7 @@
 
 ## README Oversettelse
 
-[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md) - [finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
+[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -29,7 +29,7 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
 
 ## Installasjon
 
-Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
+Å sette opp Spotmarket-Switcher er en enkel prosess. Hvis du allerede kjører en UNIX-basert maskin, for eksempel macOS, Linux eller Windows med Linux-delsystemet, følger du disse trinnene for å installere programvaren:
 
 1.  Last ned installasjonsskriptet fra GitHub-depotet ved å bruke[denne hyperkoblingen](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kjør følgende kommando i terminalen din:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
@@ -47,8 +47,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 ### Utførelse av installasjonsskriptet
 
 -   Hvis du bruker Victron Venus OS:
-    -   Henrette`victron-venus-os-install.sh`for å laste ned og installere Spotmarket-Switcher.
-    -   Rediger variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Etter utførelse av`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
     -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist øverst til høyre på skjermen) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automatisk lading i tider med typiske lave energikostnader. Deaktivert som standard, kan være midlertidig aktivert av skriptet._
 
 -   Hvis du bruker et annet OS:
