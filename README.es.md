@@ -8,7 +8,7 @@
 
 ¿Qué está haciendo este software?
 Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios de energía por horas son bajos.
-Puede utilizar la dosis de vapor para calentar el agua caliente varias veces.
+Luego puedes utilizar los enchufes para utilizar un depósito de agua caliente, por ejemplo, de forma mucho más económica.
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
 
