@@ -16,7 +16,7 @@ Supported systems are currently:
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
   
 The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by linux shell commands.
-Please have a look at the first lines of the controller.sh file so that you can see what can be configured by the user.
+Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
 
 ## Data Source
 
