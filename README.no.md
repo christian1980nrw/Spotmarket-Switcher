@@ -8,7 +8,7 @@ Velkommen til Spotmarket-Switcher-depotet!
 
 Hva gjør denne programvaren?
 Dette er et linux-skall-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte energipriser er lave.
-Du kan da bruke stikkontaktene til å bruke for eksempel varmtvannsbeholder, mye rimeligere.
+Du kan da bruke stikkontaktene til å bruke for eksempel varmtvannstank mye billigere eller automatisk lade batterilageret om natten når billig vindenergi er tilgjengelig på nettet.
 Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
 Støttede systemer er for øyeblikket:
 
@@ -19,9 +19,9 @@ Støttede systemer er for øyeblikket:
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med linux-shell-kommandoer.
 Ta en titt på de første linjene i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
 
-## Data Source
+## Datakilde
 
-Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis APIer (Tibber, aWATTar & Entso-E).
+Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
 Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
