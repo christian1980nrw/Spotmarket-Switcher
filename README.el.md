@@ -2,7 +2,7 @@
 
 ## Μετάφραση README
 
-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Ισπανικά](README.es.md)-[Σουηδικά](README.sv.md)
+[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -66,7 +66,7 @@
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Επιπλέον, εάν βρίσκεστε στη Γερμανία και ενδιαφέρεστε να μεταβείτε σε ένα δυναμικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο με την εγγραφή σας χρησιμοποιώντας αυτό[Tibber (σύνδεσμος παραπομπής)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff ([ήττψ://τιββερ.κομ/δε/στόρι/προδυκτ/πολσε-ηρ](https://tibber.com/de/store/produkt/pulse-ir)) .
+Επιπλέον, εάν βρίσκεστε στη Γερμανία και ενδιαφέρεστε να μεταβείτε σε ένα δυναμικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο με την εγγραφή σας χρησιμοποιώντας αυτό[Tibber (σύνδεσμος παραπομπής)](https://invite.tibber.com/ojgfbx2e). Τόσο εσείς όσο και το έργο θα λάβετε ένα μπόνους 50 ευρώ για υλικό. Λάβετε υπόψη ότι απαιτείται έξυπνος μετρητής ή Pulse-IR για ωριαία χρέωση ([ήττψ://τιββερ.κομ/δε/στόρι/προδυκτ/πολσε-ηρ](https://tibber.com/de/store/produkt/pulse-ir)) .
 
 Εάν χρειάζεστε ένα τιμολόγιο φυσικού αερίου ή προτιμάτε ένα κλασικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο[Octopus Energy (σύνδεσμος παραπομπής)](https://share.octopusenergy.de/glass-raven-58).
 Λαμβάνετε ένα μπόνους 50 ευρώ για τον εαυτό σας αλλά και για το έργο.
