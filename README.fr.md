@@ -2,7 +2,7 @@
 
 ## Traduction du fichier README
 
-[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md) - [finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md) - [norvégien](README.no.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)
+[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[Greek ](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -38,7 +38,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Si vous utilisez Victron Venus OS, le DESTDIR correct devrait être`/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
@@ -48,7 +48,9 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 
 -   Si vous utilisez le système d'exploitation Victron Venus :
     -   Après l'exécution du`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
-    -   Configurez un calendrier de charge ESS (reportez-vous à la capture d'écran fournie). Dans l'exemple, la batterie se charge la nuit jusqu'à 50 % si elle est activée, les autres moments de charge de la journée sont ignorés. Si vous ne le souhaitez pas, créez un horaire pour les 24 heures de la journée. Pensez à le désactiver après la création. Vérifiez que l'heure du système (telle qu'elle apparaît en haut à droite de l'écran) est exacte.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Chargement automatisé pendant les périodes de faibles coûts énergétiques typiques. Désactivé par défaut, peut être temporairement activé par le script._
+    -   Configurez un calendrier de charge ESS (reportez-vous à la capture d'écran fournie). Dans l'exemple, la batterie se charge la nuit jusqu'à 50 % si elle est activée, les autres moments de charge de la journée sont ignorés. Si vous ne le souhaitez pas, créez un horaire pour les 24 heures de la journée. Pensez à le désactiver après la création. Vérifiez que l'heure du système (telle qu'elle apparaît en haut à droite de l'écran) est exacte.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+
+La capture d'écran montre la configuration de la recharge automatisée pendant les périodes de faibles coûts énergétiques typiques. Désactivé par défaut, peut être temporairement activé par le script.
 
 -   Si vous utilisez un autre système d'exploitation :
     -   Copiez le script shell (`controller.sh`) vers un emplacement personnalisé et ajustez les variables en fonction de vos besoins.
