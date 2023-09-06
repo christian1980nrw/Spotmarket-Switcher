@@ -6,16 +6,16 @@
 ## Welcome to the Spotmarket-Switcher repository!
 
 What is this software doing? 
-This is a linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
+This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
 You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
 The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
 Supported systems are currently:
 
-- Shelly products (such as Shelly Plug S or Shelly Plus1PM)
-- AVM Fritz!DECT200 and 210 switchable sockets
-- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
+- Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+- [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
+- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the MultiPlus-II series
   
-The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by linux shell commands.
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
 Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
 
 ## Data Source
@@ -42,7 +42,7 @@ Setting up the Spotmarket-Switcher is a straightforward process. If you are alre
    ```
    If you're using Victron Venus OS, the correct DESTDIR should be `/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
 
-Please note that while this software is currently optimized for the Venus OS, it can be adapted to other linux devices like a Raspberry PI. Future development might enhance compatibility with other systems.
+Please note that while this software is currently optimized for the Venus OS, it can be adapted to other Linux flavors, like Debian/Ubuntu on a Raspberry Pi or another small board. A prime candidate is certainly [OpenWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
 
 ### Access to Venus OS
 
@@ -51,10 +51,11 @@ For instructions on accessing the Venus OS, please refer to [https://www.victron
 ### Execution of the Install Script
 
 - If you're using Victron Venus OS:
-  - Execute `victron-venus-os-install.sh` to download and install the Spotmarket-Switcher.
-  - Edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh`.
-  - Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the screenshot) is accurate.
+  - After execution of the `victron-venus-os-install.sh`, edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/controller.sh`.
+  - Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
 ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+
+The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
 
 - If you're using another OS:
   - Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
