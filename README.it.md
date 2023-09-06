@@ -47,8 +47,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
 ### Esecuzione dello script di installazione
 
 -   Se utilizzi il sistema operativo Victron Venus:
-    -   Eseguire`victron-venus-os-install.sh`per scaricare e installare Spotmarket-Switcher.
-    -   Modifica le variabili con un editor di testo in`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Dopo l'esecuzione del`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
     -   Configurare un programma di addebito ESS (fare riferimento allo screenshot fornito). Nell'esempio la batteria si ricarica di notte fino al 50% se attivata, gli altri tempi di ricarica della giornata vengono ignorati. Se non lo desideri, crea una pianificazione per tutte le 24 ore del giorno. Ricordati di disattivarlo dopo la creazione. Verificare che l'ora del sistema (come mostrato nell'angolo in alto a destra dello schermo) sia accurata.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Ricarica automatizzata durante gli orari con tipici costi energetici bassi. Disattivato per impostazione predefinita, può essere temporaneamente attivato dallo script._
 
 -   Se utilizzi un altro sistema operativo:
