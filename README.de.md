@@ -2,7 +2,7 @@
 
 ## README-Übersetzung
 
--   [Englisch](README.md) - [German](README.de.md)-[Französisch](README.fr.md)-[Spanisch](README.es.md)-[Schwedisch](README.sv.md)-[norwegisch](README.no.md)-[dänisch](README.da.md)
+-   [Englisch](README.md)-[Deutsch](README.de.md)-[Französisch](README.fr.md)-[Spanisch](README.es.md)-[Schwedisch](README.sv.md)-[norwegisch](README.no.md)-[Dansk](README.da.md)
 
 Willkommen im Spotmarket-Switcher-Repository! Diese Software wurde entwickelt, um die Funktionalität Ihres Energiesystems durch die Integration von Folgendem zu verbessern:
 
@@ -31,7 +31,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
-Bitte beachten Sie, dass diese Software derzeit zwar für das Venus OS optimiert ist, aber an andere Setups angepasst werden kann, beispielsweise die Steuerung von Haushaltsgeräten über IP-Switches. Zukünftige Entwicklungen könnten die Kompatibilität mit anderen Systemen verbessern.
+Please note that while this software is currently optimized for the Venus OS, it can be adapted to other setups, such as controlling household devices via IP switches. Future development might enhance compatibility with other systems.
 
 ### Zugriff auf Venus OS
 
@@ -59,7 +59,7 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
 Sie erhalten eine Prämie von 50 Euro für sich selbst und auch für das Projekt.
