@@ -54,9 +54,9 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 -   Om du använder ett annat operativsystem:
     -   Kopiera skalskriptet (`controller.sh`) till en anpassad plats och justera variablerna efter dina behov.
     -   Skapa en crontab eller annan schemaläggningsmetod för att köra det här skriptet i början av varje timme.
-    -   Exempel Crontab:
-          Använd följande crontab-post för att köra kontrollskriptet varje timme:
-          Öppna din terminal och skriv in`crontab -e`, infoga sedan följande rad:
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, infoga sedan följande rad:
             0 * * * * /path/to/controller.sh
 
 ### Stöd och bidrag
