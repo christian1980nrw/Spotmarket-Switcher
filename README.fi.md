@@ -8,7 +8,7 @@
 
 Mitä tämä ohjelmisto tekee?
 Tämä on linux-shell-skripti, joka käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
-Pistorasiasta voi sitten kytkeä esimerkiksi lämminvesivaraajan päälle paljon halvemmalla tai ladata akkuvaraston automaattisesti yöllä, kun verkkoon on saatavilla halpaa tuulienergiaa.
+Voit sitten käyttää pistorasioita kytkeäksesi kuumavesivaraajan päälle paljon halvemmalla tai voit ladata akkuvaraston automaattisesti yöllä, kun verkossa on saatavilla halpaa tuulienergiaa.
 Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti varatun akkuvaraston kautta.
 Tuetut järjestelmät ovat tällä hetkellä:
 
@@ -27,7 +27,7 @@ Albania (AL), Itävalta (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaria (BG), 
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
-## Asennus
+## Installation
 
 Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät jo UNIX-pohjaista konetta, kuten macOS, Linux tai Windows, jossa on Linux-alijärjestelmä, asenna ohjelmisto seuraavasti:
 
@@ -68,9 +68,9 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 
 Lisäksi, jos olet Saksassa ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e). Sekä sinä että projekti saavat 50 euron bonuksen laitteistosta. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
+Jos tarvitset maakaasutariffia tai haluat perinteisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat 50 euron bonuksen itsellesi ja myös projektiin.
-Octopusin etuna on, että sopimukset ovat yleensä vain kuukausittain. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusilla on se etu, että sopimukset ovat yleensä vain kuukausittain. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 ## Vastuuvapauslauseke
 
