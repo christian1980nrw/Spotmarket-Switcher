@@ -2,7 +2,7 @@
 
 ## Traduction du fichier README
 
--   [Anglais](README.md)-[Allemand](README.de.md)-[Français](README.fr.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
+-   [Anglais](README.md)-[Deutsch](README.de.md)-[Français](README.fr.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
 
 Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -38,7 +38,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Si vous utilisez Victron Venus OS, le DESTDIR correct devrait être`/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres configurations, telles que le contrôle d'appareils domestiques via des commutateurs IP. Un développement futur pourrait améliorer la compatibilité avec d’autres systèmes.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres appareils Linux comme un Raspberry PI. Un développement futur pourrait améliorer la compatibilité avec d’autres systèmes.
 
 ### Accès au système d'exploitation Venus
 
@@ -64,7 +64,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de soutenir son développement ultérieur via ces liens :
 
 -   [Révolution](https://revolut.me/christqki2)
--   [Pay Pal](https://paypal.me/christian1980nrw)
+-   [PayPal](https://paypal.me/christian1980nrw)
 
 De plus, si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e). Vous et le projet recevrez un bonus de 50 euros pour le matériel. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
