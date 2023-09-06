@@ -8,17 +8,6 @@ Willkommen im Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Swi
 
 Das Hauptziel dieser Software besteht darin, Ihr System in die Lage zu versetzen, auf Spotmarkt-Strompreise zu reagieren und so intelligente Entscheidungen wie das Laden der Batterie und die Stromaktivierung auf der Grundlage von Zeiträumen mit niedrigen Preisen zu treffen.
 
-## Was diese Software bietet
-
-Für diejenigen, die dynamische Strompreise nutzen, ist diese Software eine wertvolle Bereicherung.
-
-Durch die Integration dieser Software haben Sie die Möglichkeit, zur sauberen Energie beizutragen oder einfach Ihren Energieverbrauch zu optimieren. Zum Beispiel:
-
--   **Erneuerbare Priorität:**Stellen Sie sicher, dass Ihr Energieverbrauch mit der Verfügbarkeit erneuerbarer Energien übereinstimmt, und meiden Sie nicht erneuerbare Energiequellen in Zeiten geringer Sonneneinstrahlung und wenig Wind.
--   **Batterieoptimierung:**Wenn Sie über ein Speichersystem verfügen, ermöglicht die Software das Aufladen Ihrer Batterie, wenn die Strompreise unter dem Einspeisetarif liegen, und nutzen so kostengünstige Energie.
--   **Benutzerdefinierte Regeln:**Passen Sie die Software anhand von Faktoren wie Batteriekapazität, voraussichtlichem Energieverbrauch und vorhergesagtem Sonnenschein an Ihre Bedürfnisse an. Dies eröffnet die Möglichkeit, nachts oder zu bestimmten Zeiten günstige Windenergiepreise zu nutzen.
--   **Unabhängige ESS-Nutzung:**Diese Software ermöglicht die Nutzung von Energiespeichersystemen (ESS) auch ohne Solarpanel-Installationen und bietet so einen Mehrwert für alle Nutzer, insbesondere in den Wintermonaten.
-
 ## Datenquelle
 
 Die Software nutzt derzeit EPEX Spot-Stundenpreise, die von drei kostenlosen APIs (Tibber, aWATTar und Entso-E) bereitgestellt werden.
@@ -42,7 +31,7 @@ Bitte beachten Sie, dass diese Software derzeit zwar für das Venus OS optimiert
 
 ### Zugriff auf Venus OS
 
-Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://www.victronenergy.com/live/ccgx:root_access>.
+For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Ausführung des Installationsskripts
 
@@ -66,7 +55,7 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
 Sie erhalten eine Prämie von 50 Euro für sich selbst und auch für das Projekt.
