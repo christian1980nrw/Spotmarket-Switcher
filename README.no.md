@@ -2,7 +2,7 @@
 
 ## README Oversettelse
 
-[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[spansk](README.es.md)-[svensk](README.sv.md)
+[Dansk ](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[spansk](README.es.md)-[svensk](README.sv.md)
 
 Velkommen til Spotmarket-Switcher-depotet!
 
@@ -14,7 +14,7 @@ Støttede systemer er for øyeblikket:
 
 -   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
 -   AVM Fritz!DECT200 og 210 byttebare stikkontakter
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som Multiplus II.
+-   [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
 
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med linux-shell-kommandoer.
 Ta en titt på de første linjene i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
