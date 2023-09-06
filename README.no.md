@@ -17,7 +17,7 @@ Støttede systemer er for øyeblikket:
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som Multiplus II.
 
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med linux-shell-kommandoer.
-Ta en titt på de første linjene i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
+Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
 
 ## Datakilde
 

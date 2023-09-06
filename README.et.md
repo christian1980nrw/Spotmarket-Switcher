@@ -17,7 +17,7 @@ Toetatud süsteemid on praegu:
 -   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu Multiplus II.
 
 Kood on lihtne, nii et seda saab hõlpsasti kohandada muude energiasalvestussüsteemidega, kui saate laadimist juhtida linuxi shelli käskude abil.
-Palun vaadake faili controller.sh esimesi ridu, et saaksite näha, mida kasutaja saab seadistada.
+Palun vaadake faili controller.sh rida 100 alt, et saaksite näha, mida kasutaja saab seadistada.
 
 ## Andmeallikas
 
@@ -53,7 +53,7 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 
 -   Kui kasutate teist OS-i:
     -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
-    -   Selle skripti käivitamiseks iga tunni alguses looge crontab või mõni muu ajastamismeetod.
+    -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
     -   Crontabi näidis:
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
           Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:
@@ -66,9 +66,9 @@ Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise a
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Lisaks, kui olete Saksamaal ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e). Nii sina kui projekt saavad 50 eurot riistvara boonust. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Lisaks, kui olete Saksamaal ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e). Nii sina kui projekt saate 50 euro suuruse riistvara boonuse. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate projekti siiski toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
+Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate siiski projekti toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
 Saate endale ja ka projektile 50 eurot boonust.
 Kaheksajala eeliseks on see, et lepingud on tavaliselt ainult igakuised. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
 

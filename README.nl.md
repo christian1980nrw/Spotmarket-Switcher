@@ -17,7 +17,7 @@ Ondersteunde systemen zijn momenteel:
 -   [Victron](https://www.victronenergy.com/)Venus OS-energieopslagsystemen zoals Multiplus II.
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
-Kijk eens naar de eerste regels van het controller.sh-bestand, zodat u kunt zien wat er door de gebruiker kan worden geconfigureerd.
+Kijk eens onder regel 100 van het controller.sh-bestand, zodat u kunt zien wat door de gebruiker kan worden geconfigureerd.
 
 ## Databron
 
