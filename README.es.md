@@ -2,7 +2,7 @@
 
 ## Traducción LÉAME
 
-[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md) - [sueco](README.sv.md)
+[danés](README.da.md) - [Alemán](README.de.md)-[Dutch ](README.nl.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[Portuguese ](README.pt.md)-[sueco](README.sv.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -13,7 +13,7 @@ El rendimiento solar esperado se puede tener en cuenta mediante una API meteorol
 Los sistemas compatibles actualmente son:
 
 -   Productos Shelly (como[Tapón Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)o[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   centro comercial[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
 -   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como la serie MultiPlus-II
 
 El código es simple, por lo que puede adaptarse fácilmente a otros sistemas de almacenamiento de energía si puede controlar la carga mediante comandos de shell de Linux.
@@ -73,4 +73,4 @@ Octopus tiene la ventaja de que los contratos normalmente solo tienen una duraci
 
 ## Descargo de responsabilidad
 
-Tenga en cuenta las condiciones de uso en<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Please note the terms of use at <https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
