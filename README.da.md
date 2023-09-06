@@ -47,9 +47,8 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 ### Udførelse af installationsscriptet
 
 -   Hvis du bruger Victron Venus OS:
-    -   Udfør`victron-venus-os-install.sh`for at downloade og installere Spotmarket-Switcher.
-    -   Rediger variablerne med en teksteditor i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automatisk opladning i tider med typiske lave energiomkostninger. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet._
+    -   Efter udførelse af`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automatisk opladning i perioder med typiske lave energiomkostninger. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet._
 
 -   Hvis du bruger et andet OS:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
@@ -59,14 +58,14 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
           Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:
             0 * * * * /path/to/controller.sh
 
-### Support and Contribution
+### Støtte og bidrag
 
 Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støtte yderligere udvikling gennem disse links:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e). Både du og projektet vil modtage en bonus på 50 euro for hardware. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Derudover, hvis du er i Tyskland og er interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e). Både du og projektet vil modtage en bonus på 50 euro for hardware. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan du stadig støtte projektet[Octopus Energy (henvisningslink)](https://share.octopusenergy.de/glass-raven-58).
 Du modtager en bonus på 50 euro til dig selv og også for projektet.
