@@ -8,7 +8,7 @@
 
 O que este software está fazendo?
 Este é um script de shell do Linux e liga o carregador de bateria e/ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica baseados em hora estiverem baixos.
-Você pode então usar as tomadas para ligar um tanque de água quente, por exemplo, de forma muito mais barata, ou pode carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
+Você pode então usar as tomadas para ligar um tanque de água quente de maneira muito mais barata ou pode carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
 
@@ -36,13 +36,13 @@ Configurar o Spotmarket-Switcher é um processo simples. Se você já estiver ex
 
 2.  Execute o script do instalador com opções adicionais para preparar tudo em um subdiretório para sua inspeção. Por exemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    If you're using Victron Venus OS, the correct DESTDIR should be `/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
+    Se você estiver usando Victron Venus OS, o DESTDIR correto deve ser`/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
 
 Observe que, embora este software esteja atualmente otimizado para o sistema operacional Venus, ele pode ser adaptado para outros dispositivos Linux, como Raspberry PI. O desenvolvimento futuro poderá melhorar a compatibilidade com outros sistemas.
 
 ### Acesso ao sistema operacional Venus
 
-For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
+Para obter instruções sobre como acessar o Venus OS, consulte<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Execução do script de instalação
 
