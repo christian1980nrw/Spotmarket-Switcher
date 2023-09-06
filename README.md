@@ -6,7 +6,7 @@ Welcome to the Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Sw
 - Shelly products (such as Shelly Plug S or Shelly Plus1PM)
 - AVM Fritz!DECT200 and 210 switchable sockets
 
-The primary goal of this software is to empower your system to respond to spot-market electricity prices, allowing it to make intelligent decisions such as battery charging and power activation based on low pricing periods. The expected solar yield will be taken into account via a weather API and battery storage reserved accordingly.
+The primary goal of this software is to empower your system to respond to spot-market electricity prices, allowing it to make intelligent decisions such as battery charging and power activation based on low pricing periods. The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
 
 ## Data Source
 
