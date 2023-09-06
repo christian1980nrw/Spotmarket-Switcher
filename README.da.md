@@ -4,13 +4,19 @@
 
 -   [engelsk](README.md)-[tysk](README.de.md)-[fransk](README.fr.md)-[spansk](README.es.md)-[svensk](README.sv.md)-[Norsk](README.no.md)-[Dansk](README.da.md)
 
-Velkommen til Spotmarket-Switcher-depotet! Denne software er designet til at forbedre funktionaliteten af ​​din energiopsætning ved at integrere:
+Velkommen til Spotmarket-Switcher-depotet!
 
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer
+Hvad laver denne software?
+Dette er et linux shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede energipriser er lave.
+Det forventede soludbytte kan tages i betragtning via en vejr-API og batterilager reserveret i overensstemmelse hermed.
+Understøttede systemer er i øjeblikket:
+
 -   Shelly-produkter (såsom Shelly Plug S eller Shelly Plus1PM)
 -   AVM Fritz!DECT200 og 210 omskiftelige stikkontakter
+-   [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
 
-Det primære mål med denne software er at give dit system mulighed for at reagere på elpriser på spotmarkedet, så det kan træffe intelligente beslutninger såsom batteriopladning og strømaktivering baseret på perioder med lave priser. Det forventede soludbytte kan tages i betragtning via en vejr-API og batterilager reserveret i overensstemmelse hermed.
+Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med linux shell-kommandoer.
+Tag et kig på de første linjer i controller.sh-filen, så du kan se, hvad der kan konfigureres af brugeren.
 
 ## Datakilde
 
