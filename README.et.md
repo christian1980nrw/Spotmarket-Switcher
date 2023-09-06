@@ -2,7 +2,7 @@
 
 ## README Tõlge
 
-[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[Finnish ](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)
+[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
@@ -48,10 +48,10 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 
 -   Kui kasutate operatsioonisüsteemi Victron Venus:
     -   Pärast täitmist`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
-    -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automaatne laadimine tüüpiliste madala energiakuluga aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida._
+    -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)Automaatne laadimine tüüpiliste madala energiakuluga aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida.
 
 -   Kui kasutate teist OS-i:
-    -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
+    -   Copy the shell script (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
     -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
     -   Crontabi näidis:
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
