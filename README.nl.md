@@ -13,7 +13,7 @@ Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst e
 Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   winkelcentrum[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de MultiPlus-II-serie
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
