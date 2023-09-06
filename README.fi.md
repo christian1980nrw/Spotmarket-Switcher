@@ -1,6 +1,6 @@
 # Spotmarket-Switcher-Repository
 
-## README Käännös
+## README Translation
 
 [Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
 
@@ -13,7 +13,7 @@ Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti va
 Tuetut järjestelmät ovat tällä hetkellä:
 
 -   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   ostoskeskus[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten MultiPlus-II-sarja
 
 Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
@@ -44,7 +44,7 @@ Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käy
 
 Katso ohjeet Venus-käyttöjärjestelmän käyttämiseen osoitteesta<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Execution of the Install Script
+### Asennuskomentosarjan suorittaminen
 
 -   Jos käytät Victron Venus OS:ää:
     -   Suorituksen jälkeen`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
