@@ -2,12 +2,13 @@
 
 ## README Oversettelse
 
--   [Engelsk](README.md)-[Deutsch](README.de.md)-[fransk](README.fr.md)-[spansk](README.es.md)-[svensk](README.sv.md)-[Norsk](README.no.md)-[dansk](README.da.md)
+-   [Engelsk](README.md)-[tysk](README.de.md)-[fransk](README.fr.md)-[spansk](README.es.md)-[svensk](README.sv.md) - [Norsk](README.no.md)-[dansk](README.da.md)
 
 Velkommen til Spotmarket-Switcher-depotet!
 
 Hva gjør denne programvaren?
 Dette er et linux-skall-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte energipriser er lave.
+Sie können dann mit den Steckdosen beispielsweise einen Warmwasserspeicher viel günstiger nutzen.
 Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
 Støttede systemer er for øyeblikket:
 
@@ -51,11 +52,11 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
     -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist på skjermbildet) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Hvis du bruker et annet OS:
-    -   Kopier skallskriptet (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
+    -   Kopier skallskriptet (`controller.sh`) to a custom location and adjust the variables according to your needs.
     -   Opprett en crontab eller en annen planleggingsmetode for å kjøre dette skriptet ved starten av hver time.
-    -   Eksempel på Crontab:
-          Bruk følgende crontab-oppføring for å utføre kontrollskriptet hver time:
-          Åpne terminalen og skriv inn`crontab -e`, sett inn følgende linje:
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, sett inn følgende linje:
             0 * * * * /path/to/controller.sh
 
 ### Støtte og bidrag
@@ -67,10 +68,10 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 
 I tillegg, hvis du er i Tyskland og er interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e). Både du og prosjektet vil motta en bonus på 50 euro for maskinvare. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
-Du mottar en bonus på 50 euro for deg selv og også for prosjektet.
-Octopus har den fordelen at kontraktene vanligvis kun har en månedlig løpetid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
+Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58) .
+You receive a 50 euro bonus for yourself and also for the project.
+Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
-## Ansvarsfraskrivelse
+## Disclaimer
 
 Vær oppmerksom på vilkårene for bruk på<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
