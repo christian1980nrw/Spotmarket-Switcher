@@ -7,16 +7,16 @@
 ## Velkommen til Spotmarket-Switcher-depotet!
 
 Hvad laver denne software?
-Dette er et linux shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede dynamiske energipriser er lave.
+Dette er et Linux-shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede dynamiske energipriser er lave.
 Du kan så bruge stikkontakterne til at tænde en varmtvandsbeholder meget billigere eller du kan automatisk oplade batterilageret om natten, når billig vindenergi er tilgængelig på nettet.
 Det forventede soludbytte kan tages i betragtning via en vejr-API og batterilager reserveret i overensstemmelse hermed.
 Understøttede systemer er i øjeblikket:
 
--   Shelly-produkter (såsom Shelly Plug S eller Shelly Plus1PM)
--   AVM Fritz!DECT200 og 210 omskiftelige stikkontakter
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som Multiplus II.
+-   Shelly-produkter (f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus1PM](https://shellyparts.de/products/shelly-plus-1pm))
+-   indkøbscenter[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)omskiftelige stikkontakter
+-   [Victron](https://www.victronenergy.com/)Venus OS Energy Storage Systems som MultiPlus-II-serien
 
-Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med linux shell-kommandoer.
+Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
 Tag et kig under linje 100 i controller.sh-filen, så du kan se, hvad der kan konfigureres af brugeren.
 
 ## Datakilde
@@ -38,7 +38,7 @@ Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører 
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Hvis du bruger Victron Venus OS, skal den korrekte DESTDIR være`/`(rodmappen). Du er velkommen til at udforske de installerede filer i`/tmp/foo`.
 
-Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre linux-enheder som en Raspberry PI. Fremtidig udvikling kan forbedre kompatibiliteten med andre systemer.
+Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre Linux-varianter, som Debian/Ubuntu på en Raspberry Pi eller et andet lille bord. En topkandidat er bestemt[OpenWRT](https://www.openwrt.org). Brug af en stationær maskine er fint til testformål, men når den er i 24/7 brug, er dens større strømforbrug et problem.
 
 ### Adgang til Venus OS
 
@@ -49,7 +49,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 -   Hvis du bruger Victron Venus OS:
     -   Udfør`victron-venus-os-install.sh`for at downloade og installere Spotmarket-Switcher.
     -   Rediger variablerne med en teksteditor i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist på skærmbilledet) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automatisk opladning i tider med typiske lave energiomkostninger. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet._
 
 -   Hvis du bruger et andet OS:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
@@ -59,14 +59,14 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
           Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:
             0 * * * * /path/to/controller.sh
 
-### Støtte og bidrag
+### Support and Contribution
 
 Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støtte yderligere udvikling gennem disse links:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Derudover, hvis du er i Tyskland og er interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e). Både du og projektet vil modtage en bonus på 50 euro for hardware. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e). Både du og projektet vil modtage en bonus på 50 euro for hardware. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan du stadig støtte projektet[Octopus Energy (henvisningslink)](https://share.octopusenergy.de/glass-raven-58).
 Du modtager en bonus på 50 euro til dig selv og også for projektet.
