@@ -2,7 +2,7 @@
 
 ## Μετάφραση README
 
-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
+[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md) - [ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -13,7 +13,7 @@
 Τα υποστηριζόμενα συστήματα είναι επί του παρόντος:
 
 -   Προϊόντα Shelly (όπως Shelly Plug S ή Shelly Plus1PM)
--   Υποδοχές AVM Fritz!DECT200 και 210 με δυνατότητα εναλλαγής
+-   AVM Fritz!DECT200 and 210 switchable sockets
 -   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως το Multiplus II.
 
 Ο κώδικας είναι απλός, ώστε να μπορεί εύκολα να προσαρμοστεί σε άλλα συστήματα αποθήκευσης ενέργειας, εάν μπορείτε να ελέγξετε τη φόρτιση με εντολές κελύφους linux.
