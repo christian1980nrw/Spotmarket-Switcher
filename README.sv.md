@@ -2,7 +2,7 @@
 
 ## README Översättning
 
--   [engelsk](README.md)-[Deutsch](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
+-   [engelsk](README.md)-[tysk](README.de.md)-[franska](README.fr.md)-[spanska](README.es.md)-[Svenska](README.sv.md)-[norska](README.no.md)-[danska](README.da.md)
 
 Välkommen till Spotmarket-Switcher-förrådet!
 
@@ -12,7 +12,7 @@ Du kan då använda uttagen för att använda exempelvis en varmvattentank mycke
 Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
 System som stöds är för närvarande:
 
--   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
+-   Shelly products (such as Shelly Plug S or Shelly Plus1PM)
 -   AVM Fritz!DECT200 och 210 omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som Multiplus II.
 
@@ -49,7 +49,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 -   Om du använder Victron Venus OS:
     -   Kör`victron-venus-os-install.sh`för att ladda ner och installera Spotmarket-Switcher.
     -   Redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Om du använder ett annat operativsystem:
     -   Kopiera skalskriptet (`controller.sh`) till en anpassad plats och justera variablerna efter dina behov.
