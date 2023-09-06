@@ -1,6 +1,6 @@
-# Victron-ESS, Shelly Plug S, and AVM-Fritz-DECT200-210 Spotmarket-Switcher
+# Spotmarket-Switcher
 
-Welcome to the Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Switcher repository! This software is designed to enhance the functionality of your energy setup by integrating:
+Welcome to the Spotmarket-Switcher repository! This software is designed to enhance the functionality of your energy setup by integrating:
 
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems
 - Shelly products (such as Shelly Plug S or Shelly Plus1PM)
@@ -18,7 +18,7 @@ Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), 
 
 ## Installation
 
-Setting up the Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
+Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
 
 
 1. Download the install script from the GitHub repository by using [this hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
