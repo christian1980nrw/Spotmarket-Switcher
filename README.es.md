@@ -21,9 +21,9 @@ Eche un vistazo a las primeras líneas del archivo controlador.sh para que pueda
 
 ## Fuente de datos
 
-Actualmente, el software utiliza precios por hora EPEX Spot proporcionados por tres API gratuitas (Tibber, aWATTar y Entso-E).
-La API Entso-E gratuita integrada proporciona datos sobre precios de energía de los siguientes países:
-Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), Croacia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Alemania (DE), Grecia (GR), Hungría (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Letonia (LV), Lituania (LT), Luxemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Países Bajos (NL), Macedonia del Norte (MK), Noruega (NO), Polonia (PL), Portugal (PT), Rumania (RO), Serbia (RS), Eslovaquia (SK) , Eslovenia (SI), España (ES), Suecia (SE), Suiza (CH), Turquía (TR), Ucrania (UA), Reino Unido (UK) ver[Plataforma Transparencia Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
+The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
+Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Plataforma Transparencia Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
@@ -49,7 +49,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 -   Si está utilizando el sistema operativo Victron Venus:
     -   Ejecutar`victron-venus-os-install.sh`para descargar e instalar Spotmarket-Switcher.
     -   Edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la captura de pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada; se ignoran otros momentos de carga del día. Si no lo desea, cree un horario para las 24 horas del día. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la captura de pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Si estás usando otro sistema operativo:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
