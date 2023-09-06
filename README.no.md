@@ -13,11 +13,11 @@ Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagri
 Støttede systemer er for øyeblikket:
 
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som MultiPlus-II-serien
 
-The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
-Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
+Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med Linux-shell-kommandoer.
+Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
 
 ## Datakilde
 
@@ -31,7 +31,7 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
 
 Å sette opp Spotmarket-Switcher er en enkel prosess. Hvis du allerede kjører en UNIX-basert maskin, for eksempel macOS, Linux eller Windows med Linux-delsystemet, følger du disse trinnene for å installere programvaren:
 
-1.  Last ned installasjonsskriptet fra GitHub-depotet ved å bruke[this hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kjør følgende kommando i terminalen din:
+1.  Last ned installasjonsskriptet fra GitHub-depotet ved å bruke[denne hyperkoblingen](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kjør følgende kommando i terminalen din:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kjør installasjonsskriptet med flere alternativer for å forberede alt i en underkatalog for inspeksjonen din. For eksempel:
@@ -47,11 +47,12 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 ### Utførelse av installasjonsskriptet
 
 -   Hvis du bruker Victron Venus OS:
-    -   Etter utførelse av`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
+    -   Etter utførelse av`victron-venus-os-install.sh`, rediger variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist øverst til høyre på skjermen) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
-        _Automatisk lading i tider med typiske lave energikostnader. Deaktivert som standard, kan være midlertidig aktivert av skriptet._
 
--   If you're using another OS:
+Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
+
+-   Hvis du bruker et annet OS:
     -   Kopier skallskriptet (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
     -   Opprett en crontab eller en annen planleggingsmetode for å kjøre dette skriptet ved starten av hver time.
     -   Eksempel på Crontab:
