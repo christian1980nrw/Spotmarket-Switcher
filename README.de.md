@@ -6,7 +6,7 @@ Willkommen im Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Swi
 -   Shelly-Produkte (wie Shelly Plug S oder Shelly Plus1PM)
 -   AVM Fritz!DECT200 und 210 schaltbare Steckdosen
 
-Das Hauptziel dieser Software besteht darin, Ihr System in die Lage zu versetzen, auf Spotmarkt-Strompreise zu reagieren und so intelligente Entscheidungen wie das Laden der Batterie und die Stromaktivierung auf der Grundlage von Zeiträumen mit niedrigen Preisen zu treffen. Der zu erwartende Solarertrag wird über eine Wetter-API berücksichtigt und Batteriespeicher entsprechend reserviert.
+Das Hauptziel dieser Software besteht darin, Ihr System in die Lage zu versetzen, auf Spotmarkt-Strompreise zu reagieren und so intelligente Entscheidungen wie das Laden der Batterie und die Stromaktivierung auf der Grundlage von Zeiträumen mit niedrigen Preisen zu treffen. Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 
 ## Datenquelle
 
