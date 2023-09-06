@@ -1,4 +1,4 @@
-# Spotmarket-Switcher
+# Spotmarket-Switcher-Repository
 
 Welcome to the Spotmarket-Switcher repository! This software is designed to enhance the functionality of your energy setup by integrating:
 
