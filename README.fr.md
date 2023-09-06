@@ -8,7 +8,7 @@ Bienvenue dans le référentiel Spotmarket-Switcher ! Ce logiciel est conçu po
 
 L'objectif principal de ce logiciel est de permettre à votre système de réagir aux prix de l'électricité du marché au comptant, lui permettant ainsi de prendre des décisions intelligentes telles que le chargement de la batterie et l'activation de l'alimentation en fonction de périodes de bas prix. Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
 
-## La source de données
+## Data Source
 
 Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
@@ -45,7 +45,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
     -   Créez une crontab ou une autre méthode de planification pour exécuter ce script au début de chaque heure.
     -   Exemple de Crontab :
           Utilisez l'entrée crontab suivante pour exécuter le script de contrôle toutes les heures :
-          Ouvrez votre terminal et entrez`crontab -e`, puis insérez la ligne suivante :
+          Ouvrez votre terminal et entrez`crontab -e`, then insert the following line:
             0 * * * * /path/to/controller.sh
 
 ### Soutien et contribution
