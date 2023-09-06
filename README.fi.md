@@ -2,9 +2,9 @@
 
 ## README Käännös
 
-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Français ](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Espanja](README.es.md)-[Ruotsin kieli](README.sv.md)
+[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Espanja](README.es.md)-[Ruotsin kieli](README.sv.md)
 
-Tervetuloa Spotmarket-Switcher-tietovarastoon!
+## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
 Mitä tämä ohjelmisto tekee?
 Tämä on linux shell -skripti ja käynnistää akkulaturi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset energiahinnat ovat alhaiset.
