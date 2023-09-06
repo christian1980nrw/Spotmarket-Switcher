@@ -1,4 +1,4 @@
-# Spotmarkt-Umschalter
+# Spotmarket-Switcher-Repository
 
 Willkommen im Spotmarket-Switcher-Repository! Diese Software wurde entwickelt, um die Funktionalität Ihres Energiesystems durch die Integration von Folgendem zu verbessern:
 
@@ -23,7 +23,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 1.  Laden Sie das Installationsskript mithilfe von aus dem GitHub-Repository herunter[dieser Hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), oder führen Sie den folgenden Befehl in Ihrem Terminal aus:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
+2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
@@ -36,8 +36,8 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 ### Ausführung des Installationsskripts
 
 -   Wenn Sie Victron Venus OS verwenden:
-    -   Ausführen`victron-venus-os-install.sh`um den Spotmarket-Switcher herunterzuladen und zu installieren.
-    -   Edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Execute `victron-venus-os-install.sh`um den Spotmarket-Switcher herunterzuladen und zu installieren.
+    -   Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie im Screenshot gezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Wenn Sie ein anderes Betriebssystem verwenden:
