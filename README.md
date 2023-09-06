@@ -11,7 +11,7 @@ You can then use the sockets to turn on a hot water tank much more cheaply or yo
 The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
 Supported systems are currently:
 
-- Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus1-PM](https://shellyparts.de/products/shelly-plus-1pm))
+- Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - AVM [Fritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the MultiPlus-II series
   
