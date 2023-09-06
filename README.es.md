@@ -2,7 +2,7 @@
 
 ## Traducción LÉAME
 
-[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[Español](README.es.md)-[sueco](README.sv.md)
+[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md) - [Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[sueco](README.sv.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -72,6 +72,6 @@ Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásic
 Recibirás un bono de 50 euros para ti y también para el proyecto.
 Octopus tiene la ventaja de que los contratos normalmente solo tienen una duración mensual. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-## Descargo de responsabilidad
+## Disclaimer
 
 Tenga en cuenta las condiciones de uso en<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
