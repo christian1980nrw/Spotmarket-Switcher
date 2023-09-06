@@ -7,7 +7,7 @@
 
 What is this software doing? 
 This is a linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
-You can then use the sockets to use a hot water tank, for example, much more cheaply or automatically charge the battery storage at night when cheap wind energy is available on the grid.
+You can then use the sockets to turn on a hot water tank, for example, much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
 The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
 Supported systems are currently:
 
