@@ -2,13 +2,13 @@
 
 ## README Översättning
 
-[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[spanska](README.es.md)-[Svenska ](README.sv.md)
+[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[spanska](README.es.md)-[Svenska](README.sv.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
 Vad gör denna programvara?
 Detta är ett linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
-Du kan då använda uttagen för att slå på exempelvis en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
+Du kan då använda uttagen för att slå på en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
 Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
 System som stöds är för närvarande:
 
