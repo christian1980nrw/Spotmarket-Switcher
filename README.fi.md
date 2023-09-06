@@ -2,7 +2,7 @@
 
 ## README Käännös
 
-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
+[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md) - [Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
@@ -12,7 +12,7 @@ Voit sitten käyttää pistorasioita kytkeäksesi kuumavesivaraajan päälle pal
 Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti varatun akkuvaraston kautta.
 Tuetut järjestelmät ovat tällä hetkellä:
 
--   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus1PM](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus klo 13](https://shellyparts.de/products/shelly-plus-1pm))
 -   ostoskeskus[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten MultiPlus-II-sarja
 
@@ -51,7 +51,7 @@ Katso ohjeet Venus-käyttöjärjestelmän käyttämiseen osoitteesta<https://www
     -   Aseta ESS-latausaikataulu (katso mukana tulevaa kuvakaappausta). Esimerkissä akku latautuu yöllä jopa 50 %, jos se on aktivoitu, muut vuorokauden latausajat jätetään huomiotta. Jos et halua, luo aikataulu kaikille vuorokauden 24 tunnille. Muista poistaa se käytöstä luomisen jälkeen. Varmista, että järjestelmän aika (kuten näytön oikeassa yläkulmassa näkyy) on oikea.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automaattinen lataus tyypillisesti alhaisilla energiakustannuksilla. Oletusarvoisesti poistettu käytöstä, komentosarja voi aktivoida sen tilapäisesti._
 
 -   Jos käytät toista käyttöjärjestelmää:
-    -   Kopioi komentotulkin komentosarja (`controller.sh`) to a custom location and adjust the variables according to your needs.
+    -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
