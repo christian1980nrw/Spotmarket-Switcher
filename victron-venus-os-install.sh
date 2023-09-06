@@ -188,7 +188,7 @@ else
      fi
    fi
    echo "I: Downloading 'controller.sh' from github repository - '$BRANCH' branch"
-   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/data/etc/Spotmarket-Switcher/controller.sh "$DESTDIR"/data/etc/Spotmarket-Switcher/controller.sh
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh "$DESTDIR"/data/etc/Spotmarket-Switcher/controller.sh
 fi
 if [ -x  "$SRCDIR/run" ]; then
    cp "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/"
