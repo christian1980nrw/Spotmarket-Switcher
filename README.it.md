@@ -2,13 +2,13 @@
 
 ## Traduzione README
 
-[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italian ](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[spagnolo](README.es.md) - [svedese](README.sv.md)
+[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[spagnolo](README.es.md)-[svedese](README.sv.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
 Cosa sta facendo questo software?
 Questo è uno script di shell di Linux che accende il caricabatterie e/o le prese commutabili al momento giusto se i prezzi energetici dinamici su base oraria sono bassi.
-È quindi possibile utilizzare le prese per utilizzare, ad esempio, un bollitore per l'acqua calda in modo molto più economico o caricare automaticamente la batteria di accumulo di notte, quando sulla rete è disponibile energia eolica a basso costo.
+È quindi possibile utilizzare le prese per accendere, ad esempio, un bollitore per l'acqua calda, in modo molto più economico, oppure caricare automaticamente la batteria di accumulo di notte, quando sulla rete è disponibile energia eolica a basso costo.
 Il rendimento solare previsto può essere preso in considerazione tramite un'API meteorologica e l'accumulo della batteria riservato di conseguenza.
 I sistemi supportati sono attualmente:
 
@@ -34,7 +34,7 @@ La configurazione di Spotmarket-Switcher è un processo semplice. Se stai già u
 1.  Scaricare lo script di installazione dal repository GitHub utilizzando[questo collegamento ipertestuale](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)oppure esegui il seguente comando nel tuo terminale:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Esegui lo script di installazione con opzioni aggiuntive per preparare tutto in una sottodirectory per l'ispezione. Per esempio:
+2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Se utilizzi il sistema operativo Victron Venus, la DESTDIR corretta dovrebbe essere`/`(la directory principale). Sentiti libero di esplorare i file installati in`/tmp/foo`.
 
