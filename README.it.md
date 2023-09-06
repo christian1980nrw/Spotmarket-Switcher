@@ -2,7 +2,7 @@
 
 ## Traduzione README
 
-[danese](README.da.md) - [Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md) - [svedese](README.sv.md)
+[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
@@ -44,7 +44,7 @@ Tieni presente che sebbene questo software sia attualmente ottimizzato per il si
 
 Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Execution of the Install Script
+### Esecuzione dello script di installazione
 
 -   Se utilizzi il sistema operativo Victron Venus:
     -   Eseguire`victron-venus-os-install.sh`per scaricare e installare Spotmarket-Switcher.
