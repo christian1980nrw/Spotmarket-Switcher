@@ -22,10 +22,6 @@ jobs:
         uses: dephraiim/translate-readme@main
         with:
           LANG: nl
-      - name: Adding README - English
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: en
       - name: Adding README - Estonian
         uses: dephraiim/translate-readme@main
         with:
