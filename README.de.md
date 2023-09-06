@@ -8,6 +8,7 @@ Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
 Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schaltbaren Steckdosen zum richtigen Zeitpunkt einschaltet, wenn Ihre stündlichen Energiepreise niedrig sind.
+Sie können dann mit den Steckdosen beispielsweise einen Warmwasserspeicher viel günstiger nutzen.
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
