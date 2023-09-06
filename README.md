@@ -69,5 +69,4 @@ You receive a 50 euro bonus for yourself and also for the project.
 Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
 ## Disclaimer
-
-This computer program is provided "as is," and the user assumes full risk when using it. The author makes no representations or warranties regarding the accuracy, reliability, completeness, or suitability of the program for any specific purpose. The author shall not be liable for any damages arising from the use or inability to use the program, including but not limited to direct, indirect, incidental, special, or consequential damages.
+Please note the terms of use at https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md
