@@ -4,13 +4,19 @@
 
 -   [Inglés](README.md)-[Alemán](README.de.md)-[Francés](README.fr.md)-[Español](README.es.md)-[sueco](README.sv.md)-[noruego](README.no.md)-[danés](README.da.md)
 
-¡Bienvenido al repositorio de Spotmarket-Switcher! Este software está diseñado para mejorar la funcionalidad de su configuración de energía integrando:
+¡Bienvenido al repositorio de Spotmarket-Switcher!
 
--   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS
+¿Qué está haciendo este software?
+Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios de energía por horas son bajos.
+El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
+Los sistemas compatibles actualmente son:
+
 -   Productos Shelly (como Shelly Plug S o Shelly Plus1PM)
 -   AVM Fritz!DECT200 y 210 enchufes conmutables
+-   [Victron](https://www.victronenergy.com/)Sistemas de Almacenamiento de Energía Venus OS como Multiplus II.
 
-El objetivo principal de este software es capacitar a su sistema para que responda a los precios de la electricidad del mercado spot, permitiéndole tomar decisiones inteligentes, como la carga de la batería y la activación de la energía, en función de períodos de precios bajos. El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
+El código es simple, por lo que puede adaptarse fácilmente a otros sistemas de almacenamiento de energía si puede controlar la carga mediante comandos de shell de Linux.
+Eche un vistazo a las primeras líneas del archivo controlador.sh para que pueda ver qué puede configurar el usuario.
 
 ## Fuente de datos
 
@@ -39,7 +45,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 
 ### Ejecución del script de instalación
 
--   Si está utilizando el sistema operativo Victron Venus:
+-   If you're using Victron Venus OS:
     -   Ejecutar`victron-venus-os-install.sh`para descargar e instalar Spotmarket-Switcher.
     -   Edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la captura de pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
