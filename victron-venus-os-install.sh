@@ -194,7 +194,7 @@ if [ -x  "$SRCDIR/run" ]; then
    cp "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/"
 else
    echo "I: Downloading 'run' from github repository - '$BRANCH' branch"
-   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/data/etc/Spotmarket-Switcher/service/run "$DESTDIR"/data/etc/Spotmarket-Switcher/service/run
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/run "$DESTDIR"/data/etc/Spotmarket-Switcher/service/run
 fi
 
 # $DESTDIR is always an absolut path
