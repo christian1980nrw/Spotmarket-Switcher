@@ -1,5 +1,15 @@
 # Spotmarket-Switcher-Repository
 
+## README-Übersetzung
+
+-   [Englisch](README.md)
+-   [Deutsch](README.de.md)
+-   [Französisch](README.fr.md)
+-   [Spanisch](README.es.md)
+-   [Schwedisch](README.sv.md)
+-   [norwegisch](README.no.md)
+-   [dänisch](README.da.md)
+
 Willkommen im Spotmarket-Switcher-Repository! Diese Software wurde entwickelt, um die Funktionalität Ihres Energiesystems durch die Integration von Folgendem zu verbessern:
 
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme
@@ -61,6 +71,6 @@ Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzug
 Sie erhalten eine Prämie von 50 Euro für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit haben. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
-## Haftungsausschluss
+## Disclaimer
 
 Bitte beachten Sie die Nutzungsbedingungen unter<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
