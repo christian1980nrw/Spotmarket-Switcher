@@ -2,13 +2,13 @@
 
 ## Traduction du fichier README
 
-[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)
+[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md) - [Portugais](README.pt.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
 Que fait ce logiciel ?
 Il s'agit d'un script shell Linux qui allume votre chargeur de batterie et/ou vos prises commutables au bon moment si vos prix horaires d'énergie dynamiques sont bas.
-Vous pouvez ensuite utiliser les prises pour allumer un ballon d'eau chaude, par exemple, à moindre coût, ou charger automatiquement la batterie la nuit lorsque de l'énergie éolienne bon marché est disponible sur le réseau.
+Vous pouvez ensuite utiliser les prises pour allumer un ballon d'eau chaude à moindre coût ou charger automatiquement la batterie la nuit lorsque de l'énergie éolienne bon marché est disponible sur le réseau.
 Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
 Les systèmes pris en charge sont actuellement :
 
@@ -21,9 +21,9 @@ Veuillez jeter un œil aux premières lignes du fichier contrôleur.sh afin de v
 
 ## La source de données
 
-The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
-The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
-Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
+L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
+Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK) , Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
