@@ -2,18 +2,18 @@
 
 ## README Översättning
 
-[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[spanska](README.es.md)-[Svenska](README.sv.md)
+[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[spanska](README.es.md)-[Svenska ](README.sv.md)
 
-Välkommen till Spotmarket-Switcher-förrådet!
+## Välkommen till Spotmarket-Switcher-förrådet!
 
 Vad gör denna programvara?
-Detta är ett linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade energipriser är låga.
-Du kan då använda uttagen för att använda exempelvis en varmvattentank mycket billigare eller automatiskt ladda batterilagret nattetid när billig vindenergi finns tillgänglig på nätet.
+Detta är ett linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
+Du kan då använda uttagen för att slå på exempelvis en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
 Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
 System som stöds är för närvarande:
 
 -   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
--   AVM Fritz!DECT200 and 210 switchable sockets
+-   AVM Fritz!DECT200 och 210 omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som Multiplus II.
 
 Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med linux-skalkommandon.
