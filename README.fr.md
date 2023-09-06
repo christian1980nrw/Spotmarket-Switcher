@@ -8,7 +8,7 @@ Bienvenue dans le référentiel Spotmarket-Switcher !
 
 Que fait ce logiciel ?
 Il s'agit d'un script shell Linux qui allume votre chargeur de batterie et/ou vos prises commutables au bon moment si vos prix horaires de l'énergie sont bas.
-Vous pouvez ensuite utiliser les prises pour utiliser par exemple un ballon d'eau chaude à moindre coût.
+Vous pouvez ensuite utiliser les prises pour utiliser par exemple un ballon d'eau chaude à moindre coût ou charger automatiquement la batterie la nuit lorsque de l'énergie éolienne bon marché est disponible sur le réseau.
 Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
 Les systèmes pris en charge sont actuellement :
 
@@ -17,7 +17,7 @@ Les systèmes pris en charge sont actuellement :
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme Multiplus II.
 
 Le code est simple et peut facilement être adapté à d'autres systèmes de stockage d'énergie si vous êtes capable de contrôler la charge à l'aide de commandes du shell Linux.
-Veuillez jeter un œil aux premières lignes du fichier controller.sh afin de voir ce qui peut être configuré par l'utilisateur.
+Veuillez jeter un œil aux premières lignes du fichier contrôleur.sh afin de voir ce qui peut être configuré par l'utilisateur.
 
 ## La source de données
 
