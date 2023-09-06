@@ -2,19 +2,19 @@
 
 ## README Oversettelse
 
-[Dansk ](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[spansk](README.es.md)-[svensk](README.sv.md)
+[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[spansk](README.es.md)-[svensk](README.sv.md)
 
-Velkommen til Spotmarket-Switcher-depotet!
+## Velkommen til Spotmarket-Switcher-depotet!
 
 Hva gjør denne programvaren?
-Dette er et linux-skall-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte energipriser er lave.
+Dette er et linux-shell-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte dynamiske energipriser er lave.
 Du kan da bruke stikkontaktene til å bruke for eksempel varmtvannstank mye billigere eller automatisk lade batterilageret om natten når billig vindenergi er tilgjengelig på nettet.
 Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
 Støttede systemer er for øyeblikket:
 
 -   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
 -   AVM Fritz!DECT200 og 210 byttebare stikkontakter
--   [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like Multiplus II.
+-   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som Multiplus II.
 
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med linux-shell-kommandoer.
 Ta en titt på de første linjene i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
