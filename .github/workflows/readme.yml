@@ -18,3 +18,11 @@ jobs:
         uses: dephraiim/translate-readme@main
         with:
           LANG: de
+      - name: Adding README - French
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: fr
+      - name: Adding README - Spanish
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: es
