@@ -36,7 +36,7 @@ Die Einrichtung des Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmark
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
 Bitte beachten Sie, dass diese Software derzeit zwar für das Venus OS optimiert ist, aber an andere Setups angepasst werden kann, beispielsweise die Steuerung von Haushaltsgeräten über IP-Switches. Zukünftige Entwicklungen könnten die Kompatibilität mit anderen Systemen verbessern.
 
@@ -66,7 +66,7 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass ein Smart Meter oder ein[Puls-IR](https://tibber.com/de/store/produkt/pulse-ir)ist für einen Stundentarif erforderlich.
+Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist. Sehen (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem hierdurch unterstützen[Octopus Energy-Empfehlungslink](https://share.octopusenergy.de/glass-raven-58)und erhalte 50 Euro Bonus für dich und das Projekt.
 Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit haben. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
