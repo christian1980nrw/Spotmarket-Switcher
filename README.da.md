@@ -2,7 +2,7 @@
 
 ## README Oversættelse
 
-[Dansk](README.da.md)-[tysk](README.de.md)-[hollandsk](README.nl.md)-[engelsk](README.md)-[spansk](README.es.md) - [estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
+[Dansk](README.da.md)-[tysk](README.de.md)-[hollandsk](README.nl.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -47,7 +47,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 ### Udførelse af installationsscriptet
 
 -   Hvis du bruger Victron Venus OS:
-    -   Efter udførelse af`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
+    -   Efter udførelse af`victron-venus-os-install.sh`, rediger variablerne med en teksteditor i`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdefinerede tidspunkter. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
@@ -55,9 +55,9 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
 -   Hvis du bruger et andet OS:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
     -   Opret en crontab eller en anden planlægningsmetode for at køre dette script i starten af ​​hver time.
-    -   Sample Crontab:
-          Use the following crontab entry to execute the control script every hour:
-          Open your terminal and enter `crontab -e`, indsæt derefter følgende linje:
+    -   Eksempel på Crontab:
+          Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
+          Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:
             0 * * * * /path/to/controller.sh
 
 ### Støtte og bidrag
