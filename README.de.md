@@ -36,7 +36,7 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 ### Ausführung des Installationsskripts
 
 -   Wenn Sie Victron Venus OS verwenden:
-    -   Execute `victron-venus-os-install.sh`um den Spotmarket-Switcher herunterzuladen und zu installieren.
+    -   Ausführen`victron-venus-os-install.sh`um den Spotmarket-Switcher herunterzuladen und zu installieren.
     -   Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie im Screenshot gezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
@@ -63,4 +63,4 @@ Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit h
 
 ## Haftungsausschluss
 
-Dieses Computerprogramm wird „wie besehen“ zur Verfügung gestellt und der Benutzer übernimmt bei der Nutzung das volle Risiko. Der Autor gibt keine Zusicherungen oder Gewährleistungen hinsichtlich der Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Eignung des Programms für einen bestimmten Zweck. Der Autor haftet nicht für Schäden, die sich aus der Nutzung oder Unmöglichkeit der Nutzung des Programms ergeben, einschließlich, aber nicht beschränkt auf direkte, indirekte, zufällige, besondere oder Folgeschäden.
+Bitte beachten Sie die Nutzungsbedingungen unter<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
