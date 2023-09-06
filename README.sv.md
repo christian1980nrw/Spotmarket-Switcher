@@ -8,6 +8,7 @@ Välkommen till Spotmarket-Switcher-förrådet!
 
 Vad gör denna programvara?
 Detta är ett linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade energipriser är låga.
+Sie können dann mit den Steckdosen beispielsweise einen Warmwasserspeicher viel günstiger nutzen.
 Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
 System som stöds är för närvarande:
 
