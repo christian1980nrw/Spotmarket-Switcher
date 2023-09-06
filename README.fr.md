@@ -2,7 +2,7 @@
 
 ## Traduction du fichier README
 
--   [Anglais](README.md)-[Deutsch](README.de.md)-[Français](README.fr.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
+-   [Anglais](README.md)-[Allemand](README.de.md)-[Français](README.fr.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
 
 Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -36,7 +36,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
 
 2.  Exécutez le script d'installation avec des options supplémentaires pour préparer tout ce qui se trouve dans un sous-répertoire pour votre inspection. Par exemple:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Si vous utilisez Victron Venus OS, le DESTDIR correct devrait être`/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
 
 Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres appareils Linux comme un Raspberry PI. Un développement futur pourrait améliorer la compatibilité avec d’autres systèmes.
 
@@ -49,7 +49,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 -   Si vous utilisez le système d'exploitation Victron Venus :
     -   Exécuter`victron-venus-os-install.sh`pour télécharger et installer Spotmarket-Switcher.
     -   Modifiez les variables avec un éditeur de texte dans`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configurez un calendrier de charge ESS (reportez-vous à la capture d'écran fournie). Dans l'exemple, la batterie se charge la nuit jusqu'à 50 % si elle est activée. Pensez à le désactiver après la création. Vérifiez que l'heure du système (comme indiqué dans la capture d'écran) est exacte.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configurez un calendrier de charge ESS (reportez-vous à la capture d'écran fournie). Dans l'exemple, la batterie se charge la nuit jusqu'à 50 % si elle est activée, les autres moments de charge de la journée sont ignorés. Si vous ne le souhaitez pas, créez un horaire pour les 24 heures de la journée. Pensez à le désactiver après la création. Vérifiez que l'heure du système (comme indiqué dans la capture d'écran) est exacte.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Si vous utilisez un autre système d'exploitation :
     -   Copiez le script shell (`controller.sh`) vers un emplacement personnalisé et ajustez les variables en fonction de vos besoins.
@@ -64,7 +64,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de soutenir son développement ultérieur via ces liens :
 
 -   [Révolution](https://revolut.me/christqki2)
--   [PayPal](https://paypal.me/christian1980nrw)
+-   [Pay Pal](https://paypal.me/christian1980nrw)
 
 De plus, si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e). Vous et le projet recevrez un bonus de 50 euros pour le matériel. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
