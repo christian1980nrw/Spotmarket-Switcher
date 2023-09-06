@@ -2,17 +2,23 @@
 
 ## README Oversettelse
 
--   [Engelsk](README.md) - [tysk](README.de.md)-[fransk](README.fr.md)-[spansk](README.es.md)-[svensk](README.sv.md)-[Norsk](README.no.md)-[dansk](README.da.md)
+-   [Engelsk](README.md)-[Deutsch](README.de.md)-[fransk](README.fr.md)-[spansk](README.es.md)-[svensk](README.sv.md)-[Norsk](README.no.md)-[dansk](README.da.md)
 
-Velkommen til Spotmarket-Switcher-depotet! Denne programvaren er utviklet for å forbedre funksjonaliteten til energioppsettet ditt ved å integrere:
+Velkommen til Spotmarket-Switcher-depotet!
 
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer
+Hva gjør denne programvaren?
+Dette er et linux-skall-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte energipriser er lave.
+Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
+Støttede systemer er for øyeblikket:
+
 -   Shelly-produkter (som Shelly Plug S eller Shelly Plus1PM)
 -   AVM Fritz!DECT200 og 210 byttebare stikkontakter
+-   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som Multiplus II.
 
-Hovedmålet med denne programvaren er å gjøre systemet ditt i stand til å svare på strømpriser på spotmarkedet, slik at det kan ta intelligente beslutninger som batterilading og strømaktivering basert på lavprisperioder. Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
+Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med linux-shell-kommandoer.
+Ta en titt på de første linjene i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
 
-## Data Source
+## Datakilde
 
 Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
@@ -59,7 +65,7 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-I tillegg, hvis du er i Tyskland og er interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Både du og prosjektet vil motta en bonus på 50 euro for maskinvare. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
+I tillegg, hvis du er i Tyskland og er interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e). Både du og prosjektet vil motta en bonus på 50 euro for maskinvare. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
 Du mottar en bonus på 50 euro for deg selv og også for prosjektet.
