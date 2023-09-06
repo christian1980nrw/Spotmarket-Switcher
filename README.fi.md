@@ -2,21 +2,21 @@
 
 ## README Käännös
 
-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
+[Tanskan kieli](README.da.md)-[Deutsch ](README.de.md)-[Hollannin kieli](README.nl.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Norjan kieli](README.no.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
 Mitä tämä ohjelmisto tekee?
-Tämä on linux-shell-skripti, joka käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
+Tämä on Linux-kuoriskripti ja käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
 Voit sitten käyttää pistorasioita kytkeäksesi kuumavesivaraajan päälle paljon halvemmalla tai voit ladata akkuvaraston automaattisesti yöllä, kun verkossa on saatavilla halpaa tuulienergiaa.
 Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti varatun akkuvaraston kautta.
 Tuetut järjestelmät ovat tällä hetkellä:
 
--   Shelly-tuotteet (kuten Shelly Plug S tai Shelly Plus1PM)
--   AVM Fritz!DECT200 ja 210 kytkettävät pistorasiat
--   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten Multiplus II.
+-   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus1PM](https://shellyparts.de/products/shelly-plus-1pm))
+-   ostoskeskus[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
+-   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten MultiPlus-II-sarja
 
-Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta linuxin shell-komennoilla.
+Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
 Katso controller.sh-tiedoston rivin 100 alta, jotta näet, mitä käyttäjä voi määrittää.
 
 ## Tietolähde
@@ -38,7 +38,7 @@ Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät 
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Jos käytät Victron Venus OS -käyttöjärjestelmää, oikean DESTDIR:n pitäisi olla`/`(juurihakemisto). Voit vapaasti tutkia asennettuja tiedostoja`/tmp/foo`.
 
-Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, se voidaan mukauttaa muihin Linux-laitteisiin, kuten Raspberry PI:hen. Tuleva kehitys saattaa parantaa yhteensopivuutta muiden järjestelmien kanssa.
+Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, se voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntu Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
 
 ### Pääsy Venus-käyttöjärjestelmään
 
@@ -49,7 +49,7 @@ Katso ohjeet Venus-käyttöjärjestelmän käyttämiseen osoitteesta<https://www
 -   Jos käytät Victron Venus OS:ää:
     -   Suorittaa`victron-venus-os-install.sh`ladata ja asentaa Spotmarket-Switcher.
     -   Muokkaa muuttujia tekstieditorilla`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Aseta ESS-latausaikataulu (katso mukana tulevaa kuvakaappausta). Esimerkissä akku latautuu yöllä jopa 50 %, jos se on aktivoitu, muut vuorokauden latausajat jätetään huomiotta. Jos et halua, luo aikataulu kaikille vuorokauden 24 tunnille. Muista poistaa se käytöstä luomisen jälkeen. Varmista, että järjestelmän aika (kuten kuvakaappauksessa) on oikea.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Aseta ESS-latausaikataulu (katso mukana tulevaa kuvakaappausta). Esimerkissä akku latautuu yöllä jopa 50 %, jos se on aktivoitu, muut vuorokauden latausajat jätetään huomiotta. Jos et halua, luo aikataulu kaikille vuorokauden 24 tunnille. Muista poistaa se käytöstä luomisen jälkeen. Varmista, että järjestelmän aika (kuten näytön oikeassa yläkulmassa näkyy) on oikea.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automaattinen lataus tyypillisesti alhaisilla energiakustannuksilla. Oletusarvoisesti poistettu käytöstä, komentosarja voi aktivoida sen tilapäisesti._
 
 -   Jos käytät toista käyttöjärjestelmää:
     -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
