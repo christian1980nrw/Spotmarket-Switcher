@@ -17,7 +17,7 @@ System som stöds är för närvarande:
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som Multiplus II.
 
 Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med linux-skalkommandon.
-Ta en titt på de första raderna i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
+Ta en titt nedanför rad 100 i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
 
 ## Datakälla
 
@@ -49,7 +49,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 -   Om du använder Victron Venus OS:
     -   Kör`victron-venus-os-install.sh`för att ladda ner och installera Spotmarket-Switcher.
     -   Redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Om du använder ett annat operativsystem:
     -   Kopiera skalskriptet (`controller.sh`) till en anpassad plats och justera variablerna efter dina behov.
