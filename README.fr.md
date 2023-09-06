@@ -4,13 +4,19 @@
 
 -   [Anglais](README.md)-[Allemand](README.de.md)-[Français](README.fr.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
 
-Bienvenue dans le référentiel Spotmarket-Switcher ! Ce logiciel est conçu pour améliorer les fonctionnalités de votre configuration énergétique en intégrant :
+Bienvenue dans le référentiel Spotmarket-Switcher !
 
--   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS
+Que fait ce logiciel ?
+Il s'agit d'un script shell Linux qui allume votre chargeur de batterie et/ou vos prises commutables au bon moment si vos prix horaires de l'énergie sont bas.
+Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
+Les systèmes pris en charge sont actuellement :
+
 -   Produits Shelly (tels que Shelly Plug S ou Shelly Plus1PM)
 -   AVM Fritz!DECT200 et 210 prises commutables
+-   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme Multiplus II.
 
-L'objectif principal de ce logiciel est de permettre à votre système de réagir aux prix de l'électricité du marché au comptant, lui permettant ainsi de prendre des décisions intelligentes telles que le chargement de la batterie et l'activation de l'alimentation en fonction de périodes de bas prix. Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
+Le code est simple et peut facilement être adapté à d'autres systèmes de stockage d'énergie si vous êtes capable de contrôler la charge à l'aide de commandes du shell Linux.
+Veuillez jeter un œil aux premières lignes du fichier controller.sh afin de voir ce qui peut être configuré par l'utilisateur.
 
 ## La source de données
 
