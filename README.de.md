@@ -6,7 +6,7 @@ Willkommen im Victron-ESS & Shelly Plug S & AVM-Fritz-DECT200-210 Spotmarket-Swi
 -   Shelly-Produkte (wie Shelly Plug S oder Shelly Plus1PM)
 -   AVM Fritz!DECT200 und 210 schaltbare Steckdosen
 
-Das Hauptziel dieser Software besteht darin, Ihr System in die Lage zu versetzen, auf Spotmarkt-Strompreise zu reagieren und so intelligente Entscheidungen wie das Laden der Batterie und die Stromaktivierung auf der Grundlage von Zeiträumen mit niedrigen Preisen zu treffen.
+Das Hauptziel dieser Software besteht darin, Ihr System in die Lage zu versetzen, auf Spotmarkt-Strompreise zu reagieren und so intelligente Entscheidungen wie das Laden der Batterie und die Stromaktivierung auf der Grundlage von Zeiträumen mit niedrigen Preisen zu treffen. Der zu erwartende Solarertrag wird über eine Wetter-API berücksichtigt und Batteriespeicher entsprechend reserviert.
 
 ## Datenquelle
 
@@ -31,7 +31,7 @@ Bitte beachten Sie, dass diese Software derzeit zwar für das Venus OS optimiert
 
 ### Zugriff auf Venus OS
 
-For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
+Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Ausführung des Installationsskripts
 
@@ -55,7 +55,7 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Wenn Sie außerdem in Deutschland leben und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e). Sowohl Sie als auch das Projekt erhalten einen 50-Euro-Bonus für Hardware. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
 Sie erhalten eine Prämie von 50 Euro für sich selbst und auch für das Projekt.
