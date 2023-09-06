@@ -2,7 +2,7 @@
 
 ## README Tõlge
 
-[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[hispaania keel](README.es.md)-[rootsi keel](README.sv.md)
+[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
