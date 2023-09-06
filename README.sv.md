@@ -13,7 +13,7 @@ Den förväntade solavkastningen kan tas med i beräkningen via en väder-API oc
 System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   köpcenter[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som MultiPlus-II-serien
 
 Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
