@@ -2,12 +2,12 @@
 
 ## Traduzione README
 
-[Dansk ](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[spagnolo](README.es.md)-[svedese](README.sv.md)
+[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italian ](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[spagnolo](README.es.md) - [svedese](README.sv.md)
 
-Benvenuti nel repository Spotmarket-Switcher!
+## Benvenuti nel repository Spotmarket-Switcher!
 
 Cosa sta facendo questo software?
-Questo è uno script della shell di Linux che accende il caricabatterie e/o le prese commutabili al momento giusto se i prezzi orari dell'energia sono bassi.
+Questo è uno script di shell di Linux che accende il caricabatterie e/o le prese commutabili al momento giusto se i prezzi energetici dinamici su base oraria sono bassi.
 È quindi possibile utilizzare le prese per utilizzare, ad esempio, un bollitore per l'acqua calda in modo molto più economico o caricare automaticamente la batteria di accumulo di notte, quando sulla rete è disponibile energia eolica a basso costo.
 Il rendimento solare previsto può essere preso in considerazione tramite un'API meteorologica e l'accumulo della batteria riservato di conseguenza.
 I sistemi supportati sono attualmente:
