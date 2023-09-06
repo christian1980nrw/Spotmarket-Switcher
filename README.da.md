@@ -12,7 +12,7 @@ Du kan så bruge stikkontakterne til at tænde en varmtvandsbeholder meget billi
 Det forventede soludbytte kan tages i betragtning via en vejr-API og batterilager reserveret i overensstemmelse hermed.
 Understøttede systemer er i øjeblikket:
 
--   Shelly-produkter (f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus1PM](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-produkter (f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus kl. 13.00](https://shellyparts.de/products/shelly-plus-1pm))
 -   indkøbscenter[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)omskiftelige stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS Energy Storage Systems som MultiPlus-II-serien
 
@@ -34,7 +34,7 @@ Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører 
 1.  Download installationsscriptet fra GitHub-lageret ved at bruge[dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Kør installationsscriptet med yderligere muligheder for at forberede alt i en undermappe til din inspektion. For eksempel:
+2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Hvis du bruger Victron Venus OS, skal den korrekte DESTDIR være`/`(rodmappen). Du er velkommen til at udforske de installerede filer i`/tmp/foo`.
 
@@ -48,7 +48,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 -   Hvis du bruger Victron Venus OS:
     -   Efter udførelse af`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automatisk opladning i perioder med typiske lave energiomkostninger. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet._
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Automated charging during times with typical low-energy costs. Deactivated by default, may be temporarily activated by the script._
 
 -   Hvis du bruger et andet OS:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
