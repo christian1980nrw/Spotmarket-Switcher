@@ -12,7 +12,7 @@ Questo è uno script della shell Linux che accende il caricabatterie e/o le pres
 Il rendimento solare previsto può essere preso in considerazione tramite un'API meteorologica e l'accumulo della batteria riservato di conseguenza.
 I sistemi supportati sono attualmente:
 
--   Prodotti Shelly (come[Shelly Spina S](https://shellyparts.de/products/shelly-plus-plug-s)O[Shelly Plus13:00](https://shellyparts.de/products/shelly-plus-1pm))
+-   Prodotti Shelly (come[Shelly Spina S](https://shellyparts.de/products/shelly-plus-plug-s)O[Shelly Plus 13:00](https://shellyparts.de/products/shelly-plus-1pm))
 -   centro commerciale[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)E[210](https://avm.de/produkte/smart-home/fritzdect-210/)prese commutabili
 -   [Victron](https://www.victronenergy.com/)Sistemi di accumulo di energia Venus OS come la serie MultiPlus-II
 
