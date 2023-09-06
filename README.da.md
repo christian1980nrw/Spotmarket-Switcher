@@ -38,7 +38,7 @@ Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører 
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Hvis du bruger Victron Venus OS, skal den korrekte DESTDIR være`/`(rodmappen). Du er velkommen til at udforske de installerede filer i`/tmp/foo`.
 
-Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre opsætninger, såsom styring af husholdningsenheder via IP-switche. Fremtidig udvikling kan forbedre kompatibiliteten med andre systemer.
+Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre linux-enheder som en Raspberry PI. Fremtidig udvikling kan forbedre kompatibiliteten med andre systemer.
 
 ### Adgang til Venus OS
 
@@ -49,7 +49,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 -   Hvis du bruger Victron Venus OS:
     -   Udfør`victron-venus-os-install.sh`for at downloade og installere Spotmarket-Switcher.
     -   Rediger variablerne med en teksteditor i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet om natten op til 50 %, hvis det er aktiveret. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist på skærmbilledet) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet om natten op til 50 %, hvis det er aktiveret. Husk at deaktivere den efter oprettelsen. Kontroller, at systemtiden (som vist på skærmbilledet) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Hvis du bruger et andet OS:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
