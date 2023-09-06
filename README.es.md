@@ -2,7 +2,7 @@
 
 ## Traducción LÉAME
 
-[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[English ](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[sueco](README.sv.md)
+[danés](README.da.md)-[Alemán](README.de.md)-[Holandés](README.nl.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[noruego](README.no.md)-[portugués](README.pt.md)-[sueco](README.sv.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -47,8 +47,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 ### Ejecución del script de instalación
 
 -   Si está utilizando el sistema operativo Victron Venus:
-    -   Ejecutar`victron-venus-os-install.sh`para descargar e instalar Spotmarket-Switcher.
-    -   Edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Después de la ejecución del`victron-venus-os-install.sh, edit the variables with a text editor in`/data/etc/Spotmarket-Switcher/controller.sh\`.
     -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada; se ignoran otros momentos de carga del día. Si no lo desea, cree un horario para las 24 horas del día. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la parte superior derecha de la pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)_Carga automatizada en momentos con costos típicos de baja energía. Desactivado de forma predeterminada, puede activarse temporalmente mediante el script._
 
 -   Si estás usando otro sistema operativo:
