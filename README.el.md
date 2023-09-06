@@ -2,7 +2,7 @@
 
 ## Μετάφραση README
 
-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Estonian ](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Greek ](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Svenska ](README.sv.md)
+[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -12,12 +12,12 @@
 Η αναμενόμενη ηλιακή απόδοση μπορεί να ληφθεί υπόψη μέσω ενός API καιρού και της αποθήκευσης μπαταρίας που έχει δεσμευτεί ανάλογα.
 Τα υποστηριζόμενα συστήματα είναι επί του παρόντος:
 
--   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus 13:00](https://shellyparts.de/products/shelly-plus-1pm))
+-   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   εμπορικό κέντρο[Fritz!DECT 200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
 -   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως η σειρά MultiPlus-II
 
-The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
-Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
+Ο κώδικας είναι απλός, ώστε να μπορεί εύκολα να προσαρμοστεί σε άλλα συστήματα αποθήκευσης ενέργειας, εάν μπορείτε να ελέγξετε τη φόρτιση με εντολές κελύφους Linux.
+Ρίξτε μια ματιά κάτω από τη γραμμή 100 του αρχείου controller.sh για να δείτε τι μπορεί να ρυθμίσει ο χρήστης.
 
 ## Πηγή δεδομένων
 
@@ -65,7 +65,7 @@ Please have a look below line 100 of the controller.sh file so that you can see 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Επιπλέον, εάν βρίσκεστε στη Γερμανία και ενδιαφέρεστε να μεταβείτε σε ένα δυναμικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο με την εγγραφή σας χρησιμοποιώντας αυτό[Tibber (σύνδεσμος παραπομπής)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff ([ήττψ://τιββερ.κομ/δε/στόρι/προδυκτ/πολσε-ηρ](https://tibber.com/de/store/produkt/pulse-ir)) .
+Επιπλέον, εάν βρίσκεστε στη Γερμανία και ενδιαφέρεστε να μεταβείτε σε ένα δυναμικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο με την εγγραφή σας χρησιμοποιώντας αυτό[Tibber (σύνδεσμος παραπομπής)](https://invite.tibber.com/ojgfbx2e). Τόσο εσείς όσο και το έργο θα λάβετε ένα μπόνους 50 ευρώ για υλικό. Λάβετε υπόψη ότι απαιτείται έξυπνος μετρητής ή Pulse-IR για ωριαία χρέωση ([ήττψ://τιββερ.κομ/δε/στόρι/προδυκτ/πολσε-ηρ](https://tibber.com/de/store/produkt/pulse-ir)) .
 
 Εάν χρειάζεστε ένα τιμολόγιο φυσικού αερίου ή προτιμάτε ένα κλασικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο[Octopus Energy (σύνδεσμος παραπομπής)](https://share.octopusenergy.de/glass-raven-58).
 Λαμβάνετε ένα μπόνους 50 ευρώ για τον εαυτό σας αλλά και για το έργο.
