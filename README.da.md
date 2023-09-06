@@ -7,7 +7,7 @@
 ## Velkommen til Spotmarket-Switcher-depotet!
 
 Hvad laver denne software?
-Dette er et linux shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede energipriser er lave.
+Dette er et linux shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede dynamiske energipriser er lave.
 Du kan så bruge stikkontakterne til fx at bruge en varmtvandsbeholder meget billigere eller automatisk oplade batterilageret om natten, når der er billig vindenergi til rådighed på nettet.
 Det forventede soludbytte kan tages i betragtning via en vejr-API og batterilager reserveret i overensstemmelse hermed.
 Understøttede systemer er i øjeblikket:
@@ -61,7 +61,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 ### Støtte og bidrag
 
-If you find this project valuable, please consider sponsoring and supporting further development through these links:
+Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støtte yderligere udvikling gennem disse links:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
