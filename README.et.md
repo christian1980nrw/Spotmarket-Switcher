@@ -2,7 +2,7 @@
 
 ## README Tõlge
 
-[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[Greek ](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)
+[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
@@ -47,7 +47,7 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 ### Installi skripti täitmine
 
 -   Kui kasutate operatsioonisüsteemi Victron Venus:
-    -   Käivitage`victron-venus-os-install.sh`Spotmarket-Switcheri allalaadimiseks ja installimiseks.
+    -   Käivitage`victron-venus-os-install.sh` to download and install the Spotmarket-Switcher.
     -   Muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraanipildil) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
