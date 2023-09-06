@@ -1,5 +1,15 @@
 # Spotmarket-Switcher-Repository
 
+## README Översättning
+
+-   [engelsk](README.md)
+-   [tysk](README.de.md)
+-   [franska](README.fr.md)
+-   [spanska](README.es.md)
+-   [svenska](README.sv.md)
+-   [norska](README.no.md)
+-   [danska](README.da.md)
+
 Välkommen till Spotmarket-Switcher-förrådet! Denna programvara är utformad för att förbättra funktionaliteten i din energiinstallation genom att integrera:
 
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem
@@ -35,10 +45,10 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 ### Körning av installationsskriptet
 
--   Om du använder Victron Venus OS:
+-   If you're using Victron Venus OS:
     -   Kör`victron-venus-os-install.sh`för att ladda ner och installera Spotmarket-Switcher.
     -   Redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas på skärmdumpen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 -   Om du använder ett annat operativsystem:
     -   Kopiera skalskriptet (`controller.sh`) till en anpassad plats och justera variablerna efter dina behov.
