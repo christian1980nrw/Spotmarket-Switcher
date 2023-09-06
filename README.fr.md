@@ -2,7 +2,7 @@
 
 ## Traduction du fichier README
 
--   [Anglais](README.md)-[Allemand](README.de.md)-[Français](README.fr.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)-[norvégien](README.no.md)-[danois](README.da.md)
+[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[Espagnol](README.es.md)-[suédois](README.sv.md)
 
 Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -36,7 +36,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
 
 2.  Exécutez le script d'installation avec des options supplémentaires pour préparer tout ce qui se trouve dans un sous-répertoire pour votre inspection. Par exemple:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    If you're using Victron Venus OS, the correct DESTDIR should be `/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
+    Si vous utilisez Victron Venus OS, le DESTDIR correct devrait être`/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
 
 Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres appareils Linux comme un Raspberry PI. Un développement futur pourrait améliorer la compatibilité avec d’autres systèmes.
 
