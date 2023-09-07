@@ -8,7 +8,7 @@
 
 ¿Qué está haciendo este software?
 Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios dinámicos de energía por horas son bajos.
-A continuación, puede utilizar los enchufes para encender un depósito de agua caliente de forma mucho más económica o puede cargar automáticamente la batería por la noche, cuando hay energía eólica barata disponible en la red.
+Luego puede usar los enchufes para encender un tanque de agua caliente de manera mucho más económica o puede cargar automáticamente la batería por la noche cuando hay energía eólica barata disponible en la red.
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
 
@@ -36,7 +36,7 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
 
 2.  Ejecute el script del instalador con opciones adicionales para preparar todo en un subdirectorio para su inspección. Por ejemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
+    Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
 
 Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otras versiones de Linux, como Debian/Ubuntu en una Raspberry Pi u otra placa pequeña. Un candidato principal es sin duda[AbiertoWRT](https://www.openwrt.org). Usar una máquina de escritorio está bien para fines de prueba, pero cuando se usa las 24 horas del día, los 7 días de la semana, su mayor consumo de energía es motivo de preocupación.
 
@@ -69,7 +69,7 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 
 Además, si estás en Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e). Tanto tú como el proyecto recibiréis un bono de 50 euros en hardware. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
+If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
 Recibirás un bono de 50 euros para ti y también para el proyecto.
 Octopus tiene la ventaja de que los contratos normalmente solo tienen una duración mensual. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
