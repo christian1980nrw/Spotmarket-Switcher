@@ -1,8 +1,4 @@
-# Spotmarket-Switcher-Repository
-
-## README Översättning
-
-[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md) - [grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)
+[danska](README.da.md) - [tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[spanska](README.es.md) - [estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md) - [grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)![Logo](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
@@ -46,23 +42,23 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 ### Körning av installationsskriptet
 
--   If you're using Victron Venus OS:
+-   Om du använder Victron Venus OS:
     -   Efter utförandet av`victron-venus-os-install.sh`, redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
+Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
 -   Om du använder ett annat operativsystem:
     -   Kopiera skalskriptet (`controller.sh`) till en anpassad plats och justera variablerna efter dina behov.
     -   Skapa en crontab eller annan schemaläggningsmetod för att köra det här skriptet i början av varje timme.
     -   Exempel Crontab:
           Använd följande crontab-post för att köra kontrollskriptet varje timme:
-          Öppna din terminal och skriv in`crontab -e`, infoga sedan följande rad:
+          Öppna din terminal och skriv in`crontab -e`, then insert the following line:
             0 * * * * /path/to/controller.sh
 
 ### Stöd och bidrag
 
-If you find this project valuable, please consider sponsoring and supporting further development through these links:
+Om du tycker att det här projektet är värdefullt, vänligen överväg att sponsra och stödja ytterligare utveckling via dessa länkar:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
