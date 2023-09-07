@@ -1,4 +1,8 @@
-[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)![Logo](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true)
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
+</p>
+
+[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
