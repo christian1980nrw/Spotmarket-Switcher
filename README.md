@@ -1,8 +1,4 @@
-# Spotmarket-Switcher-Repository
-
-## README Translation
-[Dansk ](README.da.md) - [Deutsch ](README.de.md) - [Dutch ](README.nl.md) - [English ](README.md) - [Español ](README.es.md) - [Estonian ](README.et.md) - [Finnish ](README.fi.md) - [Français ](README.fr.md) - [Greek ](README.el.md) - [Italian ](README.it.md) - [Norsk ](README.no.md) - [Portuguese ](README.pt.md) - [Svenska ](README.sv.md)
-
+[Dansk ](README.da.md) - [Deutsch ](README.de.md) - [Dutch ](README.nl.md) - [English ](README.md) - [Español ](README.es.md) - [Estonian ](README.et.md) - [Finnish ](README.fi.md) - [Français ](README.fr.md) - [Greek ](README.el.md) - [Italian ](README.it.md) - [Norsk ](README.no.md) - [Portuguese ](README.pt.md) - [Svenska ](README.sv.md)![Logo](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true)
 ## Welcome to the Spotmarket-Switcher repository!
 
 What is this software doing? 
