@@ -14,7 +14,7 @@ Les systèmes pris en charge sont actuellement :
 
 -   Produits Shelly (tels que[Prise Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)et[210](https://avm.de/produkte/smart-home/fritzdect-210/)prises commutables
--   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme la série MultiPlus-II
+-   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme le[Série MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Le code est simple et peut facilement être adapté à d'autres systèmes de stockage d'énergie si vous êtes capable de contrôler la charge à l'aide de commandes shell Linux.
 Veuillez jeter un œil sous la ligne 100 du fichier controller.sh afin de voir ce qui peut être configuré par l'utilisateur.
