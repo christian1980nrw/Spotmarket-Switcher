@@ -44,7 +44,7 @@ Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssyst
 
 Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Ausführung des Installationsskripts
+### Execution of the Install Script
 
 -   Wenn Sie Victron Venus OS verwenden:
     -   Nach der Ausführung des`victron-venus-os-install.sh`Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
