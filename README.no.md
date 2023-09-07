@@ -75,4 +75,4 @@ Octopus har den fordelen at kontraktene vanligvis kun har en månedlig løpetid.
 
 ## Ansvarsfraskrivelse
 
-Vær oppmerksom på vilkårene for bruk på<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Vær oppmerksom på vilkårene for bruk på<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>

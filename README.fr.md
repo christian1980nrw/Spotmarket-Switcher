@@ -2,7 +2,7 @@
 
 ## Traduction du fichier README
 
-[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)
+[danois](README.da.md)-[Allemand](README.de.md)-[Néerlandais](README.nl.md)-[Anglais](README.md)-[Espagnol](README.es.md) - [estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[norvégien](README.no.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -31,14 +31,14 @@ Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie 
 
 La configuration de Spotmarket-Switcher est un processus simple. Si vous exécutez déjà une machine UNIX, telle que macOS, Linux ou Windows avec le sous-système Linux, suivez ces étapes pour installer le logiciel :
 
-1.  Téléchargez le script d'installation depuis le référentiel GitHub en utilisant[cet hyperlien](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), ou exécutez la commande suivante dans votre terminal :
+1.  Téléchargez le script d'installation depuis le référentiel GitHub en utilisant[this hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), ou exécutez la commande suivante dans votre terminal :
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Exécutez le script d'installation avec des options supplémentaires pour préparer tout ce qui se trouve dans un sous-répertoire pour votre inspection. Par exemple:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Si vous utilisez Victron Venus OS, le DESTDIR correct devrait être`/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
@@ -75,4 +75,4 @@ Octopus présente l'avantage que les contrats n'ont généralement qu'une durée
 
 ## Clause de non-responsabilité
 
-Veuillez noter les conditions d'utilisation sur<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Veuillez noter les conditions d'utilisation sur<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>

@@ -75,4 +75,4 @@ Octopusin etuna on, että sopimukset ovat yleensä vain kuukausittain. Ne sopiva
 
 ## Vastuuvapauslauseke
 
-Huomioi käyttöehdot osoitteessa<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Huomioi käyttöehdot osoitteessa<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>

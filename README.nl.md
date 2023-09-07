@@ -13,7 +13,7 @@ Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst e
 Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de MultiPlus-II-serie
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
@@ -52,7 +52,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
 
--   If you're using another OS:
+-   Als u een ander besturingssysteem gebruikt:
     -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
     -   Voorbeeldcrontab:
@@ -75,4 +75,4 @@ Octopus heeft als voordeel dat de contracten doorgaans slechts een maandelijkse 
 
 ## Vrijwaring
 
-Let op de gebruiksvoorwaarden op<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Let op de gebruiksvoorwaarden op<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>

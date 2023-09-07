@@ -75,4 +75,4 @@ Octopus hat den Vorteil, dass die Verträge meist nur eine monatliche Laufzeit h
 
 ## Haftungsausschluss
 
-Bitte beachten Sie die Nutzungsbedingungen unter<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Bitte beachten Sie die Nutzungsbedingungen unter<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>

@@ -2,12 +2,12 @@
 
 ## Tradução LEIA-ME
 
-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Holandês](README.nl.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[norueguês](README.no.md)-[Português](README.pt.md)-[sueco](README.sv.md)
+[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Holandês](README.nl.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Français ](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[norueguês](README.no.md)-[Português](README.pt.md)-[sueco](README.sv.md)
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
 O que este software está fazendo?
-Este é um script de shell do Linux e liga o carregador de bateria e / ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
+Este é um script de shell do Linux e liga o carregador de bateria e/ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
 Você pode então usar as tomadas para ligar um tanque de água quente de maneira muito mais barata ou pode carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
@@ -48,14 +48,14 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Após a execução do`victron-venus-os-install.sh`, edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
+The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
 
 -   Se você estiver usando outro sistema operacional:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de Crontab:
+    -   Exemplo de crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:
             0 * * * * /path/to/controller.sh
@@ -67,7 +67,7 @@ Se você considera este projeto valioso, considere patrocinar e apoiar o desenvo
 -   [Revolução](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Além disso, se você estiver na Alemanha e estiver interessado em mudar para uma tarifa dinâmica de eletricidade, poderá apoiar o projeto inscrevendo-se usando este[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Você e o projeto receberão um bônus de 50 euros em hardware. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e). Você e o projeto receberão um bônus de 50 euros em hardware. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Se necessita de uma tarifa de gás natural ou prefere uma tarifa clássica de eletricidade, ainda pode apoiar o projeto[Energia do Polvo (link de referência)](https://share.octopusenergy.de/glass-raven-58).
 Você recebe um bônus de 50 euros para você e também para o projeto.
@@ -75,4 +75,4 @@ Octopus tem a vantagem de os contratos normalmente terem prazo apenas mensal. S�
 
 ## Isenção de responsabilidade
 
-Observe os termos de uso em<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Observe os termos de uso em<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
