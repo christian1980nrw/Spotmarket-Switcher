@@ -13,7 +13,7 @@ Supported systems are currently:
 
 - Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
-- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the MultiPlus-II series
+- [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
   
 The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
 Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
