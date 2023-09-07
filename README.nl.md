@@ -14,7 +14,7 @@ Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
--   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de MultiPlus-II-serie
+-   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
 Kijk eens onder regel 100 van het controller.sh-bestand, zodat u kunt zien wat door de gebruiker kan worden geconfigureerd.
