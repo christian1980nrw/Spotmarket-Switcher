@@ -1,8 +1,4 @@
-# Spotmarket-Switcher-Repository
-
-## Μετάφραση README
-
-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
+[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)![Logo](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
