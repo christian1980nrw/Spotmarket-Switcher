@@ -14,7 +14,7 @@ Tuetut järjestelmät ovat tällä hetkellä:
 
 -   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
--   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten MultiPlus-II-sarja
+-   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten[MultiPlus-II sarja](https://www.victronenergy.com/inverters-chargers)
 
 Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
 Katso controller.sh-tiedoston rivin 100 alta, jotta näet, mitä käyttäjä voi määrittää.
