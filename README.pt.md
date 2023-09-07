@@ -2,12 +2,12 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Holandês](README.nl.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md) - [Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[norueguês](README.no.md)-[Português](README.pt.md) - [sueco](README.sv.md)
+[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Holandês](README.nl.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[Estonian ](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[norueguês](README.no.md)-[Português](README.pt.md)-[sueco](README.sv.md)
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
 O que este software está fazendo?
-Este é um script de shell do Linux e liga o carregador de bateria e/ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
+Este é um script de shell do Linux e liga o carregador de bateria e / ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
 Você pode então usar as tomadas para ligar um tanque de água quente de maneira muito mais barata ou pode carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
