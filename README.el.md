@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
+[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md) - [Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -14,7 +14,7 @@
 
 -   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
--   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως η σειρά MultiPlus-II
+-   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Ο κώδικας είναι απλός, ώστε να μπορεί εύκολα να προσαρμοστεί σε άλλα συστήματα αποθήκευσης ενέργειας, εάν μπορείτε να ελέγξετε τη φόρτιση με εντολές κελύφους Linux.
 Ρίξτε μια ματιά κάτω από τη γραμμή 100 του αρχείου controller.sh για να δείτε τι μπορεί να ρυθμίσει ο χρήστης.
@@ -48,8 +48,7 @@
 
 -   Εάν χρησιμοποιείτε το Victron Venus OS:
     -   Μετά την εκτέλεση του`victron-venus-os-install.sh`, επεξεργαστείτε τις μεταβλητές με ένα πρόγραμμα επεξεργασίας κειμένου μέσα`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
-        ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ρυθμίστε ένα πρόγραμμα φόρτισης ESS (ανατρέξτε στο στιγμιότυπο οθόνης που παρέχεται). Στο παράδειγμα, η μπαταρία φορτίζει τη νύχτα έως και 50% εάν ενεργοποιηθεί, ενώ άλλες ώρες φόρτισης της ημέρας αγνοούνται. Εάν δεν θέλετε, δημιουργήστε ένα πρόγραμμα για όλες τις 24 ώρες της ημέρας. Θυμηθείτε να το απενεργοποιήσετε μετά τη δημιουργία. Βεβαιωθείτε ότι η ώρα συστήματος (όπως φαίνεται στην επάνω δεξιά γωνία της οθόνης) είναι ακριβής.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Το στιγμιότυπο οθόνης δείχνει τη διαμόρφωση της αυτοματοποιημένης φόρτισης σε χρόνους που καθορίζονται από το χρήστη. Απενεργοποιημένο από προεπιλογή, μπορεί να ενεργοποιηθεί προσωρινά από το σενάριο.
 
@@ -68,7 +67,7 @@
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Επιπλέον, εάν βρίσκεστε στη Γερμανία και ενδιαφέρεστε να μεταβείτε σε ένα δυναμικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο με την εγγραφή σας χρησιμοποιώντας αυτό[Tibber (σύνδεσμος παραπομπής)](https://invite.tibber.com/ojgfbx2e). Τόσο εσείς όσο και το έργο θα λάβετε ένα μπόνους 50 ευρώ για υλικό. Λάβετε υπόψη ότι απαιτείται έξυπνος μετρητής ή Pulse-IR για ωριαία χρέωση (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Επιπλέον, εάν βρίσκεστε στη Γερμανία και ενδιαφέρεστε να μεταβείτε σε ένα δυναμικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο με την εγγραφή σας χρησιμοποιώντας αυτό[Tibber (σύνδεσμος παραπομπής)](https://invite.tibber.com/ojgfbx2e). Τόσο εσείς όσο και το έργο θα λάβετε ένα μπόνους 50 ευρώ για υλικό. Λάβετε υπόψη ότι απαιτείται έξυπνος μετρητής ή Pulse-IR για ωριαία χρέωση ([ήττψ://τιββερ.κομ/δε/στόρι/προδυκτ/πολσε-ηρ](https://tibber.com/de/store/produkt/pulse-ir)) .
 
 Εάν χρειάζεστε ένα τιμολόγιο φυσικού αερίου ή προτιμάτε ένα κλασικό τιμολόγιο ηλεκτρικής ενέργειας, μπορείτε να υποστηρίξετε το έργο[Octopus Energy (σύνδεσμος παραπομπής)](https://share.octopusenergy.de/glass-raven-58).
 Λαμβάνετε ένα μπόνους 50 ευρώ για τον εαυτό σας αλλά και για το έργο.
