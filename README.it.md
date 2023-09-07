@@ -2,7 +2,7 @@
 
 ## Traduzione README
 
-[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md) - [greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)
+[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
@@ -57,14 +57,14 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
           Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
-          Apri il tuo terminale ed entra`crontab -e`, then insert the following line:
+          Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:
             0 * * * * /path/to/controller.sh
 
 ### Supporto e contributo
 
 Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e supportare l'ulteriore sviluppo attraverso questi collegamenti:
 
--   [Rivoluzione](https://revolut.me/christqki2)
+-   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Inoltre, se ti trovi in ​​Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e). Sia tu che il progetto riceverete un bonus di 50 euro per l'hardware. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
@@ -75,4 +75,4 @@ Octopus ha il vantaggio che i contratti hanno solitamente solo una durata mensil
 
 ## Disclaimer
 
-Si prega di notare i termini di utilizzo su<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/dev/License.md>
+Si prega di notare i termini di utilizzo su<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
