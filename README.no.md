@@ -1,8 +1,4 @@
-# Spotmarket-Switcher-Repository
-
-## README Oversettelse
-
-[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)
+[dansk](README.da.md)-[tysk](README.de.md)-[nederlandsk](README.nl.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[Norsk](README.no.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)![Logo](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -16,8 +12,8 @@ Støttede systemer er for øyeblikket:
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som MultiPlus-II-serien
 
-Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med Linux-shell-kommandoer.
-Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
+Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
 
 ## Datakilde
 

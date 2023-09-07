@@ -1,6 +1,6 @@
-# Spotmarket-Switcher-Repository
-
-## README-vertaling
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
+</p>
 
 [Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Noors](README.no.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)
 
@@ -13,7 +13,7 @@ Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst e
 Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de MultiPlus-II-serie
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
