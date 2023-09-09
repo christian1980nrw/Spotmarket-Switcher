@@ -42,7 +42,7 @@ Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käy
 
 ### Pääsy Venus-käyttöjärjestelmään
 
-For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
+Katso ohjeet Venus-käyttöjärjestelmän käyttämiseen osoitteesta<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Asennuskomentosarjan suorittaminen
 
@@ -69,9 +69,9 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 
 Lisäksi, jos olet Saksassa ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e). Sekä sinä että projekti saavat 50 euron bonuksen laitteistosta. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
+Jos tarvitset maakaasutariffia tai haluat perinteisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat 50 euron bonuksen itsellesi ja myös projektiin.
-Octopusilla on se etu, että sopimukset ovat yleensä vain kuukausittain. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusin etuna on, että sopimukset ovat yleensä vain kuukausittain. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 ## Vastuuvapauslauseke
 
