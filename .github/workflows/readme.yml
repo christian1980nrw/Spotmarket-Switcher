@@ -13,12 +13,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages  
+      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Danish
         uses: dephraiim/translate-readme@main
         with:
           LANG: da
-      - name: Adding README - Dutch
+      - name: Adding README - Nederlands
         uses: dephraiim/translate-readme@main
         with:
           LANG: nl
@@ -46,6 +46,10 @@ jobs:
         uses: dephraiim/translate-readme@main
         with:
           LANG: it
+      - name: Adding README - Japanese
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: jp
       - name: Adding README - Norwegian
         uses: dephraiim/translate-readme@main
         with:
