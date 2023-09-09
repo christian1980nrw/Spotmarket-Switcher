@@ -2,15 +2,15 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
+[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
-Vad gör den här programvaran?
-Detta är ett Linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
-Du kan då använda uttagen för att slå på en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
-Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
-System som stöds är för närvarande:
+What is this software doing? 
+This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
+You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
+The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+Supported systems are currently:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
@@ -48,7 +48,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 -   Om du använder Victron Venus OS:
     -   Efter utförandet av`victron-venus-os-install.sh`, redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
