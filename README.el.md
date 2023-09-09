@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md) - [Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
+[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Ολλανδός](README.nl.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Νορβηγός](README.no.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -14,7 +14,7 @@
 
 -   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
--   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
+-   [Victron](https://www.victronenergy.com/)Venus OS Συστήματα αποθήκευσης ενέργειας όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Ο κώδικας είναι απλός, ώστε να μπορεί εύκολα να προσαρμοστεί σε άλλα συστήματα αποθήκευσης ενέργειας, εάν μπορείτε να ελέγξετε τη φόρτιση με εντολές κελύφους Linux.
 Ρίξτε μια ματιά κάτω από τη γραμμή 100 του αρχείου controller.sh για να δείτε τι μπορεί να ρυθμίσει ο χρήστης.
@@ -29,7 +29,7 @@
 
 ## Εγκατάσταση
 
-Η ρύθμιση του Spotmarket-Switcher είναι μια απλή διαδικασία. Εάν χρησιμοποιείτε ήδη ένα μηχάνημα που βασίζεται σε UNIX, όπως macOS, Linux ή Windows με το υποσύστημα Linux, ακολουθήστε αυτά τα βήματα για να εγκαταστήσετε το λογισμικό:
+Η ρύθμιση του Spotmarket-Switcher είναι μια απλή διαδικασία. Εάν εκτελείτε ήδη ένα μηχάνημα που βασίζεται σε UNIX, όπως macOS, Linux ή Windows με το υποσύστημα Linux, ακολουθήστε αυτά τα βήματα για να εγκαταστήσετε το λογισμικό:
 
 1.  Κατεβάστε το σενάριο εγκατάστασης από το αποθετήριο GitHub χρησιμοποιώντας[αυτόν τον υπερσύνδεσμο](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), ή εκτελέστε την ακόλουθη εντολή στο τερματικό σας:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
@@ -75,4 +75,4 @@
 
 ## Αποποίηση ευθυνών
 
-Σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Παρακαλούμε σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
