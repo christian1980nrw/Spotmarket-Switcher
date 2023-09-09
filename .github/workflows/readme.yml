@@ -66,3 +66,11 @@ jobs:
         uses: dephraiim/translate-readme@main
         with:
           LANG: sv
+      - name: Adding README - Polish
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: pl
+      - name: Adding README - Czech
+        uses: dephraiim/translate-readme@main
+        with:
+          LANG: cs
