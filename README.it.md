@@ -2,19 +2,19 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[danese](README.da.md)-[Tedesco](README.de.md)-[Dutch ](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)
+[danese](README.da.md)-[Tedesco](README.de.md)-[Olandese](README.nl.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[norvegese](README.no.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
-What is this software doing? 
-This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
-You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
-The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
-Supported systems are currently:
+Cosa sta facendo questo software?
+Questo è uno script della shell Linux che accende il caricabatterie e/o le prese commutabili al momento giusto se i prezzi dinamici dell'energia su base oraria sono bassi.
+È quindi possibile utilizzare le prese per accendere un serbatoio dell'acqua calda in modo molto più economico oppure caricare automaticamente la batteria di accumulo di notte quando è disponibile energia eolica a basso costo sulla rete.
+Il rendimento solare previsto può essere preso in considerazione tramite un'API meteorologica e l'accumulo della batteria riservato di conseguenza.
+I sistemi supportati sono attualmente:
 
 -   Prodotti Shelly (come[Shelly Spina S](https://shellyparts.de/products/shelly-plus-plug-s)O[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)E[210](https://avm.de/produkte/smart-home/fritzdect-210/)prese commutabili
--   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
+-   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Il codice è semplice in modo che possa essere facilmente adattato ad altri sistemi di accumulo di energia se si è in grado di controllare la ricarica tramite i comandi della shell Linux.
 Dai un'occhiata sotto la riga 100 del file controller.sh in modo da poter vedere cosa può essere configurato dall'utente.
@@ -54,7 +54,7 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
 
 -   Se utilizzi un altro sistema operativo:
     -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
-    -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
+    -   Create a crontab or another scheduling method to run this script at the start of each hour.
     -   Crontab di esempio:
           Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
           Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:
