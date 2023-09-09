@@ -481,7 +481,7 @@ awk '
     sort -g "$file8" > "$file19"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >> "$file8"
-
+  else cp $file11 $file19 # If no second day, copy sorted price file.
   fi
 }
 
@@ -637,7 +637,7 @@ if (( select_pricing_api == 1 )); then
 
 elif (( select_pricing_api == 2 )); then
   # Test if Entsoe today data exists
-  if test -f "$file8"; then
+  if test -f "$file10"; then
     # Test if data is current
     get_current_entsoe_day
     if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
