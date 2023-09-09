@@ -36,7 +36,7 @@ La configurazione di Spotmarket-Switcher è un processo semplice. Se stai già u
 
 2.  Esegui lo script di installazione con opzioni aggiuntive per preparare tutto in una sottodirectory per l'ispezione. Per esempio:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Se utilizzi il sistema operativo Victron Venus, la DESTDIR corretta dovrebbe essere`/`(la directory principale). Sentiti libero di esplorare i file installati in`/tmp/foo`.
+    Se utilizzi il sistema operativo Victron Venus, la DESTDIR corretta dovrebbe essere`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
 
 Tieni presente che sebbene questo software sia attualmente ottimizzato per il sistema operativo Venus, può essere adattato ad altre versioni Linux, come Debian/Ubuntu su un Raspberry Pi o un'altra piccola scheda. Un ottimo candidato lo è certamente[OpenWRT](https://www.openwrt.org). L'uso di una macchina desktop va bene a scopo di test, ma quando viene utilizzato 24 ore su 24, 7 giorni su 7, il suo consumo energetico maggiore è preoccupante.
 
@@ -52,7 +52,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
 
 Lo screenshot mostra la configurazione della ricarica automatizzata durante gli orari definiti dall'utente. Disattivato per impostazione predefinita, può essere temporaneamente attivato dallo script.
 
--   If you're using another OS:
+-   Se utilizzi un altro sistema operativo:
     -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
@@ -75,4 +75,4 @@ Octopus ha il vantaggio che i contratti hanno solitamente solo una durata mensil
 
 ## Disclaimer
 
-Si prega di notare i termini di utilizzo su<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Please note the terms of use at <https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
