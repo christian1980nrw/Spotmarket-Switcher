@@ -34,7 +34,7 @@ Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät 
 1.  Lataa asennusskripti GitHub-arkistosta käyttämällä[tämä hyperlinkki](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)tai suorita seuraava komento päätteessäsi:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Suorita asennuskomentosarja lisäasetuksineen valmistaaksesi kaiken alihakemistossa tarkastusta varten. Esimerkiksi:
+2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Jos käytät Victron Venus OS -käyttöjärjestelmää, oikean DESTDIR:n pitäisi olla`/`(juurihakemisto). Voit vapaasti tutkia asennettuja tiedostoja`/tmp/foo`.
 
@@ -71,7 +71,7 @@ Lisäksi, jos olet Saksassa ja olet kiinnostunut siirtymään dynaamiseen sähk�
 
 Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat 50 euron bonuksen itsellesi ja myös projektiin.
-Octopusin etuna on, että sopimukset ovat yleensä vain kuukausittain. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusilla on se etu, että sopimukset ovat yleensä vain kuukausittain. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 ## Vastuuvapauslauseke
 
