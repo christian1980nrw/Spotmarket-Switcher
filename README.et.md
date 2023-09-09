@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[taani keel](README.da.md)-[saksa keel](README.de.md)-[hollandi keel](README.nl.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)
+[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[日本語 ](README.ja.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
