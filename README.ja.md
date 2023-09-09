@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[オランダの](README.nl.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[ノルウェー語](README.no.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)
+[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
@@ -42,7 +42,7 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
 
 ### Venus OS へのアクセス
 
-Venus OS へのアクセス手順については、以下を参照してください。[ｈっｔｐｓ：／／ｗっｗ。ゔぃｃｔろねねｒｇｙ。こｍ／ぃゔぇ／っｃｇｘ：ろおｔ＿あっせっｓ](https://www.victronenergy.com/live/ccgx:root_access)。
+Venus OS へのアクセス手順については、以下を参照してください。<https://www.victronenergy.com/live/ccgx:root_access>。
 
 ### インストールスクリプトの実行
 
