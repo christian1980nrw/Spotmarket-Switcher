@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Niederländisch](README.nl.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[norwegisch](README.no.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)
+[dänisch](README.da.md)-[Deutsch](README.de.md)-[Dutch ](README.nl.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[norwegisch](README.no.md) - [Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)
 
 ## Willkommen im Spotmarket-Switcher-Repository!
 
@@ -36,7 +36,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
 Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber an andere Linux-Varianten angepasst werden kann, wie Debian/Ubuntu auf einem Raspberry Pi oder einem anderen kleinen Board. Ein Spitzenkandidat ist das sicherlich[OpenWRT](https://www.openwrt.org). Für Testzwecke ist die Verwendung eines Desktop-Rechners in Ordnung, im 24/7-Einsatz ist jedoch der höhere Stromverbrauch besorgniserregend.
 
@@ -48,16 +48,17 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 
 -   Wenn Sie Victron Venus OS verwenden:
     -   Nach der Ausführung des`victron-venus-os-install.sh`Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf, andere Ladezeiten am Tag werden ignoriert. Falls nicht gewünscht, erstellen Sie einen Zeitplan für alle 24 Stunden des Tages. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie oben rechts auf dem Bildschirm angezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
+        ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefinierten Zeiten. Standardmäßig deaktiviert, kann vom Skript vorübergehend aktiviert werden.
 
 -   Wenn Sie ein anderes Betriebssystem verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
-    -   Beispiel-Crontab:
-          Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
-          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, dann fügen Sie die folgende Zeile ein:
             0 * * * * /path/to/controller.sh
 
 ### Unterstützung und Beitrag
