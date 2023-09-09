@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[danska](README.da.md)-[tysk](README.de.md)-[holländska](README.nl.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)
+[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
