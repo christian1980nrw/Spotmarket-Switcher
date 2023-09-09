@@ -2,14 +2,14 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Noors](README.no.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)
+[Deens](README.da.md)-[Duits](README.de.md)-[Nederlands](README.nl.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Noors](README.no.md)-[Portugees](README.pt.md)-[Svenska ](README.sv.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
 Wat doet deze software?
 Dit is een Linux-shellscript dat uw acculader en/of schakelbare stopcontacten op het juiste moment inschakelt als uw uurgebaseerde dynamische energieprijzen laag zijn.
 Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan te zetten of je kunt de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het elektriciteitsnet beschikbaar is.
-Via een weer-API kan rekening worden gehouden met de verwachte zonne-energieopbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
+Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
 Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
