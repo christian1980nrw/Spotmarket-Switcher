@@ -31,7 +31,7 @@ Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG)
 
 Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører en UNIX-baseret maskine, såsom macOS, Linux eller Windows med Linux-undersystemet, skal du følge disse trin for at installere softwaren:
 
-1.  Download installationsscriptet fra GitHub-lageret ved at bruge[dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
+1.  Download the install script from the GitHub repository by using [dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kør installationsscriptet med yderligere muligheder for at forberede alt i en undermappe til din inspektion. For eksempel:
@@ -60,14 +60,14 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
           Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:
             0 * * * * /path/to/controller.sh
 
-### Støtte og bidrag
+### Support and Contribution
 
 Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støtte yderligere udvikling gennem disse links:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Derudover, hvis du er i Tyskland og er interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e). Både du og projektet vil modtage en bonus på 50 euro for hardware. Bemærk venligst, at en smartmåler eller en Pulse-IR er påkrævet for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Derudover, hvis du er i Tyskland og er interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e). Både du og projektet vil modtage en bonus på 50 euro for hardware. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan du stadig støtte projektet[Octopus Energy (henvisningslink)](https://share.octopusenergy.de/glass-raven-58).
 Du modtager en bonus på 50 euro til dig selv og også for projektet.
