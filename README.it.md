@@ -52,7 +52,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
 
 Lo screenshot mostra la configurazione della ricarica automatizzata durante gli orari definiti dall'utente. Disattivato per impostazione predefinita, può essere temporaneamente attivato dallo script.
 
--   Se utilizzi un altro sistema operativo:
+-   If you're using another OS:
     -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
