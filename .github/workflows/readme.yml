@@ -49,7 +49,7 @@ jobs:
       - name: Adding README - Japanese
         uses: dephraiim/translate-readme@main
         with:
-          LANG: jp
+          LANG: ja
       - name: Adding README - Norwegian
         uses: dephraiim/translate-readme@main
         with:
