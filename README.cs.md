@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
+[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md) - [estonština](README.et.md)-[finština](README.fi.md) - [francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
 
 ## Vítejte v úložišti Spotmarket-Switcher!
 
@@ -52,7 +52,17 @@ Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/cc
 
 Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatelem definovaných časů. Ve výchozím nastavení deaktivováno, může být dočasně aktivováno skriptem.
 
--   Pokud používáte jiný OS:
+-   Pokyny k instalaci Spotmarket-Switcher na systém Windows 10 nebo 11 pro testování:
+
+    -   zahájení`cmd.exe`jako správce
+    -   Vstupte`wsl --install -d Debian`
+    -   Zadejte nové uživatelské jméno jako`admin`
+    -   vložte nové heslo
+    -   Vstupte`sudo su`a zadejte své heslo
+    -   Vstupte`apt-get update && apt-get install wget curl`
+    -   Pokračujte níže uvedeným popisem Linuxu
+
+-   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
