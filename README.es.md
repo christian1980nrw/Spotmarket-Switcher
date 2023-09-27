@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[checo](README.cs.md)-[danés](README.da.md)-[Alemán](README.de.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[Holandés](README.nl.md)-[noruego](README.no.md)-[Polaco](README.pl.md)-[portugués](README.pt.md)-[sueco](README.sv.md)-[japonés](README.ja.md)
+[checo](README.cs.md)-[danés](README.da.md)-[Alemán](README.de.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[Italian ](README.it.md)-[Holandés](README.nl.md)-[noruego](README.no.md)-[Polaco](README.pl.md)-[portugués](README.pt.md)-[sueco](README.sv.md)-[japonés](README.ja.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -38,7 +38,7 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
 
-Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otras versiones de Linux, como Debian/Ubuntu en una Raspberry Pi u otra placa pequeña. Un candidato principal es sin duda[AbiertoWRT](https://www.openwrt.org). Usar una máquina de escritorio está bien para fines de prueba, pero cuando se usa las 24 horas del día, los 7 días de la semana, su mayor consumo de energía es motivo de preocupación.
+Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otras versiones de Linux, como Debian/Ubuntu en una Raspberry Pi u otra placa pequeña. Un candidato principal es sin duda[OpenWRT](https://www.openwrt.org). Usar una máquina de escritorio está bien para fines de prueba, pero cuando se usa las 24 horas del día, los 7 días de la semana, su mayor consumo de energía es motivo de preocupación.
 
 ### Acceso al sistema operativo Venus
 
@@ -69,8 +69,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
-          Abre tu terminal y entra`crontab -e`, luego inserte la siguiente línea:
-            `0 * * * * /path/to/controller.sh`
+          Abre tu terminal y entra`crontab -e`, luego inserte la siguiente línea:`0 * * * * /path/to/controller.sh`
 
 ### Apoyo y contribución
 
