@@ -52,7 +52,17 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
 
 Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
 
--   Jeśli używasz innego systemu operacyjnego:
+-   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przetestowania:
+
+    -   początek`cmd.exe`jako Administrator
+    -   Wchodzić`wsl --install -d Debian`
+    -   Wprowadź nową nazwę użytkownika, np`admin`
+    -   Wpisz nowe hasło
+    -   Wchodzić`sudo su`i wpisz swoje hasło
+    -   Wchodzić`apt-get update && apt-get install wget curl`
+    -   Kontynuuj, korzystając z poniższego opisu systemu Linux
+
+-   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
