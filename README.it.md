@@ -62,8 +62,10 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   accedere`apt-get update && apt-get install wget curl`
     -   Continuare con la descrizione di Linux di seguito
 
+
 -   Se utilizzi un sistema Linux come Ubuntu o Debian:
     -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
+    -   i comandi sono`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`e da modificare`vi /path/to/save/controller.sh`
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
           Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
