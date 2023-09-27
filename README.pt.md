@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[Norsk ](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
+[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[norueguês](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
@@ -22,7 +22,7 @@ Por favor, dê uma olhada abaixo da linha 100 do arquivo controller.sh para ver 
 ## Fonte de dados
 
 O software atualmente utiliza preços por hora EPEX Spot fornecidos por três APIs gratuitas (Tibber, aWATTar e Entso-E).
-A API gratuita integrada Entso-E fornece dados sobre preços de energia dos seguintes países:
+A API Entso-E gratuita e integrada fornece dados sobre preços de energia dos seguintes países:
 Albânia (AL), Áustria (AT), Bélgica (BE), Bósnia e Herz. (BA), Bulgária (BG), Croácia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estónia (EE), Finlândia (FI), França (FR), Geórgia (GE), Alemanha (DE), Grécia (GR), Hungria (HU), Irlanda (IE), Itália (IT), Kosovo (XK), Letónia (LV), Lituânia (LT), Luxemburgo (LU), Malta (MT), Moldávia (MD), Montenegro (ME), Países Baixos (NL), Macedónia do Norte (MK), Noruega (NO), Polónia (PL), Portugal (PT), Roménia (RO), Sérvia (RS), Eslováquia (SK) , Eslovénia (SI), Espanha (ES), Suécia (SE), Suíça (CH), Turquia (TR), Ucrânia (UA), Reino Unido (UK) ver[Plataforma Entso-E de Transparência](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
@@ -52,10 +52,20 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
--   Se você estiver usando outro sistema operacional:
+-   Instruções para instalar o Spotmarket-Switcher em um sistema Windows 10 ou 11 para teste:
+
+    -   lançar`cmd.exe`como administrador
+    -   Digitar`wsl --install -d Debian`
+    -   Digite um novo nome de usuário como`admin`
+    -   Insira uma nova senha
+    -   Digitar`sudo su`e digite sua senha
+    -   Digitar`apt-get update && apt-get install wget curl`
+    -   Continue com a descrição do Linux abaixo
+
+-   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de crontab:
+    -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:
             0 * * * * /path/to/controller.sh
