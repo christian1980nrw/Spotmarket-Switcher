@@ -16,8 +16,8 @@ I sistemi supportati sono attualmente:
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)E[210](https://avm.de/produkte/smart-home/fritzdect-210/)prese commutabili
 -   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
-Il codice è semplice in modo che possa essere facilmente adattato ad altri sistemi di accumulo di energia se si è in grado di controllare la ricarica tramite i comandi della shell Linux.
-Dai un'occhiata sotto la riga 100 del file controller.sh in modo da poter vedere cosa può essere configurato dall'utente.
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
+Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
 
 ## Fonte di dati
 

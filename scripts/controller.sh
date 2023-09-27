@@ -52,7 +52,7 @@ UMGEBUNGSVARIABLEN
 
   rc_local_file - Der Pfad zur Datei, über die der Service gestartet wird, kann festgelegt werden. Dies ist ausschließlich für Testzwecke vorgesehen.
 
-  LOG_FILE - In diese Datei werden alle auch auf der Konsole ausgegebenen Informationen gespeichert - voreingestellt auf "/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+  LOG_FILE - In diese Datei werden alle auch auf der Konsole ausgegebenen Informationen gespeichert - voreingestellt auf "/tmp/spotmarket-switcher.log"
 
   LOG_MAX_SIZE=1024  - Maximale Größe (in kb) der log Datei - voreingestellt auf 1 MB
 
@@ -93,7 +93,7 @@ ENVIRONMENT VARIABLES
 
   rc_local_file - The path to the file through which the service is started can be specified. Intended solely for testing purposes.
 
-  LOG_FILE - File storing all the data that was sent to the console - preset to "/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+  LOG_FILE - File storing all the data that was sent to the console - preset to "/tmp/spotmarket-switcher.log"
 
   LOG_MAX_SIZE=1024  - Maximal size (in kb) of log file - preset to 1 MB
 
@@ -308,7 +308,7 @@ file19=/tmp/entsoe_prices_sorted.txt
 ########## Optional environmental variables
 
 if [ -z "$LOG_FILE" ]; then
-  LOG_FILE="/data/etc/Spotmarket-Switcher/spotmarket-switcher.log"
+  LOG_FILE="/tmp/spotmarket-switcher.log"
 fi
 if [ -z "$LOG_MAX_SIZE" ]; then
   LOG_MAX_SIZE=1024 # 1 MB
