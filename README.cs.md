@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[Français ](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[Svenska ](README.sv.md)-[japonský](README.ja.md)
+[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
 
 ## Vítejte v úložišti Spotmarket-Switcher!
 
@@ -69,8 +69,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
-          Otevřete terminál a zadejte jej`crontab -e`a poté vložte následující řádek:
-            `0 * * * * /path/to/controller.sh`
+          Otevřete terminál a zadejte jej`crontab -e`a poté vložte následující řádek:`0 * * * * /path/to/controller.sh`
 
 ### Podpora a příspěvek
 
@@ -81,7 +80,7 @@ Pokud považujete tento projekt za hodnotný, zvažte prosím sponzorování a p
 
 Navíc, pokud jste v Německu a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e). Vy i projekt získáte bonus 50 eur na hardware. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektřiny, stále můžete projekt podpořit[Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
+If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
 Získáváte bonus 50 euro pro sebe a také pro projekt.
 Octopus má tu výhodu, že smlouvy mají většinou pouze měsíční platnost. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 

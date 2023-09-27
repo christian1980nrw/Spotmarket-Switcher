@@ -2,15 +2,15 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md) - [Engelsk](README.md) - [spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
-What is this software doing? 
-This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
-You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
-The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
-Supported systems are currently:
+Hva gjør denne programvaren?
+Dette er et Linux-shell-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte dynamiske energipriser er lave.
+Du kan da bruke stikkontaktene til å skru på en varmtvannsbeholder mye billigere eller du kan automatisk lade batterilageret om natten når billig vindenergi er tilgjengelig på nettet.
+Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
+Støttede systemer er for øyeblikket:
 
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
@@ -36,9 +36,9 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
 
 2.  Kjør installasjonsskriptet med flere alternativer for å forberede alt i en underkatalog for inspeksjonen din. For eksempel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    If you're using Victron Venus OS, the correct DESTDIR should be `/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
+    Hvis du bruker Victron Venus OS, bør riktig DESTDIR være`/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
 
-Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses til andre Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller et annet lite brett. En førstegangskandidat er det absolutt[ÅpneWRT](https://www.openwrt.org). Å bruke en stasjonær maskin er greit for testformål, men når den er i 24/7 bruk, er det større strømforbruket en bekymring.
+Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses til andre Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller et annet lite brett. En førstegangskandidat er det absolutt[OpenWRT](https://www.openwrt.org). Å bruke en stasjonær maskin er greit for testformål, men når den er i 24/7 bruk, er det større strømforbruket en bekymring.
 
 ### Tilgang til Venus OS
 
@@ -69,8 +69,7 @@ Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte ti
     -   Opprett en crontab eller en annen planleggingsmetode for å kjøre dette skriptet ved starten av hver time.
     -   Eksempel på Crontab:
           Bruk følgende crontab-oppføring for å utføre kontrollskriptet hver time:
-          Åpne terminalen og skriv inn`crontab -e`, sett inn følgende linje:
-            `0 * * * * /path/to/controller.sh`
+          Åpne terminalen og skriv inn`crontab -e`, sett inn følgende linje:`0 * * * * /path/to/controller.sh`
 
 ### Støtte og bidrag
 
@@ -79,11 +78,11 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-I tillegg, hvis du er i Tyskland og er interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e). Både du og prosjektet vil motta en bonus på 50 euro for maskinvare. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
-Du mottar en bonus på 50 euro for deg selv og også for prosjektet.
-Octopus har den fordelen at kontraktene vanligvis kun har en månedlig løpetid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
+Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58) .
+You receive a 50 euro bonus for yourself and also for the project.
+Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
 ## Ansvarsfraskrivelse
 

@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
+[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md) - [prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
@@ -69,8 +69,8 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
     -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
     -   Crontabi näidis:
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
-          Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:
-            `0 * * * * /path/to/controller.sh`
+          Avage oma terminal ja sisestage`crontab -e`, then insert the following line:
+          `0 * * * * /path/to/controller.sh`
 
 ### Toetus ja panus
 

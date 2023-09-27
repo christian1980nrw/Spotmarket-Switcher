@@ -75,9 +75,7 @@ The Screenshot is showing the configuration of automated charging during user de
   - Sample Crontab:
       Use the following crontab entry to execute the control script every hour:
       Open your terminal and enter `crontab -e`, then insert the following line:
-      ```
       `0 * * * * /path/to/controller.sh`
-      ```
 
 
 ### Support and Contribution

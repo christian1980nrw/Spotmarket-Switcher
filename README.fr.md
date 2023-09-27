@@ -40,7 +40,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
 
 Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
-### Accès au système d'exploitation Venus
+### Access to Venus OS
 
 Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veuillez vous référer à<https://www.victronenergy.com/live/ccgx:root_access>.
 
@@ -55,7 +55,7 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
 -   Instructions pour installer le Spotmarket-Switcher sur un système Windows 10 ou 11 pour des tests sans appareils Victron (uniquement prises commutables).
 
     -   lancement`cmd.exe`en tant qu'administrateur
-    -   Entrer`wsl --install -d Debian`
+    -   Enter `wsl --install -d Debian`
     -   Entrez un nouveau nom d'utilisateur comme`admin`
     -   entrer un nouveau mot de passe
     -   Entrer`sudo su`et tapez votre mot de passe
@@ -69,8 +69,7 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
     -   Créez une crontab ou une autre méthode de planification pour exécuter ce script au début de chaque heure.
     -   Exemple de Crontab :
           Utilisez l'entrée crontab suivante pour exécuter le script de contrôle toutes les heures :
-          Ouvrez votre terminal et entrez`crontab -e`, puis insérez la ligne suivante :
-            `0 * * * * /path/to/controller.sh`
+          Ouvrez votre terminal et entrez`crontab -e`, puis insérez la ligne suivante :`0 * * * * /path/to/controller.sh`
 
 ### Soutien et contribution
 

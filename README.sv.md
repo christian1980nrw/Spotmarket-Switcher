@@ -69,8 +69,7 @@ Skärmdumpen visar konfigurationen av automatisk laddning under användardefinie
     -   Skapa en crontab eller annan schemaläggningsmetod för att köra det här skriptet i början av varje timme.
     -   Exempel Crontab:
           Använd följande crontab-post för att köra kontrollskriptet varje timme:
-          Öppna din terminal och skriv in`crontab -e`, infoga sedan följande rad:
-            `0 * * * * /path/to/controller.sh`
+          Öppna din terminal och skriv in`crontab -e`, infoga sedan följande rad:`0 * * * * /path/to/controller.sh`
 
 ### Stöd och bidrag
 

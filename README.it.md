@@ -69,8 +69,7 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
           Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
-          Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:
-            `0 * * * * /path/to/controller.sh`
+          Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:`0 * * * * /path/to/controller.sh`
 
 ### Supporto e contributo
 

@@ -69,8 +69,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
     -   Opret en crontab eller en anden planlægningsmetode for at køre dette script i starten af ​​hver time.
     -   Eksempel på Crontab:
           Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
-          Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:
-            `0 * * * * /path/to/controller.sh`
+          Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:`0 * * * * /path/to/controller.sh`
 
 ### Støtte og bidrag
 

@@ -69,8 +69,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
-          Avaa terminaali ja syötä sisään`crontab -e`, lisää sitten seuraava rivi:
-            `0 * * * * /path/to/controller.sh`
+          Avaa terminaali ja syötä sisään`crontab -e`, lisää sitten seuraava rivi:`0 * * * * /path/to/controller.sh`
 
 ### Tuki ja panos
 
