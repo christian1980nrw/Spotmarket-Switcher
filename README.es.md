@@ -52,8 +52,20 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 
 La captura de pantalla muestra la configuración de la carga automatizada durante los horarios definidos por el usuario. Desactivado de forma predeterminada, puede activarse temporalmente mediante el script.
 
--   Si estás usando otro sistema operativo:
+-   Instrucciones para instalar Spotmarket-Switcher en un sistema Windows 10 u 11 para realizar pruebas sin dispositivos Victron (solo enchufes conmutables).
+
+    -   lanzamiento`cmd.exe`como administrador
+    -   Ingresar`wsl --install -d Debian`
+    -   Ingrese un nuevo nombre de usuario como`admin`
+    -   Introduzca una nueva contraseña
+    -   Ingresar`sudo su`y escribe tu contraseña
+    -   Ingresar`apt-get update && apt-get install wget curl`
+    -   Continúe con la descripción de Linux a continuación.
+
+
+-   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
+    -   los comandos son`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`y para editar`vi /path/to/save/controller.sh`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:

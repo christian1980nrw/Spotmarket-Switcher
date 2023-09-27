@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md) - [ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
@@ -13,7 +13,7 @@
 現在サポートされているシステムは次のとおりです。
 
 -   シェリー製品（など）[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[シェリープラス](https://shellyparts.de/products/shelly-plus-1pm)）
--   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[210](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
+-   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
 コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適用できます。
@@ -38,7 +38,7 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Victron Venus OS を使用している場合、正しい DESTDIR は次のとおりです。`/`(ルートディレクトリ)。にインストールされているファイルを自由に探索してください。`/tmp/foo`。
 
-このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
+このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンの使用はテスト目的には問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
 ### Venus OS へのアクセス
 
@@ -52,8 +52,20 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
 
--   別の OS を使用している場合:
+-   Victron デバイス (切り替え可能なソケットのみ) を使用せずにテストするために Windows 10 または 11 システムに Spotmarket-Switcher をインストールする手順。
+
+    -   打ち上げ`cmd.exe`管理者として
+    -   入力`wsl --install -d Debian`
+    -   次のような新しいユーザー名を入力します`admin`
+    -   新しいパスワードを入力
+    -   入力`sudo su`パスワードを入力してください
+    -   入力`apt-get update && apt-get install wget curl`
+    -   以下の Linux の説明に進みます。
+
+
+-   Ubuntu や Debian などの Linux システムを使用している場合:
     -   シェルスクリプトをコピーします(`controller.sh`) をカスタムの場所に移動し、必要に応じて変数を調整します。
+    -   コマンドは`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`そして編集するには`vi /path/to/save/controller.sh`
     -   crontab または別のスケジュール方法を作成して、各時間の開始時にこのスクリプトを実行します。
     -   Crontab のサンプル:
           次の crontab エントリを使用して、制御スクリプトを 1 時間ごとに実行します。

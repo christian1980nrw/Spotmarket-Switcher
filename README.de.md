@@ -52,8 +52,20 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 
 Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefinierten Zeiten. Standardmäßig deaktiviert, kann vom Skript vorübergehend aktiviert werden.
 
--   Wenn Sie ein anderes Betriebssystem verwenden:
+-   Anleitung zur Installation des Spotmarket-Switcher auf einem Windows 10- oder 11-System zum Testen ohne Victron-Geräte (nur schaltbare Steckdosen).
+
+    -   Start`cmd.exe`als Administrator
+    -   Eingeben`wsl --install -d Debian`
+    -   Geben Sie einen neuen Benutzernamen ein, z`admin`
+    -   Geben Sie ein neues Kennwort ein
+    -   Eingeben`sudo su`und geben Sie Ihr Passwort ein
+    -   Eingeben`apt-get update && apt-get install wget curl`
+    -   Fahren Sie mit der Linux-Beschreibung unten fort
+
+
+-   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
+    -   Die Befehle sind`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`und zu bearbeiten`vi /path/to/save/controller.sh`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
     -   Beispiel-Crontab:
           Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:

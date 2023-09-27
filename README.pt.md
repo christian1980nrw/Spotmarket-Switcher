@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[Norsk ](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
+[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[norueguês](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
@@ -52,10 +52,22 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
--   Se você estiver usando outro sistema operacional:
+-   Instruções para instalar o Spotmarket-Switcher num sistema Windows 10 ou 11 para testes sem dispositivos Victron (apenas tomadas comutáveis).
+
+    -   lançar`cmd.exe`como administrador
+    -   Digitar`wsl --install -d Debian`
+    -   Digite um novo nome de usuário como`admin`
+    -   Insira uma nova senha
+    -   Digitar`sudo su`e digite sua senha
+    -   Digitar`apt-get update && apt-get install wget curl`
+    -   Continue com a descrição do Linux abaixo
+
+
+-   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
+    -   os comandos são`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`e para editar`vi /path/to/save/controller.sh`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de crontab:
+    -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:
             0 * * * * /path/to/controller.sh

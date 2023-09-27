@@ -52,8 +52,20 @@ Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/cc
 
 Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatelem definovaných časů. Ve výchozím nastavení deaktivováno, může být dočasně aktivováno skriptem.
 
--   Pokud používáte jiný OS:
+-   Pokyny k instalaci Spotmarket-Switcher na systém Windows 10 nebo 11 pro testování bez zařízení Victron (pouze přepínatelné zásuvky).
+
+    -   zahájení`cmd.exe`jako správce
+    -   Vstupte`wsl --install -d Debian`
+    -   Zadejte nové uživatelské jméno jako`admin`
+    -   vložte nové heslo
+    -   Vstupte`sudo su`a zadejte své heslo
+    -   Vstupte`apt-get update && apt-get install wget curl`
+    -   Pokračujte níže uvedeným popisem Linuxu
+
+
+-   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
+    -   příkazy jsou`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`a upravit`vi /path/to/save/controller.sh`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:

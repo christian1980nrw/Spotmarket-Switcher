@@ -57,8 +57,20 @@ For instructions on accessing the Venus OS, please refer to [https://www.victron
 
 The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
 
-- If you're using another OS:
+- Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
+
+  - launch `cmd.exe` as Administrator
+  - Enter `wsl --install -d Debian`
+  - Enter a new username like `admin`
+  - Enter a new password
+  - Enter `sudo su` and type your password
+  - Enter `apt-get update && apt-get install wget curl`
+  - Continue with the Linux description below
+ 
+
+- If you're using a Linux-System like Ubuntu or Debian:
   - Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
+  - the commands are `cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh` and to edit `vi /path/to/save/controller.sh`
   - Create a crontab or another scheduling method to run this script at the start of each hour.
   - Sample Crontab:
       Use the following crontab entry to execute the control script every hour:
@@ -66,6 +78,7 @@ The Screenshot is showing the configuration of automated charging during user de
       ```
       0 * * * * /path/to/controller.sh
       ```
+
 
 ### Support and Contribution
 
