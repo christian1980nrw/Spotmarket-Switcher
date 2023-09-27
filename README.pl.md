@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[Finnish ](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[Norsk ](README.no.md)-[Polski](README.pl.md) - [portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
@@ -12,12 +12,12 @@ Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej 
 Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
 Obsługiwane systemy to obecnie:
 
--   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
-Kod jest prosty, dzięki czemu można go łatwo dostosować do innych systemów magazynowania energii, jeśli potrafisz kontrolować ładowanie za pomocą poleceń powłoki Linux.
-Proszę spojrzeć poniżej linii 100 pliku kontroler.sh, aby zobaczyć, co może skonfigurować użytkownik.
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
+Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
 
 ## Źródło danych
 
@@ -62,8 +62,10 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   Wchodzić`apt-get update && apt-get install wget curl`
     -   Kontynuuj, korzystając z poniższego opisu systemu Linux
 
+
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
+    -   polecenia są`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`i edytować`vi /path/to/save/controller.sh`
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:
@@ -77,7 +79,7 @@ Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie da
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Dodatkowo, jeśli jesteś w Niemczech i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e). Zarówno Ty, jak i projekt otrzymacie premię 50 euro za sprzęt. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e). Zarówno Ty, jak i projekt otrzymacie premię 50 euro za sprzęt. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
 Otrzymujesz premię 50 euro dla siebie i projektu.
