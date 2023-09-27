@@ -8,7 +8,7 @@
 
 ¿Qué está haciendo este software?
 Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios dinámicos de energía por horas son bajos.
-A continuación, puede utilizar los enchufes para encender un depósito de agua caliente de forma mucho más económica o puede cargar automáticamente la batería por la noche, cuando hay energía eólica barata disponible en la red.
+Luego puede usar los enchufes para encender un tanque de agua caliente de manera mucho más económica o puede cargar automáticamente la batería por la noche cuando hay energía eólica barata disponible en la red.
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
 
@@ -52,7 +52,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 
 La captura de pantalla muestra la configuración de la carga automatizada durante los horarios definidos por el usuario. Desactivado de forma predeterminada, puede activarse temporalmente mediante el script.
 
--   Instrucciones para instalar Spotmarket-Switcher en un sistema Windows 10 u 11 para realizar pruebas:
+-   Instrucciones para instalar Spotmarket-Switcher en un sistema Windows 10 u 11 para realizar pruebas sin dispositivos Victron (solo enchufes conmutables).
 
     -   lanzamiento`cmd.exe`como administrador
     -   Ingresar`wsl --install -d Debian`
