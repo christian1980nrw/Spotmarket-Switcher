@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[Finnish ](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
@@ -12,7 +12,7 @@ Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej 
 Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
 Obsługiwane systemy to obecnie:
 
--   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
@@ -52,7 +52,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
 
 Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
 
--   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przetestowania:
+-   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
     -   początek`cmd.exe`jako Administrator
     -   Wchodzić`wsl --install -d Debian`
