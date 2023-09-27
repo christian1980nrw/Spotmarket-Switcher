@@ -52,7 +52,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
 
 Lo screenshot mostra la configurazione della ricarica automatizzata durante gli orari definiti dall'utente. Disattivato per impostazione predefinita, può essere temporaneamente attivato dallo script.
 
--   Istruzioni per installare Spotmarket-Switcher su un sistema Windows 10 o 11 per testarlo:
+-   Istruzioni per installare lo Spotmarket-Switcher su un sistema Windows 10 o 11 per eseguire test senza dispositivi Victron (solo prese commutabili).
 
     -   lancio`cmd.exe`come amministratore
     -   accedere`wsl --install -d Debian`
