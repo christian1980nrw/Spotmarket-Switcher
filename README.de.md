@@ -36,7 +36,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
 Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber an andere Linux-Varianten angepasst werden kann, wie Debian/Ubuntu auf einem Raspberry Pi oder einem anderen kleinen Board. Ein Spitzenkandidat ist das sicherlich[OpenWRT](https://www.openwrt.org). Für Testzwecke ist die Verwendung eines Desktop-Rechners in Ordnung, im 24/7-Einsatz ist jedoch der höhere Stromverbrauch besorgniserregend.
 
@@ -70,7 +70,7 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
     -   Beispiel-Crontab:
           Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
           Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Unterstützung und Beitrag
 

@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
+[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[Français ](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[Svenska ](README.sv.md)-[japonský](README.ja.md)
 
 ## Vítejte v úložišti Spotmarket-Switcher!
 
@@ -70,7 +70,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
           Otevřete terminál a zadejte jej`crontab -e`a poté vložte následující řádek:
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Podpora a příspěvek
 

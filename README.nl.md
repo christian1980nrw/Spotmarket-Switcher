@@ -70,7 +70,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Voorbeeldcrontab:
           Gebruik de volgende crontab-invoer om het controlescript elk uur uit te voeren:
           Open uw terminal en ga naar binnen`crontab -e`en voeg vervolgens de volgende regel in:
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Ondersteuning en bijdrage
 

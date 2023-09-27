@@ -70,7 +70,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   Crontab のサンプル:
           次の crontab エントリを使用して、制御スクリプトを 1 時間ごとに実行します。
           端末を開いて入力してください`crontab -e`に次の行を挿入します。
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### 支援と貢献
 

@@ -70,7 +70,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
           Abre tu terminal y entra`crontab -e`, luego inserte la siguiente línea:
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Apoyo y contribución
 
