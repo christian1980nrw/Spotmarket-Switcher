@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
+[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md) - [Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -38,7 +38,7 @@
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Εάν χρησιμοποιείτε το Victron Venus OS, το σωστό DESTDIR θα πρέπει να είναι`/`(ο ριζικός κατάλογος). Μη διστάσετε να εξερευνήσετε τα εγκατεστημένα αρχεία`/tmp/foo`.
 
-Λάβετε υπόψη ότι ενώ αυτό το λογισμικό είναι επί του παρόντος βελτιστοποιημένο για το Venus OS, μπορεί να προσαρμοστεί σε άλλες γεύσεις Linux, όπως το Debian/Ubuntu σε ένα Raspberry Pi ή άλλη μικρή πλακέτα. Ένας πρώτος υποψήφιος είναι σίγουρα[OpenWRT](https://www.openwrt.org). Η χρήση ενός επιτραπέζιου μηχάνημα είναι καλή για σκοπούς δοκιμής, αλλά όταν χρησιμοποιείται σε 24 ώρες το 24ωρο, η μεγαλύτερη κατανάλωση ενέργειας προκαλεί ανησυχία.
+Λάβετε υπόψη ότι ενώ αυτό το λογισμικό είναι επί του παρόντος βελτιστοποιημένο για το Venus OS, μπορεί να προσαρμοστεί σε άλλες γεύσεις Linux, όπως το Debian/Ubuntu σε ένα Raspberry Pi ή σε άλλη μικρή πλακέτα. Ένας πρώτος υποψήφιος είναι σίγουρα[OpenWRT](https://www.openwrt.org). Η χρήση ενός επιτραπέζιου μηχάνημα είναι καλή για σκοπούς δοκιμής, αλλά όταν χρησιμοποιείται σε 24 ώρες το 24ωρο, η μεγαλύτερη κατανάλωση ενέργειας προκαλεί ανησυχία.
 
 ### Πρόσβαση στο Venus OS
 
@@ -52,7 +52,7 @@
 
 Το στιγμιότυπο οθόνης δείχνει τη διαμόρφωση της αυτοματοποιημένης φόρτισης σε χρόνους που καθορίζονται από το χρήστη. Απενεργοποιημένο από προεπιλογή, μπορεί να ενεργοποιηθεί προσωρινά από το σενάριο.
 
--   Οδηγίες εγκατάστασης του Spotmarket-Switcher σε σύστημα Windows 10 ή 11 για δοκιμή:
+-   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
 
     -   εκτόξευση`cmd.exe`ως Διαχειριστής
     -   Εισαγω`wsl --install -d Debian`
