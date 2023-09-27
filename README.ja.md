@@ -2,13 +2,13 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md) - [フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
 このソフトウェアは何をしているのでしょうか?
 これは Linux シェル スクリプトであり、時間単位の動的エネルギー価格が低い場合に、適切なタイミングでバッテリー充電器や切り替え可能なソケットをオンにします。
-ソケットを使用して、はるかに安価に温水タンクをオンにしたり、送電網で安価な風力エネルギーが利用できる夜間に蓄電池を自動的に充電したりできます。
+その後、ソケットを使用して温水タンクをはるかに安価にオンにしたり、送電網で安価な風力エネルギーが利用できる夜間に蓄電池を自動的に充電したりできます。
 予想される太陽光発電量は、気象 API を介して考慮され、それに応じてバッテリー ストレージが予約されます。
 現在サポートされているシステムは次のとおりです。
 
@@ -16,7 +16,7 @@
 -   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
-コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適応できます。
+コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適用できます。
 ユーザーが設定できる内容を確認するには、controller.sh ファイルの 100 行目以下を見てください。
 
 ## 情報元
@@ -38,7 +38,7 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Victron Venus OS を使用している場合、正しい DESTDIR は次のとおりです。`/`(ルートディレクトリ)。にインストールされているファイルを自由に探索してください。`/tmp/foo`。
 
-このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンの使用はテスト目的には問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
+このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
 ### Venus OS へのアクセス
 
@@ -52,7 +52,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
 
--   テストのために Windows 10 または 11 システムに Spotmarket-Switcher をインストールする手順:
+-   Victron デバイス (切り替え可能なソケットのみ) を使用せずにテストするために Windows 10 または 11 システムに Spotmarket-Switcher をインストールする手順。
 
     -   打ち上げ`cmd.exe`管理者として
     -   入力`wsl --install -d Debian`
@@ -77,7 +77,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 -   [レボリュート](https://revolut.me/christqki2)
 -   [ペイパル](https://paypal.me/christian1980nrw)
 
-さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)。あなたとプロジェクトの両方がハードウェアに対して 50 ユーロのボーナスを受け取ります。時間料金にはスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)） 。
+さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)。あなたとプロジェクトの両方がハードウェアに対して 50 ユーロのボーナスを受け取ります。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)） 。
 
 天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58)。
 あなた自身とプロジェクトに対して 50 ユーロのボーナスを受け取ります。
