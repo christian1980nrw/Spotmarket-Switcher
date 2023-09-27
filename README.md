@@ -57,7 +57,7 @@ For instructions on accessing the Venus OS, please refer to [https://www.victron
 
 The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
 
-- Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing:
+- Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
 
   - launch `cmd.exe` as Administrator
   - Enter `wsl --install -d Debian`
