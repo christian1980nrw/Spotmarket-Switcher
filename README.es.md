@@ -62,8 +62,10 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
     -   Ingresar`apt-get update && apt-get install wget curl`
     -   Continúe con la descripción de Linux a continuación.
 
+
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
+    -   los comandos son`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`y para editar`vi /path/to/save/controller.sh`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
