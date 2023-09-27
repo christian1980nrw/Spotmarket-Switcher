@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md) - [estonština](README.et.md)-[finština](README.fi.md) - [francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
+[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
 
 ## Vítejte v úložišti Spotmarket-Switcher!
 
@@ -38,7 +38,7 @@ Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte p
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Pokud používáte Victron Venus OS, měl by být správný DESTDIR`/`(kořenový adresář). Neváhejte prozkoumat nainstalované soubory v`/tmp/foo`.
 
-Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie znepokojivá.
+Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie problémem.
 
 ### Přístup k OS Venus
 
@@ -52,7 +52,7 @@ Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/cc
 
 Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatelem definovaných časů. Ve výchozím nastavení deaktivováno, může být dočasně aktivováno skriptem.
 
--   Pokyny k instalaci Spotmarket-Switcher na systém Windows 10 nebo 11 pro testování:
+-   Pokyny k instalaci Spotmarket-Switcher na systém Windows 10 nebo 11 pro testování bez zařízení Victron (pouze přepínatelné zásuvky).
 
     -   zahájení`cmd.exe`jako správce
     -   Vstupte`wsl --install -d Debian`
