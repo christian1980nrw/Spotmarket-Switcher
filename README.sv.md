@@ -70,7 +70,7 @@ Skärmdumpen visar konfigurationen av automatisk laddning under användardefinie
     -   Exempel Crontab:
           Använd följande crontab-post för att köra kontrollskriptet varje timme:
           Öppna din terminal och skriv in`crontab -e`, infoga sedan följande rad:
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Stöd och bidrag
 
