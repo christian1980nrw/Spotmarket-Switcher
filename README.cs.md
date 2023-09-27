@@ -38,7 +38,7 @@ Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte p
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Pokud používáte Victron Venus OS, měl by být správný DESTDIR`/`(kořenový adresář). Neváhejte prozkoumat nainstalované soubory v`/tmp/foo`.
 
-Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie znepokojivá.
+Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie problémem.
 
 ### Přístup k OS Venus
 
@@ -80,7 +80,7 @@ Pokud považujete tento projekt za hodnotný, zvažte prosím sponzorování a p
 
 Navíc, pokud jste v Německu a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e). Vy i projekt získáte bonus 50 eur na hardware. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
+Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektřiny, stále můžete projekt podpořit[Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
 Získáváte bonus 50 euro pro sebe a také pro projekt.
 Octopus má tu výhodu, že smlouvy mají většinou pouze měsíční platnost. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
