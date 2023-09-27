@@ -52,7 +52,7 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 
 Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefinierten Zeiten. Standardmäßig deaktiviert, kann vom Skript vorübergehend aktiviert werden.
 
--   Anleitung zur Installation des Spotmarket-Switchers auf einem Windows 10- oder 11-System zum Testen:
+-   Anleitung zur Installation des Spotmarket-Switcher auf einem Windows 10- oder 11-System zum Testen ohne Victron-Geräte (nur schaltbare Steckdosen).
 
     -   Start`cmd.exe`als Administrator
     -   Eingeben`wsl --install -d Debian`
