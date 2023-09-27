@@ -47,7 +47,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
 ### Wykonanie skryptu instalacyjnego
 
 -   Jeśli używasz systemu operacyjnego Victron Venus:
-    -   Po wykonaniu ww`victron-venus-os-install.sh`edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   After execution of the `victron-venus-os-install.sh`edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
