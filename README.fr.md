@@ -70,7 +70,7 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
     -   Exemple de Crontab :
           Utilisez l'entrée crontab suivante pour exécuter le script de contrôle toutes les heures :
           Ouvrez votre terminal et entrez`crontab -e`, puis insérez la ligne suivante :
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Soutien et contribution
 
