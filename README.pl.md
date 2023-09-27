@@ -69,8 +69,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:
-          Otwórz terminal i wejdź`crontab -e`, a następnie wstaw następujący wiersz:
-            `0 * * * * /path/to/controller.sh`
+          Otwórz terminal i wejdź`crontab -e`, a następnie wstaw następujący wiersz:`0 * * * * /path/to/controller.sh`
 
 ### Wsparcie i wkład
 
