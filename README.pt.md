@@ -69,8 +69,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
     -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
-          Abra seu terminal e digite`crontab -e`e insira a seguinte linha:
-            `0 * * * * /path/to/controller.sh`
+          Abra seu terminal e digite`crontab -e`e insira a seguinte linha:`0 * * * * /path/to/controller.sh`
 
 ### Apoio e Contribuição
 
