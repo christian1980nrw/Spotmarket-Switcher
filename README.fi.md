@@ -70,7 +70,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
           Avaa terminaali ja syötä sisään`crontab -e`, lisää sitten seuraava rivi:
-            0 * * * * /path/to/controller.sh
+            `0 * * * * /path/to/controller.sh`
 
 ### Tuki ja panos
 
