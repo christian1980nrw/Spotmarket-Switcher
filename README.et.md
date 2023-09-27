@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
+[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[Greek ](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md) - [poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
@@ -38,7 +38,7 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Kui kasutate operatsioonisüsteemi Victron Venus, peaks DESTDIR olema õige`/`(juurkataloog). Tutvuge installitud failidega`/tmp/foo`.
 
-Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muudele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi-l või mõnel muul väikesel tahvlil. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
+Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muude Linuxi maitsetega, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadiga. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
 
 ### Juurdepääs Venus OS-ile
 
@@ -47,7 +47,7 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 ### Installi skripti täitmine
 
 -   Kui kasutate operatsioonisüsteemi Victron Venus:
-    -   Pärast täitmist`victron-venus-os-install.sh`, muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Pärast täitmist`victron-venus-os-install.sh`, edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida.
@@ -60,24 +60,26 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
     -   Sisestage uus parool
     -   Sisenema`sudo su`ja tippige oma parool
     -   Sisenema`apt-get update && apt-get install wget curl`
-    -   Jätkake allpool oleva Linuxi kirjeldusega
+    -   Continue with the Linux description below
+
 
 -   Kui kasutate Linuxi süsteemi nagu Ubuntu või Debian:
     -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
+    -   käsud on`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`ja redigeerimiseks`vi /path/to/save/controller.sh`
     -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
     -   Crontabi näidis:
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
           Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:
             0 * * * * /path/to/controller.sh
 
-### Toetus ja panus
+### Support and Contribution
 
 Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise arengu toetamist järgmiste linkide kaudu:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Lisaks, kui olete Saksamaal ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e). Nii sina kui projekt saate 50 euro suuruse riistvara boonuse. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Lisaks, kui olete Saksamaal ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e). Nii sina kui projekt saavad 50 eurot riistvara boonust. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate siiski projekti toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
 Saate endale ja ka projektile 50 eurot boonust.
