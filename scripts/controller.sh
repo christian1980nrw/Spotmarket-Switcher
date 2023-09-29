@@ -944,7 +944,18 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
   done
 
-fi # Execute Fritz DECT on command
+fi
+if (( execute_switchablesockets_on != 1 && use_fritz_dect_sockets == 1 )); then
+  # Turn off each socket
+  for socket in "${sockets[@]}"; do
+    if [ "$socket" = "0" ]; then
+        continue
+    fi
+    if ! curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" > /dev/null; then
+      echo "E: Could not execut switch-off of socket sid=$sid ain=$socket - ignored"
+    fi
+  done
+fi
 
 if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
@@ -956,30 +967,11 @@ if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   done
 fi
 
-if [ "$use_shelly_wlan_sockets" -eq 1 ] || [ "$use_fritz_dect_sockets" -eq 1 ]; then
-  if [ "$execute_switchablesockets_on" -eq 1 ]; then
-    echo "Waiting for almost 60 minutes..."
-    sleep 3560
-  fi
-fi
-
-if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
+if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
       curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
-    fi
-  done
-fi
-
-if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
-  # Turn off each socket
-  for socket in "${sockets[@]}"; do
-    if [ "$socket" = "0" ]; then
-        continue
-    fi
-    if ! curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" > /dev/null; then
-      echo "E: Could not execut switch-off of socket sid=$sid ain=$socket - ignored"
     fi
   done
 fi
