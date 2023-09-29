@@ -7,7 +7,7 @@
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
 O que este software está fazendo?
-Este é um script de shell do Linux e liga o carregador de bateria e/ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
+Este é um script de shell do Linux e liga o carregador de bateria e / ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
 Você pode então usar as tomadas para ligar um tanque de água quente de maneira muito mais barata ou pode carregar automaticamente o armazenamento da bateria à noite, quando a energia eólica barata estiver disponível na rede.
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
@@ -48,13 +48,13 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Após a execução do`victron-venus-os-install.sh`, edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
 -   Instruções para instalar o Spotmarket-Switcher num sistema Windows 10 ou 11 para testes sem dispositivos Victron (apenas tomadas comutáveis).
 
-    -   lançar`cmd.exe`como administrador
+    -   launch `cmd.exe`como administrador
     -   Digitar`wsl --install -d Debian`
     -   Digite um novo nome de usuário como`admin`
     -   Insira uma nova senha
@@ -65,7 +65,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 -   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
-    -   os comandos são`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh` and to edit `vi /path/to/save/controller.sh`
+    -   os comandos são`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`e para editar`vi /path/to/save/controller.sh`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
     -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
