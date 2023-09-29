@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[checo](README.cs.md)-[danés](README.da.md)-[Alemán](README.de.md)-[Inglés](README.md) - [Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md) - [Greek ](README.el.md)-[italiano](README.it.md)-[Holandés](README.nl.md)-[noruego](README.no.md)-[Polaco](README.pl.md) - [portugués](README.pt.md)-[sueco](README.sv.md)-[japonés](README.ja.md)
+[checo](README.cs.md)-[danés](README.da.md)-[Alemán](README.de.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[Holandés](README.nl.md)-[noruego](README.no.md)-[Polaco](README.pl.md)-[portugués](README.pt.md)-[sueco](README.sv.md)-[japonés](README.ja.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -16,8 +16,8 @@ Los sistemas compatibles actualmente son:
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
 -   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como el[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
-El código es simple, por lo que puede adaptarse fácilmente a otros sistemas de almacenamiento de energía si puede controlar la carga mediante comandos de shell de Linux.
-Eche un vistazo debajo de la línea 100 del archivo controlador.sh para que pueda ver qué puede configurar el usuario.
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
+Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
 
 ## Fuente de datos
 
