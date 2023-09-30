@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[English ](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[norueguês](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
+[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[norueguês](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
@@ -12,7 +12,7 @@ Você pode então usar as tomadas para ligar um tanque de água quente de maneir
 O rendimento solar esperado pode ser levado em consideração através de uma API meteorológica e do armazenamento da bateria reservado em conformidade.
 Os sistemas suportados são atualmente:
 
--   Shelly products (such as [Plugue Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Produtos Shelly (como[Plugue Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)e[210](https://avm.de/produkte/smart-home/fritzdect-210/)tomadas comutáveis
 -   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
 
@@ -42,7 +42,7 @@ Observe que, embora este software esteja atualmente otimizado para o sistema ope
 
 ### Acesso ao sistema operacional Venus
 
-For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
+Para obter instruções sobre como acessar o Venus OS, consulte<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Execução do script de instalação
 
