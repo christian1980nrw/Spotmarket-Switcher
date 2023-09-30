@@ -16,8 +16,8 @@ Los sistemas compatibles actualmente son:
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
 -   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como el[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
-The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
-Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
+El código es simple, por lo que puede adaptarse fácilmente a otros sistemas de almacenamiento de energía si puede controlar la carga mediante comandos de shell de Linux.
+Eche un vistazo debajo de la línea 100 del archivo controlador.sh para que pueda ver qué puede configurar el usuario.
 
 ## Fuente de datos
 
