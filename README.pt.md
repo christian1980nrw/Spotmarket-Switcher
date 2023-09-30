@@ -22,7 +22,7 @@ Por favor, dê uma olhada abaixo da linha 100 do arquivo controller.sh para ver 
 ## Fonte de dados
 
 O software atualmente utiliza preços por hora EPEX Spot fornecidos por três APIs gratuitas (Tibber, aWATTar e Entso-E).
-A API Entso-E gratuita e integrada fornece dados sobre preços de energia dos seguintes países:
+A API gratuita integrada Entso-E fornece dados sobre preços de energia dos seguintes países:
 Albânia (AL), Áustria (AT), Bélgica (BE), Bósnia e Herz. (BA), Bulgária (BG), Croácia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estónia (EE), Finlândia (FI), França (FR), Geórgia (GE), Alemanha (DE), Grécia (GR), Hungria (HU), Irlanda (IE), Itália (IT), Kosovo (XK), Letónia (LV), Lituânia (LT), Luxemburgo (LU), Malta (MT), Moldávia (MD), Montenegro (ME), Países Baixos (NL), Macedónia do Norte (MK), Noruega (NO), Polónia (PL), Portugal (PT), Roménia (RO), Sérvia (RS), Eslováquia (SK) , Eslovénia (SI), Espanha (ES), Suécia (SE), Suíça (CH), Turquia (TR), Ucrânia (UA), Reino Unido (UK) ver[Plataforma Entso-E de Transparência](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
@@ -52,13 +52,13 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
--   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
+-   Instruções para instalar o Spotmarket-Switcher num sistema Windows 10 ou 11 para testes sem dispositivos Victron (apenas tomadas comutáveis).
 
     -   lançar`cmd.exe`como administrador
     -   Digitar`wsl --install -d Debian`
     -   Digite um novo nome de usuário como`admin`
     -   Insira uma nova senha
-    -   Digitar`sudo su` and type your password
+    -   Digitar`sudo su`e digite sua senha
     -   Digitar`apt-get update && apt-get install wget curl`
     -   Continue com a descrição manual do Linux abaixo (o script do instalador não é compatível).
     -   Não se esqueça que se você fechar o shell, o Windows irá parar o sistema.
@@ -66,7 +66,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 -   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
-    -   the commands are `cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`e para editar`vi /path/to/save/controller.sh`
+    -   os comandos são`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`e para editar`vi /path/to/save/controller.sh`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
     -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
@@ -82,7 +82,7 @@ Se você considera este projeto valioso, considere patrocinar e apoiar o desenvo
 Além disso, se você estiver na Alemanha e estiver interessado em mudar para uma tarifa dinâmica de eletricidade, poderá apoiar o projeto inscrevendo-se usando este[Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e). Você e o projeto receberão um bônus de 50 euros em hardware. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Se necessita de uma tarifa de gás natural ou prefere uma tarifa clássica de eletricidade, ainda pode apoiar o projeto[Energia do Polvo (link de referência)](https://share.octopusenergy.de/glass-raven-58).
-Você recebe um bônus de 50 euros para você e também para o projeto.
+Recebe um bónus (a oferta varia entre os 50 e os 120 euros) para si e também para o projeto.
 Octopus tem a vantagem de os contratos normalmente terem prazo apenas mensal. São ideais, por exemplo, para pausar uma tarifa baseada em preços de bolsa.
 
 ## Isenção de responsabilidade
