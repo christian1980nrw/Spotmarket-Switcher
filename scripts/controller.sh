@@ -820,26 +820,6 @@ charging_conditions=(
 execute_charging=0
 execute_switchablesockets_on=0
 
-# Check if any charging condition is met
-for condition in "${charging_conditions[@]}"
-do
-  if (( condition )); then
-    execute_charging=1
-    break
-  fi
-done
-
-switchablesockets_conditions=(
-  "switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer"
-  "switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer"
-  "switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer"
-  "switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer"
-  "switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer"
-  "switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer"
-  "switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
-  "switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer  "
-)
-
 # Check if any switching condition is met
 for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
   if (( switchablesockets_condition == 1 )); then
@@ -880,7 +860,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
     echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
-      $charger_command_turnon
+      $charger_command_turnon > /dev/null
       echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     else
       echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a "$LOG_FILE"
@@ -893,7 +873,7 @@ fi
 
 if (( execute_charging != 1 && use_victron_charger == 1 )); then
   echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-  $charger_command_turnoff
+  $charger_command_turnoff > /dev/null
 fi
 
 # Execute Fritz DECT on command
@@ -966,8 +946,8 @@ if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
-      echo " Executing 1 hour Shelly switching." | tee -a "$LOG_FILE"
-      curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on"
+  echo "I: Turning on Shelly sockets." | tee -a "$LOG_FILE"
+      curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on" -o /dev/null
     fi
   done
 fi
@@ -977,7 +957,7 @@ if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
-      curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
+      curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off" -o /dev/null
     fi
   done
 fi
