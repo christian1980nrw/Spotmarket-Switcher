@@ -16,7 +16,7 @@
 -   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
-コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適応できます。
+コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適用できます。
 ユーザーが設定できる内容を確認するには、controller.sh ファイルの 100 行目以下を見てください。
 
 ## 情報元
@@ -58,7 +58,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   入力`wsl --install -d Debian`
     -   次のような新しいユーザー名を入力します`admin`
     -   新しいパスワードを入力
-    -   入力`sudo su`パスワードを入力してください
+    -   入力`sudo su` and type your password
     -   入力`apt-get update && apt-get install wget curl`
     -   以下の Linux の説明に進みます。
 
