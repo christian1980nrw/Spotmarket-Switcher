@@ -60,7 +60,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
     -   Syötä uusi salasana
     -   Tulla sisään`sudo su`ja kirjoita salasanasi
     -   Tulla sisään`apt-get update && apt-get install wget curl`
-    -   Jatka alla olevalla Linux-kuvauksella
+    -   Continue with the Linux description below
 
 
 -   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
@@ -84,6 +84,6 @@ Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti 
 Saat 50 euron bonuksen itsellesi ja myös projektiin.
 Octopusilla on se etu, että sopimukset ovat yleensä vain kuukausittain. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
-## Disclaimer
+## Vastuuvapauslauseke
 
 Huomioi käyttöehdot osoitteessa<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
