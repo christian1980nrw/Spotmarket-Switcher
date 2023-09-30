@@ -867,6 +867,24 @@ for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
   fi
 done
 
+if ((use_solarweather_api_to_abort == 1)); then
+  if ((abort_suntime <= suntime_today)); then
+    echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
+    execute_charging=0
+	execute_switchablesockets_on=0
+  fi
+  if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
+    echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
+    execute_charging=0
+	execute_switchablesockets_on=0
+  fi
+  if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
+    echo "I: There is enough sun tomorrow. Abort."  | tee -a "$LOG_FILE"
+    execute_charging=0
+	execute_switchablesockets_on=0
+  fi
+fi
+
 # If any charging condition is met, start charging
 if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Calculate the energy_loss_percent of the current_price_integer number
