@@ -36,7 +36,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR lauten`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
 Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber an andere Linux-Varianten angepasst werden kann, wie Debian/Ubuntu auf einem Raspberry Pi oder einem anderen kleinen Board. Ein Spitzenkandidat ist das sicherlich[OpenWRT](https://www.openwrt.org). Für Testzwecke ist die Verwendung eines Desktop-Rechners in Ordnung, im 24/7-Einsatz ist jedoch der höhere Stromverbrauch besorgniserregend.
 
@@ -46,7 +46,7 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 
 ### Ausführung des Installationsskripts
 
--   If you're using Victron Venus OS:
+-   Wenn Sie Victron Venus OS verwenden:
     -   Nach der Ausführung des`victron-venus-os-install.sh`Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf, andere Ladezeiten am Tag werden ignoriert. Falls nicht gewünscht, erstellen Sie einen Zeitplan für alle 24 Stunden des Tages. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie oben rechts auf dem Bildschirm angezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
@@ -60,7 +60,8 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
     -   Geben Sie ein neues Kennwort ein
     -   Eingeben`sudo su`und geben Sie Ihr Passwort ein
     -   Eingeben`apt-get update && apt-get install wget curl`
-    -   Fahren Sie mit der Linux-Beschreibung unten fort
+    -   Fahren Sie mit der manuellen Linux-Beschreibung unten fort (das Installationsskript ist nicht kompatibel).
+    -   Vergessen Sie nicht, dass Windows das System stoppt, wenn Sie die Shell schließen.
 
 
 -   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
