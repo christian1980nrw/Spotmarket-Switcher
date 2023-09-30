@@ -882,8 +882,6 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
     if [ 0 -lt $use_victron_charger ]; then
       $charger_command_turnon > /dev/null
       echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-    else
-      echo "   Not executing charging, use_victron_charger not enabled." | tee -a "$LOG_FILE"
     fi
   else
     echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
