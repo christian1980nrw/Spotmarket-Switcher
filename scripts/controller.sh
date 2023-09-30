@@ -342,10 +342,6 @@ unset num_tools_missing
 ########## Begin of the script...
 
 echo >> "$LOG_FILE"
-if [ 0 -lt "$use_victron_charger" ]; then
-  echo "I: Maybe we are still charging from this script's previous run. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-  $charger_command_turnoff
-fi
 
 download_awattar_prices() {
   local url="$1"
@@ -810,21 +806,6 @@ if ((abort_price_integer <= current_price_integer)); then
   exit 0
 fi
 
-if ((use_solarweather_api_to_abort == 1)); then
-  if ((abort_suntime <= suntime_today)); then
-    echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
-    exit 0
-  fi
-  if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-    echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
-    exit 0
-  fi
-  if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-    echo "I: There is enough sun tomorrow. Abort."  | tee -a "$LOG_FILE"
-    exit 0
-  fi
-fi
-
 charging_conditions=(
   "use_start_stop_logic == 1 && start_price_integer > current_price_integer"
   "charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer"
@@ -867,6 +848,24 @@ for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
   fi
 done
 
+if ((use_solarweather_api_to_abort == 1)); then
+  if ((abort_suntime <= suntime_today)); then
+    echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
+    execute_charging=0
+	execute_switchablesockets_on=0
+  fi
+  if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
+    echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
+    execute_charging=0
+	execute_switchablesockets_on=0
+  fi
+  if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
+    echo "I: There is enough sun tomorrow. Abort."  | tee -a "$LOG_FILE"
+    execute_charging=0
+	execute_switchablesockets_on=0
+  fi
+fi
+
 # If any charging condition is met, start charging
 if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Calculate the energy_loss_percent of the current_price_integer number
@@ -881,8 +880,8 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
     echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
-      echo "   Executing 1 hour charging." | tee -a "$LOG_FILE"
-      $charger_command_turnon
+      $charger_command_turnon > /dev/null
+      echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     else
       echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a "$LOG_FILE"
     fi
@@ -892,9 +891,13 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   fi
 fi
 
+if (( execute_charging != 1 && use_victron_charger == 1 )); then
+  echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+  $charger_command_turnoff > /dev/null
+fi
+
 # Execute Fritz DECT on command
-if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
-  echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
+if (( use_fritz_dect_sockets == 1 )); then
   # Get session ID (SID)
   sid=""
   challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
@@ -919,7 +922,9 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
   if [ -n "$DEBUG" ]; then
     echo "I: Login to Fritz!Box successful." | tee -a "$LOG_FILE"
   fi
-
+fi
+if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
+  echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
   # Iterate over each socket
   for socket in "${sockets[@]}"
   do
@@ -933,7 +938,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
     if [ "$connected" = "1" ]; then
-      echo "Turning socket $socket on for almost 60 minutes and then off again..." | tee -a "$LOG_FILE"
+      echo "Turning socket $socket on." | tee -a "$LOG_FILE"
       url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon"
       if ! curl -s "$url" > /dev/null; then
         echo "E: Could not call URL '$url' to switch on said switch - ignored."
@@ -944,36 +949,9 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
   done
 
-fi # Execute Fritz DECT on command
-
-if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
-  for ip in "${shelly_ips[@]}"
-  do
-    if [ "$ip" != "0" ]; then
-      echo " Executing 1 hour Shelly switching." | tee -a "$LOG_FILE"
-      curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on"
-    fi
-  done
 fi
-
-if [ "$use_shelly_wlan_sockets" -eq 1 ] || [ "$use_fritz_dect_sockets" -eq 1 ]; then
-  if [ "$execute_switchablesockets_on" -eq 1 ]; then
-    echo "Waiting for almost 60 minutes..."
-    sleep 3560
-  fi
-fi
-
-if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
-  for ip in "${shelly_ips[@]}"
-  do
-    if [ "$ip" != "0" ]; then
-      curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
-    fi
-  done
-fi
-
-if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
-  # Turn off each socket
+if (( execute_switchablesockets_on != 1 && use_fritz_dect_sockets == 1 )); then
+  echo "I: Turning off Fritz sockets." | tee -a "$LOG_FILE"
   for socket in "${sockets[@]}"; do
     if [ "$socket" = "0" ]; then
         continue
@@ -983,6 +961,28 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     fi
   done
 fi
+
+if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
+  for ip in "${shelly_ips[@]}"
+  do
+    if [ "$ip" != "0" ]; then
+  echo "I: Turning on Shelly sockets." | tee -a "$LOG_FILE"
+      curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on" -o /dev/null
+    fi
+  done
+fi
+
+if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
+  echo "I: Turning off Shelly sockets." | tee -a "$LOG_FILE"
+  for ip in "${shelly_ips[@]}"
+  do
+    if [ "$ip" != "0" ]; then
+      curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off" -o /dev/null
+    fi
+  done
+fi
+
+echo >> "$LOG_FILE"
 
 # Rotating log files
 if [ -f "$LOG_FILE" ]; then
