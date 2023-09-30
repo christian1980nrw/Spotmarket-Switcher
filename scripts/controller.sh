@@ -880,8 +880,8 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
     echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
-      echo "   Executing 1 hour charging." | tee -a "$LOG_FILE"
       $charger_command_turnon
+      echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     else
       echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a "$LOG_FILE"
     fi
@@ -889,6 +889,11 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
     echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
   fi
+fi
+
+if (( execute_charging != 1 && use_victron_charger == 1 )); then
+  echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+  $charger_command_turnoff
 fi
 
 # Execute Fritz DECT on command
@@ -975,11 +980,6 @@ if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
       curl -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off"
     fi
   done
-fi
-
-if (( execute_charging != 1 && use_victron_charger == 1 )); then
-  echo "I: Stopping Victron scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-  $charger_command_turnoff
 fi
 
 echo >> "$LOG_FILE"
