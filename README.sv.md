@@ -2,14 +2,14 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
+[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[English ](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md) - [portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
 Vad gör denna programvara?
 Detta är ett Linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
 Du kan då använda uttagen för att slå på en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
-Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
+Det förväntade solutbytet kan tas med i beräkningen via ett väder-API och batterilagring reserverad därefter.
 System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
