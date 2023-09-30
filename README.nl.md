@@ -2,15 +2,15 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands ](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
+[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
-What is this software doing? 
-This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
-You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
-The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
-Supported systems are currently:
+Wat doet deze software?
+Dit is een Linux-shellscript dat uw acculader en/of schakelbare stopcontacten op het juiste moment inschakelt als uw uurgebaseerde dynamische energieprijzen laag zijn.
+Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan te zetten of je kunt de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het elektriciteitsnet beschikbaar is.
+Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
+Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
@@ -38,7 +38,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Als u Victron Venus OS gebruikt, zou de juiste DESTDIR moeten zijn`/`(de hoofdmap). Voel je vrij om de geïnstalleerde bestanden te verkennen in`/tmp/foo`.
 
-Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere stroomverbruik een probleem.
 
 ### Toegang tot Venus OS
 
@@ -48,8 +48,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 
 -   Als u Victron Venus OS gebruikt:
     -   Na uitvoering van de`victron-venus-os-install.sh`, bewerk de variabelen met een teksteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
-        ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Stel een ESS-laadschema in (zie de meegeleverde schermafbeelding). In het voorbeeld laadt de batterij 's nachts tot 50% op, indien geactiveerd, andere oplaadtijden van de dag worden genegeerd. Indien niet gewenst, maak dan een schema voor alle 24 uur van de dag. Vergeet niet om het na het maken te deactiveren. Controleer of de systeemtijd (zoals weergegeven in de rechterbovenhoek van het scherm) juist is.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
 
@@ -60,7 +59,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Voer een nieuwe gebruikersnaam in, zoals`admin`
     -   Voer een nieuw wachtwoord in
     -   Binnenkomen`sudo su`en typ uw wachtwoord
-    -   Enter `apt-get update && apt-get install wget curl`
+    -   Binnenkomen`apt-get update && apt-get install wget curl`
     -   Ga verder met de Linux-beschrijving hieronder
 
 
@@ -81,7 +80,7 @@ Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te spons
 
 Als u zich bovendien in Duitsland bevindt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e). Zowel jij als het project ontvangen een bonus van 50 euro voor hardware. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
+Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
 Je ontvangt een bonus van 50 euro voor jezelf en ook voor het project.
 Octopus heeft als voordeel dat de contracten doorgaans slechts een maandelijkse looptijd hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
 
