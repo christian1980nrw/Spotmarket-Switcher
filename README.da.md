@@ -7,7 +7,7 @@
 ## Velkommen til Spotmarket-Switcher-depotet!
 
 Hvad laver denne software?
-Dette er et Linux-shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede dynamiske energipriser er lave.
+Dette er et Linux shell-script og tænder for din batterioplader og/eller omskiftelige stik på det rigtige tidspunkt, hvis dine timebaserede dynamiske energipriser er lave.
 Du kan så bruge stikkontakterne til at tænde en varmtvandsbeholder meget billigere eller du kan automatisk oplade batterilageret om natten, når der er billig vindenergi til rådighed på nettet.
 Det forventede soludbytte kan tages i betragtning via en vejr-API og batterilager reserveret i overensstemmelse hermed.
 Understøttede systemer er i øjeblikket:
@@ -48,7 +48,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 -   Hvis du bruger Victron Venus OS:
     -   Efter udførelse af`victron-venus-os-install.sh`, rediger variablerne med en teksteditor i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelsen. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdefinerede tidspunkter. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
 
