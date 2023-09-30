@@ -820,6 +820,26 @@ charging_conditions=(
 execute_charging=0
 execute_switchablesockets_on=0
 
+# Check if any charging condition is met
+for condition in "${charging_conditions[@]}"
+do
+  if (( condition )); then
+    execute_charging=1
+    break
+  fi
+done
+
+switchablesockets_conditions=(
+  "switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer"
+  "switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer"
+  "switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer"
+  "switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
+  "switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer  "
+)
+
 # Check if any switching condition is met
 for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
   if (( switchablesockets_condition == 1 )); then
