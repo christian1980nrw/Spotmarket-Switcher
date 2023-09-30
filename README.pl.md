@@ -36,7 +36,7 @@ Konfiguracja Spotmarket-Switcher jest prostym procesem. Jeśli używasz już kom
 
 2.  Uruchom skrypt instalacyjny z dodatkowymi opcjami, aby przygotować wszystko w podkatalogu do kontroli. Na przykład:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Jeśli używasz systemu operacyjnego Victron Venus, powinien to być prawidłowy DESTDIR`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
+    Jeśli używasz systemu operacyjnego Victron Venus, powinien to być prawidłowy DESTDIR`/`(katalog główny). Zachęcamy do eksploracji zainstalowanych plików w`/tmp/foo`.
 
 Należy pamiętać, że chociaż to oprogramowanie jest obecnie zoptymalizowane pod kątem systemu operacyjnego Venus, można je dostosować do innych wersji Linuksa, takich jak Debian/Ubuntu na Raspberry Pi lub innej małej płycie. Z pewnością jest to główny kandydat[OtwórzWRT](https://www.openwrt.org). Korzystanie z komputera stacjonarnego jest w porządku do celów testowych, ale w przypadku pracy 24 godziny na dobę, 7 dni w tygodniu, jego większe zużycie energii może budzić obawy.
 
