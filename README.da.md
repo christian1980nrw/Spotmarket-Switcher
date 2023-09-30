@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk ](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -52,7 +52,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdefinerede tidspunkter. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
 
--   Instruktioner til installation af Spotmarket-Switcher på et Windows 10- eller 11-system til test uden Victron-enheder (kun omskiftelige stik).
+-   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
 
     -   lancering`cmd.exe`som administrator
     -   Gå ind`wsl --install -d Debian`
