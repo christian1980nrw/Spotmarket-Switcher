@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
+[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Deutsch ](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands ](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
@@ -38,7 +38,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Als u Victron Venus OS gebruikt, zou de juiste DESTDIR moeten zijn`/`(de hoofdmap). Voel je vrij om de geïnstalleerde bestanden te verkennen in`/tmp/foo`.
 
-Please note that while this software is currently optimized for the Venus OS, it can be adapted to other Linux flavors, like Debian/Ubuntu on a Raspberry Pi or another small board. A prime candidate is certainly [OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
 
 ### Toegang tot Venus OS
 
@@ -65,7 +65,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
 
 -   Als je een Linux-systeem zoals Ubuntu of Debian gebruikt:
     -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
-    -   de commando's zijn`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`en bewerken`vi /path/to/save/controller.sh`
+    -   the commands are `cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`en bewerken`vi /path/to/save/controller.sh`
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
     -   Voorbeeldcrontab:
           Gebruik de volgende crontab-invoer om het controlescript elk uur uit te voeren:
