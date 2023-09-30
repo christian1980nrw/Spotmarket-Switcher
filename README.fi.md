@@ -38,7 +38,7 @@ Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät 
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Jos käytät Victron Venus OS -käyttöjärjestelmää, oikean DESTDIR:n pitäisi olla`/`(juurihakemisto). Voit vapaasti tutkia asennettuja tiedostoja`/tmp/foo`.
 
-Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, se voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntu Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
+Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, sitä voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntuun Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
 
 ### Pääsy Venus-käyttöjärjestelmään
 
@@ -60,7 +60,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
     -   Syötä uusi salasana
     -   Tulla sisään`sudo su`ja kirjoita salasanasi
     -   Tulla sisään`apt-get update && apt-get install wget curl`
-    -   Continue with the Linux description below
+    -   Jatka alla olevalla Linux-kuvauksella
 
 
 -   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
