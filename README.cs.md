@@ -56,7 +56,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
     -   zahájení`cmd.exe`jako správce
     -   Vstupte`wsl --install -d Debian`
-    -   Zadejte nové uživatelské jméno jako`admin`
+    -   Enter a new username like `admin`
     -   vložte nové heslo
     -   Vstupte`sudo su`a zadejte své heslo
     -   Vstupte`apt-get update && apt-get install wget curl`
@@ -65,7 +65,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`a upravit`vi /path/to/save/controller.sh`
+    -   the commands are `cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`a upravit`vi /path/to/save/controller.sh`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
