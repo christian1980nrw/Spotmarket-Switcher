@@ -16,8 +16,8 @@ System som stöds är för närvarande:
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
-Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
-Ta en titt nedanför rad 100 i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
+Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
+Ta en titt under rad 100 i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
 
 ## Datakälla
 
@@ -48,7 +48,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 -   Om du använder Victron Venus OS:
     -   Efter utförandet av`victron-venus-os-install.sh`, redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
