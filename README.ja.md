@@ -38,7 +38,7 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Victron Venus OS を使用している場合、正しい DESTDIR は次のとおりです。`/`(ルートディレクトリ)。にインストールされているファイルを自由に探索してください。`/tmp/foo`。
 
-このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
+このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンの使用はテスト目的には問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
 ### Venus OS へのアクセス
 
