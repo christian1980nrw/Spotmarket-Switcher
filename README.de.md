@@ -12,7 +12,7 @@ Dies ist ein Linux-Shell-Skript, das Ihr Batterieladegerät und/oder Ihre schalt
 Über eine Wetter-API kann der zu erwartende Solarertrag berücksichtigt und Batteriespeicher entsprechend reserviert werden.
 Unterstützte Systeme sind derzeit:
 
--   Shelly-Produkte (wie z[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)Und[210](https://avm.de/produkte/smart-home/fritzdect-210/)schaltbare Steckdosen
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie das[MultiPlus-II-Serie](https://www.victronenergy.com/inverters-chargers)
 
@@ -36,7 +36,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR lauten`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
 
 Bitte beachten Sie, dass diese Software derzeit zwar für das Venus-Betriebssystem optimiert ist, aber an andere Linux-Varianten angepasst werden kann, wie Debian/Ubuntu auf einem Raspberry Pi oder einem anderen kleinen Board. Ein Spitzenkandidat ist das sicherlich[OpenWRT](https://www.openwrt.org). Für Testzwecke ist die Verwendung eines Desktop-Rechners in Ordnung, im 24/7-Einsatz ist jedoch der höhere Stromverbrauch besorgniserregend.
 
