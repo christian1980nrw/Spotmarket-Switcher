@@ -70,8 +70,7 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
           Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
-          Apri il tuo terminale ed entra`crontab -e`, then insert the following line:
-          `0 * * * * /path/to/controller.sh`
+          Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:`0 * * * * /path/to/controller.sh`
 
 ### Supporto e contributo
 
@@ -83,7 +82,7 @@ Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e s
 Inoltre, se ti trovi in ​​Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e). Sia tu che il progetto riceverete un bonus di 50 euro per l'hardware. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (link di riferimento)](https://share.octopusenergy.de/glass-raven-58).
-Ricevi un bonus di 50 euro per te e anche per il progetto.
+Ricevi un bonus (l'offerta varia tra 50 e 120 euro) per te e anche per il progetto.
 Octopus ha il vantaggio che i contratti hanno solitamente solo una durata mensile. Sono ideali, ad esempio, per sospendere una tariffa basata sui prezzi di borsa.
 
 ## Disclaimer
