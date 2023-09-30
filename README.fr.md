@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
+[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md) - [Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -52,7 +52,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 
 La capture d'écran montre la configuration de la recharge automatisée pendant les heures définies par l'utilisateur. Désactivé par défaut, peut être temporairement activé par le script.
 
--   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
+-   Instructions pour installer le Spotmarket-Switcher sur un système Windows 10 ou 11 pour des tests sans appareils Victron (uniquement prises commutables).
 
     -   lancement`cmd.exe`en tant qu'administrateur
     -   Entrer`wsl --install -d Debian`
@@ -75,7 +75,7 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
 
 Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de soutenir son développement ultérieur via ces liens :
 
--   [Révolution](https://revolut.me/christqki2)
+-   [Revolut](https://revolut.me/christqki2)
 -   [Pay Pal](https://paypal.me/christian1980nrw)
 
 De plus, si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e). Vous et le projet recevrez un bonus de 50 euros pour le matériel. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .

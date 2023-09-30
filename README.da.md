@@ -52,7 +52,7 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdefinerede tidspunkter. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
 
--   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
+-   Instruktioner til installation af Spotmarket-Switcher på et Windows 10- eller 11-system til test uden Victron-enheder (kun omskiftelige stik).
 
     -   lancering`cmd.exe`som administrator
     -   Gå ind`wsl --install -d Debian`

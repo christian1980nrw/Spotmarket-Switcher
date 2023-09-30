@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[English ](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
@@ -36,7 +36,7 @@ Konfiguracja Spotmarket-Switcher jest prostym procesem. Jeśli używasz już kom
 
 2.  Uruchom skrypt instalacyjny z dodatkowymi opcjami, aby przygotować wszystko w podkatalogu do kontroli. Na przykład:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Jeśli używasz systemu operacyjnego Victron Venus, powinien to być prawidłowy DESTDIR`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
+    Jeśli używasz systemu operacyjnego Victron Venus, powinien to być prawidłowy DESTDIR`/`(katalog główny). Zachęcamy do eksploracji zainstalowanych plików w`/tmp/foo`.
 
 Należy pamiętać, że chociaż to oprogramowanie jest obecnie zoptymalizowane pod kątem systemu operacyjnego Venus, można je dostosować do innych wersji Linuksa, takich jak Debian/Ubuntu na Raspberry Pi lub innej małej płycie. Z pewnością jest to główny kandydat[OtwórzWRT](https://www.openwrt.org). Korzystanie z komputera stacjonarnego jest w porządku do celów testowych, ale w przypadku pracy 24 godziny na dobę, 7 dni w tygodniu, jego większe zużycie energii może budzić obawy.
 

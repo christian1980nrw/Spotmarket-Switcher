@@ -46,7 +46,7 @@ Anweisungen zum Zugriff auf das Venus-Betriebssystem finden Sie unter<https://ww
 
 ### Ausführung des Installationsskripts
 
--   Wenn Sie Victron Venus OS verwenden:
+-   If you're using Victron Venus OS:
     -   Nach der Ausführung des`victron-venus-os-install.sh`Bearbeiten Sie die Variablen mit einem Texteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Richten Sie einen ESS-Ladeplan ein (siehe Screenshot). Im Beispiel lädt sich der Akku bei Aktivierung nachts bis zu 50 % auf, andere Ladezeiten am Tag werden ignoriert. Falls nicht gewünscht, erstellen Sie einen Zeitplan für alle 24 Stunden des Tages. Denken Sie daran, es nach der Erstellung zu deaktivieren. Stellen Sie sicher, dass die Systemzeit (wie oben rechts auf dem Bildschirm angezeigt) korrekt ist.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
