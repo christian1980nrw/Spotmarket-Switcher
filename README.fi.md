@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md) - [Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portuguese ](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
+[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
@@ -38,7 +38,7 @@ Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät 
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Jos käytät Victron Venus OS -käyttöjärjestelmää, oikean DESTDIR:n pitäisi olla`/`(juurihakemisto). Voit vapaasti tutkia asennettuja tiedostoja`/tmp/foo`.
 
-Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, sitä voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntuun Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
+Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, se voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntu Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
 
 ### Pääsy Venus-käyttöjärjestelmään
 
@@ -60,7 +60,8 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
     -   Syötä uusi salasana
     -   Tulla sisään`sudo su`ja kirjoita salasanasi
     -   Tulla sisään`apt-get update && apt-get install wget curl`
-    -   Jatka alla olevalla Linux-kuvauksella
+    -   Jatka alla olevalla manuaalisella Linux-kuvauksella (asennusohjelma ei ole yhteensopiva).
+    -   Muista, että jos suljet kuoren, Windows pysäyttää järjestelmän.
 
 
 -   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
