@@ -42,7 +42,7 @@ Należy pamiętać, że chociaż to oprogramowanie jest obecnie zoptymalizowane 
 
 ### Dostęp do systemu operacyjnego Venus
 
-For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
+Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w sekcji<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Wykonanie skryptu instalacyjnego
 
