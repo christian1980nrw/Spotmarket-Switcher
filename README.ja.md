@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština ](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
@@ -73,17 +73,17 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 ### 支援と貢献
 
-If you find this project valuable, please consider sponsoring and supporting further development through these links:
+このプロジェクトに価値があると思われる場合は、次のリンクを通じてスポンサーとなり、さらなる開発をサポートすることを検討してください。
 
 -   [レボリュート](https://revolut.me/christqki2)
 -   [ペイパル](https://paypal.me/christian1980nrw)
 
-さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e)。あなたとプロジェクトの両方がハードウェアに対して 50 ユーロのボーナスを受け取ります。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)） 。
+さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)。あなたとプロジェクトの両方がハードウェアに対して 50 ユーロのボーナスを受け取ります。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)） 。
 
-天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58) .
-You receive a 50 euro bonus for yourself and also for the project.
-Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
+天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58)。
+あなた自身とプロジェクトに対して 50 ユーロのボーナスを受け取ります。
+オクトパスには、通常、契約期間が月単位のみであるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。
 
 ## 免責事項
 
-Please note the terms of use at [ｈっｔｐｓ：／／ぎてゅｂ。こｍ／ｃｈりｓちあん１９８０んｒｗ／Ｓぽｔまｒけｔーすぃｔちぇｒ／ｂぉｂ／まいん／ぃせんせ。ｍｄ](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md)
+利用規約に注意してください。[ｈっｔｐｓ：／／ぎてゅｂ。こｍ／ｃｈりｓちあん１９８０んｒｗ／Ｓぽｔまｒけｔーすぃｔちぇｒ／ｂぉｂ／まいん／ぃせんせ。ｍｄ](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md)
