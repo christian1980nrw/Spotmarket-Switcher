@@ -21,7 +21,7 @@ Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan k
 
 ## Datakilde
 
-Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
+Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis APIer (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
 Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
@@ -44,7 +44,7 @@ Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimaliser
 
 For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Utførelse av installasjonsskriptet
+### Execution of the Install Script
 
 -   Hvis du bruker Victron Venus OS:
     -   Etter utførelse av`victron-venus-os-install.sh`, rediger variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/controller.sh`.
