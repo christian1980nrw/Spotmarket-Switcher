@@ -44,7 +44,7 @@ Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimaliser
 
 For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Execution of the Install Script
+### Utførelse av installasjonsskriptet
 
 -   Hvis du bruker Victron Venus OS:
     -   Etter utførelse av`victron-venus-os-install.sh`, rediger variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/controller.sh`.
@@ -52,7 +52,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
+-   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
