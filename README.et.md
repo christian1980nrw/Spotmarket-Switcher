@@ -50,7 +50,7 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
     -   Pärast täitmist`victron-venus-os-install.sh`, muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
+Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida.
 
 -   Juhised Spotmarket-Switcheri installimiseks Windows 10 või 11 süsteemi, et testida ilma Victroni seadmeteta (ainult lülitatavad pistikupesad).
 
