@@ -896,7 +896,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
 fi
 
 # Execute Fritz DECT on command
-if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
+if (( use_fritz_dect_sockets == 1 )); then
   echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
   # Get session ID (SID)
   sid=""
@@ -922,6 +922,8 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
   if [ -n "$DEBUG" ]; then
     echo "I: Login to Fritz!Box successful." | tee -a "$LOG_FILE"
   fi
+fi
+if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
   # Iterate over each socket
   for socket in "${sockets[@]}"
@@ -936,7 +938,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
     state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
     if [ "$connected" = "1" ]; then
-      echo "Turning socket $socket on for almost 60 minutes and then off again..." | tee -a "$LOG_FILE"
+      echo "Turning socket $socket on." | tee -a "$LOG_FILE"
       url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon"
       if ! curl -s "$url" > /dev/null; then
         echo "E: Could not call URL '$url' to switch on said switch - ignored."
