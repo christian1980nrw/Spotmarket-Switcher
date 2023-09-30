@@ -31,7 +31,7 @@ Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (
 
 Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op UNIX gebaseerde machine gebruikt, zoals macOS, Linux of Windows met het Linux-subsysteem, volgt u deze stappen om de software te installeren:
 
-1.  Download het installatiescript uit de GitHub-opslagplaats met behulp van[deze hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
+1.  Download het installatiescript uit de GitHub-opslagplaats met behulp van[deze hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), of voer de volgende opdracht uit in uw terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Voer het installatiescript uit met extra opties om alles in een submap voor te bereiden voor uw inspectie. Bijvoorbeeld:
@@ -44,7 +44,7 @@ Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor 
 
 Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Execution of the Install Script
+### Uitvoering van het installatiescript
 
 -   Als u Victron Venus OS gebruikt:
     -   Na uitvoering van de`victron-venus-os-install.sh`, bewerk de variabelen met een teksteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
