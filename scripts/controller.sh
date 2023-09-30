@@ -342,10 +342,6 @@ unset num_tools_missing
 ########## Begin of the script...
 
 echo >> "$LOG_FILE"
-if [ 0 -lt "$use_victron_charger" ]; then
-  echo "I: Maybe we are still charging from this script's previous run. Stopping scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-  $charger_command_turnoff
-fi
 
 download_awattar_prices() {
   local url="$1"
@@ -897,7 +893,6 @@ fi
 
 # Execute Fritz DECT on command
 if (( use_fritz_dect_sockets == 1 )); then
-  echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
   # Get session ID (SID)
   sid=""
   challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
@@ -924,7 +919,7 @@ if (( use_fritz_dect_sockets == 1 )); then
   fi
 fi
 if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
-
+  echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
   # Iterate over each socket
   for socket in "${sockets[@]}"
   do
@@ -951,7 +946,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
 fi
 if (( execute_switchablesockets_on != 1 && use_fritz_dect_sockets == 1 )); then
-  # Turn off each socket
+  echo "I: Turning off Fritz sockets." | tee -a "$LOG_FILE"
   for socket in "${sockets[@]}"; do
     if [ "$socket" = "0" ]; then
         continue
@@ -973,6 +968,7 @@ if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
 fi
 
 if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
+  echo "I: Turning off Shelly sockets." | tee -a "$LOG_FILE"
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
@@ -980,6 +976,13 @@ if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
     fi
   done
 fi
+
+if (( execute_charging != 1 && use_victron_charger == 1 )); then
+  echo "I: Stopping Victron scheduled charging. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+  $charger_command_turnoff
+fi
+
+echo >> "$LOG_FILE"
 
 # Rotating log files
 if [ -f "$LOG_FILE" ]; then
