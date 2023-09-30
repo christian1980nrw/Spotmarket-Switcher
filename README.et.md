@@ -21,7 +21,7 @@ Palun vaadake faili controller.sh rida 100 alt, et saaksite näha, mida kasutaja
 
 ## Andmeallikas
 
-Tarkvara kasutab praegu EPEX Spot tunnihindu, mida pakuvad kolm tasuta API-d (Tibber, aWATTar ja Entso-E).
+Tarkvara kasutab praegu EPEX Spoti tunnihindu, mida pakuvad kolm tasuta API-d (Tibber, aWATTar ja Entso-E).
 Integreeritud tasuta Entso-E API pakub energiahinna andmeid järgmistest riikidest:
 Albaania (AL), Austria (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaaria (BG), Horvaatia (HR), Küpros (CY), Tšehhi Vabariik (CZ), Taani (DK), Eesti (EE), Soome (FI), Prantsusmaa (FR), Gruusia (GE), Saksamaa (DE), Kreeka (GR), Ungari (HU), Iirimaa (IE), Itaalia (IT), Kosovo (XK), Läti (LV), Leedu (LT), Luksemburg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Põhja-Makedoonia (MK), Norra (NO), Poola (PL), Portugal (PT), Rumeenia (RO), Serbia (RS), Slovakkia (SK) , Sloveenia (SI), Hispaania (ES), Rootsi (SE), Šveits (CH), Türgi (TR), Ukraina (UA), Ühendkuningriik (UK) vt.[Läbipaistvus Entso-E platvorm](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
