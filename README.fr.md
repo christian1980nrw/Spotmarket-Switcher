@@ -52,7 +52,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 
 La capture d'écran montre la configuration de la recharge automatisée pendant les heures définies par l'utilisateur. Désactivé par défaut, peut être temporairement activé par le script.
 
--   Instructions pour installer le Spotmarket-Switcher sur un système Windows 10 ou 11 pour des tests sans appareils Victron (uniquement prises commutables).
+-   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
 
     -   lancement`cmd.exe`en tant qu'administrateur
     -   Entrer`wsl --install -d Debian`
