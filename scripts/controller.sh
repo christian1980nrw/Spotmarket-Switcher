@@ -810,21 +810,6 @@ if ((abort_price_integer <= current_price_integer)); then
   exit 0
 fi
 
-if ((use_solarweather_api_to_abort == 1)); then
-  if ((abort_suntime <= suntime_today)); then
-    echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
-    exit 0
-  fi
-  if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-    echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
-    exit 0
-  fi
-  if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-    echo "I: There is enough sun tomorrow. Abort."  | tee -a "$LOG_FILE"
-    exit 0
-  fi
-fi
-
 charging_conditions=(
   "use_start_stop_logic == 1 && start_price_integer > current_price_integer"
   "charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer"
