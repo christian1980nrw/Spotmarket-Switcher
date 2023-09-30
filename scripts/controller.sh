@@ -883,7 +883,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
       $charger_command_turnon > /dev/null
       echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     else
-      echo "   Not executing 1 hour charging only since use_victron_charger not enabled." | tee -a "$LOG_FILE"
+      echo "   Not executing charging, use_victron_charger not enabled." | tee -a "$LOG_FILE"
     fi
   else
     echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
@@ -924,7 +924,7 @@ if (( use_fritz_dect_sockets == 1 )); then
   fi
 fi
 if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
-  echo "I: Executing 1 hour Fritz switching." | tee -a "$LOG_FILE"
+  echo "I: Turning ON Fritz sockets." | tee -a "$LOG_FILE"
   # Iterate over each socket
   for socket in "${sockets[@]}"
   do
@@ -951,7 +951,7 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
 fi
 if (( execute_switchablesockets_on != 1 && use_fritz_dect_sockets == 1 )); then
-  echo "I: Turning off Fritz sockets." | tee -a "$LOG_FILE"
+  echo "I: Turning OFF Fritz sockets." | tee -a "$LOG_FILE"
   for socket in "${sockets[@]}"; do
     if [ "$socket" = "0" ]; then
         continue
@@ -966,14 +966,14 @@ if (( execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1 )); then
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
-  echo "I: Turning on Shelly sockets." | tee -a "$LOG_FILE"
+  echo "I: Turning ON Shelly sockets." | tee -a "$LOG_FILE"
       curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on" -o /dev/null
     fi
   done
 fi
 
 if (( execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1 )); then
-  echo "I: Turning off Shelly sockets." | tee -a "$LOG_FILE"
+  echo "I: Turning OFF Shelly sockets." | tee -a "$LOG_FILE"
   for ip in "${shelly_ips[@]}"
   do
     if [ "$ip" != "0" ]; then
