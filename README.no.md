@@ -52,7 +52,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
+-   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
@@ -60,7 +60,8 @@ Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte ti
     -   Skriv inn et nytt passord
     -   Tast inn`sudo su`og skriv inn passordet ditt
     -   Tast inn`apt-get update && apt-get install wget curl`
-    -   Fortsett med Linux-beskrivelsen nedenfor
+    -   Fortsett med den manuelle Linux-beskrivelsen nedenfor (installasjonsskriptet er ikke kompatibelt).
+    -   Ikke glem at hvis du lukker skallet, vil Windows stoppe systemet.
 
 
 -   Hvis du bruker et Linux-system som Ubuntu eller Debian:
