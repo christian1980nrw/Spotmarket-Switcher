@@ -60,7 +60,8 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Inserire una nuova password
     -   accedere`sudo su`e digita la tua password
     -   accedere`apt-get update && apt-get install wget curl`
-    -   Continuare con la descrizione di Linux di seguito
+    -   Continuare con la descrizione manuale di Linux riportata di seguito (lo script di installazione non è compatibile).
+    -   Non dimenticare che se chiudi la shell, Windows arresterà il sistema.
 
 
 -   Se utilizzi un sistema Linux come Ubuntu o Debian:
@@ -69,7 +70,8 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:
           Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
-          Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:`0 * * * * /path/to/controller.sh`
+          Apri il tuo terminale ed entra`crontab -e`, then insert the following line:
+          `0 * * * * /path/to/controller.sh`
 
 ### Supporto e contributo
 

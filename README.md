@@ -65,7 +65,8 @@ The Screenshot is showing the configuration of automated charging during user de
   - Enter a new password
   - Enter `sudo su` and type your password
   - Enter `apt-get update && apt-get install wget curl`
-  - Continue with the Linux description below
+  - Continue with the manual Linux description below (installer script is not compatible).
+  - Dont forget if you close the shell, Windows will stop the system.
  
 
 - If you're using a Linux-System like Ubuntu or Debian:

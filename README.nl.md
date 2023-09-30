@@ -60,7 +60,8 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Voer een nieuw wachtwoord in
     -   Binnenkomen`sudo su`en typ uw wachtwoord
     -   Binnenkomen`apt-get update && apt-get install wget curl`
-    -   Ga verder met de Linux-beschrijving hieronder
+    -   Ga verder met de onderstaande handleiding voor Linux (installatiescript is niet compatibel).
+    -   Vergeet niet dat Windows het systeem zal stoppen als u de shell sluit.
 
 
 -   Als je een Linux-systeem zoals Ubuntu of Debian gebruikt:

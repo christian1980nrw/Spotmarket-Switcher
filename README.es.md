@@ -60,7 +60,8 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
     -   Introduzca una nueva contraseña
     -   Ingresar`sudo su`y escribe tu contraseña
     -   Ingresar`apt-get update && apt-get install wget curl`
-    -   Continúe con la descripción de Linux a continuación.
+    -   Continúe con la descripción del manual de Linux a continuación (el script del instalador no es compatible).
+    -   No olvide que si cierra el shell, Windows detendrá el sistema.
 
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
