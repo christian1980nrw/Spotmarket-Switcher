@@ -82,7 +82,7 @@ Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de souten
 De plus, si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e). Vous et le projet recevrez un bonus de 50 euros pour le matériel. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Si vous avez besoin d'un tarif de gaz naturel ou préférez un tarif d'électricité classique, vous pouvez toujours soutenir le projet[Octopus Energy (lien de parrainage)](https://share.octopusenergy.de/glass-raven-58).
-Vous recevez un bonus de 50 euros pour vous et aussi pour le projet.
+Vous recevez un bonus (l'offre varie entre 50 et 120 euros) pour vous et aussi pour le projet.
 Octopus présente l'avantage que les contrats n'ont généralement qu'une durée mensuelle. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
 
 ## Clause de non-responsabilité

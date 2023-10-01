@@ -82,7 +82,7 @@ Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie da
 Dodatkowo, jeśli jesteś w Niemczech i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e). Zarówno Ty, jak i projekt otrzymacie premię 50 euro za sprzęt. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
-Otrzymujesz premię 50 euro dla siebie i projektu.
+Otrzymujesz premię (oferta waha się od 50 do 120 euro) dla siebie i projektu.
 Octopus ma tę zaletę, że umowy zwykle są zawierane tylko na okres miesięczny. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
 ## Zastrzeżenie

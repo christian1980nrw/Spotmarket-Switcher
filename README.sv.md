@@ -9,15 +9,15 @@
 Vad gör denna programvara?
 Detta är ett Linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
 Du kan då använda uttagen för att slå på en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
-Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
+Det förväntade solutbytet kan tas med i beräkningen via ett väder-API och batterilagring reserverad därefter.
 System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
-Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
-Ta en titt under rad 100 i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
+Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
+Ta en titt nedanför rad 100 i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
 
 ## Datakälla
 
@@ -48,7 +48,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 -   Om du använder Victron Venus OS:
     -   Efter utförandet av`victron-venus-os-install.sh`, redigera variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/controller.sh`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
@@ -82,7 +82,7 @@ Om du tycker att det här projektet är värdefullt, vänligen överväg att spo
 Dessutom, om du är i Tyskland och är intresserad av att byta till en dynamisk eltariff, kan du stödja projektet genom att registrera dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e). Både du och projektet kommer att få en bonus på 50 euro för hårdvara. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
 Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortfarande stödja projektet[Octopus Energy (referenslänk)](https://share.octopusenergy.de/glass-raven-58).
-Du får en bonus på 50 euro för dig själv och även för projektet.
+Du får en bonus (erbjudandet varierar mellan 50 och 120 euro) för dig själv och även för projektet.
 Octopus har fördelen att kontrakten oftast bara har en månatlig löptid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
 ## varning
