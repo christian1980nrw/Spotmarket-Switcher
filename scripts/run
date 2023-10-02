@@ -46,11 +46,13 @@ code='(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controlle
 if [ ! -e "$rc_local_file" ]; then
     echo "#!/bin/sh" > "$rc_local_file"
     chmod +x "$rc_local_file"
+    $code
 fi
 
 # Check if the code is already in rc.local, if not, add it
 if ! grep -qF "$code" "$rc_local_file"; then
     echo "$code" >> "$rc_local_file"
+    $code
 fi
 
 # Display a success message in DEBUG mode
