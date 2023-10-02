@@ -135,29 +135,91 @@ if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
 else
     ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher
     (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
+fi
 
-    echo
-    echo "Installation completed. Spotmarket-Switcher will be executed every full hour."
-    echo "The crontab will be changed automatically by the script '$DESTDIR/data/etc/Spotmarket-Switcher/service/run' ."
-    echo "Please edit the configuration file with a text editor, like"
-    echo "  vi '$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh'"
-    echo "and change it to your needs."
-    echo
-    if [ -n "$missing" ]; then
-        echo "Note: Remember to install these missing executables: $missing"
-        echo
+if ! mkdir -p "$DESTDIR"/data/etc/Spotmarket-Switcher/service ; then
+    echo "E: Could not create service directory '$DESTDIR/data/etc/Spotmarket-Switcher/service'."
+    exit 1
+fi
+
+downloadToDest () {
+    url="$1"
+    dest="$2"
+
+    echo "I: Downloading '$(basename "$url")'"
+    if ! wget --no-verbose --continue --no-directories --show-progress -O "$dest" "$url" ; then
+        echo "E: Download of '$(basename "$url")' failed."
+        return 1
     fi
+    chmod +x "$dest"
+}
 
-    if [ -e "$DESTDIR"/data/rc.local ]; then
-        if grep -q "Spotmarket-Switcher/service /service/Spotmarket-Switcher" "$DESTDIR"/data/rc.local; then
-            echo "I: Spotmarket-Switcher/service is already known to rc.local boot script - not added again."
-        else
-            echo "I: Adding link to Spotmarket-Switcher/service to rc.local boot script."
-            sed -i '1s|^|ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher\n|' /data/rc.local
-        fi
+if [ -z "$SRCDIR" ]; then
+    SRCDIR=scripts
+fi
+if [ -z "$branch" ]; then
+    BRANCH=main
+fi
+if [ -x  "$SRCDIR/controller.sh" ]; then
+   cp "$SRCDIR/controller.sh" "$DESTDIR"/data/etc/Spotmarket-Switcher/
+else
+   if [ -n "$DEBUG" ]; then
+     # Series of extra info in case the scripts directory is not nearby
+     echo "D: ls \$SRCDIR"
+     if ! ls "$SRCDIR"; then
+       echo "D: pwd: $(pwd)"
+       ls
+     fi
+   fi
+   echo "I: Downloading 'controller.sh' from github repository - '$BRANCH' branch"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh "$DESTDIR"/data/etc/Spotmarket-Switcher/controller.sh
+fi
+if [ -x  "$SRCDIR/run" ]; then
+   cp "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/"
+else
+   echo "I: Downloading 'run' from github repository - '$BRANCH' branch"
+   downloadToDest https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/run "$DESTDIR"/data/etc/Spotmarket-Switcher/service/run
+fi
+
+# $DESTDIR is always an absolut path
+if [ ! -d "$DESTDIR"/service ]; then
+    if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ] ; then
+        echo "I: The '$DESTDIR/service' directory is not existing, as expected because of the custom DESTDIR setting."
+        echo "   Skipping creation of symbolic link to the Sportmarket-Switcher to register this service."
     else
-        echo "I: Creating new data/rc.local boot script"
-        echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" > "$DESTDIR"/data/rc.local
-        chmod +x "$DESTDIR"/data/rc.local
+        echo "W: The '$DESTDIR/service' directory is not existing."
+        echo "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
+        echo "   Check on https://github.com/christian1980nrw/Spotmarket-Switcher/issues if that has already been reported."
     fi
+else
+    if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
+        ln -s "$DESTDIR"/data/etc/Spotmarket-Switcher/service "$DESTDIR"/service/Spotmarket-Switcher
+    fi
+fi
+
+if [ -e "$DESTDIR"/data/rc.local ]; then
+    if grep -q "Spotmarket-Switcher/service /service/Spotmarket-Switcher" "$DESTDIR"/data/rc.local; then
+        echo "I: Spotmarket-Switcher/service is already known to rc.local boot script - not added again."
+    else
+        echo "I: Adding link to Spotmarket-Switcher/service to rc.local boot script."
+        sed -i '1s|^|ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher\n|' /data/rc.local
+    fi
+else
+    echo "I: Creating new data/rc.local boot script"
+    echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" > "$DESTDIR"/data/rc.local
+    chmod +x "$DESTDIR"/data/rc.local
+fi
+
+echo
+echo "Installation completed. Spotmarket-Switcher will be executed every full hour."
+echo "The crontab will be changed automatically by the script '$DESTDIR/data/etc/Spotmarket-Switcher/service/run' ."
+echo "Please edit the configuration file with a text editor, like"
+echo "  vi '$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh'"
+echo "and change it to your needs."
+echo
+echo "Note: This installation will survive a Venus OS firmware update."
+echo
+if [ -n "$missing" ]; then
+    echo "Note: Remember to install these missing executables: $missing"
+    echo
 fi
