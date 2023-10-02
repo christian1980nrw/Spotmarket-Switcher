@@ -218,7 +218,7 @@ if [ -e "$DESTDIR"/data/rc.local ]; then
         echo "I: Spotmarket-Switcher/service is already known to rc.local boot script - not added again."
     else
         echo "I: Adding link to Spotmarket-Switcher/service to rc.local boot script."
-        echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" >> "$DESTDIR"/data/rc.local
+        sed -i '1s|^|ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher\n|' /data/rc.local
     fi
 else
     echo "I: Creating new data/rc.local boot script"
