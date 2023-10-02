@@ -30,114 +30,30 @@ EOLICENSE
 # Stop execution upon uncaught errors
 set -e
 
-if [ -z "$LANG" ]; then
-  export LANG=C
-fi
-
-if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
-  if echo "$LANG" | grep -qi "^de" ; then
-    cat <<EOHILFE
-
-Dieses Skript dient allein der technischen Unterstützung des controller Skripts und ist nicht vom Anwender zu nutzen.
-
-BESCHREIBUNG
-
-  Beim Neustart des Systems gehen Einstellungen verlorgen, die durch dieses boot Skript neu gesetzt werden.
-
-OPTIONEN
-
-  -h | --help - Zeigt diese Hilfe
-
-UMGEBUNGSVARIABLEN
-
-  DEBUG - Die crontab wird nicht verändert, wenn dieses Variable gesetzt ist, auch wird nicht 25s zu Beginn der Ausführung gewartet.
-
-  rc_local_file - Pfad der zu installierenden rc.local Datei - voreingestellt auf "/data/rc.local".
-
-LIZENZ
-
-$License
-
-AUTOR
-
-  Christian
-EOHILFE
-  else
-    cat <<EOHELP
-
-This script is not meant to be started by the spotmarket-switcher's end users.
-
-DESCRIPTION
-
-  This script is meant to be executed by the operating system at boot time to ensure the crontab is configured.
-
-OPTIONS
-
-  -h | --help - Shows this help.
-
-ENVIRONMENT
-
-  DEBUG - The crontab is not changed when DEBUG is set. Also, an initial 25s wait is not performed and an OK printed upon sucessful execution of the script.
-
-  rc_local_file - path to which the rc.local file should be installed, defaults to "/data/rc.local".
-
-LICENSE
-
-$License
-
-AUTHOR
-
-  Christian
-EOHELP
-  fi
-
-  exit
-
-fi
-
+# Delaying for 25 seconds unless in DEBUG mode
 if [ -z "$DEBUG" ]; then
-    # Delaying for 25 seconds
+    echo "Waiting for 25 seconds..."
     sleep 25
 fi
 
-# The file found at boot time by the OS that amends the crontab to execute the controller.sh script
-if [ -z "$rc_local_file" ]; then
-    rc_local_file="/data/rc.local"
-fi
+# Define the rc.local file path
+rc_local_file="/data/rc.local"
 
+# Define the code to be added to rc.local and crontab
 code='(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -'
-code2='(crontab -l \| grep -Fxq \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \|\| (crontab -l; echo \"0 * * * * /data/etc/Spotmarket-Switcher/controller.sh\") \| crontab -'
 
-# Count number of occurences of the code to be executed in the rc.local file
-count=0
-if [ -e "$rc_local_file" ]; then
-    # if grep finds no matching line the return code is != 0
-    count=$(grep -Fc "$code" "$rc_local_file" || echo 0)
-else
+# Check if rc.local file exists, if not, create it
+if [ ! -e "$rc_local_file" ]; then
     echo "#!/bin/sh" > "$rc_local_file"
     chmod +x "$rc_local_file"
 fi
 
-if [ "$count" = "0" ]; then
-
-    # The rc.local file does not feature the instruction, yet.
-    # Add crontab immediately and at system start (only if it doesnt exist)
-    echo >> "$rc_local_file"
+# Check if the code is already in rc.local, if not, add it
+if ! grep -qF "$code" "$rc_local_file"; then
     echo "$code" >> "$rc_local_file"
-
-    if  [ -z "$DEBUG" ]; then
-        (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -
-    fi
-
-elif [ "$count" != "1" ]; then
-
-    # Removing doublettes to correct for a bug of a older version of this run script
-    awk '!seen[$code2]++' "$rc_local_file" > "$rc_local_file.tmp" && mv "$rc_local_file.tmp" "$rc_local_file"
-    chmod +x "$rc_local_file"
-
 fi
 
-# Exit with success
+# Display a success message in DEBUG mode
 if [ -n "$DEBUG" ]; then
-  echo "[ OK ]"
+    echo "[ OK ]"
 fi
