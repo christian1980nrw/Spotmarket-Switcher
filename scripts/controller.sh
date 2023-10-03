@@ -873,7 +873,6 @@ if ((use_solarweather_api_to_abort == 1)); then
 	execute_switchablesockets_on=0
   fi
 fi
-
 # If any charging condition is met, start charging
 if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Calculate the energy_loss_percent of the current_price_integer number
@@ -882,25 +881,29 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Convert the result of the calculation to an integer
   percent_of_current_price_integer=$(printf "%.0f" "$percent_of_current_price_integer")
 
-  # Check if charging makes sense
-  if (( economic_check == 1 )); then
-    if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
-      echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
-      echo "   Charging makes sense." | tee -a "$LOG_FILE"
+# Check if charging makes sense
+if (( economic_check == 1 )); then
+  if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+    echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
+    echo "   Charging makes sense." | tee -a "$LOG_FILE"
+	if [ 0 -lt $use_victron_charger ]; then
+      $charger_command_turnon > /dev/null
+      echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     fi
-  elif (( economic_check == 2 )); then
-    if [[ $average_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
-      echo "I: Difference between average price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
-      echo "   Charging makes sense." | tee -a "$LOG_FILE"
-    fi
+  fi
+elif (( economic_check == 2 )); then
+  if [[ $average_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+    echo "I: Difference between average price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
+    echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
       $charger_command_turnon > /dev/null
       echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     fi
-  else
-    echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
-    echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
   fi
+else
+  echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
+  echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
+fi
 fi
 
 if (( execute_charging != 1 && use_victron_charger == 1 )); then
