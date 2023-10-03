@@ -148,6 +148,7 @@ if [ 0 -lt $use_victron_charger ]; then
   fi
 fi
 energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. Current and highest price will be compared and aborted if charging makes no sense.
+economic_check=2 # Set to 1 or 2. Current price and (1 = highest_price / 2 = average_price) will be compared and aborted if charging makes no sense depending energy loss.
 
 #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
 stop_price=4.1 # stop above this price
@@ -188,8 +189,8 @@ include_second_day=0 # Set to 0 to compare only the today prices.
 
 # Please set up Solar weather API to query solar yield
 use_solarweather_api_to_abort=0
-abort_solar_yield_today=4.5 # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
-abort_solar_yield_tomorrow=5.5 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
+abort_solar_yield_today=3.5 # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
+abort_solar_yield_tomorrow=10.0 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
 # To find the kilowatt hour value from megajoules, divide by 3.6.
 abort_suntime=700 # Abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
 latitude=51.530600 # Your location
@@ -882,9 +883,16 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   percent_of_current_price_integer=$(printf "%.0f" "$percent_of_current_price_integer")
 
   # Check if charging makes sense
-  if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
-    echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
-    echo "   Charging makes sense." | tee -a "$LOG_FILE"
+  if (( economic_check == 1 )); then
+    if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+      echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
+      echo "   Charging makes sense." | tee -a "$LOG_FILE"
+    fi
+  elif (( economic_check == 2 )); then
+    if [[ $average_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+      echo "I: Difference between average price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
+      echo "   Charging makes sense." | tee -a "$LOG_FILE"
+    fi
     if [ 0 -lt $use_victron_charger ]; then
       $charger_command_turnon > /dev/null
       echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
