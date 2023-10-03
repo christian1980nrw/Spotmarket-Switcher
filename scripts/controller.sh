@@ -557,7 +557,7 @@ function get_entsoe_prices {
 }
 
 function get_awattar_prices_integer {
-  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
+  for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
   do
     integer_var="${var}_integer"
     eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
@@ -566,7 +566,7 @@ function get_awattar_prices_integer {
 
 # We have to convert tibber integer prices equivalent to Cent/kwH
 function get_tibber_prices_integer {
-  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+  for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
   do
     integer_var="${var}_integer"
     eval "$integer_var"="$(euroToMillicent "${!var}" 17)"
@@ -581,7 +581,7 @@ function get_tibber_prices_integer {
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
 function get_prices_integer_entsoe {
-  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+  for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
   do
     integer_var="${var}_integer"
     eval "$integer_var"="$(euroToMillicent "${!var}" 14)"
@@ -619,7 +619,6 @@ function get_sunset_today {
 function get_suntime_today {
   suntime_today=$(( ($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
-
 
 if (( select_pricing_api == 1 )); then
 
