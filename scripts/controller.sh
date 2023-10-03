@@ -154,7 +154,7 @@ stop_price=4.1 # stop above this price
 start_price=2.0 # start below this price
 feedin_price=9.87 # your feed-in-tariff of your solar system
 energy_fee=15.3 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
-abort_price=50.1 # abort and never charge if actual price is same or higher than this (Energy fees not included)
+abort_price=50.1 # abort and never charge or switch if actual price is same or higher than this (Energy fees not included)
 
 use_start_stop_logic=0 # Set to 1 to activate start/stop logic (start_stop_price).
 switchablesockets_at_start_stop=0 # You can add a additional load (like water heater) with AVM Fritz DECT200/210 switch sockets if you like.
@@ -563,11 +563,18 @@ function get_awattar_prices_integer {
   done
 }
 
+# We have to convert tibber integer prices equivalent to Cent/kwH
 function get_tibber_prices_integer {
-  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
+  for var in lowest_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
   do
     integer_var="${var}_integer"
-    eval "$integer_var"="$(euroToMillicent "${!var}" 16)"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 17)"
+  done
+
+  for var in stop_price start_price feedin_price energy_fee abort_price
+  do
+    integer_var="${var}_integer"
+    eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
   done
 }
 
@@ -875,7 +882,6 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
   percent_of_current_price_integer=$(printf "%.0f" "$percent_of_current_price_integer")
 
   # Check if charging makes sense
-  # FIXME: highest_price_integer not defined
   if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
     echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
@@ -932,8 +938,8 @@ if (( execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1 )); then
 
     # Get state and connectivity of socket
     connected=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchpresent")
-    ##FIXME: state is ignored
-    state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
+    # state can be ignored
+    #state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
     if [ "$connected" = "1" ]; then
       echo "Turning socket $socket on." | tee -a "$LOG_FILE"
