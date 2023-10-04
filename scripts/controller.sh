@@ -139,22 +139,18 @@ shellyuser="admin"
 shellypasswd="YOURPASSWORD" # only if used
 
 # Solar Charger Setup (tested with Victron Venus OS)
-use_victron_charger=0 # please activate with 1 or deactivate this charger-type with 0
-if [ 0 -lt $use_victron_charger ]; then
-  charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-  charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-  if [ -z "$DEBUG" ]; then
-    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
-  fi
-fi
-energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. Current and highest price will be compared and aborted if charging makes no sense.
+use_victron_charger=1 # please activate with 1 or deactivate this charger-type with 0
+charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. 
 economic_check=2 # Set to 1 or 2. Current price and (1 = highest_price / 2 = average_price) will be compared and aborted if charging makes no sense depending energy loss.
 
 #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
 stop_price=4.1 # stop above this price
 start_price=2.0 # start below this price
 feedin_price=9.87 # your feed-in-tariff of your solar system
-energy_fee=15.3 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
+energy_fee=18.492 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
 abort_price=50.1 # abort and never charge or switch if actual price is same or higher than this (Energy fees not included)
 
 use_start_stop_logic=0 # Set to 1 to activate start/stop logic (start_stop_price).
