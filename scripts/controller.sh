@@ -896,7 +896,7 @@ elif (( economic_check == 2 )); then
     fi
   fi
 else
-  echo "I: Difference between highest price and current price is less than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
+  echo "I: Considering the charging losses of  ${energy_loss_percent}% in relation to the actual purchase prices, the charging process is not worth to start." | tee -a "$LOG_FILE"
   echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
 fi
 fi
