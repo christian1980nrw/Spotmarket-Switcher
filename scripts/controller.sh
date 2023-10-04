@@ -143,8 +143,9 @@ use_victron_charger=1 # please activate with 1 or deactivate this charger-type w
 charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
 charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
 SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
-energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process. 
-economic_check=2 # Set to 1 or 2. Current price and (1 = highest_price / 2 = average_price) will be compared and aborted if charging makes no sense depending energy loss.
+energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process.
+battery_lifecycle_costs_cent_per_kwh=4.444444 # If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
+economic_check=2 # Set to 1 or 2. Current price + energy loss + battery lifecycle costs will be compared with (1 = highest_price / 2 = average_price) and aborted if charging makes no sense.
 
 #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
 stop_price=4.1 # stop above this price
@@ -553,7 +554,7 @@ function get_entsoe_prices {
 }
 
 function get_awattar_prices_integer {
-  for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price
+  for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
   do
     integer_var="${var}_integer"
     eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
@@ -568,7 +569,7 @@ function get_tibber_prices_integer {
     eval "$integer_var"="$(euroToMillicent "${!var}" 17)"
   done
 
-  for var in stop_price start_price feedin_price energy_fee abort_price
+  for var in stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
   do
     integer_var="${var}_integer"
     eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
@@ -583,7 +584,7 @@ function get_prices_integer_entsoe {
     eval "$integer_var"="$(euroToMillicent "${!var}" 14)"
   done
 
-  for var in stop_price start_price feedin_price energy_fee abort_price
+  for var in stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
   do
     integer_var="${var}_integer"
     eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
@@ -615,6 +616,7 @@ function get_sunset_today {
 function get_suntime_today {
   suntime_today=$(( ($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
+
 
 if (( select_pricing_api == 1 )); then
 
@@ -868,6 +870,7 @@ if ((use_solarweather_api_to_abort == 1)); then
 	execute_switchablesockets_on=0
   fi
 fi
+
 # If any charging condition is met, start charging
 if (( execute_charging == 1 && use_victron_charger == 1 )); then
   # Calculate the energy_loss_percent of the current_price_integer number
@@ -878,7 +881,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
 
 # Check if charging makes sense
 if (( economic_check == 1 )); then
-  if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+  if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer+battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
     echo "I: Difference between highest price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
 	if [ 0 -lt $use_victron_charger ]; then
@@ -887,7 +890,7 @@ if (( economic_check == 1 )); then
     fi
   fi
 elif (( economic_check == 2 )); then
-  if [[ $average_price_integer -ge $((current_price_integer+percent_of_current_price_integer)) ]]; then
+  if [[ $average_price_integer -ge $((current_price_integer+percent_of_current_price_integer+battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
     echo "I: Difference between average price and current price is greater than ${energy_loss_percent}%." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
@@ -896,7 +899,7 @@ elif (( economic_check == 2 )); then
     fi
   fi
 else
-  echo "I: Considering the charging losses of  ${energy_loss_percent}% in relation to the actual purchase prices, the charging process is not worth to start." | tee -a "$LOG_FILE"
+  echo "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs in relation to the actual purchase prices, the charging process is not worth to start." | tee -a "$LOG_FILE"
   echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
 fi
 fi
