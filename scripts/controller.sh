@@ -317,7 +317,6 @@ fi
 num_tools_missing=0
 tools="awk curl cat sed sort head tail"
 if [ 0 -lt $use_victron_charger ]; then
-  echo Victron charger activated. Additional tool dbus is needed.
   tools="$tools dbus"
   charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
   charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
