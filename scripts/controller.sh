@@ -882,7 +882,7 @@ if (( execute_charging == 1 && use_victron_charger == 1 )); then
 # Check if charging makes sense
 if (( economic_check == 1 )); then
   if [[ $highest_price_integer -ge $((current_price_integer+percent_of_current_price_integer+battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
-    echo "I: Highest price is lower than the sum of current price + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
+    echo "I: Highest price $highest_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
 	if [ 0 -lt $use_victron_charger ]; then
       $charger_command_turnon > /dev/null
@@ -891,14 +891,14 @@ if (( economic_check == 1 )); then
   fi
 elif (( economic_check == 2 )); then
   if [[ $average_price_integer -ge $((current_price_integer+percent_of_current_price_integer+battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
-    echo "I: Average price is lower than the sum of current price + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
+    echo "I: Average price $average_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
     echo "   Charging makes sense." | tee -a "$LOG_FILE"
     if [ 0 -lt $use_victron_charger ]; then
       $charger_command_turnon > /dev/null
       echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
     fi
 else
-  echo "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs in relation to the actual purchase prices, the charging process is not worth to start." | tee -a "$LOG_FILE"
+  echo "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh in relation to the purchase prices, the charging process is too expensive." | tee -a "$LOG_FILE"
   echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
 fi
 fi
