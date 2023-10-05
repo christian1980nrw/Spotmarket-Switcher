@@ -140,9 +140,6 @@ shellypasswd="YOURPASSWORD" # only if used
 
 # Solar Charger Setup (tested with Victron Venus OS)
 use_victron_charger=0 # please activate with 1 or deactivate this charger-type with 0
-charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
 energy_loss_percent=23.3 # Enter how much percent of the energy is lost by the charging and discharging process.
 battery_lifecycle_costs_cent_per_kwh=4.444444 # If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
 economic_check=2 # Set to 1 or 2. Current price + energy loss + battery lifecycle costs will be compared with (1 = highest_price / 2 = average_price) and aborted if charging makes no sense.
@@ -322,6 +319,9 @@ tools="awk curl cat sed sort head tail"
 if [ 0 -lt $use_victron_charger ]; then
   echo Victron charger activated. Additional tool dbus is needed.
   tools="$tools dbus"
+  charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+  charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+  SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
 fi
 
 for tool in $tools
