@@ -900,6 +900,8 @@ elif (( economic_check == 2 )); then
 else
   echo "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh in relation to the purchase prices, the charging process is too expensive." | tee -a "$LOG_FILE"
   echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
+  echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+  $charger_command_turnoff > /dev/null
 fi
 fi
 fi
