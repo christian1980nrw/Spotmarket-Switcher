@@ -253,7 +253,7 @@ unset num_tools_missing
 echo >>"$LOG_FILE"
 
 log_info() {
-    echo "I: $1" | tee -a "$LOG_FILE"
+    echo "$1" | tee -a "$LOG_FILE"
 }
 
 download_awattar_prices() {
