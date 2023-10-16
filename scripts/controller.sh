@@ -136,7 +136,7 @@ source "$DIR/config.txt"
 get_tibber_api() {
 	curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
 		--header 'Content-Type: application/json' \
-		--header 'Authorization: Bearer YOUR_API_KEY_HERE' \
+		--header "Authorization: Bearer $tibber_api_key" \
 		--data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
 		awk '{
         gsub(/"current":/, "\n&");
@@ -238,13 +238,14 @@ for tool in $tools; do
 	if ! which "$tool" >/dev/null; then
 		echo "E: Please ensure the tool '$tool' is found."
 		num_tools_missing=$((num_tools_missing + 1))
-		exit 1
 	fi
 done
-if [ 0 -lt $num_tools_missing ]; then
-	echo "E: Found $num_tools_missing tool(s) missing."
-	exit 1
+
+if [ $num_tools_missing -gt 0 ]; then
+    echo "E: $num_tools_missing tools are missing."
+    exit 1
 fi
+
 unset num_tools_missing
 
 ########## Begin of the script...
