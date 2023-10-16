@@ -128,18 +128,13 @@ fi
 # Path to the current script directory
 DIR="$(dirname "$0")"
 
-# Include the configuration file
-source "$DIR/config.txt"
-
-FILE_TO_INCLUDE="/pfad/zur/datei.sh"
-
 if [ -f "$DIR/config.txt" ]; then
+    # Include the configuration file
     source "$DIR/config.txt"
 else
     echo "The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory."
     exit 1
 fi
-
 
 get_tibber_api() {
 	curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
