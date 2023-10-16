@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
+[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -29,7 +29,7 @@
 
 ## Εγκατάσταση
 
-Η ρύθμιση του Spotmarket-Switcher είναι μια απλή διαδικασία. Εάν εκτελείτε ήδη ένα μηχάνημα που βασίζεται σε UNIX, όπως macOS, Linux ή Windows με το υποσύστημα Linux, ακολουθήστε αυτά τα βήματα για να εγκαταστήσετε το λογισμικό:
+Η ρύθμιση του Spotmarket-Switcher είναι μια απλή διαδικασία. Εάν χρησιμοποιείτε ήδη ένα μηχάνημα που βασίζεται σε UNIX, όπως macOS, Linux ή Windows με το υποσύστημα Linux, ακολουθήστε αυτά τα βήματα για να εγκαταστήσετε το λογισμικό:
 
 1.  Κατεβάστε το σενάριο εγκατάστασης από το αποθετήριο GitHub χρησιμοποιώντας[αυτόν τον υπερσύνδεσμο](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), ή εκτελέστε την ακόλουθη εντολή στο τερματικό σας:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
@@ -38,7 +38,7 @@
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Εάν χρησιμοποιείτε το Victron Venus OS, το σωστό DESTDIR θα πρέπει να είναι`/`(ο ριζικός κατάλογος). Μη διστάσετε να εξερευνήσετε τα εγκατεστημένα αρχεία`/tmp/foo`.
 
-Λάβετε υπόψη ότι ενώ αυτό το λογισμικό είναι επί του παρόντος βελτιστοποιημένο για το Venus OS, μπορεί να προσαρμοστεί σε άλλες γεύσεις Linux, όπως το Debian/Ubuntu σε ένα Raspberry Pi ή σε άλλη μικρή πλακέτα. Ένας πρώτος υποψήφιος είναι σίγουρα[OpenWRT](https://www.openwrt.org). Η χρήση ενός επιτραπέζιου μηχάνημα είναι καλή για σκοπούς δοκιμής, αλλά όταν χρησιμοποιείται σε 24 ώρες το 24ωρο, η μεγαλύτερη κατανάλωση ενέργειας προκαλεί ανησυχία.
+Λάβετε υπόψη ότι ενώ αυτό το λογισμικό είναι επί του παρόντος βελτιστοποιημένο για το Venus OS, μπορεί να προσαρμοστεί σε άλλες γεύσεις Linux, όπως το Debian/Ubuntu σε ένα Raspberry Pi ή σε άλλη μικρή πλακέτα. Ένας πρώτος υποψήφιος είναι σίγουρα[OpenWRT](https://www.openwrt.org). Η χρήση ενός επιτραπέζιου μηχάνημα είναι καλή για λόγους δοκιμής, αλλά όταν χρησιμοποιείται σε 24 ώρες το 24ωρο, η μεγαλύτερη κατανάλωση ενέργειας προκαλεί ανησυχία.
 
 ### Πρόσβαση στο Venus OS
 
@@ -87,4 +87,4 @@
 
 ## Αποποίηση ευθυνών
 
-Παρακαλούμε σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
