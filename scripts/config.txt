@@ -98,3 +98,4 @@ tibber_prices=energy  # Set to
   #  "total" to use the total prices including taxes and fees, set to
   #  "tax" to use only the taxes and fees
 tibber_api_key="YOUR_ACTUAL_API_KEY" # replace this value with your API Key
+
