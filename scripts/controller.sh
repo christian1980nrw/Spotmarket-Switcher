@@ -252,6 +252,10 @@ unset num_tools_missing
 
 echo >>"$LOG_FILE"
 
+log_info() {
+    echo "I: $1" | tee -a "$LOG_FILE"
+}
+
 download_awattar_prices() {
 	local url="$1"
 	local file="$2"
@@ -524,7 +528,6 @@ function get_suntime_today {
 }
 
 if ((select_pricing_api == 1)); then
-
 	# Test if Awattar today data exists
 	if test -f "$file1"; then
 		# Test if data is current
@@ -683,7 +686,7 @@ fi
 printf "I: Please verify correct system time and timezone:\n   "
 TZ=$TZ date | tee -a "$LOG_FILE"
 echo
-echo "Current price is $current_price $Unit." | tee -a "$LOG_FILE"
+log_info "Current price is $current_price $Unit."
 echo "Lowest price will be $lowest_price $Unit."
 echo "The average price will be $average_price $Unit."
 echo "Highest price will be $highest_price $Unit."
@@ -694,9 +697,9 @@ echo "Fifth lowest price will be $fifth_lowest_price $Unit."
 echo "Sixth lowest price will be $sixth_lowest_price $Unit."
 
 if ((use_solarweather_api_to_abort == 1)); then
-	echo "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes." | tee -a "$LOG_FILE"
-	echo "Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds." | tee -a "$LOG_FILE"
-	echo "Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds." | tee -a "$LOG_FILE"
+	log_info "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
+	log_info "Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
+	log_info "Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
 	if [ ! -s $file3 ]; then
 		echo "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
 	fi
@@ -711,7 +714,7 @@ fi
 
 # abort_price_integer cannot be found by shellcheck can be ignored, false positive
 if ((abort_price_integer <= current_price_integer)); then
-	echo "I: Current price is too high. Abort." | tee -a "$LOG_FILE"
+	log_info "I: Current price is too high. Abort."
 	exit 0
 fi
 
@@ -758,17 +761,17 @@ done
 
 if ((use_solarweather_api_to_abort == 1)); then
 	if ((abort_suntime <= suntime_today)); then
-		echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
+		log_info "I: There are enough sun minutes today. Abort."
 		execute_charging=0
 		execute_switchablesockets_on=0
 	fi
 	if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-		echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
+		log_info "I: There is enough solarenergy today. Abort."
 		execute_charging=0
 		execute_switchablesockets_on=0
 	fi
 	if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-		echo "I: There is enough sun tomorrow. Abort." | tee -a "$LOG_FILE"
+		log_info "I: There is enough sun tomorrow. Abort."
 		execute_charging=0
 		execute_switchablesockets_on=0
 	fi
@@ -785,32 +788,32 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
 	# Check if charging makes sense
 	if ((economic_check == 1)); then
 		if [[ $highest_price_integer -ge $((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
-			echo "I: Highest price $highest_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
-			echo "   Charging makes sense." | tee -a "$LOG_FILE"
+			log_info "I: Highest price $highest_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh."
+			log_info "   Charging makes sense."
 			if [ 0 -lt $use_victron_charger ]; then
 				$charger_command_turnon >/dev/null
-				echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+				log_info "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %."
 			fi
 		fi
 	elif ((economic_check == 2)); then
 		if [[ $average_price_integer -ge $((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
-			echo "I: Average price $average_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
-			echo "   Charging makes sense." | tee -a "$LOG_FILE"
+			log_info "I: Average price $average_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh."
+			log_info "   Charging makes sense."
 			if [ 0 -lt $use_victron_charger ]; then
 				$charger_command_turnon >/dev/null
-				echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+				log_info "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %."
 			fi
 		else
-			echo "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh in relation to the purchase prices, the charging process is too expensive." | tee -a "$LOG_FILE"
-			echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
-			echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+			log_info "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh in relation to the purchase prices, the charging process is too expensive."
+			log_info "   Charging makes no sense. Skipping charging."
+			log_info "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %."
 			$charger_command_turnoff >/dev/null
 		fi
 	fi
 fi
 
 if ((execute_charging != 1 && use_victron_charger == 1)); then
-	echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
+	log_info "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %."
 	$charger_command_turnoff >/dev/null
 fi
 
@@ -820,7 +823,7 @@ if ((use_fritz_dect_sockets == 1)); then
 	sid=""
 	challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
 	if [ -z "$challenge" ]; then
-		printf "E: Could not retrieve challenge from login_sid.lua.\n" | tee -a "$LOG_FILE"
+		log_info "E: Could not retrieve challenge from login_sid.lua."
 		exit 1
 	fi
 
@@ -829,7 +832,7 @@ if ((use_fritz_dect_sockets == 1)); then
 		grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
 
 	if [ "$sid" = "0000000000000000" ]; then
-		echo "E: Login to Fritz!Box failed." | tee -a "$LOG_FILE"
+		log_info "E: Login to Fritz!Box failed."
 		exit 1
 	fi
 
@@ -838,11 +841,11 @@ if ((use_fritz_dect_sockets == 1)); then
 	fi
 
 	if [ -n "$DEBUG" ]; then
-		echo "I: Login to Fritz!Box successful." | tee -a "$LOG_FILE"
+		log_info "I: Login to Fritz!Box successful."
 	fi
 fi
 if ((execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1)); then
-	echo "I: Turning ON Fritz sockets." | tee -a "$LOG_FILE"
+	log_info "I: Turning ON Fritz sockets."
 	# Iterate over each socket
 	for socket in "${sockets[@]}"; do
 		if [ "$socket" = "0" ]; then
@@ -855,20 +858,20 @@ if ((execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1)); then
 		#state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
 
 		if [ "$connected" = "1" ]; then
-			echo "Turning socket $socket on." | tee -a "$LOG_FILE"
+			log_info "Turning socket $socket on."
 			url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon"
 			if ! curl -s "$url" >/dev/null; then
 				echo "E: Could not call URL '$url' to switch on said switch - ignored."
 			fi
 		else
-			echo "W: Socket $socket is not connected." | tee -a "$LOG_FILE"
+			log_info "W: Socket $socket is not connected."
 		fi
 
 	done
 
 fi
 if ((execute_switchablesockets_on != 1 && use_fritz_dect_sockets == 1)); then
-	echo "I: Turning OFF Fritz sockets." | tee -a "$LOG_FILE"
+	log_info "I: Turning OFF Fritz sockets."
 	for socket in "${sockets[@]}"; do
 		if [ "$socket" = "0" ]; then
 			continue
@@ -882,14 +885,14 @@ fi
 if ((execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1)); then
 	for ip in "${shelly_ips[@]}"; do
 		if [ "$ip" != "0" ]; then
-			echo "I: Turning ON Shelly sockets." | tee -a "$LOG_FILE"
+			log_info "I: Turning ON Shelly sockets."
 			curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on" -o /dev/null
 		fi
 	done
 fi
 
 if ((execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1)); then
-	echo "I: Turning OFF Shelly sockets." | tee -a "$LOG_FILE"
+	log_info "I: Turning OFF Shelly sockets."
 	for ip in "${shelly_ips[@]}"; do
 		if [ "$ip" != "0" ]; then
 			curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off" -o /dev/null
