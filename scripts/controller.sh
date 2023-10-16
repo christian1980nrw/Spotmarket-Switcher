@@ -136,7 +136,7 @@ source "$DIR/config.txt"
 get_tibber_api() {
 	curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
 		--header 'Content-Type: application/json' \
-		--header 'Authorization: Bearer YOUR_API_KEY_HERE' \
+		--header "Authorization: Bearer $tibber_api_key" \
 		--data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
 		awk '{
         gsub(/"current":/, "\n&");
