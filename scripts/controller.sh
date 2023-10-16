@@ -238,13 +238,14 @@ for tool in $tools; do
 	if ! which "$tool" >/dev/null; then
 		echo "E: Please ensure the tool '$tool' is found."
 		num_tools_missing=$((num_tools_missing + 1))
-		exit 1
 	fi
 done
-if [ 0 -lt $num_tools_missing ]; then
-	echo "E: Found $num_tools_missing tool(s) missing."
-	exit 1
+
+if [ $num_tools_missing -gt 0 ]; then
+    echo "E: $num_tools_missing tools are missing."
+    exit 1
 fi
+
 unset num_tools_missing
 
 ########## Begin of the script...
