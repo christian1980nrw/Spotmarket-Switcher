@@ -125,13 +125,16 @@ fi
 # Note: This script is only for hourly-based tariff data, please create your own fork for higher resolutions like 15 minute intervals.
 #       After an API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
 
-
 # Path to the current script directory
 DIR="$(dirname "$0")"
 
-# Include the configuration file
-source "$DIR/config.txt"
-
+if [ -f "$DIR/config.txt" ]; then
+    # Include the configuration file
+    source "$DIR/config.txt"
+else
+    echo "The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory."
+    exit 127
+fi
 
 get_tibber_api() {
 	curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
@@ -242,8 +245,8 @@ for tool in $tools; do
 done
 
 if [ $num_tools_missing -gt 0 ]; then
-    echo "E: $num_tools_missing tools are missing."
-    exit 1
+	echo "E: $num_tools_missing tools are missing."
+	exit 1
 fi
 
 unset num_tools_missing
@@ -251,6 +254,10 @@ unset num_tools_missing
 ########## Begin of the script...
 
 echo >>"$LOG_FILE"
+
+log_info() {
+	echo "$1" | tee -a "$LOG_FILE"
+}
 
 download_awattar_prices() {
 	local url="$1"
@@ -391,7 +398,7 @@ download_entsoe_prices() {
 	fi
 }
 
-function download_solarenergy {
+download_solarenergy() {
 	if ((use_solarweather_api_to_abort == 1)); then
 		delay=$((RANDOM % 15 + 1))
 		if [ -z "$DEBUG" ]; then
@@ -421,10 +428,10 @@ function download_solarenergy {
 	fi
 }
 
-function get_current_awattar_day { current_awattar_day=$(sed -n 3p $file1 | grep -Eo '[0-9]+'); }
-function get_current_awattar_day2 { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
+get_current_awattar_day() { current_awattar_day=$(sed -n 3p $file1 | grep -Eo '[0-9]+'); }
+get_current_awattar_day2() { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
 
-function get_awattar_prices {
+get_awattar_prices() {
 	current_price=$(sed -n $((2 * $(TZ=$TZ date +%k) + 39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
 	lowest_price=$(sed -n 1p "$file7")
 	second_lowest_price=$(sed -n 2p "$file7")
@@ -436,7 +443,7 @@ function get_awattar_prices {
 	average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
 }
 
-function get_tibber_prices {
+get_tibber_prices() {
 	current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
 	lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
 	second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
@@ -448,11 +455,11 @@ function get_tibber_prices {
 	average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
 
-function get_current_entsoe_day { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
+get_current_entsoe_day() { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
 
-function get_current_tibber_day { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
+get_current_tibber_day() { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
-function get_entsoe_prices {
+get_entsoe_prices() {
 	current_price=$(sed -n ${now_linenumber}p "$file10")
 	lowest_price=$(sed -n 1p "$file19")
 	second_lowest_price=$(sed -n 2p "$file19")
@@ -464,7 +471,7 @@ function get_entsoe_prices {
 	average_price=$(awk 'NF>0 && $1 ~ /^[0-9]*(\.[0-9]*)?$/ {sum+=$1; count++} END {if (count > 0) print sum/count}' "$file19")
 }
 
-function get_awattar_prices_integer {
+get_awattar_prices_integer() {
 	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
 		integer_var="${var}_integer"
 		eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
@@ -472,7 +479,7 @@ function get_awattar_prices_integer {
 }
 
 # We have to convert tibber integer prices equivalent to Cent/kwH
-function get_tibber_prices_integer {
+get_tibber_prices_integer() {
 	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price; do
 		integer_var="${var}_integer"
 		eval "$integer_var"="$(euroToMillicent "${!var}" 17)"
@@ -485,7 +492,7 @@ function get_tibber_prices_integer {
 }
 
 # We have to convert entsoe integer prices equivalent to Cent/kwH
-function get_prices_integer_entsoe {
+get_prices_integer_entsoe() {
 	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price; do
 		integer_var="${var}_integer"
 		eval "$integer_var"="$(euroToMillicent "${!var}" 14)"
@@ -497,34 +504,88 @@ function get_prices_integer_entsoe {
 	done
 }
 
-function get_solarenergy_today {
+get_solarenergy_today() {
 	solarenergy_today=$(sed '2!d' $file3 | cut -d',' -f2)
 	solarenergy_today_integer=$(euroToMillicent "${solarenergy_today}" 15)
 	abort_solar_yield_today_integer=$(euroToMillicent "${abort_solar_yield_today}" 15)
 }
-function get_solarenergy_tomorrow {
+
+get_solarenergy_tomorrow() {
 	solarenergy_tomorrow=$(sed '3!d' $file3 | cut -d',' -f2)
 	solarenergy_tomorrow_integer=$(euroToMillicent "$solarenergy_tomorrow" 15)
 	abort_solar_yield_tomorrow_integer=$(euroToMillicent "${abort_solar_yield_tomorrow}" 15)
 }
-function get_cloudcover_today {
+
+get_cloudcover_today() {
 	cloudcover_today=$(sed '2!d' $file3 | cut -d',' -f1)
 }
-function get_cloudcover_tomorrow {
+
+get_cloudcover_tomorrow() {
 	cloudcover_tomorrow=$(sed '3!d' $file3 | cut -d',' -f1)
 }
-function get_sunrise_today {
+
+get_sunrise_today() {
 	sunrise_today=$(sed '2!d' $file3 | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
-function get_sunset_today {
+
+get_sunset_today() {
 	sunset_today=$(sed '2!d' $file3 | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
-function get_suntime_today {
+
+get_suntime_today() {
 	suntime_today=$((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
 
-if ((select_pricing_api == 1)); then
+# Function to check economical
+is_charging_economical() {
+	local reference_price=$1
+	local total_cost=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
+	#FIXME: I (ckvsoft) still think that -le (less than or equal) should be used here
+	[[ $reference_price -ge $total_cost ]]
+}
+
+# Function to manage charging
+manage_charging() {
+	local action=$1
+	local reason=$2
+
+	if [[ $action == "on" ]]; then
+		$charger_command_turnon >/dev/null
+		log_info "Victron scheduled charging is ON. Battery SOC is at $SOC_percent %. $reason"
+	else
+		$charger_command_turnoff >/dev/null
+		log_info "Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
+	fi
+}
+
+# Function to check abort conditions and log a message
+check_abort_condition() {
+	local condition=$1
+	local log_message=$2
+
+	if ((condition)); then
+		log_info "I: $log_message Abort."
+		execute_charging=0
+		execute_switchablesockets_on=0
+	fi
+}
+
+# Function to manage sockets and log a message
+manage_fritz_socket() {
+	local action=$1
+	local socket=$2
+	local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
+	curl -s "$url" >/dev/null || log_info "E: Could not call URL '$url' to switch $action said switch - ignored."
+}
+
+manage_shelly_socket() {
+	local action=$1
+	local ip=$2
+	curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_info "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
+}
+
+if ((select_pricing_api == 1)); then
 	# Test if Awattar today data exists
 	if test -f "$file1"; then
 		# Test if data is current
@@ -577,7 +638,7 @@ elif ((select_pricing_api == 3)); then
 	fi
 fi
 
-function euroToMillicent {
+euroToMillicent() {
 	euro="$1"
 	potency="$2"
 
@@ -683,7 +744,7 @@ fi
 printf "I: Please verify correct system time and timezone:\n   "
 TZ=$TZ date | tee -a "$LOG_FILE"
 echo
-echo "Current price is $current_price $Unit." | tee -a "$LOG_FILE"
+log_info "Current price is $current_price $Unit."
 echo "Lowest price will be $lowest_price $Unit."
 echo "The average price will be $average_price $Unit."
 echo "Highest price will be $highest_price $Unit."
@@ -694,9 +755,9 @@ echo "Fifth lowest price will be $fifth_lowest_price $Unit."
 echo "Sixth lowest price will be $sixth_lowest_price $Unit."
 
 if ((use_solarweather_api_to_abort == 1)); then
-	echo "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes." | tee -a "$LOG_FILE"
-	echo "Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds." | tee -a "$LOG_FILE"
-	echo "Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds." | tee -a "$LOG_FILE"
+	log_info "Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
+	log_info "Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
+	log_info "Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
 	if [ ! -s $file3 ]; then
 		echo "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
 	fi
@@ -711,7 +772,7 @@ fi
 
 # abort_price_integer cannot be found by shellcheck can be ignored, false positive
 if ((abort_price_integer <= current_price_integer)); then
-	echo "I: Current price is too high. Abort." | tee -a "$LOG_FILE"
+	log_info "I: Current price is too high. Abort."
 	exit 0
 fi
 
@@ -757,61 +818,24 @@ for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
 done
 
 if ((use_solarweather_api_to_abort == 1)); then
-	if ((abort_suntime <= suntime_today)); then
-		echo "I: There are enough sun minutes today. Abort." | tee -a "$LOG_FILE"
-		execute_charging=0
-		execute_switchablesockets_on=0
-	fi
-	if ((abort_solar_yield_today_integer <= solarenergy_today_integer)); then
-		echo "I: There is enough solarenergy today. Abort." | tee -a "$LOG_FILE"
-		execute_charging=0
-		execute_switchablesockets_on=0
-	fi
-	if ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-		echo "I: There is enough sun tomorrow. Abort." | tee -a "$LOG_FILE"
-		execute_charging=0
-		execute_switchablesockets_on=0
-	fi
+	check_abort_condition "$abort_suntime <= suntime_today" "There are enough sun minutes today."
+	check_abort_condition "$abort_solar_yield_today_integer <= solarenergy_today_integer" "There is enough solarenergy today."
+	check_abort_condition "$abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer" "There is enough sun tomorrow."
 fi
 
 # If any charging condition is met, start charging
+percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
+
 if ((execute_charging == 1 && use_victron_charger == 1)); then
-	# Calculate the energy_loss_percent of the current_price_integer number
-	percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}")
-
-	# Convert the result of the calculation to an integer
-	percent_of_current_price_integer=$(printf "%.0f" "$percent_of_current_price_integer")
-
-	# Check if charging makes sense
-	if ((economic_check == 1)); then
-		if [[ $highest_price_integer -ge $((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
-			echo "I: Highest price $highest_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
-			echo "   Charging makes sense." | tee -a "$LOG_FILE"
-			if [ 0 -lt $use_victron_charger ]; then
-				$charger_command_turnon >/dev/null
-				echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-			fi
-		fi
-	elif ((economic_check == 2)); then
-		if [[ $average_price_integer -ge $((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer)) ]]; then
-			echo "I: Average price $average_price $Unit is lower than the sum of current price $current_price $Unit + ${energy_loss_percent}% energy loss for charging + battery lifecyle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh." | tee -a "$LOG_FILE"
-			echo "   Charging makes sense." | tee -a "$LOG_FILE"
-			if [ 0 -lt $use_victron_charger ]; then
-				$charger_command_turnon >/dev/null
-				echo "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-			fi
-		else
-			echo "I: Considering the charging losses of  ${energy_loss_percent}% + battery lifecycle costs of $battery_lifecycle_costs_cent_per_kwh cent per KWh in relation to the purchase prices, the charging process is too expensive." | tee -a "$LOG_FILE"
-			echo "   Charging makes no sense. Skipping charging." | tee -a "$LOG_FILE"
-			echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-			$charger_command_turnoff >/dev/null
-		fi
+	if ((economic_check == 1 && $(is_charging_economical $highest_price_integer))); then
+		manage_charging "on" "Charging based on highest price comparison makes sense."
+	elif ((economic_check == 2 && $(is_charging_economical $average_price_integer))); then
+		manage_charging "on" "Charging based on average price comparison makes sense."
+	else
+		manage_charging "off" "Considering charging losses and costs, charging is too expensive."
 	fi
-fi
-
-if ((execute_charging != 1 && use_victron_charger == 1)); then
-	echo "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %." | tee -a "$LOG_FILE"
-	$charger_command_turnoff >/dev/null
+elif ((execute_charging != 1 && use_victron_charger == 1)); then
+	manage_charging "off" "Charging was not executed."
 fi
 
 # Execute Fritz DECT on command
@@ -820,7 +844,7 @@ if ((use_fritz_dect_sockets == 1)); then
 	sid=""
 	challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
 	if [ -z "$challenge" ]; then
-		printf "E: Could not retrieve challenge from login_sid.lua.\n" | tee -a "$LOG_FILE"
+		log_info "E: Could not retrieve challenge from login_sid.lua."
 		exit 1
 	fi
 
@@ -829,71 +853,32 @@ if ((use_fritz_dect_sockets == 1)); then
 		grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
 
 	if [ "$sid" = "0000000000000000" ]; then
-		echo "E: Login to Fritz!Box failed." | tee -a "$LOG_FILE"
-		exit 1
-	fi
-
-	if [ "$sid" = "0000000000000000" ]; then
+		log_info "E: Login to Fritz!Box failed."
 		exit 1
 	fi
 
 	if [ -n "$DEBUG" ]; then
-		echo "I: Login to Fritz!Box successful." | tee -a "$LOG_FILE"
+		log_info "I: Login to Fritz!Box successful."
+	fi
+
+	if ((execute_switchablesockets_on == 1)); then
+		log_info "Turning ON Fritz sockets."
+		for socket in "${sockets[@]}"; do
+			[ "$socket" != "0" ] && manage_fritz_socket "on" "$socket"
+		done
+	else
+		log_info "Turning OFF Fritz sockets."
+		for socket in "${sockets[@]}"; do
+			[ "$socket" != "0" ] && manage_fritz_socket "off" "$socket"
+		done
 	fi
 fi
-if ((execute_switchablesockets_on == 1 && use_fritz_dect_sockets == 1)); then
-	echo "I: Turning ON Fritz sockets." | tee -a "$LOG_FILE"
-	# Iterate over each socket
-	for socket in "${sockets[@]}"; do
-		if [ "$socket" = "0" ]; then
-			continue
-		fi
 
-		# Get state and connectivity of socket
-		connected=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchpresent")
-		# state can be ignored
-		#state=$(curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=getswitchstate")
-
-		if [ "$connected" = "1" ]; then
-			echo "Turning socket $socket on." | tee -a "$LOG_FILE"
-			url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchon"
-			if ! curl -s "$url" >/dev/null; then
-				echo "E: Could not call URL '$url' to switch on said switch - ignored."
-			fi
-		else
-			echo "W: Socket $socket is not connected." | tee -a "$LOG_FILE"
-		fi
-
-	done
-
-fi
-if ((execute_switchablesockets_on != 1 && use_fritz_dect_sockets == 1)); then
-	echo "I: Turning OFF Fritz sockets." | tee -a "$LOG_FILE"
-	for socket in "${sockets[@]}"; do
-		if [ "$socket" = "0" ]; then
-			continue
-		fi
-		if ! curl -s "http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitchoff" >/dev/null; then
-			echo "E: Could not execut switch-off of socket sid=$sid ain=$socket - ignored"
-		fi
-	done
-fi
-
-if ((execute_switchablesockets_on == 1 && use_shelly_wlan_sockets == 1)); then
+action_for_shelly_sockets=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
+if ((use_shelly_wlan_sockets == 1)); then
+	log_info "Turning $action_for_shelly_sockets Shelly sockets."
 	for ip in "${shelly_ips[@]}"; do
-		if [ "$ip" != "0" ]; then
-			echo "I: Turning ON Shelly sockets." | tee -a "$LOG_FILE"
-			curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=on" -o /dev/null
-		fi
-	done
-fi
-
-if ((execute_switchablesockets_on != 1 && use_shelly_wlan_sockets == 1)); then
-	echo "I: Turning OFF Shelly sockets." | tee -a "$LOG_FILE"
-	for ip in "${shelly_ips[@]}"; do
-		if [ "$ip" != "0" ]; then
-			curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=off" -o /dev/null
-		fi
+		[ "$ip" != "0" ] && manage_shelly_socket "$action_for_shelly_sockets" "$ip"
 	done
 fi
 
