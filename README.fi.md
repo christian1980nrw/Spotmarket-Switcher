@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
+[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portuguese ](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
@@ -83,7 +83,7 @@ Lisäksi, jos olet Saksassa ja olet kiinnostunut siirtymään dynaamiseen sähk�
 
 Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat bonuksen (tarjous vaihtelee 50-120 euron välillä) itsellesi ja myös projektiin.
-Octopusin etuna on, että sopimukset ovat yleensä vain kuukausittain. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusilla on se etu, että sopimukset ovat yleensä vain kuukausittain. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 ## Vastuuvapauslauseke
 
