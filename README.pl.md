@@ -61,7 +61,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   Wchodzić`sudo su`i wpisz swoje hasło
     -   Wchodzić`apt-get update && apt-get install wget curl`
     -   Kontynuuj, korzystając z poniższego opisu ręcznego systemu Linux (skrypt instalatora nie jest kompatybilny).
-    -   Nie zapomnij, że jeśli zamkniesz powłokę, Windows zatrzyma system.
+    -   Nie zapomnij, że jeśli zamkniesz powłokę, system Windows zatrzyma system.
 
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:

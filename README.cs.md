@@ -34,7 +34,7 @@ Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte p
 1.  Stáhněte si instalační skript z úložiště GitHub pomocí[tento hypertextový odkaz](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)nebo ve svém terminálu spusťte následující příkaz:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
+2.  Spusťte instalační skript s dalšími možnostmi, abyste připravili vše v podadresáři pro vaši kontrolu. Například:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Pokud používáte Victron Venus OS, měl by být správný DESTDIR`/`(kořenový adresář). Neváhejte prozkoumat nainstalované soubory v`/tmp/foo`.
 
@@ -42,7 +42,7 @@ Vezměte prosím na vědomí, že i když je tento software v současné době o
 
 ### Přístup k OS Venus
 
-Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/ccgx:root_access>.
+For instructions on accessing the Venus OS, please refer to <https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Spuštění instalačního skriptu
 
@@ -66,7 +66,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`a upravit`vi /path/to/save/controller.sh`
+    -   příkazy jsou`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh` and to edit `vi /path/to/save/controller.sh`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
@@ -79,9 +79,9 @@ Pokud považujete tento projekt za hodnotný, zvažte prosím sponzorování a p
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Navíc, pokud jste v Německu a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e). Vy i projekt získáte bonus 50 eur na hardware. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Navíc, pokud jste v Německu a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Vy i projekt získáte bonus 50 eur na hardware. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektřiny, stále můžete projekt podpořit[Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
+If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
 Získáváte bonus (nabídka se pohybuje mezi 50 a 120 eury) pro sebe a také pro projekt.
 Octopus má tu výhodu, že smlouvy mají většinou pouze měsíční platnost. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
