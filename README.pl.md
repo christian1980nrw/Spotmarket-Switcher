@@ -6,11 +6,11 @@
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
-Co robi to oprogramowanie?
-Jest to skrypt powłoki dla systemu Linux, który włącza ładowarkę i/lub przełączane gniazdka we właściwym czasie, jeśli stawki godzinowe za energię dynamiczną są niskie.
-Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej lub będziesz mógł automatycznie ładować akumulator w nocy, gdy w sieci dostępna będzie tania energia wiatrowa.
-Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
-Obsługiwane systemy to obecnie:
+What is this software doing? 
+This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
+You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
+The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+Supported systems are currently:
 
 -   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
@@ -50,7 +50,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
     -   Po wykonaniu ww`victron-venus-os-install.sh`edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
@@ -81,7 +81,7 @@ Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie da
 
 Dodatkowo, jeśli jesteś w Niemczech i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e). Zarówno Ty, jak i projekt otrzymacie premię 50 euro za sprzęt. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 
-Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58).
+Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
 Otrzymujesz premię (oferta waha się od 50 do 120 euro) dla siebie i projektu.
 Octopus ma tę zaletę, że umowy zwykle są zawierane tylko na okres miesięczny. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
