@@ -2,9 +2,9 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[norueguês](README.no.md)-[polonês](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
+[Tcheco](README.cs.md)-[dinamarquês](README.da.md)-[Alemão](README.de.md)-[Inglês](README.md)-[Espanhol](README.es.md)-[estoniano](README.et.md)-[finlandês](README.fi.md)-[Francês](README.fr.md)-[grego](README.el.md)-[italiano](README.it.md)-[Holandês](README.nl.md)-[Norsk ](README.no.md)-[Polski ](README.pl.md)-[Português](README.pt.md)-[sueco](README.sv.md)-[japonês](README.ja.md)
 
-## Bem-vindo ao repositório Spotmarket-Switcher!
+## Welcome to the Spotmarket-Switcher repository!
 
 O que este software está fazendo?
 Este é um script de shell do Linux e liga o carregador de bateria e/ou soquetes comutáveis ​​​​no momento certo se os preços de energia dinâmica por hora estiverem baixos.
@@ -76,7 +76,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 Se você considera este projeto valioso, considere patrocinar e apoiar o desenvolvimento futuro por meio destes links:
 
--   [Revolução](https://revolut.me/christqki2)
+-   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Além disso, se você estiver na Alemanha e estiver interessado em mudar para uma tarifa dinâmica de eletricidade, poderá apoiar o projeto inscrevendo-se usando este[Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e). Você e o projeto receberão um bônus de 50 euros em hardware. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>) .
