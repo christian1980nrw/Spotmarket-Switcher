@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[ceco](README.cs.md)-[danese](README.da.md)-[Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
+[ceco](README.cs.md)-[danese](README.da.md) - [Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
@@ -50,7 +50,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
     -   Dopo l'esecuzione del`victron-venus-os-install.sh`, modificare le variabili con un editor di testo in`/data/etc/Spotmarket-Switcher/controller.sh`.
     -   Configurare un programma di addebito ESS (fare riferimento allo screenshot fornito). Nell'esempio la batteria si ricarica di notte fino al 50% se attivata, gli altri tempi di ricarica della giornata vengono ignorati. Se non lo desideri, crea una pianificazione per tutte le 24 ore del giorno. Ricordati di disattivarlo dopo la creazione. Verificare che l'ora del sistema (come mostrato nell'angolo in alto a destra dello schermo) sia accurata.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
+Lo screenshot mostra la configurazione della ricarica automatizzata durante gli orari definiti dall'utente. Disattivato per impostazione predefinita, può essere temporaneamente attivato dallo script.
 
 -   Istruzioni per installare lo Spotmarket-Switcher su un sistema Windows 10 o 11 per eseguire test senza dispositivi Victron (solo prese commutabili).
 
