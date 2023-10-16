@@ -91,7 +91,7 @@ entsoe_eu_api_security_token=YOURAPIKEY
 #  2. Create a token by selecting the scopes you need (select "price").
 #  3. Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
 #     Currently no contract is needed to create a free Account that is able to access the API.
-#  4. Put your API Key into the function below.
+#  4. Put your API Key into the function get_tibber_api() at the controller.sh file.
 
 tibber_prices=energy # Set to
 #  "energy" to use the spotmarket-prices (default), set to
