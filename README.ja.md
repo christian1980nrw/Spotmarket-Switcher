@@ -4,7 +4,7 @@
 
 [チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
-## Welcome to the Spotmarket-Switcher repository!
+## Spotmarket-Switcher リポジトリへようこそ!
 
 このソフトウェアは何をしているのでしょうか?
 これは Linux シェル スクリプトであり、時間単位の動的エネルギー価格が低い場合に、適切なタイミングでバッテリー充電器や切り替え可能なソケットをオンにします。
@@ -12,8 +12,8 @@
 予想される太陽光発電量は、気象 API を介して考慮され、それに応じてバッテリー ストレージが予約されます。
 現在サポートされているシステムは次のとおりです。
 
--   シェリー製品（など）[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm)）
--   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
+-   シェリー製品（など）[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[シェリープラス](https://shellyparts.de/products/shelly-plus-1pm)）
+-   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
 コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適応できます。
@@ -46,8 +46,8 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 ### インストールスクリプトの実行
 
--   Victron Venus OS を使用している場合:
-    -   の実行後、`victron-venus-os-install.sh`のテキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/controller.sh`。
+-   If you're using Victron Venus OS:
+    -   の実行後、`victron-venus-os-install.sh`, edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/controller.sh`。
     -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに非アクティブ化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
@@ -79,9 +79,9 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 -   [レボリュート](https://revolut.me/christqki2)
 -   [ペイパル](https://paypal.me/christian1980nrw)
 
-さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff ([ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)） 。
+さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)。あなたとプロジェクトの両方がハードウェアに対して 50 ユーロのボーナスを受け取ります。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（<https://tibber.com/de/store/produkt/pulse-ir>） 。
 
-天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58)。
+天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58)。
 あなた自身とプロジェクトに対してボーナス (オファーは 50 ～ 120 ユーロの間で変動します) を受け取ります。
 オクトパスには、通常、契約期間が月単位のみであるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。
 
