@@ -12,7 +12,7 @@ Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej 
 Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
 Obsługiwane systemy to obecnie:
 
--   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
@@ -61,7 +61,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   Wchodzić`sudo su`i wpisz swoje hasło
     -   Wchodzić`apt-get update && apt-get install wget curl`
     -   Kontynuuj, korzystając z poniższego opisu ręcznego systemu Linux (skrypt instalatora nie jest kompatybilny).
-    -   Nie zapomnij, że jeśli zamkniesz powłokę, system Windows zatrzyma system.
+    -   Nie zapomnij, że jeśli zamkniesz powłokę, Windows zatrzyma system.
 
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
