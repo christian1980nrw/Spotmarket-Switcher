@@ -561,10 +561,10 @@ manage_charging() {
 
 # Function to check abort conditions and log a message
 check_abort_condition() {
-	local condition=$1
+	local condition_result=$1
 	local log_message=$2
 
-	if ((condition)); then
+	if ((condition_result)); then
 		log_info "I: $log_message Abort."
 		execute_charging=0
 		execute_switchablesockets_on=0
@@ -776,37 +776,39 @@ if ((abort_price_integer <= current_price_integer)); then
 	exit 0
 fi
 
-charging_conditions=(
-	"use_start_stop_logic == 1 && start_price_integer > current_price_integer"
-	"charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer"
-	"charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer"
-	"charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer"
-	"charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer"
-	"charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer"
-	"charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
-	"charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer"
+declare -A charging_conditions=(
+    [use_start_stop_logic]=$((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
+    [charge_at_solar_breakeven_logic]=$((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
+    [charge_at_lowest_price]=$((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
+    [charge_at_second_lowest_price]=$((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
+    [charge_at_third_lowest_price]=$((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
+    [charge_at_fourth_lowest_price]=$((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
+    [charge_at_fifth_lowest_price]=$((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
+    [charge_at_sixth_lowest_price]=$((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
 
+charging_condition_met=""
 execute_charging=0
 execute_switchablesockets_on=0
 
 # Check if any charging condition is met
-for condition in "${charging_conditions[@]}"; do
-	if ((condition)); then
+for condition in "${!charging_conditions[@]}"; do
+	if ((charging_conditions[$condition])); then
 		execute_charging=1
+		charging_condition_met="$condition"
 		break
 	fi
 done
 
 switchablesockets_conditions=(
-	"switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer"
-	"switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer"
-	"switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer"
-	"switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer"
-	"switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer"
-	"switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer"
-	"switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer"
-	"switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer  "
+	$((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
+	$((switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer))
+	$((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
+	$((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
+	$((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
+	$((switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer))
+	$((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
+	$((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
 
 # Check if any switching condition is met
@@ -818,16 +820,18 @@ for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
 done
 
 if ((use_solarweather_api_to_abort == 1)); then
-	check_abort_condition "$abort_suntime <= suntime_today" "There are enough sun minutes today."
-	check_abort_condition "$abort_solar_yield_today_integer <= solarenergy_today_integer" "There is enough solarenergy today."
-	check_abort_condition "$abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer" "There is enough sun tomorrow."
+	check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today."
+	check_abort_condition $((abort_solar_yield_today_integer <= solarenergy_today_integer)) "There is enough solarenergy today."
+	check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow."
 fi
 
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
 
 if ((execute_charging == 1 && use_victron_charger == 1)); then
-	if ((economic_check == 1 && $(is_charging_economical $highest_price_integer))); then
+	if ((economic_check == 0)); then
+		manage_charging "on" "Charging based on condition met of: $charging_condition_met."
+	elif ((economic_check == 1 && $(is_charging_economical $highest_price_integer))); then
 		manage_charging "on" "Charging based on highest price comparison makes sense."
 	elif ((economic_check == 2 && $(is_charging_economical $average_price_integer))); then
 		manage_charging "on" "Charging based on average price comparison makes sense."
