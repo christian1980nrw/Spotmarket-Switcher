@@ -536,6 +536,7 @@ is_charging_economical() {
 	local reference_price=$1
 	local total_cost=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
+	#FIXME: I (ckvsoft) still think that -le (less than or equal) should be used here
 	[[ $reference_price -ge $total_cost ]]
 }
 
