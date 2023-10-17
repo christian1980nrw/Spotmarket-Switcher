@@ -384,18 +384,25 @@ valid_period && /<\/Period>/ {
     exit
 }
 
+
 /<Reason>/ {
     in_reason = 1
+    error_message = ""
 }
 
 in_reason && /<code>/ {
     gsub(/<code>|<\/code>/, "")
+    gsub(/^[\t ]+|[\t ]+$/, "", $0)
     error_code = $0
 }
 
 in_reason && /<text>/ {
     gsub(/<text>|<\/text>/, "")
+	gsub(/^[\t ]+|[\t ]+$/, "", $0)
     error_message = $0
+}
+
+/<\/Reason>/ {
     in_reason = 0
 }
 
@@ -407,6 +414,7 @@ END {
         print prices > "'"$output_file"'"
     } else {
         print "E: No prices found in the XML data."
+		exit 1
     }
 }
 ' "$file"
