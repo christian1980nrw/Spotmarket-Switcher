@@ -439,8 +439,10 @@ get_awattar_prices() {
 	fourth_lowest_price=$(sed -n 4p "$file7")
 	fifth_lowest_price=$(sed -n 5p "$file7")
 	sixth_lowest_price=$(sed -n 6p "$file7")
-	highest_price=$(awk '/^[0-9]+(\.[0-9]+)?$/ && $1 > max { max = $1 } END { print max }' "$file7")
-	average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
+	# highest_price=$(awk '/^[0-9]+(\.[0-9]+)?$/ && $1 > max { max = $1 } END { print max }' "$file7")
+	# average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
+        highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
+ 	average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
 
 get_tibber_prices() {
