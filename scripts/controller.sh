@@ -643,14 +643,16 @@ euroToMillicent() {
 	#	echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
 	#	return 1
 	#fi
-    # Replace each comma with a period, fixme if this is wrong
-    euro=$(echo "$euro" | sed 's/,/./g')
+    
+	# Replace each comma with a period, fixme if this is wrong
+	euro=$(echo "$euro" | sed 's/,/./g')
     
 	# Using bc to multiply the euro number and convert it to an integer
 	v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
 
 	if [ -z "$v" ]; then
 		log_info "E: Could not translate '$euro' to an integer."
+		log_info "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
 		return 1
 	fi
 	echo "$v"
