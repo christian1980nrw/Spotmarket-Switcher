@@ -639,12 +639,14 @@ euroToMillicent() {
 		potency=14
 	fi
 
-	if echo "$euro" | grep -q '\,'; then
-		echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
-		return 1
-	fi
-
-	# Verwenden von bc, um die Eurozahl zu multiplizieren und sie in eine Ganzzahl zu konvertieren
+	#if echo "$euro" | grep -q '\,'; then
+	#	echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
+	#	return 1
+	#fi
+    # Replace each comma with a period, fixme if this is wrong
+    euro=$(echo "$euro" | sed 's/,/./g')
+    
+	# Using bc to multiply the euro number and convert it to an integer
 	v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
 
 	if [ -z "$v" ]; then
@@ -654,6 +656,7 @@ euroToMillicent() {
 	echo "$v"
 	return 0
 }
+
 # An independent segment to test the conversion of floats to integers
 if [ "tests" == "$1" ]; then
 
