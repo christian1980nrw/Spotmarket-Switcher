@@ -229,7 +229,7 @@ fi
 ########## Testing series of preconditions prior to execution of script
 
 num_tools_missing=0
-tools="awk curl cat sed sort head tail"
+tools="awk curl cat sed sort head tail bc"
 if [ 0 -lt $use_victron_charger ]; then
 	tools="$tools dbus"
 	charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
