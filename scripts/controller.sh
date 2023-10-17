@@ -484,7 +484,7 @@ convert_vars_to_integer() {
 }
 
 get_awattar_prices_integer() {
-    convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_
+	convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_tibber_prices_integer() {
