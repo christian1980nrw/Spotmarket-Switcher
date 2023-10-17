@@ -270,12 +270,12 @@ download_awattar_prices() {
 		sleep "$sleep_time"
 	fi
 	if ! curl "$url" >"$file"; then
-		echo "E: Download of aWATTar prices from '$url' to '$file' failed."
+		log_info "E: Download of aWATTar prices from '$url' to '$file' failed."
 		exit 1
 	fi
 
 	if ! test -f "$file"; then
-		echo "E: Could not get aWATTar prices from '$url' to feed file '$file'."
+		log_info "E: Could not get aWATTar prices from '$url' to feed file '$file'."
 		exit 1
 	fi
 
@@ -307,7 +307,7 @@ download_tibber_prices() {
 		echo "D: No delay of download of Tibber data since DEBUG variable set."
 	fi
 	if ! get_tibber_api | tr -d '{}[]' >"$file"; then
-		echo "E: Download of Tibber prices from '$url' to '$file' failed."
+		log_info "E: Download of Tibber prices from '$url' to '$file' failed."
 		exit 1
 	fi
 
@@ -326,7 +326,7 @@ download_tibber_prices() {
 	echo "date_now_day: $timestamp" >>"$file17"
 
 	if [ ! -s "$file16" ]; then
-		echo "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
+		log_info "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
 		rm "$file"
 		exit 1
 	fi
@@ -346,19 +346,19 @@ download_entsoe_prices() {
 	fi
 
 	if ! curl "$url" >"$file"; then
-		echo "E: Retrieval of entsoe data from '$url' into file '$file' failed."
+		log_info "E: Retrieval of entsoe data from '$url' into file '$file' failed."
 		exit 1
 	fi
 
 	if ! test -f "$file"; then
-		echo "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
+		log_info "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
 		exit 1
 	fi
 
 	if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
 	if [ ! -s "$file" ]; then
-		echo "E: Entsoe file '$file' is empty, please check your entsoe API Key."
+		log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
 		exit 1
 	fi
 
@@ -409,17 +409,17 @@ download_solarenergy() {
 			echo "D: No delay of download of solarenergy data since DEBUG variable set."
 		fi
 		if ! curl "$link3" -o "$file3"; then
-			echo "E: Download of solarenergy data from '$link3' failed."
+			log_info "E: Download of solarenergy data from '$link3' failed."
 			exit 1
 		elif ! test -f "$file3"; then
-			echo "E: Could not get solarenergy data, missing file '$file3'."
+			log_info "E: Could not get solarenergy data, missing file '$file3'."
 			exit 1
 		fi
 		if [ -n "$DEBUG" ]; then
 			echo "D: File3 $file3 downloaded"
 		fi
 		if ! test -f "$file3"; then
-			echo "E: Could not find downloaded file '$file3' with solarenergy data."
+			log_info "E: Could not find downloaded file '$file3' with solarenergy data."
 			exit 1
 		fi
 		if [ -n "$DEBUG" ]; then
@@ -478,7 +478,7 @@ convert_vars_to_integer() {
         local integer_var="${var}_integer"
         printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
         if [ -n "$DEBUG" ]; then
-            echo "Variable: $var | Original: ${!var} | Integer: ${!integer_var}"
+            echo "D: Variable: $var | Original: ${!var} | Integer: ${!integer_var}"
         fi
     done
 }
@@ -650,7 +650,7 @@ euroToMillicent() {
 	v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
 
 	if [ -z "$v" ]; then
-		echo "E: Could not translate '$euro' to an integer."
+		log_info "E: Could not translate '$euro' to an integer."
 		return 1
 	fi
 	echo "$v"
@@ -762,7 +762,7 @@ fi
 
 # stop_price_integer cannot be found by shellcheck can be ignored, false positive
 if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
-	echo "E: stop - price cannot be lower than start price"
+	log_info "E: stop - price cannot be lower than start price"
 	exit 1
 fi
 
@@ -858,7 +858,7 @@ if ((use_fritz_dect_sockets == 1)); then
 	fi
 
 	if [ -n "$DEBUG" ]; then
-		log_info "I: Login to Fritz!Box successful."
+		echo "D: Login to Fritz!Box successful."
 	fi
 
 	if ((execute_switchablesockets_on == 1)); then
@@ -897,5 +897,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-	echo "[ OK ]"
+	echo "D: [ OK ]"
 fi
