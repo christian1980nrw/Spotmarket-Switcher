@@ -364,18 +364,52 @@ download_entsoe_prices() {
 
 	if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
-	awk '
-    /<Period>/ { capture=1 }
-    /<\/Period>/ { capture=0 }
-    capture && /<resolution>PT60M<\/resolution>/ { valid_period=1 }
-    valid_period && /<price.amount>/ {
-        gsub("<price.amount>", "", $0)
-        gsub("<\/price.amount>", "", $0)
-        gsub(/^[\t ]+|[\t ]+$/, "", $0)
-        print $0
+awk '
+/<Period>/ {
+    capture_period = 1
+}
+/<\/Period>/ {
+    capture_period = 0
+}
+capture_period && /<resolution>PT60M<\/resolution>/ {
+    valid_period = 1
+}
+valid_period && /<price.amount>/ {
+    gsub("<price.amount>", "", $0)
+    gsub("<\/price.amount>", "", $0)
+    gsub(/^[\t ]+|[\t ]+$/, "", $0)
+    prices = prices $0 ORS
+}
+valid_period && /<\/Period>/ {
+    exit
+}
+
+/<Reason>/ {
+    in_reason = 1
+}
+
+in_reason && /<code>/ {
+    gsub(/<code>|<\/code>/, "")
+    error_code = $0
+}
+
+in_reason && /<text>/ {
+    gsub(/<text>|<\/text>/, "")
+    error_message = $0
+    in_reason = 0
+}
+
+END {
+    if (error_code == 999) {
+        print "E: Entsoe data retrieval error:", error_message
+        exit 1
+    } else if (prices != "") {
+        print prices > "'"$output_file"'"
+    } else {
+        print "E: No prices found in the XML data."
     }
-    valid_period && /<\/Period>/ { exit }
-' "$file" >"$output_file"
+}
+' "$file"
 
 	sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
 	timestamp=$(TZ=$TZ date +%d)
