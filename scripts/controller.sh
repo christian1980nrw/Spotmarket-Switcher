@@ -229,7 +229,7 @@ fi
 ########## Testing series of preconditions prior to execution of script
 
 num_tools_missing=0
-tools="awk curl cat sed sort head tail bc"
+tools="awk curl cat sed sort head tail"
 if [ 0 -lt $use_victron_charger ]; then
 	tools="$tools dbus"
 	charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
@@ -646,9 +646,13 @@ euroToMillicent() {
     
 	# Replace each comma with a period, fixme if this is wrong
 	euro=$(echo "$euro" | sed 's/,/./g')
-    
-	# Using bc to multiply the euro number and convert it to an integer
-	v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
+
+	if which bc >/dev/null 2>&1; then
+		# Using bc to multiply the euro number and convert it to an integer
+		v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
+  	else
+		v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
+	fi
 
 	if [ -z "$v" ]; then
 		log_info "E: Could not translate '$euro' to an integer."
