@@ -471,35 +471,30 @@ get_entsoe_prices() {
 	average_price=$(awk 'NF>0 && $1 ~ /^[0-9]*(\.[0-9]*)?$/ {sum+=$1; count++} END {if (count > 0) print sum/count}' "$file19")
 }
 
+convert_vars_to_integer() {
+    local potency="$1"
+    shift
+    for var in "$@"; do
+        local integer_var="${var}_integer"
+        printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
+        if [ -n "$DEBUG" ]; then
+            echo "Variable: $var | Original: ${!var} | Integer: ${!integer_var}"
+        fi
+    done
+}
+
 get_awattar_prices_integer() {
-	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
-		integer_var="${var}_integer"
-		declare "$integer_var=$(euroToMillicent "${!var}" 15)"
-	done
+    convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_
 }
 
 get_tibber_prices_integer() {
-	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price; do
-		integer_var="${var}_integer"
-		declare "$integer_var=$(euroToMillicent "${!var}" 17)"
-	done
-
-	for var in stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
-		integer_var="${var}_integer"
-		declare "$integer_var=$(euroToMillicent "${!var}" 15)"
-	done
+    convert_vars_to_integer 17 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_prices_integer_entsoe() {
-	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price; do
-		integer_var="${var}_integer"
-		declare "$integer_var=$(euroToMillicent "${!var}" 14)"
-	done
-
-	for var in stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
-		integer_var="${var}_integer"
-		declare "$integer_var=$(euroToMillicent "${!var}" 15)"
-	done
+    convert_vars_to_integer 14 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_solarenergy_today() {
