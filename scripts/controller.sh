@@ -474,33 +474,31 @@ get_entsoe_prices() {
 get_awattar_prices_integer() {
 	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
 		integer_var="${var}_integer"
-		eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
+		declare "$integer_var=$(euroToMillicent "${!var}" 15)"
 	done
 }
 
-# We have to convert tibber integer prices equivalent to Cent/kwH
 get_tibber_prices_integer() {
 	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price; do
 		integer_var="${var}_integer"
-		eval "$integer_var"="$(euroToMillicent "${!var}" 17)"
+		declare "$integer_var=$(euroToMillicent "${!var}" 17)"
 	done
 
 	for var in stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
 		integer_var="${var}_integer"
-		eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
+		declare "$integer_var=$(euroToMillicent "${!var}" 15)"
 	done
 }
 
-# We have to convert entsoe integer prices equivalent to Cent/kwH
 get_prices_integer_entsoe() {
 	for var in lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price; do
 		integer_var="${var}_integer"
-		eval "$integer_var"="$(euroToMillicent "${!var}" 14)"
+		declare "$integer_var=$(euroToMillicent "${!var}" 14)"
 	done
 
 	for var in stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh; do
 		integer_var="${var}_integer"
-		eval "$integer_var"="$(euroToMillicent "${!var}" 15)"
+		declare "$integer_var=$(euroToMillicent "${!var}" 15)"
 	done
 }
 
@@ -651,16 +649,16 @@ euroToMillicent() {
 		return 1
 	fi
 
-	v=$(LANG=C printf "%.0f" "${euro}e${potency}")
+	# Verwenden von bc, um die Eurozahl zu multiplizieren und sie in eine Ganzzahl zu konvertieren
+	v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
 
-	if echo "$v" | grep -q '\.'; then
+	if [ -z "$v" ]; then
 		echo "E: Could not translate '$euro' to an integer."
 		return 1
 	fi
 	echo "$v"
 	return 0
 }
-
 # An independent segment to test the conversion of floats to integers
 if [ "tests" == "$1" ]; then
 
