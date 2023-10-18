@@ -129,11 +129,11 @@ fi
 DIR="$(dirname "$0")"
 
 if [ -f "$DIR/config.txt" ]; then
-    # Include the configuration file
-    source "$DIR/config.txt"
+	# Include the configuration file
+	source "$DIR/config.txt"
 else
-    echo "The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory."
-    exit 127
+	echo "The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory."
+	exit 127
 fi
 
 get_tibber_api() {
@@ -280,7 +280,7 @@ download_awattar_prices() {
 	fi
 
 	if [ -n "$DEBUG" ]; then
-		echo "D: Download of file '$file' from URL '$url' successful."
+		echo "D: Download of file '$file' from URL '$url' successful." >&2
 	fi
 	echo >>"$file"
 	awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" >"$output_file"
@@ -342,7 +342,7 @@ download_entsoe_prices() {
 		echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
 		sleep "$sleep_time"
 	else
-		echo "D: No delay of download of entsoe data since DEBUG variable set."
+		echo "D: No delay of download of entsoe data since DEBUG variable set." >&2
 	fi
 
 	if ! curl "$url" >"$file"; then
@@ -355,7 +355,7 @@ download_entsoe_prices() {
 		exit 1
 	fi
 
-	if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
+	if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
 	if [ ! -s "$file" ]; then
 		log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
@@ -448,7 +448,7 @@ download_solarenergy() {
 			# Delaying a random time <=15s to reduce impact on site - download is not time-critical
 			sleep "$delay"
 		else
-			echo "D: No delay of download of solarenergy data since DEBUG variable set."
+			echo "D: No delay of download of solarenergy data since DEBUG variable set." >&2
 		fi
 		if ! curl "$link3" -o "$file3"; then
 			log_info "E: Download of solarenergy data from '$link3' failed."
@@ -458,7 +458,7 @@ download_solarenergy() {
 			exit 1
 		fi
 		if [ -n "$DEBUG" ]; then
-			echo "D: File3 $file3 downloaded"
+			echo "D: File3 $file3 downloaded" >&2
 		fi
 		if ! test -f "$file3"; then
 			log_info "E: Could not find downloaded file '$file3' with solarenergy data."
@@ -481,8 +481,10 @@ get_awattar_prices() {
 	fourth_lowest_price=$(sed -n 4p "$file7")
 	fifth_lowest_price=$(sed -n 5p "$file7")
 	sixth_lowest_price=$(sed -n 6p "$file7")
-	highest_price=$(awk '/^[0-9]+(\.[0-9]+)?$/ && $1 > max { max = $1 } END { print max }' "$file7")
-	average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
+	# highest_price=$(awk '/^[0-9]+(\.[0-9]+)?$/ && $1 > max { max = $1 } END { print max }' "$file7")
+	# average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
+	highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
+	average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
 
 get_tibber_prices() {
@@ -514,15 +516,15 @@ get_entsoe_prices() {
 }
 
 convert_vars_to_integer() {
-    local potency="$1"
-    shift
-    for var in "$@"; do
-        local integer_var="${var}_integer"
-        printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
-        if [ -n "$DEBUG" ]; then
-            echo "D: Variable: $var | Original: ${!var} | Integer: ${!integer_var}"
-        fi
-    done
+	local potency="$1"
+	shift
+	for var in "$@"; do
+		local integer_var="${var}_integer"
+		printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
+		if [ -n "$DEBUG" ]; then
+			echo "D: Variable: $var | Original: ${!var} | Integer: ${!integer_var}" >&2
+		fi
+	done
 }
 
 get_awattar_prices_integer() {
@@ -530,13 +532,13 @@ get_awattar_prices_integer() {
 }
 
 get_tibber_prices_integer() {
-    convert_vars_to_integer 17 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
-    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+	convert_vars_to_integer 17 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+	convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_prices_integer_entsoe() {
-    convert_vars_to_integer 14 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
-    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+	convert_vars_to_integer 14 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+	convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_solarenergy_today() {
@@ -571,13 +573,39 @@ get_suntime_today() {
 	suntime_today=$((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
 
+# Function to evaluate charging and switchablesockets conditions
+evaluate_conditions() {
+	local -n conditions_ref="$1"
+	local -n descriptions_ref="$2"
+	local -n execute_ref="$3"
+	local -n condition_met_ref="$4"
+
+	for condition in "${!conditions_ref[@]}"; do
+		if [ -n "$DEBUG" ]; then
+			result="( ${descriptions_ref[$condition]} ) evaluates to $([ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false)"
+			echo "D: condition_evaluation [ $result ]." >&2
+		fi
+		if ((conditions_ref[$condition])); then
+			execute_ref=1
+			condition_met_ref="$condition"
+			break
+		fi
+	done
+}
+
 # Function to check economical
 is_charging_economical() {
-	local reference_price=$1
-	local total_cost=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
+	local reference_price="$1"
+	local total_cost="$2"
 
-	#FIXME: I (ckvsoft) still think that -le (less than or equal) should be used here
-	[[ $reference_price -ge $total_cost ]]
+	local is_economical=0
+	[[ $reference_price -ge $total_cost ]] && is_economical=1
+
+	if [ -n "$DEBUG" ]; then
+		echo "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "true" || echo "false") ]." >&2
+	fi
+
+	return $is_economical
 }
 
 # Function to manage charging
@@ -673,6 +701,18 @@ elif ((select_pricing_api == 3)); then
 	fi
 fi
 
+millicentToEuro() {
+    local millicents="$1"
+
+    local EURO_FACTOR=1000000000000000
+    local DECIMAL_FACTOR=100000000000
+
+    local euro_main_part=$((millicents / EURO_FACTOR))
+    local euro_decimal_part=$(((millicents % EURO_FACTOR) / DECIMAL_FACTOR))
+
+    printf "%d.%04d\n" $euro_main_part $euro_decimal_part
+}
+
 euroToMillicent() {
 	euro="$1"
 	potency="$2"
@@ -685,14 +725,14 @@ euroToMillicent() {
 	#	echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
 	#	return 1
 	#fi
-    
+
 	# Replace each comma with a period, fixme if this is wrong
 	euro=$(echo "$euro" | sed 's/,/./g')
 
 	if which bc >/dev/null 2>&1; then
 		# Using bc to multiply the euro number and convert it to an integer
 		v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
-  	else
+	else
 		v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
 	fi
 
@@ -820,15 +860,26 @@ if ((abort_price_integer <= current_price_integer)); then
 	exit 0
 fi
 
+declare -A charging_conditions_descriptions=(
+	["use_start_stop_logic"]="use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+	["charge_at_solar_breakeven_logic"]="charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+	["charge_at_lowest_price"]="charge_at_lowest_price ($charge_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["charge_at_second_lowest_price"]="charge_at_second_lowest_price ($charge_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["charge_at_third_lowest_price"]="charge_at_third_lowest_price ($charge_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["charge_at_fourth_lowest_price"]="charge_at_fourth_lowest_price ($charge_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["charge_at_fifth_lowest_price"]="charge_at_fifth_lowest_price ($charge_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["charge_at_sixth_lowest_price"]="charge_at_sixth_lowest_price ($charge_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+)
+
 declare -A charging_conditions=(
-    [use_start_stop_logic]=$((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
-    [charge_at_solar_breakeven_logic]=$((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    [charge_at_lowest_price]=$((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    [charge_at_second_lowest_price]=$((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    [charge_at_third_lowest_price]=$((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    [charge_at_fourth_lowest_price]=$((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    [charge_at_fifth_lowest_price]=$((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    [charge_at_sixth_lowest_price]=$((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
+	["use_start_stop_logic"]=$((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
+	["charge_at_solar_breakeven_logic"]=$((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
+	["charge_at_lowest_price"]=$((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
+	["charge_at_second_lowest_price"]=$((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
+	["charge_at_third_lowest_price"]=$((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
+	["charge_at_fourth_lowest_price"]=$((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
+	["charge_at_fifth_lowest_price"]=$((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
+	["charge_at_sixth_lowest_price"]=$((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
 
 charging_condition_met=""
@@ -836,32 +887,32 @@ execute_charging=0
 execute_switchablesockets_on=0
 
 # Check if any charging condition is met
-for condition in "${!charging_conditions[@]}"; do
-	if ((charging_conditions[$condition])); then
-		execute_charging=1
-		charging_condition_met="$condition"
-		break
-	fi
-done
+evaluate_conditions charging_conditions charging_conditions_descriptions execute_charging charging_condition_met
 
-switchablesockets_conditions=(
-	$((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
-	$((switchablesockets_at_solar_breakeven_logic == 1  && feedin_price_integer > current_price_integer + energy_fee_integer))
-	$((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-	$((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-	$((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-	$((switchablesockets_at_fourth_lowest_price == 1  && fourth_lowest_price_integer == current_price_integer))
-	$((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-	$((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
+declare -A switchablesockets_conditions_descriptions=(
+	["switchablesockets_at_start_stop"]="switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+	["switchablesockets_at_solar_breakeven_logic"]="switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+	["switchablesockets_at_lowest_price"]="switchablesockets_at_lowest_price ($switchablesockets_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["switchablesockets_at_second_lowest_price"]="switchablesockets_at_second_lowest_price ($switchablesockets_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["switchablesockets_at_third_lowest_price"]="switchablesockets_at_third_lowest_price ($switchablesockets_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["switchablesockets_at_fourth_lowest_price"]="switchablesockets_at_fourth_lowest_price ($switchablesockets_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["switchablesockets_at_fifth_lowest_price"]="switchablesockets_at_fifth_lowest_price ($switchablesockets_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+	["switchablesockets_at_sixth_lowest_price"]="switchablesockets_at_sixth_lowest_price ($switchablesockets_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+)
+
+declare -A switchablesockets_conditions=(
+	["switchablesockets_at_start_stop"]=$((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
+	["switchablesockets_at_solar_breakeven_logic"]=$((switchablesockets_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
+	["switchablesockets_at_lowest_price"]=$((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
+	["switchablesockets_at_second_lowest_price"]=$((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
+	["switchablesockets_at_third_lowest_price"]=$((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
+	["switchablesockets_at_fourth_lowest_price"]=$((switchablesockets_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
+	["switchablesockets_at_fifth_lowest_price"]=$((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
+	["switchablesockets_at_sixth_lowest_price"]=$((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
 
 # Check if any switching condition is met
-for switchablesockets_condition in "${switchablesockets_conditions[@]}"; do
-	if ((switchablesockets_condition == 1)); then
-		execute_switchablesockets_on=1
-		break
-	fi
-done
+evaluate_conditions switchablesockets_conditions switchablesockets_conditions_descriptions execute_switchablesockets_on switchablesockets_condition_met
 
 if ((use_solarweather_api_to_abort == 1)); then
 	check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today."
@@ -871,14 +922,15 @@ fi
 
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
+total_cost=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
 if ((execute_charging == 1 && use_victron_charger == 1)); then
-	if ((economic_check == 0)); then
+	if [ "$economic_check" -eq 0 ]; then
 		manage_charging "on" "Charging based on condition met of: $charging_condition_met."
-	elif ((economic_check == 1 -a $(is_charging_economical $highest_price_integer))); then
-		manage_charging "on" "Charging based on highest price comparison makes sense."
-	elif ((economic_check == 2 -a $(is_charging_economical $average_price_integer))); then
-		manage_charging "on" "Charging based on average price comparison makes sense."
+	elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost; then
+		manage_charging "on" "Charging based on highest price ($highest_price €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost") €"
+	elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost; then
+		manage_charging "on" "Charging based on average price ($average_price €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost") €"
 	else
 		manage_charging "off" "Considering charging losses and costs, charging is too expensive."
 	fi
@@ -906,7 +958,7 @@ if ((use_fritz_dect_sockets == 1)); then
 	fi
 
 	if [ -n "$DEBUG" ]; then
-		echo "D: Login to Fritz!Box successful."
+		echo "D: Login to Fritz!Box successful." >&2
 	fi
 
 	if ((execute_switchablesockets_on == 1)); then
@@ -945,5 +997,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-	echo "D: [ OK ]"
+	echo "D: [ OK ]" >&2
 fi
