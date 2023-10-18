@@ -870,11 +870,11 @@ fi
 percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
 
 if ((execute_charging == 1 && use_victron_charger == 1)); then
-	if ((economic_check == 0)); then
+	if [ economic_check -eq  0 ]; then
 		manage_charging "on" "Charging based on condition met of: $charging_condition_met."
-	elif ((economic_check == 1)) && is_charging_economical $highest_price_integer; then
+	elif [ economic_check -eq 1 ] && is_charging_economical $highest_price_integer; then
 		manage_charging "on" "Charging based on highest price comparison makes sense."
-	elif ((economic_check == 2)) && is_charging_economical $average_price_integer; then
+	elif [ economic_check -eq 2 ] && is_charging_economical $average_price_integer; then
 		manage_charging "on" "Charging based on average price comparison makes sense."
 	else
 		manage_charging "off" "Considering charging losses and costs, charging is too expensive."
