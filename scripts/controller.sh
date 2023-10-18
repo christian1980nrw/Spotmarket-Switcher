@@ -521,8 +521,9 @@ convert_vars_to_integer() {
 	for var in "$@"; do
 		local integer_var="${var}_integer"
 		printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
+		local value="${!integer_var}"  # Speichern Sie den Wert in einer temporären Variable
 		if [ -n "$DEBUG" ]; then
-   			echo "D: Variable: $var | Original: ${!var} | Integer: ${!integer_var} | Len: ${#!integer_var}" >&2
+			echo "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}" >&2
 		fi
 	done
 }
