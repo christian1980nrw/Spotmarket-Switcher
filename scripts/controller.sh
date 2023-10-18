@@ -540,7 +540,7 @@ evaluate_conditions() {
 
     for condition in "${!conditions_ref[@]}"; do
         if [ -n "$DEBUG" ]; then
-            result="${condition} ( ${descriptions_ref[$condition]} ) evaluates to $( [ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false )"
+            result="( ${descriptions_ref[$condition]} ) evaluates to $( [ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false )"
             echo "D: condition_evaluation [ $result ]." >&2
         fi
         if ((conditions_ref[$condition])); then
