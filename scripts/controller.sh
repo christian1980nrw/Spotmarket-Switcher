@@ -612,7 +612,7 @@ is_charging_economical() {
 
 	if [ -n "$DEBUG" ]; then
 		echo "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
-  		echo "D: if [ reference_price ($reference_price) > total_cost ($total_cost) ]." >&2
+  		echo "D: if [ reference_price ($(millicentToEuro $reference_price)) > total_cost ($(millicentToEuro $total_cost)) ]." >&2
 	fi
 
 	return $is_economical
