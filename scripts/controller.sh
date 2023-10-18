@@ -660,12 +660,15 @@ elif ((select_pricing_api == 3)); then
 fi
 
 millicentToEuro() {
-	local millicents="$1"
-	local euro_main_part=$((millicents / 1000000))
-	local euro_decimal_part=$((millicents % 1000000))
-	local euro_decimal_part_short=$((euro_decimal_part / 10000))
+    local millicents="$1"
 
-	printf "%d.%04d" $euro_main_part $euro_decimal_part_short
+    local EURO_FACTOR=1000000000000000
+    local DECIMAL_FACTOR=100000000000
+
+    local euro_main_part=$((millicents / EURO_FACTOR))
+    local euro_decimal_part=$(((millicents % EURO_FACTOR) / DECIMAL_FACTOR))
+
+    printf "%d.%04d\n" $euro_main_part $euro_decimal_part
 }
 
 euroToMillicent() {
