@@ -522,7 +522,7 @@ convert_vars_to_integer() {
 		local integer_var="${var}_integer"
 		printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
 		if [ -n "$DEBUG" ]; then
-			echo "D: Variable: $var | Original: ${!var} | Integer: ${!integer_var}" >&2
+			echo "D: Variable: $var | Original: ${!var} | Integer: ${!integer_var} | Len: ${#integer_var}" >&2
 		fi
 	done
 }
