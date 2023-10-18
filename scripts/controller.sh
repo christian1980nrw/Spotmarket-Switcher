@@ -705,7 +705,7 @@ millicentToEuro() {
     local millicents="$1"
 
     local EURO_FACTOR=100000000000000000
-    local DECIMAL_FACTOR=100000000000
+    local DECIMAL_FACTOR=10000000000000
 
     local euro_main_part=$((millicents / EURO_FACTOR))
     local euro_decimal_part=$(((millicents % EURO_FACTOR) / DECIMAL_FACTOR))
