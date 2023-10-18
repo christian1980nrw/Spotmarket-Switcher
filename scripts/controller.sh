@@ -554,7 +554,7 @@ evaluate_conditions() {
 # Function to check economical
 is_charging_economical() {
     local reference_price="$1"
-    local total_cost=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
+    local total_cost="$2"
 
     local is_economical=0
     [[ $reference_price -ge $total_cost ]] && is_economical=1
@@ -868,14 +868,15 @@ fi
 
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
+total_cost=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
 if ((execute_charging == 1 && use_victron_charger == 1)); then
 	if [ "$economic_check" -eq  0 ]; then
 		manage_charging "on" "Charging based on condition met of: $charging_condition_met."
-	elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer; then
-		manage_charging "on" "Charging based on highest price comparison makes sense."
-	elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer; then
-		manage_charging "on" "Charging based on average price comparison makes sense."
+	elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost; then
+		manage_charging "on" "Charging based on highest price ($highest_price_integer) comparison makes sense. total_cost=$total_cost"
+	elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost; then
+		manage_charging "on" "Charging based on average price ($average_price_integer) comparison makes sense. total_cost=$total_cost"
 	else
 		manage_charging "off" "Considering charging losses and costs, charging is too expensive."
 	fi
