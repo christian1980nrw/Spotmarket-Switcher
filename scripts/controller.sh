@@ -659,13 +659,13 @@ elif ((select_pricing_api == 3)); then
 	fi
 fi
 
-millicentsToEuro() {
+millicentToEuro() {
 	local millicents="$1"
-	local euro_main_part=$((millicents / 100000))
-	local euro_decimal_part=$((millicents % 100000))
-	local euro_decimal_part_short=$((euro_decimal_part / 1000))
+	local euro_main_part=$((millicents / 1000000))
+	local euro_decimal_part=$((millicents % 1000000))
+	local euro_decimal_part_short=$((euro_decimal_part / 10000))
 
-	echo "$euro_main_part.$euro_decimal_part_short"
+	printf "%d.%04d" $euro_main_part $euro_decimal_part_short
 }
 
 euroToMillicent() {
@@ -883,9 +883,9 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
 	if [ "$economic_check" -eq 0 ]; then
 		manage_charging "on" "Charging based on condition met of: $charging_condition_met."
 	elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost; then
-		manage_charging "on" "Charging based on highest price ($highest_price €) comparison makes sense. total_cost=$(millicentsToEuro "$total_cost") €"
+		manage_charging "on" "Charging based on highest price ($highest_price €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost") €"
 	elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost; then
-		manage_charging "on" "Charging based on average price ($average_price €) comparison makes sense. total_cost=$(millicentsToEuro "$total_cost") €"
+		manage_charging "on" "Charging based on average price ($average_price €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost") €"
 	else
 		manage_charging "off" "Considering charging losses and costs, charging is too expensive."
 	fi
