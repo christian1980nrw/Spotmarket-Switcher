@@ -595,6 +595,15 @@ evaluate_conditions() {
 
 # Function to check economical
 is_charging_economical() {
+	# In the Bash scripting environment, true represents a command that always ends with a success status (exit code 0), and false is a command that always ends with a failure status (exit code 1).
+	# In the context of comparisons or conditions in Bash:
+
+	#    A success status (e.g. a command's exit code 0) is often interpreted as "true".
+	#    A failure status (e.g. any exit code other than 0) is often interpreted as "false".
+
+	# In many programming languages, true represents the value 1 and false represents the value 0, but in the Bash scripting environment things are a little different as it involves the exit code of commands.
+	# For this reason, a value of 1 is output as false
+ 
 	local reference_price="$1"
 	local total_cost="$2"
 
@@ -602,7 +611,8 @@ is_charging_economical() {
 	[[ $reference_price -ge $total_cost ]] && is_economical=1
 
 	if [ -n "$DEBUG" ]; then
-		echo "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "true" || echo "false") ]." >&2
+		echo "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
+  		echo "D: if [ reference_price ($reference_price) > total_cost ($total_cost) ]." >&2
 	fi
 
 	return $is_economical
