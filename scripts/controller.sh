@@ -608,8 +608,8 @@ is_charging_economical() {
 	local reference_price="$1"
 	local total_cost="$2"
 
-	local is_economical=0
-	[[ $reference_price -ge $total_cost ]] && is_economical=1
+	local is_economical=1
+	[[ $reference_price -ge $total_cost ]] && is_economical=0
 
 	if [ -n "$DEBUG" ]; then
 		echo "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
