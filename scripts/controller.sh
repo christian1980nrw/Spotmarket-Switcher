@@ -869,9 +869,8 @@ fi
 if ((abort_price_integer <= current_price_integer)); then
     if [ -n "$DEBUG" ]; then
         echo "D: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)" >&2
-    else
-        log_info "I: Current price is too high. Abort."
     fi
+    manage_charging "off" "Current price is too high. Abort."
     exit 0
 fi
 
