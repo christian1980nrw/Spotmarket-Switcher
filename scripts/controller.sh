@@ -756,6 +756,30 @@ euroToMillicent() {
     return 0
 }
 
+fritz_login() {
+    # Get session ID (SID)
+    sid=""
+    challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
+    if [ -z "$challenge" ]; then
+        log_info "E: Could not retrieve challenge from login_sid.lua."
+        return 1
+    fi
+
+    hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
+    sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" |
+        grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
+
+    if [ "$sid" = "0000000000000000" ]; then
+        log_info "E: Login to Fritz!Box failed."
+        return 1
+    fi
+
+    if [ -n "$DEBUG" ]; then
+        echo "D: Login to Fritz!Box successful." >&2
+    fi
+    return 0
+}
+
 # An independent segment to test the conversion of floats to integers
 if [ "tests" == "$1" ]; then
 
@@ -866,13 +890,12 @@ if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); th
 fi
 
 # abort_price_integer cannot be found by shellcheck can be ignored, false positive
-if ((abort_price_integer <= current_price_integer)); then
-    if [ -n "$DEBUG" ]; then
-        echo "D: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)" >&2
-    fi
-    manage_charging "off" "Current price is too high. Abort."
-    exit 0
-fi
+# if ((abort_price_integer <= current_price_integer)); then
+#     if [ -n "$DEBUG" ]; then
+#         echo "D: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)" >&2
+#     fi
+#     exit 0
+# fi
 
 declare -A charging_conditions_descriptions=(
     ["use_start_stop_logic"]="use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
@@ -934,6 +957,9 @@ if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow."
 fi
 
+# abort_price_integer cannot be found by shellcheck can be ignored, false positive
+check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
+
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
@@ -959,37 +985,20 @@ fi
 
 # Execute Fritz DECT on command
 if ((use_fritz_dect_sockets == 1)); then
-    # Get session ID (SID)
-    sid=""
-    challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
-    if [ -z "$challenge" ]; then
-        log_info "E: Could not retrieve challenge from login_sid.lua."
-        exit 1
-    fi
-
-    hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
-    sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" |
-        grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
-
-    if [ "$sid" = "0000000000000000" ]; then
-        log_info "E: Login to Fritz!Box failed."
-        exit 1
-    fi
-
-    if [ -n "$DEBUG" ]; then
-        echo "D: Login to Fritz!Box successful." >&2
-    fi
-
-    if ((execute_switchablesockets_on == 1)); then
-        log_info "I: Turning ON Fritz sockets."
-        for socket in "${sockets[@]}"; do
-            [ "$socket" != "0" ] && manage_fritz_socket "on" "$socket"
-        done
+    if fritz_login; then
+        if ((execute_switchablesockets_on == 1)); then
+            log_info "I: Turning ON Fritz sockets."
+            for socket in "${sockets[@]}"; do
+                [ "$socket" != "0" ] && manage_fritz_socket "on" "$socket"
+            done
+        else
+            log_info "I: Turning OFF Fritz sockets."
+            for socket in "${sockets[@]}"; do
+                [ "$socket" != "0" ] && manage_fritz_socket "off" "$socket"
+            done
+        fi
     else
-        log_info "I: Turning OFF Fritz sockets."
-        for socket in "${sockets[@]}"; do
-            [ "$socket" != "0" ] && manage_fritz_socket "off" "$socket"
-        done
+        log_info "E: Fritz login failed. Continuing to Shelly..."
     fi
 fi
 
