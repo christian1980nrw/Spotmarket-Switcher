@@ -222,6 +222,9 @@ download_file_if_missing "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-S
 download_file_if_missing "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/run" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/run
 download_file_if_missing "$SRCDIR/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/sample.config.txt
 
+#This option will not overwrite the destination_file if it already exists. There is no output or error message if the file is not copied, the command simply exits silently. If the target file does not exist, it will be created as usual.
+cp -n "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/config.txt"
+
 # $DESTDIR is always an absolut path
 if [ ! -d "$DESTDIR"/service ]; then
 	if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ]; then
@@ -255,8 +258,9 @@ echo
 e_success "Installation completed. Spotmarket-Switcher will be executed every full hour."
 e_note "The crontab will be changed automatically by the script '$DESTDIR/data/etc/Spotmarket-Switcher/service/run' ."
 e_note "Please edit the configuration file with a text editor, like"
-e_note "  cp '$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt' '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
-e_note "  vi '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
+e_note "    vi '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
+e_note "    or"
+e_note "  nano '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
 e_note "and change it to your needs."
 echo
 e_note "Note: This installation will survive a Venus OS firmware update."
