@@ -345,8 +345,9 @@ parse_and_validate_config() {
         # Progress bar
         counter=$((counter + 1))
         local progress=$((100 * counter / total_vars))
-        echo -ne "Validating config: ${progress}%\r"
+        printf "Validating config: %d%%\r" "$progress"
     done
+    echo -ne '\n'
 
     # Additional check for use_start_stop_logic and price values
     if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
