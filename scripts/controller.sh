@@ -412,18 +412,22 @@ END {
         exit 1
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
-    } else {
-        print "E: No prices found in the XML data."
-		exit 1
-    }
+    } else {	
+	if ("'"$output_file"'" != "'"$file13"'") {
+            print "E: No prices found in the today XML data."
+			exit 1
+        }
+    } 
+            print "E: No prices found in the tomorrow XML data."
 }
 ' "$file"
 
-    sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
-    timestamp=$(TZ=$TZ date +%d)
-    echo "date_now_day: $timestamp" >>"$output_file"
-    #echo "date_now_day: $timestamp" >> "${output_file%.*}_sorted.${output_file##*.}"
-
+    if [ -f "$output_file" ]; then
+        sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
+        timestamp=$(TZ=$TZ date +%d)
+        echo "date_now_day: $timestamp" >> "$output_file"
+    fi
+    
     # Check if tomorrow file contains next day prices
     if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
         cat $file10 >$file8
