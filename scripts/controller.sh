@@ -367,7 +367,8 @@ rotating_spinner() {
     local spinstr="|/-\\"
     while true; do
         local temp=${spinstr#?}
-        printf " [%c]  Loading..." "$spinstr"
+
+printf " [%c]  Loading..." "$spinstr"
         spinstr=$temp${spinstr%"$temp"}
         sleep $delay
         printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
