@@ -136,20 +136,6 @@ else
     exit 127
 fi
 
-get_tibber_api() {
-    curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
-        --header 'Content-Type: application/json' \
-        --header "Authorization: Bearer $tibber_api_key" \
-        --data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
-        awk '{
-        gsub(/"current":/, "\n&");
-        gsub(/"today":/, "\n&");
-        gsub(/"tomorrow":/, "\n&");
-        gsub(/"total":/, "\n&");
-        print
-    }'
-}
-
 if [ -z "$UNAME" ]; then
     UNAME=$(uname)
 fi
@@ -251,12 +237,142 @@ fi
 
 unset num_tools_missing
 
-########## Begin of the script...
 
-echo >>"$LOG_FILE"
+#######################################
+###    Begin of the functions...    ###
+#######################################
 
-log_info() {
-    echo "$1" | tee -a "$LOG_FILE"
+declare -A valid_vars=(
+    ["use_fritz_dect_sockets"]="0|1"
+    ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+    ["user"]="string"
+    ["passwd"]="string"
+    ["sockets"]='^\(\"[^"]+\"( \"[^"]+\")*\)$'
+    ["use_shelly_wlan_sockets"]="0|1"
+    ["shelly_ips"]="^\(\".*\"\)$"
+    ["shellyuser"]="string"
+    ["shellypasswd"]="string"
+    ["use_victron_charger"]="0|1"
+    ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
+    ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
+    ["economic_check"]="0|1|2"
+    ["stop_price"]="[0-9]+(\.[0-9]+)?"
+    ["start_price"]="[0-9]+(\.[0-9]+)?"
+    ["feedin_price"]="[0-9]+(\.[0-9]+)?"
+    ["energy_fee"]="[0-9]+(\.[0-9]+)?"
+    ["abort_price"]="[0-9]+(\.[0-9]+)?"
+    ["use_start_stop_logic"]="0|1"
+    ["switchablesockets_at_start_stop"]="0|1"
+    ["charge_at_solar_breakeven_logic"]="0|1"
+    ["switchablesockets_at_solar_breakeven_logic"]="0|1"
+    ["charge_at_lowest_price"]="0|1"
+    ["switchablesockets_at_lowest_price"]="0|1"
+    ["charge_at_second_lowest_price"]="0|1"
+    ["switchablesockets_at_second_lowest_price"]="0|1"
+    ["charge_at_third_lowest_price"]="0|1"
+    ["switchablesockets_at_third_lowest_price"]="0|1"
+    ["charge_at_fourth_lowest_price"]="0|1"
+    ["switchablesockets_at_fourth_lowest_price"]="0|1"
+    ["charge_at_fifth_lowest_price"]="0|1"
+    ["switchablesockets_at_fifth_lowest_price"]="0|1"
+    ["charge_at_sixth_lowest_price"]="0|1"
+    ["switchablesockets_at_sixth_lowest_price"]="0|1"
+    ["TZ"]="string"
+    ["select_pricing_api"]="1|2|3"
+    ["include_second_day"]="0|1"
+    ["use_solarweather_api_to_abort"]="0|1"
+    ["abort_solar_yield_today"]="[0-9]+(\.[0-9]+)?"
+    ["abort_solar_yield_tomorrow"]="[0-9]+(\.[0-9]+)?"
+    ["abort_suntime"]="[0-9]+"
+    ["latitude"]="[-]?[0-9]+(\.[0-9]+)?"
+    ["longitude"]="[-]?[0-9]+(\.[0-9]+)?"
+    ["visualcrossing_api_key"]="string"
+    ["awattar"]="de|at"
+    ["in_Domain"]="string"
+    ["out_Domain"]="string"
+    ["entsoe_eu_api_security_token"]="string"
+    ["tibber_prices"]="energy|total|tax"
+    ["tibber_api_key"]="string"
+)
+
+parse_and_validate_config() {
+    local file="$1"
+    local errors=""
+    
+    rotating_spinner & # Start the spinner in the background
+    local spinner_pid=$! # Get the PID of the spinner
+    
+    # Step 1: Parse
+    while IFS='=' read -r key value; do
+        # Treat everything after a "#" as a comment and remove it
+        key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
+        # value=$(echo "$value" | cut -d'#' -f1 | tr -d ' ' | tr -d '"')
+        value=$(echo "$value" | awk -F'#' '{gsub(/^ *"| *"$|^ *| *$/, "", $1); print $1}')
+
+        # Only process rows with key-value pairs
+        [[ "$key" == "" || "$value" == "" ]] && continue
+ 
+        # Set the bash variable with the read value
+        declare "$key=$value"
+    done < "$file"
+
+    # Step 2: Validation
+    for var_name in "${!valid_vars[@]}"; do
+        local validation_pattern=${valid_vars[$var_name]}
+ 
+        # Check whether the variable was set at all
+        if [[ -z ${!var_name+x} ]]; then
+            errors+="E: $var_name is not set.\n"
+            continue
+        fi
+
+        # Special checking for strings, IP and arrays
+        if [[ "$validation_pattern" == "string" ]]; then
+            # Strings can be empty or filled
+            continue
+        elif [[ "$validation_pattern" == "array" && "${!var_name[*]}" == "" ]]; then
+            continue
+        elif [[ "$validation_pattern" == "ip" && ! "${!var_name}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            errors+="E: $var_name has an invalid IP address format: ${!var_name}.\n"
+            continue
+        fi
+
+        # Standard check against the given pattern
+        if ! [[ "${!var_name}" =~ ^($validation_pattern)$ ]]; then
+            errors+="E: $var_name has an invalid value: ${!var_name}.\n"
+        fi
+
+    done
+
+    # Stop the spinner once the parsing is done
+    kill $spinner_pid &>/dev/null
+    
+    # Additional check for use_start_stop_logic and price values
+    if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
+        errors+="E: With 'use_start_stop_logic' enabled, 'stop_price' cannot be lower than 'start_price'.\n"
+    fi
+    
+    # Output errors if any were found
+    if [[ -n "$errors" ]]; then
+        echo -e "$errors"
+        return 1
+    else
+        echo "Config validation passed."
+        return 0
+    fi
+}
+
+rotating_spinner() {
+    local delay=0.1
+    local spinstr="|/-\\"
+    while true; do
+        local temp=${spinstr#?}
+
+printf " [%c]  Loading..." "$spinstr"
+        spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    done
 }
 
 download_awattar_prices() {
@@ -293,6 +409,20 @@ download_awattar_prices() {
         rm -f "$file2"
         echo "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online."
     fi
+}
+
+get_tibber_api() {
+    curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
+        --header 'Content-Type: application/json' \
+        --header "Authorization: Bearer $tibber_api_key" \
+        --data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
+        awk '{
+        gsub(/"current":/, "\n&");
+        gsub(/"today":/, "\n&");
+        gsub(/"tomorrow":/, "\n&");
+        gsub(/"total":/, "\n&");
+        print
+    }'
 }
 
 download_tibber_prices() {
@@ -365,63 +495,63 @@ download_entsoe_prices() {
     if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
     awk '
-/<Period>/ {
-    capture_period = 1
-}
-/<\/Period>/ {
-    capture_period = 0
-}
-capture_period && /<resolution>PT60M<\/resolution>/ {
-    valid_period = 1
-}
-valid_period && /<price.amount>/ {
-    gsub("<price.amount>", "", $0)
-    gsub("<\/price.amount>", "", $0)
-    gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    prices = prices $0 ORS
-}
-valid_period && /<\/Period>/ {
-    exit
-}
+    # Capture content inside the <Period> tag
+    /<Period>/ {
+        capture_period = 1
+    }
+    /<\/Period>/ {
+        capture_period = 0
+    }
+    # Ensure we are within a valid period and capture prices for one-hour resolution
+    capture_period && /<resolution>PT60M<\/resolution>/ {
+        valid_period = 1
+    }
+    valid_period && /<price.amount>/ {
+        gsub("<price.amount>", "", $0)
+        gsub("<\/price.amount>", "", $0)
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        prices = prices $0 ORS
+    }
+    valid_period && /<\/Period>/ {
+        exit
+    }
 
+    # Capture error information inside the <Reason> tag
+    /<Reason>/ {
+        in_reason = 1
+        error_message = ""
+    }
+    in_reason && /<code>/ {
+        gsub(/<code>|<\/code>/, "")
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        error_code = $0
+    }
+    in_reason && /<text>/ {
+        gsub(/<text>|<\/text>/, "")
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        error_message = $0
+    }
+    /<\/Reason>/ {
+        in_reason = 0
+    }
 
-/<Reason>/ {
-    in_reason = 1
-    error_message = ""
-}
-
-in_reason && /<code>/ {
-    gsub(/<code>|<\/code>/, "")
-    gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    error_code = $0
-}
-
-in_reason && /<text>/ {
-    gsub(/<text>|<\/text>/, "")
-	gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    error_message = $0
-}
-
-/<\/Reason>/ {
-    in_reason = 0
-}
-
-END {
-    if (error_code == 999) {
-        print "E: Entsoe data retrieval error:", error_message
-        exit 1
-    } else if (prices != "") {
-        printf "%s", prices > "'"$output_file"'"
-    } else {	
-	if ("'"$output_file"'" != "'"$file13"'") {
-            print "E: No prices found in the today XML data."
-			exit 1
+    # At the end of processing, print out the captured prices or any error messages
+    END {
+        if (error_code == 999) {
+            print "E: Entsoe data retrieval error:", error_message
+            exit 1
+        } else if (prices != "") {
+            printf "%s", prices > "'"$output_file"'"
+        } else {
+            if ("'"$output_file"'" != "'"$file13"'") {
+                print "E: No prices found in the today XML data."
+			    exit 1
+            }
         }
-    } 
             print "E: No prices found in the tomorrow XML data."
-}
-' "$file"
-
+    }
+    ' "$file"
+    
     if [ -f "$output_file" ]; then
         sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
         timestamp=$(TZ=$TZ date +%d)
@@ -584,16 +714,22 @@ evaluate_conditions() {
     local -n descriptions_ref="$2"
     local -n execute_ref="$3"
     local -n condition_met_ref="$4"
+    local condition_met=0 # checkflag
 
     for condition in "${!conditions_ref[@]}"; do
         if [ -n "$DEBUG" ]; then
             result="( ${descriptions_ref[$condition]} ) evaluates to $([ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false)"
             echo "D: condition_evaluation [ $result ]." >&2
         fi
-        if ((conditions_ref[$condition])); then
+        
+        if ((conditions_ref[$condition])) && [[ $condition_met -eq 0 ]]; then
             execute_ref=1
             condition_met_ref="$condition"
-            break
+            condition_met=1
+
+            if [[ $DEBUG -ne 1 ]]; then
+                break
+            fi
         fi
     done
 }
@@ -663,6 +799,103 @@ manage_shelly_socket() {
     curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_info "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
 }
 
+millicentToEuro() {
+    local millicents="$1"
+
+    local EURO_FACTOR=100000000000000000
+    local DECIMAL_FACTOR=10000000000000
+
+    local euro_main_part=$((millicents / EURO_FACTOR))
+    local euro_decimal_part=$(((millicents % EURO_FACTOR) / DECIMAL_FACTOR))
+
+    printf "%d.%04d\n" $euro_main_part $euro_decimal_part
+}
+
+euroToMillicent() {
+    euro="$1"
+    potency="$2"
+
+    if [ -z "$potency" ]; then
+        potency=14
+    fi
+
+    #if echo "$euro" | grep -q '\,'; then
+    #	echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
+    #	return 1
+    #fi
+
+    # Replace each comma with a period, fixme if this is wrong
+    euro=$(echo "$euro" | sed 's/,/./g')
+
+    if which bc >/dev/null 2>&1; then
+        # Using bc to multiply the euro number and convert it to an integer
+        v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
+    else
+        v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
+    fi
+
+    if [ -z "$v" ]; then
+        log_info "E: Could not translate '$euro' to an integer."
+        log_info "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
+        return 1
+    fi
+    echo "$v"
+    return 0
+}
+
+euroToMillicent_test() {
+    echo "I: Testing euroToMillicent"
+    for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23; do
+        echo -n "$i -> "
+        euroToMillicent $i
+    done
+}
+
+fritz_login() {
+    # Get session ID (SID)
+    sid=""
+    challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
+    if [ -z "$challenge" ]; then
+        log_info "E: Could not retrieve challenge from login_sid.lua."
+        return 1
+    fi
+
+    hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
+    sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" |
+        grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
+
+    if [ "$sid" = "0000000000000000" ]; then
+        log_info "E: Login to Fritz!Box failed."
+        return 1
+    fi
+
+    if [ -n "$DEBUG" ]; then
+        echo "D: Login to Fritz!Box successful." >&2
+    fi
+    return 0
+}
+
+log_info() {
+    echo "$1" | tee -a "$LOG_FILE"
+}
+
+####################################
+###    Begin of the script...    ###
+####################################
+
+echo >>"$LOG_FILE"
+
+parse_and_validate_config "$DIR/config.txt"
+# if [ $? -eq 1 ]; then
+    # Handle error
+# fi
+
+# An independent segment to test the conversion of floats to integers
+if [ "tests" == "$1" ]; then
+    euroToMillicent_test
+    exit 0
+fi
+
 if ((select_pricing_api == 1)); then
     # Test if Awattar today data exists
     if test -f "$file1"; then
@@ -714,62 +947,6 @@ elif ((select_pricing_api == 3)); then
         echo "I: Fetching today-data data from Tibber."
         download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
     fi
-fi
-
-millicentToEuro() {
-    local millicents="$1"
-
-    local EURO_FACTOR=100000000000000000
-    local DECIMAL_FACTOR=10000000000000
-
-    local euro_main_part=$((millicents / EURO_FACTOR))
-    local euro_decimal_part=$(((millicents % EURO_FACTOR) / DECIMAL_FACTOR))
-
-    printf "%d.%04d\n" $euro_main_part $euro_decimal_part
-}
-
-euroToMillicent() {
-    euro="$1"
-    potency="$2"
-
-    if [ -z "$potency" ]; then
-        potency=14
-    fi
-
-    #if echo "$euro" | grep -q '\,'; then
-    #	echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
-    #	return 1
-    #fi
-
-    # Replace each comma with a period, fixme if this is wrong
-    euro=$(echo "$euro" | sed 's/,/./g')
-
-    if which bc >/dev/null 2>&1; then
-        # Using bc to multiply the euro number and convert it to an integer
-        v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
-    else
-        v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
-    fi
-
-    if [ -z "$v" ]; then
-        log_info "E: Could not translate '$euro' to an integer."
-        log_info "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
-        return 1
-    fi
-    echo "$v"
-    return 0
-}
-
-# An independent segment to test the conversion of floats to integers
-if [ "tests" == "$1" ]; then
-
-    echo "I: Testing euroToMillicent"
-    for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23; do
-        echo -n "$i -> "
-        euroToMillicent $i
-    done
-    exit 0
-
 fi
 
 if ((include_second_day == 1)); then
@@ -863,21 +1040,9 @@ if ((use_solarweather_api_to_abort == 1)); then
     find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
 fi
 
-# stop_price_integer cannot be found by shellcheck can be ignored, false positive
-if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
-    log_info "E: stop - price cannot be lower than start price"
-    exit 1
-fi
-
-# abort_price_integer cannot be found by shellcheck can be ignored, false positive
-if ((abort_price_integer <= current_price_integer)); then
-    if [ -n "$DEBUG" ]; then
-        echo "D: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)" >&2
-    else
-        log_info "I: Current price is too high. Abort."
-    fi
-    exit 0
-fi
+charging_condition_met=""
+execute_charging=0
+execute_switchablesockets_on=0
 
 declare -A charging_conditions_descriptions=(
     ["use_start_stop_logic"]="use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
@@ -900,10 +1065,6 @@ declare -A charging_conditions=(
     ["charge_at_fifth_lowest_price"]=$((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
     ["charge_at_sixth_lowest_price"]=$((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
-
-charging_condition_met=""
-execute_charging=0
-execute_switchablesockets_on=0
 
 # Check if any charging condition is met
 evaluate_conditions charging_conditions charging_conditions_descriptions execute_charging charging_condition_met
@@ -939,6 +1100,9 @@ if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow."
 fi
 
+# abort_price_integer cannot be found by shellcheck can be ignored, false positive
+check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
+
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
@@ -964,37 +1128,20 @@ fi
 
 # Execute Fritz DECT on command
 if ((use_fritz_dect_sockets == 1)); then
-    # Get session ID (SID)
-    sid=""
-    challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
-    if [ -z "$challenge" ]; then
-        log_info "E: Could not retrieve challenge from login_sid.lua."
-        exit 1
-    fi
-
-    hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
-    sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" |
-        grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
-
-    if [ "$sid" = "0000000000000000" ]; then
-        log_info "E: Login to Fritz!Box failed."
-        exit 1
-    fi
-
-    if [ -n "$DEBUG" ]; then
-        echo "D: Login to Fritz!Box successful." >&2
-    fi
-
-    if ((execute_switchablesockets_on == 1)); then
-        log_info "I: Turning ON Fritz sockets."
-        for socket in "${sockets[@]}"; do
-            [ "$socket" != "0" ] && manage_fritz_socket "on" "$socket"
-        done
+    if fritz_login; then
+        if ((execute_switchablesockets_on == 1)); then
+            log_info "I: Turning ON Fritz sockets."
+            for socket in "${sockets[@]}"; do
+                [ "$socket" != "0" ] && manage_fritz_socket "on" "$socket"
+            done
+        else
+            log_info "I: Turning OFF Fritz sockets."
+            for socket in "${sockets[@]}"; do
+                [ "$socket" != "0" ] && manage_fritz_socket "off" "$socket"
+            done
+        fi
     else
-        log_info "I: Turning OFF Fritz sockets."
-        for socket in "${sockets[@]}"; do
-            [ "$socket" != "0" ] && manage_fritz_socket "off" "$socket"
-        done
+        log_info "E: Fritz login failed. Continuing to Shelly..."
     fi
 fi
 
