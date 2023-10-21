@@ -41,6 +41,10 @@ Setting up the Spotmarket-Switcher is a straightforward process. If you are alre
    DESTDIR=/tmp/foo sh victron-venus-os-install.sh
    ```
    If you're using Victron Venus OS, the correct DESTDIR should be `/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
+   On a Cerbo GX the filesystem is mounted read only. See [https://www.victronenergy.com/live/ccgx:root_access](https://www.victronenergy.com/live/ccgx:root_access). In order to make the filesystem writeable you need to execute the following command before running the install script:
+   ```
+   /opt/victronenergy/swupdate-scripts/resize2fs.sh
+   ```
 
 Please note that while this software is currently optimized for the Venus OS, it can be adapted to other Linux flavors, like Debian/Ubuntu on a Raspberry Pi or another small board. A prime candidate is certainly [OpenWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
 
@@ -51,7 +55,11 @@ For instructions on accessing the Venus OS, please refer to [https://www.victron
 ### Execution of the Install Script
 
 - If you're using Victron Venus OS:
-  - After execution of the `victron-venus-os-install.sh`, edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/controller.sh`.
+  - After execution of the `victron-venus-os-install.sh`, you need to copy the `sample.config.txt` to `config.txt`.
+  ```
+  cp /data/etc/Spotmarket-Switcher/sample.config.txt /data/etc/Spotmarket-Switcher/config.txt
+  ```
+  Then edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/config.txt`.
   - Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
 ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
