@@ -136,20 +136,6 @@ else
     exit 127
 fi
 
-get_tibber_api() {
-    curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
-        --header 'Content-Type: application/json' \
-        --header "Authorization: Bearer $tibber_api_key" \
-        --data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
-        awk '{
-        gsub(/"current":/, "\n&");
-        gsub(/"today":/, "\n&");
-        gsub(/"tomorrow":/, "\n&");
-        gsub(/"total":/, "\n&");
-        print
-    }'
-}
-
 if [ -z "$UNAME" ]; then
     UNAME=$(uname)
 fi
@@ -259,6 +245,120 @@ log_info() {
     echo "$1" | tee -a "$LOG_FILE"
 }
 
+declare -A valid_vars=(
+    ["use_fritz_dect_sockets"]="0|1"
+    ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+    ["user"]="string"
+    ["passwd"]="string"
+    ["sockets"]='^\(\"[^"]+\"( \"[^"]+\")*\)$'
+    ["use_shelly_wlan_sockets"]="0|1"
+    ["shelly_ips"]="^\(\".*\"\)$"
+    ["shellyuser"]="string"
+    ["shellypasswd"]="string"
+    ["use_victron_charger"]="0|1"
+    ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
+    ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
+    ["economic_check"]="0|1|2"
+    ["stop_price"]="[0-9]+(\.[0-9]+)?"
+    ["start_price"]="[0-9]+(\.[0-9]+)?"
+    ["feedin_price"]="[0-9]+(\.[0-9]+)?"
+    ["energy_fee"]="[0-9]+(\.[0-9]+)?"
+    ["abort_price"]="[0-9]+(\.[0-9]+)?"
+    ["use_start_stop_logic"]="0|1"
+    ["switchablesockets_at_start_stop"]="0|1"
+    ["charge_at_solar_breakeven_logic"]="0|1"
+    ["switchablesockets_at_solar_breakeven_logic"]="0|1"
+    ["charge_at_lowest_price"]="0|1"
+    ["switchablesockets_at_lowest_price"]="0|1"
+    ["charge_at_second_lowest_price"]="0|1"
+    ["switchablesockets_at_second_lowest_price"]="0|1"
+    ["charge_at_third_lowest_price"]="0|1"
+    ["switchablesockets_at_third_lowest_price"]="0|1"
+    ["charge_at_fourth_lowest_price"]="0|1"
+    ["switchablesockets_at_fourth_lowest_price"]="0|1"
+    ["charge_at_fifth_lowest_price"]="0|1"
+    ["switchablesockets_at_fifth_lowest_price"]="0|1"
+    ["charge_at_sixth_lowest_price"]="0|1"
+    ["switchablesockets_at_sixth_lowest_price"]="0|1"
+    ["TZ"]="string"
+    ["select_pricing_api"]="1|2|3"
+    ["include_second_day"]="0|1"
+    ["use_solarweather_api_to_abort"]="0|1"
+    ["abort_solar_yield_today"]="[0-9]+(\.[0-9]+)?"
+    ["abort_solar_yield_tomorrow"]="[0-9]+(\.[0-9]+)?"
+    ["abort_suntime"]="[0-9]+"
+    ["latitude"]="[-]?[0-9]+(\.[0-9]+)?"
+    ["longitude"]="[-]?[0-9]+(\.[0-9]+)?"
+    ["visualcrossing_api_key"]="string"
+    ["awattar"]="de|at"
+    ["in_Domain"]="string"
+    ["out_Domain"]="string"
+    ["entsoe_eu_api_security_token"]="string"
+    ["tibber_prices"]="energy|total|tax"
+    ["tibber_api_key"]="string"
+)
+
+parse_and_validate_config() {
+    local file="$1"
+    local errors=""
+
+    # Schritt 1: Parsen
+    while IFS='=' read -r key value; do
+        # Alles nach einem "#" als Kommentar behandeln und entfernen
+        key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
+        # value=$(echo "$value" | cut -d'#' -f1 | tr -d ' ' | tr -d '"')
+        value=$(echo "$value" | awk -F'#' '{gsub(/^ *"| *"$|^ *| *$/, "", $1); print $1}')
+
+ 
+        # Nur Zeilen mit Schlüssel-Wert-Paaren weiterverarbeiten
+        [[ "$key" == "" || "$value" == "" ]] && continue
+ 
+        # Die Bash-Variable mit dem gelesenen Wert setzen
+        declare "$key=$value"
+    done < "$file"
+
+    # Schritt 2: Validierung
+    for var_name in "${!valid_vars[@]}"; do
+        local validation_pattern=${valid_vars[$var_name]}
+ 
+        # Überprüfen, ob die Variable überhaupt gesetzt wurde
+        if [[ -z ${!var_name+x} ]]; then
+            errors+="E: $var_name is not set.\n"
+            continue
+        fi
+
+        # Spezielle Überprüfung für Strings, IP und Arrays
+        if [[ "$validation_pattern" == "string" ]]; then
+            # Strings können leer oder gefüllt sein
+            continue
+        elif [[ "$validation_pattern" == "array" && "${!var_name[*]}" == "" ]]; then
+            continue
+        elif [[ "$validation_pattern" == "ip" && ! "${!var_name}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            errors+="E: $var_name has an invalid IP address format: ${!var_name}.\n"
+            continue
+        fi
+
+        # Standardmäßige Überprüfung gegen das vorgegebene Muster
+        if ! [[ "${!var_name}" =~ ^($validation_pattern)$ ]]; then
+            errors+="E: $var_name has an invalid value: ${!var_name}.\n"
+        fi
+    done
+
+    # Fehler ausgeben, falls welche gefunden wurden
+    if [[ -n "$errors" ]]; then
+        echo -e "$errors"
+        return 1
+    else
+        echo "Config validation passed."
+        return 0
+    fi
+}
+# Call the function with the configuration file as an argument
+parse_and_validate_config "$DIR/config.txt"
+if [ $? -eq 1 ]; then
+    # Handle error
+fi
+                    
 download_awattar_prices() {
     local url="$1"
     local file="$2"
@@ -293,6 +393,20 @@ download_awattar_prices() {
         rm -f "$file2"
         echo "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online."
     fi
+}
+
+get_tibber_api() {
+    curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
+        --header 'Content-Type: application/json' \
+        --header "Authorization: Bearer $tibber_api_key" \
+        --data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
+        awk '{
+        gsub(/"current":/, "\n&");
+        gsub(/"today":/, "\n&");
+        gsub(/"tomorrow":/, "\n&");
+        gsub(/"total":/, "\n&");
+        print
+    }'
 }
 
 download_tibber_prices() {
@@ -365,60 +479,60 @@ download_entsoe_prices() {
     if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
     awk '
-/<Period>/ {
-    capture_period = 1
-}
-/<\/Period>/ {
-    capture_period = 0
-}
-capture_period && /<resolution>PT60M<\/resolution>/ {
-    valid_period = 1
-}
-valid_period && /<price.amount>/ {
-    gsub("<price.amount>", "", $0)
-    gsub("<\/price.amount>", "", $0)
-    gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    prices = prices $0 ORS
-}
-valid_period && /<\/Period>/ {
-    exit
-}
-
-
-/<Reason>/ {
-    in_reason = 1
-    error_message = ""
-}
-
-in_reason && /<code>/ {
-    gsub(/<code>|<\/code>/, "")
-    gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    error_code = $0
-}
-
-in_reason && /<text>/ {
-    gsub(/<text>|<\/text>/, "")
-	gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    error_message = $0
-}
-
-/<\/Reason>/ {
-    in_reason = 0
-}
-
-END {
-    if (error_code == 999) {
-        print "E: Entsoe data retrieval error:", error_message
-        exit 1
-    } else if (prices != "") {
-        printf "%s", prices > "'"$output_file"'"
-    } else {
-        print "E: No prices found in the XML data."
-		exit 1
+    # Capture content inside the <Period> tag
+    /<Period>/ {
+        capture_period = 1
     }
-}
-' "$file"
+    /<\/Period>/ {
+        capture_period = 0
+    }
+    # Ensure we are within a valid period and capture prices for one-hour resolution
+    capture_period && /<resolution>PT60M<\/resolution>/ {
+        valid_period = 1
+    }
+    valid_period && /<price.amount>/ {
+        gsub("<price.amount>", "", $0)
+        gsub("<\/price.amount>", "", $0)
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        prices = prices $0 ORS
+    }
+    valid_period && /<\/Period>/ {
+        exit
+    }
 
+    # Capture error information inside the <Reason> tag
+    /<Reason>/ {
+        in_reason = 1
+        error_message = ""
+    }
+    in_reason && /<code>/ {
+        gsub(/<code>|<\/code>/, "")
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        error_code = $0
+    }
+    in_reason && /<text>/ {
+        gsub(/<text>|<\/text>/, "")
+        gsub(/^[\t ]+|[\t ]+$/, "", $0)
+        error_message = $0
+    }
+    /<\/Reason>/ {
+        in_reason = 0
+    }
+
+    # At the end of processing, print out the captured prices or any error messages
+    END {
+        if (error_code == 999) {
+            print "E: Entsoe data retrieval error:", error_message
+            exit 1
+        } else if (prices != "") {
+            printf "%s", prices > "'"$output_file"'"
+        } else {
+            print "E: No prices found in the XML data."
+            exit 1
+        }
+    }
+    ' "$file"
+    
     sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >>"$output_file"
