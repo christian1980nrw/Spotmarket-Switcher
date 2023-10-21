@@ -298,8 +298,9 @@ declare -A valid_vars=(
 parse_and_validate_config() {
     local file="$1"
     local errors=""
-    local counter=0
-    local total_vars=${#valid_vars[@]}
+    
+    rotating_spinner & # Start the spinner in the background
+    local spinner_pid=$! # Get the PID of the spinner
     
     # Step 1: Parse
     while IFS='=' read -r key value; do
@@ -308,7 +309,6 @@ parse_and_validate_config() {
         # value=$(echo "$value" | cut -d'#' -f1 | tr -d ' ' | tr -d '"')
         value=$(echo "$value" | awk -F'#' '{gsub(/^ *"| *"$|^ *| *$/, "", $1); print $1}')
 
- 
         # Only process rows with key-value pairs
         [[ "$key" == "" || "$value" == "" ]] && continue
  
@@ -342,14 +342,11 @@ parse_and_validate_config() {
             errors+="E: $var_name has an invalid value: ${!var_name}.\n"
         fi
 
-        # Progress bar
-        counter=$((counter + 1))
-        local progress=$((100 * counter / total_vars))
-        printf "Validating config: %d%%\r" "$progress"
-        sleep 0.05
     done
-    echo -ne '\n'
 
+    # Stop the spinner once the parsing is done
+    kill $spinner_pid &>/dev/null
+    
     # Additional check for use_start_stop_logic and price values
     if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
         errors+="E: With 'use_start_stop_logic' enabled, 'stop_price' cannot be lower than 'start_price'.\n"
@@ -364,7 +361,19 @@ parse_and_validate_config() {
         return 0
     fi
 }
-                    
+
+rotating_spinner() {
+    local delay=0.1
+    local spinstr="|/-\\"
+    while true; do
+        local temp=${spinstr#?}
+        printf " [%c]  Loading..." "$spinstr"
+        spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    done
+}
+
 download_awattar_prices() {
     local url="$1"
     local file="$2"
