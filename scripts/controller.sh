@@ -355,9 +355,9 @@ parse_and_validate_config() {
 }
 # Call the function with the configuration file as an argument
 parse_and_validate_config "$DIR/config.txt"
-if [ $? -eq 1 ]; then
+# if [ $? -eq 1 ]; then
     # Handle error
-fi
+# fi
                     
 download_awattar_prices() {
     local url="$1"
