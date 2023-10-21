@@ -346,6 +346,7 @@ parse_and_validate_config() {
         counter=$((counter + 1))
         local progress=$((100 * counter / total_vars))
         printf "Validating config: %d%%\r" "$progress"
+        sleep 0.05
     done
     echo -ne '\n'
 
