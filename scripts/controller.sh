@@ -298,8 +298,10 @@ declare -A valid_vars=(
 parse_and_validate_config() {
     local file="$1"
     local errors=""
-
-    # Schritt 1: Parsen
+    local counter=0
+    local total_vars=${#valid_vars[@]}
+    
+    # Step 1: Parse
     while IFS='=' read -r key value; do
         # Treat everything after a "#" as a comment and remove it
         key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
@@ -307,7 +309,7 @@ parse_and_validate_config() {
         value=$(echo "$value" | awk -F'#' '{gsub(/^ *"| *"$|^ *| *$/, "", $1); print $1}')
 
  
-        # Nur Zeilen mit Schlüssel-Wert-Paaren weiterverarbeiten
+        # Only process rows with key-value pairs
         [[ "$key" == "" || "$value" == "" ]] && continue
  
         # Set the bash variable with the read value
@@ -339,6 +341,11 @@ parse_and_validate_config() {
         if ! [[ "${!var_name}" =~ ^($validation_pattern)$ ]]; then
             errors+="E: $var_name has an invalid value: ${!var_name}.\n"
         fi
+
+        # Progress bar
+        counter=$((counter + 1))
+        local progress=$((100 * counter / total_vars))
+        echo -ne "Validating config: ${progress}%\r"
     done
 
     # Additional check for use_start_stop_logic and price values
