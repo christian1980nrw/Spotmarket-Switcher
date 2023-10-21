@@ -99,6 +99,13 @@ fi
 #Set Colors (http://natelandau.com/bash-scripting-utilities/)
 #
 
+# when $TERM is empty (non-interactive shell), then expand tput with '-T xterm-256color'
+if [ ${TERM}=="" ]; then
+	TPUTTERM='-T xterm-256color'
+else
+	TPUTTERM=''
+fi
+
 bold=$(tput bold)
 underline=$(tput sgr 0 1)
 reset=$(tput sgr0)
