@@ -11,7 +11,7 @@ jobs:
       options: --cpus 1
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Version 2
+        uses: actions/checkout@v3  # Version 3
 
       - name: Copy config sample
         run: cp scripts/sample.config.txt scripts/config.txt
