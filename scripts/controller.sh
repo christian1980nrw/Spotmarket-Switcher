@@ -871,7 +871,7 @@ fritz_login() {
 
 log_info() {
     local msg="$1"
-    local prefix=$(echo "$msg" | cut -d' ' -f1)  # Extract the first word
+    local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1)  # Extract the first word from the first line
     local color="\033[1m"      # Default color
     local writeToLog=true      # Default is true
 
@@ -890,7 +890,7 @@ log_info() {
 
     # If we should write to the log, write without color codes
     if [ "$writeToLog" == "true" ]; then
-        echo "$msg" | sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE"
+        echo -e "$msg" | sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE"
     fi
 }
 
