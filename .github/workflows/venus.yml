@@ -11,11 +11,7 @@ jobs:
       options: --cpus 1
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Version 2
-
-      - name: Copy config sample
-        run: cp scripts/sample.config.txt scripts/config.txt
-      
+        uses: actions/checkout@v3
       - name: Check for dockerenv file
         run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
       - name: Install more UNIX tools
@@ -43,7 +39,7 @@ jobs:
           else
              echo "[FAIL]"
              pwd
-             find . | head -n 30
+             find . | head -n 30
              exit 1
           fi
         env:
