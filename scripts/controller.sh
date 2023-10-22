@@ -295,69 +295,64 @@ declare -A valid_vars=(
     ["tibber_api_key"]="string"
 )
 
+declare -A config_values
+
 parse_and_validate_config() {
     local file="$1"
     local errors=""
-    
+
     rotating_spinner & # Start the spinner in the background
     local spinner_pid=$! # Get the PID of the spinner
-    
+
     # Step 1: Parse
     while IFS='=' read -r key value; do
         # Treat everything after a "#" as a comment and remove it
         key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
-        # value=$(echo "$value" | cut -d'#' -f1 | tr -d ' ' | tr -d '"')
-	value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
+        value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
 
         # Only process rows with key-value pairs
         [[ "$key" == "" || "$value" == "" ]] && continue
- 
-        # Set the bash variable with the read value
-        declare "$key=$value"
+
+        # Set the value in the associative array
+        config_values["$key"]="$value"
     done < "$file"
 
     # Step 2: Validation
     for var_name in "${!valid_vars[@]}"; do
         local validation_pattern=${valid_vars[$var_name]}
- 
+
         # Check whether the variable was set at all
-        if [[ -z ${!var_name+x} ]]; then
+        if [[ -z ${config_values[$var_name]+x} ]]; then
             errors+="E: $var_name is not set.\n"
             continue
         fi
 
-        # Special checking for strings, IP and arrays
+        # Special checking for strings, IP, and arrays
         if [[ "$validation_pattern" == "string" ]]; then
             # Strings can be empty or filled
             continue
-        elif [[ "$validation_pattern" == "array" && "${!var_name[*]}" == "" ]]; then
+        elif [[ "$validation_pattern" == "array" && "${config_values[$var_name]}" == "" ]]; then
             continue
-        elif [[ "$validation_pattern" == "ip" && ! "${!var_name}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            errors+="E: $var_name has an invalid IP address format: ${!var_name}.\n"
+        elif [[ "$validation_pattern" == "ip" && ! "${config_values[$var_name]}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            errors+="E: $var_name has an invalid IP address format: ${config_values[$var_name]}.\n"
             continue
         fi
 
         # Standard check against the given pattern
-        if ! [[ "${!var_name}" =~ ^($validation_pattern)$ ]]; then
-            errors+="E: $var_name has an invalid value: ${!var_name}.\n"
+        if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
+            errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
         fi
-
     done
 
     # Stop the spinner once the parsing is done
     kill $spinner_pid &>/dev/null
-    
-    # Additional check for use_start_stop_logic and price values
-    if ((use_start_stop_logic == 1 && stop_price_integer < start_price_integer)); then
-        errors+="E: With 'use_start_stop_logic' enabled, 'stop_price' cannot be lower than 'start_price'.\n"
-    fi
-    
+
     # Output errors if any were found
     if [[ -n "$errors" ]]; then
-        log_info "E: $errors" false
+        echo -e "$errors"
         return 1
     else
-        log_info "I: Config validation passed." false
+        echo "Config validation passed."
         return 0
     fi
 }
@@ -367,11 +362,10 @@ rotating_spinner() {
     local spinstr="|/-\\"
     while true; do
         local temp=${spinstr#?}
-
-printf " [%c]  Loading..." "$spinstr"
+        printf " [%c]  Loading..." "$spinstr"
         spinstr=$temp${spinstr%"$temp"}
         sleep $delay
-        printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+        printf "\r"
     done
 }
 
@@ -882,18 +876,18 @@ log_info() {
     local writeToLog=true      # Default is true
 
     case "$prefix" in
-        "E:") color="\033[1;31m" ;;  # Hellrot
-        "D:") color="\033[1;34m"     # Hellblau
+        "E:") color="\033[1;31m" ;;  # Bright Red
+        "D:") color="\033[1;34m"     # Bright Blue
              writeToLog=false ;;     # Default to not log debug messages
-        "W:") color="\033[1;33m" ;;  # Hellgelb
-        "I:") color="\033[1;32m" ;;  # Hellgrün
+        "W:") color="\033[1;33m" ;;  # Bright Yellow
+        "I:") color="\033[1;32m" ;;  # Bright Green
     esac
 
     writeToLog="${2:-$writeToLog}"  # Override default if second parameter is provided
 
-    # Console output with colors
+    # If we should write to the log, write without color codes
     if [ "$writeToLog" == "true" ]; then
-        printf "${color}%b\033[0m\n" "$msg" | tee -a >(while read line; do echo "$line" >> "$LOG_FILE"; done)
+        printf "${color}%b\033[0m\n" "$msg" | tee >(sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE")
     else
         printf "${color}%b\033[0m\n" "$msg"
     fi
