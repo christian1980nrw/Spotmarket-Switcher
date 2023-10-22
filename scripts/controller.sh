@@ -878,7 +878,7 @@ fritz_login() {
 log_info() {
     local msg="$1"
     local prefix=$(echo "$msg" | cut -d' ' -f1)  # Extract the first word
-    local color="\033[0m"      # Default color
+    local color="\033[1m"      # Default color
     local writeToLog=true      # Default is true
 
     case "$prefix" in
