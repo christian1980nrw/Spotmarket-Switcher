@@ -538,17 +538,17 @@ download_entsoe_prices() {
     # At the end of processing, print out the captured prices or any error messages
     END {
         if (error_code == 999) {
-            print "E: Entsoe data retrieval error:", error_message
+            log_info "E: Entsoe data retrieval error:", error_message
             exit 1
         } else if (prices != "") {
             printf "%s", prices > "'"$output_file"'"
         } else {
             if ("'"$output_file"'" != "'"$file13"'") {
-                print "E: No prices found in the today XML data."
+                log_info "E: No prices found in the today XML data."
 			    exit 1
             }
         }
-            print "E: No prices found in the tomorrow XML data."
+            log_info "E: No prices found in the tomorrow XML data."
     }
     ' "$file"
     
