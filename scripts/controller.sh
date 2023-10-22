@@ -876,7 +876,19 @@ fritz_login() {
 }
 
 log_info() {
-    echo "$1" | tee -a "$LOG_FILE"
+    local msg="$1"
+    local prefix="${msg:0:2}"  # Extract the first two characters
+    local color="\033[0m"      # Default color
+
+    case "$prefix" in
+        "E:") color="\033[0;31m" ;;  # Red
+        "D:") color="\033[0;34m" ;;  # Blue
+        "W:") color="\033[0;33m" ;;  # Yellow
+        "I:") color="\033[0;32m" ;;  # Green
+    esac
+
+    # Console edition with colors
+    printf "${color}%s\033[0m\n" "$msg" | tee -a >(while read line; do echo "$line" >> "$LOG_FILE"; done)
 }
 
 ####################################
