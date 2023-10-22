@@ -882,11 +882,11 @@ log_info() {
     local writeToLog=true      # Default is true
 
     case "$prefix" in
-        "E:") color="\033[0;31m" ;;  # Red
-        "D:") color="\033[0;34m"     # Blue
+        "E:") color="\033[1;31m" ;;  # Hellrot
+        "D:") color="\033[1;34m"     # Hellblau
              writeToLog=false ;;     # Default to not log debug messages
-        "W:") color="\033[0;33m" ;;  # Yellow
-        "I:") color="\033[0;32m" ;;  # Green
+        "W:") color="\033[1;33m" ;;  # Hellgelb
+        "I:") color="\033[1;32m" ;;  # Hellgrün
     esac
 
     writeToLog="${2:-$writeToLog}"  # Override default if second parameter is provided
