@@ -51,7 +51,7 @@ jobs:
             echo "I: Nothing to install for ${{ matrix.os }}"
           fi
       - name: Install
-        run: ./victron-venus-os-install.sh
+        run: sudo ./victron-venus-os-install.sh
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
