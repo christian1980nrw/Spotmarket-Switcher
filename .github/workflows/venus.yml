@@ -23,7 +23,7 @@ jobs:
           if which apt > /dev/null
           then
              apt update
-             apt -y install wget curl cron
+             apt -y install wget curl
           elif which opkg > /dev/null
           then
              opkg install wget
