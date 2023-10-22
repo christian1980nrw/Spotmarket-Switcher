@@ -893,9 +893,9 @@ log_info() {
 
     # Console output with colors
     if [ "$writeToLog" == "true" ]; then
-        printf "${color}%s\033[0m\n" "$msg" | tee -a >(while read line; do echo "$line" >> "$LOG_FILE"; done)
+        printf "${color}%b\033[0m\n" "$msg" | tee -a >(while read line; do echo "$line" >> "$LOG_FILE"; done)
     else
-        printf "${color}%s\033[0m\n" "$msg"
+        printf "${color}%b\033[0m\n" "$msg"
     fi
 }
 
