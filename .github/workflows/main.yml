@@ -32,26 +32,52 @@ jobs:
       - name: Lint all shell scripts
         run: |
           # https://github.com/koalaman/shellcheck/blob/master/shellcheck.1.md
-          # ... (der restliche Teil bleibt unverändert)
+          if ! shellcheck \
+             victron-venus-os-install.sh scripts/controller.sh scripts/run
+          then
+            ret=$?
+            if [ "0" = "$ret" ]; then
+              echo "$ret: All files successfully scanned with no issues."
+              echo "   Well done, just maybe the return code is not processed properly?!"
+            elif [ "1" = "$ret" ]; then
+              echo "1: All files successfully scanned with some issues."
+              echo "   Good enough!"
+            elif [ "2" = "$ret" ]; then
+              echo "2: Some files could not be processed."
+              exit $ret
+            elif [ "3" = "$ret" ]; then
+              echo "3: ShellCheck was invoked with bad syntax."
+              exit $ret
+            elif [ "4" = "$ret" ]; then
+              echo "4: ShellCheck was invoked with bad options."
+              exit $ret
+            else
+              echo "E: SpellCheck exited with unexpected return code '$ret'."
+              exit $ret
+            fi
+          else
+            echo "$ret: All files successfully scanned with no issues."
+            echo "   Well done!"
+          fi
   execute:
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Copy sample.config.txt to config.txt
-        run: cp scripts/sample.config.txt scripts/config.txt
       - name: Extend default set of UNIX tools
         run: |
-          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+          if [ "ubuntu-latest" = ${{ matrix.os }} ]; then
             sudo apt-get install wget curl dbus sed gawk
           else
             echo "I: Nothing to install for ${{ matrix.os }}"
           fi
       - name: Install
-        run: sudo ./victron-venus-os-install.sh
+        run: ./victron-venus-os-install.sh
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
