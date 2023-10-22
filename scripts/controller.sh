@@ -885,11 +885,12 @@ log_info() {
 
     writeToLog="${2:-$writeToLog}"  # Override default if second parameter is provided
 
+    # Print to console with color codes
+    printf "${color}%b\033[0m\n" "$msg"
+
     # If we should write to the log, write without color codes
     if [ "$writeToLog" == "true" ]; then
-        printf "${color}%b\033[0m\n" "$msg" | tee >(sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE")
-    else
-        printf "${color}%b\033[0m\n" "$msg"
+        echo "$msg" | sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE"
     fi
 }
 
