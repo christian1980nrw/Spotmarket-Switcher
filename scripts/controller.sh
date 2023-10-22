@@ -232,7 +232,7 @@ done
 
 if [ $num_tools_missing -gt 0 ]; then
     log_info "E: $num_tools_missing tools are missing."
-    exit 1
+    exit 127
 fi
 
 unset num_tools_missing
@@ -381,12 +381,12 @@ download_awattar_prices() {
     fi
     if ! curl "$url" >"$file"; then
         log_info "E: Download of aWATTar prices from '$url' to '$file' failed."
-        exit 1
+        exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
         log_info "E: Could not get aWATTar prices from '$url' to feed file '$file'."
-        exit 1
+        exit_with_cleanup 1
     fi
 
     if [ -n "$DEBUG" ]; then
@@ -432,7 +432,7 @@ download_tibber_prices() {
     fi
     if ! get_tibber_api | tr -d '{}[]' >"$file"; then
         log_info "E: Download of Tibber prices from '$url' to '$file' failed."
-        exit 1
+        exit_with_cleanup 1
     fi
 
     sed -n '/"today":/,/"tomorrow":/p' "$file" | sed '$d' | sed '/"today":/d' >"$file15"
@@ -452,7 +452,7 @@ download_tibber_prices() {
     if [ ! -s "$file16" ]; then
         log_info "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
         rm "$file"
-        exit 1
+        exit_with_cleanup 1
     fi
 }
 
@@ -471,19 +471,19 @@ download_entsoe_prices() {
 
     if ! curl "$url" >"$file"; then
         log_info "E: Retrieval of entsoe data from '$url' into file '$file' failed."
-        exit 1
+        exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
         log_info "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
-        exit 1
+        exit_with_cleanup 1
     fi
 
     if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." >&2 "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     if [ ! -s "$file" ]; then
         log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
-        exit 1
+        exit_with_cleanup 1
     fi
 
     if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." >&2 "D: Entsoe file '$file' with price data downloaded"; fi
@@ -533,16 +533,16 @@ download_entsoe_prices() {
     END {
         if (error_code == 999) {
             log_info "E: Entsoe data retrieval error:", error_message
-            exit 1
+            exit_with_cleanup 1
         } else if (prices != "") {
             printf "%s", prices > "'"$output_file"'"
         } else {
             if ("'"$output_file"'" != "'"$file13"'") {
                 log_info "E: No prices found in the today XML data."
-			    exit 1
+		exit_with_cleanup 1
             }
         }
-            log_info "E: No prices found in the tomorrow XML data."
+        log_info "E: No prices found in the tomorrow XML data."
     }
     ' "$file"
     
@@ -580,17 +580,17 @@ download_solarenergy() {
         fi
         if ! curl "$link3" -o "$file3"; then
             log_info "E: Download of solarenergy data from '$link3' failed."
-            exit 1
+            exit_with_cleanup 1
         elif ! test -f "$file3"; then
             log_info "E: Could not get solarenergy data, missing file '$file3'."
-            exit 1
+            exit_with_cleanup 1
         fi
         if [ -n "$DEBUG" ]; then
             log_info "D: File3 $file3 downloaded" >&2
         fi
         if ! test -f "$file3"; then
             log_info "E: Could not find downloaded file '$file3' with solarenergy data."
-            exit 1
+            exit_with_cleanup 1
         fi
         if [ -n "$DEBUG" ]; then
             log_info "D: Solarenergy data downloaded to file '$file3'."
@@ -779,12 +779,63 @@ check_abort_condition() {
     fi
 }
 
-# Function to manage sockets and log a message
+# Function to manage fritz sockets and log a message
+manage_fritz_sockets() {
+    local action=$1
+
+    [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
+
+    if fritz_login; then
+        log_info "I: Turning $action Fritz sockets."
+        for socket in "${sockets[@]}"; do
+            [ "$socket" != "0" ] && manage_fritz_socket "$action" "$socket"
+        done
+    else
+        log_info "E: Fritz login failed. Continuing to Shelly..."
+    fi
+}
+
 manage_fritz_socket() {
     local action=$1
     local socket=$2
     local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
     curl -s "$url" >/dev/null || log_info "E: Could not call URL '$url' to switch $action said switch - ignored."
+}
+
+fritz_login() {
+    # Get session ID (SID)
+    sid=""
+    challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
+    if [ -z "$challenge" ]; then
+        log_info "E: Could not retrieve challenge from login_sid.lua."
+        return 1
+    fi
+
+    hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
+    sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" |
+        grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
+
+    if [ "$sid" = "0000000000000000" ]; then
+        log_info "E: Login to Fritz!Box failed."
+        return 1
+    fi
+
+    if [ -n "$DEBUG" ]; then
+        log_info "D: Login to Fritz!Box successful." >&2
+    fi
+    return 0
+}
+
+# Function to manage shelly and log a message
+manage_shelly_sockets() {
+    local action=$1
+
+    [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
+
+    log_info "I: Turning $action Shelly sockets."
+    for ip in "${shelly_ips[@]}"; do
+        [ "$ip" != "0" ] && manage_shelly_socket "$action" "$ip"
+    done
 }
 
 manage_shelly_socket() {
@@ -845,30 +896,6 @@ euroToMillicent_test() {
     done
 }
 
-fritz_login() {
-    # Get session ID (SID)
-    sid=""
-    challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
-    if [ -z "$challenge" ]; then
-        log_info "E: Could not retrieve challenge from login_sid.lua."
-        return 1
-    fi
-
-    hash=$(echo -n "$challenge-$passwd" | sed -e 's,.,&\n,g' | tr '\n' '\0' | md5sum | grep -o "[0-9a-z]\{32\}")
-    sid=$(curl -s "http://$fbox/login_sid.lua" -d "response=$challenge-$hash" -d "username=$user" |
-        grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
-
-    if [ "$sid" = "0000000000000000" ]; then
-        log_info "E: Login to Fritz!Box failed."
-        return 1
-    fi
-
-    if [ -n "$DEBUG" ]; then
-        log_info "D: Login to Fritz!Box successful." >&2
-    fi
-    return 0
-}
-
 log_info() {
     local msg="$1"
     local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1)  # Extract the first word from the first line
@@ -892,6 +919,14 @@ log_info() {
     if [ "$writeToLog" == "true" ]; then
         echo -e "$msg" | sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE"
     fi
+}
+
+exit_with_cleanup() {
+    log_info "I: Cleanup and exit with error $1"
+    manage_charging "off" "Turn off charging."
+    manage_fritz_sockets "off"
+    manage_shelly_sockets "off"
+    exit $1
 }
 
 ####################################
@@ -1142,31 +1177,12 @@ fi
 
 # Execute Fritz DECT on command
 if ((use_fritz_dect_sockets == 1)); then
-    if fritz_login; then
-        if ((execute_switchablesockets_on == 1)); then
-            log_info "I: Turning ON Fritz sockets."
-            for socket in "${sockets[@]}"; do
-                [ "$socket" != "0" ] && manage_fritz_socket "on" "$socket"
-            done
-        else
-            log_info "I: Turning OFF Fritz sockets."
-            for socket in "${sockets[@]}"; do
-                [ "$socket" != "0" ] && manage_fritz_socket "off" "$socket"
-            done
-        fi
-    else
-        log_info "E: Fritz login failed. Continuing to Shelly..."
-    fi
+    manage_fritz_sockets
 fi
 
-action_for_shelly_sockets=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 if ((use_shelly_wlan_sockets == 1)); then
-    log_info "I: Turning $action_for_shelly_sockets Shelly sockets."
-    for ip in "${shelly_ips[@]}"; do
-        [ "$ip" != "0" ] && manage_shelly_socket "$action_for_shelly_sockets" "$ip"
-    done
+    manage_fritz_sockets
 fi
-
 echo >>"$LOG_FILE"
 
 # Rotating log files
