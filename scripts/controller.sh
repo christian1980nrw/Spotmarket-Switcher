@@ -307,7 +307,7 @@ parse_and_validate_config() {
         # Treat everything after a "#" as a comment and remove it
         key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
         # value=$(echo "$value" | cut -d'#' -f1 | tr -d ' ' | tr -d '"')
-        value=$(echo "$value" | awk -F'#' '{gsub(/^ *"| *"$|^ *| *$/, "", $1); print $1}')
+	value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
 
         # Only process rows with key-value pairs
         [[ "$key" == "" || "$value" == "" ]] && continue
