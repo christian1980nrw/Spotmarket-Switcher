@@ -791,7 +791,7 @@ manage_fritz_sockets() {
             [ "$socket" != "0" ] && manage_fritz_socket "$action" "$socket"
         done
     else
-        log_info "E: Fritz login failed. Continuing to Shelly..."
+        log_info "E: Fritz login failed."
     fi
 }
 
@@ -1181,8 +1181,9 @@ if ((use_fritz_dect_sockets == 1)); then
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
-    manage_fritz_sockets
+    manage_shelly_sockets
 fi
+
 echo >>"$LOG_FILE"
 
 # Rotating log files
