@@ -21,10 +21,10 @@ jobs:
       run: |
         # Remove the -DEV suffix from the version number
         NEW_VERSION=$(sed -n 's/VERSION=//p' scripts/controller.sh | sed 's/-DEV//')
-        sed -i "s/VERSION=.*/VERSION=$NEW_VERSION/" scripts/controller.sh
+        sed -i "s/VERSION=.*/VERSION=${NEW_VERSION}/" scripts/controller.sh
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git commit -am "Update version to $NEW_VERSION"
+        git commit -am "Update version to ${NEW_VERSION}"
         git push origin main
 
     - name: Merge changes back to dev and append -DEV
@@ -32,7 +32,7 @@ jobs:
         git checkout dev
         git merge main --no-ff -m "Merge main changes back to dev"
         # Append -DEV back to the version number for the dev branch
-        NEW_DEV_VERSION="$NEW_VERSION-DEV"
-        sed -i "s/VERSION=.*/VERSION=$NEW_DEV_VERSION/" scripts/controller.sh
-        git commit -am "Update version to $NEW_DEV_VERSION in dev"
+        NEW_DEV_VERSION="${NEW_VERSION}-DEV"
+        sed -i "s/VERSION=.*/VERSION=${NEW_DEV_VERSION}/" scripts/controller.sh
+        git commit -am "Update version to ${NEW_DEV_VERSION} in dev"
         git push origin dev
