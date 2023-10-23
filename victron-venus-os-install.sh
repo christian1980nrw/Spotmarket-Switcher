@@ -28,7 +28,6 @@ EOLICENSE
 )
 
 set -e
-set -x
 
 if [ -z "$LANG" ]; then
     export LANG=C
