@@ -33,6 +33,6 @@ jobs:
         git merge main --no-ff -m "Merge main changes back to dev"
         # Append -DEV back to the version number for the dev branch
         NEW_DEV_VERSION="${NEW_VERSION}-DEV"
-        sed -i "s/VERSION=.*/VERSION=${NEW_DEV_VERSION}/" scripts/controller.sh
+        sed -i "s/^VERSION=.*$/VERSION=\"${NEW_VERSION}\"/" scripts/controller.sh
         git commit -am "Update version to ${NEW_DEV_VERSION} in dev"
         git push origin dev
