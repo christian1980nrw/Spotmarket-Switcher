@@ -1,0 +1,44 @@
+name: DEV Versioning
+
+# This workflow triggers on every push to the 'dev' branch
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  update_version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Determine size of changes
+      id: changes
+      run: |
+        # Get the number of lines changed since the last commit
+        LINES_CHANGED=$(git diff HEAD~1 --stat | tail -n 1 | awk '{print $4+$6}')
+        echo "LINES_CHANGED=$LINES_CHANGED"
+        # Check if the change is "big" (more than 100 lines in this example)
+        if [[ "$LINES_CHANGED" -gt 100 ]]; then
+          echo "::set-output name=big_change::true"
+        else
+          echo "::set-output name=big_change::false"
+        fi
+
+    - name: Update VERSION
+      run: |
+        # If the change is "big", increment the minor version. Otherwise, increment the patch version.
+        CURRENT_VERSION=$(sed -n 's/^VERSION=\"\(.*\)-DEV\"$/\1/p' scripts/controller.sh)
+        if [[ "${{ steps.changes.outputs.big_change }}" == "true" ]]; then
+          NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F. -v OFS=. '{$2=$2+1; $3=0;print}')
+        else
+          NEW_VERSION=$(echo "$CURRENT_VERSION" | awk -F. -v OFS=. '{$3=$3+1;print}')
+        fi
+        # Append -DEV to the version number
+        sed -i "s/^VERSION=\".*\"$/VERSION=\"$NEW_VERSION-DEV\"/" scripts/controller.sh
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Update version to $NEW_VERSION-DEV"
+        git push

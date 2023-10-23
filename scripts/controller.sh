@@ -28,6 +28,8 @@ License=$(
 EOLICENSE
 )
 
+VERSION="2.3.2-DEV"
+
 set -e
 
 if [ -z "$LANG" ]; then
@@ -132,7 +134,7 @@ if [ -f "$DIR/config.txt" ]; then
     # Include the configuration file
     source "$DIR/config.txt"
 else
-    log_info "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
+    echo "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
 fi
 
@@ -237,7 +239,6 @@ fi
 
 unset num_tools_missing
 
-
 #######################################
 ###    Begin of the functions...    ###
 #######################################
@@ -301,7 +302,7 @@ parse_and_validate_config() {
     local file="$1"
     local errors=""
 
-    rotating_spinner & # Start the spinner in the background
+    rotating_spinner &   # Start the spinner in the background
     local spinner_pid=$! # Get the PID of the spinner
 
     # Step 1: Parse
@@ -315,7 +316,7 @@ parse_and_validate_config() {
 
         # Set the value in the associative array
         config_values["$key"]="$value"
-    done < "$file"
+    done <"$file"
 
     # Step 2: Validation
     for var_name in "${!valid_vars[@]}"; do
@@ -479,14 +480,14 @@ download_entsoe_prices() {
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." >&2 "D: Entsoe file '$file' with price data downloaded" >&2; fi
+    if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2 >&2; fi
 
     if [ ! -s "$file" ]; then
         log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." >&2 "D: Entsoe file '$file' with price data downloaded"; fi
+    if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     awk '
     # Capture content inside the <Period> tag
@@ -545,13 +546,13 @@ download_entsoe_prices() {
         log_info "E: No prices found in the tomorrow XML data."
     }
     ' "$file"
-    
+
     if [ -f "$output_file" ]; then
-        sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
+        sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
         timestamp=$(TZ=$TZ date +%d)
-        echo "date_now_day: $timestamp" >> "$output_file"
+        echo "date_now_day: $timestamp" >>"$output_file"
     fi
-    
+
     # Check if tomorrow file contains next day prices
     if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
         cat $file10 >$file8
@@ -616,15 +617,15 @@ get_awattar_prices() {
 }
 
 get_tibber_prices() {
-    current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
-    lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
-    average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
+    current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file15")
+    lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
+    second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
+    third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
+    fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
+    fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
+    sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
+    highest_price=$(sed -n "s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
+    average_price=$(sed -n "s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
 
 get_current_entsoe_day() { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
@@ -712,10 +713,12 @@ evaluate_conditions() {
 
     for condition in "${!conditions_ref[@]}"; do
         if [ -n "$DEBUG" ]; then
-            result="( ${descriptions_ref[$condition]} ) evaluates to $([ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false)"
+            description_value="${descriptions_ref[$condition]}"
+            condition_evaluation=$([ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false)
+            result="($description_value) evaluates to $condition_evaluation"
             log_info "D: condition_evaluation [ $result ]." >&2
         fi
-        
+
         if ((conditions_ref[$condition])) && [[ $condition_met -eq 0 ]]; then
             execute_ref=1
             condition_met_ref="$condition"
@@ -747,7 +750,10 @@ is_charging_economical() {
 
     if [ -n "$DEBUG" ]; then
         log_info "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
-        log_info "D: if [ reference_price ($(millicentToEuro $reference_price)) > total_cost ($(millicentToEuro $total_cost)) ] result is $([ "$is_economical" -eq 1 ] && echo "false" || echo "true")." >&2
+        reference_price_euro=$(millicentToEuro $reference_price)
+        total_cost_euro=$(millicentToEuro $total_cost)
+        is_economical_str=$([ "$is_economical" -eq 1 ] && echo "false" || echo "true")
+        log_info "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str." >&2
     fi
 
     return $is_economical
@@ -872,12 +878,8 @@ euroToMillicent() {
     # Replace each comma with a period, fixme if this is wrong
     euro=$(echo "$euro" | sed 's/,/./g')
 
-    if which bc >/dev/null 2>&1; then
-        # Using bc to multiply the euro number and convert it to an integer
-        v=$(echo "scale=0; $euro * 10^$potency / 1" | bc)
-    else
-        v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
-    fi
+    # v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
+    v=$(awk -v euro="$euro" -v potency="$potency" 'BEGIN {printf "%.0f", euro * (10 ^ potency)}')
 
     if [ -z "$v" ]; then
         log_info "E: Could not translate '$euro' to an integer."
@@ -898,26 +900,28 @@ euroToMillicent_test() {
 
 log_info() {
     local msg="$1"
-    local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1)  # Extract the first word from the first line
-    local color="\033[1m"      # Default color
-    local writeToLog=true      # Default is true
+    local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1) # Extract the first word from the first line
+    local color="\033[1m"                                   # Default color
+    local writeToLog=true                                   # Default is true
 
     case "$prefix" in
-        "E:") color="\033[1;31m" ;;  # Bright Red
-        "D:") color="\033[1;34m"     # Bright Blue
-             writeToLog=false ;;     # Default to not log debug messages
-        "W:") color="\033[1;33m" ;;  # Bright Yellow
-        "I:") color="\033[1;32m" ;;  # Bright Green
+    "E:") color="\033[1;31m" ;; # Bright Red
+    "D:")
+        color="\033[1;34m" # Bright Blue
+        writeToLog=false
+        ;;                      # Default to not log debug messages
+    "W:") color="\033[1;33m" ;; # Bright Yellow
+    "I:") color="\033[1;32m" ;; # Bright Green
     esac
 
-    writeToLog="${2:-$writeToLog}"  # Override default if second parameter is provided
+    writeToLog="${2:-$writeToLog}" # Override default if second parameter is provided
 
     # Print to console with color codes
     printf "${color}%b\033[0m\n" "$msg"
 
     # If we should write to the log, write without color codes
     if [ "$writeToLog" == "true" ]; then
-        echo -e "$msg" | sed 's/\x1b\[[0-9;]*m//g' >> "$LOG_FILE"
+        echo -e "$msg" | sed 's/\x1b\[[0-9;]*m//g' >>"$LOG_FILE"
     fi
 }
 
@@ -935,9 +939,12 @@ exit_with_cleanup() {
 
 echo >>"$LOG_FILE"
 
+log_info "I: Bash Version: $(bash --version | head -n 1)"
+log_info "I: Spotmarket-Switcher - Version $VERSION"
+
 parse_and_validate_config "$DIR/config.txt"
 # if [ $? -eq 1 ]; then
-    # Handle error
+# Handle error
 # fi
 
 # An independent segment to test the conversion of floats to integers
@@ -1087,6 +1094,8 @@ if ((use_solarweather_api_to_abort == 1)); then
         log_info "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
     fi
     find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
+else
+    log_info "W: skip Solarweather. not activated"
 fi
 
 charging_condition_met=""
@@ -1173,15 +1182,21 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
     fi
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
     manage_charging "off" "Charging was not executed."
+else
+    log_info "W: skip Victron Charger. not activated"
 fi
 
 # Execute Fritz DECT on command
 if ((use_fritz_dect_sockets == 1)); then
     manage_fritz_sockets
+else
+    log_info "W: skip Fritz DECT. not activated"
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
     manage_shelly_sockets
+else
+    log_info "W: skip Shelly Api. not activated"
 fi
 
 echo >>"$LOG_FILE"
@@ -1189,6 +1204,7 @@ echo >>"$LOG_FILE"
 # Rotating log files
 if [ -f "$LOG_FILE" ]; then
     if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
+        log_info "I: Rotating log files"
         mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
         touch "$LOG_FILE"
         find . -maxdepth 1 -name "${LOG_FILE}*" -type f -exec ls -1t {} + |
@@ -1199,5 +1215,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-    log_info "D: [ OK ]" >&2
+    log_info "D: \[ OK \]" >&2
 fi
