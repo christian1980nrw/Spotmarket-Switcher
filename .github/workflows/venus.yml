@@ -19,7 +19,7 @@ jobs:
           if which apt > /dev/null
           then
              apt update
-             apt -y install wget curl
+             apt -y install wget curl cron
           elif which opkg > /dev/null
           then
              opkg install wget
@@ -27,19 +27,28 @@ jobs:
           else
              echo "W: Tests limited because of non-avail of wget and curl"
           fi
+      - name: Check crontab
+        run: which crontab
+        env:
+          DEBUG: 1
+      - name: Set script permissions
+        run: chmod +x ./victron-venus-os-install.sh
+        env:
+          DEBUG: 1
       - name: Execute Installation under Venus OS
         run: |
           echo pwd
           pwd
           echo ls
           ls
-          echo victron-venus-install.sh
+          echo victron-venus-os-install.sh
           if ./victron-venus-os-install.sh ; then
              echo "[OK]"
           else
              echo "[FAIL]"
              pwd
-             find . | head -n 30
+             HEAD_PATH=$(which head)
+             find . | $HEAD_PATH -n 30
              exit 1
           fi
         env:
