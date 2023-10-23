@@ -37,8 +37,10 @@ if [ -z "$DEBUG" ]; then
     sleep 25
 fi
 
-# Define the rc.local file path
-rc_local_file="/data/rc.local"
+if [ -z "$rc_local_file" ]; then
+    # Define the rc.local file path
+    rc_local_file="/data/rc.local"
+fi
 
 # Check if rc.local file exists, if not, create it
 if [ ! -e "$rc_local_file" ]; then
