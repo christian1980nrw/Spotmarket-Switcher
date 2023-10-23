@@ -28,6 +28,7 @@ EOLICENSE
 )
 
 set -e
+set -x
 
 if [ -z "$LANG" ]; then
     export LANG=C
@@ -223,7 +224,7 @@ if [ -z "$SRCDIR" ]; then
     SRCDIR=scripts
 fi
 if [ -z "$branch" ]; then
-    BRANCH=main
+    BRANCH=dev
 fi
 
 download_file_if_missing "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh
