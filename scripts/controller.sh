@@ -142,7 +142,7 @@ if [ -z "$UNAME" ]; then
     UNAME=$(uname)
 fi
 if [ "Darwin" = "$UNAME" ]; then
-    log_info "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
+    echo "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
 fi
 
 # further API parameters (no need to edit)
