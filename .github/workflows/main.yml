@@ -85,6 +85,7 @@ jobs:
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
         env:
           DEBUG: 1
+          BRANCH: "${{ steps.set-branch-name.outputs.branch_name }}"
           rc_local_file: /tmp/testing_rc.local
       - name: Execute Control-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/controller.sh
