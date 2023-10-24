@@ -61,11 +61,9 @@ jobs:
           fi
   execute:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
