@@ -435,12 +435,8 @@ END {
         print "E: Entsoe data retrieval error:", error_message
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
-    } else {	
-	if ("'"$output_file"'" != "'"$file13"'") {
-            print "E: No prices found in the today XML data."
-        }
-    } 
-            print "E: No prices found in the tomorrow XML data."
+    } else 
+            print "E: No prices found in the XML data."
 }
 ' "$file"
 
