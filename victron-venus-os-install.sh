@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 License=$(
-	cat <<EOLICENSE
+    cat <<EOLICENSE
    MIT License
 
    Copyright (c) 2023 christian1980nrw
@@ -30,12 +30,12 @@ EOLICENSE
 set -e
 
 if [ -z "$LANG" ]; then
-	export LANG=C
+    export LANG=C
 fi
 
 if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
-	if echo "$LANG" | grep -qi "^de"; then
-		cat <<EOHILFE
+    if echo "$LANG" | grep -qi "^de"; then
+        cat <<EOHILFE
 OPTIONEN
 
  -h | --help - Zeigt diese Hilfe
@@ -60,8 +60,8 @@ AUTOR
 
   Christian
 EOHILFE
-	else
-		cat <<EOHELP
+    else
+        cat <<EOHELP
 
 DESCRIPTION
 
@@ -89,9 +89,9 @@ AUTHOR
 
   Christian
 EOHELP
-	fi
+    fi
 
-	exit
+    exit
 
 fi
 
@@ -113,109 +113,117 @@ fi
 # Headers and  Logging
 #
 
-e_header() { printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@"
+e_header() {
+    printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@"
 }
-e_arrow() { printf "➜ $@\n"
+e_arrow() {
+    printf "➜ $@\n"
 }
-e_success() { printf "${green}✔ %s${reset}\n" "$@"
+e_success() {
+    printf "${green}✔ %s${reset}\n" "$@"
 }
-e_error() { printf "${red}✖ %s${reset}\n" "$@"
+e_error() {
+    printf "${red}✖ %s${reset}\n" "$@"
 }
-e_warning() { printf "${tan}➜ %s${reset}\n" "$@"
+e_warning() {
+    printf "${tan}➜ %s${reset}\n" "$@"
 }
-e_underline() { printf "${underline}${bold}%s${reset}\n" "$@"
+e_underline() {
+    printf "${underline}${bold}%s${reset}\n" "$@"
 }
-e_bold() { printf "${bold}%s${reset}\n" "$@"
+e_bold() {
+    printf "${bold}%s${reset}\n" "$@"
 }
-e_note() { printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$@"
+e_note() {
+    printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$@"
 }
 
 # Checking preconditions for successful execution
 
 missing=""
 for tool in sed awk grep; do
-	if ! which "$tool" >/dev/null; then
-		missing="$missing $tool"
-	fi
+    if ! which "$tool" >/dev/null; then
+        missing="$missing $tool"
+    fi
 done
 if [ -n "$missing" ]; then
-	e_error "E: Install the following tools prior to running this install script or the installed scripts: $missing"
-	exit 1
+    e_error "E: Install the following tools prior to running this install script or the installed scripts: $missing"
+    exit 1
 fi
 
 for tool in wget curl; do
-	if ! which "$tool" >/dev/null; then
-		missing="$missing $tool"
-	fi
+    if ! which "$tool" >/dev/null; then
+        missing="$missing $tool"
+    fi
 done
 if [ -n "$missing" ]; then
-	e_note "W: Install the following tools prior to the execution of the installed scripts: $missing."
-	e_note "   Try running 'opkg install $missing'."
-	echo
-	e_note "   Now continuing with the installation, which will be fine per se, but you as the user are responsible to get those dependencies installed to prevent the control script from failing. Drop an issue at https://github.com/christian1980nrw/Spotmarket-Switcher/issues if this package shall somehow prepare you better."
-	echo
+    e_note "W: Install the following tools prior to the execution of the installed scripts: $missing."
+    e_note "   Try running 'opkg install $missing'."
+    echo
+    e_note "   Now continuing with the installation, which will be fine per se, but you as the user are responsible to get those dependencies installed to prevent the control script from failing. Drop an issue at https://github.com/christian1980nrw/Spotmarket-Switcher/issues if this package shall somehow prepare you better."
+    echo
 fi
 
 # DESTDIR is optionally set as an environment variable.
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ]; then
-	e_note "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
-	e_note "   This is meant to support testing and packaging, not for a true installation."
-	e_underline "   If you are using Victron Venus OS, the correct installation directory should be  '/'."
-	e_note "   No harm is expected to be caused, but it's recommended to install directly to '/' for a standard installation."
-	e_note "   You can cancel now with CTRL-C if this is not what you intended."
-	sleep 5
-	e_underline "I: Will now continue. You can still interrupt at any time."
-	echo
+    e_note "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
+    e_note "   This is meant to support testing and packaging, not for a true installation."
+    e_underline "   If you are using Victron Venus OS, the correct installation directory should be  '/'."
+    e_note "   No harm is expected to be caused, but it's recommended to install directly to '/' for a standard installation."
+    e_note "   You can cancel now with CTRL-C if this is not what you intended."
+    sleep 5
+    e_underline "I: Will now continue. You can still interrupt at any time."
+    echo
 else
-	ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher
-	(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (
-		crontab -l
-		echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh"
-	) | crontab -
+    ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher
+    (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (
+        crontab -l
+        echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh"
+    ) | crontab -
 fi
 
 if ! mkdir -p "$DESTDIR"/data/etc/Spotmarket-Switcher/service; then
-	e_error "E: Could not create service directory '$DESTDIR/data/etc/Spotmarket-Switcher/service'."
-	exit 1
+    e_error "E: Could not create service directory '$DESTDIR/data/etc/Spotmarket-Switcher/service'."
+    exit 1
 fi
 
 downloadToDest() {
-	url="$1"
-	dest="$2"
+    url="$1"
+    dest="$2"
 
-	echo "I: Downloading '$(basename "$url")'"
-	if ! wget --no-verbose --continue --no-directories --show-progress -O "$dest" "$url"; then
-		e_error "E: Download of '$(basename "$url")' failed."
-		return 1
-	fi
-	chmod +x "$dest"
+    echo "I: Downloading '$(basename "$url")'"
+    if ! wget --no-verbose --continue --no-directories --show-progress -O "$dest" "$url"; then
+        e_error "E: Download of '$(basename "$url")' failed."
+        return 1
+    fi
+    chmod +x "$dest"
 }
 
 download_file_if_missing() {
-	local file_path="$1"
-	local dest_path="$2"
-	local file_url="$3"
+    local file_path="$1"
+    local dest_path="$2"
+    local file_url="$3"
 
-	if [ -x "$file_path" ]; then
-		cp "$file_path" "$dest_path"
-	else
-		if [ -n "$DEBUG" ]; then
-			echo "D: ls \$SRCDIR"
-			ls "$SRCDIR" || {
-				echo "D: pwd: $(pwd)"
-				ls
-			}
-		fi
-		e_note "I: Downloading '$(basename "$file_path")' from github repository - '$BRANCH' branch"
-		downloadToDest "$file_url" "$dest_path"
-	fi
+    if [ -x "$file_path" ]; then
+        cp "$file_path" "$dest_path"
+    else
+        if [ -n "$DEBUG" ]; then
+            echo "D: ls \$SRCDIR"
+            ls "$SRCDIR" || {
+                echo "D: pwd: $(pwd)"
+                ls
+            }
+        fi
+        e_note "I: Downloading '$(basename "$file_path")' from github repository - '$BRANCH' branch"
+        downloadToDest "$file_url" "$dest_path"
+    fi
 }
 
 if [ -z "$SRCDIR" ]; then
-	SRCDIR=scripts
+    SRCDIR=scripts
 fi
 if [ -z "$branch" ]; then
-	BRANCH=main
+    BRANCH=main
 fi
 
 download_file_if_missing "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh
@@ -227,31 +235,31 @@ cp -n "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" "$DESTDIR/data/e
 
 # $DESTDIR is always an absolut path
 if [ ! -d "$DESTDIR"/service ]; then
-	if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ]; then
-		e_note "I: The '$DESTDIR/service' directory is not existing, as expected because of the custom DESTDIR setting."
-		e_note "   Skipping creation of symbolic link to the Sportmarket-Switcher to register this service."
-	else
-		e_note "W: The '$DESTDIR/service' directory is not existing."
-		e_note "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
-		e_note "   Check on https://github.com/christian1980nrw/Spotmarket-Switcher/issues if that has already been reported."
-	fi
+    if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ]; then
+        e_note "I: The '$DESTDIR/service' directory is not existing, as expected because of the custom DESTDIR setting."
+        e_note "   Skipping creation of symbolic link to the Sportmarket-Switcher to register this service."
+    else
+        e_note "W: The '$DESTDIR/service' directory is not existing."
+        e_note "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
+        e_note "   Check on https://github.com/christian1980nrw/Spotmarket-Switcher/issues if that has already been reported."
+    fi
 else
-	if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
-		ln -s "$DESTDIR"/data/etc/Spotmarket-Switcher/service "$DESTDIR"/service/Spotmarket-Switcher
-	fi
+    if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
+        ln -s "$DESTDIR"/data/etc/Spotmarket-Switcher/service "$DESTDIR"/service/Spotmarket-Switcher
+    fi
 fi
 
 if [ -e "$DESTDIR"/data/rc.local ]; then
-	if grep -q "Spotmarket-Switcher/service /service/Spotmarket-Switcher" "$DESTDIR"/data/rc.local; then
-		e_note "I: Spotmarket-Switcher/service is already known to rc.local boot script - not added again."
-	else
-		e_note "I: Adding link to Spotmarket-Switcher/service to rc.local boot script."
-		sed -i '1s|^|ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher\n|' /data/rc.local
-	fi
+    if grep -q "Spotmarket-Switcher/service /service/Spotmarket-Switcher" "$DESTDIR"/data/rc.local; then
+        e_note "I: Spotmarket-Switcher/service is already known to rc.local boot script - not added again."
+    else
+        e_note "I: Adding link to Spotmarket-Switcher/service to rc.local boot script."
+        sed -i '1s|^|ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher\n|' /data/rc.local
+    fi
 else
-	e_note "I: Creating new data/rc.local boot script"
-	echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" >"$DESTDIR"/data/rc.local
-	chmod +x "$DESTDIR"/data/rc.local
+    e_note "I: Creating new data/rc.local boot script"
+    echo "ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher" >"$DESTDIR"/data/rc.local
+    chmod +x "$DESTDIR"/data/rc.local
 fi
 
 echo
@@ -266,6 +274,6 @@ echo
 e_note "Note: This installation will survive a Venus OS firmware update."
 echo
 if [ -n "$missing" ]; then
-	e_note "Note: Remember to install these missing executables: $missing"
-	echo
+    e_note "Note: Remember to install these missing executables: $missing"
+    echo
 fi

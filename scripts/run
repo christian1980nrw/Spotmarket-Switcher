@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-License=$(cat <<EOLICENSE
+License=$(
+    cat <<EOLICENSE
   MIT License
 
   Copyright (c) 2023 christian1980nrw
@@ -36,23 +37,26 @@ if [ -z "$DEBUG" ]; then
     sleep 25
 fi
 
-# Define the rc.local file path
-rc_local_file="/data/rc.local"
-
-# Define the code to be added to rc.local and crontab
-code='(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") | crontab -'
+if [ -z "$rc_local_file" ]; then
+    # Define the rc.local file path
+    rc_local_file="/data/rc.local"
+fi
 
 # Check if rc.local file exists, if not, create it
 if [ ! -e "$rc_local_file" ]; then
-    echo "#!/bin/sh" > "$rc_local_file"
+    echo "#!/bin/sh" >"$rc_local_file"
     chmod +x "$rc_local_file"
-    $code
 fi
 
 # Check if the code is already in rc.local, if not, add it
 if ! grep -qF "$code" "$rc_local_file"; then
-    echo "$code" >> "$rc_local_file"
-    $code
+    {
+        echo '(crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (crontab -l; echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh")'
+        (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (
+            crontab -l
+            echo "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh"
+        ) | crontab -
+    } | tee -a "$rc_local_file"
 fi
 
 # Display a success message in DEBUG mode
