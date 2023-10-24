@@ -617,15 +617,15 @@ get_awattar_prices() {
 }
 
 get_tibber_prices() {
-    current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file15")
-    lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
-    second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
-    third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
-    fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
-    fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
-    sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12")
-    highest_price=$(sed -n "s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
-    average_price=$(sed -n "s/.*\"${tibber_prices}\":([^,]*),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
+    current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
+    lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
+    average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
 
 get_current_entsoe_day() { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
