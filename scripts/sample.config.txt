@@ -101,3 +101,5 @@ tibber_prices=energy  # Set to
   #  "tax" to use only the taxes and fees
 tibber_api_key="YOUR_ACTUAL_API_KEY" # replace this value with your API Key
 
+config_version=1 
+# You see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
