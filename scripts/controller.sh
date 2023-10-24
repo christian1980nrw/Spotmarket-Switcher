@@ -184,19 +184,16 @@ declare -A valid_vars=(
     ["tibber_api_key"]="string"
 )
 
-# Define a logging function and try out different methods. Maybe log_message is not available at MacOS for example.
+# Define a logging function and try out different methods. Maybe log_message is not available at MacOS.
 log_message() {
   message="$1"
-  if type log_info >/dev/null 2>&1; then
-    log_info "$message"
-  elif type logger >/dev/null 2>&1; then
+  if [ -z "$(command -v log_info)" ]; then
     logger -p user.info -t "Spotmarket-Switcher" "$message"
-  elif type syslog >/dev/null 2>&1; then
-    syslog -s "$message"
   else
-    echo "${message:3}" >&2
+    log_info "$message"
   fi
 }
+
 
 declare -A config_values
 
