@@ -203,6 +203,8 @@ parse_and_validate_config() {
 
     rotating_spinner &   # Start the spinner in the background
     local spinner_pid=$! # Get the PID of the spinner
+    local version_valid=false
+    local version_value=0
 
     # Step 1: Parse
     while IFS='=' read -r key value; do
@@ -215,6 +217,11 @@ parse_and_validate_config() {
 
         # Set the value in the associative array
         config_values["$key"]="$value"
+	
+        if [[ "$key" == "CONFIG-VERSION" ]]; then
+            version_valid=true
+            version_value="$value"
+	fi
     done <"$file"
 
     # Step 2: Validation
@@ -243,6 +250,10 @@ parse_and_validate_config() {
             errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
         fi
     done
+
+    if [[ "$version_valid" == true && "$version_value" -lt 1 ]]; then
+        errors+="W: The config.txt version is less than 1. You are using an outdated unsupported configuration file. Please re-download and reconfigurate. \n"
+    fi
 
     # Stop the spinner once the parsing is done
     kill $spinner_pid &>/dev/null
