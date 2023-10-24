@@ -81,6 +81,7 @@ jobs:
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
+          BRANCH: "${{ steps.set-branch-name.outputs.branch_name }}"
       - name: Execute Run-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
         env:
