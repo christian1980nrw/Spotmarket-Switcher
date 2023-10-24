@@ -127,118 +127,6 @@ fi
 # Note: This script is only for hourly-based tariff data, please create your own fork for higher resolutions like 15 minute intervals.
 #       After an API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
 
-# Path to the current script directory
-DIR="$(dirname "$0")"
-
-if [ -f "$DIR/config.txt" ]; then
-    # Include the configuration file
-    source "$DIR/config.txt"
-else
-    echo "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
-    exit 127
-fi
-
-if [ -z "$UNAME" ]; then
-    UNAME=$(uname)
-fi
-if [ "Darwin" = "$UNAME" ]; then
-    echo "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
-fi
-
-# further API parameters (no need to edit)
-dateInSeconds=$(LC_ALL=C TZ=$TZ date +"%s")
-if [ "Darwin" = "$UNAME" ]; then
-    yesterday=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds - 86400)) +%d)2300
-    yestermonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds - 86400)) +%m)
-    yesteryear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds - 86400)) +%Y)
-    today=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%d)2300
-    today2=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%d)
-    todaymonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%m)
-    todayyear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%Y)
-    tomorrow=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%d)2300
-    tomorrow2=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%d)
-    tomorrowmonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%m)
-    tomorrowyear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%Y)
-    getnow=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%k)
-else
-    yesterday=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds - 86400)) +%d)2300
-    yestermonth=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds - 86400)) +%m)
-    yesteryear=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds - 86400)) +%Y)
-    today=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%d)2300
-    today2=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%d)
-    todaymonth=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%m)
-    todayyear=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%Y)
-    tomorrow=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%d)2300
-    tomorrow2=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%d)
-    tomorrowmonth=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%m)
-    tomorrowyear=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%Y)
-    getnow=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%k)
-fi
-
-now_linenumber=$((getnow + 1))
-link1="https://api.awattar.$awattar/v1/marketdata/current.yaml"
-link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
-link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=solarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
-link4="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$yesteryear$yestermonth$yesterday&periodEnd=$todayyear$todaymonth$today"
-link5="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$todayyear$todaymonth$today&periodEnd=$tomorrowyear$tomorrowmonth$tomorrow"
-link6="https://api.tibber.com/v1-beta/gql"
-file1=/tmp/awattar_today_prices.yaml
-file2=/tmp/awattar_tomorrow_prices.yaml
-file3=/tmp/expected_solarenergy.csv
-file4=/tmp/entsoe_today_prices.xml
-file5=/tmp/entsoe_tomorrow_prices.xml
-file6=/tmp/awattar_prices.txt
-file7=/tmp/awattar_prices_sorted.txt
-file8=/tmp/entsoe_prices.txt
-file9=/tmp/entsoe_tomorrow_prices_sorted.txt
-file10=/tmp/entsoe_today_prices.txt
-file11=/tmp/entsoe_today_prices_sorted.txt
-file12=/tmp/tibber_prices_sorted.txt
-file13=/tmp/entsoe_tomorrow_prices.txt
-file14=/tmp/tibber_prices.txt
-file15=/tmp/tibber_today_prices.txt
-file16=/tmp/tibber_today_prices_sorted.txt
-file17=/tmp/tibber_tomorrow_prices.txt
-file18=/tmp/tibber_tomorrow_prices_sorted.txt
-file19=/tmp/entsoe_prices_sorted.txt
-
-########## Optional environmental variables
-
-if [ -z "$LOG_FILE" ]; then
-    LOG_FILE="/tmp/spotmarket-switcher.log"
-fi
-if [ -z "$LOG_MAX_SIZE" ]; then
-    LOG_MAX_SIZE=1024 # 1 MB
-fi
-if [ -z "$LOG_FILES_TO_KEEP" ]; then
-    LOG_FILES_TO_KEEP=2
-fi
-
-########## Testing series of preconditions prior to execution of script
-
-num_tools_missing=0
-tools="awk curl cat sed sort head tail"
-if [ 0 -lt $use_victron_charger ]; then
-    tools="$tools dbus"
-    charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-    charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
-fi
-
-for tool in $tools; do
-    if ! which "$tool" >/dev/null; then
-        log_info "E: Please ensure the tool '$tool' is found."
-        num_tools_missing=$((num_tools_missing + 1))
-    fi
-done
-
-if [ $num_tools_missing -gt 0 ]; then
-    log_info "E: $num_tools_missing tools are missing."
-    exit 127
-fi
-
-unset num_tools_missing
-
 #######################################
 ###    Begin of the functions...    ###
 #######################################
@@ -936,6 +824,120 @@ exit_with_cleanup() {
 ####################################
 ###    Begin of the script...    ###
 ####################################
+
+# Path to the current script directory
+DIR="$(dirname "$0")"
+
+if [ -f "$DIR/config.txt" ]; then
+    # Include the configuration file
+    source "$DIR/config.txt"
+else
+    log_info "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
+    exit 127
+fi
+
+if [ -z "$UNAME" ]; then
+    UNAME=$(uname)
+fi
+if [ "Darwin" = "$UNAME" ]; then
+    log_info "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
+fi
+
+# further API parameters (no need to edit)
+dateInSeconds=$(LC_ALL=C TZ=$TZ date +"%s")
+if [ "Darwin" = "$UNAME" ]; then
+    yesterday=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds - 86400)) +%d)2300
+    yestermonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds - 86400)) +%m)
+    yesteryear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds - 86400)) +%Y)
+    today=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%d)2300
+    today2=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%d)
+    todaymonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%m)
+    todayyear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%Y)
+    tomorrow=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%d)2300
+    tomorrow2=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%d)
+    tomorrowmonth=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%m)
+    tomorrowyear=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds + 86400)) +%Y)
+    getnow=$(LC_ALL=C TZ=$TZ date -j -f "%s" $((dateInSeconds)) +%k)
+else
+    yesterday=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds - 86400)) +%d)2300
+    yestermonth=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds - 86400)) +%m)
+    yesteryear=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds - 86400)) +%Y)
+    today=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%d)2300
+    today2=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%d)
+    todaymonth=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%m)
+    todayyear=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%Y)
+    tomorrow=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%d)2300
+    tomorrow2=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%d)
+    tomorrowmonth=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%m)
+    tomorrowyear=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds + 86400)) +%Y)
+    getnow=$(LC_ALL=C TZ=$TZ date -d @$((dateInSeconds)) +%k)
+fi
+
+now_linenumber=$((getnow + 1))
+link1="https://api.awattar.$awattar/v1/marketdata/current.yaml"
+link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
+link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=solarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
+link4="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$yesteryear$yestermonth$yesterday&periodEnd=$todayyear$todaymonth$today"
+link5="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$todayyear$todaymonth$today&periodEnd=$tomorrowyear$tomorrowmonth$tomorrow"
+link6="https://api.tibber.com/v1-beta/gql"
+file1=/tmp/awattar_today_prices.yaml
+file2=/tmp/awattar_tomorrow_prices.yaml
+file3=/tmp/expected_solarenergy.csv
+file4=/tmp/entsoe_today_prices.xml
+file5=/tmp/entsoe_tomorrow_prices.xml
+file6=/tmp/awattar_prices.txt
+file7=/tmp/awattar_prices_sorted.txt
+file8=/tmp/entsoe_prices.txt
+file9=/tmp/entsoe_tomorrow_prices_sorted.txt
+file10=/tmp/entsoe_today_prices.txt
+file11=/tmp/entsoe_today_prices_sorted.txt
+file12=/tmp/tibber_prices_sorted.txt
+file13=/tmp/entsoe_tomorrow_prices.txt
+file14=/tmp/tibber_prices.txt
+file15=/tmp/tibber_today_prices.txt
+file16=/tmp/tibber_today_prices_sorted.txt
+file17=/tmp/tibber_tomorrow_prices.txt
+file18=/tmp/tibber_tomorrow_prices_sorted.txt
+file19=/tmp/entsoe_prices_sorted.txt
+
+########## Optional environmental variables
+
+if [ -z "$LOG_FILE" ]; then
+    LOG_FILE="/tmp/spotmarket-switcher.log"
+fi
+if [ -z "$LOG_MAX_SIZE" ]; then
+    LOG_MAX_SIZE=1024 # 1 MB
+fi
+if [ -z "$LOG_FILES_TO_KEEP" ]; then
+    LOG_FILES_TO_KEEP=2
+fi
+
+########## Testing series of preconditions prior to execution of script
+
+num_tools_missing=0
+tools="awk curl cat sed sort head tail"
+if [ 0 -lt $use_victron_charger ]; then
+    tools="$tools dbus"
+    charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+    charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+fi
+
+for tool in $tools; do
+    if ! which "$tool" >/dev/null; then
+        log_info "E: Please ensure the tool '$tool' is found."
+        num_tools_missing=$((num_tools_missing + 1))
+    fi
+done
+
+if [ $num_tools_missing -gt 0 ]; then
+    log_info "E: $num_tools_missing tools are missing."
+    exit 127
+fi
+
+unset num_tools_missing
+
+########## Start ##########
 
 echo >>"$LOG_FILE"
 
