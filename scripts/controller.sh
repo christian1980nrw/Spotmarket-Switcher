@@ -432,13 +432,13 @@ in_reason && /<text>/ {
 
 END {
     if (error_code == 999) {
-        print "E: Entsoe data retrieval error:", error_message
+        log_message "E: Entsoe data retrieval error:", error_message
         exit_with_cleanup 1
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
     } else {	
 	if ("'"$output_file"'" != "'"$file13"'") {
-            print "E: No prices found in the today XML data."
+            log_message "E: No prices found in the today XML data."
 			exit_with_cleanup 1
         }
     } 
@@ -455,7 +455,6 @@ END {
     # Check if tomorrow file contains next day prices
     if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
         cat $file10 >$file8
-        #    echo >> $file8
         if [ -f "$file13" ]; then
             cat "$file13" >>"$file8"
         fi
@@ -464,7 +463,9 @@ END {
         timestamp=$(TZ=$TZ date +%d)
         echo "date_now_day: $timestamp" >>"$file8"
     else
+	if [ -f "$file11" ]; then
         cp $file11 $file19 # If no second day, copy sorted price file.
+        fi
     fi
 }
 
