@@ -80,13 +80,12 @@ jobs:
         run: ./victron-venus-os-install.sh
         env:
           DEBUG: 1
-          DESTDIR: /tmp/testing
           BRANCH: "${{ steps.set-branch-name.outputs.branch_name }}"
+          DESTDIR: /tmp/testing
       - name: Execute Run-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
         env:
           DEBUG: 1
-          BRANCH: "${{ steps.set-branch-name.outputs.branch_name }}"
           rc_local_file: /tmp/testing_rc.local
       - name: Execute Control-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/controller.sh
