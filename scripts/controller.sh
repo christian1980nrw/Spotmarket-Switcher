@@ -363,93 +363,93 @@ download_entsoe_prices() {
     local sleep_time="$4"
 
     if [ -z "$DEBUG" ]; then
-        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
+        echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
         sleep "$sleep_time"
     else
-        log_message "D: No delay of download of entsoe data since DEBUG variable set." >&2
+        echo "D: No delay of download of entsoe data since DEBUG variable set." >&2
     fi
 
     if ! curl "$url" >"$file"; then
-        log_message "E: Retrieval of entsoe data from '$url' into file '$file' failed."
-        exit_with_cleanup 1
+        log_info "E: Retrieval of entsoe data from '$url' into file '$file' failed."
+        exit 1
     fi
 
     if ! test -f "$file"; then
-        log_message "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
-        exit_with_cleanup 1
+        log_info "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
+        exit 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2 >&2; fi
+    if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     if [ ! -s "$file" ]; then
-        log_message "E: Entsoe file '$file' is empty, please check your entsoe API Key."
-        exit_with_cleanup 1
+        log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
+        exit 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
+    if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
 
     awk '
-    # Capture content inside the <Period> tag
-    /<Period>/ {
-        capture_period = 1
-    }
-    /<\/Period>/ {
-        capture_period = 0
-    }
-    # Ensure we are within a valid period and capture prices for one-hour resolution
-    capture_period && /<resolution>PT60M<\/resolution>/ {
-        valid_period = 1
-    }
-    valid_period && /<price.amount>/ {
-        gsub("<price.amount>", "", $0)
-        gsub("<\/price.amount>", "", $0)
-        gsub(/^[\t ]+|[\t ]+$/, "", $0)
-        prices = prices $0 ORS
-    }
-    valid_period && /<\/Period>/ {
-        exit
-    }
+/<Period>/ {
+    capture_period = 1
+}
+/<\/Period>/ {
+    capture_period = 0
+}
+capture_period && /<resolution>PT60M<\/resolution>/ {
+    valid_period = 1
+}
+valid_period && /<price.amount>/ {
+    gsub("<price.amount>", "", $0)
+    gsub("<\/price.amount>", "", $0)
+    gsub(/^[\t ]+|[\t ]+$/, "", $0)
+    prices = prices $0 ORS
+}
+valid_period && /<\/Period>/ {
+    exit
+}
 
-    # Capture error information inside the <Reason> tag
-    /<Reason>/ {
-        in_reason = 1
-        error_message = ""
-    }
-    in_reason && /<code>/ {
-        gsub(/<code>|<\/code>/, "")
-        gsub(/^[\t ]+|[\t ]+$/, "", $0)
-        error_code = $0
-    }
-    in_reason && /<text>/ {
-        gsub(/<text>|<\/text>/, "")
-        gsub(/^[\t ]+|[\t ]+$/, "", $0)
-        error_message = $0
-    }
-    /<\/Reason>/ {
-        in_reason = 0
-    }
 
-    # At the end of processing, print out the captured prices or any error messages
-    END {
-        if (error_code == 999) {
-            log_message "E: Entsoe data retrieval error:", error_message
-            exit_with_cleanup 1
-        } else if (prices != "") {
-            printf "%s", prices > "'"$output_file"'"
-        } else {
-            if ("'"$output_file"'" != "'"$file13"'") {
-                log_message "E: No prices found in the today XML data."
-		exit_with_cleanup 1
-            }
+/<Reason>/ {
+    in_reason = 1
+    error_message = ""
+}
+
+in_reason && /<code>/ {
+    gsub(/<code>|<\/code>/, "")
+    gsub(/^[\t ]+|[\t ]+$/, "", $0)
+    error_code = $0
+}
+
+in_reason && /<text>/ {
+    gsub(/<text>|<\/text>/, "")
+	gsub(/^[\t ]+|[\t ]+$/, "", $0)
+    error_message = $0
+}
+
+/<\/Reason>/ {
+    in_reason = 0
+}
+
+END {
+    if (error_code == 999) {
+        print "E: Entsoe data retrieval error:", error_message
+        exit 1
+    } else if (prices != "") {
+        printf "%s", prices > "'"$output_file"'"
+    } else {	
+	if ("'"$output_file"'" != "'"$file13"'") {
+            print "E: No prices found in the today XML data."
+			exit 1
         }
-        log_message "E: No prices found in the tomorrow XML data."
-    }
-    ' "$file"
+    } 
+            print "E: No prices found in the tomorrow XML data."
+}
+' "$file"
 
     if [ -f "$output_file" ]; then
-        sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
+        sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
         timestamp=$(TZ=$TZ date +%d)
-        echo "date_now_day: $timestamp" >>"$output_file"
+        echo "date_now_day: $timestamp" >> "$output_file"
     fi
 
     # Check if tomorrow file contains next day prices
