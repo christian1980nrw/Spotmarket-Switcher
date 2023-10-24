@@ -184,6 +184,20 @@ declare -A valid_vars=(
     ["tibber_api_key"]="string"
 )
 
+# Define a logging function and try out different methods. Maybe log_message is not available at MacOS for example.
+log_message() {
+  message="$1"
+  if type log_info >/dev/null 2>&1; then
+    log_info "$message"
+  elif type logger >/dev/null 2>&1; then
+    logger -p user.info -t "Spotmarket-Switcher" "$message"
+  elif type syslog >/dev/null 2>&1; then
+    syslog -s "$message"
+  else
+    echo "${message:3}" >&2
+  fi
+}
+
 declare -A config_values
 
 parse_and_validate_config() {
@@ -265,21 +279,21 @@ download_awattar_prices() {
     local sleep_time="$4"
 
     if [ -z "$DEBUG" ]; then
-        log_info "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
+        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
         sleep "$sleep_time"
     fi
     if ! curl "$url" >"$file"; then
-        log_info "E: Download of aWATTar prices from '$url' to '$file' failed."
+        log_message "E: Download of aWATTar prices from '$url' to '$file' failed."
         exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
-        log_info "E: Could not get aWATTar prices from '$url' to feed file '$file'."
+        log_message "E: Could not get aWATTar prices from '$url' to feed file '$file'."
         exit_with_cleanup 1
     fi
 
     if [ -n "$DEBUG" ]; then
-        log_info "D: Download of file '$file' from URL '$url' successful." >&2
+        log_message "D: Download of file '$file' from URL '$url' successful." >&2
     fi
     echo >>"$file"
     awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" >"$output_file"
@@ -290,7 +304,7 @@ download_awattar_prices() {
 
     if [ -f "$file2" ] && [ "$(wc -l <"$file1")" = "$(wc -l <"$file2")" ]; then
         rm -f "$file2"
-        log_info "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online." false
+        log_message "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online." false
     fi
 }
 
@@ -314,13 +328,13 @@ download_tibber_prices() {
     local sleep_time="$3"
 
     if [ -z "$DEBUG" ]; then
-        log_info "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
+        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
         sleep "$sleep_time"
     else
-        log_info "D: No delay of download of Tibber data since DEBUG variable set."
+        log_message "D: No delay of download of Tibber data since DEBUG variable set."
     fi
     if ! get_tibber_api | tr -d '{}[]' >"$file"; then
-        log_info "E: Download of Tibber prices from '$url' to '$file' failed."
+        log_message "E: Download of Tibber prices from '$url' to '$file' failed."
         exit_with_cleanup 1
     fi
 
@@ -339,7 +353,7 @@ download_tibber_prices() {
     echo "date_now_day: $timestamp" >>"$file17"
 
     if [ ! -s "$file16" ]; then
-        log_info "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
+        log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
         rm "$file"
         exit_with_cleanup 1
     fi
@@ -352,30 +366,30 @@ download_entsoe_prices() {
     local sleep_time="$4"
 
     if [ -z "$DEBUG" ]; then
-        log_info "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
+        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
         sleep "$sleep_time"
     else
-        log_info "D: No delay of download of entsoe data since DEBUG variable set." >&2
+        log_message "D: No delay of download of entsoe data since DEBUG variable set." >&2
     fi
 
     if ! curl "$url" >"$file"; then
-        log_info "E: Retrieval of entsoe data from '$url' into file '$file' failed."
+        log_message "E: Retrieval of entsoe data from '$url' into file '$file' failed."
         exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
-        log_info "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
+        log_message "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2 >&2; fi
+    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2 >&2; fi
 
     if [ ! -s "$file" ]; then
-        log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
+        log_message "E: Entsoe file '$file' is empty, please check your entsoe API Key."
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_info "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
+    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     awk '
     # Capture content inside the <Period> tag
@@ -421,17 +435,17 @@ download_entsoe_prices() {
     # At the end of processing, print out the captured prices or any error messages
     END {
         if (error_code == 999) {
-            log_info "E: Entsoe data retrieval error:", error_message
+            log_message "E: Entsoe data retrieval error:", error_message
             exit_with_cleanup 1
         } else if (prices != "") {
             printf "%s", prices > "'"$output_file"'"
         } else {
             if ("'"$output_file"'" != "'"$file13"'") {
-                log_info "E: No prices found in the today XML data."
+                log_message "E: No prices found in the today XML data."
 		exit_with_cleanup 1
             }
         }
-        log_info "E: No prices found in the tomorrow XML data."
+        log_message "E: No prices found in the tomorrow XML data."
     }
     ' "$file"
 
@@ -461,28 +475,28 @@ download_solarenergy() {
     if ((use_solarweather_api_to_abort == 1)); then
         delay=$((RANDOM % 15 + 1))
         if [ -z "$DEBUG" ]; then
-            log_info "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API." false
+            log_message "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API." false
             # Delaying a random time <=15s to reduce impact on site - download is not time-critical
             sleep "$delay"
         else
-            log_info "D: No delay of download of solarenergy data since DEBUG variable set." >&2
+            log_message "D: No delay of download of solarenergy data since DEBUG variable set." >&2
         fi
         if ! curl "$link3" -o "$file3"; then
-            log_info "E: Download of solarenergy data from '$link3' failed."
+            log_message "E: Download of solarenergy data from '$link3' failed."
             exit_with_cleanup 1
         elif ! test -f "$file3"; then
-            log_info "E: Could not get solarenergy data, missing file '$file3'."
+            log_message "E: Could not get solarenergy data, missing file '$file3'."
             exit_with_cleanup 1
         fi
         if [ -n "$DEBUG" ]; then
-            log_info "D: File3 $file3 downloaded" >&2
+            log_message "D: File3 $file3 downloaded" >&2
         fi
         if ! test -f "$file3"; then
-            log_info "E: Could not find downloaded file '$file3' with solarenergy data."
+            log_message "E: Could not find downloaded file '$file3' with solarenergy data."
             exit_with_cleanup 1
         fi
         if [ -n "$DEBUG" ]; then
-            log_info "D: Solarenergy data downloaded to file '$file3'."
+            log_message "D: Solarenergy data downloaded to file '$file3'."
         fi
     fi
 }
@@ -540,7 +554,7 @@ convert_vars_to_integer() {
         printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
         local value="${!integer_var}" # Speichern Sie den Wert in einer temporären Variable
         if [ -n "$DEBUG" ]; then
-            log_info "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}" >&2
+            log_message "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}" >&2
         fi
     done
 }
@@ -604,7 +618,7 @@ evaluate_conditions() {
             description_value="${descriptions_ref[$condition]}"
             condition_evaluation=$([ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false)
             result="($description_value) evaluates to $condition_evaluation"
-            log_info "D: condition_evaluation [ $result ]." >&2
+            log_message "D: condition_evaluation [ $result ]." >&2
         fi
 
         if ((conditions_ref[$condition])) && [[ $condition_met -eq 0 ]]; then
@@ -637,11 +651,11 @@ is_charging_economical() {
     [[ $reference_price -ge $total_cost ]] && is_economical=0
 
     if [ -n "$DEBUG" ]; then
-        log_info "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
+        log_message "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
         reference_price_euro=$(millicentToEuro $reference_price)
         total_cost_euro=$(millicentToEuro $total_cost)
         is_economical_str=$([ "$is_economical" -eq 1 ] && echo "false" || echo "true")
-        log_info "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str." >&2
+        log_message "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str." >&2
     fi
 
     return $is_economical
@@ -654,10 +668,10 @@ manage_charging() {
 
     if [[ $action == "on" ]]; then
         $charger_command_turnon >/dev/null
-        log_info "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %. $reason"
+        log_message "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %. $reason"
     else
         $charger_command_turnoff >/dev/null
-        log_info "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
+        log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
     fi
 }
 
@@ -667,7 +681,7 @@ check_abort_condition() {
     local log_message=$2
 
     if ((condition_result)); then
-        log_info "I: $log_message Abort."
+        log_message "I: $log_message Abort."
         execute_charging=0
         execute_switchablesockets_on=0
     fi
@@ -680,12 +694,12 @@ manage_fritz_sockets() {
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 
     if fritz_login; then
-        log_info "I: Turning $action Fritz sockets."
+        log_message "I: Turning $action Fritz sockets."
         for socket in "${sockets[@]}"; do
             [ "$socket" != "0" ] && manage_fritz_socket "$action" "$socket"
         done
     else
-        log_info "E: Fritz login failed."
+        log_message "E: Fritz login failed."
     fi
 }
 
@@ -693,7 +707,7 @@ manage_fritz_socket() {
     local action=$1
     local socket=$2
     local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
-    curl -s "$url" >/dev/null || log_info "E: Could not call URL '$url' to switch $action said switch - ignored."
+    curl -s "$url" >/dev/null || log_message "E: Could not call URL '$url' to switch $action said switch - ignored."
 }
 
 fritz_login() {
@@ -701,7 +715,7 @@ fritz_login() {
     sid=""
     challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
     if [ -z "$challenge" ]; then
-        log_info "E: Could not retrieve challenge from login_sid.lua."
+        log_message "E: Could not retrieve challenge from login_sid.lua."
         return 1
     fi
 
@@ -710,12 +724,12 @@ fritz_login() {
         grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
 
     if [ "$sid" = "0000000000000000" ]; then
-        log_info "E: Login to Fritz!Box failed."
+        log_message "E: Login to Fritz!Box failed."
         return 1
     fi
 
     if [ -n "$DEBUG" ]; then
-        log_info "D: Login to Fritz!Box successful." >&2
+        log_message "D: Login to Fritz!Box successful." >&2
     fi
     return 0
 }
@@ -726,7 +740,7 @@ manage_shelly_sockets() {
 
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 
-    log_info "I: Turning $action Shelly sockets."
+    log_message "I: Turning $action Shelly sockets."
     for ip in "${shelly_ips[@]}"; do
         [ "$ip" != "0" ] && manage_shelly_socket "$action" "$ip"
     done
@@ -735,7 +749,7 @@ manage_shelly_sockets() {
 manage_shelly_socket() {
     local action=$1
     local ip=$2
-    curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_info "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
+    curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_message "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
 }
 
 millicentToEuro() {
@@ -770,8 +784,8 @@ euroToMillicent() {
     v=$(awk -v euro="$euro" -v potency="$potency" 'BEGIN {printf "%.0f", euro * (10 ^ potency)}')
 
     if [ -z "$v" ]; then
-        log_info "E: Could not translate '$euro' to an integer."
-        log_info "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
+        log_message "E: Could not translate '$euro' to an integer."
+        log_message "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
         return 1
     fi
     echo "$v"
@@ -779,14 +793,14 @@ euroToMillicent() {
 }
 
 euroToMillicent_test() {
-    log_info "I: Testing euroToMillicent" false
+    log_message "I: Testing euroToMillicent" false
     for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23; do
         echo -n "$i -> "
         euroToMillicent $i
     done
 }
 
-log_info() {
+log_message() {
     local msg="$1"
     local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1) # Extract the first word from the first line
     local color="\033[1m"                                   # Default color
@@ -814,7 +828,7 @@ log_info() {
 }
 
 exit_with_cleanup() {
-    log_info "I: Cleanup and exit with error $1"
+    log_message "I: Cleanup and exit with error $1"
     manage_charging "off" "Turn off charging."
     manage_fritz_sockets "off"
     manage_shelly_sockets "off"
@@ -832,7 +846,7 @@ if [ -f "$DIR/config.txt" ]; then
     # Include the configuration file
     source "$DIR/config.txt"
 else
-    log_info "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
+    log_message "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
 fi
 
@@ -840,7 +854,7 @@ if [ -z "$UNAME" ]; then
     UNAME=$(uname)
 fi
 if [ "Darwin" = "$UNAME" ]; then
-    log_info "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
+    log_message "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
 fi
 
 # further API parameters (no need to edit)
@@ -925,13 +939,13 @@ fi
 
 for tool in $tools; do
     if ! which "$tool" >/dev/null; then
-        log_info "E: Please ensure the tool '$tool' is found."
+        log_message "E: Please ensure the tool '$tool' is found."
         num_tools_missing=$((num_tools_missing + 1))
     fi
 done
 
 if [ $num_tools_missing -gt 0 ]; then
-    log_info "E: $num_tools_missing tools are missing."
+    log_message "E: $num_tools_missing tools are missing."
     exit 127
 fi
 
@@ -941,8 +955,8 @@ unset num_tools_missing
 
 echo >>"$LOG_FILE"
 
-log_info "I: Bash Version: $(bash --version | head -n 1)"
-log_info "I: Spotmarket-Switcher - Version $VERSION"
+log_message "I: Bash Version: $(bash --version | head -n 1)"
+log_message "I: Spotmarket-Switcher - Version $VERSION"
 
 parse_and_validate_config "$DIR/config.txt"
 # if [ $? -eq 1 ]; then
@@ -961,14 +975,14 @@ if ((select_pricing_api == 1)); then
         # Test if data is current
         get_current_awattar_day
         if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
-            log_info "I: aWATTar today-data is up to date." false
+            log_message "I: aWATTar today-data is up to date." false
         else
-            log_info "I: aWATTar today-data is outdated, fetching new data." false
+            log_message "I: aWATTar today-data is outdated, fetching new data." false
             rm -f $file1 $file6 $file7
             download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
         fi
     else # Data file1 does not exist
-        log_info "I: Fetching today-data data from aWATTar." false
+        log_message "I: Fetching today-data data from aWATTar." false
         download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
     fi
 
@@ -978,14 +992,14 @@ elif ((select_pricing_api == 2)); then
         # Test if data is current
         get_current_entsoe_day
         if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_info "I: Entsoe today-data is up to date." false
+            log_message "I: Entsoe today-data is up to date." false
         else
-            log_info "I: Entsoe today-data is outdated, fetching new data." false
+            log_message "I: Entsoe today-data is outdated, fetching new data." false
             rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
             download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
         fi
     else # Entsoe data does not exist
-        log_info "I: Fetching today-data data from Entsoe." false
+        log_message "I: Fetching today-data data from Entsoe." false
         download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
     fi
 
@@ -996,14 +1010,14 @@ elif ((select_pricing_api == 3)); then
         # Test if data is current
         get_current_tibber_day
         if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_info "I: Tibber today-data is up to date." false
+            log_message "I: Tibber today-data is up to date." false
         else
-            log_info "I: Tibber today-data is outdated, fetching new data." false
+            log_message "I: Tibber today-data is outdated, fetching new data." false
             rm -f "$file14" "$file15" "$file16"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
         fi
     else # Tibber data does not exist
-        log_info "I: Fetching today-data data from Tibber." false
+        log_message "I: Fetching today-data data from Tibber." false
         download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
     fi
 fi
@@ -1017,14 +1031,14 @@ if ((include_second_day == 1)); then
             # Test if data is current
             get_current_awattar_day2
             if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
-                log_info "I: aWATTar tomorrow-data is up to date." false
+                log_message "I: aWATTar tomorrow-data is up to date." false
             else
-                log_info "I: aWATTar tomorrow-data is outdated, fetching new data." false
+                log_message "I: aWATTar tomorrow-data is outdated, fetching new data." false
                 rm -f $file3
                 download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
             fi
         else # Data file2 does not exist
-            log_info "I: aWATTar tomorrow-data does not exist, fetching data." false
+            log_message "I: aWATTar tomorrow-data does not exist, fetching data." false
             download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
         fi
 
@@ -1032,7 +1046,7 @@ if ((include_second_day == 1)); then
 
         # Test if Entsoe tomorrow data exists
         if [ ! -s "$file9" ]; then
-            log_info "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
+            log_message "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
             rm -f "$file5" "$file9" "$file13"
             download_entsoe_prices "$link5" "$file5" "$file13" $((RANDOM % 21 + 10))
         fi
@@ -1041,7 +1055,7 @@ if ((include_second_day == 1)); then
 
         if [ ! -s "$file18" ]; then
             rm -f "$file17" "$file18"
-            log_info "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
+            log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
             rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
             sort -t, -k1.9n $file17 >>"$file12"
@@ -1076,28 +1090,28 @@ if ((use_solarweather_api_to_abort == 1)); then
     get_suntime_today
 fi
 
-log_info "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
+log_message "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
 echo
-log_info "I: Current price is $current_price $Unit."
-log_info "I: Lowest price will be $lowest_price $Unit." false
-log_info "I: The average price will be $average_price $Unit." false
-log_info "I: Highest price will be $highest_price $Unit." false
-log_info "I: Second lowest price will be $second_lowest_price $Unit." false
-log_info "I: Third lowest price will be $third_lowest_price $Unit." false
-log_info "I: Fourth lowest price will be $fourth_lowest_price $Unit." false
-log_info "I: Fifth lowest price will be $fifth_lowest_price $Unit." false
-log_info "I: Sixth lowest price will be $sixth_lowest_price $Unit." false
+log_message "I: Current price is $current_price $Unit."
+log_message "I: Lowest price will be $lowest_price $Unit." false
+log_message "I: The average price will be $average_price $Unit." false
+log_message "I: Highest price will be $highest_price $Unit." false
+log_message "I: Second lowest price will be $second_lowest_price $Unit." false
+log_message "I: Third lowest price will be $third_lowest_price $Unit." false
+log_message "I: Fourth lowest price will be $fourth_lowest_price $Unit." false
+log_message "I: Fifth lowest price will be $fifth_lowest_price $Unit." false
+log_message "I: Sixth lowest price will be $sixth_lowest_price $Unit." false
 
 if ((use_solarweather_api_to_abort == 1)); then
-    log_info "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
-    log_info "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
-    log_info "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
+    log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
+    log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
+    log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
     if [ ! -s $file3 ]; then
-        log_info "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
+        log_message "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
     fi
     find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
 else
-    log_info "W: skip Solarweather. not activated"
+    log_message "W: skip Solarweather. not activated"
 fi
 
 charging_condition_met=""
@@ -1185,20 +1199,20 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
     manage_charging "off" "Charging was not executed."
 else
-    log_info "W: skip Victron Charger. not activated"
+    log_message "W: skip Victron Charger. not activated"
 fi
 
 # Execute Fritz DECT on command
 if ((use_fritz_dect_sockets == 1)); then
     manage_fritz_sockets
 else
-    log_info "W: skip Fritz DECT. not activated"
+    log_message "W: skip Fritz DECT. not activated"
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
     manage_shelly_sockets
 else
-    log_info "W: skip Shelly Api. not activated"
+    log_message "W: skip Shelly Api. not activated"
 fi
 
 echo >>"$LOG_FILE"
@@ -1206,7 +1220,7 @@ echo >>"$LOG_FILE"
 # Rotating log files
 if [ -f "$LOG_FILE" ]; then
     if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
-        log_info "I: Rotating log files"
+        log_message "I: Rotating log files"
         mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
         touch "$LOG_FILE"
         find . -maxdepth 1 -name "${LOG_FILE}*" -type f -exec ls -1t {} + |
@@ -1217,5 +1231,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-    log_info "D: \[ OK \]" >&2
+    log_message "D: \[ OK \]" >&2
 fi
