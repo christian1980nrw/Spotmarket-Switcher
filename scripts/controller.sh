@@ -182,6 +182,7 @@ declare -A valid_vars=(
     ["entsoe_eu_api_security_token"]="string"
     ["tibber_prices"]="energy|total|tax"
     ["tibber_api_key"]="string"
+    ["config-version"]="1"
 )
 
 # Define a logging function and try out different methods. Maybe log_message is not available at MacOS.
@@ -218,7 +219,7 @@ parse_and_validate_config() {
         # Set the value in the associative array
         config_values["$key"]="$value"
 	
-        if [[ "$key" == "CONFIG-VERSION" ]]; then
+        if [[ "$key" == "config-version" ]]; then
             version_valid=true
             version_value="$value"
 	fi
