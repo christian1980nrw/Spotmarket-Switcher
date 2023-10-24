@@ -1,3 +1,4 @@
+CONFIG-VERSION=1 # You see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
 ##### Configuration part...
 
   # Switchable Sockets Setup (AVM Fritz DECT200/210 wireless sockets) if used (tested with FRITZ!OS: 07.29).
