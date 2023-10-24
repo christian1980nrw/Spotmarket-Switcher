@@ -363,30 +363,30 @@ download_entsoe_prices() {
     local sleep_time="$4"
 
     if [ -z "$DEBUG" ]; then
-        echo "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
+        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
         sleep "$sleep_time"
     else
-        echo "D: No delay of download of entsoe data since DEBUG variable set." >&2
+        log_message "D: No delay of download of entsoe data since DEBUG variable set." >&2
     fi
 
     if ! curl "$url" >"$file"; then
-        log_info "E: Retrieval of entsoe data from '$url' into file '$file' failed."
-        exit 1
+        log_message "E: Retrieval of entsoe data from '$url' into file '$file' failed."
+        exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
-        log_info "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
-        exit 1
+        log_message "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
+        exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded" >&2; fi
+    if [ -n "$DEBUG" ]; then log_message "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     if [ ! -s "$file" ]; then
-        log_info "E: Entsoe file '$file' is empty, please check your entsoe API Key."
-        exit 1
+        log_message "E: Entsoe file '$file' is empty, please check your entsoe API Key."
+        exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then echo "D: Entsoe file '$file' with price data downloaded"; fi
+    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     awk '
 /<Period>/ {
@@ -433,16 +433,16 @@ in_reason && /<text>/ {
 END {
     if (error_code == 999) {
         print "E: Entsoe data retrieval error:", error_message
-        exit 1
+        exit_with_cleanup 1
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
     } else {	
 	if ("'"$output_file"'" != "'"$file13"'") {
             print "E: No prices found in the today XML data."
-			exit 1
+			exit_with_cleanup 1
         }
     } 
-            print "E: No prices found in the tomorrow XML data."
+            log_message "E: No prices found in the tomorrow XML data."
 }
 ' "$file"
 
