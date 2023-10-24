@@ -448,7 +448,7 @@ END {
         sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
         timestamp=$(TZ=$TZ date +%d)
         echo "date_now_day: $timestamp" >> "$output_file"
-    fi
+
 
     # Check if tomorrow file contains next day prices
     if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
@@ -461,9 +461,9 @@ END {
         timestamp=$(TZ=$TZ date +%d)
         echo "date_now_day: $timestamp" >>"$file8"
     else
-	if [ -f "$file11" ]; then
         cp $file11 $file19 # If no second day, copy sorted price file.
-        fi
+    fi
+    else exit_with_cleanup 1
     fi
 }
 
