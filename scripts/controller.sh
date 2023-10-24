@@ -433,16 +433,16 @@ in_reason && /<text>/ {
 END {
     if (error_code == 999) {
         log_message "E: Entsoe data retrieval error:", error_message
-        exit_with_cleanup 1
+        exit 1
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
     } else {	
 	if ("'"$output_file"'" != "'"$file13"'") {
-            log_message "E: No prices found in the today XML data."
-			exit_with_cleanup 1
+            print "E: No prices found in the today XML data."
+			exit 1
         }
     } 
-            log_message "E: No prices found in the tomorrow XML data."
+            print "E: No prices found in the tomorrow XML data."
 }
 ' "$file"
 
