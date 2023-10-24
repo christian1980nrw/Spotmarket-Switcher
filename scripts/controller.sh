@@ -188,25 +188,13 @@ declare -A valid_vars=(
 log_message() {
   message="$1"
   if type log_info >/dev/null 2>&1; then
-    log_info "$message" || { 
-      # If log_info fails (returns a non-zero exit code), use an alternative logging method.
-      if type logger >/dev/null 2>&1; then
-        logger -p user.info -t "Spotmarket-Switcher" "$message"
-      elif type syslog >/dev/null 2>&1; then
-        syslog -s "$message"
-      else
-        echo "${message:3}" >&2
-      fi
-    }
+    log_info "$message"
+  elif type logger >/dev/null 2>&1; then
+    logger -p user.info -t "Spotmarket-Switcher" "$message"
+  elif type syslog >/dev/null 2>&1; then
+    syslog -s "$message"
   else
-    # If log_info is not available, use an alternative logging method.
-    if type logger >/dev/null 2>&1; then
-      logger -p user.info -t "Spotmarket-Switcher" "$message"
-    elif type syslog >/dev/null 2>&1; then
-      syslog -s "$message"
-    else
-      echo "${message:3}" >&2
-    fi
+    echo "${message:3}" >&2
   fi
 }
 
