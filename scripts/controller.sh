@@ -134,7 +134,7 @@ fi
 # Überprüfen Sie die Bash-Version
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
     VALID_CONFIG_VERSION=1
-    log_info "W: Due to the older Bash version, the configuration validation is skipped."
+    echo "W: Due to the older Bash version, the configuration validation is skipped."
 else
     declare -A valid_vars=(
     	["CONFIG-VERSION"]="1"
