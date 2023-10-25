@@ -10,9 +10,9 @@ jobs:
       image: victronenergy/venus-docker
       options: --cpus 1
     steps:
-      - name: Extract branch name
-        id: extract_branch
-        run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV      
+      - name: Set branch name
+        id: set_branch
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check for dockerenv file
@@ -38,6 +38,7 @@ jobs:
           pwd
           echo ls
           ls
+          echo "BRANCH = ${{ env.BRANCH_NAME }}"
           echo victron-venus-os-install.sh
           if ./victron-venus-os-install.sh ; then
              echo "[OK]"
