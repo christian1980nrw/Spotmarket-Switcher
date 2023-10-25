@@ -10,6 +10,9 @@ jobs:
       image: victronenergy/venus-docker
       options: --cpus 1
     steps:
+      - name: Set branch name
+        id: set_branch
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check for dockerenv file
@@ -29,14 +32,13 @@ jobs:
           fi
       - name: Set script permissions
         run: chmod +x ./victron-venus-os-install.sh
-        env:
-          DEBUG: 1
       - name: Execute Installation under Venus OS
         run: |
           echo pwd
           pwd
           echo ls
           ls
+          echo "BRANCH = ${{ env.BRANCH_NAME }}"
           echo victron-venus-os-install.sh
           if ./victron-venus-os-install.sh ; then
              echo "[OK]"
@@ -50,6 +52,8 @@ jobs:
         env:
           NO_REBOOT: 1
           DEBUG: 1
+          BRANCH: ${{ env.BRANCH_NAME }}
+          ACTOR: ${{ github.actor }}
       - name: Execute Run-Script under Venus OS
         run: /data/etc/Spotmarket-Switcher/service/run
         env:

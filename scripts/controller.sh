@@ -28,7 +28,7 @@ License=$(
 EOLICENSE
 )
 
-VERSION="2.3.7"
+VERSION="2.3.8"
 
 set -e
 
@@ -131,129 +131,158 @@ fi
 ###    Begin of the functions...    ###
 #######################################
 
-declare -A valid_vars=(
-    ["use_fritz_dect_sockets"]="0|1"
-    ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
-    ["user"]="string"
-    ["passwd"]="string"
-    ["sockets"]='^\(\"[^"]+\"( \"[^"]+\")*\)$'
-    ["use_shelly_wlan_sockets"]="0|1"
-    ["shelly_ips"]="^\(\".*\"\)$"
-    ["shellyuser"]="string"
-    ["shellypasswd"]="string"
-    ["use_victron_charger"]="0|1"
-    ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
-    ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
-    ["economic_check"]="0|1|2"
-    ["stop_price"]="[0-9]+(\.[0-9]+)?"
-    ["start_price"]="[0-9]+(\.[0-9]+)?"
-    ["feedin_price"]="[0-9]+(\.[0-9]+)?"
-    ["energy_fee"]="[0-9]+(\.[0-9]+)?"
-    ["abort_price"]="[0-9]+(\.[0-9]+)?"
-    ["use_start_stop_logic"]="0|1"
-    ["switchablesockets_at_start_stop"]="0|1"
-    ["charge_at_solar_breakeven_logic"]="0|1"
-    ["switchablesockets_at_solar_breakeven_logic"]="0|1"
-    ["charge_at_lowest_price"]="0|1"
-    ["switchablesockets_at_lowest_price"]="0|1"
-    ["charge_at_second_lowest_price"]="0|1"
-    ["switchablesockets_at_second_lowest_price"]="0|1"
-    ["charge_at_third_lowest_price"]="0|1"
-    ["switchablesockets_at_third_lowest_price"]="0|1"
-    ["charge_at_fourth_lowest_price"]="0|1"
-    ["switchablesockets_at_fourth_lowest_price"]="0|1"
-    ["charge_at_fifth_lowest_price"]="0|1"
-    ["switchablesockets_at_fifth_lowest_price"]="0|1"
-    ["charge_at_sixth_lowest_price"]="0|1"
-    ["switchablesockets_at_sixth_lowest_price"]="0|1"
-    ["TZ"]="string"
-    ["select_pricing_api"]="1|2|3"
-    ["include_second_day"]="0|1"
-    ["use_solarweather_api_to_abort"]="0|1"
-    ["abort_solar_yield_today"]="[0-9]+(\.[0-9]+)?"
-    ["abort_solar_yield_tomorrow"]="[0-9]+(\.[0-9]+)?"
-    ["abort_suntime"]="[0-9]+"
-    ["latitude"]="[-]?[0-9]+(\.[0-9]+)?"
-    ["longitude"]="[-]?[0-9]+(\.[0-9]+)?"
-    ["visualcrossing_api_key"]="string"
-    ["awattar"]="de|at"
-    ["in_Domain"]="string"
-    ["out_Domain"]="string"
-    ["entsoe_eu_api_security_token"]="string"
-    ["tibber_prices"]="energy|total|tax"
-    ["tibber_api_key"]="string"
-)
+# Überprüfen Sie die Bash-Version
+if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
+    valid_config_version=1 # Please increase this value by 1 when changing the configuration variables
+else
+    # With so much, a version without declare -A would be feasible but not maintainable
+    declare -A valid_vars=(
+    	["config_version"]="1" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+        ["use_fritz_dect_sockets"]="0|1"
+        ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+        ["user"]="string"
+        ["passwd"]="string"
+        ["sockets"]='^\(\"[^"]+\"( \"[^"]+\")*\)$'
+        ["use_shelly_wlan_sockets"]="0|1"
+        ["shelly_ips"]="^\(\".*\"\)$"
+        ["shellyuser"]="string"
+        ["shellypasswd"]="string"
+        ["use_victron_charger"]="0|1"
+        ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
+        ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
+        ["economic_check"]="0|1|2"
+        ["stop_price"]="[0-9]+(\.[0-9]+)?"
+        ["start_price"]="[0-9]+(\.[0-9]+)?"
+        ["feedin_price"]="[0-9]+(\.[0-9]+)?"
+        ["energy_fee"]="[0-9]+(\.[0-9]+)?"
+        ["abort_price"]="[0-9]+(\.[0-9]+)?"
+        ["use_start_stop_logic"]="0|1"
+        ["switchablesockets_at_start_stop"]="0|1"
+        ["charge_at_solar_breakeven_logic"]="0|1"
+        ["switchablesockets_at_solar_breakeven_logic"]="0|1"
+        ["charge_at_lowest_price"]="0|1"
+        ["switchablesockets_at_lowest_price"]="0|1"
+        ["charge_at_second_lowest_price"]="0|1"
+        ["switchablesockets_at_second_lowest_price"]="0|1"
+        ["charge_at_third_lowest_price"]="0|1"
+        ["switchablesockets_at_third_lowest_price"]="0|1"
+        ["charge_at_fourth_lowest_price"]="0|1"
+        ["switchablesockets_at_fourth_lowest_price"]="0|1"
+        ["charge_at_fifth_lowest_price"]="0|1"
+        ["switchablesockets_at_fifth_lowest_price"]="0|1"
+        ["charge_at_sixth_lowest_price"]="0|1"
+        ["switchablesockets_at_sixth_lowest_price"]="0|1"
+        ["TZ"]="string"
+        ["select_pricing_api"]="1|2|3"
+        ["include_second_day"]="0|1"
+        ["use_solarweather_api_to_abort"]="0|1"
+        ["abort_solar_yield_today"]="[0-9]+(\.[0-9]+)?"
+        ["abort_solar_yield_tomorrow"]="[0-9]+(\.[0-9]+)?"
+        ["abort_suntime"]="[0-9]+"
+        ["latitude"]="[-]?[0-9]+(\.[0-9]+)?"
+        ["longitude"]="[-]?[0-9]+(\.[0-9]+)?"
+        ["visualcrossing_api_key"]="string"
+        ["awattar"]="de|at"
+        ["in_Domain"]="string"
+        ["out_Domain"]="string"
+        ["entsoe_eu_api_security_token"]="string"
+        ["tibber_prices"]="energy|total|tax"
+        ["tibber_api_key"]="string"
+        ["config_version"]="1"
+    )
 
-# Define a logging function and try out different methods. Maybe log_message is not available at MacOS.
-log_message() {
-  message="$1"
-  if [ -z "$(command -v log_info)" ]; then
-    logger -p user.info -t "Spotmarket-Switcher" "$message"
-  else
-    log_info "$message"
-  fi
-}
-
-
-declare -A config_values
+    declare -A config_values
+fi
 
 parse_and_validate_config() {
-    local file="$1"
-    local errors=""
-
-    rotating_spinner &   # Start the spinner in the background
-    local spinner_pid=$! # Get the PID of the spinner
-
-    # Step 1: Parse
-    while IFS='=' read -r key value; do
-        # Treat everything after a "#" as a comment and remove it
-        key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
-        value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
-
-        # Only process rows with key-value pairs
-        [[ "$key" == "" || "$value" == "" ]] && continue
-
-        # Set the value in the associative array
-        config_values["$key"]="$value"
-    done <"$file"
-
-    # Step 2: Validation
-    for var_name in "${!valid_vars[@]}"; do
-        local validation_pattern=${valid_vars[$var_name]}
-
-        # Check whether the variable was set at all
-        if [[ -z ${config_values[$var_name]+x} ]]; then
-            errors+="E: $var_name is not set.\n"
-            continue
+    if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
+        # Für Bash-Version <= 4, überprüfe nur config_version=1
+	log_message "W: Due to the older Bash version, the configuration validation is skipped."
+        local file="$1"
+        local version_valid=false
+        while IFS='=' read -r key value; do
+            key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
+            value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
+            if [[ "$key" == "config_version" && "$value" == "$valid_config_version" ]]; then
+                version_valid=true
+                break
+            fi
+        done <"$file"
+        
+        if [[ "$version_valid" == false ]]; then
+            log_message "E: Error: config_version=$valid_config_version is missing or the configuration is invalid."
+            return 1
         fi
-
-        # Special checking for strings, IP, and arrays
-        if [[ "$validation_pattern" == "string" ]]; then
-            # Strings can be empty or filled
-            continue
-        elif [[ "$validation_pattern" == "array" && "${config_values[$var_name]}" == "" ]]; then
-            continue
-        elif [[ "$validation_pattern" == "ip" && ! "${config_values[$var_name]}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            errors+="E: $var_name has an invalid IP address format: ${config_values[$var_name]}.\n"
-            continue
-        fi
-
-        # Standard check against the given pattern
-        if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
-            errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
-        fi
-    done
-
-    # Stop the spinner once the parsing is done
-    kill $spinner_pid &>/dev/null
-
-    # Output errors if any were found
-    if [[ -n "$errors" ]]; then
-        echo -e "$errors"
-        return 1
-    else
-        echo "Config validation passed."
         return 0
+    else    
+        local file="$1"
+        local errors=""
+
+        rotating_spinner &   # Start the spinner in the background
+        local spinner_pid=$! # Get the PID of the spinner
+        local version_valid=false
+        local version_value=0
+
+        # Step 1: Parse
+        while IFS='=' read -r key value; do
+            # Treat everything after a "#" as a comment and remove it
+            key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
+            value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
+
+            # Only process rows with key-value pairs
+            [[ "$key" == "" || "$value" == "" ]] && continue
+
+            # Set the value in the associative array
+            config_values["$key"]="$value"
+	
+            if [[ "$key" == "config_version" ]]; then
+                version_valid=true
+                version_value="$value"
+	        fi
+        done <"$file"
+
+        # Step 2: Validation
+        for var_name in "${!valid_vars[@]}"; do
+            local validation_pattern=${valid_vars[$var_name]}
+
+            # Check whether the variable was set at all
+            if [[ -z ${config_values[$var_name]+x} ]]; then
+                errors+="E: $var_name is not set.\n"
+                continue
+            fi
+
+            # Special checking for strings, IP, and arrays
+            if [[ "$validation_pattern" == "string" ]]; then
+                # Strings can be empty or filled
+                continue
+            elif [[ "$validation_pattern" == "array" && "${config_values[$var_name]}" == "" ]]; then
+                continue
+            elif [[ "$validation_pattern" == "ip" && ! "${config_values[$var_name]}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                errors+="E: $var_name has an invalid IP address format: ${config_values[$var_name]}.\n"
+                continue
+            fi
+
+            # Standard check against the given pattern
+            if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
+                errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
+            fi
+        done
+
+        if [[ "$version_valid" == true && "$version_value" -lt 1 ]]; then
+            errors+="W: The config.txt version is less than 1. You are using an outdated unsupported configuration file. Please re-download and reconfigurate. \n"
+        fi
+
+        # Stop the spinner once the parsing is done
+        kill $spinner_pid &>/dev/null
+
+        # Output errors if any were found
+        if [[ -n "$errors" ]]; then
+            echo -e "$errors"
+            return 1
+        else
+            echo "Config validation passed."
+            return 0
+        fi
     fi
 }
 
@@ -389,6 +418,7 @@ download_entsoe_prices() {
     if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     awk '
+	            error_found=0
 /<Period>/ {
     capture_period = 1
 }
@@ -432,6 +462,55 @@ in_reason && /<text>/ {
 
 END {
     if (error_code == 999) {
+        print "E: Entsoe-Datenabruffehler:", error_message
+    } else if (prices != "") {
+        printf "%s", prices > "'"$output_file"'"
+    } else {
+        print "E: Keine Preise in den XML-Daten gefunden."
+    }
+}
+' "$file"
+
+if [ -f "$output_file" ]; then
+    sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
+    timestamp=$(TZ=$TZ date +%d)
+    echo "date_now_day: $timestamp" >> "$output_file"
+
+    # Check if the file for tomorrow contains prices for the next day
+    if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
+        cat $file10 > $file8
+        if [ -f "$file13" ]; then
+            cat "$file13" >> "$file8"
+        fi
+        sed -i '25d;50d' "$file8"
+        sort -g "$file8" > "$file19"
+        timestamp=$(TZ=$TZ date +%d)
+        echo "date_now_day: $timestamp" >> "$file8"
+    else
+        cp $file11 $file19  # If there's no second day, copy the sorted price file.
+    fi
+fi
+
+}
+
+in_reason && /<code>/ {
+    gsub(/<code>|<\/code>/, "")
+    gsub(/^[\t ]+|[\t ]+$/, "", $0)
+    error_code = $0
+}
+
+in_reason && /<text>/ {
+    gsub(/<text>|<\/text>/, "")
+	gsub(/^[\t ]+|[\t ]+$/, "", $0)
+    error_message = $0
+}
+
+/<\/Reason>/ {
+    in_reason = 0
+}
+
+END {
+    if (error_code == 999) {
         print "E: Entsoe data retrieval error:", error_message
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
@@ -445,20 +524,19 @@ END {
         timestamp=$(TZ=$TZ date +%d)
         echo "date_now_day: $timestamp" >> "$output_file"
 
-
-    # Check if tomorrow file contains next day prices
-    if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
-        cat $file10 >$file8
-        if [ -f "$file13" ]; then
-            cat "$file13" >>"$file8"
+        # Check if tomorrow file contains next day prices
+        if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
+            cat $file10 >$file8
+            if [ -f "$file13" ]; then
+                cat "$file13" >>"$file8"
+            fi
+            sed -i '25d 50d' "$file8"
+            sort -g "$file8" >"$file19"
+            timestamp=$(TZ=$TZ date +%d)
+            echo "date_now_day: $timestamp" >>"$file8"
+        else
+            cp $file11 $file19 # If no second day, copy sorted price file.
         fi
-        sed -i '25d 50d' "$file8"
-        sort -g "$file8" >"$file19"
-        timestamp=$(TZ=$TZ date +%d)
-        echo "date_now_day: $timestamp" >>"$file8"
-    else
-        cp $file11 $file19 # If no second day, copy sorted price file.
-    fi
     else exit_with_cleanup 1
     fi
 }
@@ -599,23 +677,26 @@ get_suntime_today() {
 
 # Function to evaluate charging and switchablesockets conditions
 evaluate_conditions() {
-    local -n conditions_ref="$1"
-    local -n descriptions_ref="$2"
-    local -n execute_ref="$3"
-    local -n condition_met_ref="$4"
-    local condition_met=0 # checkflag
+    local conditions=("${!1}")
+    local descriptions=("${!2}")
+    local execute_ref_name="$3"  # This will hold the name of the variable
+    local condition_met_ref_name="$4"  # This will hold the name of the variable
+    local condition_met=0
 
-    for condition in "${!conditions_ref[@]}"; do
+    for index in "${!conditions[@]}"; do
+        condition="${conditions[$index]}"
+        description="${descriptions[$index]}"
+        
         if [ -n "$DEBUG" ]; then
-            description_value="${descriptions_ref[$condition]}"
-            condition_evaluation=$([ "${conditions_ref[$condition]}" -eq 1 ] && echo true || echo false)
-            result="($description_value) evaluates to $condition_evaluation"
+            condition_evaluation=$([ "$condition" -eq 1 ] && echo true || echo false)
+            result="($description) evaluates to $condition_evaluation"
             log_message "D: condition_evaluation [ $result ]." >&2
         fi
 
-        if ((conditions_ref[$condition])) && [[ $condition_met -eq 0 ]]; then
-            execute_ref=1
-            condition_met_ref="$condition"
+        if ((condition)) && [[ $condition_met -eq 0 ]]; then
+            # Using indirection to set the value
+            eval $execute_ref_name=1
+            eval $condition_met_ref_name=\"$description\"
             condition_met=1
 
             if [[ $DEBUG -ne 1 ]]; then
@@ -1107,58 +1188,63 @@ else
 fi
 
 charging_condition_met=""
+switchablesockets_condition_met=""
 execute_charging=0
 execute_switchablesockets_on=0
 
-declare -A charging_conditions_descriptions=(
-    ["use_start_stop_logic"]="use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
-    ["charge_at_solar_breakeven_logic"]="charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
-    ["charge_at_lowest_price"]="charge_at_lowest_price ($charge_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["charge_at_second_lowest_price"]="charge_at_second_lowest_price ($charge_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["charge_at_third_lowest_price"]="charge_at_third_lowest_price ($charge_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["charge_at_fourth_lowest_price"]="charge_at_fourth_lowest_price ($charge_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["charge_at_fifth_lowest_price"]="charge_at_fifth_lowest_price ($charge_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["charge_at_sixth_lowest_price"]="charge_at_sixth_lowest_price ($charge_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+# Indexed arrays for descriptions:
+charging_descriptions=(
+    "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+    "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+    "charge_at_lowest_price ($charge_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_second_lowest_price ($charge_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_third_lowest_price ($charge_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_fourth_lowest_price ($charge_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_fifth_lowest_price ($charge_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_sixth_lowest_price ($charge_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
 )
 
-declare -A charging_conditions=(
-    ["use_start_stop_logic"]=$((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
-    ["charge_at_solar_breakeven_logic"]=$((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    ["charge_at_lowest_price"]=$((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    ["charge_at_second_lowest_price"]=$((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    ["charge_at_third_lowest_price"]=$((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    ["charge_at_fourth_lowest_price"]=$((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    ["charge_at_fifth_lowest_price"]=$((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    ["charge_at_sixth_lowest_price"]=$((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
+# Indexed arrays for conditions:
+charging_conditions=(
+    $((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
+    $((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
+    $((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
+    $((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
+    $((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
+    $((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
+    $((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
+    $((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
+
 
 # Check if any charging condition is met
-evaluate_conditions charging_conditions charging_conditions_descriptions execute_charging charging_condition_met
+evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
 
-declare -A switchablesockets_conditions_descriptions=(
-    ["switchablesockets_at_start_stop"]="switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
-    ["switchablesockets_at_solar_breakeven_logic"]="switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
-    ["switchablesockets_at_lowest_price"]="switchablesockets_at_lowest_price ($switchablesockets_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["switchablesockets_at_second_lowest_price"]="switchablesockets_at_second_lowest_price ($switchablesockets_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["switchablesockets_at_third_lowest_price"]="switchablesockets_at_third_lowest_price ($switchablesockets_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["switchablesockets_at_fourth_lowest_price"]="switchablesockets_at_fourth_lowest_price ($switchablesockets_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["switchablesockets_at_fifth_lowest_price"]="switchablesockets_at_fifth_lowest_price ($switchablesockets_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    ["switchablesockets_at_sixth_lowest_price"]="switchablesockets_at_sixth_lowest_price ($switchablesockets_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+# Indexed arrays for descriptions:
+switchablesockets_conditions_descriptions=(
+    "switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+    "switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+    "switchablesockets_at_lowest_price ($switchablesockets_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_second_lowest_price ($switchablesockets_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_third_lowest_price ($switchablesockets_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_fourth_lowest_price ($switchablesockets_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_fifth_lowest_price ($switchablesockets_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_sixth_lowest_price ($switchablesockets_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
 )
 
-declare -A switchablesockets_conditions=(
-    ["switchablesockets_at_start_stop"]=$((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
-    ["switchablesockets_at_solar_breakeven_logic"]=$((switchablesockets_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    ["switchablesockets_at_lowest_price"]=$((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    ["switchablesockets_at_second_lowest_price"]=$((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    ["switchablesockets_at_third_lowest_price"]=$((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    ["switchablesockets_at_fourth_lowest_price"]=$((switchablesockets_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    ["switchablesockets_at_fifth_lowest_price"]=$((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    ["switchablesockets_at_sixth_lowest_price"]=$((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
+# Indexed arrays for conditions:
+switchablesockets_conditions=(
+    $((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
+    $((switchablesockets_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
+    $((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
+    $((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
+    $((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
+    $((switchablesockets_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
+    $((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
+    $((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
-
 # Check if any switching condition is met
-evaluate_conditions switchablesockets_conditions switchablesockets_conditions_descriptions execute_switchablesockets_on switchablesockets_condition_met
+evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets" "switchablesockets_condition_met"
 
 if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today."
@@ -1223,5 +1309,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-    log_message "D: \[ OK \]" >&2
+    log_message "D: [ OK ]" >&2
 fi
