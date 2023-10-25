@@ -131,130 +131,156 @@ fi
 ###    Begin of the functions...    ###
 #######################################
 
-declare -A valid_vars=(
-    ["use_fritz_dect_sockets"]="0|1"
-    ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
-    ["user"]="string"
-    ["passwd"]="string"
-    ["sockets"]='^\(\"[^"]+\"( \"[^"]+\")*\)$'
-    ["use_shelly_wlan_sockets"]="0|1"
-    ["shelly_ips"]="^\(\".*\"\)$"
-    ["shellyuser"]="string"
-    ["shellypasswd"]="string"
-    ["use_victron_charger"]="0|1"
-    ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
-    ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
-    ["economic_check"]="0|1|2"
-    ["stop_price"]="[0-9]+(\.[0-9]+)?"
-    ["start_price"]="[0-9]+(\.[0-9]+)?"
-    ["feedin_price"]="[0-9]+(\.[0-9]+)?"
-    ["energy_fee"]="[0-9]+(\.[0-9]+)?"
-    ["abort_price"]="[0-9]+(\.[0-9]+)?"
-    ["use_start_stop_logic"]="0|1"
-    ["switchablesockets_at_start_stop"]="0|1"
-    ["charge_at_solar_breakeven_logic"]="0|1"
-    ["switchablesockets_at_solar_breakeven_logic"]="0|1"
-    ["charge_at_lowest_price"]="0|1"
-    ["switchablesockets_at_lowest_price"]="0|1"
-    ["charge_at_second_lowest_price"]="0|1"
-    ["switchablesockets_at_second_lowest_price"]="0|1"
-    ["charge_at_third_lowest_price"]="0|1"
-    ["switchablesockets_at_third_lowest_price"]="0|1"
-    ["charge_at_fourth_lowest_price"]="0|1"
-    ["switchablesockets_at_fourth_lowest_price"]="0|1"
-    ["charge_at_fifth_lowest_price"]="0|1"
-    ["switchablesockets_at_fifth_lowest_price"]="0|1"
-    ["charge_at_sixth_lowest_price"]="0|1"
-    ["switchablesockets_at_sixth_lowest_price"]="0|1"
-    ["TZ"]="string"
-    ["select_pricing_api"]="1|2|3"
-    ["include_second_day"]="0|1"
-    ["use_solarweather_api_to_abort"]="0|1"
-    ["abort_solar_yield_today"]="[0-9]+(\.[0-9]+)?"
-    ["abort_solar_yield_tomorrow"]="[0-9]+(\.[0-9]+)?"
-    ["abort_suntime"]="[0-9]+"
-    ["latitude"]="[-]?[0-9]+(\.[0-9]+)?"
-    ["longitude"]="[-]?[0-9]+(\.[0-9]+)?"
-    ["visualcrossing_api_key"]="string"
-    ["awattar"]="de|at"
-    ["in_Domain"]="string"
-    ["out_Domain"]="string"
-    ["entsoe_eu_api_security_token"]="string"
-    ["tibber_prices"]="energy|total|tax"
-    ["tibber_api_key"]="string"
-    ["config_version"]="1"
-)
+# Überprüfen Sie die Bash-Version
+if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
+    VALID_CONFIG_VERSION=1
+    log_info "W: Due to the older Bash version, the configuration validation is skipped."
+else
+    declare -A valid_vars=(
+        ["use_fritz_dect_sockets"]="0|1"
+        ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+        ["user"]="string"
+        ["passwd"]="string"
+        ["sockets"]='^\(\"[^"]+\"( \"[^"]+\")*\)$'
+        ["use_shelly_wlan_sockets"]="0|1"
+        ["shelly_ips"]="^\(\".*\"\)$"
+        ["shellyuser"]="string"
+        ["shellypasswd"]="string"
+        ["use_victron_charger"]="0|1"
+        ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
+        ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
+        ["economic_check"]="0|1|2"
+        ["stop_price"]="[0-9]+(\.[0-9]+)?"
+        ["start_price"]="[0-9]+(\.[0-9]+)?"
+        ["feedin_price"]="[0-9]+(\.[0-9]+)?"
+        ["energy_fee"]="[0-9]+(\.[0-9]+)?"
+        ["abort_price"]="[0-9]+(\.[0-9]+)?"
+        ["use_start_stop_logic"]="0|1"
+        ["switchablesockets_at_start_stop"]="0|1"
+        ["charge_at_solar_breakeven_logic"]="0|1"
+        ["switchablesockets_at_solar_breakeven_logic"]="0|1"
+        ["charge_at_lowest_price"]="0|1"
+        ["switchablesockets_at_lowest_price"]="0|1"
+        ["charge_at_second_lowest_price"]="0|1"
+        ["switchablesockets_at_second_lowest_price"]="0|1"
+        ["charge_at_third_lowest_price"]="0|1"
+        ["switchablesockets_at_third_lowest_price"]="0|1"
+        ["charge_at_fourth_lowest_price"]="0|1"
+        ["switchablesockets_at_fourth_lowest_price"]="0|1"
+        ["charge_at_fifth_lowest_price"]="0|1"
+        ["switchablesockets_at_fifth_lowest_price"]="0|1"
+        ["charge_at_sixth_lowest_price"]="0|1"
+        ["switchablesockets_at_sixth_lowest_price"]="0|1"
+        ["TZ"]="string"
+        ["select_pricing_api"]="1|2|3"
+        ["include_second_day"]="0|1"
+        ["use_solarweather_api_to_abort"]="0|1"
+        ["abort_solar_yield_today"]="[0-9]+(\.[0-9]+)?"
+        ["abort_solar_yield_tomorrow"]="[0-9]+(\.[0-9]+)?"
+        ["abort_suntime"]="[0-9]+"
+        ["latitude"]="[-]?[0-9]+(\.[0-9]+)?"
+        ["longitude"]="[-]?[0-9]+(\.[0-9]+)?"
+        ["visualcrossing_api_key"]="string"
+        ["awattar"]="de|at"
+        ["in_Domain"]="string"
+        ["out_Domain"]="string"
+        ["entsoe_eu_api_security_token"]="string"
+        ["tibber_prices"]="energy|total|tax"
+        ["tibber_api_key"]="string"
+        ["config_version"]="1"
+    )
 
-declare -A config_values
+    declare -A config_values
+fi
 
 parse_and_validate_config() {
-    local file="$1"
-    local errors=""
-
-    rotating_spinner &   # Start the spinner in the background
-    local spinner_pid=$! # Get the PID of the spinner
-    local version_valid=false
-    local version_value=0
-
-    # Step 1: Parse
-    while IFS='=' read -r key value; do
-        # Treat everything after a "#" as a comment and remove it
-        key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
-        value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
-
-        # Only process rows with key-value pairs
-        [[ "$key" == "" || "$value" == "" ]] && continue
-
-        # Set the value in the associative array
-        config_values["$key"]="$value"
-	
-        if [[ "$key" == "config_version" ]]; then
-            version_valid=true
-            version_value="$value"
-	fi
-    done <"$file"
-
-    # Step 2: Validation
-    for var_name in "${!valid_vars[@]}"; do
-        local validation_pattern=${valid_vars[$var_name]}
-
-        # Check whether the variable was set at all
-        if [[ -z ${config_values[$var_name]+x} ]]; then
-            errors+="E: $var_name is not set.\n"
-            continue
+    if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
+        # Für Bash-Version <= 4, überprüfe nur CONFIG-VERSION=1
+        local file="$1"
+        local version_valid=false
+        while IFS='=' read -r key value; do
+            key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
+            value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
+            if [[ "$key" == "CONFIG-VERSION" && "$value" == "$VALID_CONFIG_VERSION" ]]; then
+                version_valid=true
+                break
+            fi
+        done <"$file"
+        
+        if [[ "$version_valid" == false ]]; then
+            log_info "E: Error: CONFIG-VERSION=$VALID_CONFIG_VERSION is missing or the configuration is invalid."
+            return 1
         fi
-
-        # Special checking for strings, IP, and arrays
-        if [[ "$validation_pattern" == "string" ]]; then
-            # Strings can be empty or filled
-            continue
-        elif [[ "$validation_pattern" == "array" && "${config_values[$var_name]}" == "" ]]; then
-            continue
-        elif [[ "$validation_pattern" == "ip" && ! "${config_values[$var_name]}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            errors+="E: $var_name has an invalid IP address format: ${config_values[$var_name]}.\n"
-            continue
-        fi
-
-        # Standard check against the given pattern
-        if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
-            errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
-        fi
-    done
-
-    if [[ "$version_valid" == true && "$version_value" -lt 1 ]]; then
-        errors+="W: The config.txt version is less than 1. You are using an outdated unsupported configuration file. Please re-download and reconfigurate. \n"
-    fi
-
-    # Stop the spinner once the parsing is done
-    kill $spinner_pid &>/dev/null
-
-    # Output errors if any were found
-    if [[ -n "$errors" ]]; then
-        echo -e "$errors"
-        return 1
-    else
-        echo "Config validation passed."
         return 0
+    else    
+        local file="$1"
+        local errors=""
+
+        rotating_spinner &   # Start the spinner in the background
+        local spinner_pid=$! # Get the PID of the spinner
+        local version_valid=false
+        local version_value=0
+
+        # Step 1: Parse
+        while IFS='=' read -r key value; do
+            # Treat everything after a "#" as a comment and remove it
+            key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
+            value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
+
+            # Only process rows with key-value pairs
+            [[ "$key" == "" || "$value" == "" ]] && continue
+
+            # Set the value in the associative array
+            config_values["$key"]="$value"
+	
+            if [[ "$key" == "config_version" ]]; then
+                version_valid=true
+                version_value="$value"
+	        fi
+        done <"$file"
+
+        # Step 2: Validation
+        for var_name in "${!valid_vars[@]}"; do
+            local validation_pattern=${valid_vars[$var_name]}
+
+            # Check whether the variable was set at all
+            if [[ -z ${config_values[$var_name]+x} ]]; then
+                errors+="E: $var_name is not set.\n"
+                continue
+            fi
+
+            # Special checking for strings, IP, and arrays
+            if [[ "$validation_pattern" == "string" ]]; then
+                # Strings can be empty or filled
+                continue
+            elif [[ "$validation_pattern" == "array" && "${config_values[$var_name]}" == "" ]]; then
+                continue
+            elif [[ "$validation_pattern" == "ip" && ! "${config_values[$var_name]}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                errors+="E: $var_name has an invalid IP address format: ${config_values[$var_name]}.\n"
+                continue
+            fi
+
+            # Standard check against the given pattern
+            if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
+                errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
+            fi
+        done
+
+        if [[ "$version_valid" == true && "$version_value" -lt 1 ]]; then
+            errors+="W: The config.txt version is less than 1. You are using an outdated unsupported configuration file. Please re-download and reconfigurate. \n"
+        fi
+
+        # Stop the spinner once the parsing is done
+        kill $spinner_pid &>/dev/null
+
+        # Output errors if any were found
+        if [[ -n "$errors" ]]; then
+            echo -e "$errors"
+            return 1
+        else
+            echo "Config validation passed."
+            return 0
+        fi
     fi
 }
 
