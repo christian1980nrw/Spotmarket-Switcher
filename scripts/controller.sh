@@ -462,11 +462,11 @@ in_reason && /<text>/ {
 
 END {
     if (error_code == 999) {
-        print "E: Entsoe-Datenabruffehler:", error_message
+        print "E: Entsoe data retrieval error found in the XML data:", error_message
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
     } else {
-        print "E: Keine Preise in den XML-Daten gefunden."
+        print "E: No prices found in the XML data."
     }
 }
 ' "$file"
@@ -491,54 +491,6 @@ if [ -f "$output_file" ]; then
     fi
 fi
 
-}
-
-in_reason && /<code>/ {
-    gsub(/<code>|<\/code>/, "")
-    gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    error_code = $0
-}
-
-in_reason && /<text>/ {
-    gsub(/<text>|<\/text>/, "")
-	gsub(/^[\t ]+|[\t ]+$/, "", $0)
-    error_message = $0
-}
-
-/<\/Reason>/ {
-    in_reason = 0
-}
-
-END {
-    if (error_code == 999) {
-        print "E: Entsoe data retrieval error:", error_message
-    } else if (prices != "") {
-        printf "%s", prices > "'"$output_file"'"
-    } else 
-            print "E: No prices found in the XML data."
-}
-' "$file"
-
-    if [ -f "$output_file" ]; then
-        sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
-        timestamp=$(TZ=$TZ date +%d)
-        echo "date_now_day: $timestamp" >> "$output_file"
-
-        # Check if tomorrow file contains next day prices
-        if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
-            cat $file10 >$file8
-            if [ -f "$file13" ]; then
-                cat "$file13" >>"$file8"
-            fi
-            sed -i '25d 50d' "$file8"
-            sort -g "$file8" >"$file19"
-            timestamp=$(TZ=$TZ date +%d)
-            echo "date_now_day: $timestamp" >>"$file8"
-        else
-            cp $file11 $file19 # If no second day, copy sorted price file.
-        fi
-    else exit_with_cleanup 1
-    fi
 }
 
 download_solarenergy() {
