@@ -13,9 +13,7 @@ jobs:
       - name: Set BRANCH_NAME from github.ref
         id: extract_branch
         run: |
-          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\///' | sed 's/\/merge//')
-          echo "Extracted branch name is $BRANCH_NAME"
-          echo "::set-output name=branch::$BRANCH_NAME"
+          echo "BRANCH=$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\/.*\///' | sed 's/\/merge//')" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check for dockerenv file
@@ -54,7 +52,7 @@ jobs:
         env:
           NO_REBOOT: 1
           DEBUG: 1
-          BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          BRANCH: ${{ env.BRANCH }}
           ACTOR: ${{ github.actor }}
       - name: Execute Run-Script under Venus OS
         run: /data/etc/Spotmarket-Switcher/service/run
