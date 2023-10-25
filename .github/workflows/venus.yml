@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Set BRANCH_NAME from github.ref
         id: extract_branch
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\/.*\///' | sed 's/\/merge//')"
+        run: |
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\///' | sed 's/\/merge//')
+          echo "Extracted branch name is $BRANCH_NAME"
+          echo "::set-output name=branch::$BRANCH_NAME"
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Check for dockerenv file
