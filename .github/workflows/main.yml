@@ -76,12 +76,15 @@ jobs:
           fi
       - name: Set script permissions
         run: chmod +x ./victron-venus-os-install.sh
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV        
       - name: Install
         run: ./victron-venus-os-install.sh
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
-          BRANCH: ${{ steps.set-branch-name.outputs.branch_name }}
+          BRANCH: ${{ env.BRANCH_NAME }}
           ACTOR: ${{ github.actor }}
       - name: Execute Run-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
