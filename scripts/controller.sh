@@ -28,7 +28,7 @@ License=$(
 EOLICENSE
 )
 
-VERSION="2.3.7"
+VERSION="2.3.8-DEV"
 
 set -e
 
@@ -446,20 +446,19 @@ END {
         timestamp=$(TZ=$TZ date +%d)
         echo "date_now_day: $timestamp" >> "$output_file"
 
-
-    # Check if tomorrow file contains next day prices
-    if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
-        cat $file10 >$file8
-        if [ -f "$file13" ]; then
-            cat "$file13" >>"$file8"
+        # Check if tomorrow file contains next day prices
+        if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
+            cat $file10 >$file8
+            if [ -f "$file13" ]; then
+                cat "$file13" >>"$file8"
+            fi
+            sed -i '25d 50d' "$file8"
+            sort -g "$file8" >"$file19"
+            timestamp=$(TZ=$TZ date +%d)
+            echo "date_now_day: $timestamp" >>"$file8"
+        else
+            cp $file11 $file19 # If no second day, copy sorted price file.
         fi
-        sed -i '25d 50d' "$file8"
-        sort -g "$file8" >"$file19"
-        timestamp=$(TZ=$TZ date +%d)
-        echo "date_now_day: $timestamp" >>"$file8"
-    else
-        cp $file11 $file19 # If no second day, copy sorted price file.
-    fi
     else exit_with_cleanup 1
     fi
 }
