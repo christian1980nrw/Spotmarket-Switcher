@@ -222,13 +222,16 @@ download_file_if_missing() {
 if [ -z "$SRCDIR" ]; then
     SRCDIR=scripts
 fi
-if [ -z "$branch" ]; then
+if [ -z "$BRANCH" ]; then
     BRANCH=main
 fi
+if [ -z "$ACTOR" ]; then
+    ACTOR=christian1980nrw
+fi
 
-download_file_if_missing "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh
-download_file_if_missing "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/run" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/run
-download_file_if_missing "$SRCDIR/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/"$BRANCH"/scripts/sample.config.txt
+download_file_if_missing "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh
+download_file_if_missing "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/run" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/run
+download_file_if_missing "$SRCDIR/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/sample.config.txt
 
 #This option will not overwrite the destination_file if it already exists. There is no output or error message if the file is not copied, the command simply exits silently. If the target file does not exist, it will be created as usual.
 cp -n "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/config.txt"
@@ -241,7 +244,7 @@ if [ ! -d "$DESTDIR"/service ]; then
     else
         e_note "W: The '$DESTDIR/service' directory is not existing."
         e_note "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
-        e_note "   Check on https://github.com/christian1980nrw/Spotmarket-Switcher/issues if that has already been reported."
+        e_note "   Check on https://github.com/$ACTOR/Spotmarket-Switcher/issues if that has already been reported."
     fi
 else
     if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
