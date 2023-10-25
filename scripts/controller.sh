@@ -418,6 +418,7 @@ download_entsoe_prices() {
     if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
 
     awk '
+	            error_found=0
 /<Period>/ {
     capture_period = 1
 }
@@ -461,34 +462,35 @@ in_reason && /<text>/ {
 
 END {
     if (error_code == 999) {
-        print "E: Entsoe data retrieval error:", error_message
+        print "E: Entsoe data retrieval error found in the XML data:", error_message
     } else if (prices != "") {
         printf "%s", prices > "'"$output_file"'"
-    } else 
-            print "E: No prices found in the XML data."
+    } else {
+        print "E: No prices found in the XML data."
+    }
 }
 ' "$file"
 
-    if [ -f "$output_file" ]; then
-        sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
-        timestamp=$(TZ=$TZ date +%d)
-        echo "date_now_day: $timestamp" >> "$output_file"
+if [ -f "$output_file" ]; then
+    sort -g "$output_file" > "${output_file%.*}_sorted.${output_file##*.}"
+    timestamp=$(TZ=$TZ date +%d)
+    echo "date_now_day: $timestamp" >> "$output_file"
 
-        # Check if tomorrow file contains next day prices
-        if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
-            cat $file10 >$file8
-            if [ -f "$file13" ]; then
-                cat "$file13" >>"$file8"
-            fi
-            sed -i '25d 50d' "$file8"
-            sort -g "$file8" >"$file19"
-            timestamp=$(TZ=$TZ date +%d)
-            echo "date_now_day: $timestamp" >>"$file8"
-        else
-            cp $file11 $file19 # If no second day, copy sorted price file.
+    # Check if the file for tomorrow contains prices for the next day
+    if [ "$include_second_day" = 1 ] && grep -q "PT60M" "$file" && [ "$(wc -l <"$output_file")" -gt 3 ]; then
+        cat $file10 > $file8
+        if [ -f "$file13" ]; then
+            cat "$file13" >> "$file8"
         fi
-    else exit_with_cleanup 1
+        sed -i '25d;50d' "$file8"
+        sort -g "$file8" > "$file19"
+        timestamp=$(TZ=$TZ date +%d)
+        echo "date_now_day: $timestamp" >> "$file8"
+    else
+        cp $file11 $file19  # If there's no second day, copy the sorted price file.
     fi
+fi
+
 }
 
 download_solarenergy() {
