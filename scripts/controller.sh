@@ -133,11 +133,11 @@ fi
 
 # Überprüfen Sie die Bash-Version
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=1
-    echo "W: Due to the older Bash version, the configuration validation is skipped."
+    valid_config_version=1 # Please increase this value by 1 when changing the configuration variables
 else
+    # With so much, a version without declare -A would be feasible but not maintainable
     declare -A valid_vars=(
-    	["config_version"]="1"
+    	["config_version"]="1" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -197,6 +197,7 @@ fi
 parse_and_validate_config() {
     if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
         # Für Bash-Version <= 4, überprüfe nur config_version=1
+	log_message "W: Due to the older Bash version, the configuration validation is skipped."
         local file="$1"
         local version_valid=false
         while IFS='=' read -r key value; do
