@@ -133,11 +133,11 @@ fi
 
 # Überprüfen Sie die Bash-Version
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    VALID_CONFIG_VERSION=1
+    valid_config_version=1
     echo "W: Due to the older Bash version, the configuration validation is skipped."
 else
     declare -A valid_vars=(
-    	["CONFIG-VERSION"]="1"
+    	["config_version"]="1"
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -202,14 +202,14 @@ parse_and_validate_config() {
         while IFS='=' read -r key value; do
             key=$(echo "$key" | cut -d'#' -f1 | tr -d ' ')
             value=$(echo "$value" | awk -F'#' '{gsub(/^ *"|"$|^ *| *$/, "", $1); print $1}')
-            if [[ "$key" == "CONFIG-VERSION" && "$value" == "$VALID_CONFIG_VERSION" ]]; then
+            if [[ "$key" == "config_version" && "$value" == "$valid_config_version" ]]; then
                 version_valid=true
                 break
             fi
         done <"$file"
         
         if [[ "$version_valid" == false ]]; then
-            log_info "E: Error: CONFIG-VERSION=$VALID_CONFIG_VERSION is missing or the configuration is invalid."
+            log_info "E: Error: CONFIG-VERSION=$valid_config_version is missing or the configuration is invalid."
             return 1
         fi
         return 0
