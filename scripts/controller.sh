@@ -1259,5 +1259,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-    log_message "D: \[ OK \]" >&2
+    log_message "D: [ OK ]" >&2
 fi
