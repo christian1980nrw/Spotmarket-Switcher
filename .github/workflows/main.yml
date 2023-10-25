@@ -6,6 +6,9 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
+      - name: Set BRANCH_NAME from github.ref
+        id: extract_branch
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install yamllint
