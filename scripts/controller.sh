@@ -137,6 +137,7 @@ if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
     log_info "W: Due to the older Bash version, the configuration validation is skipped."
 else
     declare -A valid_vars=(
+    	["CONFIG-VERSION"]="1"
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
