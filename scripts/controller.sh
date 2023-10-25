@@ -196,7 +196,7 @@ fi
 
 parse_and_validate_config() {
     if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-        # Für Bash-Version <= 4, überprüfe nur CONFIG-VERSION=1
+        # Für Bash-Version <= 4, überprüfe nur config_version=1
         local file="$1"
         local version_valid=false
         while IFS='=' read -r key value; do
@@ -209,7 +209,7 @@ parse_and_validate_config() {
         done <"$file"
         
         if [[ "$version_valid" == false ]]; then
-            log_info "E: Error: CONFIG-VERSION=$valid_config_version is missing or the configuration is invalid."
+            log_info "E: Error: config_version=$valid_config_version is missing or the configuration is invalid."
             return 1
         fi
         return 0
