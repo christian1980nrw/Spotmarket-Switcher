@@ -132,6 +132,7 @@ fi
 #######################################
 
 declare -A valid_vars=(
+    ["CONFIG-VERSION"]="1"
     ["use_fritz_dect_sockets"]="0|1"
     ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
     ["user"]="string"
