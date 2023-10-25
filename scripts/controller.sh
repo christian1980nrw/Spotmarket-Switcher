@@ -628,8 +628,8 @@ get_suntime_today() {
 evaluate_conditions() {
     local conditions=("${!1}")
     local descriptions=("${!2}")
-    local -n execute_ref="$3"
-    local -n condition_met_ref="$4"
+    local execute_ref_name="$3"  # This will hold the name of the variable
+    local condition_met_ref_name="$4"  # This will hold the name of the variable
     local condition_met=0
 
     for index in "${!conditions[@]}"; do
@@ -643,8 +643,9 @@ evaluate_conditions() {
         fi
 
         if ((condition)) && [[ $condition_met -eq 0 ]]; then
-            execute_ref=1
-            condition_met_ref=$description
+            # Using indirection to set the value
+            eval $execute_ref_name=1
+            eval $condition_met_ref_name=\"$description\"
             condition_met=1
 
             if [[ $DEBUG -ne 1 ]]; then
@@ -1136,6 +1137,7 @@ else
 fi
 
 charging_condition_met=""
+switchablesockets_condition_met=""
 execute_charging=0
 execute_switchablesockets_on=0
 
@@ -1165,7 +1167,7 @@ charging_conditions=(
 
 
 # Check if any charging condition is met
-evaluate_conditions charging_conditions[@] charging_descriptions[@] execute_charging charging_condition_met
+evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
 
 # Indexed arrays for descriptions:
 switchablesockets_conditions_descriptions=(
@@ -1191,7 +1193,7 @@ switchablesockets_conditions=(
     $((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
 # Check if any switching condition is met
-evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] execute_switchablesockets switchablesockets_condition_met
+evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets" "switchablesockets_condition_met"
 
 if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today."
