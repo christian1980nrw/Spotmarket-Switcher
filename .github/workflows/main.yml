@@ -67,7 +67,12 @@ jobs:
     steps:
       - name: Set branch name
         id: set_branch
-        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
+        run: |
+          if [[ $GITHUB_HEAD_REF ]]; then
+            echo "BRANCH_NAME=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+          else
+            echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          fi
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Extend default set of UNIX tools
