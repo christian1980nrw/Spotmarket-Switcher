@@ -6,6 +6,9 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
+      - name: Set BRANCH_NAME from github.ref
+        id: extract_branch
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\/.*\///' | sed 's/\/merge//')"
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install yamllint
@@ -76,15 +79,12 @@ jobs:
           fi
       - name: Set script permissions
         run: chmod +x ./victron-venus-os-install.sh
-      - name: Extract branch name
-        shell: bash
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
       - name: Install
         run: ./victron-venus-os-install.sh
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
-          BRANCH: ${{ env.BRANCH_NAME }}
+          BRANCH: ${{ steps.extract_branch.outputs.branch }}
           ACTOR: ${{ github.actor }}
       - name: Execute Run-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
