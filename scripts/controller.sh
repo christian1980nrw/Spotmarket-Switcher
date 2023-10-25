@@ -185,17 +185,6 @@ declare -A valid_vars=(
     ["config_version"]="1"
 )
 
-# Define a logging function and try out different methods. Maybe log_message is not available at MacOS.
-log_message() {
-  message="$1"
-  if [ -z "$(command -v log_info)" ]; then
-    logger -p user.info -t "Spotmarket-Switcher" "$message"
-  else
-    log_info "$message"
-  fi
-}
-
-
 declare -A config_values
 
 parse_and_validate_config() {
