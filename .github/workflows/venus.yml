@@ -29,8 +29,6 @@ jobs:
           fi
       - name: Set script permissions
         run: chmod +x ./victron-venus-os-install.sh
-        env:
-          DEBUG: 1
       - name: Execute Installation under Venus OS
         run: |
           echo pwd
@@ -50,6 +48,8 @@ jobs:
         env:
           NO_REBOOT: 1
           DEBUG: 1
+          BRANCH: ${{ steps.set-branch-name.outputs.branch_name }}
+          ACTOR: ${{ github.actor }}
       - name: Execute Run-Script under Venus OS
         run: /data/etc/Spotmarket-Switcher/service/run
         env:
