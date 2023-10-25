@@ -209,7 +209,7 @@ parse_and_validate_config() {
         done <"$file"
         
         if [[ "$version_valid" == false ]]; then
-            log_info "E: Error: config_version=$valid_config_version is missing or the configuration is invalid."
+            log_message "E: Error: config_version=$valid_config_version is missing or the configuration is invalid."
             return 1
         fi
         return 0
