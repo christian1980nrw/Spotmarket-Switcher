@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Set BRANCH_NAME from github.ref
         id: extract_branch
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\/.*\///' | sed 's/\/merge//')"
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install yamllint
@@ -84,7 +84,7 @@ jobs:
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
-          BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          BRANCH: ${{ env.BRANCH_NAME }}
           ACTOR: ${{ github.actor }}
       - name: Execute Run-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
