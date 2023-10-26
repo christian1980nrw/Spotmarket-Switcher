@@ -1212,7 +1212,8 @@ fi
 check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
 
 # If any charging condition is met, start charging
-percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
+# percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
+percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
 if ((execute_charging == 1 && use_victron_charger == 1)); then
