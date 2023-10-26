@@ -101,7 +101,8 @@ jobs:
           DEBUG: 1
           rc_local_file: /tmp/testing_rc.local
       - name: Execute Control-Script
-        run: /tmp/testing//data/etc/Spotmarket-Switcher/controller.sh
+        run: bash scripts/controller.sh # /tmp/testing//data/etc/Spotmarket-Switcher/controller.sh
         env:
           DEBUG: 1
           LOG_FILE: /tmp/testing_controller.log
+          CONFIG: sample.config.txt
