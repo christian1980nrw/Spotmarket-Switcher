@@ -1,6 +1,5 @@
 name: Main Versioning
 
-# This workflow triggers when a pull request to the 'main' branch is closed
 on:
   pull_request:
     types: [closed]
@@ -9,7 +8,6 @@ on:
 
 jobs:
   update_version:
-    # Ensure this job only runs if the PR was merged, not just closed without merging
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
@@ -19,13 +17,8 @@ jobs:
 
       - name: Update VERSION in main
         run: |
-          # Attempt to remove the -DEV suffix from the version number
-          NEW_VERSION=$(sed -n 's/^VERSION=\"\(.*\)-DEV\"$/\1/p' scripts/controller.sh)
-
-          # If NEW_VERSION is empty (meaning there was no -DEV), take the current value of VERSION
-          if [[ -z $NEW_VERSION ]]; then
-            NEW_VERSION=$(sed -n 's/^VERSION=\"\(.*\)\"$/\1/p' scripts/controller.sh)
-          fi
+          # Attempt to remove the -DEV suffix from the version number if it exists
+          NEW_VERSION=$(sed -n 's/^VERSION=\"\(.*\)\(-DEV\)\?\"$/\1/p' scripts/controller.sh)
 
           # Replace VERSION in the file with the NEW_VERSION value
           sed -i "s/^VERSION=\".*\"$/VERSION=\"${NEW_VERSION}\"/" scripts/controller.sh
