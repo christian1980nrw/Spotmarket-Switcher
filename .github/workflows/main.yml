@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Set BRANCH_NAME from github.ref
         id: extract_branch
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed 's/refs\/pull\/.*\///' | sed 's/\/merge//')"
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install yamllint
@@ -68,10 +68,19 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
     steps:
+      - name: Set branch name
+        id: set_branch
+        run: |
+          if [[ $GITHUB_HEAD_REF ]]; then
+            echo "BRANCH_NAME=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+          else
+            echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+          fi
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Extend default set of UNIX tools
         run: |
+          echo "BRANCH = ${{ env.BRANCH_NAME }}"
           if [ "ubuntu-latest" = ${{ matrix.os }} ]; then
             sudo apt-get install wget curl dbus sed gawk
           else
@@ -84,7 +93,7 @@ jobs:
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing
-          BRANCH: ${{ steps.extract_branch.outputs.branch }}
+          BRANCH: ${{ env.BRANCH_NAME }}
           ACTOR: ${{ github.actor }}
       - name: Execute Run-Script
         run: /tmp/testing//data/etc/Spotmarket-Switcher/service/run
