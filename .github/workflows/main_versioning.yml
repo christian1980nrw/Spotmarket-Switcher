@@ -23,7 +23,10 @@ jobs:
           # Replace VERSION in the file with the NEW_VERSION value
           sed -i "s/^VERSION=\".*\"$/VERSION=\"${NEW_VERSION}\"/" scripts/controller.sh
 
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -am "Update version to ${NEW_VERSION}"
-          git push origin main
+          # Check if there are changes to commit
+          git diff --exit-code || {
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -am "Update version to ${NEW_VERSION}"
+            git push origin main
+          }
