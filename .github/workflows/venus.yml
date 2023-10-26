@@ -60,6 +60,7 @@ jobs:
           DEBUG: 1
       - name: Execute Control-Script under Venus OS
         run: |
-          /data/etc/Spotmarket-Switcher/controller.sh
+          bash scripts/controller.sh #/data/etc/Spotmarket-Switcher/controller.sh
         env:
           DEBUG: 1
+          CONFIG: sample.config.txt

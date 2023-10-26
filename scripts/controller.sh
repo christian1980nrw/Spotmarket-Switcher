@@ -28,7 +28,7 @@ License=$(
 EOLICENSE
 )
 
-VERSION="2.3.8"
+VERSION="2.3.9"
 
 set -e
 
@@ -867,11 +867,27 @@ exit_with_cleanup() {
 # Path to the current script directory
 DIR="$(dirname "$0")"
 
-if [ -f "$DIR/config.txt" ]; then
+########## Optional environmental variables
+
+if [ -z "$LOG_FILE" ]; then
+    LOG_FILE="/tmp/spotmarket-switcher.log"
+fi
+if [ -z "$LOG_MAX_SIZE" ]; then
+    LOG_MAX_SIZE=1024 # 1 MB
+fi
+if [ -z "$LOG_FILES_TO_KEEP" ]; then
+    LOG_FILES_TO_KEEP=2
+fi
+
+if [ -z "$CONFIG" ]; then
+    CONFIG="config.txt"
+fi
+
+if [ -f "$DIR/$CONFIG" ]; then
     # Include the configuration file
-    source "$DIR/config.txt"
+    source "$DIR/$CONFIG"
 else
-    log_message "E: The file $DIR/config.txt was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
+    log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
 fi
 
@@ -939,18 +955,6 @@ file17=/tmp/tibber_tomorrow_prices.txt
 file18=/tmp/tibber_tomorrow_prices_sorted.txt
 file19=/tmp/entsoe_prices_sorted.txt
 
-########## Optional environmental variables
-
-if [ -z "$LOG_FILE" ]; then
-    LOG_FILE="/tmp/spotmarket-switcher.log"
-fi
-if [ -z "$LOG_MAX_SIZE" ]; then
-    LOG_MAX_SIZE=1024 # 1 MB
-fi
-if [ -z "$LOG_FILES_TO_KEEP" ]; then
-    LOG_FILES_TO_KEEP=2
-fi
-
 ########## Testing series of preconditions prior to execution of script
 
 num_tools_missing=0
@@ -983,7 +987,7 @@ echo >>"$LOG_FILE"
 log_message "I: Bash Version: $(bash --version | head -n 1)"
 log_message "I: Spotmarket-Switcher - Version $VERSION"
 
-parse_and_validate_config "$DIR/config.txt"
+parse_and_validate_config "$DIR/$CONFIG"
 # if [ $? -eq 1 ]; then
 # Handle error
 # fi
