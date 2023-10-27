@@ -21,7 +21,7 @@ Podívejte se prosím pod řádek 100 souboru controller.sh, abyste viděli, co 
 
 ## Zdroj dat
 
-Software v současnosti využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
+Software v současné době využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
 Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
 Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
@@ -81,12 +81,12 @@ Pokud považujete tento projekt za hodnotný, zvažte prosím sponzorování a p
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Navíc, pokud jste v**Německo**a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e)nebo zadáním kódu**Ajjfbkse**ve vaší aplikaci. Vy i projekt obdržíte a**Bonus 50 euro na hardware**. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
+Navíc, pokud jste z**Německo**a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e)nebo zadáním kódu`ojgfbx2e`ve vaší aplikaci. Obdržíte vy i projekt**Bonus 50 euro na hardware**. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
 Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektřiny, stále můžete projekt podpořit[Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
 Získáte bonus (nabídka se liší**mezi 50 a 120 eury**) pro sebe a také pro projekt.
 Octopus má tu výhodu, že některé nabídky jsou bez minimální smluvní doby. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
-Uživatelé z**Rakousko**nás může podpořit[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)akci doporučení a zadejte**Aqqhamqnif**jako kód.
+Uživatelé z**Rakousko**nás může podpořit[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)akci doporučení a zadejte`3KEHMQN2F`jako kód.
 
 ## Zřeknutí se odpovědnosti
 
