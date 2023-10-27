@@ -18,7 +18,7 @@ Understøttede systemer er i øjeblikket:
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
 Tag et kig rundt på linje 965 på controller.sh (charger_command_turnon), så du kan se, hvor nemt det kan tilpasses.
-Del venligst din tilpasning, så andre brugere kan drage fordel af den.
+Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
 
@@ -82,7 +82,7 @@ Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støt
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Hvis du er fra Tyskland og interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e)eller ved at indtaste koden`ojgfbx2e`i din app. Både du og projektet får**50 euro bonus for hardware**. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+Hvis du er fra Tyskland og interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e)eller ved at indtaste koden`ojgfbx2e`i din app. Både du og projektet får**50 euro bonus for hardware**. Bemærk venligst, at en smartmåler eller en Pulse-IR er påkrævet for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan du stadig støtte projektet[Octopus Energy (henvisningslink)](https://share.octopusenergy.de/glass-raven-58).
 Du modtager en bonus (tilbuddet varierer**mellem 50 og 120 euro**) for dig selv og også for projektet.
 Octopus har den fordel, at nogle tilbud er uden minimumskontraktperiode. De er for eksempel ideelle til at sætte en tarif på pause baseret på børskurser.
