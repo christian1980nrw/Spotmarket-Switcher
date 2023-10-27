@@ -17,7 +17,7 @@ Unterstützte Systeme sind derzeit:
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie das[MultiPlus-II-Serie](https://www.victronenergy.com/inverters-chargers)
 
 Der Code ist einfach gehalten, so dass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
-Bitte schauen Sie unterhalb von Zeile 100 der Datei „controller.sh“ nach, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
+Bitte werfen Sie einen Blick unter Zeile 100 der Datei „controller.sh“, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
 
 ## Datenquelle
 
@@ -67,7 +67,7 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
 
 
 -   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
-    -   Copy the shell script (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
+    -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Die Befehle sind`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`und zu bearbeiten`vi /path/to/save/config.txt`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
     -   Beispiel-Crontab:
@@ -86,7 +86,7 @@ Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzug
 Sie erhalten einen Bonus (das Angebot variiert**zwischen 50 und 120 Euro**) für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass einige Angebote ohne Mindestvertragslaufzeit sind. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
-Benutzer aus Österreich können uns unterstützen indem[aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers)Empfehlungsaktion und geben Sie ein`3KEHMQN2F`als Code.
+Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers)und eintreten`3KEHMQN2F`als Code.
 
 ## Haftungsausschluss
 
