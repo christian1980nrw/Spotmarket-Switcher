@@ -75,7 +75,7 @@ The Screenshot is showing the configuration of automated charging during user de
 
 - If you're using a Linux-System like Ubuntu or Debian:
   - Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
-  - the commands are `cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh` and to edit `vi /path/to/save/controller.sh`
+  - the commands are `cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh` and to edit `vi /path/to/save/config.txt`
   - Create a crontab or another scheduling method to run this script at the start of each hour.
   - Sample Crontab:
       Use the following crontab entry to execute the control script every hour:
@@ -89,11 +89,11 @@ If you find this project valuable, please consider sponsoring and supporting fur
 - [Revolut](https://revolut.me/christqki2)
 - [PayPal](https://paypal.me/christian1980nrw)
 
-Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (https://tibber.com/de/store/produkt/pulse-ir) .
-
-If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58) .
+Additionally, if you're in Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e). Both you and the project will receive a 50 euro bonus for hardware. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (https://tibber.com/de/store/produkt/pulse-ir) . 
+If you need a gnatural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58) .
 You receive a bonus (the offer varies between 50 and 120 euros) for yourself and also for the project.
 Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
+Users from Austria support us by using [aWATTar Austria (referral link)]([https://invite.tibber.com/ojgfbx2e](https://www.awattar.at/services/offers/promotecustomers) referral action and enter 3KEHMQN2F as code.
 
 ## Disclaimer
 Please note the terms of use at https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md
