@@ -94,7 +94,7 @@ If you need a natural gas tariff or prefer a classic electricity tariff, you can
 You receive a bonus (the offer varies **between 50 and 120 euro**) for yourself and also for the project.
 Octopus has the advantage that some offers are without minimum contract term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
-If you are from Austria you can support us [aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers) by using `3KEHMQN2F` as code.
+If you are from Austria you can support us by using [aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers). Please enter `3KEHMQN2F` as code.
 
 ## Disclaimer
 Please note the terms of use at https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md
