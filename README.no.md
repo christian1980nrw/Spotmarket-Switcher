@@ -17,7 +17,8 @@ Støttede systemer er for øyeblikket:
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med Linux-shell-kommandoer.
-Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
+Ta en titt rundt linje 965 på controller.sh (charger_command_turnon) slik at du kan se hvor enkelt den kan tilpasses.
+Opprett en github-gaffel og del tilpasningen din slik at andre brukere kan dra nytte av den.
 
 ## Datakilde
 
@@ -54,7 +55,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
+-   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
@@ -81,7 +82,7 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Hvis du er fra Tyskland og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+If you are from Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
