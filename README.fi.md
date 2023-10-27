@@ -18,7 +18,7 @@ Tuetut järjestelmät ovat tällä hetkellä:
 
 Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energianvarastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
 Ole hyvä ja katso noin riviä 965 tiedostosta controller.sh (charger_command_turnon), jotta näet kuinka helppoa se voidaan mukauttaa.
-Jaa mukauksesi, jotta muut käyttäjät voivat hyötyä siitä.
+Luo github-haarukka ja jaa mukauksesi, jotta muut käyttäjät voivat hyötyä siitä.
 
 ## Tietolähde
 
