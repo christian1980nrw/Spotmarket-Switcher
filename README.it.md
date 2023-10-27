@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[ceco](README.cs.md)-[danese](README.da.md)-[Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md) - [svedese](README.sv.md)-[giapponese](README.ja.md)
+[ceco](README.cs.md)-[danese](README.da.md)-[Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
@@ -23,7 +23,7 @@ Dai un'occhiata sotto la riga 100 del file controller.sh in modo da poter vedere
 
 Il software attualmente utilizza i prezzi orari EPEX Spot forniti da tre API gratuite (Tibber, aWATTar ed Entso-E).
 L'API Entso-E gratuita integrata fornisce dati sui prezzi dell'energia dei seguenti paesi:
-Albania (AL), Austria (AT), Belgio (BE), Bosnia ed Herz. (BA), Bulgaria (BG), Croazia (HR), Cipro (CY), Repubblica Ceca (CZ), Danimarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Germania (DE), Grecia (GR), Ungheria (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Lettonia (LV), Lituania (LT), Lussemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Paesi Bassi (NL), Macedonia del Nord (MK), Norvegia (NO), Polonia (PL), Portogallo (PT), Romania (RO), Serbia (RS), Slovacchia (SK) , Slovenia (SI), Spagna (ES), Svezia (SE), Svizzera (CH), Turchia (TR), Ucraina (UA), Regno Unito (UK) vedi[Piattaforma per la trasparenza Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). 
+Albania (AL), Austria (AT), Belgio (BE), Bosnia ed Herz. (BA), Bulgaria (BG), Croazia (HR), Cipro (CY), Repubblica Ceca (CZ), Danimarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Germania (DE), Grecia (GR), Ungheria (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Lettonia (LV), Lituania (LT), Lussemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Paesi Bassi (NL), Macedonia del Nord (MK), Norvegia (NO), Polonia (PL), Portogallo (PT), Romania (RO), Serbia (RS), Slovacchia (SK) , Slovenia (SI), Spagna (ES), Svezia (SE), Svizzera (CH), Turchia (TR), Ucraina (UA), Regno Unito (UK) vedi[Piattaforma per la trasparenza Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
@@ -37,7 +37,7 @@ La configurazione di Spotmarket-Switcher è un processo semplice. Se stai già u
 2.  Esegui lo script di installazione con opzioni aggiuntive per preparare tutto in una sottodirectory per l'ispezione. Per esempio:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Se utilizzi il sistema operativo Victron Venus, la DESTDIR corretta dovrebbe essere`/`(la directory principale). Sentiti libero di esplorare i file installati in`/tmp/foo`.
-    Su un Cerbo GX il filesystem è montato in sola lettura. Vedere<https://www.victronenergy.com/live/ccgx:root_access>. In order to make the filesystem writeable you need to execute the following command before running the install script:
+    Su un Cerbo GX il filesystem è montato in sola lettura. Vedere<https://www.victronenergy.com/live/ccgx:root_access>. Per rendere scrivibile il filesystem è necessario eseguire il seguente comando prima di eseguire lo script di installazione:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Tieni presente che sebbene questo software sia attualmente ottimizzato per il sistema operativo Venus, può essere adattato ad altre versioni Linux, come Debian/Ubuntu su un Raspberry Pi o un'altra piccola scheda. Un ottimo candidato lo è certamente[OpenWRT](https://www.openwrt.org). L'uso di una macchina desktop va bene a scopo di test, ma quando viene utilizzato 24 ore su 24, 7 giorni su 7, il suo consumo energetico maggiore è preoccupante.
@@ -70,9 +70,9 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
     -   i comandi sono`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`e da modificare`vi /path/to/save/config.txt`
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
-    -   Crontab di esempio:
-          Utilizza la seguente voce crontab per eseguire lo script di controllo ogni ora:
-          Apri il tuo terminale ed entra`crontab -e`, quindi inserisci la seguente riga:`0 * * * * /path/to/controller.sh`
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, quindi inserisci la seguente riga:`0 * * * * /path/to/controller.sh`
 
 ### Supporto e contributo :+1:
 
@@ -81,12 +81,12 @@ Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e s
 -   [Rivoluzione](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Se vieni dalla Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
+Se vieni dalla Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
 Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (link di riferimento)](https://share.octopusenergy.de/glass-raven-58).
 Ricevi un bonus (l'offerta varia**tra 50 e 120 euro**) per te stesso e anche per il progetto.
 Octopus ha il vantaggio che alcune offerte non hanno una durata minima contrattuale. Sono ideali, ad esempio, per sospendere una tariffa basata sui prezzi di borsa.
 
-Se vieni dall'Austria puoi sostenerci utilizzando[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers). Prego entra`3KEHMQN2F`come codice.
+Se vieni dall'Austria puoi sostenerci utilizzando[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers). Si prega di utilizzare`3KEHMQN2F`come codice.
 
 ## Disclaimer
 
