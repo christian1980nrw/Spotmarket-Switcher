@@ -86,7 +86,7 @@ Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek ele
 Je ontvangt een bonus (het aanbod varieert**tussen 50 en 120 euro**) voor uzelf en ook voor het project.
 Octopus heeft het voordeel dat sommige aanbiedingen geen minimale contractduur hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
 
-Als u uit Oostenrijk komt, kunt u ons steunen[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)door het gebruiken van`3KEHMQN2F`als code.
+Als u uit Oostenrijk komt, kunt u ons steunen door gebruik te maken van[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers). Kom binnen alstublieft`3KEHMQN2F`als code.
 
 ## Vrijwaring
 
