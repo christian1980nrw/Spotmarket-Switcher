@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
+[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md) - [estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[Norsk ](README.no.md)-[Polski ](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
@@ -40,7 +40,7 @@ Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNI
     På en Cerbo GX är filsystemet skrivskyddat monterat. Ser<https://www.victronenergy.com/live/ccgx:root_access>. För att göra filsystemet skrivbart måste du köra följande kommando innan du kör installationsskriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt, är dess större strömförbrukning ett problem.
+Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt är dess större strömförbrukning ett problem.
 
 ### Tillgång till Venus OS
 
@@ -62,7 +62,7 @@ Skärmdumpen visar konfigurationen av automatisk laddning under användardefinie
     -   Ange ett nytt lösenord
     -   Stiga på`sudo su`och skriv ditt lösenord
     -   Stiga på`apt-get update && apt-get install wget curl`
-    -   Fortsätt med den manuella Linux-beskrivningen nedan (installationsskriptet är inte kompatibelt).
+    -   Continue with the manual Linux description below (installer script is not compatible).
     -   Glöm inte om du stänger skalet, Windows kommer att stoppa systemet.
 
 
@@ -86,7 +86,7 @@ Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortf
 Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
-Användare från Österrike kan stödja oss genom[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers)remissåtgärd och gå in`3KEHMQN2F`som kod.
+Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers)och gå in`3KEHMQN2F`som kod.
 
 ## varning
 
