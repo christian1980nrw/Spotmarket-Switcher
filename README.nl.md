@@ -9,7 +9,7 @@
 Wat doet deze software?
 Dit is een Linux-shellscript dat uw acculader en/of schakelbare stopcontacten op het juiste moment inschakelt als uw uurgebaseerde dynamische energieprijzen laag zijn.
 Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan te zetten of je kunt de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het elektriciteitsnet beschikbaar is.
-Via een weer-API kan rekening worden gehouden met de verwachte zonne-energieopbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
+Via een weer-API kan rekening worden gehouden met de verwachte zonne-opbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
 Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
@@ -49,7 +49,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 ### Uitvoering van het installatiescript
 
 -   Als u Victron Venus OS gebruikt:
-    -   Then edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/config.txt`.
+    -   Bewerk vervolgens de variabelen met een teksteditor`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Stel een ESS-laadschema in (zie de meegeleverde schermafbeelding). In het voorbeeld laadt de batterij 's nachts tot 50% op, indien geactiveerd, andere oplaadtijden van de dag worden genegeerd. Indien niet gewenst, maak dan een schema voor alle 24 uur van de dag. Vergeet niet om het na het maken te deactiveren. Controleer of de systeemtijd (zoals weergegeven in de rechterbovenhoek van het scherm) juist is.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
@@ -60,7 +60,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Binnenkomen`wsl --install -d Debian`
     -   Voer een nieuwe gebruikersnaam in, zoals`admin`
     -   Voer een nieuw wachtwoord in
-    -   Enter `sudo su`en typ uw wachtwoord
+    -   Binnenkomen`sudo su`en typ uw wachtwoord
     -   Binnenkomen`apt-get update && apt-get install wget curl`
     -   Ga verder met de onderstaande handleiding voor Linux (installatiescript is niet compatibel).
     -   Vergeet niet dat Windows het systeem zal stoppen als u de shell sluit.
@@ -83,10 +83,10 @@ Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te spons
 
 Als u uit Duitsland komt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e)of door de code in te voeren`ojgfbx2e`in uw app. Zowel jij als het project zullen ontvangen**50 euro bonus voor hardware**. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>).
 Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
-Je ontvangt een bonus (het aanbod varieert**between 50 and 120 euro**) voor uzelf en ook voor het project.
+Je ontvangt een bonus (het aanbod varieert**tussen 50 en 120 euro**) voor uzelf en ook voor het project.
 Octopus heeft het voordeel dat sommige aanbiedingen geen minimale contractduur hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
 
-Als u uit Oostenrijk komt, kunt u ons steunen door gebruik te maken van[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)en ga binnen`3KEHMQN2F`als code.
+Als u uit Oostenrijk komt, kunt u ons steunen[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)door het gebruiken van`3KEHMQN2F`als code.
 
 ## Vrijwaring
 
