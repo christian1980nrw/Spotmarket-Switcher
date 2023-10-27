@@ -50,7 +50,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 -   Om du använder Victron Venus OS:
     -   Redigera sedan variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
@@ -81,7 +81,7 @@ Om du tycker att det här projektet är värdefullt, vänligen överväg att spo
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Dessutom, om du kommer från**Tyskland**och intresserad av att byta till en dynamisk eltaxa kan du stödja projektet genom att anmäla dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus för hårdvara**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Om du är från**Tyskland**och intresserad av att byta till en dynamisk eltaxa kan du stödja projektet genom att anmäla dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus för hårdvara**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortfarande stödja projektet[Octopus Energy (referenslänk)](https://share.octopusenergy.de/glass-raven-58).
 Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
