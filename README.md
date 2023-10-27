@@ -16,7 +16,8 @@ Supported systems are currently:
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
   
 The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
-Please have a look below line 100 of the controller.sh file so that you can see what can be configured by the user.
+Please have a look around line 965 of the controller.sh (charger_command_turnon) so that you can see how easy it can be adapted.
+Please create a github fork and share your customization so other users can benefit from it.
 
 ## Data Source
 
@@ -75,7 +76,7 @@ The Screenshot is showing the configuration of automated charging during user de
 
 - If you're using a Linux-System like Ubuntu or Debian:
   - Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
-  - the commands are `cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh` and to edit `vi /path/to/save/config.txt`
+  - the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
   - Create a crontab or another scheduling method to run this script at the start of each hour.
   - Sample Crontab:
       Use the following crontab entry to execute the control script every hour:

@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md) - [デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md) - [ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
@@ -17,9 +17,10 @@
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
 コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適応できます。
-ユーザーが設定できる内容を確認するには、controller.sh ファイルの 100 行目以下を見てください。
+controller.sh (charger_command_turnon) の 965 行目あたりを見て、それがいかに簡単に適応できるかを確認してください。
+他のユーザーが恩恵を受けられるように、github フォークを作成してカスタマイズを共有してください。
 
-## 情報元
+## Data Source
 
 このソフトウェアは現在、3 つの無料 API (Tibber、aWATTar、Entso-E) によって提供される EPEX スポットの時間料金を利用しています。
 統合された無料の Entso-E API は、次の国のエネルギー価格データを提供します。
@@ -50,7 +51,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 -   Victron Venus OS を使用している場合:
     -   次に、テキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/config.txt`。
-    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに非アクティブ化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに無効化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
 
@@ -62,13 +63,13 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   新しいパスワードを入力
     -   入力`sudo su`パスワードを入力してください
     -   入力`apt-get update && apt-get install wget curl`
-    -   Continue with the manual Linux description below (installer script is not compatible).
-    -   シェルを閉じると、Windows がシステムを停止することを忘れないでください。
+    -   以下の手動 Linux の説明に進みます (インストーラー スクリプトには互換性がありません)。
+    -   シェルを閉じると Windows がシステムを停止することを忘れないでください。
 
 
 -   Ubuntu や Debian などの Linux システムを使用している場合:
     -   シェルスクリプトをコピーします(`controller.sh`) をカスタムの場所に移動し、必要に応じて変数を調整します。
-    -   コマンドは`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`そして編集するには`vi /path/to/save/config.txt`
+    -   コマンドは`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`設定を編集するには、次を使用します`vi /path/to/save/config.txt`
     -   crontab または別のスケジュール方法を作成して、各時間の開始時にこのスクリプトを実行します。
     -   Crontab のサンプル:
           次の crontab エントリを使用して、制御スクリプトを 1 時間ごとに実行します。

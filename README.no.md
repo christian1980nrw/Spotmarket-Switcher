@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md) - [gresk](README.el.md)-[italiensk](README.it.md)-[Nederlands ](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -17,7 +17,8 @@ Støttede systemer er for øyeblikket:
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med Linux-shell-kommandoer.
-Ta en titt under linje 100 i controller.sh-filen slik at du kan se hva som kan konfigureres av brukeren.
+Ta en titt rundt linje 965 på controller.sh (charger_command_turnon) slik at du kan se hvor enkelt den kan tilpasses.
+Opprett en github-gaffel og del tilpasningen din slik at andre brukere kan dra nytte av den.
 
 ## Datakilde
 
@@ -68,7 +69,7 @@ Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte ti
 
 -   Hvis du bruker et Linux-system som Ubuntu eller Debian:
     -   Kopier skallskriptet (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
-    -   kommandoene er`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`og å redigere`vi /path/to/save/config.txt`
+    -   kommandoene er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`og for å redigere innstillingene dine`vi /path/to/save/config.txt`
     -   Opprett en crontab eller en annen planleggingsmetode for å kjøre dette skriptet ved starten av hver time.
     -   Eksempel på Crontab:
           Bruk følgende crontab-oppføring for å utføre kontrollskriptet hver time:

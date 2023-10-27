@@ -17,11 +17,12 @@ Aktuálně jsou podporované systémy:
 -   [Victron](https://www.victronenergy.com/)Systémy ukládání energie Venus OS, jako je např[Řada MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Kód je jednoduchý, takže jej lze snadno přizpůsobit jiným systémům skladování energie, pokud jste schopni ovládat nabíjení pomocí příkazů shellu Linux.
-Podívejte se prosím pod řádek 100 souboru controller.sh, abyste viděli, co může uživatel nakonfigurovat.
+Podívejte se prosím na řádek 965 na controller.sh (charger_command_turnon), abyste viděli, jak snadno jej lze přizpůsobit.
+Vytvořte prosím github fork a sdílejte své přizpůsobení, aby z něj mohli těžit ostatní uživatelé.
 
 ## Zdroj dat
 
-Software v současnosti využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
+Software v současné době využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
 Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
 Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
@@ -68,7 +69,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`a upravit`vi /path/to/save/config.txt`
+    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`a k úpravě nastavení použijte`vi /path/to/save/config.txt`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:

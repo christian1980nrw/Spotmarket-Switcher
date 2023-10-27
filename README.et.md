@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
+[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[Greek ](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
@@ -12,12 +12,13 @@ Seejärel saate pistikupesade abil sooja veepaagi palju soodsamalt sisse lülita
 Oodatavat päikeseenergiat saab arvesse võtta ilmastiku API ja vastavalt reserveeritud aku salvestusruumi kaudu.
 Toetatud süsteemid on praegu:
 
--   Shelly tooted (nt[Shelly pistik S](https://shellyparts.de/products/shelly-plus-plug-s)või[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly tooted (nt[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)või[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)lülitatavad pistikupesad
 -   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu[MultiPlus-II seeria](https://www.victronenergy.com/inverters-chargers)
 
 Kood on lihtne, nii et seda saab hõlpsasti kohandada muude energiasalvestussüsteemidega, kui saate laadida laadimist Linuxi kestakäskude abil.
-Palun vaadake faili controller.sh rida 100 alt, et saaksite näha, mida kasutaja saab seadistada.
+Vaadake palun faili controller.sh (charger_command_turnon) rida 965, et näha, kui lihtne on seda kohandada.
+Looge githubi kahvel ja jagage oma kohandusi, et teised kasutajad saaksid sellest kasu.
 
 ## Andmeallikas
 
@@ -37,10 +38,10 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
 2.  Käivitage installiskript koos lisavalikutega, et alamkataloogis kõik kontrollimiseks ette valmistada. Näiteks:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Kui kasutate operatsioonisüsteemi Victron Venus, peaks DESTDIR olema õige`/`(juurkataloog). Tutvuge installitud failidega`/tmp/foo`.
-    Cerbo GX-i failisüsteem on ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
+    Cerbo GX-ile on failisüsteem ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muude Linuxi maitsetega, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadiga. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
+Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muudele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi-l või mõnel muul väikesel tahvlil. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
 
 ### Juurdepääs Venus OS-ile
 
@@ -68,11 +69,11 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
 
 -   Kui kasutate Linuxi süsteemi nagu Ubuntu või Debian:
     -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
-    -   käsud on`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`ja redigeerimiseks`vi /path/to/save/config.txt`
+    -   käsud on`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja seadete muutmiseks kasutage`vi /path/to/save/config.txt`
     -   Selle skripti käivitamiseks iga tunni alguses looge crontab või mõni muu ajastamismeetod.
-    -   Sample Crontab:
-          Use the following crontab entry to execute the control script every hour:
-          Open your terminal and enter `crontab -e`, seejärel sisestage järgmine rida:`0 * * * * /path/to/controller.sh`
+    -   Crontabi näidis:
+          Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
+          Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:`0 * * * * /path/to/controller.sh`
 
 ### Tugi ja panus :+1:
 
@@ -83,8 +84,8 @@ Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise a
 
 Kui olete Saksamaalt ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e)või sisestades koodi`ojgfbx2e`teie rakenduses. Saate nii teie kui ka projekt**50 eurot lisatasu riistvara eest**. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate siiski projekti toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
-Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) endale ja ka projektile.
-Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tähtajata. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
+Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) for yourself and also for the project.
+Octopus has the advantage that some offers are without minimum contract term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
 Kui olete pärit Austriast, saate meid toetada kasutades[aWATtar Austria (viitelink)](https://www.awattar.at/services/offers/promotecustomers). Palun kasutage ära`3KEHMQN2F`koodina.
 

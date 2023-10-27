@@ -17,7 +17,8 @@ Os sistemas suportados são atualmente:
 -   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
 
 O código é simples para que possa ser facilmente adaptado a outros sistemas de armazenamento de energia se você for capaz de controlar o carregamento por comandos shell do Linux.
-Por favor, dê uma olhada abaixo da linha 100 do arquivo controller.sh para ver o que pode ser configurado pelo usuário.
+Por favor, dê uma olhada na linha 965 do controller.sh (charger_command_turnon) para ver como ela pode ser facilmente adaptada.
+Crie um fork do github e compartilhe sua personalização para que outros usuários possam se beneficiar dele.
 
 ## Fonte de dados
 
@@ -50,7 +51,7 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Em seguida, edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
@@ -68,7 +69,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 -   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
-    -   os comandos são`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`e para editar`vi /path/to/save/config.txt`
+    -   os comandos são`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`e para editar suas configurações use`vi /path/to/save/config.txt`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
     -   Exemplo de crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
@@ -76,7 +77,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 ### Apoio e Contribuição: +1:
 
-If you find this project valuable, please consider sponsoring and supporting further development through these links:
+Se você considera este projeto valioso, considere patrocinar e apoiar o desenvolvimento futuro por meio destes links:
 
 -   [Revolução](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)

@@ -7,7 +7,7 @@
 ## Witamy w repozytorium Spotmarket-Switcher!
 
 Co robi to oprogramowanie?
-Jest to skrypt powłoki dla systemu Linux, który włącza ładowarkę akumulatorów i/lub przełączane gniazdka we właściwym czasie, jeśli stawki godzinowe za energię dynamiczną są niskie.
+Jest to skrypt powłoki dla systemu Linux, który włącza ładowarkę i/lub przełączane gniazdka we właściwym czasie, jeśli stawki godzinowe za energię dynamiczną są niskie.
 Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej lub będziesz mógł automatycznie ładować akumulator w nocy, gdy w sieci dostępna będzie tania energia wiatrowa.
 Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
 Obsługiwane systemy to obecnie:
@@ -17,7 +17,8 @@ Obsługiwane systemy to obecnie:
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Kod jest prosty, dzięki czemu można go łatwo dostosować do innych systemów magazynowania energii, jeśli potrafisz kontrolować ładowanie za pomocą poleceń powłoki Linux.
-Proszę spojrzeć poniżej linii 100 pliku kontroler.sh, aby zobaczyć, co może skonfigurować użytkownik.
+Proszę rozejrzeć się po linii 965 pliku kontroler.sh (charger_command_turnon), aby przekonać się, jak łatwo można go dostosować.
+Utwórz widelec Github i udostępnij swoją personalizację, aby inni użytkownicy mogli z niej skorzystać.
 
 ## Źródło danych
 
@@ -68,7 +69,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
-    -   polecenia są`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`i edytować`vi /path/to/save/config.txt`
+    -   polecenia są`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`i do edycji ustawień użyj`vi /path/to/save/config.txt`
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:

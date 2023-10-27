@@ -17,7 +17,8 @@ Unterstützte Systeme sind derzeit:
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie das[MultiPlus-II-Serie](https://www.victronenergy.com/inverters-chargers)
 
 Der Code ist einfach gehalten, so dass er problemlos an andere Energiespeichersysteme angepasst werden kann, wenn Sie in der Lage sind, den Ladevorgang über Linux-Shell-Befehle zu steuern.
-Bitte schauen Sie unterhalb von Zeile 100 der Datei „controller.sh“ nach, damit Sie sehen können, was vom Benutzer konfiguriert werden kann.
+Schauen Sie sich bitte Zeile 965 der controller.sh (charger_command_turnon) an, damit Sie sehen können, wie einfach die Anpassung ist.
+Bitte erstellen Sie einen Github-Fork und teilen Sie Ihre Anpassung, damit andere Benutzer davon profitieren können.
 
 ## Datenquelle
 
@@ -68,7 +69,7 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
 
 -   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
-    -   Die Befehle sind`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`und zu bearbeiten`vi /path/to/save/config.txt`
+    -   Die Befehle sind`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`und zum Bearbeiten Ihrer Einstellungen verwenden Sie`vi /path/to/save/config.txt`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
     -   Beispiel-Crontab:
           Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
