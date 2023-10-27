@@ -7,7 +7,7 @@
 ## Witamy w repozytorium Spotmarket-Switcher!
 
 Co robi to oprogramowanie?
-Jest to skrypt powłoki dla systemu Linux, który włącza ładowarkę akumulatorów i/lub przełączane gniazdka we właściwym czasie, jeśli stawki godzinowe za energię dynamiczną są niskie.
+Jest to skrypt powłoki dla systemu Linux, który włącza ładowarkę i/lub przełączane gniazdka we właściwym czasie, jeśli stawki godzinowe za energię dynamiczną są niskie.
 Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej lub będziesz mógł automatycznie ładować akumulator w nocy, gdy w sieci dostępna będzie tania energia wiatrowa.
 Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
 Obsługiwane systemy to obecnie:
@@ -17,7 +17,8 @@ Obsługiwane systemy to obecnie:
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Kod jest prosty, dzięki czemu można go łatwo dostosować do innych systemów magazynowania energii, jeśli potrafisz kontrolować ładowanie za pomocą poleceń powłoki Linux.
-Proszę spojrzeć poniżej linii 100 pliku kontroler.sh, aby zobaczyć, co może skonfigurować użytkownik.
+Proszę rozejrzeć się po linii 965 pliku kontroler.sh (charger_command_turnon), aby przekonać się, jak łatwo można go dostosować.
+Utwórz widelec Github i udostępnij swoją personalizację, aby inni użytkownicy mogli z niej skorzystać.
 
 ## Źródło danych
 
@@ -86,7 +87,7 @@ Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energi
 Otrzymujesz bonus (oferta jest zróżnicowana**od 50 do 120 euro**) dla siebie i dla projektu.
 Octopus ma tę zaletę, że niektóre oferty nie zawierają minimalnego okresu obowiązywania umowy. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
-Jeśli jesteś z Austrii, możesz nas wesprzeć za pomocą[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers). Proszę skorzystać`3KEHMQN2F`jako kod.
+Jeśli jesteś z Austrii, możesz nas wesprzeć za pomocą[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F`jako kod.
 
 ## Zastrzeżenie
 
