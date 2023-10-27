@@ -40,7 +40,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
     Sur un Cerbo GX, le système de fichiers est monté en lecture seule. Voir<https://www.victronenergy.com/live/ccgx:root_access>. Afin de rendre le système de fichiers accessible en écriture, vous devez exécuter la commande suivante avant d'exécuter le script d'installation :
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
@@ -86,7 +86,7 @@ Si vous avez besoin d'un tarif de gaz naturel ou préférez un tarif d'électric
 Vous recevez un bonus (l'offre varie**entre 50 et 120 euros**) pour vous-même et aussi pour le projet.
 Octopus a l'avantage que certaines offres sont sans durée minimale de contrat. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
 
-Si vous résidez en Autriche, vous pouvez nous soutenir en utilisant[aWATTar Autriche (lien de référence)](https://www.awattar.at/services/offers/promotecustomers)et entrez`3KEHMQN2F`comme code.
+Si vous venez d'Autriche, vous pouvez nous soutenir[aWATTar Autriche (lien de référence)](https://www.awattar.at/services/offers/promotecustomers)en utilisant`3KEHMQN2F`comme code.
 
 ## Clause de non-responsabilité
 
