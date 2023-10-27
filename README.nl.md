@@ -27,7 +27,7 @@ Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
-## Installatie
+## Installation
 
 Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op UNIX gebaseerde machine gebruikt, zoals macOS, Linux of Windows met het Linux-subsysteem, volgt u deze stappen om de software te installeren:
 
@@ -37,6 +37,8 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
 2.  Voer het installatiescript uit met extra opties om alles in een submap voor te bereiden voor uw inspectie. Bijvoorbeeld:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Als u Victron Venus OS gebruikt, zou de juiste DESTDIR moeten zijn`/`(de hoofdmap). Voel je vrij om de geïnstalleerde bestanden te verkennen in`/tmp/foo`.
+    Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. In order to make the filesystem writeable you need to execute the following command before running the install script:
+        /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
 
@@ -47,7 +49,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 ### Uitvoering van het installatiescript
 
 -   Als u Victron Venus OS gebruikt:
-    -   Na uitvoering van de`victron-venus-os-install.sh`, bewerk de variabelen met een teksteditor in`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Bewerk vervolgens de variabelen met een teksteditor`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Stel een ESS-laadschema in (zie de meegeleverde schermafbeelding). In het voorbeeld laadt de batterij 's nachts tot 50% op, indien geactiveerd, andere oplaadtijden van de dag worden genegeerd. Indien niet gewenst, maak dan een schema voor alle 24 uur van de dag. Vergeet niet om het na het maken te deactiveren. Controleer of de systeemtijd (zoals weergegeven in de rechterbovenhoek van het scherm) juist is.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
@@ -66,24 +68,25 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
 
 -   Als je een Linux-systeem zoals Ubuntu of Debian gebruikt:
     -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
-    -   de commando's zijn`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`en bewerken`vi /path/to/save/controller.sh`
+    -   de commando's zijn`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`en bewerken`vi /path/to/save/config.txt`
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
     -   Voorbeeldcrontab:
           Gebruik de volgende crontab-invoer om het controlescript elk uur uit te voeren:
           Open uw terminal en ga naar binnen`crontab -e`en voeg vervolgens de volgende regel in:`0 * * * * /path/to/controller.sh`
 
-### Ondersteuning en bijdrage
+### Ondersteuning en bijdrage:+1:
 
 Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te sponsoren en te ondersteunen via deze links:
 
 -   [Revolutie](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Als u zich bovendien in Duitsland bevindt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e). Zowel jij als het project ontvangen een bonus van 50 euro voor hardware. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>) .
-
+Bovendien, als je binnen bent**Duitsland**en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e)of door de code in te voeren**Ajjfbkse**in uw app. Zowel u als het project ontvangen een**50 euro bonus voor hardware**. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>).
 Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
-Je ontvangt een bonus (het aanbod varieert tussen de 50 en 120 euro) voor jezelf en ook voor het project.
-Octopus heeft als voordeel dat de contracten doorgaans slechts een maandelijkse looptijd hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
+Je ontvangt een bonus (het aanbod varieert**tussen 50 en 120 euro**) voor uzelf en ook voor het project.
+Octopus heeft het voordeel dat sommige aanbiedingen geen minimale contractduur hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
+
+Gebruikers van**Oostenrijk**kan ons steunen[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)verwijzingsactie en voer in**Aqqhamqnif**als code.
 
 ## Vrijwaring
 
