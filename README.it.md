@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[ceco](README.cs.md)-[danese](README.da.md)-[Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md) - [Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
+[ceco](README.cs.md)-[danese](README.da.md)-[Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
@@ -40,7 +40,7 @@ La configurazione di Spotmarket-Switcher è un processo semplice. Se stai già u
     Su un Cerbo GX il filesystem è montato in sola lettura. Vedere<https://www.victronenergy.com/live/ccgx:root_access>. Per rendere scrivibile il filesystem è necessario eseguire il seguente comando prima di eseguire lo script di installazione:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Please note that while this software is currently optimized for the Venus OS, it can be adapted to other Linux flavors, like Debian/Ubuntu on a Raspberry Pi or another small board. A prime candidate is certainly [OpenWRT](https://www.openwrt.org). L'uso di una macchina desktop va bene a scopo di test, ma quando viene utilizzato 24 ore su 24, 7 giorni su 7, il suo consumo energetico maggiore è preoccupante.
+Tieni presente che sebbene questo software sia attualmente ottimizzato per il sistema operativo Venus, può essere adattato ad altre versioni Linux, come Debian/Ubuntu su un Raspberry Pi o un'altra piccola scheda. Un ottimo candidato lo è certamente[OpenWRT](https://www.openwrt.org). L'uso di una macchina desktop va bene a scopo di test, ma quando viene utilizzato 24 ore su 24, 7 giorni su 7, il suo consumo energetico maggiore è preoccupante.
 
 ### Accesso al sistema operativo Venus
 
@@ -54,7 +54,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
 
 Lo screenshot mostra la configurazione della ricarica automatizzata durante gli orari definiti dall'utente. Disattivato per impostazione predefinita, può essere temporaneamente attivato dallo script.
 
--   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
+-   Istruzioni per installare lo Spotmarket-Switcher su un sistema Windows 10 o 11 per eseguire test senza dispositivi Victron (solo prese commutabili).
 
     -   lancio`cmd.exe`come amministratore
     -   accedere`wsl --install -d Debian`
@@ -78,16 +78,16 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
 
 Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e supportare l'ulteriore sviluppo attraverso questi collegamenti:
 
--   [Rivoluzione](https://revolut.me/christqki2)
+-   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Inoltre, se sei dentro**Germania**e sei interessato a passare alla tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti tramite questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice**Ajjfbkse**nella tua app. Sia tu che il progetto riceverete un**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
+Inoltre, se vieni da**Germania**e sei interessato a passare alla tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti tramite questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**50 euro bonus for hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
 Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (link di riferimento)](https://share.octopusenergy.de/glass-raven-58).
 Ricevi un bonus (l'offerta varia**tra 50 e 120 euro**) per te stesso e anche per il progetto.
 Octopus ha il vantaggio che alcune offerte non hanno una durata minima contrattuale. Sono ideali, ad esempio, per sospendere una tariffa basata sui prezzi di borsa.
 
-Utenti da**Austria**può sostenerci[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers)azione di riferimento ed entrare**Aqqhamqnif**come codice.
+Utenti da**Austria**può sostenerci[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers)azione di riferimento ed entrare`3KEHMQN2F`come codice.
 
 ## Disclaimer
 
-Please note the terms of use at <https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Si prega di notare i termini di utilizzo su<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
