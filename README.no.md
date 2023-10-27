@@ -81,12 +81,12 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-I tillegg, hvis du er med**Tyskland**og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å melde deg på ved hjelp av denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden**Ajjfbkse**i appen din. Både du og prosjektet vil motta en**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+I tillegg, hvis du er fra**Tyskland**og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å melde deg på ved hjelp av denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
 
-Brukere fra**Østerrike**kan støtte oss ved[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers)henvisningshandling og gå inn**Aqqhamqnif**som kode.
+Brukere fra**Østerrike**kan støtte oss ved[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers)henvisningshandling og gå inn`3KEHMQN2F`som kode.
 
 ## Ansvarsfraskrivelse
 
