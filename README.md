@@ -89,12 +89,12 @@ If you find this project valuable, please consider sponsoring and supporting fur
 - [Revolut](https://revolut.me/christqki2)
 - [PayPal](https://paypal.me/christian1980nrw)
 
-Additionally, if you're in **Germany** and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e) or by entering the code **ojgfbx2e** in your app. Both you and the project will receive a **50 euro bonus for hardware**. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (https://tibber.com/de/store/produkt/pulse-ir) .
+If you are from Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (referral link)](https://invite.tibber.com/ojgfbx2e) or by entering the code `ojgfbx2e` in your app. Both you and the project will receive **50 euro bonus for hardware**. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (https://tibber.com/de/store/produkt/pulse-ir) .
 If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58) .
 You receive a bonus (the offer varies **between 50 and 120 euro**) for yourself and also for the project.
 Octopus has the advantage that some offers are without minimum contract term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
-Users from **Austria** can support us by [aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers) referral action and enter **3KEHMQN2F** as code.
+If you are from Austria you can support us by using [aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F` as code.
 
 ## Disclaimer
 Please note the terms of use at https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md
