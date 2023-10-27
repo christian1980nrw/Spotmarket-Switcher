@@ -37,6 +37,8 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
 2.  追加のオプションを指定してインストーラー スクリプトを実行し、サブディレクトリ内のすべてのものを検査用に準備します。例えば：
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Victron Venus OS を使用している場合、正しい DESTDIR は次のとおりです。`/`(ルートディレクトリ)。にインストールされているファイルを自由に探索してください。`/tmp/foo`。
+    Cerbo GX では、ファイルシステムは読み取り専用でマウントされます。見る[ｈっｔｐｓ：／／ｗっｗ。ゔぃｃｔろねねｒｇｙ。こｍ／ぃゔぇ／っｃｇｘ：ろおｔ＿あっせっｓ](https://www.victronenergy.com/live/ccgx:root_access)。ファイルシステムを書き込み可能にするには、インストール スクリプトを実行する前に次のコマンドを実行する必要があります。
+        /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
@@ -46,8 +48,8 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 ### インストールスクリプトの実行
 
--   If you're using Victron Venus OS:
-    -   の実行後、`victron-venus-os-install.sh`, edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/controller.sh`。
+-   Victron Venus OS を使用している場合:
+    -   次に、テキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/config.txt`。
     -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに非アクティブ化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
@@ -60,30 +62,31 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   新しいパスワードを入力
     -   入力`sudo su`パスワードを入力してください
     -   入力`apt-get update && apt-get install wget curl`
-    -   以下の手動 Linux の説明に進みます (インストーラー スクリプトには互換性がありません)。
-    -   シェルを閉じると Windows がシステムを停止することを忘れないでください。
+    -   Continue with the manual Linux description below (installer script is not compatible).
+    -   シェルを閉じると、Windows がシステムを停止することを忘れないでください。
 
 
 -   Ubuntu や Debian などの Linux システムを使用している場合:
     -   シェルスクリプトをコピーします(`controller.sh`) をカスタムの場所に移動し、必要に応じて変数を調整します。
-    -   コマンドは`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`そして編集するには`vi /path/to/save/controller.sh`
+    -   コマンドは`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`そして編集するには`vi /path/to/save/config.txt`
     -   crontab または別のスケジュール方法を作成して、各時間の開始時にこのスクリプトを実行します。
     -   Crontab のサンプル:
           次の crontab エントリを使用して、制御スクリプトを 1 時間ごとに実行します。
           端末を開いて入力してください`crontab -e`に次の行を挿入します。`0 * * * * /path/to/controller.sh`
 
-### 支援と貢献
+### サポートと貢献:+1:
 
 このプロジェクトに価値があると思われる場合は、次のリンクを通じてスポンサーとなり、さらなる開発をサポートすることを検討してください。
 
 -   [レボリュート](https://revolut.me/christqki2)
 -   [ペイパル](https://paypal.me/christian1980nrw)
 
-さらに、ドイツにお住まいで動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)。あなたとプロジェクトの両方がハードウェアに対して 50 ユーロのボーナスを受け取ります。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（<https://tibber.com/de/store/produkt/pulse-ir>） 。
-
+ドイツ在住で、動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)またはコードを入力することで`ojgfbx2e`あなたのアプリで。あなたとプロジェクトの両方が受け取ります**ハードウェアには 50 ユーロのボーナス**。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)）。
 天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58)。
-あなた自身とプロジェクトに対してボーナス (オファーは 50 ～ 120 ユーロの間で変動します) を受け取ります。
-オクトパスには、通常、契約期間が月単位のみであるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。
+ボーナスを受け取ります（オファーは異なります）**50ユーロから120ユーロの間**) 自分自身にとっても、プロジェクトにとっても。
+オクトパスには、最低契約期間のないオファーもあるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。
+
+オーストリア在住の場合は、次の方法で私たちをサポートできます。[aWATTar オーストリア (参照リンク)](https://www.awattar.at/services/offers/promotecustomers)。ぜひご利用ください`3KEHMQN2F`コードとして。
 
 ## 免責事項
 
