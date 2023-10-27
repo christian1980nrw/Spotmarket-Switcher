@@ -68,7 +68,7 @@ Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte ti
 
 -   Hvis du bruker et Linux-system som Ubuntu eller Debian:
     -   Kopier skallskriptet (`controller.sh`) til en egendefinert plassering og juster variablene i henhold til dine behov.
-    -   the commands are `cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`og å redigere`vi /path/to/save/config.txt`
+    -   kommandoene er`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`og å redigere`vi /path/to/save/config.txt`
     -   Opprett en crontab eller en annen planleggingsmetode for å kjøre dette skriptet ved starten av hver time.
     -   Eksempel på Crontab:
           Bruk følgende crontab-oppføring for å utføre kontrollskriptet hver time:
@@ -86,7 +86,7 @@ Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
 
-Hvis du er fra Østerrike kan du støtte oss ved å bruke[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers). Vennligst skriv inn`3KEHMQN2F`som kode.
+Hvis du er fra Østerrike kan du støtte oss ved å bruke[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers). Vennligst bruk`3KEHMQN2F`som kode.
 
 ## Ansvarsfraskrivelse
 
