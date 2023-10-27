@@ -48,18 +48,18 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 
 ### Installi skripti täitmine
 
--   Kui kasutate Victron Venus OS-i:
+-   Kui kasutate operatsioonisüsteemi Victron Venus:
     -   Seejärel muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi deaktiveeritud, skript võib ajutiselt aktiveerida.
+Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida.
 
 -   Juhised Spotmarket-Switcheri installimiseks Windows 10 või 11 süsteemi, et testida ilma Victroni seadmeteta (ainult lülitatavad pistikupesad).
 
     -   käivitada`cmd.exe`administraatorina
     -   Sisenema`wsl --install -d Debian`
     -   Sisestage uus kasutajanimi nagu`admin`
-    -   Sisestage uus parool
+    -   Enter a new password
     -   Sisenema`sudo su`ja tippige oma parool
     -   Sisenema`apt-get update && apt-get install wget curl`
     -   Jätkake allpool oleva Linuxi käsitsi kirjeldusega (installeri skript ei ühildu).
@@ -86,7 +86,7 @@ Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate si
 Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) endale ja ka projektile.
 Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tähtajata. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
 
-Kui olete Austriast, võite meid toetada[aWATtar Austria (viitelink)](https://www.awattar.at/services/offers/promotecustomers)kasutades`3KEHMQN2F`koodina.
+Kui olete pärit Austriast, saate meid toetada kasutades[aWATtar Austria (viitelink)](https://www.awattar.at/services/offers/promotecustomers). Palun sisesta`3KEHMQN2F`koodina.
 
 ## Vastutusest loobumine
 
