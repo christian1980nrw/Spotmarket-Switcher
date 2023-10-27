@@ -12,7 +12,7 @@ Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej 
 Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
 Obsługiwane systemy to obecnie:
 
--   Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
@@ -37,6 +37,8 @@ Konfiguracja Spotmarket-Switcher jest prostym procesem. Jeśli używasz już kom
 2.  Uruchom skrypt instalacyjny z dodatkowymi opcjami, aby przygotować wszystko w podkatalogu do kontroli. Na przykład:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Jeśli używasz systemu operacyjnego Victron Venus, powinien to być prawidłowy DESTDIR`/`(katalog główny). Zachęcamy do eksploracji zainstalowanych plików w`/tmp/foo`.
+    Na Cerbo GX system plików jest montowany tylko do odczytu. Widzieć<https://www.victronenergy.com/live/ccgx:root_access>. Aby umożliwić zapis w systemie plików, przed uruchomieniem skryptu instalacyjnego należy wykonać następującą komendę:
+        /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Należy pamiętać, że chociaż to oprogramowanie jest obecnie zoptymalizowane pod kątem systemu operacyjnego Venus, można je dostosować do innych wersji Linuksa, takich jak Debian/Ubuntu na Raspberry Pi lub innej małej płycie. Z pewnością jest to główny kandydat[OtwórzWRT](https://www.openwrt.org). Korzystanie z komputera stacjonarnego jest w porządku do celów testowych, ale w przypadku pracy 24 godziny na dobę, 7 dni w tygodniu, jego większe zużycie energii może budzić obawy.
 
@@ -47,7 +49,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
 ### Wykonanie skryptu instalacyjnego
 
 -   Jeśli używasz systemu operacyjnego Victron Venus:
-    -   Po wykonaniu ww`victron-venus-os-install.sh`edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
@@ -61,29 +63,30 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   Wchodzić`sudo su`i wpisz swoje hasło
     -   Wchodzić`apt-get update && apt-get install wget curl`
     -   Kontynuuj, korzystając z poniższego opisu ręcznego systemu Linux (skrypt instalatora nie jest kompatybilny).
-    -   Nie zapomnij, że jeśli zamkniesz powłokę, Windows zatrzyma system.
+    -   Nie zapomnij, że jeśli zamkniesz powłokę, system Windows zatrzyma system.
 
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
-    -   polecenia są`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`i edytować`vi /path/to/save/controller.sh`
+    -   polecenia są`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`i edytować`vi /path/to/save/config.txt`
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:
           Otwórz terminal i wejdź`crontab -e`, a następnie wstaw następujący wiersz:`0 * * * * /path/to/controller.sh`
 
-### Wsparcie i wkład
+### Wsparcie i wkład :+1:
 
 Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie dalszego rozwoju za pośrednictwem tych linków:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Dodatkowo, jeśli jesteś w Niemczech i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e). Zarówno Ty, jak i projekt otrzymacie premię 50 euro za sprzęt. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
-
+Dodatkowo, jeśli jesteś w**Niemcy**i jesteś zainteresowany przejściem na dynamiczną taryfę energii elektrycznej, możesz wesprzeć projekt rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod**Ajjfbkse**w Twojej aplikacji. Zarówno Ty, jak i projekt otrzymacie**Bonus 50 euro za sprzęt**. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
-Otrzymujesz premię (oferta waha się od 50 do 120 euro) dla siebie i projektu.
-Octopus ma tę zaletę, że umowy zwykle są zawierane tylko na okres miesięczny. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
+Otrzymujesz bonus (oferta jest zróżnicowana**od 50 do 120 euro**) dla siebie i dla projektu.
+Octopus ma tę zaletę, że niektóre oferty nie zawierają minimalnego okresu obowiązywania umowy. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
+
+Użytkownicy z**Austria**może nas wesprzeć[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers)polecenie akcji i wejdź**Aqqhamqnif**jako kod.
 
 ## Zastrzeżenie
 
