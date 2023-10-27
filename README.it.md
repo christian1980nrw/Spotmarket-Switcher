@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[ceco](README.cs.md)-[danese](README.da.md) - [Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
+[ceco](README.cs.md)-[danese](README.da.md)-[Tedesco](README.de.md)-[Inglese](README.md)-[spagnolo](README.es.md)-[Estone](README.et.md)-[finlandese](README.fi.md)-[Francese](README.fr.md)-[greco](README.el.md)-[Italiano](README.it.md)-[Olandese](README.nl.md)-[norvegese](README.no.md)-[Polacco](README.pl.md)-[portoghese](README.pt.md)-[svedese](README.sv.md)-[giapponese](README.ja.md)
 
 ## Benvenuti nel repository Spotmarket-Switcher!
 
@@ -81,12 +81,12 @@ Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e s
 -   [Rivoluzione](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Se vieni da**Germania**e sei interessato a passare alla tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti tramite questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
-Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58) .
-You receive a bonus (the offer varies **tra 50 e 120 euro**) per te stesso e anche per il progetto.
+Se vieni dalla Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
+Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (link di riferimento)](https://share.octopusenergy.de/glass-raven-58).
+Ricevi un bonus (l'offerta varia**tra 50 e 120 euro**) per te stesso e anche per il progetto.
 Octopus ha il vantaggio che alcune offerte non hanno una durata minima contrattuale. Sono ideali, ad esempio, per sospendere una tariffa basata sui prezzi di borsa.
 
-Utenti da**Austria**può sostenerci[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers)azione di riferimento ed entrare`3KEHMQN2F`come codice.
+Gli utenti dall'Austria possono supportarci tramite[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers)azione di riferimento ed entrare`3KEHMQN2F`come codice.
 
 ## Disclaimer
 
