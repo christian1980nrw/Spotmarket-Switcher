@@ -48,7 +48,7 @@ Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https
 
 ### Esecuzione dello script di installazione
 
--   If you're using Victron Venus OS:
+-   Se utilizzi il sistema operativo Victron Venus:
     -   Quindi modifica le variabili con un editor di testo in`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Configurare un programma di addebito ESS (fare riferimento allo screenshot fornito). Nell'esempio la batteria si ricarica di notte fino al 50% se attivata, gli altri tempi di ricarica della giornata vengono ignorati. Se non lo desideri, crea una pianificazione per tutte le 24 ore del giorno. Ricordati di disattivarlo dopo la creazione. Verificare che l'ora del sistema (come mostrato nell'angolo in alto a destra dello schermo) sia accurata.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
@@ -61,8 +61,8 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   Inserisci un nuovo nome utente come`admin`
     -   Inserire una nuova password
     -   accedere`sudo su`e digita la tua password
-    -   accedere`apt-get update && apt-get install wget curl`
-    -   Continue with the manual Linux description below (installer script is not compatible).
+    -   Enter `apt-get update && apt-get install wget curl`
+    -   Continuare con la descrizione manuale di Linux riportata di seguito (lo script di installazione non è compatibile).
     -   Non dimenticare che se chiudi la shell, Windows arresterà il sistema.
 
 
@@ -86,7 +86,7 @@ Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elett
 Ricevi un bonus (l'offerta varia**tra 50 e 120 euro**) per te stesso e anche per il progetto.
 Octopus ha il vantaggio che alcune offerte non hanno una durata minima contrattuale. Sono ideali, ad esempio, per sospendere una tariffa basata sui prezzi di borsa.
 
-Se vieni dall'Austria puoi sostenerci utilizzando[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers)ed entra`3KEHMQN2F`come codice.
+Se vieni dall'Austria puoi sostenerci[aWATTar Austria (link di riferimento)](https://www.awattar.at/services/offers/promotecustomers)usando`3KEHMQN2F`come codice.
 
 ## Disclaimer
 
