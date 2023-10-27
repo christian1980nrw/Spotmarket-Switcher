@@ -69,7 +69,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
-    -   polecenia są`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`i edytować`vi /path/to/save/config.txt`
+    -   polecenia są`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`i do edycji ustawień użyj`vi /path/to/save/config.txt`
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:
@@ -87,7 +87,7 @@ Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energi
 Otrzymujesz bonus (oferta jest zróżnicowana**od 50 do 120 euro**) dla siebie i dla projektu.
 Octopus ma tę zaletę, że niektóre oferty nie zawierają minimalnego okresu obowiązywania umowy. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
-Jeśli jesteś z Austrii, możesz nas wesprzeć za pomocą[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F`jako kod.
+Jeśli jesteś z Austrii, możesz nas wesprzeć za pomocą[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers). Proszę skorzystać`3KEHMQN2F`jako kod.
 
 ## Zastrzeżenie
 
