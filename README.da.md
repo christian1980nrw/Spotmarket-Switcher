@@ -69,7 +69,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
 
 -   Hvis du bruger et Linux-system som Ubuntu eller Debian:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
-    -   kommandoerne er`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`og at redigere`vi /path/to/save/config.txt`
+    -   kommandoerne er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`og for at redigere dine indstillinger brug`vi /path/to/save/config.txt`
     -   Opret en crontab eller en anden planlægningsmetode for at køre dette script i starten af ​​hver time.
     -   Eksempel på Crontab:
           Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
