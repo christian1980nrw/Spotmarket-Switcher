@@ -60,7 +60,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
     -   Vstupte`wsl --install -d Debian`
     -   Zadejte nové uživatelské jméno jako`admin`
     -   vložte nové heslo
-    -   Vstupte`sudo su`a zadejte své heslo
+    -   Vstupte`sudo su` and type your password
     -   Vstupte`apt-get update && apt-get install wget curl`
     -   Pokračujte níže uvedeným manuálem pro Linux (instalační skript není kompatibilní).
     -   Nezapomeňte, že pokud zavřete shell, Windows zastaví systém.
@@ -81,12 +81,12 @@ Pokud považujete tento projekt za hodnotný, zvažte prosím sponzorování a p
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Pokud jste z Německa a máte zájem přejít na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e)nebo zadáním kódu`ojgfbx2e`ve vaší aplikaci. Obdržíte vy i projekt**Bonus 50 euro na hardware**. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
+Pokud jste z Německa a máte zájem přejít na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e)nebo zadáním kódu`ojgfbx2e`ve vaší aplikaci. Obdržíte vy i projekt**Bonus 50 euro na hardware**. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
 Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektřiny, stále můžete projekt podpořit[Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
 Získáte bonus (nabídka se liší**mezi 50 a 120 eury**) pro sebe a také pro projekt.
 Octopus má tu výhodu, že některé nabídky jsou bez minimální smluvní doby. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
-Uživatelé z Rakouska nás mohou podpořit[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)akci doporučení a zadejte`3KEHMQN2F`jako kód.
+Pokud jste z Rakouska, můžete nás podpořit pomocí[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)a vstupte`3KEHMQN2F`jako kód.
 
 ## Zřeknutí se odpovědnosti
 
