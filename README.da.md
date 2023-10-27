@@ -17,13 +17,14 @@ Understøttede systemer er i øjeblikket:
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
-Tag et kig under linje 100 i controller.sh-filen, så du kan se, hvad der kan konfigureres af brugeren.
+Tag et kig rundt på linje 965 på controller.sh (charger_command_turnon), så du kan se, hvor nemt det kan tilpasses.
+Del venligst din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
 
 Softwaren bruger i øjeblikket EPEX Spot-timepriser leveret af tre gratis API'er (Tibber, aWATTar & Entso-E).
 Den integrerede gratis Entso-E API leverer energiprisdata for følgende lande:
-Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjekkiet (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrig (FR), Georgien (GE), Tyskland (DE), Grækenland (GR), Ungarn (HU), Irland (IE), Italien (IT), Kosovo (XK), Letland (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumænien (RO), Serbien (RS), Slovakiet (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Tyrkiet (TR), Ukraine (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). 
+Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjekkiet (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrig (FR), Georgien (GE), Tyskland (DE), Grækenland (GR), Ungarn (HU), Irland (IE), Italien (IT), Kosovo (XK), Letland (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumænien (RO), Serbien (RS), Slovakiet (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Tyrkiet (TR), Ukraine (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
@@ -74,7 +75,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
           Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
           Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:`0 * * * * /path/to/controller.sh`
 
-### Support and Contribution :+1:
+### Support og bidrag:+1:
 
 Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støtte yderligere udvikling gennem disse links:
 
