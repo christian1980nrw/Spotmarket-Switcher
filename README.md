@@ -83,7 +83,7 @@ The Screenshot is showing the configuration of automated charging during user de
       `0 * * * * /path/to/controller.sh`
 
 
-### Support and Contribution
+### Support and Contribution :+1:
 
 If you find this project valuable, please consider sponsoring and supporting further development through these links:
 - [Revolut](https://revolut.me/christqki2)
@@ -93,6 +93,7 @@ Additionally, if you're in **Germany** and interested in switching to a dynamic 
 If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58) .
 You receive a bonus (the offer varies **between 50 and 120 euro**) for yourself and also for the project.
 Octopus has the advantage that some offers are without minimum contract term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
+
 Users from **Austria** can support us by [aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers) referral action and enter **3KEHMQN2F** as code.
 
 ## Disclaimer
