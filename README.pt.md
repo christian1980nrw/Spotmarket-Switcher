@@ -81,12 +81,12 @@ Se você considera este projeto valioso, considere patrocinar e apoiar o desenvo
 -   [Revolução](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Se você é de**Alemanha**e interessado em mudar para uma tarifa dinâmica de electricidade, pode apoiar o projecto inscrevendo-se através deste[Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e)ou digitando o código`ojgfbx2e`em seu aplicativo. Você e o projeto receberão**Bônus de 50 euros para hardware**. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>).
+Se você é da Alemanha e está interessado em mudar para uma tarifa dinâmica de eletricidade, você pode apoiar o projeto inscrevendo-se usando este[Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e)ou digitando o código`ojgfbx2e`em seu aplicativo. Você e o projeto receberão**Bônus de 50 euros para hardware**. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>).
 Se necessita de uma tarifa de gás natural ou prefere uma tarifa clássica de eletricidade, ainda pode apoiar o projeto[Energia do Polvo (link de referência)](https://share.octopusenergy.de/glass-raven-58).
 Você recebe um bônus (a oferta varia**entre 50 e 120 euros**) para você e também para o projeto.
 Octopus tem a vantagem de algumas ofertas não terem prazo mínimo de contrato. São ideais, por exemplo, para pausar uma tarifa baseada em preços de bolsa.
 
-Usuários de**Áustria**pode nos apoiar[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers)ação de referência e insira`3KEHMQN2F`como código.
+Os usuários da Áustria podem nos apoiar[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers)ação de referência e insira`3KEHMQN2F`como código.
 
 ## Isenção de responsabilidade
 
