@@ -81,12 +81,12 @@ Om du tycker att det här projektet är värdefullt, vänligen överväg att spo
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Om du är från**Tyskland**och intresserad av att byta till en dynamisk eltaxa kan du stödja projektet genom att anmäla dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus för hårdvara**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Om du är från Tyskland och är intresserad av att byta till en dynamisk eltariff kan du stödja projektet genom att registrera dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus för hårdvara**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortfarande stödja projektet[Octopus Energy (referenslänk)](https://share.octopusenergy.de/glass-raven-58).
 Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
-Användare från**Österrike**kan stötta oss genom[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers)remissåtgärd och gå in`3KEHMQN2F`som kod.
+Användare från Österrike kan stödja oss genom[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers)remissåtgärd och gå in`3KEHMQN2F`som kod.
 
 ## varning
 
