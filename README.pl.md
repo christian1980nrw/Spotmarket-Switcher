@@ -81,12 +81,12 @@ Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie da
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Dodatkowo, jeśli jesteś z**Niemcy**i jesteś zainteresowany przejściem na dynamiczną taryfę energii elektrycznej, możesz wesprzeć projekt rejestrując się za jego pomocą[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod`ojgfbx2e`w Twojej aplikacji. Otrzymacie Państwo i projekt**Bonus 50 euro za sprzęt**. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Jeśli jesteś z Niemiec i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt, rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod`ojgfbx2e`w Twojej aplikacji. Otrzymacie Państwo i projekt**Bonus 50 euro za sprzęt**. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
 Otrzymujesz bonus (oferta jest zróżnicowana**od 50 do 120 euro**) dla siebie i dla projektu.
 Octopus ma tę zaletę, że niektóre oferty nie zawierają minimalnego okresu obowiązywania umowy. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
-Użytkownicy z**Austria**może nas wesprzeć[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers)polecenie akcji i wejdź`3KEHMQN2F`jako kod.
+Użytkownicy z Austrii mogą nas wspierać poprzez[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers) referral action and enter `3KEHMQN2F`jako kod.
 
 ## Zastrzeżenie
 
