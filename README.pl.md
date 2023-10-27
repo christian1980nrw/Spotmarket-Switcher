@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[Estonian ](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[日本語 ](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md) - [Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
@@ -27,7 +27,7 @@ Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), C
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
-## Installation
+## Instalacja
 
 Konfiguracja Spotmarket-Switcher jest prostym procesem. Jeśli używasz już komputera z systemem UNIX, na przykład macOS, Linux lub Windows z podsystemem Linux, wykonaj następujące kroki, aby zainstalować oprogramowanie:
 
@@ -60,7 +60,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   Wchodzić`wsl --install -d Debian`
     -   Wprowadź nową nazwę użytkownika, np`admin`
     -   Wpisz nowe hasło
-    -   Enter `sudo su`i wpisz swoje hasło
+    -   Wchodzić`sudo su`i wpisz swoje hasło
     -   Wchodzić`apt-get update && apt-get install wget curl`
     -   Kontynuuj, korzystając z poniższego opisu ręcznego systemu Linux (skrypt instalatora nie jest kompatybilny).
     -   Nie zapomnij, że jeśli zamkniesz powłokę, system Windows zatrzyma system.
@@ -81,12 +81,12 @@ Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie da
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Jeśli jesteś z Niemiec i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt, rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod`ojgfbx2e`w Twojej aplikacji. Otrzymacie Państwo i projekt**50 euro bonus for hardware**. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Jeśli jesteś z Niemiec i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt, rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod`ojgfbx2e`w Twojej aplikacji. Otrzymacie Państwo i projekt**Bonus 50 euro za sprzęt**. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
 Otrzymujesz bonus (oferta jest zróżnicowana**od 50 do 120 euro**) dla siebie i dla projektu.
 Octopus ma tę zaletę, że niektóre oferty nie zawierają minimalnego okresu obowiązywania umowy. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
-Jeśli jesteś z Austrii, możesz nas wesprzeć[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers)używając`3KEHMQN2F`jako kod.
+Jeśli jesteś z Austrii, możesz nas wesprzeć za pomocą[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers). Podaj`3KEHMQN2F`jako kod.
 
 ## Zastrzeżenie
 
