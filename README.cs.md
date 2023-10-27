@@ -21,9 +21,9 @@ Podívejte se prosím pod řádek 100 souboru controller.sh, abyste viděli, co 
 
 ## Zdroj dat
 
-The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
-The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
-Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Software v současnosti využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
+Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
+Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
@@ -37,6 +37,8 @@ Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte p
 2.  Spusťte instalační skript s dalšími možnostmi, abyste připravili vše v podadresáři pro vaši kontrolu. Například:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Pokud používáte Victron Venus OS, měl by být správný DESTDIR`/`(kořenový adresář). Neváhejte prozkoumat nainstalované soubory v`/tmp/foo`.
+    Na Cerbo GX je souborový systém připojen pouze pro čtení. Vidět<https://www.victronenergy.com/live/ccgx:root_access>. Aby bylo možné do souborového systému zapisovat, musíte před spuštěním instalačního skriptu provést následující příkaz:
+        /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie znepokojivá.
 
@@ -47,7 +49,7 @@ Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/cc
 ### Spuštění instalačního skriptu
 
 -   Pokud používáte Victron Venus OS:
-    -   Po provedení`victron-venus-os-install.sh`, upravte proměnné pomocí textového editoru v`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Poté proměnné upravte pomocí textového editoru`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Nastavte plán nabíjení ESS (viz dodaný snímek obrazovky). V tomto příkladu se baterie nabíjí v noci až na 50 %, pokud je aktivována, ostatní doby nabíjení během dne jsou ignorovány. Pokud nechcete, vytvořte plán na všech 24 hodin dne. Nezapomeňte jej po vytvoření deaktivovat. Ověřte, že systémový čas (jak je zobrazen v pravém horním rohu obrazovky) je přesný.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatelem definovaných časů. Ve výchozím nastavení deaktivováno, může být dočasně aktivováno skriptem.
@@ -66,24 +68,25 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`a upravit`vi /path/to/save/controller.sh`
+    -   příkazy jsou`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`a upravit`vi /path/to/save/config.txt`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
           Otevřete terminál a zadejte jej`crontab -e`a poté vložte následující řádek:`0 * * * * /path/to/controller.sh`
 
-### Podpora a příspěvek
+### Podpora a příspěvek :+1:
 
 Pokud považujete tento projekt za hodnotný, zvažte prosím sponzorování a podporu dalšího rozvoje prostřednictvím těchto odkazů:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Navíc, pokud jste v Německu a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e). Vy i projekt získáte bonus 50 eur na hardware. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
-
+Navíc, pokud jste v**Německo**a máte zájem o přechod na dynamický tarif elektřiny, můžete projekt podpořit přihlášením pomocí tohoto[Tibber (doporučující odkaz)](https://invite.tibber.com/ojgfbx2e)nebo zadáním kódu**Ajjfbkse**ve vaší aplikaci. Vy i projekt obdržíte a**Bonus 50 euro na hardware**. Vezměte prosím na vědomí, že pro hodinový tarif je vyžadován inteligentní měřič nebo Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
 Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektřiny, stále můžete projekt podpořit[Octopus Energy (doporučující odkaz)](https://share.octopusenergy.de/glass-raven-58).
-Získáváte bonus (nabídka se pohybuje mezi 50 a 120 eury) pro sebe a také pro projekt.
-Octopus má tu výhodu, že smlouvy mají většinou pouze měsíční platnost. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
+Získáte bonus (nabídka se liší**mezi 50 a 120 eury**) pro sebe a také pro projekt.
+Octopus má tu výhodu, že některé nabídky jsou bez minimální smluvní doby. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
+
+Uživatelé z**Rakousko**nás může podpořit[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)akci doporučení a zadejte**Aqqhamqnif**jako kód.
 
 ## Zřeknutí se odpovědnosti
 
