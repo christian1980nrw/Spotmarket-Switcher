@@ -54,7 +54,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
+-   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
@@ -81,7 +81,7 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-I tillegg, hvis du er fra**Tyskland**og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å melde deg på ved hjelp av denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+Hvis du er fra**Tyskland**og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å melde deg på ved hjelp av denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
