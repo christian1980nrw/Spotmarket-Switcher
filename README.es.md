@@ -57,7 +57,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Instrucciones para instalar Spotmarket-Switcher en un sistema Windows 10 u 11 para realizar pruebas sin dispositivos Victron (solo enchufes conmutables).
 
-    -   launch `cmd.exe`como administrador
+    -   lanzamiento`cmd.exe`como administrador
     -   Ingresar`wsl --install -d Debian`
     -   Ingrese un nuevo nombre de usuario como`admin`
     -   Introduzca una nueva contraseña
@@ -69,7 +69,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`y para editar`vi /path/to/save/config.txt`
+    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
