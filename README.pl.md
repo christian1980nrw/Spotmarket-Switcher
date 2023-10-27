@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md) - [szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
@@ -58,7 +58,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
 
     -   początek`cmd.exe`jako Administrator
     -   Wchodzić`wsl --install -d Debian`
-    -   Wprowadź nową nazwę użytkownika, np`admin`
+    -   Enter a new username like `admin`
     -   Wpisz nowe hasło
     -   Wchodzić`sudo su`i wpisz swoje hasło
     -   Wchodzić`apt-get update && apt-get install wget curl`
@@ -81,12 +81,12 @@ Jeśli uznasz ten projekt za wartościowy, rozważ sponsorowanie i wspieranie da
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Jeśli jesteś z Niemiec i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt, rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod`ojgfbx2e`w Twojej aplikacji. Otrzymacie Państwo i projekt**Bonus 50 euro za sprzęt**. Należy pamiętać, że w przypadku taryfy godzinowej wymagany jest inteligentny licznik lub Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
-Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58).
-Otrzymujesz bonus (oferta jest zróżnicowana**od 50 do 120 euro**) dla siebie i dla projektu.
+Jeśli jesteś z Niemiec i jesteś zainteresowany przejściem na dynamiczną taryfę za energię elektryczną, możesz wesprzeć projekt, rejestrując się za pomocą tego[Tibber (link polecający)](https://invite.tibber.com/ojgfbx2e)lub wpisując kod`ojgfbx2e`w Twojej aplikacji. Otrzymacie Państwo i projekt**Bonus 50 euro za sprzęt**. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Jeśli potrzebujesz taryfy na gaz ziemny lub wolisz klasyczną taryfę na energię elektryczną, nadal możesz wesprzeć projekt[Octopus Energy (link polecający)](https://share.octopusenergy.de/glass-raven-58) .
+You receive a bonus (the offer varies **od 50 do 120 euro**) dla siebie i dla projektu.
 Octopus ma tę zaletę, że niektóre oferty nie zawierają minimalnego okresu obowiązywania umowy. Idealnie nadają się np. do wstrzymania taryfy opartej na cenach giełdowych.
 
-Użytkownicy z Austrii mogą nas wspierać poprzez[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers) referral action and enter `3KEHMQN2F`jako kod.
+Jeśli jesteś z Austrii, możesz nas wesprzeć za pomocą[aWATTar Austria (link polecający)](https://www.awattar.at/services/offers/promotecustomers)i wejdź`3KEHMQN2F`jako kod.
 
 ## Zastrzeżenie
 
