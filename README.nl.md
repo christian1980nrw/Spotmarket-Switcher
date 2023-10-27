@@ -27,7 +27,7 @@ Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
-## Installation
+## Installatie
 
 Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op UNIX gebaseerde machine gebruikt, zoals macOS, Linux of Windows met het Linux-subsysteem, volgt u deze stappen om de software te installeren:
 
@@ -37,7 +37,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
 2.  Voer het installatiescript uit met extra opties om alles in een submap voor te bereiden voor uw inspectie. Bijvoorbeeld:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Als u Victron Venus OS gebruikt, zou de juiste DESTDIR moeten zijn`/`(de hoofdmap). Voel je vrij om de geïnstalleerde bestanden te verkennen in`/tmp/foo`.
-    Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. In order to make the filesystem writeable you need to execute the following command before running the install script:
+    Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem schrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
@@ -81,12 +81,12 @@ Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te spons
 -   [Revolutie](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Bovendien, als je binnen bent**Duitsland**en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e)of door de code in te voeren**Ajjfbkse**in uw app. Zowel u als het project ontvangen een**50 euro bonus voor hardware**. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>).
+Bovendien, als je uit**Duitsland**en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e)of door de code in te voeren`ojgfbx2e`in uw app. Zowel jij als het project zullen ontvangen**50 euro bonus voor hardware**. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>).
 Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
 Je ontvangt een bonus (het aanbod varieert**tussen 50 en 120 euro**) voor uzelf en ook voor het project.
 Octopus heeft het voordeel dat sommige aanbiedingen geen minimale contractduur hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
 
-Gebruikers van**Oostenrijk**kan ons steunen[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)verwijzingsactie en voer in**Aqqhamqnif**als code.
+Gebruikers van**Oostenrijk**kan ons steunen[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)verwijzingsactie en voer in`3KEHMQN2F`als code.
 
 ## Vrijwaring
 
