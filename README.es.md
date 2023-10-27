@@ -31,7 +31,7 @@ Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), C
 
 Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando una máquina basada en UNIX, como macOS, Linux o Windows con el subsistema Linux, siga estos pasos para instalar el software:
 
-1.  Descargue el script de instalación desde el repositorio de GitHub usando[this hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), o ejecute el siguiente comando en su terminal:
+1.  Descargue el script de instalación desde el repositorio de GitHub usando[este hipervínculo](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), o ejecute el siguiente comando en su terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Ejecute el script del instalador con opciones adicionales para preparar todo en un subdirectorio para su inspección. Por ejemplo:
@@ -83,10 +83,10 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 
 Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
 Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers)y entrar`3KEHMQN2F`como código.
+Si eres de Austria puedes apoyarnos[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers)mediante el uso`3KEHMQN2F`como código.
 
 ## Descargo de responsabilidad
 
