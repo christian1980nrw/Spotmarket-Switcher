@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
+[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -29,14 +29,14 @@
 
 ## Εγκατάσταση
 
-Η ρύθμιση του Spotmarket-Switcher είναι μια απλή διαδικασία. Εάν εκτελείτε ήδη ένα μηχάνημα που βασίζεται σε UNIX, όπως macOS, Linux ή Windows με το υποσύστημα Linux, ακολουθήστε αυτά τα βήματα για να εγκαταστήσετε το λογισμικό:
+Η ρύθμιση του Spotmarket-Switcher είναι μια απλή διαδικασία. Εάν χρησιμοποιείτε ήδη ένα μηχάνημα που βασίζεται σε UNIX, όπως macOS, Linux ή Windows με το υποσύστημα Linux, ακολουθήστε αυτά τα βήματα για να εγκαταστήσετε το λογισμικό:
 
 1.  Κατεβάστε το σενάριο εγκατάστασης από το αποθετήριο GitHub χρησιμοποιώντας[αυτόν τον υπερσύνδεσμο](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), ή εκτελέστε την ακόλουθη εντολή στο τερματικό σας:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Εκτελέστε το σενάριο εγκατάστασης με πρόσθετες επιλογές για να προετοιμάσετε τα πάντα σε έναν υποκατάλογο για την επιθεώρησή σας. Για παράδειγμα:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Εάν χρησιμοποιείτε το Victron Venus OS, το σωστό DESTDIR θα πρέπει να είναι`/` (the root directory). Feel free to explore the installed files in `/tmp/foo`.
+    Εάν χρησιμοποιείτε το Victron Venus OS, το σωστό DESTDIR θα πρέπει να είναι`/`(ο ριζικός κατάλογος). Μη διστάσετε να εξερευνήσετε τα εγκατεστημένα αρχεία`/tmp/foo`.
     Σε ένα Cerbo GX το σύστημα αρχείων είναι τοποθετημένο μόνο για ανάγνωση. Βλέπω<https://www.victronenergy.com/live/ccgx:root_access>. Για να κάνετε το σύστημα αρχείων εγγράψιμο, πρέπει να εκτελέσετε την ακόλουθη εντολή πριν εκτελέσετε το σενάριο εγκατάστασης:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
@@ -86,7 +86,7 @@
 Λαμβάνετε ένα μπόνους (η προσφορά ποικίλλει**μεταξύ 50 και 120 ευρώ**) για τον εαυτό σας αλλά και για το έργο.
 Το Octopus έχει το πλεονέκτημα ότι ορισμένες προσφορές είναι χωρίς ελάχιστο χρόνο σύμβασης. Είναι ιδανικά, για παράδειγμα, για την παύση ενός τιμολογίου με βάση τις χρηματιστηριακές τιμές.
 
-Εάν είστε από την Αυστρία μπορείτε να μας υποστηρίξετε χρησιμοποιώντας[aWATTar Austria (σύνδεσμος παραπομπής)](https://www.awattar.at/services/offers/promotecustomers)και μπείτε`3KEHMQN2F`ως κωδικός.
+Εάν είστε από την Αυστρία μπορείτε να μας υποστηρίξετε[aWATTar Austria (σύνδεσμος παραπομπής)](https://www.awattar.at/services/offers/promotecustomers)με τη χρήση`3KEHMQN2F`ως κωδικός.
 
 ## Αποποίηση ευθυνών
 
