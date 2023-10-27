@@ -93,7 +93,7 @@ Additionally, if you're in Germany and interested in switching to a dynamic elec
 If you need a gnatural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (referral link)](https://share.octopusenergy.de/glass-raven-58) .
 You receive a bonus (the offer varies between 50 and 120 euros) for yourself and also for the project.
 Octopus has the advantage that the contracts usually only have a monthly term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
-Users from Austria support us by using [aWATTar Austria (referral link)]([https://invite.tibber.com/ojgfbx2e](https://www.awattar.at/services/offers/promotecustomers) referral action and enter 3KEHMQN2F as code.
+Users from Austria support us by using [aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers) referral action and enter 3KEHMQN2F as code.
 
 ## Disclaimer
 Please note the terms of use at https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md
