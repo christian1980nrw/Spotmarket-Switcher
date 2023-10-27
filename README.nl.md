@@ -19,7 +19,7 @@ Ondersteunde systemen zijn momenteel:
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
 Kijk eens onder regel 100 van het controller.sh-bestand, zodat u kunt zien wat door de gebruiker kan worden geconfigureerd.
 
-## Databron
+## Data Source
 
 De software maakt momenteel gebruik van EPEX Spot-uurprijzen die worden aangeboden door drie gratis API's (Tibber, aWATTar en Entso-E).
 De geïntegreerde gratis Entso-E API levert energieprijsgegevens van de volgende landen:
@@ -60,7 +60,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Binnenkomen`wsl --install -d Debian`
     -   Voer een nieuwe gebruikersnaam in, zoals`admin`
     -   Voer een nieuw wachtwoord in
-    -   Binnenkomen`sudo su` and type your password
+    -   Binnenkomen`sudo su`en typ uw wachtwoord
     -   Binnenkomen`apt-get update && apt-get install wget curl`
     -   Ga verder met de onderstaande handleiding voor Linux (installatiescript is niet compatibel).
     -   Vergeet niet dat Windows het systeem zal stoppen als u de shell sluit.
@@ -72,8 +72,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
     -   Voorbeeldcrontab:
           Gebruik de volgende crontab-invoer om het controlescript elk uur uit te voeren:
-          Open uw terminal en ga naar binnen`crontab -e`, then insert the following line:
-          `0 * * * * /path/to/controller.sh`
+          Open uw terminal en ga naar binnen`crontab -e`en voeg vervolgens de volgende regel in:`0 * * * * /path/to/controller.sh`
 
 ### Ondersteuning en bijdrage:+1:
 
@@ -82,12 +81,12 @@ Als u dit project waardevol vindt, overweeg dan om verdere ontwikkeling te spons
 -   [Revolutie](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Als je afkomstig bent uit**Duitsland**en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e)of door de code in te voeren`ojgfbx2e`in uw app. Zowel jij als het project zullen ontvangen**50 euro bonus voor hardware**. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>).
+Als u uit Duitsland komt en geïnteresseerd bent in de overstap naar een dynamisch elektriciteitstarief, kunt u het project steunen door u hier aan te melden[Tibber (verwijzingslink)](https://invite.tibber.com/ojgfbx2e)of door de code in te voeren`ojgfbx2e` in your app. Both you and the project will receive **50 euro bonus voor hardware**. Houd er rekening mee dat voor een uurtarief een slimme meter of een Pulse-IR nodig is (<https://tibber.com/de/store/produkt/pulse-ir>).
 Indien u een aardgastarief nodig heeft of de voorkeur geeft aan een klassiek elektriciteitstarief, kunt u het project nog steeds steunen[Octopus Energy (verwijzingslink)](https://share.octopusenergy.de/glass-raven-58).
 Je ontvangt een bonus (het aanbod varieert**tussen 50 en 120 euro**) voor uzelf en ook voor het project.
 Octopus heeft het voordeel dat sommige aanbiedingen geen minimale contractduur hebben. Ze zijn bijvoorbeeld ideaal om een ​​tarief op basis van beurskoersen te pauzeren.
 
-Gebruikers van**Oostenrijk**kan ons steunen[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)verwijzingsactie en voer in`3KEHMQN2F`als code.
+Gebruikers uit Oostenrijk kunnen ons steunen door[aWATTar Oostenrijk (verwijzingslink)](https://www.awattar.at/services/offers/promotecustomers)verwijzingsactie en voer in`3KEHMQN2F`als code.
 
 ## Vrijwaring
 
