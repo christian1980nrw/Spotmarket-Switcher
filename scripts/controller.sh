@@ -28,7 +28,7 @@ License=$(
 EOLICENSE
 )
 
-VERSION="2.3.9-DEV"
+VERSION="2.3.10-DEV"
 
 set -e
 
@@ -1122,9 +1122,9 @@ fi
 log_message "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
 echo
 log_message "I: Current price is $current_price $Unit."
-log_message "I: Lowest price will be $lowest_price $Unit." false
-log_message "I: The average price will be $average_price $Unit." false
-log_message "I: Highest price will be $highest_price $Unit." false
+log_message "I: Lowest price will be $lowest_price $Unit."
+log_message "I: The average price will be $average_price $Unit."
+log_message "I: Highest price will be $highest_price $Unit."
 log_message "I: Second lowest price will be $second_lowest_price $Unit." false
 log_message "I: Third lowest price will be $third_lowest_price $Unit." false
 log_message "I: Fourth lowest price will be $fourth_lowest_price $Unit." false
