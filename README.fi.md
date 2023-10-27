@@ -17,7 +17,8 @@ Tuetut järjestelmät ovat tällä hetkellä:
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten[MultiPlus-II sarja](https://www.victronenergy.com/inverters-chargers)
 
 Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energianvarastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
-Katso controller.sh-tiedoston rivin 100 alta, jotta näet, mitä käyttäjä voi määrittää.
+Ole hyvä ja katso noin riviä 965 tiedostosta controller.sh (charger_command_turnon), jotta näet kuinka helppoa se voidaan mukauttaa.
+Jaa mukauksesi, jotta muut käyttäjät voivat hyötyä siitä.
 
 ## Tietolähde
 
