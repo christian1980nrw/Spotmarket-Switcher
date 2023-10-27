@@ -18,7 +18,7 @@ Ondersteunde systemen zijn momenteel:
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
 Kijk eens rond in regel 965 van controller.sh (charger_command_turnon), zodat u kunt zien hoe eenvoudig het kan worden aangepast.
-Deel uw aanpassing zodat andere gebruikers hiervan kunnen profiteren.
+Maak een github-fork en deel uw aanpassingen zodat andere gebruikers ervan kunnen profiteren.
 
 ## Databron
 
@@ -71,9 +71,10 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
     -   de commando's zijn`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`en bewerken`vi /path/to/save/config.txt`
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
-    -   Voorbeeldcrontab:
-          Gebruik de volgende crontab-invoer om het controlescript elk uur uit te voeren:
-          Open uw terminal en ga naar binnen`crontab -e`en voeg vervolgens de volgende regel in:`0 * * * * /path/to/controller.sh`
+    -   Sample Crontab:
+          Use the following crontab entry to execute the control script every hour:
+          Open your terminal and enter `crontab -e`, then insert the following line:
+          `0 * * * * /path/to/controller.sh`
 
 ### Ondersteuning en bijdrage:+1:
 
