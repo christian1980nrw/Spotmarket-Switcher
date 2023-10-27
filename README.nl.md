@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italian ](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
+[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
@@ -17,7 +17,8 @@ Ondersteunde systemen zijn momenteel:
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)
 
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
-Kijk eens onder regel 100 van het controller.sh-bestand, zodat u kunt zien wat door de gebruiker kan worden geconfigureerd.
+Kijk eens rond in regel 965 van controller.sh (charger_command_turnon), zodat u kunt zien hoe eenvoudig het kan worden aangepast.
+Deel uw aanpassing zodat andere gebruikers hiervan kunnen profiteren.
 
 ## Databron
 
@@ -60,7 +61,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Binnenkomen`wsl --install -d Debian`
     -   Voer een nieuwe gebruikersnaam in, zoals`admin`
     -   Voer een nieuw wachtwoord in
-    -   Binnenkomen`sudo su` and type your password
+    -   Binnenkomen`sudo su`en typ uw wachtwoord
     -   Binnenkomen`apt-get update && apt-get install wget curl`
     -   Ga verder met de onderstaande handleiding voor Linux (installatiescript is niet compatibel).
     -   Vergeet niet dat Windows het systeem zal stoppen als u de shell sluit.
