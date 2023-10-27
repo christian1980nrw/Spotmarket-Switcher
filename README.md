@@ -17,7 +17,7 @@ Supported systems are currently:
   
 The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
 Please have a look around line 965 of the controller.sh (charger_command_turnon) so that you can see how easy it can be adapted.
-Please share your customization so other users can benefit from it.
+Please create a github fork and share your customization so other users can benefit from it.
 
 ## Data Source
 
