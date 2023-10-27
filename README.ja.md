@@ -40,7 +40,7 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
     Cerbo GX では、ファイルシステムは読み取り専用でマウントされます。見る[ｈっｔｐｓ：／／ｗっｗ。ゔぃｃｔろねねｒｇｙ。こｍ／ぃゔぇ／っｃｇｘ：ろおｔ＿あっせっｓ](https://www.victronenergy.com/live/ccgx:root_access)。ファイルシステムを書き込み可能にするには、インストール スクリプトを実行する前に次のコマンドを実行する必要があります。
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
+このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
 ### Venus OS へのアクセス
 
@@ -50,7 +50,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 -   Victron Venus OS を使用している場合:
     -   次に、テキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/config.txt`。
-    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに非アクティブ化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに無効化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
 
@@ -63,7 +63,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   入力`sudo su`パスワードを入力してください
     -   入力`apt-get update && apt-get install wget curl`
     -   以下の手動 Linux の説明に進みます (インストーラー スクリプトには互換性がありません)。
-    -   シェルを閉じると、Windows がシステムを停止することを忘れないでください。
+    -   シェルを閉じると Windows がシステムを停止することを忘れないでください。
 
 
 -   Ubuntu や Debian などの Linux システムを使用している場合:
@@ -86,8 +86,8 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 ボーナスを受け取ります（オファーは異なります）**50ユーロから120ユーロの間**) 自分自身にとっても、プロジェクトにとっても。
 オクトパスには、最低契約期間のないオファーもあるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。
 
-オーストリアのユーザーは次の方法で私たちをサポートできます。[aWATTar オーストリア (参照リンク)](https://www.awattar.at/services/offers/promotecustomers)紹介アクションを入力して入力します`3KEHMQN2F`コードとして。
+オーストリア在住の場合は、次の方法で私たちをサポートできます。[aWATTar オーストリア (参照リンク)](https://www.awattar.at/services/offers/promotecustomers)そして入力してください`3KEHMQN2F`コードとして。
 
 ## 免責事項
 
-利用規約に注意してください。<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+利用規約に注意してください。[ｈっｔｐｓ：／／ぎてゅｂ。こｍ／ｃｈりｓちあん１９８０んｒｗ／Ｓぽｔまｒけｔーすぃｔちぇｒ／ｂぉｂ／まいん／ぃせんせ。ｍｄ](https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md)
