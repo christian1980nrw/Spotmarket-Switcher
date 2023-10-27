@@ -56,7 +56,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Instrucciones para instalar Spotmarket-Switcher en un sistema Windows 10 u 11 para realizar pruebas sin dispositivos Victron (solo enchufes conmutables).
 
-    -   launch `cmd.exe`como administrador
+    -   lanzamiento`cmd.exe`como administrador
     -   Ingresar`wsl --install -d Debian`
     -   Ingrese un nuevo nombre de usuario como`admin`
     -   Introduzca una nueva contraseña
@@ -81,9 +81,9 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 -   [revolución](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Además, si eres de**Alemania**y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote a través de este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
+si eres de**Alemania**y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote a través de este[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
 Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
 Usuarios de**Austria**puede apoyarnos mediante[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers)acción de referencia y entrar`3KEHMQN2F`como código.
