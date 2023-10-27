@@ -37,6 +37,8 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
 2.  Ejecute el script del instalador con opciones adicionales para preparar todo en un subdirectorio para su inspección. Por ejemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
+    En un Cerbo GX, el sistema de archivos está montado en solo lectura. Ver<https://www.victronenergy.com/live/ccgx:root_access>. Para que se pueda escribir en el sistema de archivos, debe ejecutar el siguiente comando antes de ejecutar el script de instalación:
+        /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Tenga en cuenta que, si bien este software está actualmente optimizado para el sistema operativo Venus, se puede adaptar a otras versiones de Linux, como Debian/Ubuntu en una Raspberry Pi u otra placa pequeña. Un candidato principal es sin duda[AbiertoWRT](https://www.openwrt.org). Usar una máquina de escritorio está bien para fines de prueba, pero cuando se usa las 24 horas del día, los 7 días de la semana, su mayor consumo de energía es motivo de preocupación.
 
@@ -47,7 +49,7 @@ Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consu
 ### Ejecución del script de instalación
 
 -   Si está utilizando el sistema operativo Victron Venus:
-    -   Después de la ejecución del`victron-venus-os-install.sh`, edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/controller.sh`.
+    -   Luego edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Configure un programa de carga de ESS (consulte la captura de pantalla proporcionada). En el ejemplo, la batería se carga por la noche hasta un 50% si está activada; se ignoran otros momentos de carga del día. Si no lo desea, cree un horario para las 24 horas del día. Recuerda desactivarlo después de la creación. Verifique que la hora del sistema (como se muestra en la parte superior derecha de la pantalla) sea precisa.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 La captura de pantalla muestra la configuración de la carga automatizada durante los horarios definidos por el usuario. Desactivado de forma predeterminada, puede activarse temporalmente mediante el script.
@@ -66,24 +68,25 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ && wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/controller.sh && chmod +x ./controller.sh`y para editar`vi /path/to/save/controller.sh`
+    -   los comandos son`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`y para editar`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
           Abre tu terminal y entra`crontab -e`, luego inserte la siguiente línea:`0 * * * * /path/to/controller.sh`
 
-### Apoyo y contribución
+### Apoyo y contribución:+1:
 
 Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desarrollo a través de estos enlaces:
 
 -   [revolución](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Además, si estás en Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e). Tanto tú como el proyecto recibiréis un bono de 50 euros en hardware. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>) .
-
+Además, si estás en**Alemania**y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote a través de este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código**ajjfbkse**en tu aplicación. Tanto usted como el proyecto recibirán un**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
 Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes una bonificación (la oferta varía entre 50 y 120 euros) para ti y también para el proyecto.
-Octopus tiene la ventaja de que los contratos normalmente solo tienen una duración mensual. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
+Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
+
+Usuarios de**Austria**puede apoyarnos mediante[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers)acción de referencia y entrar**Aqqhamqnif**como código.
 
 ## Descargo de responsabilidad
 
