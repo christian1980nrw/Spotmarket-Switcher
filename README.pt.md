@@ -50,7 +50,7 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Em seguida, edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
@@ -81,12 +81,12 @@ Se você considera este projeto valioso, considere patrocinar e apoiar o desenvo
 -   [Revolução](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Se você é da Alemanha e está interessado em mudar para uma tarifa dinâmica de eletricidade, você pode apoiar o projeto inscrevendo-se usando este[Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e)ou digitando o código`ojgfbx2e`em seu aplicativo. Você e o projeto receberão**Bônus de 50 euros para hardware**. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>).
-Se necessita de uma tarifa de gás natural ou prefere uma tarifa clássica de eletricidade, ainda pode apoiar o projeto[Energia do Polvo (link de referência)](https://share.octopusenergy.de/glass-raven-58).
+Se você é da Alemanha e está interessado em mudar para uma tarifa dinâmica de eletricidade, você pode apoiar o projeto inscrevendo-se usando este[Tibber (link de referência)](https://invite.tibber.com/ojgfbx2e)ou digitando o código`ojgfbx2e`em seu aplicativo. Você e o projeto receberão**Bônus de 50 euros para hardware**. Observe que um medidor inteligente ou Pulse-IR é necessário para uma tarifa horária (<https://tibber.com/de/store/produkt/pulse-ir>) .
+If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Energia do Polvo (link de referência)](https://share.octopusenergy.de/glass-raven-58).
 Você recebe um bônus (a oferta varia**entre 50 e 120 euros**) para você e também para o projeto.
 Octopus tem a vantagem de algumas ofertas não terem prazo mínimo de contrato. São ideais, por exemplo, para pausar uma tarifa baseada em preços de bolsa.
 
-Os usuários da Áustria podem nos apoiar[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers)ação de referência e insira`3KEHMQN2F`como código.
+Se você é da Áustria, pode nos apoiar usando[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers)e entre`3KEHMQN2F`como código.
 
 ## Isenção de responsabilidade
 
