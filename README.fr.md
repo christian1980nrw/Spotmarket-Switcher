@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[Polski ](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
+[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -81,12 +81,12 @@ Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de souten
 -   [Révolution](https://revolut.me/christqki2)
 -   [Pay Pal](https://paypal.me/christian1980nrw)
 
-Si vous êtes de**Allemagne**et que vous souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e)ou en saisissant le code`ojgfbx2e`dans votre application. Vous et le projet recevrez**50 euros de bonus pour le matériel**. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e)ou en saisissant le code`ojgfbx2e`dans votre application. Vous et le projet recevrez**50 euros de bonus pour le matériel**. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Si vous avez besoin d'un tarif de gaz naturel ou préférez un tarif d'électricité classique, vous pouvez toujours soutenir le projet[Octopus Energy (lien de parrainage)](https://share.octopusenergy.de/glass-raven-58).
 Vous recevez un bonus (l'offre varie**entre 50 et 120 euros**) pour vous-même et aussi pour le projet.
 Octopus présente l'avantage que certaines offres sont sans durée minimale de contrat. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
 
-Utilisateurs de**L'Autriche**peut nous soutenir en[aWATTar Autriche (lien de référence)](https://www.awattar.at/services/offers/promotecustomers)action de référence et entrez`3KEHMQN2F`comme code.
+Les utilisateurs autrichiens peuvent nous soutenir en[aWATTar Autriche (lien de référence)](https://www.awattar.at/services/offers/promotecustomers)action de référence et entrez`3KEHMQN2F`comme code.
 
 ## Clause de non-responsabilité
 
