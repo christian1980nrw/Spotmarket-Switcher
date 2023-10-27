@@ -17,7 +17,8 @@ System som stöds är för närvarande:
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
 Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
-Ta en titt nedanför rad 100 i filen controller.sh så att du kan se vad som kan konfigureras av användaren.
+Ta en titt runt linje 965 på controller.sh (charger_command_turnon) så att du kan se hur lätt det kan anpassas.
+Skapa en github-gaffel och dela din anpassning så att andra användare kan dra nytta av den.
 
 ## Datakälla
 
@@ -40,7 +41,7 @@ Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNI
     På en Cerbo GX är filsystemet skrivskyddat monterat. Ser<https://www.victronenergy.com/live/ccgx:root_access>. För att göra filsystemet skrivbart måste du köra följande kommando innan du kör installationsskriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt, är dess större strömförbrukning ett problem.
+Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt är dess större strömförbrukning ett problem.
 
 ### Tillgång till Venus OS
 
