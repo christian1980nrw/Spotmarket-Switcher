@@ -17,7 +17,8 @@ I sistemi supportati sono attualmente:
 -   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Il codice è semplice in modo che possa essere facilmente adattato ad altri sistemi di accumulo di energia se si è in grado di controllare la ricarica tramite i comandi della shell Linux.
-Dai un'occhiata sotto la riga 100 del file controller.sh in modo da poter vedere cosa può essere configurato dall'utente.
+Dai un'occhiata alla riga 965 del controller.sh (charger_command_turnon) in modo da poter vedere quanto è facile adattarlo.
+Crea un fork github e condividi la tua personalizzazione in modo che altri utenti possano trarne vantaggio.
 
 ## Fonte di dati
 
@@ -46,7 +47,7 @@ Tieni presente che sebbene questo software sia attualmente ottimizzato per il si
 
 Per istruzioni sull'accesso al sistema operativo Venus, fare riferimento a<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Execution of the Install Script
+### Esecuzione dello script di installazione
 
 -   Se utilizzi il sistema operativo Victron Venus:
     -   Quindi modifica le variabili con un editor di testo in`/data/etc/Spotmarket-Switcher/config.txt`.
@@ -57,7 +58,7 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
 -   Istruzioni per installare lo Spotmarket-Switcher su un sistema Windows 10 o 11 per eseguire test senza dispositivi Victron (solo prese commutabili).
 
     -   lancio`cmd.exe`come amministratore
-    -   Enter `wsl --install -d Debian`
+    -   accedere`wsl --install -d Debian`
     -   Inserisci un nuovo nome utente come`admin`
     -   Inserire una nuova password
     -   accedere`sudo su`e digita la tua password
@@ -81,7 +82,7 @@ Se ritieni utile questo progetto, considera la possibilità di sponsorizzare e s
 -   [Rivoluzione](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-If you are from Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
+Se vieni dalla Germania e sei interessato a passare a una tariffa elettrica dinamica, puoi sostenere il progetto iscrivendoti utilizzando questo[Tibber (link di riferimento)](https://invite.tibber.com/ojgfbx2e)oppure inserendo il codice`ojgfbx2e`nella tua app. Riceverete sia tu che il progetto**Bonus di 50 euro per l'hardware**. Si prega di notare che per una tariffa oraria è necessario un contatore intelligente o un Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>).
 Se hai bisogno di una tariffa per il gas naturale o preferisci una tariffa elettrica classica, puoi comunque sostenere il progetto[Octopus Energy (link di riferimento)](https://share.octopusenergy.de/glass-raven-58).
 Ricevi un bonus (l'offerta varia**tra 50 e 120 euro**) per te stesso e anche per il progetto.
 Octopus ha il vantaggio che alcune offerte non hanno una durata minima contrattuale. Sono ideali, ad esempio, per sospendere una tariffa basata sui prezzi di borsa.
