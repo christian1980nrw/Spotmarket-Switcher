@@ -62,7 +62,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
     -   Indtast et nyt kodeord
     -   Gå ind`sudo su`og skriv din adgangskode
     -   Gå ind`apt-get update && apt-get install wget curl`
-    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscriptet er ikke kompatibelt).
+    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscript er ikke kompatibelt).
     -   Glem ikke, hvis du lukker skallen, vil Windows stoppe systemet.
 
 
@@ -86,7 +86,7 @@ Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan
 Du modtager en bonus (tilbuddet varierer**mellem 50 og 120 euro**) for dig selv og også for projektet.
 Octopus har den fordel, at nogle tilbud er uden minimumskontraktperiode. De er for eksempel ideelle til at sætte en tarif på pause baseret på børskurser.
 
-Hvis du er fra Østrig kan du støtte os ved at bruge[aWATTar Østrig (henvisningslink)](https://www.awattar.at/services/offers/promotecustomers)og gå ind`3KEHMQN2F`som kode.
+Hvis du er fra Østrig, kan du støtte os[aWATTar Østrig (henvisningslink)](https://www.awattar.at/services/offers/promotecustomers)ved hjælp af`3KEHMQN2F`som kode.
 
 ## Ansvarsfraskrivelse
 
