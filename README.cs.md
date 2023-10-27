@@ -60,7 +60,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
     -   Vstupte`wsl --install -d Debian`
     -   Zadejte nové uživatelské jméno jako`admin`
     -   vložte nové heslo
-    -   Vstupte`sudo su` and type your password
+    -   Vstupte`sudo su`a zadejte své heslo
     -   Vstupte`apt-get update && apt-get install wget curl`
     -   Pokračujte níže uvedeným manuálem pro Linux (instalační skript není kompatibilní).
     -   Nezapomeňte, že pokud zavřete shell, Windows zastaví systém.
@@ -86,7 +86,7 @@ Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektř
 Získáte bonus (nabídka se liší**mezi 50 a 120 eury**) pro sebe a také pro projekt.
 Octopus má tu výhodu, že některé nabídky jsou bez minimální smluvní doby. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
-Pokud jste z Rakouska, můžete nás podpořit pomocí[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)a vstupte`3KEHMQN2F`jako kód.
+Pokud jste z Rakouska, můžete nás podpořit[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers)používáním`3KEHMQN2F`jako kód.
 
 ## Zřeknutí se odpovědnosti
 
