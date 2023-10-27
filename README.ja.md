@@ -12,12 +12,13 @@
 予想される太陽光発電量は、気象 API を介して考慮され、それに応じてバッテリー ストレージが予約されます。
 現在サポートされているシステムは次のとおりです。
 
--   シェリー製品（など）[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[シェリープラス](https://shellyparts.de/products/shelly-plus-1pm)）
+-   シェリー製品（など）[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[シェリープラス](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
 コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適応できます。
-ユーザーが設定できる内容を確認するには、controller.sh ファイルの 100 行目以下を見てください。
+controller.sh (charger_command_turnon) の 965 行目あたりを見て、それがいかに簡単に適応できるかを確認してください。
+他のユーザーが恩恵を受けられるように、github フォークを作成してカスタマイズを共有してください。
 
 ## 情報元
 
@@ -50,7 +51,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 -   Victron Venus OS を使用している場合:
     -   次に、テキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/config.txt`。
-    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに非アクティブ化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに無効化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
 
@@ -62,8 +63,8 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   新しいパスワードを入力
     -   入力`sudo su`パスワードを入力してください
     -   入力`apt-get update && apt-get install wget curl`
-    -   Continue with the manual Linux description below (installer script is not compatible).
-    -   シェルを閉じると、Windows がシステムを停止することを忘れないでください。
+    -   以下の手動 Linux の説明に進みます (インストーラー スクリプトには互換性がありません)。
+    -   シェルを閉じると Windows がシステムを停止することを忘れないでください。
 
 
 -   Ubuntu や Debian などの Linux システムを使用している場合:
