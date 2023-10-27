@@ -2,12 +2,12 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)-[日本語 ](README.ja.md)
+[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
 Mitä tämä ohjelmisto tekee?
-Tämä on Linux-kuoriskripti, joka käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
+Tämä on Linux-kuoriskripti ja käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
 Voit sitten käyttää pistorasioita kytkeäksesi kuumavesivaraajan päälle paljon halvemmalla tai voit ladata akkuvaraston automaattisesti yöllä, kun verkossa on saatavilla halpaa tuulienergiaa.
 Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti varatun akkuvaraston kautta.
 Tuetut järjestelmät ovat tällä hetkellä:
@@ -16,7 +16,7 @@ Tuetut järjestelmät ovat tällä hetkellä:
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten[MultiPlus-II sarja](https://www.victronenergy.com/inverters-chargers)
 
-Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energianvarastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
+Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
 Katso controller.sh-tiedoston rivin 100 alta, jotta näet, mitä käyttäjä voi määrittää.
 
 ## Tietolähde
@@ -66,8 +66,8 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
     -   Muista, että jos suljet kuoren, Windows pysäyttää järjestelmän.
 
 
--   If you're using a Linux-System like Ubuntu or Debian:
-    -   Copy the shell script (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
+-   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
+    -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
     -   komennot ovat`cd /path/to/save/ &&  curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && mv sample.config.txt config.txt && chmod +x ./controller.sh`ja muokata`vi /path/to/save/config.txt`
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
@@ -76,17 +76,17 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
 
 ### Tuki ja panos :+1:
 
-If you find this project valuable, please consider sponsoring and supporting further development through these links:
+Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehityksen tukemista näiden linkkien kautta:
 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Lisäksi, jos olet mukana**Saksa**ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e)tai syöttämällä koodi**Ajjfbkse**sovelluksessasi. Sekä sinä että projekti saavat a**50 euron bonus laitteistolle**. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Lisäksi, jos olet kotoisin**Saksa**ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e)tai syöttämällä koodi`ojgfbx2e`sovelluksessasi. Sekä sinä että projekti saavat**50 euron bonus laitteistolle**. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat bonuksen (tarjous vaihtelee**50-120 euron välillä**) itsellesi ja myös projektille.
 Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
-Käyttäjät kohteesta**Itävalta**voi tukea meitä[aWATtar Itävalta (viittauslinkki)](https://www.awattar.at/services/offers/promotecustomers)viittaustoiminto ja syötä**Aqqhamqnif**koodina.
+Käyttäjät kohteesta**Itävalta**voi tukea meitä[aWATtar Itävalta (viittauslinkki)](https://www.awattar.at/services/offers/promotecustomers)viittaustoiminto ja syötä`3KEHMQN2F`koodina.
 
 ## Vastuuvapauslauseke
 
