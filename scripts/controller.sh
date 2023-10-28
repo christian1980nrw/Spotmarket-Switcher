@@ -504,18 +504,15 @@ download_solarenergy() {
             log_message "D: No delay of download of solarenergy data since DEBUG variable set." >&2
         fi
         if ! curl "$link3" -o "$file3"; then
-            log_message "E: Download of solarenergy data from '$link3' failed."
-            exit_with_cleanup 1
+            log_message "E: Download of solarenergy data from '$link3' failed. Solarenergy will be ignored."
         elif ! test -f "$file3"; then
-            log_message "E: Could not get solarenergy data, missing file '$file3'."
-            exit_with_cleanup 1
+            log_message "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
         fi
         if [ -n "$DEBUG" ]; then
             log_message "D: File3 $file3 downloaded" >&2
         fi
         if ! test -f "$file3"; then
-            log_message "E: Could not find downloaded file '$file3' with solarenergy data."
-            exit_with_cleanup 1
+            log_message "E: Could not find downloaded file '$file3' with solarenergy data. Solarenergy will be ignored."
         fi
         if [ -n "$DEBUG" ]; then
             log_message "D: Solarenergy data downloaded to file '$file3'."
@@ -1203,9 +1200,9 @@ switchablesockets_conditions=(
 evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets_on" "switchablesockets_condition_met"
 
 if ((use_solarweather_api_to_abort == 1)); then
-    check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today."
-    check_abort_condition $((abort_solar_yield_today_integer <= solarenergy_today_integer)) "There is enough solarenergy today."
-    check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow."
+    check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today. No need to charge or swtich."
+    check_abort_condition $((abort_solar_yield_today_integer <= solarenergy_today_integer)) "There is enough solarenergy today. No need to charge or switch."
+    check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow. No need to charge or switch."
 fi
 
 # abort_price_integer cannot be found by shellcheck can be ignored, false positive
