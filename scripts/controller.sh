@@ -1200,7 +1200,7 @@ switchablesockets_conditions=(
     $((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
 # Check if any switching condition is met
-evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets" "switchablesockets_condition_met"
+evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets_on" "switchablesockets_condition_met"
 
 if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today."
