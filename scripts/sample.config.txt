@@ -28,7 +28,7 @@ feedin_price=9.87 # your feed-in-tariff of your solar system
 energy_fee=18.492 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
 abort_price=50.1  # abort and never charge or switch if actual price is same or higher than this (Energy fees not included)
 
-use_start_stop_logic=0            # Set to 1 to activate start/stop logic (start_stop_price).
+use_start_stop_logic=0            # Set to 1 to activate charging with start/stop logic (start_stop_price).
 switchablesockets_at_start_stop=0 # You can add a additional load (like water heater) with AVM Fritz DECT200/210 switch sockets if you like.
 charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
 switchablesockets_at_solar_breakeven_logic=0
