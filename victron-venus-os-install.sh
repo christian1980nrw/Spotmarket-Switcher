@@ -138,6 +138,10 @@ e_note() {
     printf "${underline}${bold}${blue}Note:${reset}  ${blue}%s${reset}\n" "$@"
 }
 
+echo
+e_header "Spotmarket-Switcher Installer"
+echo
+
 # Checking preconditions for successful execution
 
 missing=""
@@ -157,8 +161,8 @@ for tool in wget curl; do
     fi
 done
 if [ -n "$missing" ]; then
-    e_note "W: Install the following tools prior to the execution of the installed scripts: $missing."
-    e_note "   Try running 'opkg install $missing'."
+    e_warning "W: Install the following tools prior to the execution of the installed scripts: $missing."
+    e_warning "   Try running 'opkg install $missing'."
     echo
     e_note "   Now continuing with the installation, which will be fine per se, but you as the user are responsible to get those dependencies installed to prevent the control script from failing. Drop an issue at https://github.com/christian1980nrw/Spotmarket-Switcher/issues if this package shall somehow prepare you better."
     echo
@@ -166,14 +170,24 @@ fi
 
 # DESTDIR is optionally set as an environment variable.
 if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ]; then
-    e_note "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
+    e_warning "W: The environment variable DESTDIR is set to the value '$DESTDIR' that is different from '/', the root directory."
     e_note "   This is meant to support testing and packaging, not for a true installation."
-    e_underline "   If you are using Victron Venus OS, the correct installation directory should be  '/'."
-    e_note "   No harm is expected to be caused, but it's recommended to install directly to '/' for a standard installation."
-    e_note "   You can cancel now with CTRL-C if this is not what you intended."
-    sleep 5
-    e_underline "I: Will now continue. You can still interrupt at any time."
     echo
+	e_bold "   If you are using Victron Venus OS, the correct installation directory should be  '/'."
+	echo
+    e_note "   No harm is expected to be caused, but it's recommended to install directly to '/' for a standard installation."
+    e_header "   You can cancel now with CTRL-C if this is not what you intended."
+
+	printf "Do you want to continue? (y/N)"
+	read CONTINUE
+	CONTINUE=${CONTINUE:-n}
+	if [ "$CONTINUE" = "y" ] || [ "$CONTINUE" = "Y" ]; then
+		e_success "Starting installation."
+	else
+		e_error "Installation aborted."
+		exit 1
+	fi
+
 else
     ln -s /data/etc/Spotmarket-Switcher/service /service/Spotmarket-Switcher
     (crontab -l | grep -Fxq "0 * * * * /data/etc/Spotmarket-Switcher/controller.sh") || (
@@ -191,7 +205,7 @@ downloadToDest() {
     url="$1"
     dest="$2"
 
-    echo "I: Downloading '$(basename "$url")'"
+    e_bold "I: Downloading '$(basename "$url")'"
     if ! wget --no-verbose --continue --no-directories --show-progress -O "$dest" "$url"; then
         e_error "E: Download of '$(basename "$url")' failed."
         return 1
@@ -214,7 +228,7 @@ download_file_if_missing() {
                 ls
             }
         fi
-        e_note "I: Downloading '$(basename "$file_path")' from github repository - '$BRANCH' branch"
+        e_bold "I: Downloading '$(basename "$file_path")' from github repository - '$BRANCH' branch"
         downloadToDest "$file_url" "$dest_path"
     fi
 }
@@ -239,12 +253,16 @@ cp -n "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" "$DESTDIR/data/e
 # $DESTDIR is always an absolut path
 if [ ! -d "$DESTDIR"/service ]; then
     if [ -n "$DESTDIR" ] && [ "/" != "$DESTDIR" ]; then
+        echo
         e_note "I: The '$DESTDIR/service' directory is not existing, as expected because of the custom DESTDIR setting."
         e_note "   Skipping creation of symbolic link to the Sportmarket-Switcher to register this service."
+        echo
     else
-        e_note "W: The '$DESTDIR/service' directory is not existing."
+        echo
+        e_warning "W: The '$DESTDIR/service' directory is not existing."
         e_note "   Not installing a symbolic link to the Sportmarket-Switcher to register this service."
         e_note "   Check on https://github.com/$ACTOR/Spotmarket-Switcher/issues if that has already been reported."
+        echo
     fi
 else
     if [ ! -L "$DESTDIR"/service/Spotmarket-Switcher ]; then
@@ -267,14 +285,20 @@ fi
 
 echo
 e_success "Installation completed. Spotmarket-Switcher will be executed every full hour."
-e_note "The crontab will be changed automatically by the script '$DESTDIR/data/etc/Spotmarket-Switcher/service/run' ."
-e_note "Please edit the configuration file with a text editor, like"
-e_note "    vi '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
-e_note "    or"
-e_note "  nano '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
-e_note "and change it to your needs."
 echo
-e_note "Note: This installation will survive a Venus OS firmware update."
+e_bold "The crontab will be changed automatically by the script '$DESTDIR/data/etc/Spotmarket-Switcher/service/run' ."
+echo
+e_underline "Please edit the configuration file with a text editor, like"
+echo
+echo "    vi '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
+echo
+echo "or"
+echo
+echo "    nano '$DESTDIR/data/etc/Spotmarket-Switcher/config.txt'"
+echo
+e_underline "and change it to your needs."
+echo
+e_success "Note: This installation will survive a Venus OS firmware update."
 echo
 if [ -n "$missing" ]; then
     e_note "Note: Remember to install these missing executables: $missing"
