@@ -89,7 +89,7 @@ jobs:
       - name: Set script permissions
         run: chmod +x ./victron-venus-os-install.sh
       - name: Install
-        run: ./victron-venus-os-install.sh
+        run: echo 'y' | sh ./victron-venus-os-install.sh
         env:
           DEBUG: 1
           DESTDIR: /tmp/testing

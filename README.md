@@ -27,6 +27,8 @@ Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), 
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
+If you like to see a more detailed output in debugmode, please have a look at  this example testrun: [pull request testrun #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+
 ## Installation
 
 Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
