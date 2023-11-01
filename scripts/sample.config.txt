@@ -50,7 +50,7 @@ select_pricing_api=1  # Set to
   # 2 for entsoe or
   # 3 for Tibber
   #
-  # Note:
+  #  Note:
   #   aWATTar: Provides only germany DE-LU or Austrian AT prices, but no API key needed
   #   Entsoe:  Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
 include_second_day=0 # Set to 0 to compare only the today prices.
