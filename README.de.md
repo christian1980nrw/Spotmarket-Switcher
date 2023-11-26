@@ -28,6 +28,8 @@ Albanien (AL), Österreich (AT), Belgien (BE), Bosnien und Herz. (BA), Bulgarien
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
+Wenn Sie eine detailliertere Ausgabe im Debugmodus sehen möchten, schauen Sie sich bitte diesen Beispieltestlauf an:[Pull-Request-Testlauf Nr. 155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+
 ## Installation
 
 Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Sie bereits einen UNIX-basierten Computer wie macOS, Linux oder Windows mit dem Linux-Subsystem ausführen, befolgen Sie diese Schritte, um die Software zu installieren:
@@ -69,7 +71,7 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
 
 -   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
-    -   Die Befehle sind`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`und zum Bearbeiten Ihrer Einstellungen verwenden Sie`vi /path/to/save/config.txt`
+    -   Die Befehle sind`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`und zum Bearbeiten Ihrer Einstellungen verwenden Sie`vi /path/to/save/config.txt`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
     -   Beispiel-Crontab:
           Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
@@ -87,7 +89,7 @@ Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzug
 Sie erhalten einen Bonus (das Angebot variiert**zwischen 50 und 120 Euro**) für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass einige Angebote ohne Mindestvertragslaufzeit sind. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
-Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
+If you are from Austria you can support us by using [aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
 
 ## Haftungsausschluss
 
