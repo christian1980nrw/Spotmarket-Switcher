@@ -1,34 +1,6 @@
 #!/bin/bash
 
-License=$(
-    cat <<EOLICENSE
-  MIT License
-
-  Copyright (c) 2023 christian1980nrw
-
-  Permission is hereby granted, free of charge, to any person
-  obtaining a copy of this software and associated documentation
-  files (the "Software"), to deal in the Software without restriction,
-  including without limitation the rights to use, copy, modify,
-  merge, publish, distribute, sublicense, and/or sell copies of the
-  Software, and to permit persons to whom the Software is furnished
-  to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be
-  included in all copies or substantial portions of the Software.
-
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-  OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
-  AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
-  OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-  IN THE SOFTWARE.
-EOLICENSE
-)
-
-VERSION="2.3.11"
+VERSION="2.3.12"
 
 set -e
 
@@ -36,96 +8,7 @@ if [ -z "$LANG" ]; then
     export LANG="C"
 fi
 
-if test "-h" = "$1" || test "--help" = "$1"; then
-    if echo "$LANG" | grep -qi "^de"; then
-        cat <<EOHILFE
-Verwendung: $0 - ohne Argumente
-
-BESCHREIBUNG
-
-  Dieses Skript erwartet, auf einem System unter Venus OS ausgeführt werden, um die stündlich angepassten, am Vortag festgelegten Strompreise herunterzuladen und Ladevorgänge am Wechselrichter oder Smart Devices im Haus zu steuern. Ein regulärer Benutzer sollte dieses Skript nicht manuell bearbeiten. Es sollte mithilfe des Installations-Skripts des Projekts installiert und regelmäßig vom cron-Dienst ausgeführt werden.
-
-OPTIONEN
-
-  -h | --help - Zeigt diese Hilfe an
-
-UMGEBUNGSVARIABLEN
-
-  DEBUG - Wenn auf einen beliebigen Wert gesetzt, werden keine Veränderungen am System vorgenommen und die Ausgaben auf der Konsole sind teilweise ausführlicher.
-
-  rc_local_file - Der Pfad zur Datei, über die der Service gestartet wird, kann festgelegt werden. Dies ist ausschließlich für Testzwecke vorgesehen.
-
-  LOG_FILE - In diese Datei werden alle auch auf der Konsole ausgegebenen Informationen gespeichert - voreingestellt auf "/tmp/spotmarket-switcher.log"
-
-  LOG_MAX_SIZE=1024  - Maximale Größe (in kb) der log Datei - voreingestellt auf 1 MB
-
-  LOG_FILES_TO_KEEP=2 - Wenn eine Log Datei zu groß wird, so wird eine neue angelegt - diese Variable legt fest, wie viele LOG-Dateien für einen Rückblick erhalten werden sollen.
-
-SIEHE AUCH
-
-  README_de.md
-  Homepage des Projekts auf https://github.com/christian1980nrw/Spotmarket-Switcher
-
-WICHTIG - Haftungsausschluss (Disclaimer) und Lizenz
-
-  Dieses Computerprogramm wird "wie es ist" bereitgestellt, und der Nutzer trägt das volle Risiko bei der Nutzung. Der Autor übernimmt keine Gewährleistung für die Genauigkeit, Zuverlässigkeit, Vollständigkeit oder Brauchbarkeit des Programms für irgendeinen bestimmten Zweck. Der Autor haftet weder für Schäden, die sich aus der Nutzung oder Unfähigkeit zur Nutzung des Programms ergeben, noch für Schäden, die aufgrund von Fehlern oder Mängeln des Programms entstehen. Dies gilt auch für Schäden, die aufgrund von Verletzungen von Pflichten im Rahmen einer vertraglichen oder außervertraglichen Verpflichtung entstehen.
-
-$License
-
-UNTERSTÜTZUNG
-
-  Bitte unterstützen Sie dieses Projekt und tragen Sie zur Weiterentwicklung bei: https://revolut.me/christqki2 oder https://paypal.me/christian1980nrw. Wenn Sie in Deutschland leben und zu einem dynamischen Stromtarif wechseln möchten, können Sie das Projekt unterstützen und den Tarif über den folgenden Link abschließen. Wir beide erhalten eine Prämie von 50 Euro für Hardware. Besuchen Sie https://invite.tibber.com/ojgfbx2e. Klicken Sie in der Tibber-App auf "Ich wurde eingeladen" und geben Sie den Code ojgfbx2e in der App ein. Bitte beachten Sie, dass für einen dynamischen Tarif ein intelligenter Zähler oder ein Tracker wie Pulse https://tibber.com/de/store/produkt/pulse-ir benötigt wird. Geben Sie die ersten 4 Ziffern Ihrer Zählernummer auf dieser Website ein, um die Pulse-Kompatibilität zu überprüfen. Natürlich können Sie Ihren Bonus für die Pulse-Bestellung verwenden. Warten Sie dazu, bis der Liefertermin bestätigt und der Bonus gutgeschrieben wurde.
-
-  Wenn Sie einen günstigen Erdgastarif benötigen oder nicht überzeugt sind, den dynamischen Tibber-Tarif zu wählen, können Sie dieses Projekt dennoch unterstützen und einen klassischen Stromtarif von Octopus Energy über den folgenden Link abschließen, um einen 50-Euro-Gutschein für sich selbst und einen 50-Euro-Bonus für dieses Projekt zu erhalten: https://share.octopusenergy.de/glass-raven-58.
-EOHILFE
-    else
-        cat <<EOHELP
-Usage: $0 - without arguments
-
-DESCRIPTION
-
-  This script should be executed on a system running under Venus OS to download hourly adjusted electricity prices determined on the previous day and control charging operations on the inverter or smart devices in the house. A regular user should not manually modify this script. It should be installed using the project's installation script and executed regularly by the cron service.
-
-OPTIONS
-
-  -h | --help - Show this help
-
-ENVIRONMENT VARIABLES
-
-  DEBUG - If set to any value, no system changes will be made, and console outputs will be more detailed.
-
-  rc_local_file - The path to the file through which the service is started can be specified. Intended solely for testing purposes.
-
-  LOG_FILE - File storing all the data that was sent to the console - preset to "/tmp/spotmarket-switcher.log"
-
-  LOG_MAX_SIZE=1024  - Maximal size (in kb) of log file - preset to 1 MB
-
-  LOG_FILES_TO_KEEP=2 - When a log file becomes too large, a new file will be created. This variable determined the number of file to keep for a retrospection.
-
-SEE ALSO
-
-  README_de.md
-  Project homepage on https://github.com/christian1980nrw/Spotmarket-Switcher
-
-IMPORTANT - Disclaimer and License
-
-$License
-
-SUPPORT
-
-  Please support this project and contribute to further development: https://revolut.me/christqki2 or https://paypal.me/christian1980nrw. If you live in Germany and wish to switch to a dynamic electricity tariff, you can support me and sign up for the tariff through the following link. We both receive a 50 Euro bonus for hardware. Visit https://invite.tibber.com/ojgfbx2e. In the Tibber app, click "I was invited" and enter the code ojgfbx2e in the app. Please note that you need a smart meter or a tracker like Pulse https://tibber.com/de/store/produkt/pulse-ir for an hourly tariff. Enter the first 4 digits of your meter number on that website to check Pulse compatibility. Of course, you can use your bonus for the Pulse order. Wait until the delivery date is confirmed and the bonus is credited.
-
-  If you happen to need a cheap natural gas tariff or are not convinced to choose the dynamic Tibber tariff, you can still support this project and choose a classic electricity tariff using the following link to get a 50 Euro voucher for yourself and a 50 Euro bonus for this project: https://share.octopusenergy.de/glass-raven-58.
-EOHELP
-    fi
-
-    exit
-
-fi
-
-#
 # Note: This script is only for hourly-based tariff data, please create your own fork for higher resolutions like 15 minute intervals.
-#       After an API reconfiguration please delete the old API-Downloadfiles with rm /tmp/awattar*.* /tmp/entsoe*.*
 
 #######################################
 ###    Begin of the functions...    ###
@@ -135,7 +18,6 @@ fi
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
     valid_config_version=1 # Please increase this value by 1 when changing the configuration variables
 else
-    # With so much, a version without declare -A would be feasible but not maintainable
     declare -A valid_vars=(
     	["config_version"]="1" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
@@ -148,10 +30,11 @@ else
         ["shellyuser"]="string"
         ["shellypasswd"]="string"
         ["use_victron_charger"]="0|1"
+        ["disable_inverting_while_only_switching"]="0|1"
+        ["limit_inverter_power_after_enabling"]="^(-1|[0-9]{2,5})$"
         ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
         ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
         ["economic_check"]="0|1|2"
-        ["stop_price"]="-?[0-9]+(\.[0-9]+)?"
         ["start_price"]="-?[0-9]+(\.[0-9]+)?"
         ["feedin_price"]="[0-9]+(\.[0-9]+)?"
         ["energy_fee"]="[0-9]+(\.[0-9]+)?"
@@ -188,7 +71,7 @@ else
         ["entsoe_eu_api_security_token"]="string"
         ["tibber_prices"]="energy|total|tax"
         ["tibber_api_key"]="string"
-        ["config_version"]="1"
+        ["config_version"]="2"
     )
 
     declare -A config_values
@@ -251,9 +134,7 @@ parse_and_validate_config() {
                 continue
             fi
 
-            # Special checking for strings, IP, and arrays
             if [[ "$validation_pattern" == "string" ]]; then
-                # Strings can be empty or filled
                 continue
             elif [[ "$validation_pattern" == "array" && "${config_values[$var_name]}" == "" ]]; then
                 continue
@@ -272,10 +153,8 @@ parse_and_validate_config() {
             errors+="W: The config.txt version is less than 1. You are using an outdated unsupported configuration file. Please re-download and reconfigurate. \n"
         fi
 
-        # Stop the spinner once the parsing is done
         kill $spinner_pid &>/dev/null
 
-        # Output errors if any were found
         if [[ -n "$errors" ]]; then
             echo -e "$errors"
             return 1
@@ -531,8 +410,6 @@ get_awattar_prices() {
     fourth_lowest_price=$(sed -n 4p "$file7")
     fifth_lowest_price=$(sed -n 5p "$file7")
     sixth_lowest_price=$(sed -n 6p "$file7")
-    # highest_price=$(awk '/^[0-9]+(\.[0-9]+)?$/ && $1 > max { max = $1 } END { print max }' "$file7")
-    # average_price=$(awk '/^[0-9]+(\.[0-9]+)?$/{sum+=$1; count++} END {if (count > 0) print sum/count}' "$file7")
     highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
     average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
@@ -579,12 +456,12 @@ convert_vars_to_integer() {
 }
 
 get_awattar_prices_integer() {
-    convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+    convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_tibber_prices_integer() {
     convert_vars_to_integer 17 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
-    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+    convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_prices_integer_entsoe() {
@@ -657,15 +534,6 @@ evaluate_conditions() {
 
 # Function to check economical
 is_charging_economical() {
-    # In the Bash scripting environment, true represents a command that always ends with a success status (exit code 0), and false is a command that always ends with a failure status (exit code 1).
-    # In the context of comparisons or conditions in Bash:
-
-    #    A success status (e.g. a command's exit code 0) is often interpreted as "true".
-    #    A failure status (e.g. any exit code other than 0) is often interpreted as "false".
-
-    # In many programming languages, true represents the value 1 and false represents the value 0, but in the Bash scripting environment things are a little different as it involves the exit code of commands.
-    # For this reason, a value of 1 is output as false
-
     local reference_price="$1"
     local total_cost="$2"
 
@@ -689,10 +557,10 @@ manage_charging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        $charger_command_turnon >/dev/null
+        $charger_command_charge >/dev/null
         log_message "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %. $reason"
     else
-        $charger_command_turnoff >/dev/null
+        $charger_command_stop_charging >/dev/null
         log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
     fi
 }
@@ -728,6 +596,11 @@ manage_fritz_sockets() {
 manage_fritz_socket() {
     local action=$1
     local socket=$2
+
+    if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && [ "$use_victron_charger" == "1" ]; then
+        log_message "I: Disabling inverter while switching."
+        $charger_disable_inverter >/dev/null
+    fi
     local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
     curl -s "$url" >/dev/null || log_message "E: Could not call URL '$url' to switch $action said switch - ignored."
 }
@@ -771,6 +644,10 @@ manage_shelly_sockets() {
 manage_shelly_socket() {
     local action=$1
     local ip=$2
+    if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && [ "$use_victron_charger" == "1" ]; then
+        log_message "I: Disabling inverter while switching."
+        $charger_disable_inverter >/dev/null
+    fi
     curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_message "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
 }
 
@@ -794,15 +671,9 @@ euroToMillicent() {
         potency=14
     fi
 
-    #if echo "$euro" | grep -q '\,'; then
-    #	echo "E: Could not translate '$euro' to an integer since this has a comma when only a period is accepted as decimal separator."
-    #	return 1
-    #fi
-
     # Replace each comma with a period, fixme if this is wrong
     euro=$(echo "$euro" | sed 's/,/./g')
 
-    # v=$(awk "BEGIN {print int($euro * (10 ^ $potency))}")
     v=$(awk -v euro="$euro" -v potency="$potency" 'BEGIN {printf "%.0f", euro * (10 ^ potency)}')
 
     if [ -z "$v" ]; then
@@ -814,36 +685,26 @@ euroToMillicent() {
     return 0
 }
 
-euroToMillicent_test() {
-    log_message "I: Testing euroToMillicent" false
-    for i in 123456 12345.6 1234.56 123.456 12.3456 1.23456 0.123456 .123456 .233 .23 .2 2.33 2.3 2 2,33 2,3 2 23; do
-        echo -n "$i -> "
-        euroToMillicent $i
-    done
-}
-
 log_message() {
     local msg="$1"
-    local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1) # Extract the first word from the first line
-    local color="\033[1m"                                   # Default color
-    local writeToLog=true                                   # Default is true
+    local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1)
+    local color="\033[1m"
+    local writeToLog=true
 
     case "$prefix" in
-    "E:") color="\033[1;31m" ;; # Bright Red
+    "E:") color="\033[1;31m" ;;
     "D:")
-        color="\033[1;34m" # Bright Blue
+        color="\033[1;34m"
         writeToLog=false
-        ;;                      # Default to not log debug messages
-    "W:") color="\033[1;33m" ;; # Bright Yellow
-    "I:") color="\033[1;32m" ;; # Bright Green
+        ;;
+    "W:") color="\033[1;33m" ;;
+    "I:") color="\033[1;32m" ;;
     esac
 
     writeToLog="${2:-$writeToLog}" # Override default if second parameter is provided
 
-    # Print to console with color codes
     printf "${color}%b\033[0m\n" "$msg"
 
-    # If we should write to the log, write without color codes
     if [ "$writeToLog" == "true" ]; then
         echo -e "$msg" | sed 's/\x1b\[[0-9;]*m//g' >>"$LOG_FILE"
     fi
@@ -864,8 +725,6 @@ exit_with_cleanup() {
 # Path to the current script directory
 DIR="$(dirname "$0")"
 
-########## Optional environmental variables
-
 if [ -z "$LOG_FILE" ]; then
     LOG_FILE="/tmp/spotmarket-switcher.log"
 fi
@@ -885,6 +744,14 @@ if [ -f "$DIR/$CONFIG" ]; then
     source "$DIR/$CONFIG"
 else
     log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
+    exit 127
+fi
+
+if [ -f "$DIR/license.txt" ]; then
+    # Include the configuration file
+    source "$DIR/license.txt"
+else
+    log_message "E: The file $DIR/license.txt was not found! Please read the license.txt file and save it together with the config.txt in the same directory. Thank you." false
     exit 127
 fi
 
@@ -952,14 +819,14 @@ file17=/tmp/tibber_tomorrow_prices.txt
 file18=/tmp/tibber_tomorrow_prices_sorted.txt
 file19=/tmp/entsoe_prices_sorted.txt
 
-########## Testing series of preconditions prior to execution of script
-
 num_tools_missing=0
 tools="awk curl cat sed sort head tail"
 if [ 0 -lt $use_victron_charger ]; then
     tools="$tools dbus"
-    charger_command_turnon="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-    charger_command_turnoff="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+    charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+    charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+    charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
+    charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
     SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
 fi
 
@@ -985,15 +852,6 @@ log_message "I: Bash Version: $(bash --version | head -n 1)"
 log_message "I: Spotmarket-Switcher - Version $VERSION"
 
 parse_and_validate_config "$DIR/$CONFIG"
-# if [ $? -eq 1 ]; then
-# Handle error
-# fi
-
-# An independent segment to test the conversion of floats to integers
-if [ "tests" == "$1" ]; then
-    euroToMillicent_test
-    exit 0
-fi
 
 if ((select_pricing_api == 1)); then
     # Test if Awattar today data exists
@@ -1145,7 +1003,12 @@ switchablesockets_condition_met=""
 execute_charging=0
 execute_switchablesockets_on=0
 
-# Indexed arrays for descriptions:
+# Turn on inverting. Maybe it was turned off last script runtime.
+if [ "$use_victron_charger" -eq 1 ] && [ "$disable_inverting_while_only_switching" -eq 1 ]; then
+    $charger_enable_inverter >/dev/null
+fi
+
+# Indexed arrays:
 charging_descriptions=(
     "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
     "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
@@ -1157,7 +1020,6 @@ charging_descriptions=(
     "charge_at_sixth_lowest_price ($charge_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
 )
 
-# Indexed arrays for conditions:
 charging_conditions=(
     $((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
     $((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
@@ -1168,12 +1030,10 @@ charging_conditions=(
     $((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
     $((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
-
-
 # Check if any charging condition is met
 evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
 
-# Indexed arrays for descriptions:
+# Indexed arrays:
 switchablesockets_conditions_descriptions=(
     "switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
     "switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
@@ -1184,8 +1044,6 @@ switchablesockets_conditions_descriptions=(
     "switchablesockets_at_fifth_lowest_price ($switchablesockets_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
     "switchablesockets_at_sixth_lowest_price ($switchablesockets_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
 )
-
-# Indexed arrays for conditions:
 switchablesockets_conditions=(
     $((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
     $((switchablesockets_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
@@ -1205,15 +1063,15 @@ if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow. No need to charge or switch."
 fi
 
-# abort_price_integer cannot be found by shellcheck can be ignored, false positive
 check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
 
 # If any charging condition is met, start charging
-# percent_of_current_price_integer=$(awk "BEGIN {print $current_price_integer*$energy_loss_percent/100}" | printf "%.0f")
 percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
+
 if ((execute_charging == 1 && use_victron_charger == 1)); then
+economic=""
     if [ "$economic_check" -eq 0 ]; then
         manage_charging "on" "Charging based on condition met of: $charging_condition_met."
     elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost_integer; then
@@ -1222,6 +1080,7 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
         manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
     else
         reason_msg="Considering charging losses and costs, charging is too expensive."
+	economic="expensive"
 
         [ "$economic_check" -eq 1 ] && reason_msg="Charging is too expensive based on the highest price ($(millicentToEuro "$highest_price_integer") €) comparison."
         [ "$economic_check" -eq 2 ] && reason_msg="Charging is too expensive based on the average price ($(millicentToEuro "$average_price_integer") €) comparison."
