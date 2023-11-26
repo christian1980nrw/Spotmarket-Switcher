@@ -78,7 +78,7 @@ The Screenshot is showing the configuration of automated charging during user de
 
 - If you're using a Linux-System like Ubuntu or Debian:
   - Copy the shell script (`controller.sh`) to a custom location and adjust the variables according to your needs.
-  - the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
+  - the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
   - Create a crontab or another scheduling method to run this script at the start of each hour.
   - Sample Crontab:
       Use the following crontab entry to execute the control script every hour:
