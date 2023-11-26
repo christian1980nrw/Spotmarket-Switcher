@@ -28,6 +28,8 @@ Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), C
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
+Jeśli chcesz zobaczyć bardziej szczegółowe wyniki w trybie debugowania, spójrz na ten przykładowy test:[Uruchomienie testowe żądania ściągnięcia nr 155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+
 ## Instalacja
 
 Konfiguracja Spotmarket-Switcher jest prostym procesem. Jeśli używasz już komputera z systemem UNIX, na przykład macOS, Linux lub Windows z podsystemem Linux, wykonaj następujące kroki, aby zainstalować oprogramowanie:
@@ -53,7 +55,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
@@ -69,7 +71,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
-    -   polecenia są`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`i do edycji ustawień użyj`vi /path/to/save/config.txt`
+    -   polecenia są`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`i do edycji ustawień użyj`vi /path/to/save/config.txt`
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:
