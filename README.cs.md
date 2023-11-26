@@ -28,6 +28,8 @@ Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), C
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
 
+Pokud chcete vidět podrobnější výstup v režimu ladění, podívejte se prosím na tento příklad testovacího běhu:[zkušební běh požadavku na stažení #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+
 ## Instalace
 
 Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte počítač se systémem UNIX, jako je macOS, Linux nebo Windows se subsystémem Linux, nainstalujte software podle následujících kroků:
@@ -41,7 +43,7 @@ Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte p
     Na Cerbo GX je souborový systém připojen pouze pro čtení. Vidět<https://www.victronenergy.com/live/ccgx:root_access>. Aby bylo možné do souborového systému zapisovat, musíte před spuštěním instalačního skriptu provést následující příkaz:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie znepokojivá.
+Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie problémem.
 
 ### Přístup k OS Venus
 
@@ -69,7 +71,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`a k úpravě nastavení použijte`vi /path/to/save/config.txt`
+    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`a k úpravě nastavení použijte`vi /path/to/save/config.txt`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
