@@ -2,13 +2,13 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md) - [デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md) - [ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
 このソフトウェアは何をしているのでしょうか?
 これは Linux シェル スクリプトであり、時間単位の動的エネルギー価格が低い場合に、適切なタイミングでバッテリー充電器や切り替え可能なソケットをオンにします。
-その後、ソケットを使用して温水タンクをはるかに安価にオンにしたり、送電網で安価な風力エネルギーが利用できる夜間に蓄電池を自動的に充電したりできます。
+ソケットを使用して、はるかに安価に温水タンクをオンにしたり、送電網で安価な風力エネルギーが利用できる夜間に蓄電池を自動的に充電したりできます。
 予想される太陽光発電量は、気象 API を介して考慮され、それに応じてバッテリー ストレージが予約されます。
 現在サポートされているシステムは次のとおりです。
 
@@ -16,17 +16,19 @@
 -   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[２１０](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
 -   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)
 
-コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適応できます。
+コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適用できます。
 controller.sh (charger_command_turnon) の 965 行目あたりを見て、それがいかに簡単に適応できるかを確認してください。
 他のユーザーが恩恵を受けられるように、github フォークを作成してカスタマイズを共有してください。
 
-## Data Source
+## 情報元
 
 このソフトウェアは現在、3 つの無料 API (Tibber、aWATTar、Entso-E) によって提供される EPEX スポットの時間料金を利用しています。
 統合された無料の Entso-E API は、次の国のエネルギー価格データを提供します。
-アルバニア (AL)、オーストリア (AT)、ベルギー (BE)、ボスニア・ヘルツ。 (BA)、ブルガリア (BG)、クロアチア (HR)、キプロス (CY)、チェコ共和国 (CZ)、デンマーク (DK)、エストニア (EE)、フィンランド (FI)、フランス (FR)、ジョージア (GE)、ドイツ (DE)、ギリシャ (GR)、ハンガリー (HU)、アイルランド (IE)、イタリア (IT)、コソボ (XK)、ラトビア (LV)、リトアニア (LT)、ルクセンブルク (LU)、マルタ (MT)、モルドバ (MD)、モンテネグロ (ME)、オランダ (NL)、北マケドニア (MK)、ノルウェー (NO)、ポーランド (PL)、ポルトガル (PT)、ルーマニア (RO)、セルビア (RS)、スロバキア (SK) 、スロベニア (SI)、スペイン (ES)、スウェーデン (SE)、スイス (CH)、トルコ (TR)、ウクライナ (UA)、英国 (UK) を参照[透明性 Entso-E プラットフォーム](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)。
+アルバニア (AL)、オーストリア (AT)、ベルギー (BE)、ボスニア・ヘルツ。 (BA)、ブルガリア (BG)、クロアチア (HR)、キプロス (CY)、チェコ共和国 (CZ)、デンマーク (DK)、エストニア (EE)、フィンランド (FI)、フランス (FR)、ジョージア (GE)、ドイツ (DE)、ギリシャ (GR)、ハンガリー (HU)、アイルランド (IE)、イタリア (IT)、コソボ (XK)、ラトビア (LV)、リトアニア (LT)、ルクセンブルク (LU)、マルタ (MT)、モルドバ (MD)、モンテネグロ (ME)、オランダ (NL)、北マケドニア (MK)、ノルウェー (NO)、ポーランド (PL)、ポルトガル (PT)、ルーマニア (RO)、セルビア (RS)、スロバキア (SK) 、スロベニア (SI)、スペイン (ES)、スウェーデン (SE)、スイス (CH)、トルコ (TR)、ウクライナ (UA)、英国 (UK) を参照[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)。
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
+
+デバッグモードでより詳細な出力を確認したい場合は、この testrun の例をご覧ください。[プル リクエストのテスト実行 #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
 
 ## インストール
 
@@ -41,9 +43,9 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
     Cerbo GX では、ファイルシステムは読み取り専用でマウントされます。見る[ｈっｔｐｓ：／／ｗっｗ。ゔぃｃｔろねねｒｇｙ。こｍ／ぃゔぇ／っｃｇｘ：ろおｔ＿あっせっｓ](https://www.victronenergy.com/live/ccgx:root_access)。ファイルシステムを書き込み可能にするには、インストール スクリプトを実行する前に次のコマンドを実行する必要があります。
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
+このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンの使用はテスト目的には問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
-### Venus OS へのアクセス
+### Access to Venus OS
 
 Venus OS へのアクセス手順については、以下を参照してください。[ｈっｔｐｓ：／／ｗっｗ。ゔぃｃｔろねねｒｇｙ。こｍ／ぃゔぇ／っｃｇｘ：ろおｔ＿あっせっｓ](https://www.victronenergy.com/live/ccgx:root_access)。
 
@@ -51,7 +53,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 -   Victron Venus OS を使用している場合:
     -   次に、テキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/config.txt`。
-    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに無効化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに非アクティブ化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
 
@@ -62,14 +64,14 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
     -   次のような新しいユーザー名を入力します`admin`
     -   新しいパスワードを入力
     -   入力`sudo su`パスワードを入力してください
-    -   入力`apt-get update && apt-get install wget curl`
+    -   Enter `apt-get update && apt-get install wget curl`
     -   以下の手動 Linux の説明に進みます (インストーラー スクリプトには互換性がありません)。
-    -   シェルを閉じると Windows がシステムを停止することを忘れないでください。
+    -   シェルを閉じると、Windows がシステムを停止することを忘れないでください。
 
 
 -   Ubuntu や Debian などの Linux システムを使用している場合:
     -   シェルスクリプトをコピーします(`controller.sh`) をカスタムの場所に移動し、必要に応じて変数を調整します。
-    -   コマンドは`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`設定を編集するには、次を使用します`vi /path/to/save/config.txt`
+    -   コマンドは`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`設定を編集するには、次を使用します`vi /path/to/save/config.txt`
     -   crontab または別のスケジュール方法を作成して、各時間の開始時にこのスクリプトを実行します。
     -   Crontab のサンプル:
           次の crontab エントリを使用して、制御スクリプトを 1 時間ごとに実行します。
@@ -82,7 +84,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 -   [レボリュート](https://revolut.me/christqki2)
 -   [ペイパル](https://paypal.me/christian1980nrw)
 
-ドイツ在住で、動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)またはコードを入力することで`ojgfbx2e`あなたのアプリで。あなたとプロジェクトの両方が受け取ります**ハードウェアには 50 ユーロのボーナス**。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)）。
+ドイツ在住で、動的な電気料金プランへの切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)またはコードを入力することで`ojgfbx2e`あなたのアプリで。あなたとプロジェクトの両方が受け取ります**ハードウェアには 50 ユーロのボーナス**。時間料金にはスマートメーターまたはPulse-IRが必要となりますのでご注意ください（[ｈっｔｐｓ：／／ちっべｒ。こｍ／で／ｓとれ／ｐろづｋｔ／ぷｌせーいｒ](https://tibber.com/de/store/produkt/pulse-ir)）。
 天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58)。
 ボーナスを受け取ります（オファーは異なります）**50ユーロから120ユーロの間**) 自分自身にとっても、プロジェクトにとっても。
 オクトパスには、最低契約期間のないオファーもあるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。

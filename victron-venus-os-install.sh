@@ -38,19 +38,19 @@ if [ "-h" = "$1" ] || [ "--help" = "$1" ]; then
         cat <<EOHILFE
 OPTIONEN
 
- -h | --help - Zeigt diese Hilfe
+ -h |Â --help - Zeigt diese Hilfe
 
 UMGEBUNGSVARIABLEN
 
-  DEBUG - Für dieses Skript nicht relevant.
+  DEBUG - FÃ¼r dieses Skript nicht relevant.
 
   SRCDIR - Verzeichnis, in dem die zur installierenden Skripte 'run' und 'controller.sh' erwartet werden.
 
   BRANCH - Der Branch des GitHub repository, in dem  die zu installierenden Skripte liegen - voreingestellt auf 'main', gern auch 'dev'.
 
-  DESTDIR - Pfad der den zu installierenden Dateien vorangestellt wird. So könnte beispielsweise in ein chroot Verzeichnis oder ein gemountetes Venus OS image installiert werden.
+  DESTDIR - Pfad der den zu installierenden Dateien vorangestellt wird. So kÃ¶nnte beispielsweise in ein chroot Verzeichnis oder ein gemountetes Venus OS image installiert werden.
 
-  LOG_FILE - Datei, über die alle Ereignisse mitprotokolliert werden. Kann gegebenenfallse auf /dev/null gesetzt werden.
+  LOG_FILE - Datei, Ã¼ber die alle Ereignisse mitprotokolliert werden. Kann gegebenenfallse auf /dev/null gesetzt werden.
 
 LIZENZ
 
@@ -67,7 +67,7 @@ DESCRIPTION
 
 OPTIONS
 
-   -h | --help - Shows this help.
+   -h |Â --help - Shows this help.
 
 ENVIRONMENT
 
@@ -96,20 +96,6 @@ EOHELP
 fi
 
 #
-#Set Colors (http://natelandau.com/bash-scripting-utilities/)
-#
-#FIXME: see https://github.com/christian1980nrw/Spotmarket-Switcher/pull/105
-#bold=$(tput bold)
-#underline=$(tput sgr 0 1)
-#reset=$(tput sgr0)
-
-#purple=$(tput setaf 171)
-#red=$(tput setaf 1)
-#green=$(tput setaf 76)
-#tan=$(tput setaf 3)
-#blue=$(tput setaf 38)
-
-#
 # Headers and  Logging
 #
 
@@ -117,16 +103,16 @@ e_header() {
     printf "\n${bold}${purple}==========  %s  ==========${reset}\n" "$@"
 }
 e_arrow() {
-    printf "➜ $@\n"
+    printf "âžœ $@\n"
 }
 e_success() {
-    printf "${green}✔ %s${reset}\n" "$@"
+    printf "${green}âœ” %s${reset}\n" "$@"
 }
 e_error() {
-    printf "${red}✖ %s${reset}\n" "$@"
+    printf "${red}âœ– %s${reset}\n" "$@"
 }
 e_warning() {
-    printf "${tan}➜ %s${reset}\n" "$@"
+    printf "${tan}âžœ %s${reset}\n" "$@"
 }
 e_underline() {
     printf "${underline}${bold}%s${reset}\n" "$@"
@@ -246,6 +232,8 @@ fi
 download_file_if_missing "$SRCDIR/controller.sh" "$DESTDIR/data/etc/Spotmarket-Switcher/controller.sh" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/controller.sh
 download_file_if_missing "$SRCDIR/run" "$DESTDIR/data/etc/Spotmarket-Switcher/service/run" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/run
 download_file_if_missing "$SRCDIR/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/sample.config.txt
+download_file_if_missing "$SRCDIR/license.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/license.txt" https://raw.githubusercontent.com/"$ACTOR"/Spotmarket-Switcher/"$BRANCH"/scripts/license.txt
+
 
 #This option will not overwrite the destination_file if it already exists. There is no output or error message if the file is not copied, the command simply exits silently. If the target file does not exist, it will be created as usual.
 cp -n "$DESTDIR/data/etc/Spotmarket-Switcher/sample.config.txt" "$DESTDIR/data/etc/Spotmarket-Switcher/config.txt"
