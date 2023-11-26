@@ -8,7 +8,7 @@
 
 ¿Qué está haciendo este software?
 Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios dinámicos de energía por horas son bajos.
-Luego puede usar los enchufes para encender un tanque de agua caliente de manera mucho más económica o puede cargar automáticamente la batería por la noche cuando hay energía eólica barata disponible en la red.
+A continuación, puede utilizar los enchufes para encender un depósito de agua caliente de forma mucho más económica o puede cargar automáticamente la batería por la noche, cuando hay energía eólica barata disponible en la red.
 El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
 Los sistemas compatibles actualmente son:
 
@@ -27,6 +27,8 @@ La API Entso-E gratuita integrada proporciona datos sobre precios de energía de
 Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), Croacia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Alemania (DE), Grecia (GR), Hungría (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Letonia (LV), Lituania (LT), Luxemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Países Bajos (NL), Macedonia del Norte (MK), Noruega (NO), Polonia (PL), Portugal (PT), Rumania (RO), Serbia (RS), Eslovaquia (SK) , Eslovenia (SI), España (ES), Suecia (SE), Suiza (CH), Turquía (TR), Ucrania (UA), Reino Unido (UK) ver[Plataforma Transparencia Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
+
+Si desea ver un resultado más detallado en el modo de depuración, eche un vistazo a este ejemplo de ejecución de prueba:[Prueba de solicitud de extracción #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
 
 ## Instalación
 
@@ -69,7 +71,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
+    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
@@ -82,8 +84,8 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 -   [revolución](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
-Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
+Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>) .
+If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
 Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
