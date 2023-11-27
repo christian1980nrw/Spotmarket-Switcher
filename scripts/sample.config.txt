@@ -20,7 +20,7 @@ energy_loss_percent=23.3                      # Enter how much percent of the en
 battery_lifecycle_costs_cent_per_kwh=4.444444 # If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
 economic_check=2                              # Set to 0 disables the check.
                                               # Set to 1 or 2. Current price + energy loss + battery lifecycle costs will be compared with (1 = highest_price / 2 = average_price) and aborted if charging makes no sense.
-disable_inverting_while_only_switching=1      # If charging is too expensive but switching is turned on, this keeps the batterys full. Inverting will be disabled during that time.
+disable_inverting_while_only_switching=0      # Set to 0 or 1. If charging is too expensive but switching is turned on, this keeps the batterys full. Inverting will be disabled during that time.
 limit_inverter_power_after_enabling=-1        # Default: -1 (limit will be disabled at re-enabling the inverter). Put your value here (e.g. 1000 for 1000w) if you use "Limit inverter power" at the ESS menu or this setting will be lost if you use disable_inverting_while_only_switching.
 
   #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
