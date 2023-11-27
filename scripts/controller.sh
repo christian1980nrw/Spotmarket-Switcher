@@ -14,12 +14,11 @@ fi
 ###    Begin of the functions...    ###
 #######################################
 
-# Überprüfen Sie die Bash-Version
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=1 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=2 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="1" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="2" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
