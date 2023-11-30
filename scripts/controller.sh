@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.3.12-DEV"
+VERSION="2.4.1-DEV"
 
 set -e
 
@@ -15,10 +15,10 @@ fi
 #######################################
 
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=2 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=3 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="2" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="3" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -42,18 +42,6 @@ else
         ["switchablesockets_at_start_stop"]="0|1"
         ["charge_at_solar_breakeven_logic"]="0|1"
         ["switchablesockets_at_solar_breakeven_logic"]="0|1"
-        ["charge_at_lowest_price"]="0|1"
-        ["switchablesockets_at_lowest_price"]="0|1"
-        ["charge_at_second_lowest_price"]="0|1"
-        ["switchablesockets_at_second_lowest_price"]="0|1"
-        ["charge_at_third_lowest_price"]="0|1"
-        ["switchablesockets_at_third_lowest_price"]="0|1"
-        ["charge_at_fourth_lowest_price"]="0|1"
-        ["switchablesockets_at_fourth_lowest_price"]="0|1"
-        ["charge_at_fifth_lowest_price"]="0|1"
-        ["switchablesockets_at_fifth_lowest_price"]="0|1"
-        ["charge_at_sixth_lowest_price"]="0|1"
-        ["switchablesockets_at_sixth_lowest_price"]="0|1"
         ["TZ"]="string"
         ["select_pricing_api"]="1|2|3"
         ["include_second_day"]="0|1"
@@ -70,7 +58,7 @@ else
         ["entsoe_eu_api_security_token"]="string"
         ["tibber_prices"]="energy|total|tax"
         ["tibber_api_key"]="string"
-        ["config_version"]="2"
+        ["config_version"]="3"
     )
 
     declare -A config_values
@@ -78,7 +66,7 @@ fi
 
 parse_and_validate_config() {
     if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-        # Für Bash-Version <= 4, überprüfe nur config_version=1
+        # FÃ¼r Bash-Version <= 4, Ã¼berprÃ¼fe nur config_version=1
 	log_message "W: Due to the older Bash version, the configuration validation is skipped."
         local file="$1"
         local version_valid=false
@@ -249,7 +237,7 @@ download_tibber_prices() {
     if [ "$include_second_day" = 0 ]; then
         cp "$file16" "$file12"
     else
-        grep '"total"' "$file14" | sort -t':' -k2 -n >"$file12"
+    sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
     fi
 
     timestamp=$(TZ=$TZ date +%d)
@@ -403,24 +391,60 @@ get_current_awattar_day2() { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo 
 
 get_awattar_prices() {
     current_price=$(sed -n $((2 * $(TZ=$TZ date +%k) + 39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
-    lowest_price=$(sed -n 1p "$file7")
-    second_lowest_price=$(sed -n 2p "$file7")
-    third_lowest_price=$(sed -n 3p "$file7")
-    fourth_lowest_price=$(sed -n 4p "$file7")
-    fifth_lowest_price=$(sed -n 5p "$file7")
-    sixth_lowest_price=$(sed -n 6p "$file7")
+    P1=$(sed -n 1p "$file7")
+    P2=$(sed -n 2p "$file7")
+    P3=$(sed -n 3p "$file7")
+    P4=$(sed -n 4p "$file7")
+    P5=$(sed -n 5p "$file7")
+    P6=$(sed -n 6p "$file7")
+    P7=$(sed -n 7p "$file7")
+    P8=$(sed -n 8p "$file7")
+    P9=$(sed -n 9p "$file7")
+    P10=$(sed -n 10p "$file7")
+    P11=$(sed -n 11p "$file7")
+    P12=$(sed -n 12p "$file7")
+    P13=$(sed -n 13p "$file7")
+    P14=$(sed -n 14p "$file7")
+    P15=$(sed -n 15p "$file7")
+    P16=$(sed -n 16p "$file7")
+    P17=$(sed -n 17p "$file7")
+    P18=$(sed -n 18p "$file7")
+    P19=$(sed -n 19p "$file7")
+    P20=$(sed -n 20p "$file7")
+    P21=$(sed -n 21p "$file7")
+    P22=$(sed -n 22p "$file7")
+    P23=$(sed -n 23p "$file7")
+    P24=$(sed -n 24p "$file7")
     highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
     average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
 
 get_tibber_prices() {
     current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
-    lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P1=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P2=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P3=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P4=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P5=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P6=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P7=$(sed -n "7s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P8=$(sed -n "8s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P9=$(sed -n "9s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P10=$(sed -n "10s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P11=$(sed -n "11s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P12=$(sed -n "12s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P13=$(sed -n "13s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P14=$(sed -n "14s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P15=$(sed -n "15s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P16=$(sed -n "16s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P17=$(sed -n "17s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P18=$(sed -n "18s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P19=$(sed -n "19s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P20=$(sed -n "20s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P21=$(sed -n "21s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P22=$(sed -n "22s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P23=$(sed -n "23s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    P24=$(sed -n "24s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
     highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
     average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
@@ -431,12 +455,30 @@ get_current_tibber_day() { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo 
 
 get_entsoe_prices() {
     current_price=$(sed -n ${now_linenumber}p "$file10")
-    lowest_price=$(sed -n 1p "$file19")
-    second_lowest_price=$(sed -n 2p "$file19")
-    third_lowest_price=$(sed -n 3p "$file19")
-    fourth_lowest_price=$(sed -n 4p "$file19")
-    fifth_lowest_price=$(sed -n 5p "$file19")
-    sixth_lowest_price=$(sed -n 6p "$file19")
+    P1=$(sed -n 1p "$file19")
+    P2=$(sed -n 2p "$file19")
+    P3=$(sed -n 3p "$file19")
+    P4=$(sed -n 4p "$file19")
+    P5=$(sed -n 5p "$file19")
+    P6=$(sed -n 6p "$file19")
+    P7=$(sed -n 7p "$file19")
+    P8=$(sed -n 8p "$file19")
+    P9=$(sed -n 9p "$file19")
+    P10=$(sed -n 10p "$file19")
+    P11=$(sed -n 11p "$file19")
+    P12=$(sed -n 12p "$file19")
+    P13=$(sed -n 13p "$file19")
+    P14=$(sed -n 14p "$file19")
+    P15=$(sed -n 15p "$file19")
+    P16=$(sed -n 16p "$file19")
+    P17=$(sed -n 17p "$file19")
+    P18=$(sed -n 18p "$file19")
+    P19=$(sed -n 19p "$file19")
+    P20=$(sed -n 20p "$file19")
+    P21=$(sed -n 21p "$file19")
+    P22=$(sed -n 22p "$file19")
+    P23=$(sed -n 23p "$file19")
+    P24=$(sed -n 24p "$file19")
     highest_price=$(awk 'BEGIN {max = 0} $1>max {max=$1} END {print max}' "$file19")
     average_price=$(awk 'NF>0 && $1 ~ /^[0-9]*(\.[0-9]*)?$/ {sum+=$1; count++} END {if (count > 0) print sum/count}' "$file19")
 }
@@ -447,7 +489,7 @@ convert_vars_to_integer() {
     for var in "$@"; do
         local integer_var="${var}_integer"
         printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
-        local value="${!integer_var}" # Speichern Sie den Wert in einer temporären Variable
+        local value="${!integer_var}" # Speichern Sie den Wert in einer temporÃ¤ren Variable
         if [ -n "$DEBUG" ]; then
             log_message "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}" >&2
         fi
@@ -455,17 +497,17 @@ convert_vars_to_integer() {
 }
 
 get_awattar_prices_integer() {
-    convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+    convert_vars_to_integer 15 P1 average_price highest_price P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 P13 P14 P15 P16 P17 P18 P19 P20 P21 P22 P23 P24 current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_tibber_prices_integer() {
-    convert_vars_to_integer 17 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+    convert_vars_to_integer 17 P1 average_price highest_price P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 P13 P14 P15 P16 P17 P18 P19 P20 P21 P22 P23 P24 current_price
     convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_prices_integer_entsoe() {
-    convert_vars_to_integer 14 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
-    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+    convert_vars_to_integer 14 P1 average_price highest_price P2 P3 P4 P5 P6 P7 P8 P9 P10 P11 P12 P13 P14 P15 P16 P17 P18 P19 P20 P21 P22 P23 P24 current_price
+    convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_solarenergy_today() {
@@ -563,6 +605,21 @@ manage_charging() {
         log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
     fi
 }
+
+# Function to manage discharging
+manage_discharging() {
+    local action=$1
+    local reason=$2
+
+    if [[ $action == "on" ]]; then
+        $charger_enable_inverter >/dev/null
+        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent %. $reason"
+    else
+        $charger_disable_inverter >/dev/null
+        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent %. $reason"
+    fi
+}
+
 
 # Function to check abort conditions and log a message
 check_abort_condition() {
@@ -739,8 +796,28 @@ if [ -z "$CONFIG" ]; then
 fi
 
 if [ -f "$DIR/$CONFIG" ]; then
-    # Include the configuration file
     source "$DIR/$CONFIG"
+
+for ((i=1; i<=24; i++)); do
+    hour=$i
+    row=(${config_matrix24[$i]})
+    charge_value="${row[0]}"
+    discharge_value="${row[1]}"
+    switchable_sockets_value="${row[2]}"
+    hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+
+    charge_var_name="charge_at_${hour_var_name}"
+    discharge_var_name="discharge_at_${hour_var_name}"
+    switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
+
+    declare "$charge_var_name=$charge_value"
+    declare "$discharge_var_name=$discharge_value"
+    declare "$switchable_sockets_var_name=$switchable_sockets_value"
+    echo "$charge_var_name=$charge_value"
+    echo "$discharge_var_name=$discharge_value"
+    echo "$switchable_sockets_var_name=$switchable_sockets_value"
+done
+
 else
     log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
@@ -824,6 +901,7 @@ if [ 0 -lt $use_victron_charger ]; then
     tools="$tools dbus"
     charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
     charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+    charger_get_inverter_status="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower GetValue"
     charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
     SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
@@ -896,7 +974,7 @@ elif ((select_pricing_api == 3)); then
             log_message "I: Tibber today-data is up to date." false
         else
             log_message "I: Tibber today-data is outdated, fetching new data." false
-            rm -f "$file14" "$file15" "$file16"
+            rm -f "$file12" "$file14" "$file15" "$file16"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
         fi
     else # Tibber data does not exist
@@ -976,14 +1054,14 @@ fi
 log_message "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
 echo
 log_message "I: Current price is $current_price $Unit."
-log_message "I: Lowest price will be $lowest_price $Unit."
+log_message "I: Lowest price will be $P1 $Unit."
 log_message "I: The average price will be $average_price $Unit."
 log_message "I: Highest price will be $highest_price $Unit."
-log_message "I: Second lowest price will be $second_lowest_price $Unit." false
-log_message "I: Third lowest price will be $third_lowest_price $Unit." false
-log_message "I: Fourth lowest price will be $fourth_lowest_price $Unit." false
-log_message "I: Fifth lowest price will be $fifth_lowest_price $Unit." false
-log_message "I: Sixth lowest price will be $sixth_lowest_price $Unit." false
+log_message "I: Second lowest price will be $P2 $Unit." false
+log_message "I: Third lowest price will be $P3 $Unit." false
+log_message "I: Fourth lowest price will be $P4 $Unit." false
+log_message "I: Fifth lowest price will be $P5 $Unit." false
+log_message "I: Sixth lowest price will be $P6 $Unit." false
 
 if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
@@ -1000,59 +1078,190 @@ fi
 charging_condition_met=""
 switchablesockets_condition_met=""
 execute_charging=0
+execute_discharging=0
 execute_switchablesockets_on=0
 
-# Turn on inverting. Maybe it was turned off last script runtime.
-if [ "$use_victron_charger" -eq 1 ] && [ "$disable_inverting_while_only_switching" -eq 1 ]; then
-    $charger_enable_inverter >/dev/null
-fi
 
-# Indexed arrays:
 charging_descriptions=(
     "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
     "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
-    "charge_at_lowest_price ($charge_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_second_lowest_price ($charge_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_third_lowest_price ($charge_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_fourth_lowest_price ($charge_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_fifth_lowest_price ($charge_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_sixth_lowest_price ($charge_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_1 ($charge_at_1) == 1 && P1_integer ($P1_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_2 ($charge_at_2) == 1 && P2_integer ($P2_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_3 ($charge_at_3) == 1 && P3_integer ($P3_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_4 ($charge_at_4) == 1 && P4_integer ($P4_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_5 ($charge_at_5) == 1 && P5_integer ($P5_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_6 ($charge_at_6) == 1 && P6_integer ($P6_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_7 ($charge_at_7) == 1 && P7_integer ($P7_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_8 ($charge_at_8) == 1 && P8_integer ($P8_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_9 ($charge_at_9) == 1 && P9_integer ($P9_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_10 ($charge_at_10) == 1 && P10_integer ($P10_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_11 ($charge_at_11) == 1 && P11_integer ($P11_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_12 ($charge_at_12) == 1 && P12_integer ($P12_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_13 ($charge_at_13) == 1 && P13_integer ($P13_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_14 ($charge_at_14) == 1 && P14_integer ($P14_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_15 ($charge_at_15) == 1 && P15_integer ($P15_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_16 ($charge_at_16) == 1 && P16_integer ($P16_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_17 ($charge_at_17) == 1 && P17_integer ($P17_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_18 ($charge_at_18) == 1 && P18_integer ($P18_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_19 ($charge_at_19) == 1 && P19_integer ($P19_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_20 ($charge_at_20) == 1 && P20_integer ($P20_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_21 ($charge_at_21) == 1 && P21_integer ($P21_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_22 ($charge_at_22) == 1 && P22_integer ($P22_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_23 ($charge_at_23) == 1 && P23_integer ($P23_integer) == current_price_integer ($current_price_integer)"
+    "charge_at_24 ($charge_at_24) == 1 && P24_integer ($P24_integer) == current_price_integer ($current_price_integer)"
 )
 
 charging_conditions=(
     $((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
     $((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    $((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    $((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    $((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    $((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    $((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    $((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
+    $((charge_at_1 == 1 && P1_integer == current_price_integer))
+    $((charge_at_2 == 1 && P2_integer == current_price_integer))
+    $((charge_at_3 == 1 && P3_integer == current_price_integer))
+    $((charge_at_4 == 1 && P4_integer == current_price_integer))
+    $((charge_at_5 == 1 && P5_integer == current_price_integer))
+    $((charge_at_6 == 1 && P6_integer == current_price_integer))
+    $((charge_at_7 == 1 && P7_integer == current_price_integer))
+    $((charge_at_8 == 1 && P8_integer == current_price_integer))
+    $((charge_at_9 == 1 && P9_integer == current_price_integer))
+    $((charge_at_10 == 1 && P10_integer == current_price_integer))
+    $((charge_at_11 == 1 && P11_integer == current_price_integer))
+    $((charge_at_12 == 1 && P12_integer == current_price_integer))
+    $((charge_at_13 == 1 && P13_integer == current_price_integer))
+    $((charge_at_14 == 1 && P14_integer == current_price_integer))
+    $((charge_at_15 == 1 && P15_integer == current_price_integer))
+    $((charge_at_16 == 1 && P16_integer == current_price_integer))
+    $((charge_at_17 == 1 && P17_integer == current_price_integer))
+    $((charge_at_18 == 1 && P18_integer == current_price_integer))
+    $((charge_at_19 == 1 && P19_integer == current_price_integer))
+    $((charge_at_20 == 1 && P20_integer == current_price_integer))
+    $((charge_at_21 == 1 && P21_integer == current_price_integer))
+    $((charge_at_22 == 1 && P22_integer == current_price_integer))
+    $((charge_at_23 == 1 && P23_integer == current_price_integer))
+    $((charge_at_24 == 1 && P24_integer == current_price_integer))
 )
-# Check if any charging condition is met
+
 evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
 
-# Indexed arrays:
-switchablesockets_conditions_descriptions=(
-    "switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
-    "switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
-    "switchablesockets_at_lowest_price ($switchablesockets_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_second_lowest_price ($switchablesockets_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_third_lowest_price ($switchablesockets_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_fourth_lowest_price ($switchablesockets_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_fifth_lowest_price ($switchablesockets_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_sixth_lowest_price ($switchablesockets_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
+
+discharging_descriptions=(
+#    "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+#    "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+    "discharge_at_1 ($discharge_at_1) == 1 && P1_integer ($P1_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_2 ($discharge_at_2) == 1 && P2_integer ($P2_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_3 ($discharge_at_3) == 1 && P3_integer ($P3_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_4 ($discharge_at_4) == 1 && P4_integer ($P4_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_5 ($discharge_at_5) == 1 && P5_integer ($P5_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_6 ($discharge_at_6) == 1 && P6_integer ($P6_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_7 ($discharge_at_7) == 1 && P7_integer ($P7_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_8 ($discharge_at_8) == 1 && P8_integer ($P8_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_9 ($discharge_at_9) == 1 && P9_integer ($P9_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_10 ($discharge_at_10) == 1 && P10_integer ($P10_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_11 ($discharge_at_11) == 1 && P11_integer ($P11_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_12 ($discharge_at_12) == 1 && P12_integer ($P12_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_13 ($discharge_at_13) == 1 && P13_integer ($P13_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_14 ($discharge_at_14) == 1 && P14_integer ($P14_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_15 ($discharge_at_15) == 1 && P15_integer ($P15_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_16 ($discharge_at_16) == 1 && P16_integer ($P16_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_17 ($discharge_at_17) == 1 && P17_integer ($P17_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_18 ($discharge_at_18) == 1 && P18_integer ($P18_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_19 ($discharge_at_19) == 1 && P19_integer ($P19_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_20 ($discharge_at_20) == 1 && P20_integer ($P20_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_21 ($discharge_at_21) == 1 && P21_integer ($P21_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_22 ($discharge_at_22) == 1 && P22_integer ($P22_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_23 ($discharge_at_23) == 1 && P23_integer ($P23_integer) == current_price_integer ($current_price_integer)"
+    "discharge_at_24 ($discharge_at_24) == 1 && P24_integer ($P24_integer) == current_price_integer ($current_price_integer)"
 )
+
+discharging_conditions=(
+#    $((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
+#    $((discharge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
+    $((discharge_at_1 == 1 && P1_integer == current_price_integer))
+    $((discharge_at_2 == 1 && P2_integer == current_price_integer))
+    $((discharge_at_3 == 1 && P3_integer == current_price_integer))
+    $((discharge_at_4 == 1 && P4_integer == current_price_integer))
+    $((discharge_at_5 == 1 && P5_integer == current_price_integer))
+    $((discharge_at_6 == 1 && P6_integer == current_price_integer))
+    $((discharge_at_7 == 1 && P7_integer == current_price_integer))
+    $((discharge_at_8 == 1 && P8_integer == current_price_integer))
+    $((discharge_at_9 == 1 && P9_integer == current_price_integer))
+    $((discharge_at_10 == 1 && P10_integer == current_price_integer))
+    $((discharge_at_11 == 1 && P11_integer == current_price_integer))
+    $((discharge_at_12 == 1 && P12_integer == current_price_integer))
+    $((discharge_at_13 == 1 && P13_integer == current_price_integer))
+    $((discharge_at_14 == 1 && P14_integer == current_price_integer))
+    $((discharge_at_15 == 1 && P15_integer == current_price_integer))
+    $((discharge_at_16 == 1 && P16_integer == current_price_integer))
+    $((discharge_at_17 == 1 && P17_integer == current_price_integer))
+    $((discharge_at_18 == 1 && P18_integer == current_price_integer))
+    $((discharge_at_19 == 1 && P19_integer == current_price_integer))
+    $((discharge_at_20 == 1 && P20_integer == current_price_integer))
+    $((discharge_at_21 == 1 && P21_integer == current_price_integer))
+    $((discharge_at_22 == 1 && P22_integer == current_price_integer))
+    $((discharge_at_23 == 1 && P23_integer == current_price_integer))
+    $((discharge_at_24 == 1 && P24_integer == current_price_integer))
+)
+
+evaluate_conditions discharging_conditions[@] discharging_descriptions[@] "execute_discharging" "discharging_condition_met"
+
+
 switchablesockets_conditions=(
     $((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
     $((switchablesockets_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    $((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
+    $((switchablesockets_at_1 == 1 && P1_integer == current_price_integer))
+    $((switchablesockets_at_2 == 1 && P2_integer == current_price_integer))
+    $((switchablesockets_at_3 == 1 && P3_integer == current_price_integer))
+    $((switchablesockets_at_4 == 1 && P4_integer == current_price_integer))
+    $((switchablesockets_at_5 == 1 && P5_integer == current_price_integer))
+    $((switchablesockets_at_6 == 1 && P6_integer == current_price_integer))
+    $((switchablesockets_at_7 == 1 && P7_integer == current_price_integer))
+    $((switchablesockets_at_8 == 1 && P8_integer == current_price_integer))
+    $((switchablesockets_at_9 == 1 && P9_integer == current_price_integer))
+    $((switchablesockets_at_10 == 1 && P10_integer == current_price_integer))
+    $((switchablesockets_at_11 == 1 && P11_integer == current_price_integer))
+    $((switchablesockets_at_12 == 1 && P12_integer == current_price_integer))
+    $((switchablesockets_at_13 == 1 && P13_integer == current_price_integer))
+    $((switchablesockets_at_14 == 1 && P14_integer == current_price_integer))
+    $((switchablesockets_at_15 == 1 && P15_integer == current_price_integer))
+    $((switchablesockets_at_16 == 1 && P16_integer == current_price_integer))
+    $((switchablesockets_at_17 == 1 && P17_integer == current_price_integer))
+    $((switchablesockets_at_18 == 1 && P18_integer == current_price_integer))
+    $((switchablesockets_at_19 == 1 && P19_integer == current_price_integer))
+    $((switchablesockets_at_20 == 1 && P20_integer == current_price_integer))
+    $((switchablesockets_at_21 == 1 && P21_integer == current_price_integer))
+    $((switchablesockets_at_22 == 1 && P22_integer == current_price_integer))
+    $((switchablesockets_at_23 == 1 && P23_integer == current_price_integer))
+    $((switchablesockets_at_24 == 1 && P24_integer == current_price_integer))
 )
+
+switchablesockets_conditions_descriptions=(
+    "switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+    "switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+    "switchablesockets_at_1 ($switchablesockets_at_1) == 1 && P1_integer ($P1_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_2 ($switchablesockets_at_2) == 1 && P2_integer ($P2_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_3 ($switchablesockets_at_3) == 1 && P3_integer ($P3_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_4 ($switchablesockets_at_4) == 1 && P4_integer ($P4_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_5 ($switchablesockets_at_5) == 1 && P5_integer ($P5_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_6 ($switchablesockets_at_6) == 1 && P6_integer ($P6_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_7 ($switchablesockets_at_7) == 1 && P7_integer ($P7_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_8 ($switchablesockets_at_8) == 1 && P8_integer ($P8_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_9 ($switchablesockets_at_9) == 1 && P9_integer ($P9_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_10 ($switchablesockets_at_10) == 1 && P10_integer ($P10_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_11 ($switchablesockets_at_11) == 1 && P11_integer ($P11_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_12 ($switchablesockets_at_12) == 1 && P12_integer ($P12_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_13 ($switchablesockets_at_13) == 1 && P13_integer ($P13_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_14 ($switchablesockets_at_14) == 1 && P14_integer ($P14_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_15 ($switchablesockets_at_15) == 1 && P15_integer ($P15_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_16 ($switchablesockets_at_16) == 1 && P16_integer ($P16_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_17 ($switchablesockets_at_17) == 1 && P17_integer ($P17_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_18 ($switchablesockets_at_18) == 1 && P18_integer ($P18_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_19 ($switchablesockets_at_19) == 1 && P19_integer ($P19_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_20 ($switchablesockets_at_20) == 1 && P20_integer ($P20_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_21 ($switchablesockets_at_21) == 1 && P21_integer ($P21_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_22 ($switchablesockets_at_22) == 1 && P22_integer ($P22_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_23 ($switchablesockets_at_23) == 1 && P23_integer ($P23_integer) == current_price_integer ($current_price_integer)"
+    "switchablesockets_at_24 ($switchablesockets_at_24) == 1 && P24_integer ($P24_integer) == current_price_integer ($current_price_integer)"
+)
+
 # Check if any switching condition is met
 evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets_on" "switchablesockets_condition_met"
 
@@ -1062,7 +1271,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow. No need to charge or switch."
 fi
 
-check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
+check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")â‚¬) is too high. Abort. ($(millicentToEuro "$abort_price_integer")â‚¬)"
 
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
@@ -1074,22 +1283,29 @@ economic=""
     if [ "$economic_check" -eq 0 ]; then
         manage_charging "on" "Charging based on condition met of: $charging_condition_met."
     elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
+        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") â‚¬) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") â‚¬"
     elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
+        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") â‚¬) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") â‚¬"
     else
         reason_msg="Considering charging losses and costs, charging is too expensive."
 	economic="expensive"
 
-        [ "$economic_check" -eq 1 ] && reason_msg="Charging is too expensive based on the highest price ($(millicentToEuro "$highest_price_integer") €) comparison."
-        [ "$economic_check" -eq 2 ] && reason_msg="Charging is too expensive based on the average price ($(millicentToEuro "$average_price_integer") €) comparison."
+        [ "$economic_check" -eq 1 ] && reason_msg="Charging is too expensive based on the highest price ($(millicentToEuro "$highest_price_integer") â‚¬) comparison."
+        [ "$economic_check" -eq 2 ] && reason_msg="Charging is too expensive based on the average price ($(millicentToEuro "$average_price_integer") â‚¬) comparison."
 
-        manage_charging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
+        manage_charging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") â‚¬)"
     fi
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
     manage_charging "off" "Charging was not executed."
 else
     log_message "W: skip Victron Charger. not activated"
+fi
+
+if ((execute_discharging == 1 && use_victron_charger == 1)); then
+         manage_discharging "on" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") â‚¬)"
+fi
+if ((execute_discharging == 0 && use_victron_charger == 1)); then
+         manage_discharging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") â‚¬)"
 fi
 
 # Execute Fritz DECT on command
