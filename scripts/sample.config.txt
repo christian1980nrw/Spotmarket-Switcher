@@ -18,9 +18,9 @@ shellypasswd="YOURPASSWORD" # only if used
 use_victron_charger=0                         # please activate with 1 or deactivate this charger-type with 0
 energy_loss_percent=23.3                      # Enter how much percent of the energy is lost by the charging and discharging process.
 battery_lifecycle_costs_cent_per_kwh=4.444444 # If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
-economic_check=2                              # Set to 0 disables the check.
+economic_check=1                              # Set to 0 disables the check.
                                               # Set to 1 or 2. Current price + energy loss + battery lifecycle costs will be compared with (1 = highest_price / 2 = average_price) and aborted if charging makes no sense.
-disable_inverting_while_only_switching=0      # Set to 0 or 1. If charging is too expensive but switching is turned on, this keeps the batterys full. Inverting will be disabled during that time.
+disable_inverting_while_only_switching=1      # Set to 0 or 1. If charging is too expensive but switching is turned on, this keeps the batterys full. Inverting will be disabled during that time.
 limit_inverter_power_after_enabling=-1        # Default: -1 (limit will be disabled at re-enabling the inverter). Put your value here (e.g. 1000 for 1000w) if you use "Limit inverter power" at the ESS menu or this setting will be lost if you use disable_inverting_while_only_switching.
 
   #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
@@ -33,20 +33,42 @@ use_start_stop_logic=0            # Set to 1 to activate start/stop logic (depen
 switchablesockets_at_start_stop=0 # You can add a additional load (like water heater) with AVM Fritz DECT200/210 switch sockets if you like.
 charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
 switchablesockets_at_solar_breakeven_logic=0
-charge_at_lowest_price=0 # set 1 to charge at lowest price per day no matter which start/stop price was defined
-switchablesockets_at_lowest_price=0
-charge_at_second_lowest_price=0
-switchablesockets_at_second_lowest_price=0
-charge_at_third_lowest_price=0
-switchablesockets_at_third_lowest_price=0
-charge_at_fourth_lowest_price=0
-switchablesockets_at_fourth_lowest_price=0
-charge_at_fifth_lowest_price=0
-switchablesockets_at_fifth_lowest_price=0
-charge_at_sixth_lowest_price=0
-switchablesockets_at_sixth_lowest_price=0
+
+# Config Matrix to enable/disable charging oder switching or discharging (ESS).
+# Examples:    [1]="1 0 1" Charging and switching is enabled at lowest price but ESS is disabled.
+#              [5]="0 0 0" Charging and switching and ESS is disabled at 5th lowest price.
+#              [24]="0 1 0" ESS discharging is disabled at highest price (dont use second day data).
+
+declare -A config_matrix24=(
+    ["Price"]="Charge Discharge Switch"
+    [1]="1 0 1"
+    [2]="1 0 1"
+    [3]="0 0 0"
+    [4]="0 0 0"
+    [5]="0 0 0"
+    [6]="0 0 0"
+    [7]="0 0 0"
+    [8]="0 0 0"
+    [9]="0 0 0"
+    [10]="0 0 0"
+    [11]="0 0 0"
+    [12]="0 0 0"
+    [13]="0 0 0"
+    [14]="0 0 0"
+    [15]="0 0 0"
+    [16]="0 0 0"
+    [17]="0 0 0"
+    [18]="0 0 0"
+    [19]="0 0 0"
+    [20]="0 1 0"
+    [21]="0 1 0"
+    [22]="0 1 0"
+    [23]="0 1 0"
+    [24]="0 1 0"
+)
+
 TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=1  # Set to
+select_pricing_api=3  # Set to
   # 1 for aWATTar or
   # 2 for entsoe or
   # 3 for Tibber
@@ -95,11 +117,11 @@ entsoe_eu_api_security_token=YOURAPIKEY
   #  2. Create a token by selecting the scopes you need (select "price").
   #  3. Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
   #      Currently no contract is needed to create a free Account that is able to access the API.
-tibber_prices=energy  # Set to
+tibber_prices=total  # Set to
   #  "energy" to use the spotmarket-prices (default), set to
   #  "total" to use the total prices including taxes and fees, set to
   #  "tax" to use only the taxes and fees
 tibber_api_key="YOUR_ACTUAL_API_KEY" # replace this value with your API Key
 
-config_version=2 
+config_version=3 
 # You see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
