@@ -66,7 +66,7 @@ fi
 
 parse_and_validate_config() {
     if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-        # FÃ¼r Bash-Version <= 4, Ã¼berprÃ¼fe nur config_version=1
+        # Für Bash-Version <= 4, überprüfe nur config_version=1
 	log_message "W: Due to the older Bash version, the configuration validation is skipped."
         local file="$1"
         local version_valid=false
@@ -489,7 +489,7 @@ convert_vars_to_integer() {
     for var in "$@"; do
         local integer_var="${var}_integer"
         printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
-        local value="${!integer_var}" # Speichern Sie den Wert in einer temporÃ¤ren Variable
+        local value="${!integer_var}" # Speichern Sie den Wert in einer temporären Variable
         if [ -n "$DEBUG" ]; then
             log_message "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}" >&2
         fi
@@ -1271,7 +1271,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow. No need to charge or switch."
 fi
 
-check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")â‚¬) is too high. Abort. ($(millicentToEuro "$abort_price_integer")â‚¬)"
+check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
 
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
@@ -1283,17 +1283,17 @@ economic=""
     if [ "$economic_check" -eq 0 ]; then
         manage_charging "on" "Charging based on condition met of: $charging_condition_met."
     elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") â‚¬) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") â‚¬"
+        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
     elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") â‚¬) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") â‚¬"
+        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
     else
         reason_msg="Considering charging losses and costs, charging is too expensive."
 	economic="expensive"
 
-        [ "$economic_check" -eq 1 ] && reason_msg="Charging is too expensive based on the highest price ($(millicentToEuro "$highest_price_integer") â‚¬) comparison."
-        [ "$economic_check" -eq 2 ] && reason_msg="Charging is too expensive based on the average price ($(millicentToEuro "$average_price_integer") â‚¬) comparison."
+        [ "$economic_check" -eq 1 ] && reason_msg="Charging is too expensive based on the highest price ($(millicentToEuro "$highest_price_integer") €) comparison."
+        [ "$economic_check" -eq 2 ] && reason_msg="Charging is too expensive based on the average price ($(millicentToEuro "$average_price_integer") €) comparison."
 
-        manage_charging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") â‚¬)"
+        manage_charging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
     fi
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
     manage_charging "off" "Charging was not executed."
@@ -1302,10 +1302,10 @@ else
 fi
 
 if ((execute_discharging == 1 && use_victron_charger == 1)); then
-         manage_discharging "on" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") â‚¬)"
+         manage_discharging "on" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
 fi
 if ((execute_discharging == 0 && use_victron_charger == 1)); then
-         manage_discharging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") â‚¬)"
+         manage_discharging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
 fi
 
 # Execute Fritz DECT on command
