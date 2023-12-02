@@ -636,6 +636,11 @@ check_abort_condition() {
 # Function to manage fritz sockets and log a message
 manage_fritz_sockets() {
     local action=$1
+    
+    if [ "$execute_switchablesockets_on" -eq 0 ]; then
+        log_message "I: execute_switchablesockets_on is 0. Exiting manage_fritz_sockets."
+        return
+    fi
 
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 
@@ -688,6 +693,11 @@ fritz_login() {
 # Function to manage shelly and log a message
 manage_shelly_sockets() {
     local action=$1
+
+    if [ "$execute_switchablesockets_on" -eq 0 ]; then
+        log_message "I: execute_switchablesockets_on is 0. Exiting manage_shelly_sockets."
+        return
+    fi
 
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 
