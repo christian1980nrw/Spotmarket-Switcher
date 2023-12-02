@@ -798,26 +798,39 @@ fi
 if [ -f "$DIR/$CONFIG" ]; then
     source "$DIR/$CONFIG"
 
-for ((i=1; i<=24; i++)); do
-    hour=$i
-    row=(${config_matrix24[$i]})
-    charge_value="${row[0]}"
-    discharge_value="${row[1]}"
-    switchable_sockets_value="${row[2]}"
-    hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+    # Separate arrays for each column
+    config_matrix24_charge=()
+    config_matrix24_discharge=()
+    config_matrix24_switchablesockets=()
 
-    charge_var_name="charge_at_${hour_var_name}"
-    discharge_var_name="discharge_at_${hour_var_name}"
-    switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
+    # Populate separate arrays
+    for ((i=0; i<25; i++)); do
+        row=(${config_matrix24_price[$i]})
+        config_matrix24_charge+=("${row[0]}")
+        config_matrix24_discharge+=("${row[1]}")
+        config_matrix24_switchablesockets+=("${row[2]}")
+    done
 
-    declare "$charge_var_name=$charge_value"
-    declare "$discharge_var_name=$discharge_value"
-    declare "$switchable_sockets_var_name=$switchable_sockets_value"
-    echo "$charge_var_name=$charge_value"
-    echo "$discharge_var_name=$discharge_value"
-    echo "$switchable_sockets_var_name=$switchable_sockets_value"
-done
+    # Use the separate arrays
+    for ((i=1; i<=24; i++)); do
+        hour=$i
+        charge_value="${config_matrix24_charge[$i]}"
+        discharge_value="${config_matrix24_discharge[$i]}"
+        switchable_sockets_value="${config_matrix24_switchablesockets[$i]}"
+        hour_var_name="${hour//[^a-zA-Z0-9]/_}"
 
+        charge_var_name="charge_at_${hour_var_name}"
+        discharge_var_name="discharge_at_${hour_var_name}"
+        switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
+
+        declare "$charge_var_name=$charge_value"
+        declare "$discharge_var_name=$discharge_value"
+        declare "$switchable_sockets_var_name=$switchable_sockets_value"
+
+        echo "$charge_var_name=$charge_value"
+        echo "$discharge_var_name=$discharge_value"
+        echo "$switchable_sockets_var_name=$switchable_sockets_value"
+    done
 else
     log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
