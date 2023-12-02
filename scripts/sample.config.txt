@@ -68,7 +68,7 @@ config_matrix24_price=(
 )
 
 TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=3  # Set to
+select_pricing_api=1  # Set to
   # 1 for aWATTar or
   # 2 for entsoe or
   # 3 for Tibber
