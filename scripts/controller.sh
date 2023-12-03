@@ -29,7 +29,6 @@ else
         ["shellyuser"]="string"
         ["shellypasswd"]="string"
         ["use_victron_charger"]="0|1"
-        ["total_cost"]="0|1"
         ["limit_inverter_power_after_enabling"]="^(-1|[0-9]{2,5})$"
         ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
         ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
