@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.2-DEV"
+VERSION="2.4.3-DEV"
 
 set -e
 
@@ -29,7 +29,7 @@ else
         ["shellyuser"]="string"
         ["shellypasswd"]="string"
         ["use_victron_charger"]="0|1"
-        ["disable_inverting_while_only_switching"]="0|1"
+        ["total_cost"]="0|1"
         ["limit_inverter_power_after_enabling"]="^(-1|[0-9]{2,5})$"
         ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
         ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
@@ -1099,6 +1099,7 @@ else
 fi
 
 charging_condition_met=""
+discharging_condition_met=""
 switchablesockets_condition_met=""
 execute_charging=0
 execute_discharging=0
