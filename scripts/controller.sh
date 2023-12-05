@@ -807,6 +807,33 @@ fi
 if [ -f "$DIR/$CONFIG" ]; then
     source "$DIR/$CONFIG"
 
+num_tools_missing=0
+tools="awk curl cat sed sort head tail"
+if [ 0 -lt $use_victron_charger ]; then
+    tools="$tools dbus"
+    charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+    charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+    charger_get_inverter_status="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower GetValue"
+    charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
+    charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
+    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+fi
+
+for tool in $tools; do
+    if ! which "$tool" >/dev/null; then
+        log_message "E: Please ensure the tool '$tool' is found."
+        num_tools_missing=$((num_tools_missing + 1))
+    fi
+done
+
+if [ $num_tools_missing -gt 0 ]; then
+    log_message "E: $num_tools_missing tools are missing."
+    exit 127
+fi
+
+unset num_tools_missing
+
+
     # Separate arrays for each column
     config_matrix24_charge=()
     config_matrix24_discharge=()
@@ -833,13 +860,20 @@ if [ -f "$DIR/$CONFIG" ]; then
         switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
 
         declare "$charge_var_name=$charge_value"
-        declare "$discharge_var_name=$discharge_value"
         declare "$switchable_sockets_var_name=$switchable_sockets_value"
 
+    if [ $SOC_percent -ge $discharge_value ]; then
+        declare "$discharge_var_name=1"
+        echo "$discharge_var_name=1"
+    else
+        declare "$discharge_var_name=0"
+        echo "$discharge_var_name=0"
+    fi
+
         echo "$charge_var_name=$charge_value"
-        echo "$discharge_var_name=$discharge_value"
         echo "$switchable_sockets_var_name=$switchable_sockets_value"
     done
+
 else
     log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
@@ -917,31 +951,6 @@ file17=/tmp/tibber_tomorrow_prices.txt
 file18=/tmp/tibber_tomorrow_prices_sorted.txt
 file19=/tmp/entsoe_prices_sorted.txt
 
-num_tools_missing=0
-tools="awk curl cat sed sort head tail"
-if [ 0 -lt $use_victron_charger ]; then
-    tools="$tools dbus"
-    charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-    charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-    charger_get_inverter_status="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower GetValue"
-    charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
-    charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
-    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
-fi
-
-for tool in $tools; do
-    if ! which "$tool" >/dev/null; then
-        log_message "E: Please ensure the tool '$tool' is found."
-        num_tools_missing=$((num_tools_missing + 1))
-    fi
-done
-
-if [ $num_tools_missing -gt 0 ]; then
-    log_message "E: $num_tools_missing tools are missing."
-    exit 127
-fi
-
-unset num_tools_missing
 
 ########## Start ##########
 
