@@ -1334,13 +1334,13 @@ fi
 if ((use_fritz_dect_sockets == 1)); then
     manage_fritz_sockets
 else
-    log_message "W: skip Fritz DECT. not activated"
+    log_message "D: skip Fritz DECT. not activated"
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
     manage_shelly_sockets
 else
-    log_message "W: skip Shelly Api. not activated"
+    log_message "D: skip Shelly Api. not activated"
 fi
 
 echo >>"$LOG_FILE"
