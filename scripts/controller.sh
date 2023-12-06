@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.3.12"
+VERSION="2.3.13"
 
 set -e
 
@@ -249,7 +249,7 @@ download_tibber_prices() {
     if [ "$include_second_day" = 0 ]; then
         cp "$file16" "$file12"
     else
-        grep '"total"' "$file14" | sort -t':' -k2 -n >"$file12"
+	sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
     fi
 
     timestamp=$(TZ=$TZ date +%d)
@@ -896,7 +896,7 @@ elif ((select_pricing_api == 3)); then
             log_message "I: Tibber today-data is up to date." false
         else
             log_message "I: Tibber today-data is outdated, fetching new data." false
-            rm -f "$file14" "$file15" "$file16"
+            rm -f "$file12" "$file14" "$file15" "$file16"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
         fi
     else # Tibber data does not exist
