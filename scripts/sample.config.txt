@@ -34,7 +34,7 @@ switchablesockets_at_start_stop=0 # You can add a additional load (like water he
 charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
 switchablesockets_at_solar_breakeven_logic=0
 
-# Config Matrix to enable/disable charging or switching or discharging depending SOC (ESS).
+# Config Matrix to dynamic enable/disable charging or switching or discharging depending SOC (ESS).
 
 config_matrix24_price=(
     "Charge Discharge_min_SOC Switch"   # [0] Header
@@ -62,6 +62,16 @@ config_matrix24_price=(
     "0 25 0"                     # [22] Price 22
     "0 15 0"                     # [23] Price 23
     "0 10 0"                     # [24] Price 24
+)
+
+# Mini-Matrix for dynamic SOC. At the example at 1.5 megajoule per squaremeter, the battery will be charged up to 90% and at 13 megajoule only up to 15%.
+# All the other values between this will be calculated automatically. If the sun will be more than 13 megajoule, the 15% will still be used as calculation result.
+# If there will be enough sun, the battery capacity will be reserved for solar energy.
+
+config_matrix_target_soc_weather=(
+    "megajoule target_SoC"
+    "1.5 90"
+    "13 15"
 )
 
 
