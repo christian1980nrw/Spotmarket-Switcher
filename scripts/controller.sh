@@ -1214,19 +1214,8 @@ done
 
 fi
 
-
-
-
-
-
-
-
-
-
-
-
 log_message "I: Charge at prices: $charge_table"
-log_message "I: Discharge at prices: $discharge_table"
+log_message "I: Dynamic discharge (depending SOC) at prices: $discharge_table"
 log_message "I: Switchable sockets at prices: $switchable_sockets_table"
 
 
@@ -1236,7 +1225,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
 
     target_soc=$(get_target_soc "$solarenergy_today")
-    log_message "I: At $solarenergy_today megajoule there will be a SOC target of $target_soc % set. The rest is reserved for solar."
+    log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC target of $target_soc % calculated. The rest is reserved for solar."
     $charger_command_set_SOC_target $target_soc >/dev/null
 
     if [ ! -s $file3 ]; then
@@ -1305,7 +1294,6 @@ for ((i=1; i<=$loop_hours; i++)); do
     switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
     price_var="P${i}_integer"
 
-    # Prüfen, ob die Variablen gesetzt und die Bedingungen erfüllt sind
     if [[ -n "${!charge_var_name}" && "${!charge_var_name}" == 1 && "${!price_var}" == "$current_price_integer" ]]; then
         charging_conditions+=("1")
         charging_descriptions+=("\"$charge_var_name (${!charge_var_name}) == 1 && $price_var (${!price_var}) == current_price_integer ($current_price_integer)\"")
