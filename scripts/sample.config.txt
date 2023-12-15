@@ -24,9 +24,9 @@ disable_inverting_while_only_switching=1      # Set to 0 or 1. If charging is to
 limit_inverter_power_after_enabling=-1        # Default: -1 (limit will be disabled at re-enabling the inverter). Put your value here (e.g. 1000 for 1000w) if you use "Limit inverter power" at the ESS menu or this setting will be lost if you use disable_inverting_while_only_switching.
 
   #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
-start_price=2.0   # start below this price
+start_price=-5.0   # start below this price
 feedin_price=9.87 # your feed-in-tariff of your solar system
-energy_fee=18.492 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
+energy_fee=17.0 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
 abort_price=50.1  # abort and never charge or switch if actual price is same or higher than this (Energy fees not included)
 
 use_start_stop_logic=0            # Set to 1 to activate start/stop logic (depending start_price).
@@ -34,7 +34,8 @@ switchablesockets_at_start_stop=0 # You can add a additional load (like water he
 charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
 switchablesockets_at_solar_breakeven_logic=0
 
-# Config Matrix to dynamic enable/disable charging or switching or discharging depending SOC (ESS).
+# Config Matrix to enable/disable charging or switching or discharging depending SOC (ESS).
+# This Matrix will be used if 24 Prices are available.
 
 config_matrix24_price=(
     "Charge Discharge_min_SOC Switch"   # [0] Header
@@ -48,6 +49,37 @@ config_matrix24_price=(
     "0 95 0"                     # [8] Price 8
     "0 95 0"                     # [9] Price 9
     "0 95 0"                     # [10] Price 10
+    "0 90 0"                     # [11] Price 11
+    "0 85 0"                     # [12] Price 12
+    "0 80 0"                     # [13] Price 13
+    "0 75 0"                     # [14] Price 14
+    "0 70 0"                     # [15] Price 15
+    "0 65 0"                     # [16] Price 16
+    "0 60 0"                     # [17] Price 17
+    "0 55 0"                     # [18] Price 18
+    "0 50 0"                     # [19] Price 19
+    "0 45 0"                     # [20] Price 20
+    "0 35 0"                     # [21] Price 21
+    "0 25 0"                     # [22] Price 22
+    "0 15 0"                     # [23] Price 23
+    "0 10 0"                     # [24] Price 24
+)
+
+# Config Matrix to enable/disable charging or switching or discharging depending SOC (ESS).
+# This Matrix will be used if second day is activated and 48 Prices are available in the afternoon.
+
+config_matrix48_price=(
+    "Charge Discharge_min_SOC Switch"   # [0] Header
+    "1 95 1"                     # [1] Price 1
+    "1 95 1"                     # [2] Price 2
+    "1 95 1"                     # [3] Price 3
+    "1 95 1"                     # [4] Price 4
+    "1 95 1"                     # [5] Price 5
+    "1 95 1"                     # [6] Price 6
+    "0 95 0"                     # [7] Price 7
+    "0 95 0"                     # [8] Price 8
+    "0 95 0"                     # [9] Price 9
+    "0 95 0"                     # [10] Price 10
     "0 95 0"                     # [11] Price 11
     "0 95 0"                     # [12] Price 12
     "0 95 0"                     # [13] Price 13
@@ -55,13 +87,37 @@ config_matrix24_price=(
     "0 95 0"                     # [15] Price 15
     "0 95 0"                     # [16] Price 16
     "0 95 0"                     # [17] Price 17
-    "0 90 0"                     # [18] Price 18
-    "0 70 0"                     # [19] Price 19
-    "0 45 0"                     # [20] Price 20
-    "0 35 0"                     # [21] Price 21
-    "0 25 0"                     # [22] Price 22
-    "0 15 0"                     # [23] Price 23
-    "0 10 0"                     # [24] Price 24
+    "0 95 0"                     # [18] Price 18
+    "0 95 0"                     # [19] Price 19
+    "0 95 0"                     # [20] Price 20
+    "0 95 0"                     # [21] Price 21
+    "0 95 0"                     # [22] Price 22
+    "0 95 0"                     # [23] Price 23
+    "0 95 0"                     # [24] Price 24
+	  "0 95 0"                     # [25] Price 25
+    "0 95 0"                     # [26] Price 26
+    "0 95 0"                     # [27] Price 27
+    "0 95 0"                     # [28] Price 28
+    "0 95 0"                     # [29] Price 29
+    "0 95 0"                     # [30] Price 30
+    "0 95 0"                     # [31] Price 31
+    "0 95 0"                     # [32] Price 32
+    "0 95 0"                     # [33] Price 33
+    "0 95 0"                     # [34] Price 34
+    "0 90 0"                     # [35] Price 35
+    "0 85 0"                     # [36] Price 36
+    "0 80 0"                     # [37] Price 37
+    "0 75 0"                     # [38] Price 38
+    "0 70 0"                     # [39] Price 39
+    "0 65 0"                     # [40] Price 40
+    "0 60 0"                     # [41] Price 41
+    "0 55 0"                     # [42] Price 42
+    "0 50 0"                     # [43] Price 43
+    "0 45 0"                     # [44] Price 44
+    "0 35 0"                     # [45] Price 45
+    "0 25 0"                     # [46] Price 46
+    "0 15 0"                     # [47] Price 47
+    "0 10 0"                     # [48] Price 48
 )
 
 # Mini-Matrix for dynamic SOC. At the example at 1.5 megajoule per squaremeter, the battery will be charged up to 90% and at 13 megajoule only up to 15%.
@@ -71,7 +127,7 @@ config_matrix24_price=(
 config_matrix_target_soc_weather=(
     "megajoule target_SoC"
     "1.5 90"
-    "13 15"
+    "3.5 15"
 )
 
 
@@ -92,8 +148,8 @@ include_second_day=0 # Set to 0 to compare only the today prices.
   # Please set up Solar weather API to query solar yield
 
 use_solarweather_api_to_abort=0
-abort_solar_yield_today=3.5     # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
-abort_solar_yield_tomorrow=10.0 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
+abort_solar_yield_today=10.0     # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
+abort_solar_yield_tomorrow=15.0 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
                                 # To find the kilowatt hour value from megajoules, divide by 3.6.
 abort_suntime=700  # Abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
 latitude=51.530600 # Your location
@@ -131,5 +187,5 @@ tibber_prices=total  # Set to
   #  "tax" to use only the taxes and fees
 tibber_api_key="YOUR_ACTUAL_API_KEY" # replace this value with your API Key
 
-config_version=3 
+config_version=4
 # You see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
