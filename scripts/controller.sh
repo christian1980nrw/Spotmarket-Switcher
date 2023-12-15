@@ -1100,7 +1100,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
 
     target_soc=$(get_target_soc "$solarenergy_today")
-    log_message "I: At $solarenergy_today megajoule there will be a SOC target of $target_soc % set."
+    log_message "I: At $solarenergy_today megajoule there will be a SOC target of $target_soc % set. The rest is reserved for solar."
     $charger_command_set_SOC_target $target_soc >/dev/null
 
     if [ ! -s $file3 ]; then
