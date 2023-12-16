@@ -985,7 +985,7 @@ if ((include_second_day == 1)); then
         if [ ! -s "$file18" ]; then
             rm -f "$file17" "$file18"
             log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
-            rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
+            rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
             sort -t, -k1.9n $file17 >>"$file12"
         fi
