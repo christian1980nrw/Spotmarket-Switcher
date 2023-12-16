@@ -86,7 +86,6 @@ parse_and_validate_config() {
     else    
         local file="$1"
         local errors=""
-
         rotating_spinner &   # Start the spinner in the background
         local spinner_pid=$! # Get the PID of the spinner
         local version_valid=false
@@ -129,7 +128,6 @@ parse_and_validate_config() {
                 continue
             fi
 
-            # Standard check against the given pattern
             if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
                 errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
             fi
@@ -464,7 +462,7 @@ get_prices_integer_entsoe() {
     for i in $(seq 1 $loop_hours); do
         price_vars+="P$i "
     done
-    price_vars+="average_price highest_price current_price"  # Include average_price and highest_price
+    price_vars+="average_price highest_price current_price"
     convert_vars_to_integer 14 $price_vars
 
     convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
@@ -528,7 +526,6 @@ evaluate_conditions() {
     condition_met_description=""
 }
 
-
 # Function to check economical
 is_charging_economical() {
     local reference_price="$1"
@@ -580,7 +577,6 @@ get_target_soc() {
     echo "${result:-"No target SoC found."}"
 }
 
-
 # Function to manage charging
 manage_charging() {
     local action=$1
@@ -608,7 +604,6 @@ manage_discharging() {
         log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent %. $reason"
     fi
 }
-
 
 # Function to check abort conditions and log a message
 check_abort_condition() {
@@ -817,9 +812,6 @@ fi
 
 unset num_tools_missing
 
-
-
-
 else
     log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
@@ -897,7 +889,6 @@ file17=/tmp/tibber_tomorrow_prices.txt
 file18=/tmp/tibber_tomorrow_prices_sorted.txt
 file19=/tmp/entsoe_prices_sorted.txt
 
-
 ########## Start ##########
 
 echo >>"$LOG_FILE"
@@ -906,7 +897,6 @@ log_message "I: Bash Version: $(bash --version | head -n 1)"
 log_message "I: Spotmarket-Switcher - Version $VERSION"
 
 parse_and_validate_config "$DIR/$CONFIG"
-
 
 if ((select_pricing_api == 1)); then
     # Test if Awattar today data exists
@@ -961,7 +951,6 @@ elif ((select_pricing_api == 3)); then
     fi
 fi
 
-
 if ((include_second_day == 1)); then
 
     if ((select_pricing_api == 1)); then
@@ -1006,7 +995,6 @@ if ((include_second_day == 1)); then
 fi # Include second day
 
 loop_hours=24
-
 if [ "$include_second_day" = 1 ]; then
     if [ "$select_pricing_api" = 1 ] && [ -f "$file2" ] && [ "$(wc -l <"$file2")" -gt 10 ]; then
         loop_hours=48
@@ -1017,7 +1005,6 @@ if [ "$include_second_day" = 1 ]; then
     fi
 	echo "Data available for $loop_hours hours."
 fi
-
 
 if ((select_pricing_api == 1)); then
     Unit="Cent/kWh net"
@@ -1059,9 +1046,7 @@ for i in $(seq 1 $loop_hours); do
 done
 log_message "I: Sorted prices: $price_table"
 
-
 if [ "$loop_hours" = 24 ]; then
-
 
     # Separate arrays for each column
     config_matrix24_charge=()
@@ -1215,17 +1200,15 @@ done
 fi
 
 log_message "I: Charge at prices: $charge_table"
-log_message "I: Dynamic discharge (depending SOC) at prices: $discharge_table"
+log_message "I: Dynamic ESS discharge (depending SOC) at prices: $discharge_table"
 log_message "I: Switchable sockets at prices: $switchable_sockets_table"
-
 
 if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
     log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
     log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
-
     target_soc=$(get_target_soc "$solarenergy_today")
-    log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC target of $target_soc % calculated. The rest is reserved for solar."
+    log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc % calculated. The rest is reserved for solar."
     $charger_command_set_SOC_target $target_soc >/dev/null
 
     if [ ! -s $file3 ]; then
@@ -1331,7 +1314,6 @@ check_abort_condition $((abort_price_integer <= current_price_integer)) "Current
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
-
 
 # If any charging condition is met, start charging
 if ((execute_charging == 1 && use_victron_charger == 1)); then
