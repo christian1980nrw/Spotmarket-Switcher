@@ -453,7 +453,7 @@ get_tibber_prices_integer() {
     for i in $(seq 1 $loop_hours); do
         price_vars+="P$i "
     done
-    price_vars+="current_price"
+    price_vars+="average_price highest_price current_price"
     convert_vars_to_integer 17 $price_vars
 
     convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
@@ -464,7 +464,7 @@ get_prices_integer_entsoe() {
     for i in $(seq 1 $loop_hours); do
         price_vars+="P$i "
     done
-    price_vars+="current_price"
+    price_vars+="average_price highest_price current_price"  # Include average_price and highest_price
     convert_vars_to_integer 14 $price_vars
 
     convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
@@ -1260,14 +1260,6 @@ evaluate_conditions() {
     done
 }
 
-# Initialize arrays
-#charging_conditions=()
-#charging_descriptions=()
-#discharging_conditions=()
-#discharging_descriptions=()
-#switchablesockets_conditions=()
-#switchablesockets_conditions_descriptions=()
-
 # Add general conditions for charging
 charging_conditions+=(
     $((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
@@ -1277,9 +1269,6 @@ charging_descriptions+=(
     "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
     "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
 )
-
-# Add general conditions for discharging
-# (You can add the general conditions for discharging similar to charging if they exist)
 
 # Dynamically add conditions for P1 to P48 for charging, discharging, and switchable sockets
 for ((i=1; i<=$loop_hours; i++)); do
