@@ -7,17 +7,32 @@
 ## Welkom bij de Spotmarket-Switcher-repository!
 
 Wat doet deze software?
-Dit is een Linux-shellscript dat uw acculader en/of schakelbare stopcontacten op het juiste moment inschakelt als uw uurgebaseerde dynamische energieprijzen laag zijn.
-Je kunt de stopcontacten dan gebruiken om veel goedkoper een warmwatertank aan te zetten of je kunt de batterijopslag 's nachts automatisch opladen als er goedkope windenergie op het elektriciteitsnet beschikbaar is.
-Via een weer-API kan rekening worden gehouden met de verwachte zonne-energieopbrengst en kan de batterijopslag dienovereenkomstig worden gereserveerd.
+Spotmarket-Switcher is een eenvoudig te gebruiken softwaretool waarmee u geld kunt besparen op uw energierekening. Als je een slimme batterijlader hebt of apparaten zoals boilers die automatisch kunnen worden in- en uitgeschakeld, dan is deze tool perfect voor jou! Hij schakelt je apparaten slim in als de energieprijzen laag zijn, vooral handig als je energiekosten elk uur veranderen.
+
+Waarom Spotmarket-Switcher gebruiken?
+
+-   Bespaar geld: het schakelt uw apparaten in wanneer energie goedkoper is, waardoor uw rekeningen dalen.
+-   Energie-efficiënt: Door energie te gebruiken wanneer er een overschot is (zoals winderige nachten), draagt ​​u bij aan een groenere planeet.
+-   Slim gebruik: laad automatisch uw batterijopslag op of schakel apparaten zoals boilers op de beste tijden in.
+
 Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)
 
+Aan de slag:
+
+-   Downloaden en installeren: Het installatieproces is eenvoudig. Download het script, pas een paar instellingen aan en je bent klaar om aan de slag te gaan.
+-   Plannen en ontspannen: Stel het één keer in en het wordt automatisch uitgevoerd. Geen dagelijkse rompslomp!
+
+Geïnteresseerd?
+
+-   Bekijk onze gedetailleerde instructies voor verschillende systemen zoals Victron Venus OS-, Windows- of Linux-installaties. We hebben ervoor gezorgd dat de stappen eenvoudig te volgen zijn.
+-   Help ons mee om het energieverbruik slimmer en kosteneffectiever te maken! Voor vragen, suggesties of feedback kunt u gerust contact opnemen.
+
 De code is eenvoudig, zodat deze gemakkelijk kan worden aangepast aan andere energieopslagsystemen als je het opladen kunt regelen met Linux-shell-opdrachten.
-Kijk eens rond in regel 965 van controller.sh (charger_command_turnon), zodat u kunt zien hoe eenvoudig het kan worden aangepast.
+Kijk eens op controller.sh en zoek naar Charger_command_turnon, zodat je kunt zien hoe eenvoudig het kan worden aangepast.
 Maak een github-fork en deel uw aanpassingen zodat andere gebruikers ervan kunnen profiteren.
 
 ## Databron
@@ -26,9 +41,7 @@ De software maakt momenteel gebruik van EPEX Spot-uurprijzen die worden aangebod
 De geïntegreerde gratis Entso-E API levert energieprijsgegevens van de volgende landen:
 Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (BG), Kroatië (HR), Cyprus (CY), Tsjechië (CZ), Denemarken (DK), Estland (EE), Finland (FI), Frankrijk (FR), Georgië (GE), Duitsland (DE), Griekenland (GR), Hongarije (HU), Ierland (IE), Italië (IT), Kosovo (XK), Letland (LV), Litouwen (LT), Luxemburg (LU), Malta (MT), Moldavië (MD), Montenegro (ME), Nederland (NL), Noord-Macedonië (MK), Noorwegen (NO), Polen (PL), Portugal (PT), Roemenië (RO), Servië (RS), Slowakije (SK) , Slovenië (SI), Spanje (ES), Zweden (SE), Zwitserland (CH), Turkije (TR), Oekraïne (UA), Verenigd Koninkrijk (UK) zie[Transparantie Entso-E-platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Als je een meer gedetailleerde uitvoer in debugmode wilt zien, kijk dan eens naar deze voorbeeldtestrun:[pull request-testrun #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Installatie
 
@@ -43,7 +56,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
     Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem schrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere stroomverbruik een probleem.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
 
 ### Toegang tot Venus OS
 
