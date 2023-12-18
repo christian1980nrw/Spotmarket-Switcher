@@ -2,17 +2,17 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
+[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md) - [japanisch](README.ja.md)
 
 ## Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
-Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie über ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter verfügen, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
+Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter haben, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
 
 Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Energieverbrauch effizient zu automatisieren und so nicht nur Kosten zu sparen, sondern auch die Nutzung erneuerbarer Energiequellen zu optimieren. Es ist ein großartiges Beispiel dafür, wie intelligente Technologie genutzt werden kann, um den Energieverbrauch nachhaltiger und kostengünstiger zu steuern.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Nachtnutzung: In der Nacht, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (rot dargestellt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
@@ -93,7 +93,7 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
     -   Vergessen Sie nicht, dass Windows das System stoppt, wenn Sie die Shell schließen.
 
 
--   If you're using a Linux-System like Ubuntu or Debian:
+-   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Die Befehle sind`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`und zum Bearbeiten Ihrer Einstellungen verwenden Sie`vi /path/to/save/config.txt`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
