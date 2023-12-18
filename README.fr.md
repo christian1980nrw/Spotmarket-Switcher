@@ -7,17 +7,32 @@
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
 Que fait ce logiciel ?
-Il s'agit d'un script shell Linux qui allume votre chargeur de batterie et/ou vos prises commutables au bon moment si vos prix horaires d'énergie dynamiques sont bas.
-Vous pouvez ensuite utiliser les prises pour allumer un ballon d'eau chaude à moindre coût ou charger automatiquement la batterie la nuit lorsque de l'énergie éolienne bon marché est disponible sur le réseau.
-Le rendement solaire attendu peut être pris en compte via une API météo et un stockage sur batterie réservé en conséquence.
+Spotmarket-Switcher est un outil logiciel facile à utiliser qui vous aide à économiser de l'argent sur vos factures d'énergie. Si vous disposez d'un chargeur de batterie intelligent ou d'appareils comme des chauffe-eau qui peuvent s'allumer et s'éteindre automatiquement, cet outil est parfait pour vous ! Il allume intelligemment vos appareils lorsque les prix de l'énergie sont bas, ce qui est particulièrement utile si vos coûts énergétiques changent toutes les heures.
+
+Pourquoi utiliser Spotmarket-Switcher ?
+
+-   Économisez de l'argent : il allume vos appareils lorsque l'énergie est moins chère, réduisant ainsi vos factures.
+-   Efficacité énergétique : en utilisant l'énergie lorsqu'elle est excédentaire (comme les nuits venteuses), vous contribuez à une planète plus verte.
+-   Utilisation intelligente : chargez automatiquement votre batterie de stockage ou allumez des appareils comme des chauffe-eau aux meilleurs moments.
+
 Les systèmes pris en charge sont actuellement :
 
 -   Produits Shelly (tels que[Prise Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)et[210](https://avm.de/produkte/smart-home/fritzdect-210/)prises commutables
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme le[Série MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
+Commencer:
+
+-   Télécharger et installer : Le processus d’installation est simple. Téléchargez le script, ajustez quelques paramètres et vous êtes prêt à partir.
+-   Planifiez et détendez-vous : configurez-le une fois et il s'exécute automatiquement. Pas de tracas au quotidien !
+
+Intéressé?
+
+-   Consultez nos instructions détaillées pour différents systèmes tels que les configurations Victron Venus OS, Windows ou Linux. Nous nous sommes assurés que les étapes sont faciles à suivre.
+-   Rejoignez-nous pour rendre la consommation d’énergie plus intelligente et plus rentable ! Pour toute question, suggestion ou commentaire, n'hésitez pas à nous contacter.
+
 Le code est simple et peut facilement être adapté à d'autres systèmes de stockage d'énergie si vous êtes capable de contrôler la charge à l'aide de commandes shell Linux.
-Veuillez jeter un œil à la ligne 965 du contrôleur.sh (charger_command_turnon) afin de voir à quel point il peut être facilement adapté.
+Veuillez jeter un œil au contrôleur.sh et recherchez charger_command_turnon afin de voir à quel point il peut être facilement adapté.
 Veuillez créer un fork github et partager votre personnalisation afin que d'autres utilisateurs puissent en bénéficier.
 
 ## La source de données
@@ -26,9 +41,7 @@ Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois A
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
 Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK) , Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Si vous souhaitez voir une sortie plus détaillée en mode débogage, veuillez jeter un œil à cet exemple de test :[test de demande d'extraction #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Installation
 
@@ -53,8 +66,7 @@ Pour obtenir des instructions sur l'accès au système d'exploitation Venus, veu
 
 -   Si vous utilisez le système d'exploitation Victron Venus :
     -   Modifiez ensuite les variables avec un éditeur de texte dans`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
-        ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configurez un calendrier de charge ESS (reportez-vous à la capture d'écran fournie). Dans l'exemple, la batterie se charge la nuit jusqu'à 50 % si elle est activée, les autres moments de charge de la journée sont ignorés. Si vous ne le souhaitez pas, créez un horaire pour les 24 heures de la journée. Pensez à le désactiver après la création. Vérifiez que l'heure du système (telle qu'elle apparaît en haut à droite de l'écran) est exacte.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 La capture d'écran montre la configuration de la recharge automatisée pendant les heures définies par l'utilisateur. Désactivé par défaut, peut être temporairement activé par le script.
 
