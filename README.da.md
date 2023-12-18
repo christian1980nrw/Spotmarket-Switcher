@@ -2,14 +2,25 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[Čeština ](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
 Hvad laver denne software?
 Spotmarket-Switcher er et letanvendeligt softwareværktøj, der hjælper dig med at spare penge på dine energiregninger. Hvis du har en smart batterioplader eller enheder som vandvarmere, der kan tænde og slukke automatisk, er dette værktøj perfekt til dig! Den tænder smart for dine enheder, når energipriserne er lave, især nyttigt, hvis dine energiomkostninger ændrer sig hver time.
 
-Why Use Spotmarket-Switcher?
+Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energiforbruget effektivt, ikke kun spare omkostninger, men også optimere brugen af ​​vedvarende energikilder. Det er et godt eksempel på, hvordan smart teknologi kan bruges til at styre energiforbruget på en mere bæredygtig og omkostningseffektiv måde.
+
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
+-   Økonomisk effektivitet i batteriopladning: Scriptet besluttede strategisk ikke at oplade batterilageret på nuværende tidspunkt. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
+-   Optimal brug af batteri under spidsbelastningstider: I grafen er de dyreste energitimer angivet morgen og aften. I disse perioder brugte Spotmarket-Switcheren den lagrede energi i batteriet (vist med blåt), og dermed undgik høje elomkostninger. Dette er en smart strategi til at reducere energiudgifterne ved at udnytte lagret energi, når det er dyrere at trække fra nettet.
+-   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Det er en fremadskuende tilgang, der forudser fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at kompensere for disse omkostninger.
+
+Hvorfor bruge Spotmarket-Switcher?
 
 -   Spar penge: Den tænder for dine enheder, når energien er billigere, hvilket reducerer dine regninger.
 -   Energieffektiv: Ved at bruge energi, når den er i overskud (som blæsende nætter), bidrager du til en grønnere planet.
@@ -32,7 +43,7 @@ Interesseret?
 -   Vær med til at gøre energiforbruget smartere og mere omkostningseffektivt! For spørgsmål, forslag eller feedback er du velkommen til at kontakte os.
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
-Tag et kig på controller.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
+Tag et kig på controlleren.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
 Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
@@ -56,7 +67,7 @@ Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører 
     På en Cerbo GX er filsystemet monteret skrivebeskyttet. Se<https://www.victronenergy.com/live/ccgx:root_access>. For at gøre filsystemet skrivbart skal du udføre følgende kommando, før du kører installationsscriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre Linux-varianter, som Debian/Ubuntu på en Raspberry Pi eller et andet lille bord. En topkandidat er bestemt[OpenWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
+Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre Linux-varianter, som Debian/Ubuntu på en Raspberry Pi eller et andet lille bord. En topkandidat er bestemt[OpenWRT](https://www.openwrt.org). Brug af en stationær maskine er fint til testformål, men når den er i 24/7 brug, er dens større strømforbrug et problem.
 
 ### Adgang til Venus OS
 
@@ -78,14 +89,14 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
     -   Indtast et nyt kodeord
     -   Gå ind`sudo su`og skriv din adgangskode
     -   Gå ind`apt-get update && apt-get install wget curl`
-    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscriptet er ikke kompatibelt).
+    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscript er ikke kompatibelt).
     -   Glem ikke, hvis du lukker skallen, vil Windows stoppe systemet.
 
 
 -   Hvis du bruger et Linux-system som Ubuntu eller Debian:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
-    -   kommandoerne er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`og for at redigere dine indstillinger brug`vi /path/to/save/config.txt`
-    -   Create a crontab or another scheduling method to run this script at the start of each hour.
+    -   kommandoerne er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
+    -   Opret en crontab eller en anden planlægningsmetode for at køre dette script i starten af ​​hver time.
     -   Eksempel på Crontab:
           Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
           Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:`0 * * * * /path/to/controller.sh`
