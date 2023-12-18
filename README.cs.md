@@ -23,7 +23,7 @@ Aktuálně jsou podporované systémy:
 
 Začínáme:
 
--   Stáhnout a nainstalovat: Proces instalace je přímočarý. Stáhněte si skript, upravte pár nastavení a můžete začít.
+-   Stáhnout a nainstalovat: Proces nastavení je přímočarý. Stáhněte si skript, upravte pár nastavení a můžete začít.
 -   Plán a relax: Nastavte to jednou a spustí se automaticky. Žádné každodenní starosti!
 
 Zájem?
@@ -60,7 +60,7 @@ Vezměte prosím na vědomí, že i když je tento software v současné době o
 
 ### Přístup k OS Venus
 
-Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/ccgx:root_access>.
+Pokyny pro přístup k OS Venus naleznete na<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Spuštění instalačního skriptu
 
@@ -79,7 +79,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
     -   Vstupte`sudo su`a zadejte své heslo
     -   Vstupte`apt-get update && apt-get install wget curl`
     -   Pokračujte níže uvedeným manuálem pro Linux (instalační skript není kompatibilní).
-    -   Dont forget if you close the shell, Windows will stop the system.
+    -   Nezapomeňte, že pokud zavřete shell, Windows zastaví systém.
 
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
@@ -102,7 +102,7 @@ Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektř
 Získáte bonus (nabídka se liší**mezi 50 a 120 eury**) pro sebe a také pro projekt.
 Octopus má tu výhodu, že některé nabídky jsou bez minimální smluvní doby. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
-Pokud jste z Rakouska, můžete nás podpořit pomocí[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F`jako kód.
+Pokud jste z Rakouska, můžete nás podpořit pomocí[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers). Využijte prosím`3KEHMQN2F`jako kód.
 
 ## Zřeknutí se odpovědnosti
 
