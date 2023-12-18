@@ -9,7 +9,7 @@
 Hvad laver denne software?
 Spotmarket-Switcher er et letanvendeligt softwareværktøj, der hjælper dig med at spare penge på dine energiregninger. Hvis du har en smart batterioplader eller enheder som vandvarmere, der kan tænde og slukke automatisk, er dette værktøj perfekt til dig! Den tænder smart for dine enheder, når energipriserne er lave, især nyttigt, hvis dine energiomkostninger ændrer sig hver time.
 
-Hvorfor bruge Spotmarket-Switcher?
+Why Use Spotmarket-Switcher?
 
 -   Spar penge: Den tænder for dine enheder, når energien er billigere, hvilket reducerer dine regninger.
 -   Energieffektiv: Ved at bruge energi, når den er i overskud (som blæsende nætter), bidrager du til en grønnere planet.
@@ -23,7 +23,7 @@ Understøttede systemer er i øjeblikket:
 
 Kom godt i gang:
 
--   Download og installer: Opsætningsprocessen er ligetil. Download scriptet, juster nogle få indstillinger, og du er klar til at gå.
+-   Download og installer: Opsætningsprocessen er ligetil. Download scriptet, juster et par indstillinger, og du er klar til at gå.
 -   Planlæg og slap af: Indstil det én gang, og det kører automatisk. Ingen daglig besvær!
 
 Interesseret?
@@ -32,7 +32,7 @@ Interesseret?
 -   Vær med til at gøre energiforbruget smartere og mere omkostningseffektivt! For spørgsmål, forslag eller feedback er du velkommen til at kontakte os.
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
-Tag et kig på controlleren.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
+Tag et kig på controller.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
 Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
@@ -56,7 +56,7 @@ Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører 
     På en Cerbo GX er filsystemet monteret skrivebeskyttet. Se<https://www.victronenergy.com/live/ccgx:root_access>. For at gøre filsystemet skrivbart skal du udføre følgende kommando, før du kører installationsscriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre Linux-varianter, som Debian/Ubuntu på en Raspberry Pi eller et andet lille bord. En topkandidat er bestemt[OpenWRT](https://www.openwrt.org). Brug af en stationær maskine er fint til testformål, men når den er i 24/7 brug, er dens større strømforbrug et problem.
+Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre Linux-varianter, som Debian/Ubuntu på en Raspberry Pi eller et andet lille bord. En topkandidat er bestemt[OpenWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
 
 ### Adgang til Venus OS
 
@@ -85,7 +85,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
 -   Hvis du bruger et Linux-system som Ubuntu eller Debian:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
     -   kommandoerne er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`og for at redigere dine indstillinger brug`vi /path/to/save/config.txt`
-    -   Opret en crontab eller en anden planlægningsmetode for at køre dette script i starten af ​​hver time.
+    -   Create a crontab or another scheduling method to run this script at the start of each hour.
     -   Eksempel på Crontab:
           Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
           Åbn din terminal og indtast`crontab -e`, indsæt derefter følgende linje:`0 * * * * /path/to/controller.sh`
