@@ -12,7 +12,7 @@ Spotmarket-Switcher è uno strumento software facile da usare che ti aiuta a ris
 Questo risultato tipico dimostra la capacità di Spotmarket-Switcher di automatizzare l'utilizzo dell'energia in modo efficiente, non solo risparmiando sui costi ma anche ottimizzando l'uso delle fonti di energia rinnovabile. È un ottimo esempio di come la tecnologia intelligente possa essere utilizzata per gestire il consumo energetico in modo più sostenibile ed economicamente vantaggioso.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Utilizzo notturno: durante la notte, quando i prezzi dell'energia erano al minimo, lo Spotmarket-Switcher ha attivato in modo intelligente una presa commutabile per alimentare la pompa di calore dell'acqua calda (indicata in rosso). Ciò dimostra la capacità del sistema di identificare e utilizzare periodi energetici a basso costo per attività ad alto consumo energetico.
