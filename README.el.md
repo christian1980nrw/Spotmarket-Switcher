@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md)-[ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
+[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[Αγγλικά](README.md)-[Ισπανικά](README.es.md)-[Εσθονικά](README.et.md) - [φινλανδικός](README.fi.md)-[γαλλική γλώσσα](README.fr.md)-[Ελληνικά](README.el.md) - [ιταλικός](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογαλικά](README.pt.md)-[Σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -12,7 +12,7 @@
 Αυτό το τυπικό αποτέλεσμα δείχνει την ικανότητα του Spotmarket-Switcher να αυτοματοποιεί αποτελεσματικά τη χρήση ενέργειας, όχι μόνο εξοικονομώντας κόστος αλλά και βελτιστοποιώντας τη χρήση ανανεώσιμων πηγών ενέργειας. Είναι ένα εξαιρετικό παράδειγμα του πώς η έξυπνη τεχνολογία μπορεί να χρησιμοποιηθεί για τη διαχείριση της κατανάλωσης ενέργειας με πιο βιώσιμο και οικονομικά αποδοτικό τρόπο.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Νυχτερινή χρήση: Κατά τη διάρκεια της νύχτας, όταν οι τιμές της ενέργειας ήταν στο χαμηλότερο σημείο τους, το Spotmarket-Switcher ενεργοποίησε έξυπνα μια πρίζα με δυνατότητα εναλλαγής για να ενεργοποιήσει την αντλία θερμότητας ζεστού νερού (υποδεικνύεται με κόκκινο χρώμα). Αυτό δείχνει την ικανότητα του συστήματος να εντοπίζει και να χρησιμοποιεί ενεργειακές περιόδους χαμηλού κόστους για εργασίες έντασης ενέργειας.
@@ -28,7 +28,7 @@
 
 Τα υποστηριζόμενα συστήματα είναι επί του παρόντος:
 
--   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
 -   [Victron](https://www.victronenergy.com/)Venus OS Συστήματα αποθήκευσης ενέργειας όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
@@ -42,9 +42,9 @@
 -   Ανατρέξτε στις λεπτομερείς οδηγίες μας για διάφορα συστήματα όπως οι ρυθμίσεις Victron Venus OS, Windows ή Linux. Έχουμε βεβαιωθεί ότι τα βήματα είναι εύκολο να ακολουθηθούν.
 -   Ελάτε μαζί μας για να κάνουμε τη χρήση ενέργειας πιο έξυπνη και πιο οικονομική! Για οποιεσδήποτε ερωτήσεις, προτάσεις ή σχόλια, μη διστάσετε να επικοινωνήσετε.
 
-Ο κώδικας είναι απλός, ώστε να μπορεί εύκολα να προσαρμοστεί σε άλλα συστήματα αποθήκευσης ενέργειας, εάν μπορείτε να ελέγξετε τη φόρτιση με εντολές κελύφους Linux.
-Ρίξτε μια ματιά στο controller.sh και ψάξτε για charger_command_turnon για να δείτε πόσο εύκολα μπορεί να προσαρμοστεί.
-Δημιουργήστε ένα πιρούνι github και μοιραστείτε την προσαρμογή σας, ώστε άλλοι χρήστες να μπορούν να επωφεληθούν από αυτό.
+The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
+Please have a look at the controller.sh and search for charger_command_turnon so that you can see how easy it can be adapted.
+Please create a github fork and share your customization so other users can benefit from it.
 
 ## Πηγή δεδομένων
 
@@ -99,7 +99,8 @@
     -   Δημιουργήστε ένα crontab ή μια άλλη μέθοδο προγραμματισμού για την εκτέλεση αυτού του σεναρίου στην αρχή κάθε ώρας.
     -   Δείγμα Crontab:
           Χρησιμοποιήστε την ακόλουθη καταχώρηση crontab για να εκτελείτε τη δέσμη ενεργειών ελέγχου κάθε ώρα:
-          Ανοίξτε το τερματικό σας και μπείτε`crontab -e`, μετά εισάγετε την ακόλουθη γραμμή:`0 * * * * /path/to/controller.sh`
+          Ανοίξτε το τερματικό σας και μπείτε`crontab -e`, then insert the following line:
+          `0 * * * * /path/to/controller.sh`
 
 ### Υποστήριξη και συνεισφορά :+1:
 
