@@ -9,6 +9,17 @@
 Wat doet deze software?
 Spotmarket-Switcher is een eenvoudig te gebruiken softwaretool waarmee u geld kunt besparen op uw energierekening. Als je een slimme batterijlader hebt of apparaten zoals boilers die automatisch kunnen worden in- en uitgeschakeld, dan is deze tool perfect voor jou! Hij schakelt je apparaten slim in als de energieprijzen laag zijn, vooral handig als je energiekosten elk uur veranderen.
 
+Dit typische resultaat demonstreert het vermogen van de Spotmarket-Switcher om het energieverbruik efficiënt te automatiseren, waardoor niet alleen kosten worden bespaard, maar ook het gebruik van hernieuwbare energiebronnen wordt geoptimaliseerd. Het is een goed voorbeeld van hoe slimme technologie kan worden gebruikt om het energieverbruik op een duurzamere en kosteneffectievere manier te beheren.
+
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Nachtelijk gebruik: Tijdens de nacht, toen de energieprijzen het laagst waren, activeerde de Spotmarket-Switcher op slimme wijze een schakelbaar stopcontact om de warmwater-warmtepomp (aangegeven in rood) van stroom te voorzien. Dit toont aan dat het systeem in staat is om goedkope energieperioden voor energie-intensieve taken te identificeren en te gebruiken.
+-   Economische efficiëntie bij het opladen van de batterij: het script heeft strategisch besloten om de batterijopslag op dit moment niet op te laden. Deze beslissing was gebaseerd op een economische controle waarbij rekening werd gehouden met laadverliezen en deze werden vergeleken met de gemiddelde of hoogste energieprijzen van de dag. Deze aanpak zorgt ervoor dat het opladen van de batterij alleen plaatsvindt wanneer dit het meest kosteneffectief is.
+-   Optimaal batterijgebruik tijdens piekuren: In de grafiek worden de duurste energie-uren in de ochtend en avond weergegeven. Tijdens deze periodes gebruikte de Spotmarket-Switcher de opgeslagen energie in de batterij (blauw weergegeven), waardoor hoge elektriciteitskosten werden vermeden. Dit is een slimme strategie om de energiekosten te verlagen door opgeslagen energie te gebruiken wanneer het duurder is om van het elektriciteitsnet te putten.
+-   Batterijreservering voor uren met hoge kosten: Na de perioden met hoge kosten werd het energieopslagsysteem (ESS) van de batterij uitgeschakeld. Deze actie werd ondernomen om voldoende batterijcapaciteit te reserveren voor de komende dure uren in de volgende ochtend. Het is een vooruitstrevende aanpak die anticipeert op toekomstige perioden met hoge kosten en ervoor zorgt dat opgeslagen energie beschikbaar is om deze kosten te compenseren.
+
 Waarom Spotmarket-Switcher gebruiken?
 
 -   Bespaar geld: het schakelt uw apparaten in wanneer energie goedkoper is, waardoor uw rekeningen dalen.
@@ -56,7 +67,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
     Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem schrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere stroomverbruik een probleem.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
 
 ### Toegang tot Venus OS
 
@@ -84,7 +95,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
 
 -   Als je een Linux-systeem zoals Ubuntu of Debian gebruikt:
     -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
-    -   de commando's zijn`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`en om uw instellingen te bewerken gebruikt u`vi /path/to/save/config.txt`
+    -   the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`en om uw instellingen te bewerken gebruikt u`vi /path/to/save/config.txt`
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
     -   Voorbeeldcrontab:
           Gebruik de volgende crontab-invoer om het controlescript elk uur uit te voeren:
