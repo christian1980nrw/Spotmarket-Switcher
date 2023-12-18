@@ -7,17 +7,32 @@
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
 ¿Qué está haciendo este software?
-Este es un script de shell de Linux y enciende el cargador de batería y/o los enchufes conmutables en el momento adecuado si los precios dinámicos de energía por horas son bajos.
-A continuación, puede utilizar los enchufes para encender un depósito de agua caliente de forma mucho más económica o puede cargar automáticamente la batería por la noche, cuando hay energía eólica barata disponible en la red.
-El rendimiento solar esperado se puede tener en cuenta mediante una API meteorológica y reservar el almacenamiento de la batería en consecuencia.
+Spotmarket-Switcher es una herramienta de software fácil de usar que le ayuda a ahorrar dinero en sus facturas de energía. Si tienes un cargador de batería inteligente o dispositivos como calentadores de agua que pueden encenderse y apagarse automáticamente, ¡esta herramienta es perfecta para ti! Enciende inteligentemente tus dispositivos cuando los precios de la energía son bajos, lo que es especialmente útil si tus costos de energía cambian cada hora.
+
+¿Por qué utilizar Spotmarket-Switcher?
+
+-   Ahorre dinero: enciende sus dispositivos cuando la energía es más barata, lo que reduce sus facturas.
+-   Eficiencia energética: al utilizar energía cuando sobra (como en las noches con viento), contribuyes a un planeta más verde.
+-   Uso inteligente: cargue automáticamente la batería de almacenamiento o encienda dispositivos como calentadores de agua en los mejores momentos.
+
 Los sistemas compatibles actualmente son:
 
 -   Productos Shelly (como[Tapón Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)o[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
 -   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como el[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
+Empezando:
+
+-   Descargar e instalar: el proceso de configuración es sencillo. Descargue el script, ajuste algunas configuraciones y estará listo para comenzar.
+-   Programe y relájese: configúrelo una vez y se ejecutará automáticamente. ¡Sin problemas diarios!
+
+¿Interesado?
+
+-   Consulte nuestras instrucciones detalladas para diferentes sistemas como Victron Venus OS, Windows o configuraciones de Linux. Nos hemos asegurado de que los pasos sean fáciles de seguir.
+-   ¡Únase a nosotros para hacer que el uso de la energía sea más inteligente y rentable! Para cualquier pregunta, sugerencia o comentario, no dude en comunicarse.
+
 El código es simple, por lo que puede adaptarse fácilmente a otros sistemas de almacenamiento de energía si puede controlar la carga mediante comandos de shell de Linux.
-Eche un vistazo a la línea 965 del controlador.sh (charger_command_turnon) para que pueda ver lo fácil que se puede adaptar.
+Eche un vistazo a controlador.sh y busque cargador_command_turnon para que pueda ver lo fácil que se puede adaptar.
 Cree una bifurcación de github y comparta su personalización para que otros usuarios puedan beneficiarse de ella.
 
 ## Fuente de datos
@@ -26,9 +41,7 @@ Actualmente, el software utiliza precios por hora EPEX Spot proporcionados por t
 La API Entso-E gratuita integrada proporciona datos sobre precios de energía de los siguientes países:
 Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), Croacia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Alemania (DE), Grecia (GR), Hungría (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Letonia (LV), Lituania (LT), Luxemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Países Bajos (NL), Macedonia del Norte (MK), Noruega (NO), Polonia (PL), Portugal (PT), Rumania (RO), Serbia (RS), Eslovaquia (SK) , Eslovenia (SI), España (ES), Suecia (SE), Suiza (CH), Turquía (TR), Ucrania (UA), Reino Unido (UK) ver[Plataforma Transparencia Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Si desea ver un resultado más detallado en el modo de depuración, eche un vistazo a este ejemplo de ejecución de prueba:[Prueba de solicitud de extracción #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Instalación
 
@@ -71,7 +84,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
+    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración use`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
@@ -84,12 +97,12 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 -   [revolución](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>) .
-If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
+Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
+Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
+Si eres de Austria, puedes apoyarnos utilizando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
 
 ## Descargo de responsabilidad
 
