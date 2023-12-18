@@ -6,17 +6,29 @@
 ## Welcome to the Spotmarket-Switcher repository!
 
 What is this software doing? 
-This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
-You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
-The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+Spotmarket-Switcher is an easy-to-use software tool that helps you save money on your energy bills. If you have a smart battery charger or devices like water heaters that can turn on and off automatically, this tool is perfect for you! It smartly switches on your devices when energy prices are low, especially useful if your energy costs change every hour.
+
+Why Use Spotmarket-Switcher?
+- Save Money: It turns on your devices when energy is cheaper, cutting down your bills.
+- Energy Efficient: By using energy when it's in surplus (like windy nights), you contribute to a greener planet.
+- Smart Usage: Automatically charge your battery storage or power up devices like water heaters at the best times.
+    
 Supported systems are currently:
 
 - Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
+
+Getting Started:
+- Download and Install: The setup process is straightforward. Download the script, adjust a few settings, and you're ready to go.
+- Schedule and Relax: Set it up once, and it runs automatically. No daily hassle!
+
+Interested?
+- Check out our detailed instructions for different systems like Victron Venus OS, Windows, or Linux setups. We've made sure the steps are easy to follow.
+- Join us in making energy use smarter and more cost-effective! For any questions, suggestions, or feedback, feel free to reach out.
   
 The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
-Please have a look around line 965 of the controller.sh (charger_command_turnon) so that you can see how easy it can be adapted.
+Please have a look at the controller.sh and search for charger_command_turnon so that you can see how easy it can be adapted.
 Please create a github fork and share your customization so other users can benefit from it.
 
 ## Data Source
