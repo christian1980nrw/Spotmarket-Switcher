@@ -7,17 +7,32 @@
 ## Vítejte v úložišti Spotmarket-Switcher!
 
 Co tento software dělá?
-Toto je skript shellu Linux a zapíná vaši nabíječku baterií a / nebo přepínatelné zásuvky ve správný čas, pokud jsou vaše hodinové ceny dynamické energie nízké.
-Pomocí zásuvek pak můžete mnohem levněji zapnout zásobník teplé vody nebo můžete automaticky nabíjet bateriové úložiště v noci, když je v síti dostupná levná větrná energie.
-Očekávaný solární výnos lze zohlednit pomocí meteorologického API a odpovídajícím způsobem rezervovaného akumulátoru.
+Spotmarket-Switcher je snadno použitelný softwarový nástroj, který vám pomůže ušetřit peníze na účtech za energii. Pokud máte chytrou nabíječku baterií nebo zařízení, jako jsou ohřívače vody, které se mohou automaticky zapínat a vypínat, je tento nástroj pro vás ideální! Chytře zapíná vaše zařízení, když jsou ceny energie nízké, zvláště užitečné, pokud se vaše náklady na energii mění každou hodinu.
+
+Proč používat Spotmarket-Switcher?
+
+-   Ušetřete peníze: Zapne vaše zařízení, když je energie levnější, a sníží vaše účty.
+-   Energeticky efektivní: Používáním energie, když je jí přebytek (jako jsou větrné noci), přispíváte k zelenější planetě.
+-   Chytré využití: Automaticky nabijte své úložiště baterie nebo zapněte zařízení, jako jsou ohřívače vody, v nejlepší časy.
+
 Aktuálně jsou podporované systémy:
 
 -   Produkty Shelly (jako např[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)nebo[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)a[210](https://avm.de/produkte/smart-home/fritzdect-210/)vypínatelné zásuvky
 -   [Victron](https://www.victronenergy.com/)Systémy ukládání energie Venus OS, jako je např[Řada MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
+Začínáme:
+
+-   Stáhnout a nainstalovat: Proces instalace je přímočarý. Stáhněte si skript, upravte pár nastavení a můžete začít.
+-   Plán a relax: Nastavte to jednou a spustí se automaticky. Žádné každodenní starosti!
+
+Zájem?
+
+-   Podívejte se na naše podrobné pokyny pro různé systémy, jako je nastavení Victron Venus OS, Windows nebo Linux. Ujistili jsme se, že kroky lze snadno sledovat.
+-   Přidejte se k nám a snažte se využívat energii chytřeji a efektivněji! V případě jakýchkoli dotazů, návrhů nebo zpětné vazby se neváhejte obrátit.
+
 Kód je jednoduchý, takže jej lze snadno přizpůsobit jiným systémům skladování energie, pokud jste schopni ovládat nabíjení pomocí příkazů shellu Linux.
-Podívejte se prosím na řádek 965 na controller.sh (charger_command_turnon), abyste viděli, jak snadno jej lze přizpůsobit.
+Podívejte se prosím na controller.sh a vyhledejte charger_command_turnon, abyste viděli, jak snadno se dá přizpůsobit.
 Vytvořte prosím github fork a sdílejte své přizpůsobení, aby z něj mohli těžit ostatní uživatelé.
 
 ## Zdroj dat
@@ -26,9 +41,7 @@ Software v současné době využívá hodinové ceny EPEX Spot poskytované tř
 Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
 Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Pokud chcete vidět podrobnější výstup v režimu ladění, podívejte se prosím na tento příklad testovacího běhu:[zkušební běh požadavku na stažení #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Instalace
 
@@ -43,7 +56,7 @@ Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte p
     Na Cerbo GX je souborový systém připojen pouze pro čtení. Vidět<https://www.victronenergy.com/live/ccgx:root_access>. Aby bylo možné do souborového systému zapisovat, musíte před spuštěním instalačního skriptu provést následující příkaz:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie problémem.
+Vezměte prosím na vědomí, že i když je tento software v současné době optimalizován pro OS Venus, lze jej přizpůsobit jiným variantám Linuxu, jako je Debian/Ubuntu na Raspberry Pi nebo jiné malé desce. Hlavním kandidátem určitě je[OpenWRT](https://www.openwrt.org). Používání stolního počítače je vhodné pro testovací účely, ale při nepřetržitém používání je jeho větší spotřeba energie znepokojivá.
 
 ### Přístup k OS Venus
 
@@ -66,7 +79,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
     -   Vstupte`sudo su`a zadejte své heslo
     -   Vstupte`apt-get update && apt-get install wget curl`
     -   Pokračujte níže uvedeným manuálem pro Linux (instalační skript není kompatibilní).
-    -   Nezapomeňte, že pokud zavřete shell, Windows zastaví systém.
+    -   Dont forget if you close the shell, Windows will stop the system.
 
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
@@ -89,7 +102,7 @@ Pokud potřebujete tarif na zemní plyn nebo preferujete klasický tarif elektř
 Získáte bonus (nabídka se liší**mezi 50 a 120 eury**) pro sebe a také pro projekt.
 Octopus má tu výhodu, že některé nabídky jsou bez minimální smluvní doby. Jsou ideální například pro pozastavení tarifu na základě burzovních cen.
 
-Pokud jste z Rakouska, můžete nás podpořit pomocí[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers). Využijte prosím`3KEHMQN2F`jako kód.
+Pokud jste z Rakouska, můžete nás podpořit pomocí[aWATTar Rakousko (doporučující odkaz)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F`jako kód.
 
 ## Zřeknutí se odpovědnosti
 
