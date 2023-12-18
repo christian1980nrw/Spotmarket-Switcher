@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Deutsch ](README.de.md)-[Englanti](README.md) - [Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
+[Tšekki](README.cs.md)-[Tanskan kieli](README.da.md)-[Saksan kieli](README.de.md)-[Englanti](README.md)-[Espanja](README.es.md)-[Virolainen](README.et.md)-[Finnish](README.fi.md)-[Ranskan kieli](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[Hollannin kieli](README.nl.md)-[Norjan kieli](README.no.md)-[Kiillottaa](README.pl.md)-[Portugalin kieli](README.pt.md)-[Ruotsin kieli](README.sv.md)-[japanilainen](README.ja.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
@@ -12,17 +12,17 @@ Spotmarket-Switcher on helppokäyttöinen ohjelmistotyökalu, jonka avulla voit 
 Tämä tyypillinen tulos esittelee Spotmarket-Switcherin kyvyn automatisoida energiankäyttöä tehokkaasti säästäen kustannuksia, vaan myös optimoimalla uusiutuvien energialähteiden käytön. Se on loistava esimerkki siitä, kuinka älykästä teknologiaa voidaan käyttää energiankulutuksen hallintaan kestävämmin ja kustannustehokkaammin.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Yökäyttö: Yön aikana, kun energian hinnat olivat alhaisimmillaan, Spotmarket-Switcher aktivoi älykkäästi kytkettävän pistorasian käynnistääkseen kuumavesilämpöpumpun (merkitty punaisella). Tämä osoittaa järjestelmän kyvyn tunnistaa ja hyödyntää edullisia energiajaksoja energiaintensiivisiin tehtäviin.
 -   Taloudellinen tehokkuus akun latauksessa: Käsikirjoitus päätti strategisesti olla lataamatta akun tallennustilaa tällä hetkellä. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
--   Optimal Use of Battery During Peak Hours: In the graph, the most expensive energy hours are indicated in the morning and evening. During these periods, the Spotmarket-Switcher used the stored energy in the battery (shown in blue), thus avoiding high electricity costs. This is a smart strategy to reduce energy expenses by utilizing stored energy when it's more expensive to draw from the grid.
+-   Akun optimaalinen käyttö ruuhka-aikoina: Kaaviossa kalleimmat energiatunnit on merkitty aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti akkuun varastoitua energiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta. Tämä on älykäs strategia energiakulujen vähentämiseksi hyödyntämällä varastoitua energiaa, kun sen saaminen verkosta on kalliimpaa.
 -   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Se on eteenpäin katsova lähestymistapa, joka ennakoi tulevia korkeita kustannuksia ja varmistaa, että varastoitua energiaa on saatavilla näiden kustannusten kattamiseksi.
 
 Miksi käyttää Spotmarket-Switcheria?
 
--   Save Money: It turns on your devices when energy is cheaper, cutting down your bills.
+-   Säästä rahaa: Se käynnistää laitteesi, kun energia on halvempaa, mikä vähentää laskujasi.
 -   Energiatehokas: Käyttämällä energiaa, kun sitä on ylijäämäisinä (kuten tuulisina öinä), edistät planeetan vihreämpää.
 -   Älykäs käyttö: Lataa akkuvarastosi automaattisesti tai käynnistä laitteita, kuten vedenlämmittimiä, parhaimmillaan.
 
