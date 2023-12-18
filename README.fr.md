@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[日本語 ](README.ja.md)
+[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -12,7 +12,7 @@ Spotmarket-Switcher est un outil logiciel facile à utiliser qui vous aide à é
 Ce résultat typique met en valeur la capacité du Spotmarket-Switcher à automatiser efficacement la consommation d'énergie, non seulement en réduisant les coûts, mais également en optimisant l'utilisation des sources d'énergie renouvelables. C'est un excellent exemple de la façon dont la technologie intelligente peut être utilisée pour gérer la consommation d'énergie de manière plus durable et plus rentable.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Utilisation nocturne : Pendant la nuit, lorsque les prix de l'énergie étaient au plus bas, le Spotmarket-Switcher a intelligemment activé une prise commutable pour alimenter la pompe à chaleur à eau chaude (indiquée en rouge). Cela montre la capacité du système à identifier et à utiliser les périodes d'énergie à faible coût pour des tâches à forte intensité énergétique.
@@ -46,7 +46,7 @@ Le code est simple et peut facilement être adapté à d'autres systèmes de sto
 Veuillez jeter un œil au contrôleur.sh et recherchez charger_command_turnon afin de voir à quel point il peut être facilement adapté.
 Veuillez créer un fork github et partager votre personnalisation afin que d'autres utilisateurs puissent en bénéficier.
 
-## Data Source
+## La source de données
 
 Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
@@ -63,7 +63,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
 
 2.  Exécutez le script d'installation avec des options supplémentaires pour préparer tout ce qui se trouve dans un sous-répertoire pour votre inspection. Par exemple:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Si vous utilisez Victron Venus OS, le DESTDIR correct devrait être`/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(le répertoire racine). N'hésitez pas à explorer les fichiers installés dans`/tmp/foo`.
     Sur un Cerbo GX, le système de fichiers est monté en lecture seule. Voir<https://www.victronenergy.com/live/ccgx:root_access>. Afin de rendre le système de fichiers accessible en écriture, vous devez exécuter la commande suivante avant d'exécuter le script d'installation :
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
@@ -83,7 +83,7 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
 
 -   Instructions pour installer le Spotmarket-Switcher sur un système Windows 10 ou 11 pour des tests sans appareils Victron (uniquement prises commutables).
 
-    -   launch `cmd.exe`en tant qu'administrateur
+    -   lancement`cmd.exe`en tant qu'administrateur
     -   Entrer`wsl --install -d Debian`
     -   Entrez un nouveau nom d'utilisateur comme`admin`
     -   entrer un nouveau mot de passe
