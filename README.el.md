@@ -19,7 +19,7 @@
 
 -   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
--   [Victron](https://www.victronenergy.com/)Venus OS Συστήματα αποθήκευσης ενέργειας όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
+-   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
 Ξεκινώντας:
 
@@ -28,7 +28,7 @@
 
 Ενδιαφερόμενος?
 
--   Ανατρέξτε στις λεπτομερείς οδηγίες μας για διάφορα συστήματα όπως οι ρυθμίσεις του Victron Venus OS, Windows ή Linux. Έχουμε βεβαιωθεί ότι τα βήματα είναι εύκολο να ακολουθηθούν.
+-   Ανατρέξτε στις λεπτομερείς οδηγίες μας για διάφορα συστήματα όπως οι ρυθμίσεις Victron Venus OS, Windows ή Linux. Έχουμε βεβαιωθεί ότι τα βήματα είναι εύκολο να ακολουθηθούν.
 -   Ελάτε μαζί μας για να κάνουμε τη χρήση ενέργειας πιο έξυπνη και πιο οικονομική! Για οποιεσδήποτε ερωτήσεις, προτάσεις ή σχόλια, μη διστάσετε να επικοινωνήσετε.
 
 Ο κώδικας είναι απλός, ώστε να μπορεί εύκολα να προσαρμοστεί σε άλλα συστήματα αποθήκευσης ενέργειας, εάν μπορείτε να ελέγξετε τη φόρτιση με εντολές κελύφους Linux.
@@ -56,7 +56,7 @@
     Σε ένα Cerbo GX το σύστημα αρχείων είναι τοποθετημένο μόνο για ανάγνωση. Βλέπω<https://www.victronenergy.com/live/ccgx:root_access>. Για να κάνετε το σύστημα αρχείων εγγράψιμο, πρέπει να εκτελέσετε την ακόλουθη εντολή πριν εκτελέσετε το σενάριο εγκατάστασης:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Λάβετε υπόψη ότι ενώ αυτό το λογισμικό είναι επί του παρόντος βελτιστοποιημένο για το Venus OS, μπορεί να προσαρμοστεί σε άλλες γεύσεις Linux, όπως το Debian/Ubuntu σε ένα Raspberry Pi ή άλλη μικρή πλακέτα. Ένας πρώτος υποψήφιος είναι σίγουρα[OpenWRT](https://www.openwrt.org). Η χρήση ενός επιτραπέζιου μηχάνημα είναι καλή για σκοπούς δοκιμής, αλλά όταν χρησιμοποιείται σε 24 ώρες το 24ωρο, η μεγαλύτερη κατανάλωση ενέργειας προκαλεί ανησυχία.
+Λάβετε υπόψη ότι ενώ αυτό το λογισμικό είναι επί του παρόντος βελτιστοποιημένο για το Venus OS, μπορεί να προσαρμοστεί σε άλλες γεύσεις Linux, όπως το Debian/Ubuntu σε ένα Raspberry Pi ή άλλη μικρή πλακέτα. Ένας πρώτος υποψήφιος είναι σίγουρα[OpenWRT](https://www.openwrt.org). Η χρήση ενός επιτραπέζιου μηχάνημα είναι καλή για λόγους δοκιμής, αλλά όταν χρησιμοποιείται σε 24 ώρες το 24ωρο, η μεγαλύτερη κατανάλωση ενέργειας προκαλεί ανησυχία.
 
 ### Πρόσβαση στο Venus OS
 
@@ -86,9 +86,9 @@
     -   Αντιγράψτε το σενάριο του κελύφους (`controller.sh`) σε μια προσαρμοσμένη τοποθεσία και προσαρμόστε τις μεταβλητές ανάλογα με τις ανάγκες σας.
     -   οι εντολές είναι`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`και για να επεξεργαστείτε τις ρυθμίσεις σας χρησιμοποιήστε`vi /path/to/save/config.txt`
     -   Δημιουργήστε ένα crontab ή μια άλλη μέθοδο προγραμματισμού για την εκτέλεση αυτού του σεναρίου στην αρχή κάθε ώρας.
-    -   Sample Crontab:
-          Use the following crontab entry to execute the control script every hour:
-          Open your terminal and enter `crontab -e`, μετά εισάγετε την ακόλουθη γραμμή:`0 * * * * /path/to/controller.sh`
+    -   Δείγμα Crontab:
+          Χρησιμοποιήστε την ακόλουθη καταχώρηση crontab για να εκτελείτε τη δέσμη ενεργειών ελέγχου κάθε ώρα:
+          Ανοίξτε το τερματικό σας και μπείτε`crontab -e`, μετά εισάγετε την ακόλουθη γραμμή:`0 * * * * /path/to/controller.sh`
 
 ### Υποστήριξη και συνεισφορά :+1:
 
@@ -106,4 +106,4 @@
 
 ## Αποποίηση ευθυνών
 
-Παρακαλούμε σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
