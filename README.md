@@ -10,7 +10,7 @@ Spotmarket-Switcher is an easy-to-use software tool that helps you save money on
 
 This typical result showcases the Spotmarket-Switcher's ability to automate energy usage efficiently, not only saving costs but also optimizing the use of renewable energy sources. It's a great example of how smart technology can be used to manage energy consumption in a more sustainable and cost-effective manner.
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 - Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
