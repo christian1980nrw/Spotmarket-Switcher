@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština ](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -12,7 +12,7 @@ Spotmarket-Switcher er et letanvendeligt softwareværktøj, der hjælper dig med
 Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energiforbruget effektivt, ikke kun spare omkostninger, men også optimere brugen af ​​vedvarende energikilder. Det er et godt eksempel på, hvordan smart teknologi kan bruges til at styre energiforbruget på en mere bæredygtig og omkostningseffektiv måde.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
@@ -95,7 +95,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
 
 -   Hvis du bruger et Linux-system som Ubuntu eller Debian:
     -   Kopiér shell-scriptet (`controller.sh`) til en brugerdefineret placering og juster variablerne efter dine behov.
-    -   kommandoerne er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
+    -   kommandoerne er`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`og for at redigere dine indstillinger brug`vi /path/to/save/config.txt`
     -   Opret en crontab eller en anden planlægningsmetode for at køre dette script i starten af ​​hver time.
     -   Eksempel på Crontab:
           Brug følgende crontab-indgang til at udføre kontrolscriptet hver time:
