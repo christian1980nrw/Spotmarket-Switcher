@@ -2,22 +2,37 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
+[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md)-[portugisiska](README.pt.md) - [Svenska](README.sv.md)-[japanska](README.ja.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
 Vad gör denna programvara?
-Detta är ett Linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
-Du kan då använda uttagen för att slå på en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
-Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
+Spotmarket-Switcher är ett lättanvänt mjukvaruverktyg som hjälper dig att spara pengar på dina energiräkningar. Om du har en smart batteriladdare eller enheter som varmvattenberedare som kan slås på och stängas av automatiskt, är detta verktyg perfekt för dig! Den sätter smart på dina enheter när energipriserna är låga, särskilt användbart om dina energikostnader ändras varje timme.
+
+Varför använda Spotmarket-Switcher?
+
+-   Spara pengar: Det sätter på dina enheter när energin är billigare, vilket minskar dina räkningar.
+-   Energieffektiv: Genom att använda energi när den är i överskott (som blåsiga nätter) bidrar du till en grönare planet.
+-   Smart användning: Ladda din batterilagring automatiskt eller slå på enheter som varmvattenberedare vid de bästa tiderna.
+
 System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
+-   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
+
+Komma igång:
+
+-   Ladda ner och installera: Installationsprocessen är enkel. Ladda ner skriptet, justera några inställningar och du är redo att gå.
+-   Schemalägg och koppla av: Ställ in det en gång, så körs det automatiskt. Inget dagligt krångel!
+
+Intresserad?
+
+-   Kolla in våra detaljerade instruktioner för olika system som Victron Venus OS, Windows eller Linux-inställningar. Vi har sett till att stegen är enkla att följa.
+-   Var med och gör energianvändningen smartare och mer kostnadseffektiv! För frågor, förslag eller feedback är du välkommen att höra av dig.
 
 Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
-Ta en titt på linje 965 i controller.sh (charger_command_turnon) så att du kan se hur lätt det kan anpassas.
+Ta en titt på controller.sh och sök efter charger_command_turnon så att du kan se hur enkelt den kan anpassas.
 Skapa en github-gaffel och dela din anpassning så att andra användare kan dra nytta av den.
 
 ## Datakälla
@@ -26,9 +41,7 @@ Mjukvaran använder för närvarande EPEX Spot timpriser som tillhandahålls av 
 Den integrerade kostnadsfria Entso-E API tillhandahåller energiprisdata för följande länder:
 Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjeckien (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgien (GE), Tyskland (DE), Grekland (GR), Ungern (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldavien (MD), Montenegro (ME), Nederländerna (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slovakien (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Turkiet (TR), Ukraina (UA), Storbritannien (UK) se[Transparens Entso-E-plattform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Om du vill se en mer detaljerad utdata i debugmode, vänligen ta en titt på detta exempel på testkörning:[pull begäran testkörning #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Installation
 
@@ -43,7 +56,7 @@ Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNI
     På en Cerbo GX är filsystemet skrivskyddat monterat. Ser<https://www.victronenergy.com/live/ccgx:root_access>. För att göra filsystemet skrivbart måste du köra följande kommando innan du kör installationsskriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt är dess större strömförbrukning ett problem.
+Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt, är dess större strömförbrukning ett problem.
 
 ### Tillgång till Venus OS
 
@@ -86,7 +99,7 @@ Om du tycker att det här projektet är värdefullt, vänligen överväg att spo
 
 Om du är från Tyskland och är intresserad av att byta till en dynamisk eltariff kan du stödja projektet genom att registrera dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus för hårdvara**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortfarande stödja projektet[Octopus Energy (referenslänk)](https://share.octopusenergy.de/glass-raven-58).
-Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
+Du får en bonus (erbjudandet varierar**between 50 and 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
 Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Vänligen använd`3KEHMQN2F`som kod.
