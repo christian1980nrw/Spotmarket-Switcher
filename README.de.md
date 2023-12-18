@@ -2,12 +2,23 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Nederlands ](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
+[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
 
 ## Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
 Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie über ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter verfügen, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
+
+Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Energieverbrauch effizient zu automatisieren und so nicht nur Kosten zu sparen, sondern auch die Nutzung erneuerbarer Energiequellen zu optimieren. Es ist ein großartiges Beispiel dafür, wie intelligente Technologie genutzt werden kann, um den Energieverbrauch nachhaltiger und kostengünstiger zu steuern.
+
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Nachtnutzung: In der Nacht, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (rot dargestellt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
+-   Wirtschaftlichkeit beim Laden der Batterie: Das Drehbuch hat sich strategisch dafür entschieden, den Batteriespeicher zu diesem Zeitpunkt nicht aufzuladen. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Dieser Ansatz stellt sicher, dass das Laden der Batterie nur dann erfolgt, wenn es am kostengünstigsten ist.
+-   Optimale Nutzung der Batterie während der Spitzenzeiten: In der Grafik werden die teuersten Energiestunden morgens und abends angezeigt. In diesen Zeiträumen nutzte der Spotmarket-Switcher die in der Batterie gespeicherte Energie (blau dargestellt) und vermied so hohe Stromkosten. Dies ist eine intelligente Strategie zur Reduzierung der Energiekosten durch die Nutzung gespeicherter Energie, deren Bezug aus dem Netz teurer ist.
+-   Batteriereservierung für Stunden mit hohen Kosten: Nach den Zeiträumen mit hohen Kosten wurde das Energiespeichersystem (ESS) der Batterie abgeschaltet. Diese Maßnahme wurde ergriffen, um ausreichend Batteriekapazität für die bevorstehenden teuren Stunden am nächsten Morgen zu reservieren. Es handelt sich um einen zukunftsorientierten Ansatz, der zukünftige Hochkostenperioden vorhersieht und sicherstellt, dass gespeicherte Energie zur Verfügung steht, um diese Kosten auszugleichen.
 
 Warum Spotmarket-Switcher verwenden?
 
@@ -17,11 +28,11 @@ Warum Spotmarket-Switcher verwenden?
 
 Unterstützte Systeme sind derzeit:
 
--   Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-Produkte (wie z[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)Und[210](https://avm.de/produkte/smart-home/fritzdect-210/)schaltbare Steckdosen
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie das[MultiPlus-II-Serie](https://www.victronenergy.com/inverters-chargers)
 
-Getting Started:
+Erste Schritte:
 
 -   Herunterladen und installieren: Der Einrichtungsprozess ist unkompliziert. Laden Sie das Skript herunter, passen Sie ein paar Einstellungen an und schon kann es losgehen.
 -   Planen und entspannen: Richten Sie es einmal ein und es wird automatisch ausgeführt. Kein täglicher Ärger!
@@ -52,7 +63,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR lauten`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
     Auf einem Cerbo GX ist das Dateisystem schreibgeschützt gemountet. Sehen<https://www.victronenergy.com/live/ccgx:root_access>. Um das Dateisystem beschreibbar zu machen, müssen Sie den folgenden Befehl ausführen, bevor Sie das Installationsskript ausführen:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
@@ -82,14 +93,13 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
     -   Vergessen Sie nicht, dass Windows das System stoppt, wenn Sie die Shell schließen.
 
 
--   Wenn Sie ein Linux-System wie Ubuntu oder Debian verwenden:
+-   If you're using a Linux-System like Ubuntu or Debian:
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Die Befehle sind`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`und zum Bearbeiten Ihrer Einstellungen verwenden Sie`vi /path/to/save/config.txt`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
     -   Beispiel-Crontab:
           Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
-          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, then insert the following line:
-          `0 * * * * /path/to/controller.sh`
+          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:`0 * * * * /path/to/controller.sh`
 
 ### Unterstützung und Beitrag :+1:
 
@@ -98,12 +108,12 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie aus Deutschland kommen und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e)oder durch Eingabe des Codes`ojgfbx2e`in Ihrer App. Sowohl Sie als auch das Projekt erhalten**50 Euro Bonus für Hardware**. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>) .
-If you need a natural gas tariff or prefer a classic electricity tariff, you can still support the project [Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
+Wenn Sie aus Deutschland kommen und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e)oder durch Eingabe des Codes`ojgfbx2e`in Ihrer App. Sowohl Sie als auch das Projekt erhalten**50 Euro Bonus für Hardware**. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>).
+Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
 Sie erhalten einen Bonus (das Angebot variiert**zwischen 50 und 120 Euro**) für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass einige Angebote ohne Mindestvertragslaufzeit sind. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
-Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
+Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Empfehlungslink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
 
 ## Haftungsausschluss
 
