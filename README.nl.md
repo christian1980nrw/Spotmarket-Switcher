@@ -56,7 +56,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
     Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem schrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere stroomverbruik een probleem.
 
 ### Toegang tot Venus OS
 
