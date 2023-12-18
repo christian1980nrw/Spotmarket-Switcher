@@ -12,10 +12,10 @@ Spotmarket-Switcher on lihtsalt kasutatav tarkvaratööriist, mis aitab säästa
 See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiakasutust automatiseerida, mitte ainult kulusid kokku hoida, vaid optimeerida ka taastuvate energiaallikate kasutamist. See on suurepärane näide sellest, kuidas nutikat tehnoloogiat saab kasutada energiatarbimise säästlikumaks ja kulutõhusamaks juhtimiseks.
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Öine kasutamine: öösel, kui energiahinnad olid madalaimad, aktiveeris Spotmarket-Switcher nutikalt lülitatava pistikupesa kuuma vee soojuspumba sisselülitamiseks (tähistatud punasega). See näitab süsteemi võimet tuvastada ja kasutada madala hinnaga energiaperioode energiamahukate ülesannete jaoks.
+-   Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
 -   Aku laadimise majanduslik efektiivsus: skript otsustas strateegiliselt aku salvestusruumi praegu mitte laadida. See otsus põhines majanduslikul kontrollil, milles võeti arvesse laadimiskadusid ja võrreldi neid päeva keskmiste või kõrgeimate energiahindadega. See lähenemisviis tagab, et aku laadimine toimub ainult siis, kui see on kõige kuluefektiivsem.
 -   Aku optimaalne kasutamine tipptundidel: graafikul on näidatud kõige kallimad energiatunnid hommikul ja õhtul. Nendel perioodidel kasutas Spotmarket-Switcher aku (näidatud sinisega) salvestatud energiat, vältides sellega suuri elektrikulusid. See on nutikas strateegia energiakulude vähendamiseks, kasutades salvestatud energiat, kui seda on võrgust kallim ammutada.
 -   Aku reserveerimine kallite tundide jaoks: pärast kallite perioodide lõppu lülitati aku energiasalvestussüsteem (ESS) välja. See toiming tehti selleks, et reserveerida piisav aku võimsus järgmise hommiku eelseisvate kallite tundide jaoks. See on tulevikku suunatud lähenemisviis, mis näeb ette tulevasi kõrgeid kuluperioode ja tagab salvestatud energia kättesaadavuse nende kulude tasandamiseks.
@@ -108,7 +108,7 @@ Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise a
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Kui olete Saksamaalt ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e)või sisestades koodi`ojgfbx2e`teie rakenduses. Saate nii teie kui ka projekt**50 eurot lisatasu riistvara eest**. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Kui olete Saksamaalt ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e)või sisestades koodi`ojgfbx2e`teie rakenduses. Saate nii teie kui ka projekt**50 eurot lisatasu riistvara eest**. Please note that a smart meter or a Pulse-IR is required for an hourly tariff (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate projekti siiski toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
 Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) endale ja ka projektile.
 Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tähtajata. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
