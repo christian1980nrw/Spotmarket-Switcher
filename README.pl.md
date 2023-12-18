@@ -7,17 +7,32 @@
 ## Witamy w repozytorium Spotmarket-Switcher!
 
 Co robi to oprogramowanie?
-Jest to skrypt powłoki dla systemu Linux, który włącza ładowarkę i/lub przełączane gniazdka we właściwym czasie, jeśli stawki godzinowe za energię dynamiczną są niskie.
-Dzięki gniazdkom znacznie taniej załączysz zasobnik ciepłej wody użytkowej lub będziesz mógł automatycznie ładować akumulator w nocy, gdy w sieci dostępna będzie tania energia wiatrowa.
-Oczekiwany uzysk energii słonecznej można uwzględnić za pomocą interfejsu pogodowego API i odpowiednio zarezerwować miejsce w akumulatorze.
+Spotmarket-Switcher to łatwe w użyciu narzędzie programowe, które pomaga zaoszczędzić pieniądze na rachunkach za energię. Jeśli masz inteligentną ładowarkę do akumulatorów lub urządzenia takie jak podgrzewacze wody, które mogą włączać się i wyłączać automatycznie, to narzędzie jest idealne dla Ciebie! Inteligentnie włącza Twoje urządzenia, gdy ceny energii są niskie, co jest szczególnie przydatne, jeśli koszty energii zmieniają się co godzinę.
+
+Dlaczego warto używać Spotmarket-Switcher?
+
+-   Oszczędzaj pieniądze: Włącza Twoje urządzenia, gdy energia jest tańsza, obniżając rachunki.
+-   Energooszczędność: Wykorzystując energię, gdy jest jej w nadmiarze (np. wietrzne noce), przyczyniasz się do tworzenia bardziej ekologicznej planety.
+-   Inteligentne użytkowanie: automatycznie ładuj akumulator lub włączaj urządzenia, takie jak podgrzewacze wody, w najlepszym momencie.
+
 Obsługiwane systemy to obecnie:
 
 -   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
+Pierwsze kroki:
+
+-   Pobierz i zainstaluj: Proces instalacji jest prosty. Pobierz skrypt, dostosuj kilka ustawień i gotowe.
+-   Zaplanuj i zrelaksuj się: skonfiguruj raz, a będzie działać automatycznie. Żadnych codziennych kłopotów!
+
+Zainteresowany?
+
+-   Zapoznaj się z naszymi szczegółowymi instrukcjami dotyczącymi różnych systemów, takich jak konfiguracje Victron Venus OS, Windows lub Linux. Upewniliśmy się, że kroki są łatwe do wykonania.
+-   Dołącz do nas, aby zużycie energii było mądrzejsze i bardziej opłacalne! W przypadku jakichkolwiek pytań, sugestii lub opinii prosimy o kontakt.
+
 Kod jest prosty, dzięki czemu można go łatwo dostosować do innych systemów magazynowania energii, jeśli potrafisz kontrolować ładowanie za pomocą poleceń powłoki Linux.
-Proszę rozejrzeć się po linii 965 pliku kontroler.sh (charger_command_turnon), aby przekonać się, jak łatwo można go dostosować.
+Spójrz na plik Controller.sh i wyszukaj Charger_command_turnon, aby zobaczyć, jak łatwo można go dostosować.
 Utwórz widelec Github i udostępnij swoją personalizację, aby inni użytkownicy mogli z niej skorzystać.
 
 ## Źródło danych
@@ -26,9 +41,7 @@ Oprogramowanie obecnie wykorzystuje ceny godzinowe EPEX Spot dostarczane przez t
 Zintegrowany bezpłatny interfejs API Entso-E dostarcza dane o cenach energii w następujących krajach:
 Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), Chorwacja (HR), Cypr (CY), Czechy (CZ), Dania (DK), Estonia (EE), Finlandia (FI), Francja (FR), Gruzja (GE), Niemcy (DE), Grecja (GR), Węgry (HU), Irlandia (IE), Włochy (IT), Kosowo (XK), Łotwa (LV), Litwa (LT), Luksemburg (LU), Malta (MT), Mołdawia (MD), Czarnogóra (ME), Holandia (NL), Macedonia Północna (MK), Norwegia (NO), Polska (PL), Portugalia (PT), Rumunia (RO), Serbia (RS), Słowacja (SK) , Słowenia (SI), Hiszpania (ES), Szwecja (SE), Szwajcaria (CH), Turcja (TR), Ukraina (UA), Wielka Brytania (UK) patrz[Przejrzystość platformy Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Jeśli chcesz zobaczyć bardziej szczegółowe wyniki w trybie debugowania, spójrz na ten przykładowy test:[Uruchomienie testowe żądania ściągnięcia nr 155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Instalacja
 
@@ -55,7 +68,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
