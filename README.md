@@ -8,6 +8,17 @@
 What is this software doing? 
 Spotmarket-Switcher is an easy-to-use software tool that helps you save money on your energy bills. If you have a smart battery charger or devices like water heaters that can turn on and off automatically, this tool is perfect for you! It smartly switches on your devices when energy prices are low, especially useful if your energy costs change every hour.
 
+This typical result showcases the Spotmarket-Switcher's ability to automate energy usage efficiently, not only saving costs but also optimizing the use of renewable energy sources. It's a great example of how smart technology can be used to manage energy consumption in a more sustainable and cost-effective manner.
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+- Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
+- Economic Efficiency in Battery Charging: The script strategically decided not to charge the battery storage at this time. This decision was based on an economic check that took into account charging losses and compared them against the average or highest energy prices of the day. This approach ensures that battery charging occurs only when it's most cost-effective.
+- Optimal Use of Battery During Peak Hours: In the graph, the most expensive energy hours are indicated in the morning and evening. During these periods, the Spotmarket-Switcher used the stored energy in the battery (shown in blue), thus avoiding high electricity costs. This is a smart strategy to reduce energy expenses by utilizing stored energy when it's more expensive to draw from the grid.
+- Battery Reservation for High-Cost Hours: Post the high-cost periods, the battery's Energy Storage System (ESS) was turned off. This action was taken to reserve sufficient battery capacity for the upcoming expensive hours in the next morning. It's a forward-thinking approach that anticipates future high-cost periods and ensures that stored energy is available to offset these costs.
+
+
 Why Use Spotmarket-Switcher?
 - Save Money: It turns on your devices when energy is cheaper, cutting down your bills.
 - Energy Efficient: By using energy when it's in surplus (like windy nights), you contribute to a greener planet.
