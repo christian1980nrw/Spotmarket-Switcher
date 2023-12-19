@@ -15,7 +15,7 @@ Tämä tyypillinen tulos esittelee Spotmarket-Switcherin kyvyn automatisoida ene
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
+-   Yökäyttö: Yön aikana, kun energian hinnat olivat alhaisimmillaan, Spotmarket-Switcher aktivoi älykkäästi kytkettävän pistorasian kuumavesilämpöpumpun käynnistämiseksi (piikki merkitty punaisella). Tämä osoittaa järjestelmän kyvyn tunnistaa ja hyödyntää edullisia energiajaksoja energiaintensiivisiin tehtäviin.
 -   Taloudellinen tehokkuus akun latauksessa: Käsikirjoitus päätti strategisesti olla lataamatta akun tallennustilaa tällä hetkellä. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
 -   Akun optimaalinen käyttö ruuhka-aikoina: Kaaviossa kalleimmat energiatunnit on merkitty aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti varastoitua akkuenergiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta. Tämä on älykäs strategia energiakulujen vähentämiseksi hyödyntämällä varastoitua energiaa, kun sen saaminen verkosta on kalliimpaa.
 -   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Se ei ollut tyhjä illalla noin klo 20.00. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Se on eteenpäin katsova lähestymistapa, joka ennakoi tulevia korkeita kustannuksia ja varmistaa, että varastoitua energiaa on saatavilla näiden kustannusten kattamiseksi.
@@ -42,7 +42,7 @@ Kiinnostunut?
 -   Tutustu yksityiskohtaisiin ohjeisiimme eri järjestelmille, kuten Victron Venus OS:lle, Windowsille tai Linuxille. Olemme varmistaneet, että vaiheet ovat helppoja seurata.
 -   Tule mukaan tekemään energiankäytöstä älykkäämpää ja kustannustehokkaampaa! Jos sinulla on kysyttävää, ehdotuksia tai palautetta, ota rohkeasti yhteyttä.
 
-Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energianvarastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
+Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
 Katso tiedosto controller.sh ja hae charger_command_turnon, jotta näet kuinka helppoa se voidaan mukauttaa.
 Luo github-haarukka ja jaa mukauksesi, jotta muut käyttäjät voivat hyötyä siitä.
 
