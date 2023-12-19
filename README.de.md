@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
+[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch ](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
 
 ## Willkommen im Spotmarket-Switcher-Repository!
 
@@ -18,7 +18,7 @@ Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Ener
 -   Nachtnutzung: Nachts, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (Spitze rot angezeigt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
 -   Wirtschaftlichkeit beim Batterieladen: Das Programm hat sich strategisch entschieden, den Batteriespeicher in dieser Zeit nicht zu laden. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Dieser Ansatz stellt sicher, dass das Laden der Batterie nur dann erfolgt, wenn es am kostengünstigsten ist.
 -   Optimale Nutzung der Batterie während der Spitzenzeiten: An diesem Tag waren die Stunden mit dem höchsten Energiebedarf morgens und abends. In diesen Zeiträumen nutzt der Spotmarket-Switcher die gespeicherte Batterieenergie (blau dargestellt) und vermeidet so hohe Stromkosten.
--   Batteriereservierung für Stunden mit hohen Kosten: Nach den Zeiträumen mit hohen Kosten wurde das Energiespeichersystem (ESS) der Batterie abgeschaltet. Abends gegen 20:00 Uhr war es nicht leer. Diese Maßnahme wurde ergriffen, um ausreichend Batteriekapazität für die bevorstehenden teuren Stunden am nächsten Morgen zu reservieren. Dies antizipiert zukünftige Hochkostenperioden und stellt sicher, dass gespeicherte Energie zur Verfügung steht, um diese Kosten auszugleichen.
+-   Batteriereservierung für Stunden mit hohen Kosten: Nach den Zeiträumen mit hohen Kosten wurde das Energiespeichersystem (ESS) der Batterie abgeschaltet. Abends gegen 20:00 Uhr war es nicht leer. Diese Maßnahme wurde ergriffen, um ausreichend Batteriekapazität für die bevorstehenden teuren Stunden am nächsten Morgen zu reservieren. Dies antizipiert künftige Hochkostenperioden und stellt sicher, dass gespeicherte Energie zur Kostenminimierung verfügbar ist.
 
 Warum Spotmarket-Switcher verwenden?
 
