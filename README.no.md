@@ -9,6 +9,17 @@
 Hva gjør denne programvaren?
 Spotmarket-Switcher er et brukervennlig programvareverktøy som hjelper deg å spare penger på strømregningen. Hvis du har en smart batterilader eller enheter som varmtvannsberedere som kan slå seg på og av automatisk, er dette verktøyet perfekt for deg! Den slår på enhetene dine på en smart måte når energiprisene er lave, spesielt nyttig hvis energikostnadene dine endres hver time.
 
+Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere energibruk effektivt, ikke bare spare kostnader, men også optimalisere bruken av fornybare energikilder. Det er et godt eksempel på hvordan smart teknologi kan brukes til å styre energiforbruket på en mer bærekraftig og kostnadseffektiv måte.
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
+-   Økonomisk effektivitet i batterilading: Skriptet bestemte seg strategisk for å ikke lade batterilagringen på dette tidspunktet. Denne beslutningen var basert på en økonomisk sjekk som tok hensyn til ladetap og sammenlignet dem med dagens gjennomsnittlige eller høyeste energipriser. Denne tilnærmingen sikrer at batterilading bare skjer når det er mest kostnadseffektivt.
+-   Optimal bruk av batteri under peak timer: I grafen er de dyreste energitimene angitt om morgenen og kvelden. I disse periodene brukte Spotmarket-Switcher den lagrede energien i batteriet (vist i blått), og unngikk dermed høye strømkostnader. Dette er en smart strategi for å redusere energiutgiftene ved å utnytte lagret energi når det er dyrere å hente fra nettet.
+-   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Det er en fremtidsrettet tilnærming som forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å kompensere for disse kostnadene.
+
 Hvorfor bruke Spotmarket-Switcher?
 
 -   Spar penger: Den slår på enhetene dine når energien er billigere, og reduserer regningene dine.
@@ -56,9 +67,9 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
     På en Cerbo GX er filsystemet montert skrivebeskyttet. Se<https://www.victronenergy.com/live/ccgx:root_access>. For å gjøre filsystemet skrivbart må du utføre følgende kommando før du kjører installasjonsskriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses til andre Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller et annet lite brett. En førstegangskandidat er det absolutt[ÅpneWRT](https://www.openwrt.org). Å bruke en stasjonær maskin er greit for testformål, men når den er i 24/7 bruk, er det større strømforbruket en bekymring.
+Vær oppmerksom på at selv om denne programvaren for øyeblikket er optimalisert for Venus OS, kan den tilpasses til andre Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller et annet lite brett. En førstegangskandidat er det absolutt[ÅpneWRT](https://www.openwrt.org). Using a desktop machine is fine for testing purposes but when in 24/7 use its larger power consumption is of concern.
 
-### Access to Venus OS
+### Tilgang til Venus OS
 
 For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live/ccgx:root_access>.
 
@@ -70,7 +81,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
+-   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
@@ -97,7 +108,7 @@ Hvis du finner dette prosjektet verdifullt, kan du vurdere å sponse og støtte 
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Hvis du er fra Tyskland og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (henvisningslenke)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+Hvis du er fra Tyskland og interessert i å bytte til en dynamisk strømtariff, kan du støtte prosjektet ved å registrere deg ved å bruke denne[Tibber (referral link)](https://invite.tibber.com/ojgfbx2e)eller ved å taste inn koden`ojgfbx2e`i appen din. Både du og prosjektet vil motta**50 euro bonus for maskinvare**. Vær oppmerksom på at en smartmåler eller en Pulse-IR kreves for timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du fortsatt støtte prosjektet[Octopus Energy (henvisningslenke)](https://share.octopusenergy.de/glass-raven-58).
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
