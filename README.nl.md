@@ -15,10 +15,10 @@ Dit typische resultaat demonstreert het vermogen van de Spotmarket-Switcher om h
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nachtelijk gebruik: Tijdens de nacht, toen de energieprijzen het laagst waren, activeerde de Spotmarket-Switcher op slimme wijze een schakelbaar stopcontact om de warmwater-warmtepomp (aangegeven in rood) van stroom te voorzien. Dit toont aan dat het systeem in staat is om goedkope energieperioden voor energie-intensieve taken te identificeren en te gebruiken.
+-   Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
 -   Economische efficiëntie bij het opladen van de batterij: het script heeft strategisch besloten om de batterijopslag op dit moment niet op te laden. Deze beslissing was gebaseerd op een economische controle waarbij rekening werd gehouden met laadverliezen en deze werden vergeleken met de gemiddelde of hoogste energieprijzen van de dag. Deze aanpak zorgt ervoor dat het opladen van de batterij alleen plaatsvindt wanneer dit het meest kosteneffectief is.
--   Optimaal batterijgebruik tijdens piekuren: In de grafiek worden de duurste energie-uren in de ochtend en avond weergegeven. Tijdens deze periodes gebruikte de Spotmarket-Switcher de opgeslagen energie in de batterij (blauw weergegeven), waardoor hoge elektriciteitskosten werden vermeden. Dit is een slimme strategie om de energiekosten te verlagen door opgeslagen energie te gebruiken wanneer het duurder is om van het elektriciteitsnet te putten.
--   Batterijreservering voor uren met hoge kosten: Na de perioden met hoge kosten werd het energieopslagsysteem (ESS) van de batterij uitgeschakeld. Deze actie werd ondernomen om voldoende batterijcapaciteit te reserveren voor de komende dure uren in de volgende ochtend. Het is een vooruitstrevende aanpak die anticipeert op toekomstige perioden met hoge kosten en ervoor zorgt dat opgeslagen energie beschikbaar is om deze kosten te compenseren.
+-   Optimaal batterijgebruik tijdens piekuren: In de grafiek worden de duurste energie-uren in de ochtend en avond weergegeven. Tijdens deze periodes gebruikte de Spotmarket-Switcher de opgeslagen batterij-energie (blauw weergegeven), waardoor hoge elektriciteitskosten werden vermeden. Dit is een slimme strategie om de energiekosten te verlagen door opgeslagen energie te gebruiken wanneer het duurder is om van het elektriciteitsnet te putten.
+-   Batterijreservering voor uren met hoge kosten: Na de perioden met hoge kosten werd het energieopslagsysteem (ESS) van de batterij uitgeschakeld. 's Avonds rond 20.00 uur was het niet leeg. Deze actie werd ondernomen om voldoende batterijcapaciteit te reserveren voor de komende dure uren in de volgende ochtend. Het is een vooruitstrevende aanpak die anticipeert op toekomstige perioden met hoge kosten en ervoor zorgt dat opgeslagen energie beschikbaar is om deze kosten te compenseren.
 
 Waarom Spotmarket-Switcher gebruiken?
 
@@ -67,7 +67,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
     Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem schrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere energieverbruik een probleem.
+Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere stroomverbruik een probleem.
 
 ### Toegang tot Venus OS
 
