@@ -17,12 +17,12 @@ Tämä tyypillinen tulos esittelee Spotmarket-Switcherin kyvyn automatisoida ene
 
 -   Yökäyttö: Yön aikana, kun energian hinnat olivat alhaisimmillaan, Spotmarket-Switcher aktivoi älykkäästi kytkettävän pistorasian kuumavesilämpöpumpun käynnistämiseksi (piikki merkitty punaisella). Tämä osoittaa järjestelmän kyvyn tunnistaa ja hyödyntää edullisia energiajaksoja energiaintensiivisiin tehtäviin.
 -   Taloudellinen tehokkuus akun latauksessa: Ohjelma päätti strategisesti olla lataamatta akun tallennustilaa tällä hetkellä. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
--   Optimaalinen akun käyttö ruuhka-aikoina: Tänä päivänä kalleimmat energiatunnit olivat aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti varastoitua akkuenergiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta. Tämä on älykäs strategia energiakulujen vähentämiseksi hyödyntämällä varastoitua energiaa, kun sen saaminen verkosta on kalliimpaa.
+-   Optimaalinen akun käyttö ruuhka-aikoina: Tänä päivänä kalleimmat energiatunnit olivat aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti varastoitua akkuenergiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta.
 -   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Se ei ollut tyhjä illalla noin klo 20.00. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Se on eteenpäin katsova lähestymistapa, joka ennakoi tulevia korkeita kustannuksia ja varmistaa, että varastoitua energiaa on saatavilla näiden kustannusten kattamiseksi.
 
 Miksi käyttää Spotmarket-Switcheria?
 
--   Säästä rahaa: Se käynnistää laitteesi, kun energia on halvempaa, mikä vähentää laskujasi.
+-   Säästä rahaa: Se käynnistää laitteesi, kun energia on halvempaa, mikä pienentää laskujasi.
 -   Energiatehokas: Käyttämällä energiaa, kun sitä on ylijäämäisinä (kuten tuulisina öinä), edistät planeetan vihreämpää.
 -   Älykäs käyttö: Lataa akkuvarastosi automaattisesti tai käynnistä laitteita, kuten vedenlämmittimiä, parhaimmillaan.
 
@@ -111,7 +111,7 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 Jos olet Saksasta ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e)tai syöttämällä koodi`ojgfbx2e`sovelluksessasi. Sekä sinä että projekti saavat**50 euron bonus laitteistolle**. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat bonuksen (tarjous vaihtelee**50-120 euron välillä**) itsellesi ja myös projektille.
-Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 Jos olet Itävallasta, voit tukea meitä käyttämällä[aWATtar Itävalta (viittauslinkki)](https://www.awattar.at/services/offers/promotecustomers). Ole hyvä ja käytä`3KEHMQN2F`koodina.
 
