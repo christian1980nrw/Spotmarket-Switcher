@@ -16,7 +16,7 @@ Este resultado típico demonstra a capacidade do Spotmarket-Switcher de automati
 </p>
 
 -   Uso noturno: Durante a noite, quando os preços da energia estavam mais baixos, o Spotmarket-Switcher ativou de forma inteligente uma tomada comutável para ligar a bomba de calor de água quente (pico indicado em vermelho). Isto mostra a capacidade do sistema de identificar e utilizar períodos de energia de baixo custo para tarefas que consomem muita energia.
--   Eficiência Econômica no Carregamento da Bateria: O roteiro decidiu estrategicamente não carregar o armazenamento da bateria neste momento. Esta decisão baseou-se numa verificação económica que teve em conta as perdas de cobrança e as comparou com os preços médios ou mais elevados da energia do dia. Essa abordagem garante que o carregamento da bateria ocorra somente quando for mais econômico.
+-   Eficiência Econômica no Carregamento da Bateria: O programa decidiu estrategicamente não carregar o armazenamento da bateria neste momento. Esta decisão baseou-se numa verificação económica que teve em conta as perdas de cobrança e as comparou com os preços médios ou mais elevados da energia do dia. Essa abordagem garante que o carregamento da bateria ocorra somente quando for mais econômico.
 -   Uso ideal da bateria nos horários de pico: No gráfico, os horários de energia mais caros são indicados pela manhã e à noite. Durante estes períodos, o Spotmarket-Switcher utilizou a energia armazenada da bateria (mostrada em azul), evitando assim elevados custos de eletricidade. Esta é uma estratégia inteligente para reduzir despesas de energia, utilizando energia armazenada quando é mais caro extraí-la da rede.
 -   Reserva de Bateria para Horas de Alto Custo: Após os períodos de alto custo, o Sistema de Armazenamento de Energia (ESS) da bateria foi desligado. Não estava vazio à noite, por volta das 20:00. Esta ação foi tomada para reservar capacidade suficiente da bateria para as próximas horas caras da manhã seguinte. É uma abordagem inovadora que antecipa futuros períodos de custos elevados e garante que a energia armazenada esteja disponível para compensar esses custos.
 
@@ -44,12 +44,12 @@ Interessado?
 
 O código é simples para que possa ser facilmente adaptado a outros sistemas de armazenamento de energia se você for capaz de controlar o carregamento por comandos shell do Linux.
 Por favor, dê uma olhada em controller.sh e pesquise charger_command_turnon para ver como ele pode ser facilmente adaptado.
-Crie um fork no github e compartilhe sua personalização para que outros usuários possam se beneficiar dele.
+Crie um fork do github e compartilhe sua personalização para que outros usuários possam se beneficiar dele.
 
 ## Fonte de dados
 
 O software atualmente utiliza preços por hora EPEX Spot fornecidos por três APIs gratuitas (Tibber, aWATTar e Entso-E).
-A API Entso-E gratuita e integrada fornece dados sobre preços de energia dos seguintes países:
+A API gratuita integrada Entso-E fornece dados sobre preços de energia dos seguintes países:
 Albânia (AL), Áustria (AT), Bélgica (BE), Bósnia e Herz. (BA), Bulgária (BG), Croácia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estónia (EE), Finlândia (FI), França (FR), Geórgia (GE), Alemanha (DE), Grécia (GR), Hungria (HU), Irlanda (IE), Itália (IT), Kosovo (XK), Letónia (LV), Lituânia (LT), Luxemburgo (LU), Malta (MT), Moldávia (MD), Montenegro (ME), Países Baixos (NL), Macedónia do Norte (MK), Noruega (NO), Polónia (PL), Portugal (PT), Roménia (RO), Sérvia (RS), Eslováquia (SK) , Eslovénia (SI), Espanha (ES), Suécia (SE), Suíça (CH), Turquia (TR), Ucrânia (UA), Reino Unido (UK) ver[Plataforma Entso-E de Transparência](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
