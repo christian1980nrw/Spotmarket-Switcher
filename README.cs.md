@@ -9,16 +9,16 @@
 Co tento software dělá?
 Spotmarket-Switcher je snadno použitelný softwarový nástroj, který vám pomůže ušetřit peníze na účtech za energii. Pokud máte chytrou nabíječku baterií nebo zařízení, jako jsou ohřívače vody, které se mohou automaticky zapínat a vypínat, je tento nástroj pro vás ideální! Chytře zapíná vaše zařízení, když jsou ceny energie nízké, zvláště užitečné, pokud se vaše náklady na energii mění každou hodinu.
 
-Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně automatizovat spotřebu energie, nejen šetřit náklady, ale také optimalizovat využití obnovitelných zdrojů energie. Je to skvělý příklad toho, jak lze chytrou technologii využít ke správě spotřeby energie udržitelnějším a nákladově efektivnějším způsobem.
+Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně automatizovat spotřebu energie, nejen šetřit náklady, ale také optimalizovat využití obnovitelných zdrojů energie. Je to skvělý příklad toho, jak lze chytrou technologii využít ke správě spotřeby energie udržitelnějším a nákladově efektivnějším způsobem. (modrá = použití baterie, červená = síť, žlutá = solární)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Noční použití: Během noci, kdy byly ceny energie nejnižší, Spotmarket-Switcher chytře aktivoval přepínatelnou zásuvku pro zapnutí tepelného čerpadla pro teplou vodu (označeno červeně). To ukazuje schopnost systému identifikovat a využívat nízkonákladová energetická období pro energeticky náročné úkoly.
+-   Noční použití: Během noci, kdy byly ceny energie nejnižší, Spotmarket-Switcher chytře aktivoval přepínatelnou zásuvku pro zapnutí tepelného čerpadla pro teplou vodu (špička označená červeně). To ukazuje schopnost systému identifikovat a využívat nízkonákladová energetická období pro energeticky náročné úkoly.
 -   Ekonomická efektivita při nabíjení baterie: Skript se strategicky rozhodl v tuto chvíli nenabíjet úložiště baterie. Toto rozhodnutí bylo založeno na ekonomické kontrole, která zohledňovala ztráty z nabíjení a porovnávala je s průměrnými nebo nejvyššími cenami energie v daný den. Tento přístup zajišťuje, že nabíjení baterie probíhá pouze tehdy, když je to nákladově nejefektivnější.
--   Optimální využití baterie ve špičce: V grafu jsou hodiny s nejdražší energií zobrazeny ráno a večer. Během těchto období Spotmarket-Switcher využíval energii uloženou v baterii (zobrazeno modře), čímž se vyhnul vysokým nákladům na elektřinu. Jedná se o chytrou strategii, jak snížit náklady na energii využitím uložené energie, když je její čerpání ze sítě dražší.
--   Rezervace baterie pro hodiny s vysokými náklady: Po období s vysokými náklady byl systém ukládání energie (ESS) baterie vypnutý. Toto opatření bylo přijato za účelem rezervace dostatečné kapacity baterie pro nadcházející drahé hodiny příštího rána. Jedná se o pokrokový přístup, který předvídá budoucí období s vysokými náklady a zajišťuje dostupnost akumulované energie pro kompenzaci těchto nákladů.
+-   Optimální využití baterie ve špičce: V grafu jsou hodiny s nejdražší energií zobrazeny ráno a večer. Během těchto období Spotmarket-Switcher využíval uloženou energii baterie (zobrazená modře), čímž se vyhnul vysokým nákladům na elektřinu. Jedná se o chytrou strategii, jak snížit náklady na energii využitím uložené energie, když je její čerpání ze sítě dražší.
+-   Rezervace baterie pro hodiny s vysokými náklady: Po období s vysokými náklady byl systém ukládání energie (ESS) baterie vypnutý. Večer kolem 20:00 nebylo prázdno. Toto opatření bylo přijato za účelem rezervace dostatečné kapacity baterie pro nadcházející drahé hodiny příštího rána. Jedná se o pokrokový přístup, který předvídá budoucí období s vysokými náklady a zajišťuje dostupnost akumulované energie pro kompenzaci těchto nákladů.
 
 Proč používat Spotmarket-Switcher?
 
@@ -83,7 +83,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokyny k instalaci Spotmarket-Switcher na systém Windows 10 nebo 11 pro testování bez zařízení Victron (pouze přepínatelné zásuvky).
 
-    -   zahájení`cmd.exe` as Administrator
+    -   zahájení`cmd.exe`jako správce
     -   Vstupte`wsl --install -d Debian`
     -   Zadejte nové uživatelské jméno jako`admin`
     -   vložte nové heslo
