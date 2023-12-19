@@ -6,7 +6,7 @@
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
-Vad gör denna programvara?
+Vad gör den här programvaran?
 Spotmarket-Switcher är ett lättanvänt mjukvaruverktyg som hjälper dig att spara pengar på dina energiräkningar. Om du har en smart batteriladdare eller enheter som varmvattenberedare som kan slås på och stängas av automatiskt, är detta verktyg perfekt för dig! Den sätter smart på dina enheter när energipriserna är låga, särskilt användbart om dina energikostnader ändras varje timme.
 
 Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera energianvändningen effektivt, inte bara spara kostnader utan också optimera användningen av förnybara energikällor. Det är ett bra exempel på hur smart teknik kan användas för att hantera energiförbrukningen på ett mer hållbart och kostnadseffektivt sätt. (blå = användning av batteri, röd = rutnät, gul = solenergi)
@@ -18,7 +18,7 @@ Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera ene
 -   Användning på natten: Under natten, när energipriserna var som lägst, aktiverade Spotmarket-Switcher smart ett omkopplingsbart uttag för att slå på varmvattenvärmepumpen (spik indikerad i rött). Detta visar systemets förmåga att identifiera och utnyttja lågkostnadsenergiperioder för energikrävande uppgifter.
 -   Ekonomisk effektivitet vid batteriladdning: Programmet beslutade strategiskt att inte ladda batterilagringen just nu. Detta beslut baserades på en ekonomisk kontroll som tog hänsyn till laddningsförluster och jämförde dem med dagens genomsnittliga eller högsta energipriser. Detta tillvägagångssätt säkerställer att batteriladdning endast sker när det är mest kostnadseffektivt.
 -   Optimal användning av batteriet under högtrafik: Vid denna dag var de dyraste energitimmarna på morgonen och kvällen. Under dessa perioder använde Spotmarket-Switcher den lagrade batterienergin (visas i blått), vilket undviker höga elkostnader.
--   Batterireservation för högkostnadstimmar: Efter högkostnadsperioderna stängdes batteriets energilagringssystem (ESS) av. Det var inte tomt på kvällen runt 20:00. Denna åtgärd vidtogs för att reservera tillräcklig batterikapacitet för de kommande dyra timmarna nästa morgon. Det är ett framåttänkande som förutser framtida högkostnadsperioder och säkerställer att lagrad energi finns tillgänglig för att kompensera för dessa kostnader.
+-   Batterireservation för högkostnadstimmar: Efter högkostnadsperioderna stängdes batteriets energilagringssystem (ESS) av. Det var inte tomt på kvällen runt 20:00. Denna åtgärd vidtogs för att reservera tillräcklig batterikapacitet för de kommande dyra timmarna nästa morgon. Detta förutser framtida högkostnadsperioder och säkerställer att lagrad energi finns tillgänglig för att kompensera för dessa kostnader.
 
 Varför använda Spotmarket-Switcher?
 
@@ -35,7 +35,7 @@ System som stöds är för närvarande:
 Komma igång:
 
 -   Ladda ner och installera: Installationsprocessen är enkel. Ladda ner skriptet, justera några inställningar och du är redo att gå.
--   Schemalägg och koppla av: Ställ in det en gång, så körs det automatiskt. Inget dagligt krångel!
+-   Schemalägg och koppla av: Ställ in det en gång och det körs automatiskt. Inget dagligt krångel!
 
 Intresserad?
 
@@ -77,7 +77,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 -   Om du använder Victron Venus OS:
     -   Redigera sedan variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera den efter att du skapat den. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
@@ -113,7 +113,7 @@ Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortf
 Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
-Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Använd gärna`3KEHMQN2F`som kod.
+Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Vänligen använd`3KEHMQN2F`som kod.
 
 ## varning
 
