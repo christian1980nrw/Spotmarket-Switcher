@@ -9,7 +9,7 @@
 Co robi to oprogramowanie?
 Spotmarket-Switcher to łatwe w użyciu narzędzie programowe, które pomaga zaoszczędzić pieniądze na rachunkach za energię. Jeśli masz inteligentną ładowarkę do akumulatorów lub urządzenia takie jak podgrzewacze wody, które mogą włączać się i wyłączać automatycznie, to narzędzie jest idealne dla Ciebie! Inteligentnie włącza Twoje urządzenia, gdy ceny energii są niskie, co jest szczególnie przydatne, jeśli koszty energii zmieniają się co godzinę.
 
-Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do wydajnej automatyzacji zużycia energii, nie tylko oszczędzając koszty, ale także optymalizując wykorzystanie odnawialnych źródeł energii. To doskonały przykład tego, jak można wykorzystać inteligentną technologię do zarządzania zużyciem energii w bardziej zrównoważony i opłacalny sposób. (niebieski = użycie baterii, czerwony = siatka, żółty = energia słoneczna)
+Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyzacji zużycia energii, nie tylko oszczędzając koszty, ale także optymalizując wykorzystanie odnawialnych źródeł energii. To doskonały przykład tego, jak można wykorzystać inteligentną technologię do zarządzania zużyciem energii w bardziej zrównoważony i opłacalny sposób. (niebieski = użycie baterii, czerwony = siatka, żółty = energia słoneczna)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
@@ -18,7 +18,7 @@ Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do wydajnej automatyzac
 -   Użycie w nocy: W nocy, kiedy ceny energii były najniższe, Spotmarket-Switcher w inteligentny sposób aktywował przełączane gniazdko, aby włączyć pompę ciepła do ciepłej wody (skok zaznaczony na czerwono). Pokazuje to zdolność systemu do identyfikowania i wykorzystywania okresów niskiego zużycia energii do zadań energochłonnych.
 -   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu obecnie akumulatora. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
 -   Optymalne wykorzystanie baterii w godzinach szczytu: W tym dniu najdroższe godziny zużycia energii przypadały na poranek i wieczór. W tych okresach Spotmarket-Switcher wykorzystywał zmagazynowaną energię akumulatora (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej.
--   Battery Reservation for High-Cost Hours: Post the high-cost periods, the battery's Energy Storage System (ESS) was turned off. It was not empty in the evening around 20:00. This action was taken to reserve sufficient battery capacity for the upcoming expensive hours in the next morning. It's a forward-thinking approach that anticipates future high-cost periods and ensures that stored energy is available to offset these costs.
+-   Rezerwacja akumulatora na godziny o najwyższych kosztach: Po okresach o najwyższych kosztach system magazynowania energii (ESS) akumulatora został wyłączony. Wieczorem około 20:00 nie było pusto. Działanie to podjęto, aby zarezerwować wystarczającą pojemność baterii na nadchodzące drogie godziny następnego ranka. Pozwala to przewidzieć przyszłe okresy wysokich kosztów i zapewnić dostępność zmagazynowanej energii w celu zrównoważenia tych kosztów.
 
 Dlaczego warto używać Spotmarket-Switcher?
 
@@ -79,7 +79,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
