@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[Español ](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
@@ -17,7 +17,7 @@ Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyz
 
 -   Użycie w nocy: W nocy, kiedy ceny energii były najniższe, Spotmarket-Switcher w inteligentny sposób aktywował przełączane gniazdko, aby włączyć pompę ciepła do ciepłej wody (skok zaznaczony na czerwono). Pokazuje to zdolność systemu do identyfikowania i wykorzystywania okresów niskiego zużycia energii do zadań energochłonnych.
 -   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu obecnie akumulatora. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
--   Optymalne wykorzystanie baterii w godzinach szczytu: Na wykresie pokazano najdroższe godziny zużycia energii rano i wieczorem. W tych okresach Spotmarket-Switcher wykorzystywał zmagazynowaną energię akumulatora (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej. Jest to inteligentna strategia mająca na celu zmniejszenie wydatków na energię poprzez wykorzystanie zmagazynowanej energii, gdy jej pobieranie z sieci jest droższe.
+-   Optymalne wykorzystanie baterii w godzinach szczytu: W tym dniu najdroższe godziny zużycia energii przypadały na poranek i wieczór. W tych okresach Spotmarket-Switcher wykorzystywał zmagazynowaną energię akumulatora (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej. Jest to inteligentna strategia mająca na celu zmniejszenie wydatków na energię poprzez wykorzystanie zmagazynowanej energii, gdy jej pobieranie z sieci jest droższe.
 -   Rezerwacja akumulatora na godziny o najwyższych kosztach: Po okresach o najwyższych kosztach system magazynowania energii (ESS) akumulatora został wyłączony. Wieczorem około 20:00 nie było pusto. Działanie to podjęto, aby zarezerwować wystarczającą pojemność baterii na nadchodzące drogie godziny następnego ranka. Jest to podejście przyszłościowe, które przewiduje przyszłe okresy wysokich kosztów i zapewnia dostępność zmagazynowanej energii w celu zrównoważenia tych kosztów.
 
 Dlaczego warto używać Spotmarket-Switcher?
@@ -50,7 +50,7 @@ Utwórz widelec Github i udostępnij swoją personalizację, aby inni użytkowni
 
 Oprogramowanie obecnie wykorzystuje ceny godzinowe EPEX Spot dostarczane przez trzy bezpłatne interfejsy API (Tibber, aWATTar i Entso-E).
 Zintegrowany bezpłatny interfejs API Entso-E dostarcza dane o cenach energii w następujących krajach:
-Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), Chorwacja (HR), Cypr (CY), Czechy (CZ), Dania (DK), Estonia (EE), Finlandia (FI), Francja (FR), Gruzja (GE), Niemcy (DE), Grecja (GR), Węgry (HU), Irlandia (IE), Włochy (IT), Kosowo (XK), Łotwa (LV), Litwa (LT), Luksemburg (LU), Malta (MT), Mołdawia (MD), Czarnogóra (ME), Holandia (NL), Macedonia Północna (MK), Norwegia (NO), Polska (PL), Portugalia (PT), Rumunia (RO), Serbia (RS), Słowacja (SK) , Słowenia (SI), Hiszpania (ES), Szwecja (SE), Szwajcaria (CH), Turcja (TR), Ukraina (UA), Wielka Brytania (UK) patrz[Przejrzystość platformy Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), Chorwacja (HR), Cypr (CY), Czechy (CZ), Dania (DK), Estonia (EE), Finlandia (FI), Francja (FR), Gruzja (GE), Niemcy (DE), Grecja (GR), Węgry (HU), Irlandia (IE), Włochy (IT), Kosowo (XK), Łotwa (LV), Litwa (LT), Luksemburg (LU), Malta (MT), Mołdawia (MD), Czarnogóra (ME), Holandia (NL), Macedonia Północna (MK), Norwegia (NO), Polska (PL), Portugalia (PT), Rumunia (RO), Serbia (RS), Słowacja (SK) , Słowenia (SI), Hiszpania (ES), Szwecja (SE), Szwajcaria (CH), Turcja (TR), Ukraina (UA), Wielka Brytania (UK) patrz[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
