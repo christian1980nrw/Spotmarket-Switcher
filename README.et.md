@@ -18,7 +18,7 @@ See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiaka
 -   Öine kasutamine: öösel, kui energiahinnad olid madalaimad, aktiveeris Spotmarket-Switcher nutikalt lülitatava pistikupesa kuuma vee soojuspumba sisselülitamiseks (punasega näidatud nael). See näitab süsteemi võimet tuvastada ja kasutada madala hinnaga energiaperioode energiamahukate ülesannete jaoks.
 -   Aku laadimise majanduslik efektiivsus: programm otsustas strateegiliselt mitte laadida selle aja jooksul aku salvestusruumi. See otsus põhines majanduslikul kontrollil, milles võeti arvesse laadimiskadusid ja võrreldi neid päeva keskmiste või kõrgeimate energiahindadega. See lähenemisviis tagab, et aku laadimine toimub ainult siis, kui see on kõige kuluefektiivsem.
 -   Aku optimaalne kasutamine tipptundidel: sel päeval olid kõige kallimad energiatunnid hommikul ja õhtul. Nendel perioodidel kasutas Spotmarket-Switcher salvestatud akuenergiat (näidatud sinisega), vältides sellega suuri elektrikulusid.
--   Aku reserveerimine kallite tundide jaoks: pärast kallite perioodide lõppu lülitati aku energiasalvestussüsteem (ESS) välja. Õhtul kella 20 paiku see tühi ei olnud. See toiming tehti selleks, et reserveerida piisav aku võimsus järgmise hommiku eelseisvate kallite tundide jaoks. See ennustab tulevasi kõrgeid kuluperioode ja tagab salvestatud energia kättesaadavuse nende kulude tasandamiseks.
+-   Aku reserveerimine kallite tundide jaoks: pärast kallite perioodide lõppu lülitati aku energiasalvestussüsteem (ESS) välja. Õhtul kella 20 paiku see tühi ei olnud. See toiming tehti selleks, et reserveerida piisav aku võimsus järgmise hommiku eelseisvate kallite tundide jaoks. See näeb ette tulevasi kõrgeid kuluperioode ja tagab salvestatud energia kättesaadavuse kulude minimeerimiseks.
 
 Miks kasutada Spotmarket-Switcherit?
 
@@ -77,7 +77,8 @@ Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronen
 
 -   Kui kasutate operatsioonisüsteemi Victron Venus:
     -   Seejärel muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Set up an ESS charge schedule (refer to the screenshot provided). In the example, the battery charges at night up to 50% if activated, other charging times of the day are ignored. If not desired, create a schedule for all 24 hours of the day. Remember to deactivate it after creation. Verify that the system time (as shown in the top-right of the screen) is accurate.
+        ![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida.
 
