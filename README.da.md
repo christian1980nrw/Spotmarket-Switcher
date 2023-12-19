@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md) - [portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -18,7 +18,7 @@ Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energ
 -   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (spids angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
 -   Økonomisk effektivitet i batteriopladning: Programmet besluttede strategisk ikke at oplade batterilageret på nuværende tidspunkt. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
 -   Optimal brug af batteriet i myldretiden: På denne dag var de dyreste energitimer morgen og aften. I disse perioder brugte Spotmarket-Switcher den lagrede batteri-energi (vist med blåt), og dermed undgåede høje el-omkostninger.
--   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Det er en fremadskuende tilgang, der forudser fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at kompensere for disse omkostninger.
+-   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Dette foregriber fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at kompensere for disse omkostninger.
 
 Hvorfor bruge Spotmarket-Switcher?
 
@@ -43,7 +43,7 @@ Interesseret?
 -   Vær med til at gøre energiforbruget smartere og mere omkostningseffektivt! For spørgsmål, forslag eller feedback er du velkommen til at kontakte os.
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
-Tag et kig på controller.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
+Tag et kig på controlleren.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
 Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
@@ -89,7 +89,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
     -   Indtast et nyt kodeord
     -   Gå ind`sudo su`og skriv din adgangskode
     -   Gå ind`apt-get update && apt-get install wget curl`
-    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscriptet er ikke kompatibelt).
+    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscript er ikke kompatibelt).
     -   Glem ikke, hvis du lukker skallen, vil Windows stoppe systemet.
 
 
