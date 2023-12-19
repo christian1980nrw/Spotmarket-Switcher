@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[Deutsch ](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語 ](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
@@ -17,7 +17,7 @@ Spotmarket-Switcher は、光熱費の節約に役立つ使いやすいソフト
 
 -   夜間の使用: エネルギー価格が最低だった夜間に、Spotmarket-Switcher は切り替え可能なソケットをスマートに起動して、温水ヒート ポンプ (赤で示されているスパイク) に電力を供給しました。これは、エネルギー集約的なタスクのために低コストのエネルギー期間を特定して利用するシステムの能力を示しています。
 -   バッテリー充電の経済効率: プログラムは、現時点ではバッテリーストレージを充電しないことを戦略的に決定しました。この決定は、充電損失を考慮し、それをその日の平均または最高のエネルギー価格と比較する経済的チェックに基づいていました。このアプローチにより、最もコスト効率が高いときにのみバッテリーの充電が行われるようになります。
--   ピーク時間帯におけるバッテリーの最適な使用: グラフでは、エネルギー消費が最も高い時間帯は朝と夕方に示されています。これらの期間中、Spotmarket-Switcher は蓄えられたバッテリー エネルギー (青色で表示) を使用し、高い電気代を回避していました。これは、送電網からの電力供給がより高価な場合に、貯蔵されたエネルギーを利用することでエネルギー支出を削減する賢明な戦略です。
+-   ピーク時間帯におけるバッテリーの最適な使用: この日、エネルギー消費が最も高かった時間帯は朝と夕方でした。これらの期間中、Spotmarket-Switcher は蓄えられたバッテリー エネルギー (青色で表示) を使用し、高い電気代を回避していました。これは、送電網からの電力供給がより高価な場合に、貯蔵されたエネルギーを利用することでエネルギー支出を削減する賢明な戦略です。
 -   高コスト時間帯のバッテリー予約: 高コスト時間帯の後、バッテリーのエネルギー貯蔵システム (ESS) がオフになりました。夕方20時頃でも空いていました。この措置は、翌朝の高価な時間帯に備えて十分なバッテリー容量を確保するために行われました。これは、将来の高コスト期間を予測し、これらのコストを相殺するために貯蔵エネルギーを確実に利用できるようにする、先進的なアプローチです。
 
 Spotmarket-Switcher を使用する理由
@@ -34,7 +34,7 @@ Spotmarket-Switcher を使用する理由
 
 はじめる：
 
--   ダウンロードとインストール: セットアッププロセスは簡単です。スクリプトをダウンロードし、いくつかの設定を調整すれば準備完了です。
+-   Download and Install: The setup process is straightforward. Download the script, adjust a few settings, and you're ready to go.
 -   スケジュールを設定してリラックス: 一度設定すれば、自動的に実行されます。日常の煩わしさは一切なし！
 
 興味がある？
@@ -83,7 +83,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 -   Victron デバイス (切り替え可能なソケットのみ) を使用せずにテストするために Windows 10 または 11 システムに Spotmarket-Switcher をインストールする手順。
 
-    -   打ち上げ`cmd.exe`管理者として
+    -   打ち上げ`cmd.exe` as Administrator
     -   入力`wsl --install -d Debian`
     -   次のような新しいユーザー名を入力します`admin`
     -   新しいパスワードを入力
@@ -95,7 +95,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 
 -   Ubuntu や Debian などの Linux システムを使用している場合:
     -   シェルスクリプトをコピーします(`controller.sh`) をカスタムの場所に移動し、必要に応じて変数を調整します。
-    -   コマンドは`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`設定を編集するには、次を使用します`vi /path/to/save/config.txt`
+    -   the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`設定を編集するには、次を使用します`vi /path/to/save/config.txt`
     -   crontab または別のスケジュール方法を作成して、各時間の開始時にこのスクリプトを実行します。
     -   Crontab のサンプル:
           次の crontab エントリを使用して、制御スクリプトを 1 時間ごとに実行します。
@@ -113,7 +113,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 ボーナスを受け取ります（オファーは異なります）**50ユーロから120ユーロの間**) 自分自身にとっても、プロジェクトにとっても。
 オクトパスには、最低契約期間のないオファーもあるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。
 
-オーストリア在住の場合は、次の方法で私たちをサポートできます。[aWATTar オーストリア (参照リンク)](https://www.awattar.at/services/offers/promotecustomers)。ぜひご利用ください`3KEHMQN2F`コードとして。
+オーストリア在住の場合は、次の方法で私たちをサポートできます。[aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers)。ぜひご利用ください`3KEHMQN2F`コードとして。
 
 ## 免責事項
 
