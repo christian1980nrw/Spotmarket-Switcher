@@ -18,7 +18,7 @@ Este resultado típico demonstra a capacidade do Spotmarket-Switcher de automati
 -   Uso noturno: Durante a noite, quando os preços da energia estavam mais baixos, o Spotmarket-Switcher ativou de forma inteligente uma tomada comutável para ligar a bomba de calor de água quente (pico indicado em vermelho). Isto mostra a capacidade do sistema de identificar e utilizar períodos de energia de baixo custo para tarefas que consomem muita energia.
 -   Eficiência Econômica no Carregamento da Bateria: O programa decidiu estrategicamente não carregar o armazenamento da bateria neste momento. Esta decisão baseou-se numa verificação económica que teve em conta as perdas de cobrança e as comparou com os preços médios ou mais elevados da energia do dia. Essa abordagem garante que o carregamento da bateria ocorra somente quando for mais econômico.
 -   Uso ideal da bateria durante os horários de pico: Neste dia, os horários de energia mais caros eram de manhã e à noite. Durante estes períodos, o Spotmarket-Switcher utilizou a energia armazenada da bateria (mostrada em azul), evitando assim elevados custos de eletricidade.
--   Reserva de Bateria para Horas de Alto Custo: Após os períodos de alto custo, o Sistema de Armazenamento de Energia (ESS) da bateria foi desligado. Não estava vazio à noite, por volta das 20:00. Esta ação foi tomada para reservar capacidade suficiente da bateria para as próximas horas caras da manhã seguinte. É uma abordagem inovadora que antecipa períodos futuros de custos elevados e garante que a energia armazenada esteja disponível para compensar esses custos.
+-   Reserva de Bateria para Horas de Alto Custo: Após os períodos de alto custo, o Sistema de Armazenamento de Energia (ESS) da bateria foi desligado. Não estava vazio à noite, por volta das 20:00. Esta ação foi tomada para reservar capacidade suficiente da bateria para as próximas horas caras da manhã seguinte. Isto antecipa futuros períodos de custos elevados e garante que a energia armazenada esteja disponível para compensar esses custos.
 
 Por que usar o Spotmarket-Switcher?
 
@@ -77,7 +77,7 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Em seguida, edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega à noite até 50% se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
@@ -97,7 +97,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
     -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   os comandos são`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`e para editar suas configurações use`vi /path/to/save/config.txt`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de crontab:
+    -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:`0 * * * * /path/to/controller.sh`
 
