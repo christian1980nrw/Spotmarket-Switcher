@@ -16,7 +16,7 @@ Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera ene
 </p>
 
 -   Användning på natten: Under natten, när energipriserna var som lägst, aktiverade Spotmarket-Switcher smart ett omkopplingsbart uttag för att slå på varmvattenvärmepumpen (spik indikerad i rött). Detta visar systemets förmåga att identifiera och utnyttja lågkostnadsenergiperioder för energikrävande uppgifter.
--   Ekonomisk effektivitet vid batteriladdning: Programmet beslutade strategiskt att inte ladda batterilagringen just nu. Detta beslut baserades på en ekonomisk kontroll som tog hänsyn till laddningsförluster och jämförde dem med dagens genomsnittliga eller högsta energipriser. Detta tillvägagångssätt säkerställer att batteriladdning endast sker när det är mest kostnadseffektivt.
+-   Ekonomisk effektivitet vid batteriladdning: Programmet beslutade strategiskt att inte ladda batterilagringen under denna tid. Detta beslut baserades på en ekonomisk kontroll som tog hänsyn till laddningsförluster och jämförde dem med dagens genomsnittliga eller högsta energipriser. Detta tillvägagångssätt säkerställer att batteriladdning endast sker när det är mest kostnadseffektivt.
 -   Optimal användning av batteriet under högtrafik: Vid denna dag var de dyraste energitimmarna på morgonen och kvällen. Under dessa perioder använde Spotmarket-Switcher den lagrade batterienergin (visas i blått), vilket undviker höga elkostnader.
 -   Batterireservation för högkostnadstimmar: Efter högkostnadsperioderna stängdes batteriets energilagringssystem (ESS) av. Det var inte tomt på kvällen runt 20:00. Denna åtgärd vidtogs för att reservera tillräcklig batterikapacitet för de kommande dyra timmarna nästa morgon. Detta förutser framtida högkostnadsperioder och säkerställer att lagrad energi finns tillgänglig för att kompensera för dessa kostnader.
 
@@ -58,7 +58,7 @@ Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien 
 
 Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNIX-baserad maskin, som macOS, Linux eller Windows med Linux-undersystemet, följ dessa steg för att installera programvaran:
 
-1.  Ladda ner installationsskriptet från GitHub-förvaret genom att använda[denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
+1.  Download the install script from the GitHub repository by using [denna hyperlänk](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kör följande kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kör installationsskriptet med ytterligare alternativ för att förbereda allt i en underkatalog för din inspektion. Till exempel:
