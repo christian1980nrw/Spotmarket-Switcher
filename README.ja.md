@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[Italian ](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ人](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリアの](README.it.md)-[オランダの](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデンの](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
@@ -16,7 +16,7 @@ Spotmarket-Switcher は、光熱費の節約に役立つ使いやすいソフト
 </p>
 
 -   夜間の使用: エネルギー価格が最低だった夜間に、Spotmarket-Switcher は切り替え可能なソケットをスマートに起動して、温水ヒート ポンプ (赤で示されているスパイク) に電力を供給しました。これは、エネルギー集約的なタスクのために低コストのエネルギー期間を特定して利用するシステムの能力を示しています。
--   バッテリー充電の経済効率: プログラムは、現時点ではバッテリーストレージを充電しないことを戦略的に決定しました。この決定は、充電損失を考慮し、それをその日の平均または最高のエネルギー価格と比較する経済的チェックに基づいていました。このアプローチにより、最もコスト効率が高いときにのみバッテリーの充電が行われるようになります。
+-   バッテリー充電の経済効率: プログラムは、この期間中はバッテリー ストレージを充電しないことを戦略的に決定しました。この決定は、充電損失を考慮し、それをその日の平均または最高のエネルギー価格と比較する経済的チェックに基づいていました。このアプローチにより、最もコスト効率が高いときにのみバッテリーの充電が行われるようになります。
 -   ピーク時間帯におけるバッテリーの最適な使用: この日、エネルギー消費が最も高かった時間帯は朝と夕方でした。これらの期間中、Spotmarket-Switcher は蓄えられたバッテリー エネルギー (青色で表示) を使用し、高い電気代を回避していました。
 -   高コスト時間帯のバッテリー予約: 高コスト時間帯の後、バッテリーのエネルギー貯蔵システム (ESS) がオフになりました。夕方20時頃でも空いていました。この措置は、翌朝の高価な時間帯に備えて十分なバッテリー容量を確保するために行われました。これにより、将来の高コスト期間を予測し、これらのコストを相殺するために貯蔵されたエネルギーを確実に利用できるようになります。
 
@@ -54,7 +54,7 @@ controller.sh を見て、charger_command_turnon を検索すると、どれだ�
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
-## Installation
+## インストール
 
 Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS、Linux、または Linux サブシステムを備えた Windows などの UNIX ベースのマシンをすでに実行している場合は、次の手順に従ってソフトウェアをインストールします。
 
