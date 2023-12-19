@@ -9,7 +9,7 @@
 Que fait ce logiciel ?
 Spotmarket-Switcher est un outil logiciel facile à utiliser qui vous aide à économiser de l'argent sur vos factures d'énergie. Si vous disposez d'un chargeur de batterie intelligent ou d'appareils comme des chauffe-eau qui peuvent s'allumer et s'éteindre automatiquement, cet outil est parfait pour vous ! Il allume intelligemment vos appareils lorsque les prix de l'énergie sont bas, ce qui est particulièrement utile si vos coûts énergétiques changent toutes les heures.
 
-Ce résultat typique met en valeur la capacité du Spotmarket-Switcher à automatiser efficacement la consommation d'énergie, non seulement en réduisant les coûts, mais également en optimisant l'utilisation des sources d'énergie renouvelables. C'est un excellent exemple de la manière dont la technologie intelligente peut être utilisée pour gérer la consommation d'énergie de manière plus durable et plus rentable. (bleu = utilisation de la batterie, rouge = réseau, jaune = solaire)
+Ce résultat typique met en valeur la capacité du Spotmarket-Switcher à automatiser efficacement la consommation d'énergie, non seulement en réduisant les coûts, mais également en optimisant l'utilisation des sources d'énergie renouvelables. C'est un excellent exemple de la façon dont la technologie intelligente peut être utilisée pour gérer la consommation d'énergie de manière plus durable et plus rentable. (bleu = utilisation de la batterie, rouge = réseau, jaune = solaire)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
@@ -18,13 +18,13 @@ Ce résultat typique met en valeur la capacité du Spotmarket-Switcher à automa
 -   Utilisation nocturne : Pendant la nuit, lorsque les prix de l'énergie étaient au plus bas, le Spotmarket-Switcher a intelligemment activé une prise commutable pour alimenter la pompe à chaleur à eau chaude (pic indiqué en rouge). Cela montre la capacité du système à identifier et à utiliser les périodes d'énergie à faible coût pour des tâches à forte intensité énergétique.
 -   Efficacité économique du chargement des batteries : Le programme a stratégiquement décidé de ne pas charger les batteries de stockage pour le moment. Cette décision était basée sur un contrôle économique qui prenait en compte les pertes de charge et les comparait aux prix énergétiques moyens ou les plus élevés du moment. Cette approche garantit que la recharge de la batterie n'a lieu que lorsque cela est le plus rentable.
 -   Utilisation optimale de la batterie pendant les heures de pointe : à ce jour, les heures les plus coûteuses en énergie étaient le matin et le soir. Pendant ces périodes, le Spotmarket-Switcher a utilisé l'énergie stockée dans la batterie (indiquée en bleu), évitant ainsi des coûts d'électricité élevés.
--   Réservation de la batterie pour les heures à coût élevé : après les périodes à coût élevé, le système de stockage d'énergie (ESS) de la batterie a été désactivé. Il n'était pas vide le soir vers 20h00. Cette mesure a été prise pour réserver une capacité de batterie suffisante pour les heures coûteuses à venir du lendemain matin. Il s'agit d'une approche avant-gardiste qui anticipe les futures périodes de coûts élevés et garantit que l'énergie stockée est disponible pour compenser ces coûts.
+-   Réservation de la batterie pour les heures à coût élevé : après les périodes à coût élevé, le système de stockage d'énergie (ESS) de la batterie a été désactivé. Il n'était pas vide le soir vers 20h00. Cette mesure a été prise pour réserver une capacité de batterie suffisante pour les heures coûteuses à venir du lendemain matin. Cela anticipe les futures périodes de coûts élevés et garantit que l’énergie stockée est disponible pour compenser ces coûts.
 
 Pourquoi utiliser Spotmarket-Switcher ?
 
 -   Économisez de l'argent : il allume vos appareils lorsque l'énergie est moins chère, réduisant ainsi vos factures.
 -   Efficacité énergétique : en utilisant l'énergie lorsqu'elle est excédentaire (comme les nuits venteuses), vous contribuez à une planète plus verte.
--   Utilisation intelligente : chargez automatiquement votre batterie de stockage ou allumez des appareils tels que des chauffe-eau aux meilleurs moments.
+-   Utilisation intelligente : chargez automatiquement votre batterie de stockage ou allumez des appareils comme des chauffe-eau aux meilleurs moments.
 
 Les systèmes pris en charge sont actuellement :
 
@@ -50,7 +50,7 @@ Veuillez créer un fork github et partager votre personnalisation afin que d'aut
 
 Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
-Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK) , Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). 
+Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK) , Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
@@ -67,7 +67,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
     Sur un Cerbo GX, le système de fichiers est monté en lecture seule. Voir<https://www.victronenergy.com/live/ccgx:root_access>. Afin de rendre le système de fichiers accessible en écriture, vous devez exécuter la commande suivante avant d'exécuter le script d'installation :
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OpenWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
