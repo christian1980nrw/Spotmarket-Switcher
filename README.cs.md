@@ -18,7 +18,7 @@ Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně autom
 -   Noční použití: Během noci, kdy byly ceny energie nejnižší, Spotmarket-Switcher chytře aktivoval přepínatelnou zásuvku pro zapnutí tepelného čerpadla pro teplou vodu (špička označená červeně). To ukazuje schopnost systému identifikovat a využívat nízkonákladová energetická období pro energeticky náročné úkoly.
 -   Ekonomická efektivita při nabíjení baterií: Program se strategicky rozhodl v tuto chvíli nenabíjet úložiště baterií. Toto rozhodnutí bylo založeno na ekonomické kontrole, která zohledňovala ztráty z nabíjení a porovnávala je s průměrnými nebo nejvyššími cenami energie v daný den. Tento přístup zajišťuje, že nabíjení baterie probíhá pouze tehdy, když je to nákladově nejefektivnější.
 -   Optimální využití baterie ve špičce: V tento den byly nejdražší hodiny energie ráno a večer. Během těchto období Spotmarket-Switcher využíval uloženou energii baterie (zobrazená modře), čímž se vyhnul vysokým nákladům na elektřinu.
--   Rezervace baterie pro hodiny s vysokými náklady: Po období s vysokými náklady byl systém ukládání energie (ESS) baterie vypnutý. Večer kolem 20:00 nebylo prázdno. Toto opatření bylo přijato za účelem rezervace dostatečné kapacity baterie pro nadcházející drahé hodiny příštího rána. Jedná se o pokrokový přístup, který předvídá budoucí období s vysokými náklady a zajišťuje dostupnost akumulované energie pro kompenzaci těchto nákladů.
+-   Rezervace baterie pro hodiny s vysokými náklady: Po období s vysokými náklady byl systém ukládání energie (ESS) baterie vypnutý. Večer kolem 20:00 nebylo prázdno. Toto opatření bylo přijato za účelem rezervace dostatečné kapacity baterie pro nadcházející drahé hodiny příštího rána. To předvídá budoucí období s vysokými náklady a zajišťuje dostupnost akumulované energie pro kompenzaci těchto nákladů.
 
 Proč používat Spotmarket-Switcher?
 
@@ -34,7 +34,7 @@ Aktuálně jsou podporované systémy:
 
 Začínáme:
 
--   Stáhnout a nainstalovat: Proces nastavení je přímočarý. Stáhněte si skript, upravte pár nastavení a můžete začít.
+-   Stáhnout a nainstalovat: Proces instalace je přímočarý. Stáhněte si skript, upravte pár nastavení a můžete začít.
 -   Plán a relax: Nastavte to jednou a spustí se automaticky. Žádné každodenní starosti!
 
 Zájem?
@@ -58,7 +58,7 @@ Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), C
 
 Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte počítač se systémem UNIX, jako je macOS, Linux nebo Windows se subsystémem Linux, nainstalujte software podle následujících kroků:
 
-1.  Stáhněte si instalační skript z úložiště GitHub pomocí[tento hypertextový odkaz](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)nebo ve svém terminálu spusťte následující příkaz:
+1.  Download the install script from the GitHub repository by using [tento hypertextový odkaz](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)nebo ve svém terminálu spusťte následující příkaz:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Spusťte instalační skript s dalšími možnostmi, abyste připravili vše v podadresáři pro vaši kontrolu. Například:
@@ -71,7 +71,7 @@ Vezměte prosím na vědomí, že i když je tento software v současné době o
 
 ### Přístup k OS Venus
 
-Pokyny pro přístup k OS Venus naleznete na<https://www.victronenergy.com/live/ccgx:root_access>.
+Pokyny pro přístup k OS Venus najdete na<https://www.victronenergy.com/live/ccgx:root_access>.
 
 ### Spuštění instalačního skriptu
 
