@@ -17,7 +17,7 @@ See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiaka
 
 -   Öine kasutamine: öösel, kui energiahinnad olid madalaimad, aktiveeris Spotmarket-Switcher nutikalt lülitatava pistikupesa kuuma vee soojuspumba sisselülitamiseks (punasega näidatud nael). See näitab süsteemi võimet tuvastada ja kasutada madala hinnaga energiaperioode energiamahukate ülesannete jaoks.
 -   Aku laadimise majanduslik efektiivsus: programm otsustas strateegiliselt aku salvestusruumi praegu mitte laadida. See otsus põhines majanduslikul kontrollil, milles võeti arvesse laadimiskadusid ja võrreldi neid päeva keskmiste või kõrgeimate energiahindadega. See lähenemisviis tagab, et aku laadimine toimub ainult siis, kui see on kõige kuluefektiivsem.
--   Aku optimaalne kasutamine tipptundidel: graafikul on näidatud kõige kallimad energiatunnid hommikul ja õhtul. Nendel perioodidel kasutas Spotmarket-Switcher salvestatud akuenergiat (näidatud sinisega), vältides sellega suuri elektrikulusid. See on nutikas strateegia energiakulude vähendamiseks, kasutades salvestatud energiat, kui seda on võrgust kallim ammutada.
+-   Aku optimaalne kasutamine tipptundidel: sel päeval olid kõige kallimad energiatunnid hommikul ja õhtul. Nendel perioodidel kasutas Spotmarket-Switcher salvestatud akuenergiat (näidatud sinisega), vältides sellega suuri elektrikulusid. See on nutikas strateegia energiakulude vähendamiseks, kasutades salvestatud energiat, kui seda on võrgust kallim ammutada.
 -   Aku reserveerimine kallite tundide jaoks: pärast kallite perioodide lõppu lülitati aku energiasalvestussüsteem (ESS) välja. Õhtul kella 20 paiku see tühi ei olnud. See toiming tehti selleks, et reserveerida piisav aku võimsus järgmise hommiku eelseisvate kallite tundide jaoks. See on tulevikku suunatud lähenemisviis, mis näeb ette tulevasi kõrgeid kuluperioode ja tagab salvestatud energia kättesaadavuse nende kulude tasandamiseks.
 
 Miks kasutada Spotmarket-Switcherit?
@@ -101,7 +101,7 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
           Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:`0 * * * * /path/to/controller.sh`
 
-### Tugi ja panus :+1:
+### Support and Contribution :+1:
 
 Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise arengu toetamist järgmiste linkide kaudu:
 
@@ -115,6 +115,6 @@ Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tä
 
 Kui olete pärit Austriast, saate meid toetada kasutades[aWATtar Austria (viitelink)](https://www.awattar.at/services/offers/promotecustomers). Palun kasutage ära`3KEHMQN2F`koodina.
 
-## Disclaimer
+## Vastutusest loobumine
 
 Palun tutvuge kasutustingimustega aadressil<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
