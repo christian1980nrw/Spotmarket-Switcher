@@ -16,7 +16,7 @@ See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiaka
 </p>
 
 -   Öine kasutamine: öösel, kui energiahinnad olid madalaimad, aktiveeris Spotmarket-Switcher nutikalt lülitatava pistikupesa kuuma vee soojuspumba sisselülitamiseks (punasega näidatud nael). See näitab süsteemi võimet tuvastada ja kasutada madala hinnaga energiaperioode energiamahukate ülesannete jaoks.
--   Aku laadimise majanduslik efektiivsus: skript otsustas strateegiliselt aku salvestusruumi praegu mitte laadida. See otsus põhines majanduslikul kontrollil, milles võeti arvesse laadimiskadusid ja võrreldi neid päeva keskmiste või kõrgeimate energiahindadega. See lähenemisviis tagab, et aku laadimine toimub ainult siis, kui see on kõige kuluefektiivsem.
+-   Aku laadimise majanduslik efektiivsus: programm otsustas strateegiliselt aku salvestusruumi praegu mitte laadida. See otsus põhines majanduslikul kontrollil, milles võeti arvesse laadimiskadusid ja võrreldi neid päeva keskmiste või kõrgeimate energiahindadega. See lähenemisviis tagab, et aku laadimine toimub ainult siis, kui see on kõige kuluefektiivsem.
 -   Aku optimaalne kasutamine tipptundidel: graafikul on näidatud kõige kallimad energiatunnid hommikul ja õhtul. Nendel perioodidel kasutas Spotmarket-Switcher salvestatud akuenergiat (näidatud sinisega), vältides sellega suuri elektrikulusid. See on nutikas strateegia energiakulude vähendamiseks, kasutades salvestatud energiat, kui seda on võrgust kallim ammutada.
 -   Aku reserveerimine kallite tundide jaoks: pärast kallite perioodide lõppu lülitati aku energiasalvestussüsteem (ESS) välja. Õhtul kella 20 paiku see tühi ei olnud. See toiming tehti selleks, et reserveerida piisav aku võimsus järgmise hommiku eelseisvate kallite tundide jaoks. See on tulevikku suunatud lähenemisviis, mis näeb ette tulevasi kõrgeid kuluperioode ja tagab salvestatud energia kättesaadavuse nende kulude tasandamiseks.
 
@@ -35,7 +35,7 @@ Toetatud süsteemid on praegu:
 Alustamine:
 
 -   Laadige alla ja installige: häälestusprotsess on lihtne. Laadige skript alla, kohandage mõnda seadet ja oletegi valmis.
--   Ajastage ja lõdvestage: seadistage see üks kord ja see töötab automaatselt. Ei mingit igapäevast tüli!
+-   Ajastage ja lõõgastuge: seadistage see üks kord ja see töötab automaatselt. Ei mingit igapäevast tüli!
 
 Kas olete huvitatud?
 
@@ -64,7 +64,7 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
 2.  Käivitage installiskript koos lisavalikutega, et alamkataloogis kõik kontrollimiseks ette valmistada. Näiteks:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Kui kasutate operatsioonisüsteemi Victron Venus, peaks DESTDIR olema õige`/`(juurkataloog). Tutvuge installitud failidega`/tmp/foo`.
-    Cerbo GX-ile on failisüsteem ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
+    Cerbo GX-i failisüsteem on ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada teistele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadi jaoks. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
@@ -96,7 +96,7 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
 -   Kui kasutate Linuxi süsteemi nagu Ubuntu või Debian:
     -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
     -   käsud on`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja seadete muutmiseks kasutage`vi /path/to/save/config.txt`
-    -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
+    -   Selle skripti käivitamiseks iga tunni alguses looge crontab või mõni muu ajastamismeetod.
     -   Crontabi näidis:
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
           Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:`0 * * * * /path/to/controller.sh`
@@ -109,12 +109,12 @@ Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise a
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Kui olete Saksamaalt ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e)või sisestades koodi`ojgfbx2e`teie rakenduses. Saate nii teie kui ka projekt**50 eurot lisatasu riistvara eest**. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
-Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate siiski projekti toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
+Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate projekti siiski toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
 Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) endale ja ka projektile.
 Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tähtajata. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
 
 Kui olete pärit Austriast, saate meid toetada kasutades[aWATtar Austria (viitelink)](https://www.awattar.at/services/offers/promotecustomers). Palun kasutage ära`3KEHMQN2F`koodina.
 
-## Vastutusest loobumine
+## Disclaimer
 
 Palun tutvuge kasutustingimustega aadressil<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
