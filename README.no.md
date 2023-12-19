@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[Français ](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -18,7 +18,7 @@ Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere ene
 -   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (spike indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
 -   Økonomisk effektivitet i batterilading: Programmet bestemte seg strategisk for å ikke lade batterilagringen i løpet av denne tiden. Denne beslutningen var basert på en økonomisk sjekk som tok hensyn til ladetap og sammenlignet dem med dagens gjennomsnittlige eller høyeste energipriser. Denne tilnærmingen sikrer at batterilading bare skjer når det er mest kostnadseffektivt.
 -   Optimal bruk av batteri i rushtiden: På denne dagen var de dyreste energitimene morgen og kveld. I disse periodene brukte Spotmarket-Switcher den lagrede batterienergien (vist i blått), og unngikk dermed høye strømkostnader.
--   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Dette forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å kompensere for disse kostnadene.
+-   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Dette forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å minimere kostnadene.
 
 Hvorfor bruke Spotmarket-Switcher?
 
