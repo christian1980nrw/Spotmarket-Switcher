@@ -2,12 +2,23 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md) - [Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
 Co robi to oprogramowanie?
 Spotmarket-Switcher to łatwe w użyciu narzędzie programowe, które pomaga zaoszczędzić pieniądze na rachunkach za energię. Jeśli masz inteligentną ładowarkę do akumulatorów lub urządzenia takie jak podgrzewacze wody, które mogą włączać się i wyłączać automatycznie, to narzędzie jest idealne dla Ciebie! Inteligentnie włącza Twoje urządzenia, gdy ceny energii są niskie, co jest szczególnie przydatne, jeśli koszty energii zmieniają się co godzinę.
+
+Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyzacji zużycia energii, nie tylko oszczędzając koszty, ale także optymalizując wykorzystanie odnawialnych źródeł energii. To doskonały przykład tego, jak można wykorzystać inteligentną technologię do zarządzania zużyciem energii w bardziej zrównoważony i opłacalny sposób.
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Użytkowanie w nocy: W nocy, kiedy ceny energii były najniższe, Spotmarket-Switcher w inteligentny sposób aktywował przełączane gniazdko, aby włączyć pompę ciepła do ciepłej wody (oznaczoną na czerwono). Pokazuje to zdolność systemu do identyfikowania i wykorzystywania okresów niskiego zużycia energii do zadań energochłonnych.
+-   Efektywność ekonomiczna ładowania baterii: w scenariuszu strategicznie zadecydowano, że w tym momencie nie należy ładować magazynu baterii. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
+-   Optymalne wykorzystanie baterii w godzinach szczytu: Na wykresie pokazano najdroższe godziny zużycia energii rano i wieczorem. W tych okresach Spotmarket-Switcher wykorzystywał energię zgromadzoną w akumulatorze (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej. Jest to inteligentna strategia mająca na celu zmniejszenie wydatków na energię poprzez wykorzystanie zmagazynowanej energii, gdy jej pobieranie z sieci jest droższe.
+-   Rezerwacja akumulatora na godziny o najwyższych kosztach: Po okresach o najwyższych kosztach system magazynowania energii (ESS) akumulatora został wyłączony. Działanie to podjęto, aby zarezerwować wystarczającą pojemność baterii na nadchodzące drogie godziny następnego ranka. Jest to podejście przyszłościowe, które przewiduje przyszłe okresy wysokich kosztów i zapewnia dostępność zmagazynowanej energii w celu zrównoważenia tych kosztów.
 
 Dlaczego warto używać Spotmarket-Switcher?
 
@@ -17,7 +28,7 @@ Dlaczego warto używać Spotmarket-Switcher?
 
 Obsługiwane systemy to obecnie:
 
--   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
@@ -47,7 +58,7 @@ Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), C
 
 Konfiguracja Spotmarket-Switcher jest prostym procesem. Jeśli używasz już komputera z systemem UNIX, na przykład macOS, Linux lub Windows z podsystemem Linux, wykonaj następujące kroki, aby zainstalować oprogramowanie:
 
-1.  Pobierz skrypt instalacyjny z repozytorium GitHub za pomocą[to hiperłącze](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)lub wykonaj następujące polecenie w terminalu:
+1.  Pobierz skrypt instalacyjny z repozytorium GitHub za pomocą[to hiperłącze](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Uruchom skrypt instalacyjny z dodatkowymi opcjami, aby przygotować wszystko w podkatalogu do kontroli. Na przykład:
@@ -62,13 +73,13 @@ Należy pamiętać, że chociaż to oprogramowanie jest obecnie zoptymalizowane 
 
 Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w sekcji<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Wykonanie skryptu instalacyjnego
+### Execution of the Install Script
 
 -   Jeśli używasz systemu operacyjnego Victron Venus:
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
