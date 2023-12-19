@@ -6,17 +6,40 @@
 ## Welcome to the Spotmarket-Switcher repository!
 
 What is this software doing? 
-This is a Linux shell script and turning on your battery charger and / or switchable sockets at the right time if your hourly based dynamic energy prices are low.
-You can then use the sockets to turn on a hot water tank much more cheaply or you can automatically charge the battery storage at night when cheap wind energy is available on the grid.
-The expected solar yield can be taken into account via a weather API and battery storage reserved accordingly.
+Spotmarket-Switcher is an easy-to-use software tool that helps you save money on your energy bills. If you have a smart battery charger or devices like water heaters that can turn on and off automatically, this tool is perfect for you! It smartly switches on your devices when energy prices are low, especially useful if your energy costs change every hour.
+
+This typical result showcases the Spotmarket-Switcher's ability to automate energy usage efficiently, not only saving costs but also optimizing the use of renewable energy sources. It's a great example of how smart technology can be used to manage energy consumption in a more sustainable and cost-effective manner. (blue = use of battery, red = grid, yellow = solar)
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+- Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (spike indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
+- Economic Efficiency in Battery Charging: The program strategically decided not to charge the battery storage during this time. This decision was based on an economic check that took into account charging losses and compared them against the average or highest energy prices of the day. This approach ensures that battery charging occurs only when it's most cost-effective.
+- Optimal Use of Battery During Peak Hours: At this day, the most expensive energy hours were in the morning and evening. During these periods, the Spotmarket-Switcher used the stored battery-energy (shown in blue), thus avoiding high electricity costs.
+- Battery Reservation for High-Cost Hours: Post the high-cost periods, the battery's Energy Storage System (ESS) was turned off. It was not empty in the evening around 20:00. This action was taken to reserve sufficient battery capacity for the upcoming expensive hours in the next morning. This anticipates future high-cost periods and ensures that stored energy is available to minimize costs.
+
+
+Why Use Spotmarket-Switcher?
+- Save Money: It turns on your devices when energy is cheaper, cutting down your bills.
+- Energy Efficient: By using energy when it's in surplus (like windy nights), you contribute to a greener planet.
+- Smart Usage: Automatically charge your battery storage or power up devices like water heaters at the best times.
+    
 Supported systems are currently:
 
 - Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
+
+Getting Started:
+- Download and Install: The setup process is straightforward. Download the script, adjust a few settings, and you're ready to go.
+- Schedule and Relax: Set it up once, and it runs automatically. No daily hassle!
+
+Interested?
+- Check out our detailed instructions for different systems like Victron Venus OS, Windows, or Linux setups. We've made sure the steps are easy to follow.
+- Join us in making energy use smarter and more cost-effective! For any questions, suggestions, or feedback, feel free to reach out.
   
 The code is simple so that it can easily be adapted to other energy storage systems if you are able to control charging by Linux shell commands.
-Please have a look around line 965 of the controller.sh (charger_command_turnon) so that you can see how easy it can be adapted.
+Please have a look at the controller.sh and search for charger_command_turnon so that you can see how easy it can be adapted.
 Please create a github fork and share your customization so other users can benefit from it.
 
 ## Data Source
@@ -25,9 +48,8 @@ The software currently utilizes EPEX Spot hourly prices provided by three free A
 The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
 Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). 
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
-If you like to see a more detailed output in debugmode, please have a look at  this example testrun: [pull request testrun #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
 
 ## Installation
 

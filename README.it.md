@@ -7,17 +7,43 @@
 ## Benvenuti nel repository Spotmarket-Switcher!
 
 Cosa sta facendo questo software?
-Questo è uno script della shell Linux che accende il caricabatterie e/o le prese commutabili al momento giusto se i prezzi dinamici dell'energia su base oraria sono bassi.
-È quindi possibile utilizzare le prese per accendere un serbatoio dell'acqua calda in modo molto più economico oppure caricare automaticamente la batteria di accumulo di notte quando è disponibile energia eolica a basso costo sulla rete.
-Il rendimento solare previsto può essere preso in considerazione tramite un'API meteorologica e l'accumulo della batteria riservato di conseguenza.
+Spotmarket-Switcher è uno strumento software facile da usare che ti aiuta a risparmiare denaro sulle bollette energetiche. Se disponi di un caricabatterie intelligente o di dispositivi come gli scaldabagni che possono accendersi e spegnersi automaticamente, questo strumento è perfetto per te! Accende in modo intelligente i tuoi dispositivi quando i prezzi dell'energia sono bassi, particolarmente utile se i costi energetici cambiano ogni ora.
+
+Questo risultato tipico dimostra la capacità di Spotmarket-Switcher di automatizzare l'utilizzo dell'energia in modo efficiente, non solo risparmiando sui costi ma anche ottimizzando l'uso delle fonti di energia rinnovabile. È un ottimo esempio di come la tecnologia intelligente possa essere utilizzata per gestire il consumo energetico in modo più sostenibile ed economicamente vantaggioso. (blu = utilizzo della batteria, rosso = rete, giallo = solare)
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Utilizzo notturno: durante la notte, quando i prezzi dell'energia erano al minimo, lo Spotmarket-Switcher ha attivato in modo intelligente una presa commutabile per alimentare la pompa di calore dell'acqua calda (picco indicato in rosso). Ciò dimostra la capacità del sistema di identificare e utilizzare periodi energetici a basso costo per attività ad alto consumo energetico.
+-   Efficienza economica nella ricarica della batteria: il programma ha deciso strategicamente di non caricare la batteria durante questo periodo. Questa decisione si è basata su un controllo economico che ha tenuto conto delle perdite di tariffazione e le ha confrontate con i prezzi medi o più alti dell'energia del giorno. Questo approccio garantisce che la ricarica della batteria avvenga solo quando è più conveniente.
+-   Utilizzo ottimale della batteria durante le ore di punta: al giorno d'oggi, le ore più costose dal punto di vista energetico erano la mattina e la sera. Durante questi periodi, lo Spotmarket-Switcher utilizzava l'energia immagazzinata nella batteria (mostrata in blu), evitando così elevati costi dell'elettricità.
+-   Prenotazione della batteria per ore a costo elevato: dopo aver registrato i periodi a costo elevato, il sistema di accumulo dell'energia (ESS) della batteria è stato disattivato. Non era vuoto la sera intorno alle 20:00. Questa azione è stata intrapresa per riservare una capacità della batteria sufficiente per le prossime ore costose del mattino successivo. Ciò anticipa futuri periodi di costi elevati e garantisce che l’energia immagazzinata sia disponibile per ridurre al minimo i costi.
+
+Perché utilizzare Spotmarket-Switcher?
+
+-   Risparmia denaro: accende i tuoi dispositivi quando l'energia costa meno, riducendo le bollette.
+-   Efficienza energetica: utilizzando l'energia quando è in surplus (come nelle notti ventose), contribuisci a un pianeta più verde.
+-   Utilizzo intelligente: carica automaticamente la batteria o accendi dispositivi come gli scaldabagni nei momenti migliori.
+
 I sistemi supportati sono attualmente:
 
 -   Prodotti Shelly (come[Shelly Spina S](https://shellyparts.de/products/shelly-plus-plug-s)O[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)E[210](https://avm.de/produkte/smart-home/fritzdect-210/)prese commutabili
 -   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
 
+Iniziare:
+
+-   Download e installazione: il processo di installazione è semplice. Scarica lo script, regola alcune impostazioni e sei pronto per partire.
+-   Pianifica e rilassati: configuralo una volta e verrà eseguito automaticamente. Nessun problema quotidiano!
+
+Interessato?
+
+-   Consulta le nostre istruzioni dettagliate per diversi sistemi come le configurazioni del sistema operativo Victron Venus, Windows o Linux. Ci siamo assicurati che i passaggi siano facili da seguire.
+-   Unisciti a noi per rendere l’uso dell’energia più intelligente ed economico! Per qualsiasi domanda, suggerimento o feedback, non esitate a contattarci.
+
 Il codice è semplice in modo che possa essere facilmente adattato ad altri sistemi di accumulo di energia se si è in grado di controllare la ricarica tramite i comandi della shell Linux.
-Dai un'occhiata alla riga 965 del controller.sh (charger_command_turnon) in modo da poter vedere quanto è facile adattarlo.
+Dai un'occhiata a controller.sh e cerca charger_command_turnon in modo da poter vedere quanto è facile adattarlo.
 Crea un fork github e condividi la tua personalizzazione in modo che altri utenti possano trarne vantaggio.
 
 ## Fonte di dati
@@ -26,9 +52,7 @@ Il software attualmente utilizza i prezzi orari EPEX Spot forniti da tre API gra
 L'API Entso-E gratuita integrata fornisce dati sui prezzi dell'energia dei seguenti paesi:
 Albania (AL), Austria (AT), Belgio (BE), Bosnia ed Herz. (BA), Bulgaria (BG), Croazia (HR), Cipro (CY), Repubblica Ceca (CZ), Danimarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Germania (DE), Grecia (GR), Ungheria (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Lettonia (LV), Lituania (LT), Lussemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Paesi Bassi (NL), Macedonia del Nord (MK), Norvegia (NO), Polonia (PL), Portogallo (PT), Romania (RO), Serbia (RS), Slovacchia (SK) , Slovenia (SI), Spagna (ES), Svezia (SE), Svizzera (CH), Turchia (TR), Ucraina (UA), Regno Unito (UK) vedi[Piattaforma per la trasparenza Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Se desideri vedere un output più dettagliato in modalità debug, dai un'occhiata a questo test di esempio:[esecuzione del test della richiesta pull n. 155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Installazione
 

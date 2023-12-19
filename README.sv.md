@@ -6,18 +6,44 @@
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
-Vad gör denna programvara?
-Detta är ett Linux-skalskript och sätter på din batteriladdare och/eller omkopplingsbara uttag vid rätt tidpunkt om dina timbaserade dynamiska energipriser är låga.
-Du kan då använda uttagen för att slå på en varmvattentank mycket billigare eller så kan du automatiskt ladda batterilagret på natten när billig vindenergi finns tillgänglig på nätet.
-Den förväntade solavkastningen kan tas med i beräkningen via en väder-API och batterilagring reserverad i enlighet därmed.
+Vad gör den här programvaran?
+Spotmarket-Switcher är ett lättanvänt mjukvaruverktyg som hjälper dig att spara pengar på dina energiräkningar. Om du har en smart batteriladdare eller enheter som varmvattenberedare som kan slås på och stängas av automatiskt, är detta verktyg perfekt för dig! Den sätter smart på dina enheter när energipriserna är låga, särskilt användbart om dina energikostnader ändras varje timme.
+
+Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera energianvändningen effektivt, inte bara spara kostnader utan också optimera användningen av förnybara energikällor. Det är ett bra exempel på hur smart teknik kan användas för att hantera energiförbrukningen på ett mer hållbart och kostnadseffektivt sätt. (blå = användning av batteri, röd = rutnät, gul = solenergi)
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Användning på natten: Under natten, när energipriserna var som lägst, aktiverade Spotmarket-Switcher smart ett omkopplingsbart uttag för att slå på varmvattenvärmepumpen (spik indikerad i rött). Detta visar systemets förmåga att identifiera och utnyttja lågkostnadsenergiperioder för energikrävande uppgifter.
+-   Ekonomisk effektivitet vid batteriladdning: Programmet beslutade strategiskt att inte ladda batterilagringen under denna tid. Detta beslut baserades på en ekonomisk kontroll som tog hänsyn till laddningsförluster och jämförde dem med dagens genomsnittliga eller högsta energipriser. Detta tillvägagångssätt säkerställer att batteriladdning endast sker när det är mest kostnadseffektivt.
+-   Optimal användning av batteriet under högtrafik: Vid denna dag var de dyraste energitimmarna på morgonen och kvällen. Under dessa perioder använde Spotmarket-Switcher den lagrade batterienergin (visas i blått), vilket undviker höga elkostnader.
+-   Batterireservation för högkostnadstimmar: Efter högkostnadsperioderna stängdes batteriets energilagringssystem (ESS) av. Det var inte tomt på kvällen runt 20:00. Denna åtgärd vidtogs för att reservera tillräcklig batterikapacitet för de kommande dyra timmarna nästa morgon. Detta förutser framtida högkostnadsperioder och säkerställer att lagrad energi är tillgänglig för att minimera kostnaderna.
+
+Varför använda Spotmarket-Switcher?
+
+-   Spara pengar: Det sätter på dina enheter när energin är billigare, vilket minskar dina räkningar.
+-   Energieffektiv: Genom att använda energi när den är i överskott (som blåsiga nätter) bidrar du till en grönare planet.
+-   Smart användning: Ladda automatiskt din batterilagring eller slå på enheter som varmvattenberedare vid de bästa tiderna.
+
 System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
+Komma igång:
+
+-   Ladda ner och installera: Installationsprocessen är enkel. Ladda ner skriptet, justera några inställningar och du är redo att gå.
+-   Schemalägg och koppla av: Ställ in det en gång och det körs automatiskt. Inget dagligt krångel!
+
+Intresserad?
+
+-   Kolla in våra detaljerade instruktioner för olika system som Victron Venus OS, Windows eller Linux-inställningar. Vi har sett till att stegen är enkla att följa.
+-   Var med och gör energianvändningen smartare och mer kostnadseffektiv! För frågor, förslag eller feedback är du välkommen att höra av dig.
+
 Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
-Ta en titt på linje 965 i controller.sh (charger_command_turnon) så att du kan se hur lätt det kan anpassas.
+Ta en titt på controller.sh och sök efter charger_command_turnon så att du kan se hur enkelt den kan anpassas.
 Skapa en github-gaffel och dela din anpassning så att andra användare kan dra nytta av den.
 
 ## Datakälla
@@ -26,9 +52,7 @@ Mjukvaran använder för närvarande EPEX Spot timpriser som tillhandahålls av 
 Den integrerade kostnadsfria Entso-E API tillhandahåller energiprisdata för följande länder:
 Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjeckien (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgien (GE), Tyskland (DE), Grekland (GR), Ungern (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldavien (MD), Montenegro (ME), Nederländerna (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slovakien (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Turkiet (TR), Ukraina (UA), Storbritannien (UK) se[Transparens Entso-E-plattform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Om du vill se en mer detaljerad utdata i debugmode, vänligen ta en titt på detta exempel på testkörning:[pull begäran testkörning #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Installation
 
@@ -53,7 +77,7 @@ För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.c
 
 -   Om du använder Victron Venus OS:
     -   Redigera sedan variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 

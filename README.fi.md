@@ -7,17 +7,43 @@
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
 Mitä tämä ohjelmisto tekee?
-Tämä on Linux-kuoriskripti ja käynnistää akkulaturisi ja/tai kytkettävät pistorasiat oikeaan aikaan, jos tuntiperusteiset dynaamiset energiahinnat ovat alhaiset.
-Voit sitten käyttää pistorasioita kytkeäksesi kuumavesivaraajan päälle paljon halvemmalla tai voit ladata akkuvaraston automaattisesti yöllä, kun verkossa on saatavilla halpaa tuulienergiaa.
-Auringon odotettu tuotto voidaan ottaa huomioon sää API:n ja sen mukaisesti varatun akkuvaraston kautta.
+Spotmarket-Switcher on helppokäyttöinen ohjelmistotyökalu, jonka avulla voit säästää rahaa energialaskuissasi. Jos sinulla on älykäs akkulaturi tai laitteita, kuten vedenlämmittimiä, jotka voivat käynnistyä ja sammua automaattisesti, tämä työkalu on täydellinen sinulle! Se käynnistää laitteesi älykkäästi, kun energian hinta on alhainen, mikä on erityisen hyödyllistä, jos energiakustannukset muuttuvat tunnin välein.
+
+Tämä tyypillinen tulos esittelee Spotmarket-Switcherin kyvyn automatisoida energiankäyttöä tehokkaasti säästäen kustannuksia, vaan myös optimoimalla uusiutuvien energialähteiden käytön. Se on loistava esimerkki siitä, kuinka älykästä teknologiaa voidaan käyttää energiankulutuksen hallintaan kestävämmin ja kustannustehokkaammin. (sininen = akun käyttö, punainen = verkko, keltainen = aurinko)
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Yökäyttö: Yön aikana, kun energian hinnat olivat alhaisimmillaan, Spotmarket-Switcher aktivoi älykkäästi kytkettävän pistorasian kuumavesilämpöpumpun käynnistämiseksi (piikki merkitty punaisella). Tämä osoittaa järjestelmän kyvyn tunnistaa ja hyödyntää edullisia energiajaksoja energiaintensiivisiin tehtäviin.
+-   Akun latauksen taloudellinen tehokkuus: Ohjelma päätti strategisesti olla lataamatta akun varastointia tänä aikana. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
+-   Optimaalinen akun käyttö ruuhka-aikoina: Tänä päivänä kalleimmat energiatunnit olivat aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti varastoitua akkuenergiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta.
+-   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Se ei ollut tyhjä illalla noin klo 20.00. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Tämä ennakoi tulevia korkeita kausia ja varmistaa, että varastoitua energiaa on saatavilla kustannusten minimoimiseksi.
+
+Miksi käyttää Spotmarket-Switcheria?
+
+-   Säästä rahaa: Se käynnistää laitteesi, kun energia on halvempaa, mikä vähentää laskujasi.
+-   Energiatehokas: Käyttämällä energiaa, kun sitä on ylijäämäisinä (kuten tuulisina öinä), edistät planeetan vihreämpää.
+-   Älykäs käyttö: Lataa akkuvarastosi automaattisesti tai käynnistä laitteita, kuten vedenlämmittimiä, parhaimmillaan.
+
 Tuetut järjestelmät ovat tällä hetkellä:
 
 -   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten[MultiPlus-II sarja](https://www.victronenergy.com/inverters-chargers)
 
-Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
-Ole hyvä ja katso noin riviä 965 tiedostosta controller.sh (charger_command_turnon), jotta näet kuinka helppoa se voidaan mukauttaa.
+Päästä alkuun:
+
+-   Lataa ja asenna: Asennusprosessi on yksinkertainen. Lataa skripti, säädä muutamia asetuksia ja olet valmis aloittamaan.
+-   Ajoita ja rentoudu: Määritä se kerran, ja se toimii automaattisesti. Ei päivittäistä vaivaa!
+
+Kiinnostunut?
+
+-   Tutustu yksityiskohtaisiin ohjeisiimme eri järjestelmille, kuten Victron Venus OS:lle, Windowsille tai Linuxille. Olemme varmistaneet, että vaiheet ovat helppoja seurata.
+-   Tule mukaan tekemään energiankäytöstä älykkäämpää ja kustannustehokkaampaa! Jos sinulla on kysyttävää, ehdotuksia tai palautetta, ota rohkeasti yhteyttä.
+
+Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energianvarastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
+Katso tiedosto controller.sh ja hae charger_command_turnon, jotta näet kuinka helppoa se voidaan mukauttaa.
 Luo github-haarukka ja jaa mukauksesi, jotta muut käyttäjät voivat hyötyä siitä.
 
 ## Tietolähde
@@ -26,9 +52,7 @@ Ohjelmisto käyttää tällä hetkellä kolmen ilmaisen API:n (Tibber, aWATTar &
 Integroitu ilmainen Entso-E API tarjoaa energian hintatietoja seuraavista maista:
 Albania (AL), Itävalta (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tšekki (CZ), Tanska (DK), Viro (EE), Suomi (FI), Ranska (FR), Georgia (GE), Saksa (DE), Kreikka (GR), Unkari (HU), Irlanti (IE), Italia (IT), Kosovo (XK), Latvia (LV), Liettua (LT), Luxemburg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Alankomaat (NL), Pohjois-Makedonia (MK), Norja (NO), Puola (PL), Portugali (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Espanja (ES), Ruotsi (SE), Sveitsi (CH), Turkki (TR), Ukraina (UA), Yhdistynyt kuningaskunta (UK) ks.[Transparency Entso-E -alusta](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Jos haluat nähdä yksityiskohtaisemman tulosteen debug-tilassa, katso tämä esimerkkitesti:[vetopyynnön testiajo #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Asennus
 
@@ -71,7 +95,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
 
 -   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
     -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
-    -   komennot ovat`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
+    -   komennot ovat`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja muokataksesi asetuksiasi käytä`vi /path/to/save/config.txt`
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
@@ -86,8 +110,8 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 
 Jos olet Saksasta ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e)tai syöttämällä koodi`ojgfbx2e`sovelluksessasi. Sekä sinä että projekti saavat**50 euron bonus laitteistolle**. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
-Saat bonuksen (tarjous vaihtelee**50-120 euron välillä**) itsellesi ja myös projektille.
-Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Saat bonuksen (tarjous vaihtelee**50-120 euron välillä**) for yourself and also for the project.
+Octopus has the advantage that some offers are without minimum contract term. They are ideal, for example, for pausing a tariff based on stock exchange prices.
 
 Jos olet Itävallasta, voit tukea meitä käyttämällä[aWATtar Itävalta (viittauslinkki)](https://www.awattar.at/services/offers/promotecustomers). Ole hyvä ja käytä`3KEHMQN2F`koodina.
 

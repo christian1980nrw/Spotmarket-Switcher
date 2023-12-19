@@ -2,33 +2,57 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[Français ](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
 Hva gjør denne programvaren?
-Dette er et Linux-shell-skript og slår på batteriladeren og/eller koblingsbare stikkontakter til rett tid hvis timebaserte dynamiske energipriser er lave.
-Du kan da bruke stikkontaktene til å skru på en varmtvannsbeholder mye billigere eller du kan automatisk lade batterilageret om natten når billig vindenergi er tilgjengelig på nettet.
-Det forventede solutbyttet kan tas i betraktning via en vær-API og batterilagring reservert tilsvarende.
+Spotmarket-Switcher er et brukervennlig programvareverktøy som hjelper deg å spare penger på strømregningen. Hvis du har en smart batterilader eller enheter som varmtvannsberedere som kan slå seg på og av automatisk, er dette verktøyet perfekt for deg! Den slår på enhetene dine på en smart måte når energiprisene er lave, spesielt nyttig hvis energikostnadene dine endres hver time.
+
+Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere energibruk effektivt, ikke bare spare kostnader, men også optimalisere bruken av fornybare energikilder. Det er et godt eksempel på hvordan smart teknologi kan brukes til å styre energiforbruket på en mer bærekraftig og kostnadseffektiv måte. (blå = bruk av batteri, rød = rutenett, gul = solenergi)
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (spike indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
+-   Økonomisk effektivitet i batterilading: Programmet bestemte seg strategisk for å ikke lade batterilagringen i løpet av denne tiden. Denne beslutningen var basert på en økonomisk sjekk som tok hensyn til ladetap og sammenlignet dem med dagens gjennomsnittlige eller høyeste energipriser. Denne tilnærmingen sikrer at batterilading bare skjer når det er mest kostnadseffektivt.
+-   Optimal bruk av batteri i rushtiden: På denne dagen var de dyreste energitimene morgen og kveld. I disse periodene brukte Spotmarket-Switcher den lagrede batterienergien (vist i blått), og unngikk dermed høye strømkostnader.
+-   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Dette forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å minimere kostnadene.
+
+Hvorfor bruke Spotmarket-Switcher?
+
+-   Spar penger: Den slår på enhetene dine når energien er billigere, og reduserer regningene dine.
+-   Energieffektiv: Ved å bruke energi når det er i overskudd (som vindfulle netter), bidrar du til en grønnere planet.
+-   Smart bruk: Lad batterilagringen automatisk eller slå på enheter som varmtvannsberedere på de beste tidspunktene.
+
 Støttede systemer er for øyeblikket:
 
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
+Starter:
+
+-   Last ned og installer: Konfigurasjonsprosessen er enkel. Last ned skriptet, juster noen innstillinger, og du er klar til å gå.
+-   Planlegg og slapp av: Sett den opp én gang, og den kjører automatisk. Ingen daglig stress!
+
+Interessert?
+
+-   Sjekk ut våre detaljerte instruksjoner for forskjellige systemer som Victron Venus OS, Windows eller Linux-oppsett. Vi har sørget for at trinnene er enkle å følge.
+-   Bli med oss ​​for å gjøre energibruken smartere og mer kostnadseffektiv! For spørsmål, forslag eller tilbakemeldinger, ta gjerne kontakt.
+
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med Linux-shell-kommandoer.
-Ta en titt rundt linje 965 på controller.sh (charger_command_turnon) slik at du kan se hvor enkelt den kan tilpasses.
+Ta en titt på controller.sh og søk etter charger_command_turnon slik at du kan se hvor enkelt den kan tilpasses.
 Opprett en github-gaffel og del tilpasningen din slik at andre brukere kan dra nytte av den.
 
 ## Datakilde
 
-Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis APIer (Tibber, aWATTar & Entso-E).
+Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
 Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![grafik](https://user-images.githubusercontent.com/6513794/224442951-c0155a48-f32b-43f4-8014-d86d60c3b311.png)
-
-Hvis du liker å se en mer detaljert utgang i feilsøkingsmodus, vennligst ta en titt på denne prøvekjøringen:[pull request testrun #155](https://github.com/christian1980nrw/Spotmarket-Switcher/actions/runs/6697976612/job/18199014118])
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
 ## Installasjon
 
@@ -57,7 +81,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
+-   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
@@ -89,7 +113,7 @@ Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
 
-If you are from Austria you can support us by using [aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers). Vennligst bruk`3KEHMQN2F`som kode.
+Hvis du er fra Østerrike kan du støtte oss ved å bruke[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers). Vennligst bruk`3KEHMQN2F`som kode.
 
 ## Ansvarsfraskrivelse
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-VERSION="2.3.13"
+
+VERSION="2.4.4"
 
 set -e
 
@@ -15,10 +16,10 @@ fi
 #######################################
 
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=2 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=4 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="2" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="4" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -29,7 +30,6 @@ else
         ["shellyuser"]="string"
         ["shellypasswd"]="string"
         ["use_victron_charger"]="0|1"
-        ["disable_inverting_while_only_switching"]="0|1"
         ["limit_inverter_power_after_enabling"]="^(-1|[0-9]{2,5})$"
         ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
         ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
@@ -42,18 +42,6 @@ else
         ["switchablesockets_at_start_stop"]="0|1"
         ["charge_at_solar_breakeven_logic"]="0|1"
         ["switchablesockets_at_solar_breakeven_logic"]="0|1"
-        ["charge_at_lowest_price"]="0|1"
-        ["switchablesockets_at_lowest_price"]="0|1"
-        ["charge_at_second_lowest_price"]="0|1"
-        ["switchablesockets_at_second_lowest_price"]="0|1"
-        ["charge_at_third_lowest_price"]="0|1"
-        ["switchablesockets_at_third_lowest_price"]="0|1"
-        ["charge_at_fourth_lowest_price"]="0|1"
-        ["switchablesockets_at_fourth_lowest_price"]="0|1"
-        ["charge_at_fifth_lowest_price"]="0|1"
-        ["switchablesockets_at_fifth_lowest_price"]="0|1"
-        ["charge_at_sixth_lowest_price"]="0|1"
-        ["switchablesockets_at_sixth_lowest_price"]="0|1"
         ["TZ"]="string"
         ["select_pricing_api"]="1|2|3"
         ["include_second_day"]="0|1"
@@ -70,7 +58,7 @@ else
         ["entsoe_eu_api_security_token"]="string"
         ["tibber_prices"]="energy|total|tax"
         ["tibber_api_key"]="string"
-        ["config_version"]="2"
+        ["config_version"]="4"
     )
 
     declare -A config_values
@@ -99,7 +87,6 @@ parse_and_validate_config() {
     else    
         local file="$1"
         local errors=""
-
         rotating_spinner &   # Start the spinner in the background
         local spinner_pid=$! # Get the PID of the spinner
         local version_valid=false
@@ -142,7 +129,6 @@ parse_and_validate_config() {
                 continue
             fi
 
-            # Standard check against the given pattern
             if ! [[ "${config_values[$var_name]}" =~ ^($validation_pattern)$ ]]; then
                 errors+="E: $var_name has an invalid value: ${config_values[$var_name]}.\n"
             fi
@@ -249,7 +235,9 @@ download_tibber_prices() {
     if [ "$include_second_day" = 0 ]; then
         cp "$file16" "$file12"
     else
-	sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
+    
+    sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
+
     fi
 
     timestamp=$(TZ=$TZ date +%d)
@@ -376,16 +364,23 @@ download_solarenergy() {
         delay=$((RANDOM % 15 + 1))
         if [ -z "$DEBUG" ]; then
             log_message "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API." false
-            # Delaying a random time <=15s to reduce impact on site - download is not time-critical
             sleep "$delay"
         else
             log_message "D: No delay of download of solarenergy data since DEBUG variable set." >&2
         fi
+
         if ! curl "$link3" -o "$file3"; then
             log_message "E: Download of solarenergy data from '$link3' failed. Solarenergy will be ignored."
         elif ! test -f "$file3"; then
             log_message "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
         fi
+
+        if grep -q "API" "$file3"; then
+            log_message "E: Error, there is a problem with the Solarweather-API."
+			cat "$file3"
+            return 1
+        fi
+
         if [ -n "$DEBUG" ]; then
             log_message "D: File3 $file3 downloaded" >&2
         fi
@@ -403,24 +398,18 @@ get_current_awattar_day2() { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo 
 
 get_awattar_prices() {
     current_price=$(sed -n $((2 * $(TZ=$TZ date +%k) + 39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
-    lowest_price=$(sed -n 1p "$file7")
-    second_lowest_price=$(sed -n 2p "$file7")
-    third_lowest_price=$(sed -n 3p "$file7")
-    fourth_lowest_price=$(sed -n 4p "$file7")
-    fifth_lowest_price=$(sed -n 5p "$file7")
-    sixth_lowest_price=$(sed -n 6p "$file7")
+    for i in $(seq 1 $loop_hours); do
+        eval P$i=$(sed -n ${i}p "$file7")
+    done
     highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
     average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
 
 get_tibber_prices() {
     current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
-    lowest_price=$(sed -n "1s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    second_lowest_price=$(sed -n "2s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    third_lowest_price=$(sed -n "3s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    fourth_lowest_price=$(sed -n "4s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    fifth_lowest_price=$(sed -n "5s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
-    sixth_lowest_price=$(sed -n "6s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    for i in $(seq 1 $loop_hours); do
+        eval P$i=$(sed -n "${i}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+    done
     highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
     average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
@@ -431,12 +420,9 @@ get_current_tibber_day() { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo 
 
 get_entsoe_prices() {
     current_price=$(sed -n ${now_linenumber}p "$file10")
-    lowest_price=$(sed -n 1p "$file19")
-    second_lowest_price=$(sed -n 2p "$file19")
-    third_lowest_price=$(sed -n 3p "$file19")
-    fourth_lowest_price=$(sed -n 4p "$file19")
-    fifth_lowest_price=$(sed -n 5p "$file19")
-    sixth_lowest_price=$(sed -n 6p "$file19")
+    for i in $(seq 1 $loop_hours); do
+        eval P$i=$(sed -n ${i}p "$file19")
+    done
     highest_price=$(awk 'BEGIN {max = 0} $1>max {max=$1} END {print max}' "$file19")
     average_price=$(awk 'NF>0 && $1 ~ /^[0-9]*(\.[0-9]*)?$/ {sum+=$1; count++} END {if (count > 0) print sum/count}' "$file19")
 }
@@ -455,17 +441,34 @@ convert_vars_to_integer() {
 }
 
 get_awattar_prices_integer() {
-    convert_vars_to_integer 15 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+    local price_vars=""
+    for i in $(seq 1 $loop_hours); do
+        price_vars+="P$i "
+    done
+    price_vars+="average_price highest_price current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh"
+    convert_vars_to_integer 15 $price_vars
 }
 
 get_tibber_prices_integer() {
-    convert_vars_to_integer 17 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
+    local price_vars=""
+    for i in $(seq 1 $loop_hours); do
+        price_vars+="P$i "
+    done
+    price_vars+="average_price highest_price current_price"
+    convert_vars_to_integer 17 $price_vars
+
     convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_prices_integer_entsoe() {
-    convert_vars_to_integer 14 lowest_price average_price highest_price second_lowest_price third_lowest_price fourth_lowest_price fifth_lowest_price sixth_lowest_price current_price
-    convert_vars_to_integer 15 stop_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
+    local price_vars=""
+    for i in $(seq 1 $loop_hours); do
+        price_vars+="P$i "
+    done
+    price_vars+="average_price highest_price current_price"
+    convert_vars_to_integer 14 $price_vars
+
+    convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
 get_solarenergy_today() {
@@ -500,35 +503,30 @@ get_suntime_today() {
     suntime_today=$((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
 
-# Function to evaluate charging and switchablesockets conditions
+# Function to evaluate conditions
 evaluate_conditions() {
-    local conditions=("${!1}")
-    local descriptions=("${!2}")
-    local execute_ref_name="$3"  # This will hold the name of the variable
-    local condition_met_ref_name="$4"  # This will hold the name of the variable
-    local condition_met=0
+    local -n conditions=$1
+    local -n descriptions=$2
+    local -n execute_flag=$3
+    local -n condition_met_description=$4
 
-    for index in "${!conditions[@]}"; do
-        condition="${conditions[$index]}"
-        description="${descriptions[$index]}"
-        
-        if [ -n "$DEBUG" ]; then
-            condition_evaluation=$([ "$condition" -eq 1 ] && echo true || echo false)
-            result="($description) evaluates to $condition_evaluation"
-            log_message "D: condition_evaluation [ $result ]." >&2
-        fi
+    for i in "${!conditions[@]}"; do
+        if (( ${conditions[$i]} )); then
+            execute_flag=1
+            condition_met_description="${descriptions[$i]}"
 
-        if ((condition)) && [[ $condition_met -eq 0 ]]; then
-            # Using indirection to set the value
-            eval $execute_ref_name=1
-            eval $condition_met_ref_name=\"$description\"
-            condition_met=1
-
-            if [[ $DEBUG -ne 1 ]]; then
-                break
+            if [[ $DEBUG -eq 1 ]]; then
+                log_message "D: Condition met: ${condition_met_description}"
             fi
+
+            # Exit the loop if a condition is met
+            return
         fi
     done
+
+    # If no condition is met
+    execute_flag=0
+    condition_met_description=""
 }
 
 # Function to check economical
@@ -550,6 +548,38 @@ is_charging_economical() {
     return $is_economical
 }
 
+# Function to calculate dynamic SOC based on the expected solarenergy
+get_target_soc() {
+    local megajoule=$1
+    local result=""
+
+    for ((i = 1; i < ${#config_matrix_target_soc_weather[@]}; i++)); do
+        IFS=' ' read -ra line <<< "${config_matrix_target_soc_weather[$i]}"
+
+        if awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[i-1]%% *}" \
+            -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= lower && megajoule < upper)}'; then
+            result=$(awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[i-1]%% *}" \
+                -v upper="${line[0]}" -v lower_soc="${config_matrix_target_soc_weather[i-1]##* }" -v upper_soc="${line[1]}" \
+                'BEGIN {printf "%.0f", lower_soc + (megajoule - lower) * (upper_soc - lower_soc) / (upper - lower)}')
+            break
+        fi
+
+        if awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[1]%% *}" \
+            'BEGIN {exit !(megajoule <= lower)}'; then
+            result="${config_matrix_target_soc_weather[1]##* }"
+            break
+        fi
+
+        if (( i == ${#config_matrix_target_soc_weather[@]} - 1 )) && \
+           awk -v megajoule="$megajoule" -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= upper)}'; then
+            result="${line[1]}"
+            break
+        fi
+    done
+
+    echo "${result:-"No target SoC found."}"
+}
+
 # Function to manage charging
 manage_charging() {
     local action=$1
@@ -561,6 +591,20 @@ manage_charging() {
     else
         $charger_command_stop_charging >/dev/null
         log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
+    fi
+}
+
+# Function to manage discharging
+manage_discharging() {
+    local action=$1
+    local reason=$2
+
+    if [[ $action == "on" ]]; then
+        $charger_enable_inverter >/dev/null
+        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent %. $reason"
+    else
+        $charger_disable_inverter >/dev/null
+        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent %. $reason"
     fi
 }
 
@@ -578,6 +622,9 @@ check_abort_condition() {
 
 # Function to manage fritz sockets and log a message
 manage_fritz_sockets() {
+    if [ -n "$DEBUG" ]; then
+    log_message "D: Managing Fritz sockets - Action: $action, execute_switchablesockets_on: $execute_switchablesockets_on"
+	fi
     local action=$1
 
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
@@ -739,8 +786,35 @@ if [ -z "$CONFIG" ]; then
 fi
 
 if [ -f "$DIR/$CONFIG" ]; then
-    # Include the configuration file
     source "$DIR/$CONFIG"
+
+num_tools_missing=0
+tools="awk curl cat sed sort head tail"
+if [ 0 -lt $use_victron_charger ]; then
+    tools="$tools dbus"
+    charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+    charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+    charger_command_set_SOC_target="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue -- "
+    charger_get_inverter_status="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower GetValue"
+    charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
+    charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
+    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+fi
+
+for tool in $tools; do
+    if ! which "$tool" >/dev/null; then
+        log_message "E: Please ensure the tool '$tool' is found."
+        num_tools_missing=$((num_tools_missing + 1))
+    fi
+done
+
+if [ $num_tools_missing -gt 0 ]; then
+    log_message "E: $num_tools_missing tools are missing."
+    exit 127
+fi
+
+unset num_tools_missing
+
 else
     log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
@@ -817,31 +891,6 @@ file16=/tmp/tibber_today_prices_sorted.txt
 file17=/tmp/tibber_tomorrow_prices.txt
 file18=/tmp/tibber_tomorrow_prices_sorted.txt
 file19=/tmp/entsoe_prices_sorted.txt
-
-num_tools_missing=0
-tools="awk curl cat sed sort head tail"
-if [ 0 -lt $use_victron_charger ]; then
-    tools="$tools dbus"
-    charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-    charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-    charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
-    charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
-    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
-fi
-
-for tool in $tools; do
-    if ! which "$tool" >/dev/null; then
-        log_message "E: Please ensure the tool '$tool' is found."
-        num_tools_missing=$((num_tools_missing + 1))
-    fi
-done
-
-if [ $num_tools_missing -gt 0 ]; then
-    log_message "E: $num_tools_missing tools are missing."
-    exit 127
-fi
-
-unset num_tools_missing
 
 ########## Start ##########
 
@@ -939,7 +988,7 @@ if ((include_second_day == 1)); then
         if [ ! -s "$file18" ]; then
             rm -f "$file17" "$file18"
             log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
-            rm -f "$file12" "$file14" "$file15" "$file16" "$file17"
+            rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
             sort -t, -k1.9n $file17 >>"$file12"
         fi
@@ -947,6 +996,18 @@ if ((include_second_day == 1)); then
     fi
 
 fi # Include second day
+
+loop_hours=24
+if [ "$include_second_day" = 1 ]; then
+    if [ "$select_pricing_api" = 1 ] && [ -f "$file2" ] && [ "$(wc -l <"$file2")" -gt 10 ]; then
+        loop_hours=48
+    elif [ "$select_pricing_api" = 2 ] && [ -f "$file13" ] && [ "$(wc -l <"$file13")" -gt 10 ]; then
+        loop_hours=48
+    elif [ "$select_pricing_api" = 3 ] && [ -f "$file17" ] && [ "$(wc -l <"$file17")" -gt 10 ]; then
+        loop_hours=48
+    fi
+	echo "Data available for $loop_hours hours."
+fi
 
 if ((select_pricing_api == 1)); then
     Unit="Cent/kWh net"
@@ -974,21 +1035,185 @@ if ((use_solarweather_api_to_abort == 1)); then
 fi
 
 log_message "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
-echo
 log_message "I: Current price is $current_price $Unit."
-log_message "I: Lowest price will be $lowest_price $Unit."
 log_message "I: The average price will be $average_price $Unit."
 log_message "I: Highest price will be $highest_price $Unit."
-log_message "I: Second lowest price will be $second_lowest_price $Unit." false
-log_message "I: Third lowest price will be $third_lowest_price $Unit." false
-log_message "I: Fourth lowest price will be $fourth_lowest_price $Unit." false
-log_message "I: Fifth lowest price will be $fifth_lowest_price $Unit." false
-log_message "I: Sixth lowest price will be $sixth_lowest_price $Unit." false
+price_table=""
+for i in $(seq 1 $loop_hours); do
+    eval price=\$P$i
+    price_table+="$i:$price "
+
+    if [ $((i % 12)) -eq 0 ]; then
+        price_table+="\n                  "
+    fi
+done
+log_message "I: Sorted prices: $price_table"
+
+if [ "$loop_hours" = 24 ]; then
+
+    # Separate arrays for each column
+    config_matrix24_charge=()
+    config_matrix24_discharge=()
+    config_matrix24_switchablesockets=()
+
+    # Populate separate arrays
+    for ((i=0; i<25; i++)); do
+        row=(${config_matrix24_price[$i]})
+        config_matrix24_charge+=("${row[0]}")
+        config_matrix24_discharge+=("${row[1]}")
+        config_matrix24_switchablesockets+=("${row[2]}")
+    done
+
+    # Use the separate arrays
+    for ((i=1; i<=24; i++)); do
+        hour=$i
+        charge_value="${config_matrix24_charge[$i]}"
+        discharge_value="${config_matrix24_discharge[$i]}"
+        switchable_sockets_value="${config_matrix24_switchablesockets[$i]}"
+        hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+
+        charge_var_name="charge_at_${hour_var_name}"
+        discharge_var_name="discharge_at_${hour_var_name}"
+        switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
+
+        declare "$charge_var_name=$charge_value"
+        declare "$switchable_sockets_var_name=$switchable_sockets_value"
+
+    if [ $SOC_percent -ge $discharge_value ]; then
+        declare "$discharge_var_name=1"
+		if [ -n "$DEBUG" ]; then
+        log_message "D: $discharge_var_name=1"
+		fi
+    else
+        declare "$discharge_var_name=0"
+		if [ -n "$DEBUG" ]; then
+        log_message "D: $discharge_var_name=0"
+		fi
+    fi
+		if [ -n "$DEBUG" ]; then
+        log_message "D: $charge_var_name=$charge_value"
+        log_message "D: $switchable_sockets_var_name=$switchable_sockets_value"
+		fi
+    done
+	
+charge_table=""
+discharge_table=""
+switchable_sockets_table=""
+for ((i=1; i<=$loop_hours; i++)); do
+    hour=$i
+    charge_value="${config_matrix24_charge[i]}"
+    discharge_value="${config_matrix24_discharge[i]}"
+    switchable_sockets_value="${config_matrix24_switchablesockets[i]}"
+    hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+
+    charge_var_name="${hour_var_name}"
+    discharge_var_name="${hour_var_name}"
+    switchable_sockets_var_name="${hour_var_name}"
+
+    if [ "$charge_value" -eq 1 ]; then
+        charge_table+="$charge_var_name "
+    fi
+
+    if [ "$SOC_percent" -ge "$discharge_value" ]; then
+        discharge_table+="$discharge_var_name "
+    fi
+
+    if [ "$switchable_sockets_value" -eq 1 ]; then
+        switchable_sockets_table+="$switchable_sockets_var_name "
+    fi
+
+done
+	
+fi
+	
+if [ "$loop_hours" = 48 ]; then
+	    # Separate arrays for each column
+    config_matrix48_charge=()
+    config_matrix48_discharge=()
+    config_matrix48_switchablesockets=()
+
+    # Populate separate arrays
+    for ((i=0; i<49; i++)); do
+        row=(${config_matrix48_price[$i]})
+        config_matrix48_charge+=("${row[0]}")
+        config_matrix48_discharge+=("${row[1]}")
+        config_matrix48_switchablesockets+=("${row[2]}")
+    done
+
+    # Use the separate arrays
+    for ((i=1; i<=48; i++)); do
+        hour=$i
+        charge_value="${config_matrix48_charge[$i]}"
+        discharge_value="${config_matrix48_discharge[$i]}"
+        switchable_sockets_value="${config_matrix48_switchablesockets[$i]}"
+        hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+
+        charge_var_name="charge_at_${hour_var_name}"
+        discharge_var_name="discharge_at_${hour_var_name}"
+        switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
+
+        declare "$charge_var_name=$charge_value"
+        declare "$switchable_sockets_var_name=$switchable_sockets_value"
+
+    if [ $SOC_percent -ge $discharge_value ]; then
+        declare "$discharge_var_name=1"
+		if [ -n "$DEBUG" ]; then
+        log_message "D: $discharge_var_name=1"
+		fi
+    else
+        declare "$discharge_var_name=0"
+		if [ -n "$DEBUG" ]; then
+        log_message "D: $discharge_var_name=0"
+		fi
+    fi
+	    if [ -n "$DEBUG" ]; then
+        log_message "D: $charge_var_name=$charge_value"
+        log_message "D: $switchable_sockets_var_name=$switchable_sockets_value"
+		fi
+    done
+
+charge_table=""
+discharge_table=""
+switchable_sockets_table=""
+for ((i=1; i<=$loop_hours; i++)); do
+    hour=$i
+    charge_value="${config_matrix48_charge[i]}"
+    discharge_value="${config_matrix48_discharge[i]}"
+    switchable_sockets_value="${config_matrix48_switchablesockets[i]}"
+    hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+
+    charge_var_name="${hour_var_name}"
+    discharge_var_name="${hour_var_name}"
+    switchable_sockets_var_name="${hour_var_name}"
+
+    if [ "$charge_value" -eq 1 ]; then
+        charge_table+="$charge_var_name "
+    fi
+
+    if [ "$SOC_percent" -ge "$discharge_value" ]; then
+        discharge_table+="$discharge_var_name "
+    fi
+
+    if [ "$switchable_sockets_value" -eq 1 ]; then
+        switchable_sockets_table+="$switchable_sockets_var_name "
+    fi
+
+done
+
+fi
+
+log_message "I: Charge at prices: $charge_table"
+log_message "I: Dynamic ESS discharge (depending SOC) at prices: $discharge_table"
+log_message "I: Switchable sockets at prices: $switchable_sockets_table"
 
 if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
     log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
     log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
+    target_soc=$(get_target_soc "$solarenergy_today")
+    log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc % calculated. The rest is reserved for solar."
+    $charger_command_set_SOC_target $target_soc >/dev/null
+
     if [ ! -s $file3 ]; then
         log_message "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
     fi
@@ -996,65 +1221,90 @@ if ((use_solarweather_api_to_abort == 1)); then
 else
     log_message "W: skip Solarweather. not activated"
 fi
-
 charging_condition_met=""
+discharging_condition_met=""
 switchablesockets_condition_met=""
 execute_charging=0
+execute_discharging=0
 execute_switchablesockets_on=0
 
-# Turn on inverting. Maybe it was turned off last script runtime.
-if [ "$use_victron_charger" -eq 1 ] && [ "$disable_inverting_while_only_switching" -eq 1 ]; then
-    $charger_enable_inverter >/dev/null
-fi
+# Function to evaluate and execute charging, discharging, and socket conditions
+evaluate_conditions() {
+    local conditions=("${!1}")
+    local descriptions=("${!2}")
+    local execute_ref_name="$3"
+    local condition_met_ref_name="$4"
+    local condition_met=0
 
-# Indexed arrays:
-charging_descriptions=(
-    "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
-    "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
-    "charge_at_lowest_price ($charge_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_second_lowest_price ($charge_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_third_lowest_price ($charge_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_fourth_lowest_price ($charge_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_fifth_lowest_price ($charge_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "charge_at_sixth_lowest_price ($charge_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-)
+    for index in "${!conditions[@]}"; do
+        if ((conditions[index])) && [[ $condition_met -eq 0 ]]; then
+            eval $execute_ref_name=1
+            eval $condition_met_ref_name=\"${descriptions[index]}\"
+            condition_met=1
+            [[ $DEBUG -ne 1 ]] && break
+        fi
+    done
+}
 
-charging_conditions=(
+# Add general conditions for charging
+charging_conditions+=(
     $((use_start_stop_logic == 1 && start_price_integer > current_price_integer))
     $((charge_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    $((charge_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    $((charge_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    $((charge_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    $((charge_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    $((charge_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    $((charge_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
 )
-# Check if any charging condition is met
-evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
+charging_descriptions+=(
+    "use_start_stop_logic ($use_start_stop_logic) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
+    "charge_at_solar_breakeven_logic ($charge_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
+)
 
-# Indexed arrays:
-switchablesockets_conditions_descriptions=(
-    "switchablesockets_at_start_stop ($switchablesockets_at_start_stop) == 1 && start_price_integer ($start_price_integer) > current_price_integer ($current_price_integer)"
-    "switchablesockets_at_solar_breakeven_logic ($switchablesockets_at_solar_breakeven_logic) == 1 && feedin_price_integer ($feedin_price_integer) > current_price_integer ($current_price_integer) + energy_fee_integer ($energy_fee_integer)"
-    "switchablesockets_at_lowest_price ($switchablesockets_at_lowest_price) == 1 && lowest_price_integer ($lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_second_lowest_price ($switchablesockets_at_second_lowest_price) == 1 && second_lowest_price_integer ($second_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_third_lowest_price ($switchablesockets_at_third_lowest_price) == 1 && third_lowest_price_integer ($third_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_fourth_lowest_price ($switchablesockets_at_fourth_lowest_price) == 1 && fourth_lowest_price_integer ($fourth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_fifth_lowest_price ($switchablesockets_at_fifth_lowest_price) == 1 && fifth_lowest_price_integer ($fifth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-    "switchablesockets_at_sixth_lowest_price ($switchablesockets_at_sixth_lowest_price) == 1 && sixth_lowest_price_integer ($sixth_lowest_price_integer) == current_price_integer ($current_price_integer)"
-)
-switchablesockets_conditions=(
-    $((switchablesockets_at_start_stop == 1 && start_price_integer > current_price_integer))
-    $((switchablesockets_at_solar_breakeven_logic == 1 && feedin_price_integer > current_price_integer + energy_fee_integer))
-    $((switchablesockets_at_lowest_price == 1 && lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_second_lowest_price == 1 && second_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_third_lowest_price == 1 && third_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_fourth_lowest_price == 1 && fourth_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_fifth_lowest_price == 1 && fifth_lowest_price_integer == current_price_integer))
-    $((switchablesockets_at_sixth_lowest_price == 1 && sixth_lowest_price_integer == current_price_integer))
-)
-# Check if any switching condition is met
+# Dynamically add conditions for P1 to P48 for charging, discharging, and switchable sockets
+for ((i=1; i<=$loop_hours; i++)); do
+    hour=$i
+    charge_value="${config_matrix_charge[i]}"
+    discharge_value="${config_matrix_discharge[i]}"
+    switchable_sockets_value="${config_matrix_switchablesockets[i]}"
+    hour_var_name="${hour//[^a-zA-Z0-9]/_}"
+
+    charge_var_name="charge_at_${hour_var_name}"
+    discharge_var_name="discharge_at_${hour_var_name}"
+    switchable_sockets_var_name="switchablesockets_at_${hour_var_name}"
+    price_var="P${i}_integer"
+
+    if [[ -n "${!charge_var_name}" && "${!charge_var_name}" == 1 && "${!price_var}" == "$current_price_integer" ]]; then
+        charging_conditions+=("1")
+        charging_descriptions+=("\"$charge_var_name (${!charge_var_name}) == 1 && $price_var (${!price_var}) == current_price_integer ($current_price_integer)\"")
+    else
+        charging_conditions+=("0")
+    fi
+
+    if [[ -n "${!discharge_var_name}" && "${!discharge_var_name}" == 1 && "${!price_var}" == "$current_price_integer" ]]; then
+        discharging_conditions+=("1")
+        discharging_descriptions+=("\"$discharge_var_name (${!discharge_var_name}) == 1 && $price_var (${!price_var}) == current_price_integer ($current_price_integer)\"")
+    else
+        discharging_conditions+=("0")
+    fi
+
+    if [[ -n "${!switchable_sockets_var_name}" && "${!switchable_sockets_var_name}" == 1 && "${!price_var}" == "$current_price_integer" ]]; then
+        switchablesockets_conditions+=("1")
+        switchablesockets_conditions_descriptions+=("\"$switchable_sockets_var_name (${!switchable_sockets_var_name}) == 1 && $price_var (${!price_var}) == current_price_integer ($current_price_integer)\"")
+    else
+        switchablesockets_conditions+=("0")
+    fi
+done
+
+if [ -n "$DEBUG" ]; then
+log_message "D: Before evaluating charging conditions - execute_charging: $execute_charging"
+log_message "D: Before evaluating discharging conditions - execute_discharging: $execute_discharging"
+log_message "D: Before evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on"
+fi
+evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
+evaluate_conditions discharging_conditions[@] discharging_descriptions[@] "execute_discharging" "discharging_condition_met"
 evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets_on" "switchablesockets_condition_met"
+
+if [ -n "$DEBUG" ]; then
+log_message "D: After evaluating charging conditions - execute_charging: $execute_charging "
+log_message "D: After evaluating discharging conditions - execute_discharging: $execute_discharging "
+log_message "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
+fi
 
 if ((use_solarweather_api_to_abort == 1)); then
     check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today. No need to charge or swtich."
@@ -1068,23 +1318,23 @@ check_abort_condition $((abort_price_integer <= current_price_integer)) "Current
 percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
-
+# If any charging condition is met, start charging
 if ((execute_charging == 1 && use_victron_charger == 1)); then
-economic=""
+    economic=""
+    # Evaluate if charging is economical
+    percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
+    total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
+
     if [ "$economic_check" -eq 0 ]; then
         manage_charging "on" "Charging based on condition met of: $charging_condition_met."
     elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
+        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") €) comparison makes sense. Total cost=$(millicentToEuro "$total_cost_integer") €"
     elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. total_cost=$(millicentToEuro "$total_cost_integer") €"
+        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. Total cost=$(millicentToEuro "$total_cost_integer") €"
     else
         reason_msg="Considering charging losses and costs, charging is too expensive."
-	economic="expensive"
-
-        [ "$economic_check" -eq 1 ] && reason_msg="Charging is too expensive based on the highest price ($(millicentToEuro "$highest_price_integer") €) comparison."
-        [ "$economic_check" -eq 2 ] && reason_msg="Charging is too expensive based on the average price ($(millicentToEuro "$average_price_integer") €) comparison."
-
-        manage_charging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
+        economic="expensive"
+        manage_charging "off" "$reason_msg (Total cost=$(millicentToEuro "$total_cost_integer") €)"
     fi
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
     manage_charging "off" "Charging was not executed."
@@ -1092,17 +1342,25 @@ else
     log_message "W: skip Victron Charger. not activated"
 fi
 
+
+if ((execute_discharging == 1 && use_victron_charger == 1)); then
+         manage_discharging "on" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
+fi
+if ((execute_discharging == 0 && use_victron_charger == 1)); then
+         manage_discharging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
+fi
+
 # Execute Fritz DECT on command
 if ((use_fritz_dect_sockets == 1)); then
     manage_fritz_sockets
 else
-    log_message "W: skip Fritz DECT. not activated"
+    log_message "D: skip Fritz DECT. not activated"
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
     manage_shelly_sockets
 else
-    log_message "W: skip Shelly Api. not activated"
+    log_message "D: skip Shelly Api. not activated"
 fi
 
 echo >>"$LOG_FILE"
