@@ -16,8 +16,8 @@ Tämä tyypillinen tulos esittelee Spotmarket-Switcherin kyvyn automatisoida ene
 </p>
 
 -   Yökäyttö: Yön aikana, kun energian hinnat olivat alhaisimmillaan, Spotmarket-Switcher aktivoi älykkäästi kytkettävän pistorasian kuumavesilämpöpumpun käynnistämiseksi (piikki merkitty punaisella). Tämä osoittaa järjestelmän kyvyn tunnistaa ja hyödyntää edullisia energiajaksoja energiaintensiivisiin tehtäviin.
--   Taloudellinen tehokkuus akun latauksessa: Ohjelma päätti strategisesti olla lataamatta akun tallennustilaa tällä hetkellä. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
--   Optimaalinen akun käyttö ruuhka-aikoina: Tänä päivänä kalleimmat energiatunnit olivat aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti varastoitua akkuenergiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta.
+-   Akun latauksen taloudellinen tehokkuus: Ohjelma päätti strategisesti olla lataamatta akun varastointia tänä aikana. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
+-   Optimal Use of Battery During Peak Hours: At this day, the most expensive energy hours were in the morning and evening. During these periods, the Spotmarket-Switcher used the stored battery-energy (shown in blue), thus avoiding high electricity costs.
 -   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Se ei ollut tyhjä illalla noin klo 20.00. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Tämä ennakoi tulevia korkeita kustannuksia ja varmistaa, että varastoitua energiaa on saatavilla näiden kustannusten kattamiseksi.
 
 Miksi käyttää Spotmarket-Switcheria?
