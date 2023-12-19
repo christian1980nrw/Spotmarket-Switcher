@@ -16,7 +16,7 @@ Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyz
 </p>
 
 -   Użycie w nocy: W nocy, kiedy ceny energii były najniższe, Spotmarket-Switcher w inteligentny sposób aktywował przełączane gniazdko, aby włączyć pompę ciepła do ciepłej wody (skok zaznaczony na czerwono). Pokazuje to zdolność systemu do identyfikowania i wykorzystywania okresów niskiego zużycia energii do zadań energochłonnych.
--   Efektywność ekonomiczna ładowania baterii: w scenariuszu strategicznie zadecydowano, że w tym momencie nie należy ładować magazynu baterii. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
+-   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu obecnie akumulatora. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
 -   Optymalne wykorzystanie baterii w godzinach szczytu: Na wykresie pokazano najdroższe godziny zużycia energii rano i wieczorem. W tych okresach Spotmarket-Switcher wykorzystywał zmagazynowaną energię akumulatora (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej. Jest to inteligentna strategia mająca na celu zmniejszenie wydatków na energię poprzez wykorzystanie zmagazynowanej energii, gdy jej pobieranie z sieci jest droższe.
 -   Rezerwacja akumulatora na godziny o najwyższych kosztach: Po okresach o najwyższych kosztach system magazynowania energii (ESS) akumulatora został wyłączony. Wieczorem około 20:00 nie było pusto. Działanie to podjęto, aby zarezerwować wystarczającą pojemność baterii na nadchodzące drogie godziny następnego ranka. Jest to podejście przyszłościowe, które przewiduje przyszłe okresy wysokich kosztów i zapewnia dostępność zmagazynowanej energii w celu zrównoważenia tych kosztów.
 
@@ -79,7 +79,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
@@ -95,7 +95,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
 
 -   Jeśli używasz systemu Linux, takiego jak Ubuntu lub Debian:
     -   Skopiuj skrypt powłoki (`controller.sh`) do niestandardowej lokalizacji i dostosuj zmienne do swoich potrzeb.
-    -   the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`i do edycji ustawień użyj`vi /path/to/save/config.txt`
+    -   polecenia są`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`i do edycji ustawień użyj`vi /path/to/save/config.txt`
     -   Utwórz plik crontab lub inną metodę planowania, aby uruchamiać ten skrypt na początku każdej godziny.
     -   Przykładowy Crontab:
           Użyj następującego wpisu crontab, aby wykonać skrypt sterujący co godzinę:
