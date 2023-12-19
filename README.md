@@ -8,7 +8,7 @@
 What is this software doing? 
 Spotmarket-Switcher is an easy-to-use software tool that helps you save money on your energy bills. If you have a smart battery charger or devices like water heaters that can turn on and off automatically, this tool is perfect for you! It smartly switches on your devices when energy prices are low, especially useful if your energy costs change every hour.
 
-This typical result showcases the Spotmarket-Switcher's ability to automate energy usage efficiently, not only saving costs but also optimizing the use of renewable energy sources. It's a great example of how smart technology can be used to manage energy consumption in a more sustainable and cost-effective manner.
+This typical result showcases the Spotmarket-Switcher's ability to automate energy usage efficiently, not only saving costs but also optimizing the use of renewable energy sources. It's a great example of how smart technology can be used to manage energy consumption in a more sustainable and cost-effective manner. (blue = use of battery, red = grid, yellow = solar)
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
