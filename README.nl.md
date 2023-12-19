@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
+[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md) - [Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
@@ -18,7 +18,7 @@ Dit typische resultaat demonstreert het vermogen van de Spotmarket-Switcher om h
 -   Nachtelijk gebruik: Tijdens de nacht, toen de energieprijzen het laagst waren, activeerde de Spotmarket-Switcher op slimme wijze een schakelbaar stopcontact om de warmwaterwarmtepomp van stroom te voorzien (piek aangegeven in rood). Dit toont aan dat het systeem in staat is om goedkope energieperioden voor energie-intensieve taken te identificeren en te gebruiken.
 -   Economische efficiëntie bij het opladen van de batterij: Het programma heeft strategisch besloten om de batterijopslag gedurende deze periode niet op te laden. Deze beslissing was gebaseerd op een economische controle waarbij rekening werd gehouden met laadverliezen en deze werden vergeleken met de gemiddelde of hoogste energieprijzen van de dag. Deze aanpak zorgt ervoor dat het opladen van de batterij alleen plaatsvindt wanneer dit het meest kosteneffectief is.
 -   Optimaal batterijgebruik tijdens piekuren: Op deze dag waren de duurste energie-uren 's morgens en' s avonds. Tijdens deze periodes gebruikte de Spotmarket-Switcher de opgeslagen batterij-energie (blauw weergegeven), waardoor hoge elektriciteitskosten werden vermeden.
--   Batterijreservering voor uren met hoge kosten: Na de perioden met hoge kosten werd het energieopslagsysteem (ESS) van de batterij uitgeschakeld. 's Avonds rond 20.00 uur was het niet leeg. Deze actie werd ondernomen om voldoende batterijcapaciteit te reserveren voor de komende dure uren in de volgende ochtend. Dit anticipeert op toekomstige perioden met hoge kosten en zorgt ervoor dat opgeslagen energie beschikbaar is om deze kosten te compenseren.
+-   Batterijreservering voor uren met hoge kosten: Na de perioden met hoge kosten werd het energieopslagsysteem (ESS) van de batterij uitgeschakeld. 's Avonds rond 20.00 uur was het niet leeg. Deze actie werd ondernomen om voldoende batterijcapaciteit te reserveren voor de komende dure uren in de volgende ochtend. Dit anticipeert op toekomstige perioden met hoge kosten en zorgt ervoor dat opgeslagen energie beschikbaar is om de kosten te minimaliseren.
 
 Waarom Spotmarket-Switcher gebruiken?
 
@@ -87,14 +87,14 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Binnenkomen`wsl --install -d Debian`
     -   Voer een nieuwe gebruikersnaam in, zoals`admin`
     -   Voer een nieuw wachtwoord in
-    -   Binnenkomen`sudo su` and type your password
+    -   Binnenkomen`sudo su`en typ uw wachtwoord
     -   Binnenkomen`apt-get update && apt-get install wget curl`
     -   Ga verder met de onderstaande handleiding voor Linux (installatiescript is niet compatibel).
     -   Vergeet niet dat Windows het systeem zal stoppen als u de shell sluit.
 
 
 -   Als je een Linux-systeem zoals Ubuntu of Debian gebruikt:
-    -   Kopieer het shellscript (`controller.sh`) to a custom location and adjust the variables according to your needs.
+    -   Kopieer het shellscript (`controller.sh`) naar een aangepaste locatie en pas de variabelen aan uw behoeften aan.
     -   de commando's zijn`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`en om uw instellingen te bewerken gebruikt u`vi /path/to/save/config.txt`
     -   Maak een crontab of een andere planningsmethode om dit script aan het begin van elk uur uit te voeren.
     -   Voorbeeldcrontab:
