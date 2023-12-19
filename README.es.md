@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[checo](README.cs.md)-[danés](README.da.md)-[Alemán](README.de.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[Holandés](README.nl.md)-[noruego](README.no.md)-[Polaco](README.pl.md)-[portugués](README.pt.md)-[sueco](README.sv.md)-[japonés](README.ja.md)
+[checo](README.cs.md)-[danés](README.da.md)-[Deutsch ](README.de.md)-[Inglés](README.md)-[Español](README.es.md)-[estonio](README.et.md)-[finlandés](README.fi.md)-[Francés](README.fr.md)-[Griego](README.el.md)-[italiano](README.it.md)-[Holandés](README.nl.md)-[noruego](README.no.md)-[Polaco](README.pl.md)-[portugués](README.pt.md)-[sueco](README.sv.md)-[japonés](README.ja.md)
 
 ## ¡Bienvenido al repositorio de Spotmarket-Switcher!
 
@@ -16,7 +16,7 @@ Este resultado típico muestra la capacidad de Spotmarket-Switcher para automati
 </p>
 
 -   Uso nocturno: Durante la noche, cuando los precios de la energía estaban en su punto más bajo, Spotmarket-Switcher activó inteligentemente un enchufe conmutable para encender la bomba de calor de agua caliente (el pico se indica en rojo). Esto muestra la capacidad del sistema para identificar y utilizar períodos de energía de bajo costo para tareas que consumen mucha energía.
--   Eficiencia económica en la carga de la batería: el guión decidió estratégicamente no cargar el almacenamiento de la batería en este momento. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
+-   Eficiencia económica en la carga de baterías: El programa decidió estratégicamente no cargar el almacenamiento de baterías en este momento. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
 -   Uso óptimo de la batería en horas punta: En el gráfico se indican las horas de energía más caras en la mañana y en la tarde. Durante estos períodos, Spotmarket-Switcher utilizó la energía almacenada en la batería (que se muestra en azul), evitando así altos costos de electricidad. Esta es una estrategia inteligente para reducir los gastos de energía mediante la utilización de energía almacenada cuando es más costoso extraerla de la red.
 -   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Por la tarde, alrededor de las 20:00, no estaba vacío. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Es un enfoque con visión de futuro que anticipa períodos futuros de altos costos y garantiza que la energía almacenada esté disponible para compensar estos costos.
 
@@ -95,7 +95,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración use`vi /path/to/save/config.txt`
+    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
@@ -113,7 +113,7 @@ Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásic
 Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-Si eres de Austria, puedes apoyarnos utilizando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
+Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F` as code.
 
 ## Descargo de responsabilidad
 
