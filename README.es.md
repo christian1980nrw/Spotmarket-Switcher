@@ -18,7 +18,7 @@ Este resultado típico muestra la capacidad de Spotmarket-Switcher para automati
 -   Uso nocturno: Durante la noche, cuando los precios de la energía estaban en su punto más bajo, Spotmarket-Switcher activó inteligentemente un enchufe conmutable para encender la bomba de calor de agua caliente (el pico se indica en rojo). Esto muestra la capacidad del sistema para identificar y utilizar períodos de energía de bajo costo para tareas que consumen mucha energía.
 -   Eficiencia económica en la carga de baterías: El programa decidió estratégicamente no cargar el almacenamiento de baterías durante este tiempo. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
 -   Uso óptimo de la batería en horas pico: En este día, las horas más caras de energía eran la mañana y la tarde. Durante estos períodos, Spotmarket-Switcher utilizó la energía almacenada en la batería (que se muestra en azul), evitando así altos costos de electricidad.
--   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Por la tarde, alrededor de las 20:00, no estaba vacío. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Esto anticipa períodos futuros de altos costos y garantiza que la energía almacenada esté disponible para compensar estos costos.
+-   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Por la tarde, alrededor de las 20:00, no estaba vacío. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Esto anticipa períodos futuros de alto costo y garantiza que la energía almacenada esté disponible para minimizar los costos.
 
 ¿Por qué utilizar Spotmarket-Switcher?
 
@@ -63,7 +63,7 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
 
 2.  Ejecute el script del instalador con opciones adicionales para preparar todo en un subdirectorio para su inspección. Por ejemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
+    If you're using Victron Venus OS, the correct DESTDIR should be `/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
     En un Cerbo GX, el sistema de archivos está montado en solo lectura. Ver<https://www.victronenergy.com/live/ccgx:root_access>. Para que se pueda escribir en el sistema de archivos, debe ejecutar el siguiente comando antes de ejecutar el script de instalación:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
