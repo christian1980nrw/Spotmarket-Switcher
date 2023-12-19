@@ -1,6 +1,7 @@
 #!/bin/bash
 
-VERSION="2.4.4-DEV"
+
+VERSION="2.4.4"
 
 set -e
 
@@ -234,7 +235,9 @@ download_tibber_prices() {
     if [ "$include_second_day" = 0 ]; then
         cp "$file16" "$file12"
     else
+    
     sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
+
     fi
 
     timestamp=$(TZ=$TZ date +%d)
