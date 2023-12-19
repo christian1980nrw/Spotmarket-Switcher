@@ -16,7 +16,7 @@ Questo risultato tipico dimostra la capacità di Spotmarket-Switcher di automati
 </p>
 
 -   Utilizzo notturno: durante la notte, quando i prezzi dell'energia erano al minimo, lo Spotmarket-Switcher ha attivato in modo intelligente una presa commutabile per alimentare la pompa di calore dell'acqua calda (picco indicato in rosso). Ciò dimostra la capacità del sistema di identificare e utilizzare periodi energetici a basso costo per attività ad alto consumo energetico.
--   Efficienza economica nella ricarica della batteria: il programma ha deciso strategicamente di non caricare la batteria in questo momento. Questa decisione si è basata su un controllo economico che ha tenuto conto delle perdite di tariffazione e le ha confrontate con i prezzi medi o più alti dell'energia del giorno. Questo approccio garantisce che la ricarica della batteria avvenga solo quando è più conveniente.
+-   Efficienza economica nella ricarica della batteria: il programma ha deciso strategicamente di non caricare la batteria durante questo periodo. Questa decisione si è basata su un controllo economico che ha tenuto conto delle perdite di tariffazione e le ha confrontate con i prezzi medi o più alti dell'energia del giorno. Questo approccio garantisce che la ricarica della batteria avvenga solo quando è più conveniente.
 -   Utilizzo ottimale della batteria durante le ore di punta: al giorno d'oggi, le ore più costose dal punto di vista energetico erano la mattina e la sera. Durante questi periodi, lo Spotmarket-Switcher utilizzava l'energia immagazzinata nella batteria (mostrata in blu), evitando così elevati costi dell'elettricità.
 -   Prenotazione della batteria per ore a costo elevato: dopo aver registrato i periodi a costo elevato, il sistema di accumulo dell'energia (ESS) della batteria è stato disattivato. Non era vuoto la sera intorno alle 20:00. Questa azione è stata intrapresa per riservare una capacità della batteria sufficiente per le prossime ore costose del mattino successivo. Ciò anticipa futuri periodi di costi elevati e garantisce che l’energia immagazzinata sia disponibile per compensare tali costi.
 
@@ -87,7 +87,7 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
     -   accedere`wsl --install -d Debian`
     -   Inserisci un nuovo nome utente come`admin`
     -   Inserire una nuova password
-    -   accedere`sudo su` and type your password
+    -   accedere`sudo su`e digita la tua password
     -   accedere`apt-get update && apt-get install wget curl`
     -   Continuare con la descrizione manuale di Linux riportata di seguito (lo script di installazione non è compatibile).
     -   Non dimenticare che se chiudi la shell, Windows arresterà il sistema.
