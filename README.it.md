@@ -9,7 +9,7 @@
 Cosa sta facendo questo software?
 Spotmarket-Switcher è uno strumento software facile da usare che ti aiuta a risparmiare denaro sulle bollette energetiche. Se disponi di un caricabatterie intelligente o di dispositivi come gli scaldabagni che possono accendersi e spegnersi automaticamente, questo strumento è perfetto per te! Accende in modo intelligente i tuoi dispositivi quando i prezzi dell'energia sono bassi, particolarmente utile se i costi energetici cambiano ogni ora.
 
-Questo risultato tipico dimostra la capacità di Spotmarket-Switcher di automatizzare l'utilizzo dell'energia in modo efficiente, non solo risparmiando sui costi ma anche ottimizzando l'uso delle fonti di energia rinnovabile. È un ottimo esempio di come la tecnologia intelligente possa essere utilizzata per gestire il consumo energetico in modo più sostenibile ed economicamente vantaggioso.
+Questo risultato tipico dimostra la capacità di Spotmarket-Switcher di automatizzare l'utilizzo dell'energia in modo efficiente, non solo risparmiando sui costi ma anche ottimizzando l'uso delle fonti di energia rinnovabile. È un ottimo esempio di come la tecnologia intelligente possa essere utilizzata per gestire il consumo energetico in modo più sostenibile ed economicamente vantaggioso. (blu = utilizzo della batteria, rosso = rete, giallo = solare)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
@@ -58,7 +58,7 @@ Albania (AL), Austria (AT), Belgio (BE), Bosnia ed Herz. (BA), Bulgaria (BG), Cr
 
 La configurazione di Spotmarket-Switcher è un processo semplice. Se stai già utilizzando un computer basato su UNIX, come macOS, Linux o Windows con il sottosistema Linux, segui questi passaggi per installare il software:
 
-1.  Scaricare lo script di installazione dal repository GitHub utilizzando[questo collegamento ipertestuale](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)oppure esegui il seguente comando nel tuo terminale:
+1.  Download the install script from the GitHub repository by using [questo collegamento ipertestuale](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)oppure esegui il seguente comando nel tuo terminale:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Esegui lo script di installazione con opzioni aggiuntive per preparare tutto in una sottodirectory per l'ispezione. Per esempio:
