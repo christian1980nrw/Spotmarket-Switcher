@@ -7,7 +7,7 @@
 ## Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
-Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter haben, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
+Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie über ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter verfügen, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
 
 Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Energieverbrauch effizient zu automatisieren und so nicht nur Kosten zu sparen, sondern auch die Nutzung erneuerbarer Energiequellen zu optimieren. Es ist ein großartiges Beispiel dafür, wie intelligente Technologie genutzt werden kann, um den Energieverbrauch nachhaltiger und kostengünstiger zu steuern. (blau = Batterienutzung, rot = Netz, gelb = Solar)
 
@@ -17,7 +17,7 @@ Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Ener
 
 -   Nachtnutzung: Nachts, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (Spitze rot angezeigt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
 -   Wirtschaftlichkeit beim Batterieladen: Das Programm hat sich strategisch entschieden, den Batteriespeicher zum jetzigen Zeitpunkt nicht aufzuladen. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Dieser Ansatz stellt sicher, dass das Laden der Batterie nur dann erfolgt, wenn es am kostengünstigsten ist.
--   Optimale Nutzung der Batterie während der Spitzenzeiten: An diesem Tag waren die Stunden mit dem höchsten Energiebedarf morgens und abends. In diesen Zeiträumen nutzt der Spotmarket-Switcher die gespeicherte Batterieenergie (blau dargestellt) und vermeidet so hohe Stromkosten. Dies ist eine intelligente Strategie zur Reduzierung der Energiekosten durch die Nutzung gespeicherter Energie, deren Bezug aus dem Netz teurer ist.
+-   Optimale Nutzung der Batterie während der Spitzenzeiten: An diesem Tag waren die Stunden mit dem höchsten Energiebedarf morgens und abends. In diesen Zeiträumen nutzt der Spotmarket-Switcher die gespeicherte Batterieenergie (blau dargestellt) und vermeidet so hohe Stromkosten.
 -   Batteriereservierung für Stunden mit hohen Kosten: Nach den Zeiträumen mit hohen Kosten wurde das Energiespeichersystem (ESS) der Batterie abgeschaltet. Abends gegen 20:00 Uhr war es nicht leer. Diese Maßnahme wurde ergriffen, um ausreichend Batteriekapazität für die bevorstehenden teuren Stunden am nächsten Morgen zu reservieren. Es handelt sich um einen zukunftsorientierten Ansatz, der zukünftige Hochkostenperioden vorhersieht und sicherstellt, dass gespeicherte Energie zur Verfügung steht, um diese Kosten auszugleichen.
 
 Warum Spotmarket-Switcher verwenden?
@@ -63,7 +63,7 @@ Das Einrichten des Spotmarket-Switchers ist ein unkomplizierter Vorgang. Wenn Si
 
 2.  Führen Sie das Installationsskript mit zusätzlichen Optionen aus, um alles in einem Unterverzeichnis für Ihre Inspektion vorzubereiten. Zum Beispiel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR sein`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
+    Wenn Sie Victron Venus OS verwenden, sollte das richtige DESTDIR lauten`/`(das Stammverzeichnis). Schauen Sie sich gerne die installierten Dateien an`/tmp/foo`.
     Auf einem Cerbo GX ist das Dateisystem schreibgeschützt gemountet. Sehen<https://www.victronenergy.com/live/ccgx:root_access>. Um das Dateisystem beschreibbar zu machen, müssen Sie den folgenden Befehl ausführen, bevor Sie das Installationsskript ausführen:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
@@ -113,7 +113,7 @@ Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzug
 Sie erhalten einen Bonus (das Angebot variiert**zwischen 50 und 120 Euro**) für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass einige Angebote ohne Mindestvertragslaufzeit sind. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
-Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Empfehlungslink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
+Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
 
 ## Haftungsausschluss
 
