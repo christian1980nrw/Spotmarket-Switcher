@@ -9,7 +9,7 @@
 Mida see tarkvara teeb?
 Spotmarket-Switcher on lihtsalt kasutatav tarkvaratööriist, mis aitab säästa raha oma energiaarvetelt. Kui teil on nutikas akulaadija või sellised seadmed nagu boilerid, mis võivad automaatselt sisse ja välja lülituda, on see tööriist teile ideaalne! See lülitab teie seadmed nutikalt sisse, kui energiahinnad on madalad, eriti kasulik siis, kui teie energiakulud muutuvad iga tunni tagant.
 
-See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiakasutust automatiseerida, mitte ainult kulusid kokku hoida, vaid optimeerida ka taastuvate energiaallikate kasutamist. See on suurepärane näide sellest, kuidas nutikat tehnoloogiat saab kasutada energiatarbimise säästlikumaks ja kulutõhusamaks juhtimiseks.
+See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiakasutust automatiseerida, mitte ainult kulusid kokku hoida, vaid optimeerida ka taastuvate energiaallikate kasutamist. See on suurepärane näide sellest, kuidas nutikat tehnoloogiat saab kasutada energiatarbimise säästlikumaks ja kulutõhusamaks juhtimiseks. (sinine = aku kasutamine, punane = võrk, kollane = päikeseenergia)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
@@ -35,7 +35,7 @@ Toetatud süsteemid on praegu:
 Alustamine:
 
 -   Laadige alla ja installige: häälestusprotsess on lihtne. Laadige skript alla, kohandage mõnda seadet ja oletegi valmis.
--   Ajastage ja lõdvestage: seadistage see üks kord ja see töötab automaatselt. Ei mingit igapäevast tüli!
+-   Ajastage ja lõõgastuge: seadistage see üks kord ja see töötab automaatselt. Ei mingit igapäevast tüli!
 
 Kas olete huvitatud?
 
@@ -67,7 +67,7 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
     Cerbo GX-i failisüsteem on ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muudele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi-l või mõnel muul väikesel tahvlil. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
+Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada teistele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadi jaoks. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
 
 ### Juurdepääs Venus OS-ile
 
@@ -96,7 +96,7 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
 -   Kui kasutate Linuxi süsteemi nagu Ubuntu või Debian:
     -   Kopeeri kestaskript (`controller.sh`) kohandatud asukohta ja kohandage muutujaid vastavalt oma vajadustele.
     -   käsud on`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja seadete muutmiseks kasutage`vi /path/to/save/config.txt`
-    -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
+    -   Selle skripti käivitamiseks iga tunni alguses looge crontab või mõni muu ajastamismeetod.
     -   Crontabi näidis:
           Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
           Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:`0 * * * * /path/to/controller.sh`
@@ -109,7 +109,7 @@ Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise a
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Kui olete Saksamaalt ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e)või sisestades koodi`ojgfbx2e`teie rakenduses. Saate nii teie kui ka projekt**50 eurot lisatasu riistvara eest**. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
-Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate siiski projekti toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
+Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate projekti siiski toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
 Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) endale ja ka projektile.
 Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tähtajata. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
 
