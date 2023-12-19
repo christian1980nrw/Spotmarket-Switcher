@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[Español ](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polski ](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -16,7 +16,7 @@ Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energ
 </p>
 
 -   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (spids angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
--   Økonomisk effektivitet i batteriopladning: Scriptet besluttede strategisk ikke at oplade batterilageret på nuværende tidspunkt. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
+-   Økonomisk effektivitet i batteriopladning: Programmet besluttede strategisk ikke at oplade batterilageret på nuværende tidspunkt. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
 -   Optimal brug af batteri under spidsbelastningstider: I grafen er de dyreste energitimer angivet morgen og aften. I disse perioder brugte Spotmarket-Switcher den lagrede batteri-energi (vist med blåt), og dermed undgåede høje el-omkostninger. Dette er en smart strategi til at reducere energiudgifterne ved at udnytte lagret energi, når det er dyrere at trække fra nettet.
 -   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Det er en fremadskuende tilgang, der forudser fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at kompensere for disse omkostninger.
 
@@ -34,7 +34,7 @@ Understøttede systemer er i øjeblikket:
 
 Kom godt i gang:
 
--   Download og installer: Opsætningsprocessen er ligetil. Download scriptet, juster nogle få indstillinger, og du er klar til at gå.
+-   Download og installer: Opsætningsprocessen er ligetil. Download scriptet, juster et par indstillinger, og du er klar til at gå.
 -   Planlæg og slap af: Indstil det én gang, og det kører automatisk. Ingen daglig besvær!
 
 Interesseret?
@@ -89,7 +89,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
     -   Indtast et nyt kodeord
     -   Gå ind`sudo su`og skriv din adgangskode
     -   Gå ind`apt-get update && apt-get install wget curl`
-    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscriptet er ikke kompatibelt).
+    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscript er ikke kompatibelt).
     -   Glem ikke, hvis du lukker skallen, vil Windows stoppe systemet.
 
 
