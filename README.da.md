@@ -9,13 +9,13 @@
 Hvad laver denne software?
 Spotmarket-Switcher er et letanvendeligt softwareværktøj, der hjælper dig med at spare penge på dine energiregninger. Hvis du har en smart batterioplader eller enheder som vandvarmere, der kan tænde og slukke automatisk, er dette værktøj perfekt til dig! Den tænder smart for dine enheder, når energipriserne er lave, især nyttigt, hvis dine energiomkostninger ændrer sig hver time.
 
-Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energiforbruget effektivt, ikke kun spare omkostninger, men også optimere brugen af ​​vedvarende energikilder. Det er et godt eksempel på, hvordan smart teknologi kan bruges til at styre energiforbruget på en mere bæredygtig og omkostningseffektiv måde.
+Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energiforbruget effektivt, ikke kun spare omkostninger, men også optimere brugen af ​​vedvarende energikilder. Det er et godt eksempel på, hvordan smart teknologi kan bruges til at styre energiforbruget på en mere bæredygtig og omkostningseffektiv måde. (blå = brug af batteri, rød = gitter, gul = solenergi)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
+-   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
 -   Økonomisk effektivitet i batteriopladning: Scriptet besluttede strategisk ikke at oplade batterilageret på nuværende tidspunkt. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
 -   Optimal brug af batteri under spidsbelastningstider: I grafen er de dyreste energitimer angivet morgen og aften. I disse perioder brugte Spotmarket-Switcher den lagrede batteri-energi (vist med blåt), og dermed undgåede høje el-omkostninger. Dette er en smart strategi til at reducere energiudgifterne ved at udnytte lagret energi, når det er dyrere at trække fra nettet.
 -   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Det er en fremadskuende tilgang, der forudser fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at kompensere for disse omkostninger.
@@ -43,7 +43,7 @@ Interesseret?
 -   Vær med til at gøre energiforbruget smartere og mere omkostningseffektivt! For spørgsmål, forslag eller feedback er du velkommen til at kontakte os.
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
-Tag et kig på controller.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
+Tag et kig på controlleren.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
 Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
@@ -89,7 +89,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
     -   Indtast et nyt kodeord
     -   Gå ind`sudo su`og skriv din adgangskode
     -   Gå ind`apt-get update && apt-get install wget curl`
-    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscriptet er ikke kompatibelt).
+    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscript er ikke kompatibelt).
     -   Glem ikke, hvis du lukker skallen, vil Windows stoppe systemet.
 
 
