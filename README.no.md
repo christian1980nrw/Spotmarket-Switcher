@@ -17,7 +17,7 @@ Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere ene
 
 -   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (spike indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
 -   Økonomisk effektivitet i batterilading: Programmet bestemte seg strategisk for å ikke lade batterilagringen på dette tidspunktet. Denne beslutningen var basert på en økonomisk sjekk som tok hensyn til ladetap og sammenlignet dem med dagens gjennomsnittlige eller høyeste energipriser. Denne tilnærmingen sikrer at batterilading bare skjer når det er mest kostnadseffektivt.
--   Optimal bruk av batteri under peak timer: I grafen er de dyreste energitimene angitt om morgenen og kvelden. I disse periodene brukte Spotmarket-Switcher den lagrede batterienergien (vist i blått), og unngikk dermed høye strømkostnader. Dette er en smart strategi for å redusere energiutgiftene ved å utnytte lagret energi når det er dyrere å hente fra nettet.
+-   Optimal bruk av batteri i rushtiden: På denne dagen var de dyreste energitimene morgen og kveld. I disse periodene brukte Spotmarket-Switcher den lagrede batterienergien (vist i blått), og unngikk dermed høye strømkostnader. Dette er en smart strategi for å redusere energiutgiftene ved å utnytte lagret energi når det er dyrere å hente fra nettet.
 -   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Det er en fremtidsrettet tilnærming som forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å kompensere for disse kostnadene.
 
 Hvorfor bruke Spotmarket-Switcher?
@@ -54,7 +54,7 @@ Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG),
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
-## Installation
+## Installasjon
 
 Å sette opp Spotmarket-Switcher er en enkel prosess. Hvis du allerede kjører en UNIX-basert maskin, for eksempel macOS, Linux eller Windows med Linux-delsystemet, følger du disse trinnene for å installere programvaren:
 
