@@ -18,7 +18,7 @@ Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere ene
 -   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (spike indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
 -   Økonomisk effektivitet i batterilading: Programmet bestemte seg strategisk for å ikke lade batterilagringen på dette tidspunktet. Denne beslutningen var basert på en økonomisk sjekk som tok hensyn til ladetap og sammenlignet dem med dagens gjennomsnittlige eller høyeste energipriser. Denne tilnærmingen sikrer at batterilading bare skjer når det er mest kostnadseffektivt.
 -   Optimal bruk av batteri i rushtiden: På denne dagen var de dyreste energitimene morgen og kveld. I disse periodene brukte Spotmarket-Switcher den lagrede batterienergien (vist i blått), og unngikk dermed høye strømkostnader.
--   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Det er en fremtidsrettet tilnærming som forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å kompensere for disse kostnadene.
+-   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Dette forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å kompensere for disse kostnadene.
 
 Hvorfor bruke Spotmarket-Switcher?
 
@@ -81,14 +81,14 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
--   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
+-   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun byttebare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
     -   Tast inn`wsl --install -d Debian`
     -   Skriv inn et nytt brukernavn som`admin`
     -   Skriv inn et nytt passord
     -   Tast inn`sudo su`og skriv inn passordet ditt
-    -   Enter `apt-get update && apt-get install wget curl`
+    -   Tast inn`apt-get update && apt-get install wget curl`
     -   Fortsett med den manuelle Linux-beskrivelsen nedenfor (installasjonsskriptet er ikke kompatibelt).
     -   Ikke glem at hvis du lukker skallet, vil Windows stoppe systemet.
 
