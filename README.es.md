@@ -9,6 +9,17 @@
 ¿Qué está haciendo este software?
 Spotmarket-Switcher es una herramienta de software fácil de usar que le ayuda a ahorrar dinero en sus facturas de energía. Si tienes un cargador de batería inteligente o dispositivos como calentadores de agua que pueden encenderse y apagarse automáticamente, ¡esta herramienta es perfecta para ti! Enciende inteligentemente tus dispositivos cuando los precios de la energía son bajos, lo que es especialmente útil si tus costos de energía cambian cada hora.
 
+Este resultado típico muestra la capacidad de Spotmarket-Switcher para automatizar el uso de energía de manera eficiente, no solo ahorrando costos sino también optimizando el uso de fuentes de energía renovables. Es un gran ejemplo de cómo se puede utilizar la tecnología inteligente para gestionar el consumo de energía de una manera más sostenible y rentable.
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Uso nocturno: Durante la noche, cuando los precios de la energía estaban en su punto más bajo, Spotmarket-Switcher activó inteligentemente un enchufe conmutable para encender la bomba de calor de agua caliente (indicada en rojo). Esto muestra la capacidad del sistema para identificar y utilizar períodos de energía de bajo costo para tareas que consumen mucha energía.
+-   Eficiencia económica en la carga de la batería: el guión decidió estratégicamente no cargar el almacenamiento de la batería en este momento. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
+-   Uso óptimo de la batería en horas punta: En el gráfico se indican las horas de energía más caras en la mañana y en la tarde. Durante estos períodos, Spotmarket-Switcher utilizó la energía almacenada en la batería (que se muestra en azul), evitando así altos costos de electricidad. Esta es una estrategia inteligente para reducir los gastos de energía mediante la utilización de energía almacenada cuando es más costoso extraerla de la red.
+-   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Es un enfoque con visión de futuro que anticipa períodos futuros de altos costos y garantiza que la energía almacenada esté disponible para compensar estos costos.
+
 ¿Por qué utilizar Spotmarket-Switcher?
 
 -   Ahorre dinero: enciende sus dispositivos cuando la energía es más barata, lo que reduce sus facturas.
@@ -62,7 +73,7 @@ Tenga en cuenta que, si bien este software está actualmente optimizado para el 
 
 Para obtener instrucciones sobre cómo acceder al sistema operativo Venus, consulte<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Ejecución del script de instalación
+### Execution of the Install Script
 
 -   Si está utilizando el sistema operativo Victron Venus:
     -   Luego edite las variables con un editor de texto en`/data/etc/Spotmarket-Switcher/config.txt`.
@@ -84,7 +95,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración use`vi /path/to/save/config.txt`
+    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
@@ -99,7 +110,7 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 
 Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
 Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
 Si eres de Austria, puedes apoyarnos utilizando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
