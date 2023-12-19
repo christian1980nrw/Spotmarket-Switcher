@@ -2,20 +2,20 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[Français ](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
 Hva gjør denne programvaren?
 Spotmarket-Switcher er et brukervennlig programvareverktøy som hjelper deg å spare penger på strømregningen. Hvis du har en smart batterilader eller enheter som varmtvannsberedere som kan slå seg på og av automatisk, er dette verktøyet perfekt for deg! Den slår på enhetene dine på en smart måte når energiprisene er lave, spesielt nyttig hvis energikostnadene dine endres hver time.
 
-Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere energibruk effektivt, ikke bare spare kostnader, men også optimalisere bruken av fornybare energikilder. Det er et godt eksempel på hvordan smart teknologi kan brukes til å styre energiforbruket på en mer bærekraftig og kostnadseffektiv måte.
+Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere energibruk effektivt, ikke bare spare kostnader, men også optimalisere bruken av fornybare energikilder. Det er et godt eksempel på hvordan smart teknologi kan brukes til å styre energiforbruket på en mer bærekraftig og kostnadseffektiv måte. (blå = bruk av batteri, rød = rutenett, gul = solenergi)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
+-   Nattbruk: I løpet av natten, da energiprisene var på det laveste, aktiverte Spotmarket-Switcher smart en koblingsbar stikkontakt for å slå på varmtvannsvarmepumpen (spike indikert i rødt). Dette viser systemets evne til å identifisere og utnytte lavkostenergiperioder til energikrevende oppgaver.
 -   Økonomisk effektivitet i batterilading: Skriptet bestemte seg strategisk for å ikke lade batterilagringen på dette tidspunktet. Denne beslutningen var basert på en økonomisk sjekk som tok hensyn til ladetap og sammenlignet dem med dagens gjennomsnittlige eller høyeste energipriser. Denne tilnærmingen sikrer at batterilading bare skjer når det er mest kostnadseffektivt.
 -   Optimal bruk av batteri under peak timer: I grafen er de dyreste energitimene angitt om morgenen og kvelden. I disse periodene brukte Spotmarket-Switcher den lagrede batterienergien (vist i blått), og unngikk dermed høye strømkostnader. Dette er en smart strategi for å redusere energiutgiftene ved å utnytte lagret energi når det er dyrere å hente fra nettet.
 -   Batterireservasjon for høykostnadstimer: Etter høykostnadsperiodene ble batteriets energilagringssystem (ESS) slått av. Det var ikke tomt på kvelden rundt klokken 20.00. Denne handlingen ble tatt for å reservere tilstrekkelig batterikapasitet for de kommende dyre timene neste morgen. Det er en fremtidsrettet tilnærming som forutser fremtidige høykostnadsperioder og sikrer at lagret energi er tilgjengelig for å kompensere for disse kostnadene.
@@ -39,7 +39,7 @@ Starter:
 
 Interessert?
 
--   Sjekk ut våre detaljerte instruksjoner for forskjellige systemer som Victron Venus OS, Windows eller Linux-oppsett. Vi har sørget for at trinnene er enkle å følge.
+-   Check out our detailed instructions for different systems like Victron Venus OS, Windows, or Linux setups. We've made sure the steps are easy to follow.
 -   Bli med oss ​​for å gjøre energibruken smartere og mer kostnadseffektiv! For spørsmål, forslag eller tilbakemeldinger, ta gjerne kontakt.
 
 Koden er enkel slik at den enkelt kan tilpasses andre energilagringssystemer hvis du er i stand til å kontrollere lading med Linux-shell-kommandoer.
@@ -77,7 +77,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 
 -   Hvis du bruker Victron Venus OS:
     -   Rediger deretter variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist øverst til høyre på skjermen) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter opprettelsen. Kontroller at systemtiden (som vist øverst til høyre på skjermen) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
 
