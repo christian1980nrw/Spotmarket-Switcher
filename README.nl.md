@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md) - [Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portuguese ](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
+[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japans](README.ja.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
@@ -15,7 +15,7 @@ Dit typische resultaat demonstreert het vermogen van de Spotmarket-Switcher om h
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nachtelijk gebruik: Tijdens de nacht, toen de energieprijzen het laagst waren, activeerde de Spotmarket-Switcher op slimme wijze een schakelbaar stopcontact om de warmwater-warmtepomp (aangegeven in rood) van stroom te voorzien. Dit toont aan dat het systeem in staat is om goedkope energieperioden voor energie-intensieve taken te identificeren en te gebruiken.
+-   Nachtelijk gebruik: Tijdens de nacht, toen de energieprijzen het laagst waren, activeerde de Spotmarket-Switcher op slimme wijze een schakelbaar stopcontact om de warmwaterwarmtepomp van stroom te voorzien (piek aangegeven in rood). Dit toont aan dat het systeem in staat is om goedkope energieperioden voor energie-intensieve taken te identificeren en te gebruiken.
 -   Economische efficiëntie bij het opladen van de batterij: het script heeft strategisch besloten om de batterijopslag op dit moment niet op te laden. Deze beslissing was gebaseerd op een economische controle waarbij rekening werd gehouden met laadverliezen en deze werden vergeleken met de gemiddelde of hoogste energieprijzen van de dag. Deze aanpak zorgt ervoor dat het opladen van de batterij alleen plaatsvindt wanneer dit het meest kosteneffectief is.
 -   Optimaal batterijgebruik tijdens piekuren: In de grafiek worden de duurste energie-uren in de ochtend en avond weergegeven. Tijdens deze periodes gebruikte de Spotmarket-Switcher de opgeslagen batterij-energie (blauw weergegeven), waardoor hoge elektriciteitskosten werden vermeden. Dit is een slimme strategie om de energiekosten te verlagen door opgeslagen energie te gebruiken wanneer het duurder is om van het elektriciteitsnet te putten.
 -   Batterijreservering voor uren met hoge kosten: Na de perioden met hoge kosten werd het energieopslagsysteem (ESS) van de batterij uitgeschakeld. 's Avonds rond 20.00 uur was het niet leeg. Deze actie werd ondernomen om voldoende batterijcapaciteit te reserveren voor de komende dure uren in de volgende ochtend. Het is een vooruitstrevende aanpak die anticipeert op toekomstige perioden met hoge kosten en ervoor zorgt dat opgeslagen energie beschikbaar is om deze kosten te compenseren.
