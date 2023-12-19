@@ -18,7 +18,7 @@ Este resultado típico muestra la capacidad de Spotmarket-Switcher para automati
 -   Uso nocturno: Durante la noche, cuando los precios de la energía estaban en su punto más bajo, Spotmarket-Switcher activó inteligentemente un enchufe conmutable para encender la bomba de calor de agua caliente (el pico se indica en rojo). Esto muestra la capacidad del sistema para identificar y utilizar períodos de energía de bajo costo para tareas que consumen mucha energía.
 -   Eficiencia económica en la carga de baterías: El programa decidió estratégicamente no cargar el almacenamiento de baterías en este momento. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
 -   Uso óptimo de la batería en horas pico: En este día, las horas más caras de energía eran la mañana y la tarde. Durante estos períodos, Spotmarket-Switcher utilizó la energía almacenada en la batería (que se muestra en azul), evitando así altos costos de electricidad.
--   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Por la tarde, alrededor de las 20:00, no estaba vacío. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Es un enfoque con visión de futuro que anticipa períodos futuros de altos costos y garantiza que la energía almacenada esté disponible para compensar estos costos.
+-   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Por la tarde, alrededor de las 20:00, no estaba vacío. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Esto anticipa períodos futuros de altos costos y garantiza que la energía almacenada esté disponible para compensar estos costos.
 
 ¿Por qué utilizar Spotmarket-Switcher?
 
@@ -95,7 +95,7 @@ La captura de pantalla muestra la configuración de la carga automatizada durant
 
 -   Si está utilizando un sistema Linux como Ubuntu o Debian:
     -   Copie el script de shell (`controller.sh`) a una ubicación personalizada y ajuste las variables según sus necesidades.
-    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración use`vi /path/to/save/config.txt`
+    -   los comandos son`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`y para editar su configuración utilice`vi /path/to/save/config.txt`
     -   Cree un crontab u otro método de programación para ejecutar este script al comienzo de cada hora.
     -   Crontab de muestra:
           Utilice la siguiente entrada de crontab para ejecutar el script de control cada hora:
@@ -110,10 +110,10 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 
 Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
 Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-Si eres de Austria, puedes apoyarnos utilizando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
+Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
 
 ## Descargo de responsabilidad
 
