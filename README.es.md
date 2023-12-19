@@ -16,7 +16,7 @@ Este resultado típico muestra la capacidad de Spotmarket-Switcher para automati
 </p>
 
 -   Uso nocturno: Durante la noche, cuando los precios de la energía estaban en su punto más bajo, Spotmarket-Switcher activó inteligentemente un enchufe conmutable para encender la bomba de calor de agua caliente (el pico se indica en rojo). Esto muestra la capacidad del sistema para identificar y utilizar períodos de energía de bajo costo para tareas que consumen mucha energía.
--   Eficiencia económica en la carga de baterías: El programa decidió estratégicamente no cargar el almacenamiento de baterías en este momento. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
+-   Eficiencia económica en la carga de baterías: El programa decidió estratégicamente no cargar el almacenamiento de baterías durante este tiempo. Esta decisión se basó en un control económico que tuvo en cuenta las pérdidas de carga y las comparó con los precios de energía promedio o más altos del día. Este enfoque garantiza que la carga de la batería se produzca sólo cuando sea más rentable.
 -   Uso óptimo de la batería en horas pico: En este día, las horas más caras de energía eran la mañana y la tarde. Durante estos períodos, Spotmarket-Switcher utilizó la energía almacenada en la batería (que se muestra en azul), evitando así altos costos de electricidad.
 -   Reserva de batería para horas de alto costo: después de los períodos de alto costo, el sistema de almacenamiento de energía (ESS) de la batería estaba apagado. Por la tarde, alrededor de las 20:00, no estaba vacío. Esta medida se tomó para reservar suficiente capacidad de la batería para las próximas y costosas horas de la mañana siguiente. Esto anticipa períodos futuros de altos costos y garantiza que la energía almacenada esté disponible para compensar estos costos.
 
@@ -113,7 +113,7 @@ Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásic
 Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (referral link)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
+Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
 
 ## Descargo de responsabilidad
 
