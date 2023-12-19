@@ -17,12 +17,12 @@ Tämä tyypillinen tulos esittelee Spotmarket-Switcherin kyvyn automatisoida ene
 
 -   Yökäyttö: Yön aikana, kun energian hinnat olivat alhaisimmillaan, Spotmarket-Switcher aktivoi älykkäästi kytkettävän pistorasian käynnistääkseen kuumavesilämpöpumpun (merkitty punaisella). Tämä osoittaa järjestelmän kyvyn tunnistaa ja hyödyntää edullisia energiajaksoja energiaintensiivisiin tehtäviin.
 -   Taloudellinen tehokkuus akun latauksessa: Käsikirjoitus päätti strategisesti olla lataamatta akun tallennustilaa tällä hetkellä. Tämä päätös perustui taloudelliseen tarkastukseen, jossa otettiin huomioon laskutushäviöt ja verrattiin niitä päivän keskimääräisiin tai korkeimpiin energiahintoihin. Tämä lähestymistapa varmistaa, että akun lataus tapahtuu vain silloin, kun se on kustannustehokkainta.
--   Akun optimaalinen käyttö ruuhka-aikoina: Kaaviossa kalleimmat energiatunnit on merkitty aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti akkuun varastoitua energiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta. Tämä on älykäs strategia energiakulujen vähentämiseksi hyödyntämällä varastoitua energiaa, kun sen saaminen verkosta on kalliimpaa.
--   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Se on eteenpäin katsova lähestymistapa, joka ennakoi tulevia korkeita kustannuksia ja varmistaa, että varastoitua energiaa on saatavilla näiden kustannusten kattamiseksi.
+-   Akun optimaalinen käyttö ruuhka-aikoina: Kaaviossa on ilmoitettu kalleimmat energiatunnit aamulla ja illalla. Tänä aikana Spotmarket-Switcher käytti varastoitua akkuenergiaa (esitetty sinisellä), jolloin vältyttiin korkeilta sähkökustannuksilta. Tämä on älykäs strategia energiakulujen vähentämiseksi hyödyntämällä varastoitua energiaa, kun sen saaminen verkosta on kalliimpaa.
+-   Akun varaus kalliille tunneille: Kalliimpien kausien jälkeen akun energian varastointijärjestelmä (ESS) sammutettiin. Se ei ollut tyhjä illalla noin klo 20.00. Tällä toimenpiteellä varattiin riittävästi akkukapasiteettia seuraavan aamun tulevia kalliita tunteja varten. Se on eteenpäin katsova lähestymistapa, joka ennakoi tulevia korkeita kustannuksia ja varmistaa, että varastoitua energiaa on saatavilla näiden kustannusten kattamiseksi.
 
 Miksi käyttää Spotmarket-Switcheria?
 
--   Säästä rahaa: Se käynnistää laitteesi, kun energia on halvempaa, mikä vähentää laskujasi.
+-   Säästä rahaa: Se käynnistää laitteesi, kun energia on halvempaa, mikä pienentää laskujasi.
 -   Energiatehokas: Käyttämällä energiaa, kun sitä on ylijäämäisinä (kuten tuulisina öinä), edistät planeetan vihreämpää.
 -   Älykäs käyttö: Lataa akkuvarastosi automaattisesti tai käynnistä laitteita, kuten vedenlämmittimiä, parhaimmillaan.
 
@@ -48,9 +48,9 @@ Luo github-haarukka ja jaa mukauksesi, jotta muut käyttäjät voivat hyötyä s
 
 ## Tietolähde
 
-The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
-The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
-Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Transparency Entso-E -alusta](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Ohjelmisto käyttää tällä hetkellä kolmen ilmaisen API:n (Tibber, aWATTar & Entso-E) tarjoamia EPEX Spot -tuntihintoja.
+Integroitu ilmainen Entso-E API tarjoaa energian hintatietoja seuraavista maista:
+Albania (AL), Itävalta (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tšekki (CZ), Tanska (DK), Viro (EE), Suomi (FI), Ranska (FR), Georgia (GE), Saksa (DE), Kreikka (GR), Unkari (HU), Irlanti (IE), Italia (IT), Kosovo (XK), Latvia (LV), Liettua (LT), Luxemburg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Alankomaat (NL), Pohjois-Makedonia (MK), Norja (NO), Puola (PL), Portugali (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Espanja (ES), Ruotsi (SE), Sveitsi (CH), Turkki (TR), Ukraina (UA), Yhdistynyt kuningaskunta (UK) ks.[Transparency Entso-E -alusta](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 
@@ -111,7 +111,7 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 Jos olet Saksasta ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e)tai syöttämällä koodi`ojgfbx2e`sovelluksessasi. Sekä sinä että projekti saavat**50 euron bonus laitteistolle**. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat bonuksen (tarjous vaihtelee**50-120 euron välillä**) itsellesi ja myös projektille.
-Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne sopivat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
+Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 
 Jos olet Itävallasta, voit tukea meitä käyttämällä[aWATtar Itävalta (viittauslinkki)](https://www.awattar.at/services/offers/promotecustomers). Ole hyvä ja käytä`3KEHMQN2F`koodina.
 
