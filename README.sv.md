@@ -2,12 +2,23 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[Español ](README.es.md)-[Estonian ](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[Polski ](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
+[tjeckiska](README.cs.md)-[danska](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spanska](README.es.md)-[estniska](README.et.md)-[finska](README.fi.md)-[franska](README.fr.md)-[grekisk](README.el.md)-[italienska](README.it.md)-[holländska](README.nl.md)-[norska](README.no.md)-[putsa](README.pl.md)-[portugisiska](README.pt.md)-[Svenska](README.sv.md)-[japanska](README.ja.md)
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
-Vad gör denna programvara?
+Vad gör den här programvaran?
 Spotmarket-Switcher är ett lättanvänt mjukvaruverktyg som hjälper dig att spara pengar på dina energiräkningar. Om du har en smart batteriladdare eller enheter som varmvattenberedare som kan slås på och stängas av automatiskt, är detta verktyg perfekt för dig! Den sätter smart på dina enheter när energipriserna är låga, särskilt användbart om dina energikostnader ändras varje timme.
+
+Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera energianvändningen effektivt, inte bara spara kostnader utan också optimera användningen av förnybara energikällor. Det är ett bra exempel på hur smart teknik kan användas för att hantera energiförbrukningen på ett mer hållbart och kostnadseffektivt sätt.
+
+<p align="center" width="100%">
+    <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
+</p>
+
+-   Användning på natten: Under natten, när energipriserna var som lägsta, aktiverade Spotmarket-Switcher smart ett omkopplingsbart uttag för att slå på varmvattenvärmepumpen (indikeras i rött). Detta visar systemets förmåga att identifiera och utnyttja lågkostnadsenergiperioder för energikrävande uppgifter.
+-   Ekonomisk effektivitet vid batteriladdning: Skriptet bestämde sig strategiskt för att inte ladda batterilagringen just nu. Detta beslut baserades på en ekonomisk kontroll som tog hänsyn till laddningsförluster och jämförde dem med dagens genomsnittliga eller högsta energipriser. Detta tillvägagångssätt säkerställer att batteriladdning endast sker när det är mest kostnadseffektivt.
+-   Optimal användning av batteriet under högtrafik: I diagrammet anges de dyraste energitimmarna på morgonen och kvällen. Under dessa perioder använde Spotmarket-Switcher den lagrade energin i batteriet (visas i blått), och undvek därmed höga elkostnader. Det här är en smart strategi för att minska energikostnaderna genom att använda lagrad energi när det är dyrare att hämta från nätet.
+-   Batterireservation för högkostnadstimmar: Efter högkostnadsperioderna stängdes batteriets energilagringssystem (ESS) av. Denna åtgärd vidtogs för att reservera tillräcklig batterikapacitet för de kommande dyra timmarna nästa morgon. Det är ett framåttänkande som förutser framtida högkostnadsperioder och säkerställer att lagrad energi finns tillgänglig för att kompensera för dessa kostnader.
 
 Varför använda Spotmarket-Switcher?
 
@@ -19,12 +30,12 @@ System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
+-   [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
 
 Komma igång:
 
 -   Ladda ner och installera: Installationsprocessen är enkel. Ladda ner skriptet, justera några inställningar och du är redo att gå.
--   Schemalägg och koppla av: Ställ in det en gång, så körs det automatiskt. Inget dagligt krångel!
+-   Schemalägg och koppla av: Ställ in det en gång och det körs automatiskt. Inget dagligt krångel!
 
 Intresserad?
 
@@ -56,24 +67,24 @@ Att installera Spotmarket-Switcher är en enkel process. Om du redan kör en UNI
     På en Cerbo GX är filsystemet skrivskyddat monterat. Ser<https://www.victronenergy.com/live/ccgx:root_access>. För att göra filsystemet skrivbart måste du köra följande kommando innan du kör installationsskriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Observera att även om denna programvara för närvarande är optimerad för Venus OS, kan den anpassas till andra Linux-smaker, som Debian/Ubuntu på en Raspberry Pi eller ett annat litet kort. En främsta kandidat är definitivt[ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt är dess större strömförbrukning ett problem.
+Please note that while this software is currently optimized for the Venus OS, it can be adapted to other Linux flavors, like Debian/Ubuntu on a Raspberry Pi or another small board. A prime candidate is certainly [ÖppnaWRT](https://www.openwrt.org). Att använda en stationär dator är bra för teständamål, men när den används dygnet runt är dess större strömförbrukning ett problem.
 
 ### Tillgång till Venus OS
 
 För instruktioner om hur du kommer åt Venus OS, se<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Execution of the Install Script
+### Körning av installationsskriptet
 
 -   Om du använder Victron Venus OS:
     -   Redigera sedan variablerna med en textredigerare i`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att avaktivera den efter att du skapat den. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Ställ in ett ESS-avgiftsschema (se den medföljande skärmdumpen). I exemplet laddas batteriet på natten upp till 50 % om det är aktiverat, andra laddningstider på dygnet ignoreras. Om du inte vill, skapa ett schema för dygnets alla 24 timmar. Kom ihåg att inaktivera det efter att du skapat det. Kontrollera att systemtiden (som visas uppe till höger på skärmen) är korrekt.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skärmdumpen visar konfigurationen av automatisk laddning under användardefinierade tider. Inaktiverad som standard, kan tillfälligt aktiveras av skriptet.
 
 -   Instruktioner för att installera Spotmarket-Switcher på ett Windows 10- eller 11-system för testning utan Victron-enheter (endast omkopplingsbara uttag).
 
     -   lansera`cmd.exe`som administratör
-    -   Enter `wsl --install -d Debian`
+    -   Stiga på`wsl --install -d Debian`
     -   Ange ett nytt användarnamn som`admin`
     -   Ange ett nytt lösenord
     -   Stiga på`sudo su`och skriv ditt lösenord
@@ -83,12 +94,13 @@ Skärmdumpen visar konfigurationen av automatisk laddning under användardefinie
 
 
 -   Om du använder ett Linux-system som Ubuntu eller Debian:
-    -   Kopiera skalskriptet (`controller.sh`) to a custom location and adjust the variables according to your needs.
+    -   Kopiera skalskriptet (`controller.sh`) till en anpassad plats och justera variablerna efter dina behov.
     -   kommandona är`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`och för att redigera dina inställningar använd`vi /path/to/save/config.txt`
     -   Skapa en crontab eller annan schemaläggningsmetod för att köra det här skriptet i början av varje timme.
     -   Exempel Crontab:
           Använd följande crontab-post för att köra kontrollskriptet varje timme:
-          Öppna din terminal och skriv in`crontab -e`, infoga sedan följande rad:`0 * * * * /path/to/controller.sh`
+          Öppna din terminal och skriv in`crontab -e`, then insert the following line:
+          `0 * * * * /path/to/controller.sh`
 
 ### Support och bidrag :+1:
 
@@ -97,12 +109,12 @@ Om du tycker att det här projektet är värdefullt, vänligen överväg att spo
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-If you are from Germany and interested in switching to a dynamic electricity tariff, you can support the project by signing up using this [Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus for hardware**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
+Om du är från Tyskland och är intresserad av att byta till en dynamisk eltariff kan du stödja projektet genom att registrera dig med denna[Tibber (remisslänk)](https://invite.tibber.com/ojgfbx2e)eller genom att ange koden`ojgfbx2e`i din app. Både du och projektet kommer att få**50 euro bonus för hårdvara**. Observera att en smart mätare eller en Pulse-IR krävs för en timtaxa (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortfarande stödja projektet[Octopus Energy (referenslänk)](https://share.octopusenergy.de/glass-raven-58).
 Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
-Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Använd gärna`3KEHMQN2F`som kod.
+Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Vänligen använd`3KEHMQN2F`som kod.
 
 ## varning
 
