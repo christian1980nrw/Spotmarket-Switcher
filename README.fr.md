@@ -4,7 +4,7 @@
 
 [tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
 
-## Bienvenue dans le référentiel Spotmarket-Switcher !
+## Welcome to the Spotmarket-Switcher repository!
 
 Que fait ce logiciel ?
 Spotmarket-Switcher est un outil logiciel facile à utiliser qui vous aide à économiser de l'argent sur vos factures d'énergie. Si vous disposez d'un chargeur de batterie intelligent ou d'appareils comme des chauffe-eau qui peuvent s'allumer et s'éteindre automatiquement, cet outil est parfait pour vous ! Il allume intelligemment vos appareils lorsque les prix de l'énergie sont bas, ce qui est particulièrement utile si vos coûts énergétiques changent toutes les heures.
@@ -16,7 +16,7 @@ Ce résultat typique met en valeur la capacité du Spotmarket-Switcher à automa
 </p>
 
 -   Utilisation nocturne : Pendant la nuit, lorsque les prix de l'énergie étaient au plus bas, le Spotmarket-Switcher a intelligemment activé une prise commutable pour alimenter la pompe à chaleur à eau chaude (pic indiqué en rouge). Cela montre la capacité du système à identifier et à utiliser les périodes d'énergie à faible coût pour des tâches à forte intensité énergétique.
--   Efficacité économique du chargement de la batterie : le script a stratégiquement décidé de ne pas charger le stockage de la batterie pour le moment. Cette décision était basée sur un contrôle économique qui prenait en compte les pertes de charge et les comparait aux prix énergétiques moyens ou les plus élevés du moment. Cette approche garantit que la recharge de la batterie n'a lieu que lorsque cela est le plus rentable.
+-   Efficacité économique du chargement des batteries : Le programme a stratégiquement décidé de ne pas charger les batteries de stockage pour le moment. Cette décision était basée sur un contrôle économique qui prenait en compte les pertes de charge et les comparait aux prix énergétiques moyens ou les plus élevés du moment. Cette approche garantit que la recharge de la batterie n'a lieu que lorsque cela est le plus rentable.
 -   Utilisation optimale de la batterie pendant les heures de pointe : Dans le graphique, les heures énergétiques les plus chères sont indiquées le matin et le soir. Pendant ces périodes, le Spotmarket-Switcher a utilisé l'énergie stockée dans la batterie (indiquée en bleu), évitant ainsi des coûts d'électricité élevés. Il s'agit d'une stratégie intelligente pour réduire les dépenses énergétiques en utilisant l'énergie stockée alors qu'il est plus coûteux de puiser sur le réseau.
 -   Réservation de la batterie pour les heures à coût élevé : après les périodes à coût élevé, le système de stockage d'énergie (ESS) de la batterie a été désactivé. Il n'était pas vide le soir vers 20h00. Cette mesure a été prise pour réserver une capacité de batterie suffisante pour les heures coûteuses à venir du lendemain matin. Il s'agit d'une approche avant-gardiste qui anticipe les futures périodes de coûts élevés et garantit que l'énergie stockée est disponible pour compenser ces coûts.
 
@@ -111,7 +111,7 @@ Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de souten
 Si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e)ou en saisissant le code`ojgfbx2e`dans votre application. Vous et le projet recevrez**50 euros de bonus pour le matériel**. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Si vous avez besoin d'un tarif de gaz naturel ou préférez un tarif d'électricité classique, vous pouvez toujours soutenir le projet[Octopus Energy (lien de parrainage)](https://share.octopusenergy.de/glass-raven-58).
 Vous recevez un bonus (l'offre varie**entre 50 et 120 euros**) pour vous-même et aussi pour le projet.
-Octopus présente l'avantage que certaines offres sont sans durée minimale de contrat. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
+Octopus a l'avantage que certaines offres sont sans durée minimale de contrat. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
 
 Si vous résidez en Autriche, vous pouvez nous soutenir en utilisant[aWATTar Autriche (lien de référence)](https://www.awattar.at/services/offers/promotecustomers). Veuillez utiliser`3KEHMQN2F`comme code.
 
