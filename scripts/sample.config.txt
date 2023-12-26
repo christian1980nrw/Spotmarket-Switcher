@@ -1,42 +1,232 @@
-##### Configuration part...
+# Spotmarket-Switcher Configuration File
 
-  # Switchable Sockets Setup (AVM Fritz DECT200/210 wireless sockets) if used (tested with FRITZ!OS: 07.29).
+# This configuration file is essential for setting up the Spotmarket-Switcher system.
+# It controls various aspects like energy management, device control, and API integration.
+# Each setting is explained in detail for easy understanding and configuration.
 
-use_fritz_dect_sockets=0 # please activate with 1 or deactivate this socket-type with 0
-fbox="192.168.178.1"
-user="fritz1234"
-passwd="YOURPASSWORD"
-sockets=("YOURSOCKETID" "0" "0" "0" "0" "0")
+#######################
+# General Settings
+#######################
 
-  # Switchable Sockets Setup (Shelly Wifi Plugs) (tested with Shelly Plug S Firmware 20230109-114426/v1.12.2-g32055ee)
-use_shelly_wlan_sockets=0             # please activate with 1 or deactivate this socket-type with 0
-shelly_ips=("192.168.178.89" "0" "0") # add multiple Shellys if you like, dont forget to make the ips static in your router
-shellyuser="admin"
-shellypasswd="YOURPASSWORD" # only if used
+# Timezone setting: Essential for correct timing of operations based on your geographic location.
+TZ='Europe/Amsterdam'
 
-  # Victron Venus OS Solar Charger Setup
-use_victron_charger=0                         # please activate with 1 or deactivate this charger-type with 0
-energy_loss_percent=23.3                      # Enter how much percent of the energy is lost by the charging and discharging process.
-battery_lifecycle_costs_cent_per_kwh=4.444444 # If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
-economic_check=1                              # Set to 0 disables the check.
-                                              # Set to 1 or 2. Current price + energy loss + battery lifecycle costs will be compared with (1 = highest_price / 2 = average_price) and aborted if charging makes no sense.
-disable_inverting_while_only_switching=1      # Set to 0 or 1. If charging is too expensive but switching is turned on, this keeps the batterys full. Inverting will be disabled during that time.
-limit_inverter_power_after_enabling=-1        # Default: -1 (limit will be disabled at re-enabling the inverter). Put your value here (e.g. 1000 for 1000w) if you use "Limit inverter power" at the ESS menu or this setting will be lost if you use disable_inverting_while_only_switching.
+# Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
+# You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
+config_version=4
 
-  #Please change prices (always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh) / net prices excl. tax).
-start_price=-5.0   # start below this price
-feedin_price=9.87 # your feed-in-tariff of your solar system
-energy_fee=17.0 # proofs of origin, allocations, duties and taxes (in case if stock price is at 0 Cent/kWh)
-abort_price=50.1  # abort and never charge or switch if actual price is same or higher than this (Energy fees not included)
+#######################
+# API Selection
+#######################
 
-use_start_stop_logic=0            # Set to 1 to activate start/stop logic (depending start_price).
-switchablesockets_at_start_stop=0 # You can add a additional load (like water heater) with AVM Fritz DECT200/210 switch sockets if you like.
-charge_at_solar_breakeven_logic=0 # Charge if energy including fees is cheaper than your own feedin-tariff of your solar system
+# Select the pricing API source:
+# 1 for aWATTar (Germany/Austria), 2 for Entsoe (Europe), 3 for Tibber (selected countries).
+select_pricing_api=1
+#  Note:
+#   aWATTar: Provides only germany DE-LU or Austrian AT prices, but no API key is needed.
+#   Entsoe:  Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
+
+# Include prices for the next day in calculations:
+# 0 = No (use only today's prices), 1 = Yes (use today's and tomorrow's prices when available (today in the afternoon)).
+include_second_day=0
+# Note: If you activate this and the prices decrease over several days,
+# it is possible that there will be no charging or switching for several days until the lowest prices are reached.
+
+#######################
+# aWATTar API Settings
+#######################
+
+# Country selection for aWATTar API:
+# 'de' for Germany, 'at' for Austria. Other countries are not supported by aWATTar.
+awattar='de'
+
+#######################
+# Entsoe API Settings
+#######################
+
+# API security token for Entsoe:
+# A unique key required to access the Entsoe API for electricity pricing data.
+entsoe_eu_api_security_token='YOURAPIKEY'
+# Note: How to get the free api_security_token:
+#  1. Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account.
+#  2. Send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
+#     Indicate the email address you entered during registration in the email body.
+#  3. The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
+#  4. Afterwards you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
+# The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
+
+# ENTSO-E domain codes for your region:
+# These are unique identifiers for your electricity market region.
+in_Domain='10Y1001A1001A82H'  # Example: Germany DE-LU
+out_Domain='10Y1001A1001A82H' # Example: Germany DE-LU
+
+#######################
+# Tibber API Settings
+#######################
+
+# API key for Tibber:
+# A unique key required to access the Tibber API for electricity pricing data.
+tibber_api_key='0S2sPDoFU7MtV2495zuPHF3rOxXxIO3ONHAKwKN_1nA'
+# Note: To get the tibber_api_key
+#  1. log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token .
+#  2. Create a token by selecting the scopes you need (select "price").
+#  3. Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
+# Currently no contract is needed to create a free Account that is able to access the API.
+
+# Type of Tibber prices to use:
+# 'energy' for spot market prices, 'total' for total prices including taxes fees, 'tax' for taxes and fees only.
+tibber_prices='total'
+
+#######################
+# Solar Weather API Settings
+#######################
+
+# API key for Visual Crossing Weather API:
+# Required for fetching solar weather data.
+# Get your free key at https://www.visualcrossing.com/sign-up No credit card is required to sign up for your free 1000 records per day.
+visualcrossing_api_key='YOURAPIKEY'
+
+# Enable or disable solar weather-based operation aborting:
+# 1 = Use solar data to decide on operations, 0 = Do not use solar data.
+use_solarweather_api_to_abort=0
+
+# Solar energy thresholds to abort operations:
+# If the expected solar energy (in megajoules per square meter) exceeds these values,
+# operations like charging will be aborted to utilize solar energy instead.
+# To find the kilowatt hour value from megajoules, divide by 3.6.
+abort_solar_yield_today=10.0
+abort_solar_yield_tomorrow=15.0
+
+# Minimum sun minutes per day to abort operations:
+# If the expected amount of sunlight (in minutes) exceeds this value, operations will be halted.
+abort_suntime=700
+
+# Geographic coordinates for solar data:
+# Used by the solar weather API to fetch relevant solar energy data for your location.
+latitude=49.98796
+longitude=8.01816
+# Note: You can use Google Maps to find the latitude and longitude of a location by searching for the address or location and then right-clicking
+# on the location on the map. A pop-up menu will appear with the option to "What's here?" which will display the latitude and longitude of that location.
+
+#######################
+# Economic Logic Settings
+#######################
+
+# Economic Check (economic_check):
+# This setting determines whether the system should consider the economic feasibility of charging the battery based on current and projected electricity prices.
+# Options:
+# 0 = Disable economic checks. The system will charge the battery regardless of the cost implications according to the config matrix.
+# 1 = Enable economic checks against the highest price. Charging will only occur if the total cost (current price + energy loss + battery lifecycle costs) is lower than the highest price observed in the current price set.
+# 2 = Enable economic checks against the average price. Charging will only occur if the total cost is lower than the average price of electricity.
+# Example: If set to 1, and the highest price of the day is lower than the sum of the current price, energy loss, and battery lifecycle costs, charging will be aborted as it would not be economically feasible.
+economic_check=0
+
+# Feed-in Tariff (feedin_price):
+# This is the price you receive for feeding electricity back into the grid, typically from a solar PV system.
+# The value is in cents per kWh and is used in calculations to determine if it's more economical to store energy in the battery or to sell it back to the grid.
+# Example: If your feed-in tariff is 9.87 cents per kWh, set this value to 9.87.
+feedin_price=9.87
+
+# Energy Fee (energy_fee):
+# This represents additional costs associated with electricity consumption, including taxes, levies, and other charges.
+# The value is in cents per kWh and is added to the market price of electricity in economic calculations.
+# This fee is particularly relevant when the market price of electricity is very low or zero, as these additional costs still apply.
+# Example: If you pay an energy fee of 17 cents per kWh, including taxes and other charges, set this value to 17.0.
+energy_fee=17.0
+
+#######################
+# Start/Stop Logic Settings
+#######################
+
+# Enable or disable specific logic controls:
+# These settings control whether certain operations are based on start/stop logic or solar breakeven logic.
+# Set to 1 to activate start/stop logic (depending start_price).
+use_start_stop_logic=0
+#Note: This functionality will be removed in the future in favour of economic_check and the price matrices.
+
+# Price thresholds in cents/kWh:
+# These values determine the price points at which different operations are triggered (net prices excl. tax).
+# Note: Always use Cent/kWh, no matter if youre using Awattar (displaying Cent/kWh) or Entsoe API (displaying EUR/MWh).
+start_price=-5.0   # Start operations below this price.
+abort_price=50.1   # Abort operations if price exceeds this value (energy fees not included).
+
+# This setting allows you to control additional devices (like a water heater) using AVM Fritz DECT200/210 or Shelly switchable sockets.
+# 0 = Do not control additional devices based on start/stop logic.
+# 1 = Enable control of additional devices based on start/stop logic.
+# When enabled, this will activate or deactivate the switchable sockets based on the start/stop charging logic.
+switchablesockets_at_start_stop=0
+
+# This setting determines whether to charge your battery system when the cost of energy (including fees) is lower than your solar feed-in tariff.
+# 0 = Do not charge based on solar breakeven logic.
+# 1 = Enable charging when energy cost is lower than solar feed-in tariff.
+# Enabling this will initiate charging when it's more economical to charge the battery than to feed the solar energy back into the grid.
+charge_at_solar_breakeven_logic=0
+
+# Similar to 'charge_at_solar_breakeven_logic', but for controlling switchable sockets.
+# 0 = Do not control switchable sockets based on solar breakeven logic.
+# 1 = Enable control of switchable sockets when energy cost is lower than solar feed-in tariff.
+# When enabled, this will activate or deactivate the switchable sockets based on the comparison of current energy cost and solar feed-in tariff.
 switchablesockets_at_solar_breakeven_logic=0
 
-# Config Matrix to enable/disable charging or switching or discharging depending SOC (ESS).
-# This Matrix will be used if 24 Prices are available.
+#######################
+# Victron Venus OS Solar Charger Setup
+#######################
 
+# Enable or disable Victron Venus OS Solar Charger control:
+# 1 = Control the charger, 0 = Do not control the charger.
+use_victron_charger=1
+
+# Energy loss percentage in the charging/discharging process:
+# This value accounts for energy lost during charging and discharging of the battery.
+energy_loss_percent=23.3
+
+# Battery lifecycle cost per kWh in cents:
+# Represents the cost associated with the battery's lifespan and usage.
+battery_lifecycle_costs_cent_per_kwh=4.444444
+# Note: If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and
+# the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
+
+# disable_inverting_while_only_switching
+# This setting controls the inverter's operation when switching (controlling additional loads) is active, but charging is deemed too expensive.
+# 0 = Keep inverting enabled even when only switching is active. This means the inverter will continue to convert DC (battery) power to AC (household) power.
+# 1 = Disable inverting when only switching is active and charging is too expensive. This helps to preserve the battery's full charge by not using it for inverter operation.
+# Essentially, when set to 1, the system prioritizes maintaining battery charge over supplying AC power from the battery when charging is not economically feasible.
+disable_inverting_while_only_switching=1
+
+# limit_inverter_power_after_enabling
+# This setting specifies a power limit for the inverter when it is re-enabled after being disabled.
+# -1 = No limit. The inverter will operate at its full capacity when re-enabled.
+# Any positive value (e.g., 1000) = Set a specific limit (in watts). For example, setting this to 1000 will limit the inverter's output to 1000 watts.
+# This is useful if you have a 'Limit inverter power' setting configured in the Energy Storage System (ESS) menu and want to ensure it's respected after the inverter is re-enabled.
+# Note: If 'disable_inverting_while_only_switching' is used, this setting ensures that your preferred inverter power limit is reinstated after inverting is re-enabled.
+limit_inverter_power_after_enabling=-1
+
+#######################
+# Switchable Sockets Setup (Fritz DECT and Shelly Wifi Plugs)
+#######################
+
+# Fritz DECT Sockets:
+use_fritz_dect_sockets=0 # please activate with 1 or deactivate this socket-type with 0
+fbox='192.168.178.1'
+user='fritz1234'
+passwd='YOURPASSWORD'
+sockets=('YOURSOCKETID' '0' '0' '0' '0' '0') # add multiple switches if you like
+
+# Shelly Wifi Plugs:
+use_shelly_wlan_sockets=0 # please activate with 1 or deactivate this socket-type with 0
+shelly_ips=('192.168.178.89' '0' '0') # add multiple Shellys if you like, dont forget to make the ips static in your router
+shellyuser='admin'
+shellypasswd='YOURPASSWORD' # only if used
+
+#######################
+# Config Matrices for Charging/Discharging/Switching
+#######################
+
+# Config Matrix for 24-hour Pricing:
+# Each row represents an hour of the day and contains three values:
+# 1st value: Enable (1) or disable (0) charging.
+# 2nd value: Minimum SoC (%) for discharging.
+# 3rd value: Enable (1) or disable (0) switchable sockets.
 config_matrix24_price=(
     "Charge Discharge_min_SOC Switch"   # [0] Header
     "1 95 1"                     # [1] Price 1
@@ -65,9 +255,8 @@ config_matrix24_price=(
     "0 10 0"                     # [24] Price 24
 )
 
-# Config Matrix to enable/disable charging or switching or discharging depending SOC (ESS).
-# This Matrix will be used if second day is activated and 48 Prices are available in the afternoon.
-
+# Config Matrix for 48-hour Pricing (if include_second_day is enabled):
+# Similar to the 24-hour matrix but for a 48-hour period.
 config_matrix48_price=(
     "Charge Discharge_min_SOC Switch"   # [0] Header
     "1 95 1"                     # [1] Price 1
@@ -120,72 +309,12 @@ config_matrix48_price=(
     "0 10 0"                     # [48] Price 48
 )
 
-# Mini-Matrix for dynamic SOC. At the example at 1.5 megajoule per squaremeter, the battery will be charged up to 90% and at 13 megajoule only up to 15%.
-# All the other values between this will be calculated automatically. If the sun will be more than 13 megajoule, the 15% will still be used as calculation result.
-# If there will be enough sun, the battery capacity will be reserved for solar energy.
-
+# Mini-Matrix for Dynamic SOC Based on Solar Energy:
+# This matrix defines target SoC values based on expected solar energy (in MJ/m²).
 config_matrix_target_soc_weather=(
-    "megajoule target_SoC"
-    "1.5 90"
-    "3.5 15"
+    '1.5 90'  # At 1.5 MJ/m², target SoC is 90%
+    '13 15'   # At 13 MJ/m², target SoC is 15%
 )
-
-
-TZ='Europe/Amsterdam' # Set Correct Timezone
-select_pricing_api=1  # Set to
-  # 1 for aWATTar or
-  # 2 for entsoe or
-  # 3 for Tibber
-  #
-  #  Note:
-  #   aWATTar: Provides only germany DE-LU or Austrian AT prices, but no API key needed
-  #   Entsoe:  Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
-include_second_day=0 # Set to 0 to compare only the today prices.
-  # Set include_second_day to 1 to compare today & tomorrow prices if they become available (today in the afternoon).
-  # Please note: If you activate this and the prices decrease over several days,
-  # it is possible that there will be no charging or switching for several days until the lowest prices are reached.
-
-  # Please set up Solar weather API to query solar yield
-
-use_solarweather_api_to_abort=0
-abort_solar_yield_today=10.0     # Abort and never charge because we are expecting enough sun today (daily megajoule per squaremeter)
-abort_solar_yield_tomorrow=15.0 # Abort and never charge because we are expecting enough sun tomorrow (daily megajoule per squaremeter)
-                                # To find the kilowatt hour value from megajoules, divide by 3.6.
-abort_suntime=700  # Abort and never charge if we have more sun minutes per day as this value (time in minutes between sunrise and sunset)
-latitude=51.530600 # Your location
-longitude=7.860575
-  # You can use Google Maps to find the latitude and longitude of a location by searching for the address or location and then right-clicking
-  # on the location on the map. A pop-up menu will appear with the option to "What's here?" which will display the latitude and longitude of that location.
-visualcrossing_api_key=YOURAPIKEY # Get your free key at https://www.visualcrossing.com/sign-up No credit card is required to sign up for your free 1000 records per day.
-
-  # Awattar API setup
-awattar=de # Set to de for Germany or at for Austria (no other countrys available, for other countrys use Entsoe API)
-
-  # Entsoe API setup
-  # To find out your in and out domain key, go to https://www.entsoe.eu/data/energy-identification-codes-eic/eic-area-codes-map/ to find the Bidding Zone or open https://eepublicdownloads.entsoe.eu/clean-documents/EDI/Library/Market_Areas_v2.1.pdf and get the Market Balance Area code of your country.
-
-in_Domain=10Y1001A1001A82H  # this is for Germany DE-LU
-out_Domain=10Y1001A1001A82H # Example: Spain is 10YES-REE------0
-entsoe_eu_api_security_token=YOURAPIKEY
-  # How to get the free api_security_token:
-  #  1. Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account.
-  #  2. Send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
-  #     Indicate the email address you entered during registration in the email body.
-  #  3. The ENTSO-E Helpdesk will make their best efforts to respond to your request within 3 working days.
-  #  4. Afterwards you can generate a security token at https://transparency.entsoe.eu/usrm/user/myAccountSettings
-  # The ENTSO-E Transparency Platform aims to provide free, continuous access to pan-European electricity market data for all users.
-
-  # Tibber API setup
-  # To get the tibber_api_key
-  #  1. log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token .
-  #  2. Create a token by selecting the scopes you need (select "price").
-  #  3. Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
-  #      Currently no contract is needed to create a free Account that is able to access the API.
-tibber_prices=total  # Set to
-  #  "energy" to use the spotmarket-prices (default), set to
-  #  "total" to use the total prices including taxes and fees, set to
-  #  "tax" to use only the taxes and fees
-tibber_api_key="YOUR_ACTUAL_API_KEY" # replace this value with your API Key
-
-config_version=4
-# You see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
+# Note: # All the other values between this will be calculated automatically.
+# If the sun will be more than 13 megajoule, the 15% will still be used as calculation result.
+# If there will be enough sun, the battery capacity will be reserved for solar energy.
