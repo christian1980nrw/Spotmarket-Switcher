@@ -9,7 +9,7 @@
 #######################
 
 # Timezone setting: Essential for correct timing of operations based on your geographic location.
-TZ='Europe/Amsterdam'
+TZ="Europe/Amsterdam"
 
 # Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
 # You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
@@ -37,8 +37,8 @@ include_second_day=0
 #######################
 
 # Country selection for aWATTar API:
-# 'de' for Germany, 'at' for Austria. Other countries are not supported by aWATTar.
-awattar='de'
+# "de" for Germany, "at" for Austria. Other countries are not supported by aWATTar.
+awattar="de"
 
 #######################
 # Entsoe API Settings
@@ -46,7 +46,7 @@ awattar='de'
 
 # API security token for Entsoe:
 # A unique key required to access the Entsoe API for electricity pricing data.
-entsoe_eu_api_security_token='YOURAPIKEY'
+entsoe_eu_api_security_token="YOURAPIKEY"
 # Note: How to get the free api_security_token:
 #  1. Go to https://transparency.entsoe.eu/ , click Login --> Register and create a Account.
 #  2. Send an email to transparency@entsoe.eu with “Restful API access” in the subject line.
@@ -57,8 +57,8 @@ entsoe_eu_api_security_token='YOURAPIKEY'
 
 # ENTSO-E domain codes for your region:
 # These are unique identifiers for your electricity market region.
-in_Domain='10Y1001A1001A82H'  # Example: Germany DE-LU
-out_Domain='10Y1001A1001A82H' # Example: Germany DE-LU
+in_Domain="10Y1001A1001A82H"  # Example: Germany DE-LU
+out_Domain="10Y1001A1001A82H" # Example: Germany DE-LU
 
 #######################
 # Tibber API Settings
@@ -66,7 +66,7 @@ out_Domain='10Y1001A1001A82H' # Example: Germany DE-LU
 
 # API key for Tibber:
 # A unique key required to access the Tibber API for electricity pricing data.
-tibber_api_key='YOURAPIKEY'
+tibber_api_key="YOURAPIKEY"
 # Note: To get the tibber_api_key
 #  1. log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token .
 #  2. Create a token by selecting the scopes you need (select "price").
@@ -74,8 +74,8 @@ tibber_api_key='YOURAPIKEY'
 # Currently no contract is needed to create a free Account that is able to access the API.
 
 # Type of Tibber prices to use:
-# 'energy' for spot market prices, 'total' for total prices including taxes fees, 'tax' for taxes and fees only.
-tibber_prices='total'
+# "energy" for spot market prices, "total" for total prices including taxes fees, "tax" for taxes and fees only.
+tibber_prices="total"
 
 #######################
 # Solar Weather API Settings
@@ -84,7 +84,7 @@ tibber_prices='total'
 # API key for Visual Crossing Weather API:
 # Required for fetching solar weather data.
 # Get your free key at https://www.visualcrossing.com/sign-up No credit card is required to sign up for your free 1000 records per day.
-visualcrossing_api_key='YOURAPIKEY'
+visualcrossing_api_key="YOURAPIKEY"
 
 # Enable or disable solar weather-based operation aborting:
 # 1 = Use solar data to decide on operations, 0 = Do not use solar data.
@@ -207,16 +207,16 @@ limit_inverter_power_after_enabling=-1
 
 # Fritz DECT Sockets:
 use_fritz_dect_sockets=0 # please activate with 1 or deactivate this socket-type with 0
-fbox='192.168.178.1'
-user='fritz1234'
-passwd='YOURPASSWORD'
-sockets=('YOURSOCKETID' '0' '0' '0' '0' '0') # add multiple switches if you like
+fbox="192.168.178.1"
+user="fritz1234"
+passwd="YOURPASSWORD"
+sockets=("YOURSOCKETID" "0" "0" "0" "0" "0") # add multiple switches if you like
 
 # Shelly Wifi Plugs:
 use_shelly_wlan_sockets=0 # please activate with 1 or deactivate this socket-type with 0
-shelly_ips=('192.168.178.89' '0' '0') # add multiple Shellys if you like, dont forget to make the ips static in your router
-shellyuser='admin'
-shellypasswd='YOURPASSWORD' # only if used
+shelly_ips=("192.168.178.89" "0" "0") # add multiple Shellys if you like, dont forget to make the ips static in your router
+shellyuser="admin"
+shellypasswd="YOURPASSWORD" # only if used
 
 #######################
 # Config Matrices for Charging/Discharging/Switching
@@ -312,8 +312,8 @@ config_matrix48_price=(
 # Mini-Matrix for Dynamic SOC Based on Solar Energy:
 # This matrix defines target SoC values based on expected solar energy (in MJ/m²).
 config_matrix_target_soc_weather=(
-    '1.5 90'  # At 1.5 MJ/m², target SoC is 90%
-    '13 15'   # At 13 MJ/m², target SoC is 15%
+    "1.5 90"  # At 1.5 MJ/m², target SoC is 90%
+    "13 15"   # At 13 MJ/m², target SoC is 15%
 )
 # Note: # All the other values between this will be calculated automatically.
 # If the sun will be more than 13 megajoule, the 15% will still be used as calculation result.
