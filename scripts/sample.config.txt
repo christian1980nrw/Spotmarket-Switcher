@@ -66,7 +66,7 @@ out_Domain='10Y1001A1001A82H' # Example: Germany DE-LU
 
 # API key for Tibber:
 # A unique key required to access the Tibber API for electricity pricing data.
-tibber_api_key='0S2sPDoFU7MtV2495zuPHF3rOxXxIO3ONHAKwKN_1nA'
+tibber_api_key='YOURAPIKEY'
 # Note: To get the tibber_api_key
 #  1. log in with a free or customer Tibber account at https://developer.tibber.com/settings/access-token .
 #  2. Create a token by selecting the scopes you need (select "price").
@@ -103,7 +103,7 @@ abort_suntime=700
 
 # Geographic coordinates for solar data:
 # Used by the solar weather API to fetch relevant solar energy data for your location.
-latitude=49.98796
+latitude=50.98796
 longitude=8.01816
 # Note: You can use Google Maps to find the latitude and longitude of a location by searching for the address or location and then right-clicking
 # on the location on the map. A pop-up menu will appear with the option to "What's here?" which will display the latitude and longitude of that location.
