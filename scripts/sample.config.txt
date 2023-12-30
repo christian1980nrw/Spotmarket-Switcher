@@ -313,7 +313,7 @@ config_matrix48_price=(
 # This matrix defines target SoC values based on expected solar energy (in MJ/m²).
 config_matrix_target_soc_weather=(
     "1.5 90"  # At 1.5 MJ/m², target SoC is 90%
-    "13 15"   # At 13 MJ/m², target SoC is 15%
+    "3.5 15"  # At 3.5 MJ/m², target SoC is 15%
 )
 # Note: # All the other values between this will be calculated automatically.
 # If the sun will be more than 13 megajoule, the 15% will still be used as calculation result.
