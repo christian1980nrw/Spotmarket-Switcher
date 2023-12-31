@@ -245,7 +245,6 @@ download_tibber_prices() {
         log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
          use_tibber=0
         rm "$file"
-#        exit_with_cleanup 1
     fi
 }
 
@@ -411,15 +410,62 @@ use_awattar_api() {
         download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
     fi
 	}
+	
+use_awattar_tomorrow_api() {
+        # Test if Awattar tomorrow data exists
+        if test -f "$file2"; then
+            # Test if data is current
+            get_current_awattar_day2
+            if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
+                log_message "I: aWATTar tomorrow-data is up to date." false
+            else
+                log_message "I: aWATTar tomorrow-data is outdated, fetching new data." false
+                rm -f $file3
+                download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
+            fi
+        else # Data file2 does not exist
+            log_message "I: aWATTar tomorrow-data does not exist, fetching data." false
+            download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
+        fi
+		}
+	
 
 get_awattar_prices() {
-    current_price=$(sed -n $((2 * $(TZ=$TZ date +%k) + 39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
+    current_price=$(sed -n "$((now_linenumber))p" "$file6")
     for i in $(seq 1 $loop_hours); do
         eval P$i=$(sed -n ${i}p "$file7")
     done
     highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
     average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
+
+use_tibber_api() {
+    # Test if Tibber today data exists
+    if test -f "$file14"; then
+        # Test if data is current
+        get_current_tibber_day
+        if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
+            log_message "I: Tibber today-data is up to date." false
+        else
+            log_message "I: Tibber today-data is outdated, fetching new data." false
+            rm -f "$file12" "$file14" "$file15" "$file16"
+            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+        fi
+    else # Tibber data does not exist
+        log_message "I: Fetching today-data data from Tibber." false
+        download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+    fi
+	}
+	
+use_tibber_tomorrow_api() {
+        if [ ! -s "$file18" ]; then
+            rm -f "$file17" "$file18"
+            log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
+            rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
+            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+            sort -t, -k1.9n $file17 >>"$file12"
+        fi
+	}
 
 get_tibber_prices() {
     current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
@@ -434,8 +480,35 @@ get_current_entsoe_day() { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo 
 
 get_current_tibber_day() { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
+use_entsoe_api() {
+    # Test if Entsoe today data exists
+    if test -f "$file10"; then
+        # Test if data is current
+        get_current_entsoe_day
+        if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
+            log_message "I: Entsoe today-data is up to date." false
+        else
+            log_message "I: Entsoe today-data is outdated, fetching new data." false
+            rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
+            download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
+        fi
+    else # Entsoe data does not exist
+        log_message "I: Fetching today-data data from Entsoe." false
+        download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
+    fi
+	}
+	
+use_entsoe_tomorrow_api() {
+        # Test if Entsoe tomorrow data exists
+        if [ ! -s "$file9" ]; then
+            log_message "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
+            rm -f "$file5" "$file9" "$file13"
+            download_entsoe_prices "$link5" "$file5" "$file13" $((RANDOM % 21 + 10))
+        fi
+		}
+
 get_entsoe_prices() {
-    current_price=$(sed -n ${now_linenumber}p "$file10")
+    current_price=$(sed -n "${now_linenumber}p" "$file10")
     for i in $(seq 1 $loop_hours); do
         eval P$i=$(sed -n ${i}p "$file19")
     done
@@ -923,44 +996,18 @@ if ((select_pricing_api == 1)); then
 	use_awattar_api
 
 elif ((select_pricing_api == 2)); then
-    # Test if Entsoe today data exists
-    if test -f "$file10"; then
-        # Test if data is current
-        get_current_entsoe_day
-        if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_message "I: Entsoe today-data is up to date." false
-        else
-            log_message "I: Entsoe today-data is outdated, fetching new data." false
-            rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
-            download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
-        fi
-    else # Entsoe data does not exist
-        log_message "I: Fetching today-data data from Entsoe." false
-        download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
-    fi
+	use_entsoe_api
 
 elif ((select_pricing_api == 3)); then
-use_tibber=1
-    # Test if Tibber today data exists
-    if test -f "$file14"; then
-        # Test if data is current
-        get_current_tibber_day
-        if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_message "I: Tibber today-data is up to date." false
-        else
-            log_message "I: Tibber today-data is outdated, fetching new data." false
-            rm -f "$file12" "$file14" "$file15" "$file16"
-            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
-        fi
-    else # Tibber data does not exist
-        log_message "I: Fetching today-data data from Tibber." false
-        download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
-    fi
+	use_tibber=1
+	use_tibber_api
     
     if [ "$use_tibber" -eq 0 ]; then
     select_pricing_api="1"
     use_awattar_api
     fi
+	
+	
 fi
 
 
@@ -968,42 +1015,17 @@ if ((include_second_day == 1)); then
 
     if ((select_pricing_api == 1)); then
 
-        # Test if Awattar tomorrow data exists
-        if test -f "$file2"; then
-            # Test if data is current
-            get_current_awattar_day2
-            if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
-                log_message "I: aWATTar tomorrow-data is up to date." false
-            else
-                log_message "I: aWATTar tomorrow-data is outdated, fetching new data." false
-                rm -f $file3
-                download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
-            fi
-        else # Data file2 does not exist
-            log_message "I: aWATTar tomorrow-data does not exist, fetching data." false
-            download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
-        fi
+use_awattar_tomorrow_api
 
     elif ((select_pricing_api == 2)); then
 
-        # Test if Entsoe tomorrow data exists
-        if [ ! -s "$file9" ]; then
-            log_message "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
-            rm -f "$file5" "$file9" "$file13"
-            download_entsoe_prices "$link5" "$file5" "$file13" $((RANDOM % 21 + 10))
-        fi
+use_entsoe_tomorrow_api
 
     elif ((select_pricing_api == 3)); then
 
-        if [ ! -s "$file18" ]; then
-            rm -f "$file17" "$file18"
-            log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
-            rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
-            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
-            sort -t, -k1.9n $file17 >>"$file12"
-        fi
+use_tibber_tomorrow_api
 
-    fi
+fi
 
 fi # Include second day
 
@@ -1017,6 +1039,16 @@ if [ "$include_second_day" = 1 ]; then
         loop_hours=48
     fi
 	echo "Data available for $loop_hours hours."
+	
+	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
+		log_message "E: Next day prices delayed at Tibber API. Fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		select_pricing_api="1"
+		use_awattar_tomorrow_api
+		if [ -f "$file2" ] && [ "$(wc -l <"$file2")" -gt 10 ]; then
+        loop_hours=48
+		fi
+	fi
+	
 fi
 
 if ((select_pricing_api == 1)); then
