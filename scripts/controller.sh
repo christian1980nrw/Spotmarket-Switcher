@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-VERSION="2.4.4-DEV"
+VERSION="2.4.5-DEV"
 
 set -e
 
@@ -235,9 +234,7 @@ download_tibber_prices() {
     if [ "$include_second_day" = 0 ]; then
         cp "$file16" "$file12"
     else
-    
     sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
-
     fi
 
     timestamp=$(TZ=$TZ date +%d)
@@ -245,9 +242,10 @@ download_tibber_prices() {
     echo "date_now_day: $timestamp" >>"$file17"
 
     if [ ! -s "$file16" ]; then
-        log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
+        log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
+         use_tibber=0
         rm "$file"
-        exit_with_cleanup 1
+#        exit_with_cleanup 1
     fi
 }
 
@@ -370,7 +368,7 @@ download_solarenergy() {
         fi
 
         if ! curl "$link3" -o "$file3"; then
-            log_message "E: Download of solarenergy data from '$link3' failed. Solarenergy will be ignored."
+            log_message "E: Download of solarenergy data from '$link3' failed. Old data will be used if downloaded already."
         elif ! test -f "$file3"; then
             log_message "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
         fi
@@ -395,6 +393,24 @@ download_solarenergy() {
 
 get_current_awattar_day() { current_awattar_day=$(sed -n 3p $file1 | grep -Eo '[0-9]+'); }
 get_current_awattar_day2() { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
+
+use_awattar_api() {
+    # Test if Awattar today data exists
+    if test -f "$file1"; then
+        # Test if data is current
+        get_current_awattar_day
+        if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
+            log_message "I: aWATTar today-data is up to date." false
+        else
+            log_message "I: aWATTar today-data is outdated, fetching new data." false
+            rm -f $file1 $file6 $file7
+            download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
+        fi
+    else # Data file1 does not exist
+        log_message "I: Fetching today-data data from aWATTar." false
+        download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
+    fi
+	}
 
 get_awattar_prices() {
     current_price=$(sed -n $((2 * $(TZ=$TZ date +%k) + 39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
@@ -764,6 +780,8 @@ exit_with_cleanup() {
     exit $1
 }
 
+
+
 ####################################
 ###    Begin of the script...    ###
 ####################################
@@ -902,21 +920,7 @@ log_message "I: Spotmarket-Switcher - Version $VERSION"
 parse_and_validate_config "$DIR/$CONFIG"
 
 if ((select_pricing_api == 1)); then
-    # Test if Awattar today data exists
-    if test -f "$file1"; then
-        # Test if data is current
-        get_current_awattar_day
-        if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
-            log_message "I: aWATTar today-data is up to date." false
-        else
-            log_message "I: aWATTar today-data is outdated, fetching new data." false
-            rm -f $file1 $file6 $file7
-            download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
-        fi
-    else # Data file1 does not exist
-        log_message "I: Fetching today-data data from aWATTar." false
-        download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
-    fi
+	use_awattar_api
 
 elif ((select_pricing_api == 2)); then
     # Test if Entsoe today data exists
@@ -952,6 +956,11 @@ elif ((select_pricing_api == 3)); then
         log_message "I: Fetching today-data data from Tibber." false
         download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
     fi
+fi
+
+if [ "$use_tibber" -eq 0 ]; then
+select_pricing_api="1"
+use_awattar_api
 fi
 
 if ((include_second_day == 1)); then
