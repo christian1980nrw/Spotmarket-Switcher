@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.5-DEV"
+VERSION="2.4.6-DEV"
 
 set -e
 
@@ -15,10 +15,10 @@ fi
 #######################################
 
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=4 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=5 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="4" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="5" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -55,9 +55,9 @@ else
         ["in_Domain"]="string"
         ["out_Domain"]="string"
         ["entsoe_eu_api_security_token"]="string"
-        ["tibber_prices"]="energy|total|tax"
+        ["price_unit"]="energy|total|tax"
         ["tibber_api_key"]="string"
-        ["config_version"]="4"
+        ["config_version"]="5"
     )
 
     declare -A config_values
@@ -185,7 +185,25 @@ download_awattar_prices() {
         log_message "D: Download of file '$file' from URL '$url' successful." >&2
     fi
     echo >>"$file"
-    awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" >"$output_file"
+	
+if [ "$price_unit" = "energy" ]; then
+    awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" > "$output_file"
+elif [ "$price_unit" = "total" ]; then
+    awk -v vat_rate="$vat_rate" -v energy_fee="$energy_fee" '/data_price_hour_rel_.*_amount: / {
+        amount = substr($0, index($0, ":") + 2)
+        total = amount * (1 + vat_rate) + energy_fee
+        print total
+    }' "$file" > "$output_file"
+elif [ "$price_unit" = "tax" ]; then
+    awk -v vat_rate="$vat_rate" '/data_price_hour_rel_.*_amount: / {
+        amount = substr($0, index($0, ":") + 2)
+        tax = amount * (1 + vat_rate)
+        print tax
+    }' "$file" > "$output_file"
+else
+    log_message "E: Invalid value at awattar_prices. Check config.txt"
+fi
+
     sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >>"$output_file"
@@ -468,12 +486,12 @@ use_tibber_tomorrow_api() {
 	}
 
 get_tibber_prices() {
-    current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
+    current_price=$(sed -n "${now_linenumber}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file15")
     for i in $(seq 1 $loop_hours); do
-        eval P$i=$(sed -n "${i}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+        eval P$i=$(sed -n "${i}s/.*\"${prices_unit}\":\([^,]*\),.*/\1/p" "$file12")
     done
-    highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
-    average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
+    highest_price=$(sed -n "s/.*\"${prices_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
+    average_price=$(sed -n "s/.*\"${prices_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
 
 get_current_entsoe_day() { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
@@ -1052,7 +1070,7 @@ if [ "$include_second_day" = 1 ]; then
 fi
 
 if ((select_pricing_api == 1)); then
-    Unit="Cent/kWh net"
+    Unit="Cent/kWh $price_unit price"
     get_awattar_prices
     get_awattar_prices_integer
 elif ((select_pricing_api == 2)); then
@@ -1060,7 +1078,7 @@ elif ((select_pricing_api == 2)); then
     get_entsoe_prices
     get_prices_integer_entsoe
 elif ((select_pricing_api == 3)); then
-    Unit="EUR/kWh $tibber_prices price"
+    Unit="EUR/kWh $price_unit price"
     get_tibber_prices
     get_tibber_prices_integer
 fi
