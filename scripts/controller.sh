@@ -940,7 +940,7 @@ elif ((select_pricing_api == 2)); then
     fi
 
 elif ((select_pricing_api == 3)); then
-
+use_tibber=1
     # Test if Tibber today data exists
     if test -f "$file14"; then
         # Test if data is current
