@@ -13,7 +13,7 @@ TZ="Europe/Amsterdam"
 
 # Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
 # You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
-config_version=4
+config_version=5
 
 #######################
 # API Selection
@@ -73,9 +73,14 @@ tibber_api_key="YOURAPIKEY"
 #  3. Use this link to create a free account with your smartphone. https://tibber.com/de/invite/ojgfbx2e
 # Currently no contract is needed to create a free Account that is able to access the API.
 
-# Type of Tibber prices to use:
+#######################
+# aWATTar & Tibber price Settings
+#######################
+
+# Type of aWATTar & Tibber prices to use:
 # "energy" for spot market prices, "total" for total prices including taxes fees, "tax" for taxes and fees only.
-tibber_prices="total"
+price_unit=total
+
 
 #######################
 # Solar Weather API Settings
@@ -132,7 +137,21 @@ feedin_price=9.87
 # The value is in cents per kWh and is added to the market price of electricity in economic calculations.
 # This fee is particularly relevant when the market price of electricity is very low or zero, as these additional costs still apply.
 # Example: If you pay an energy fee of 17 cents per kWh, including taxes and other charges, set this value to 17.0.
-energy_fee=17.0
+vat_rate=0.19 # (Germany: 19% Mehrwertsteuer / tax)
+energy_fee=19.99 # proofs of origin, allocations, duties and taxes see below (in case if stock price is at 0 Cent/kWh)
+
+# For example the energy fee in germany is the sum out of:
+#    Netznutzungsentgelt (Grid Usage Fee)
+#    Konzessionsabgabe (Concession Fee)
+#    Stromsteuer (Electricity Tax)
+#    Offshore Netzumlage (Offshore Grid Surcharge)
+#    KWKG Umlage (Combined Heat and Power Act Surcharge)
+#    Strom NEV Umlage (Renewable Energy Sources Act Surcharge)
+#    Weitere Beschaffungskosten (Additional Procurement Costs)
+#
+#    Calculation:
+#    Tax = vat-rate × Energy + energy_fee
+#    Total Price = Energy + Tax
 
 #######################
 # Start/Stop Logic Settings
