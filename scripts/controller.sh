@@ -956,12 +956,13 @@ elif ((select_pricing_api == 3)); then
         log_message "I: Fetching today-data data from Tibber." false
         download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
     fi
+    
+    if [ "$use_tibber" -eq 0 ]; then
+    select_pricing_api="1"
+    use_awattar_api
+    fi
 fi
 
-if [ "$use_tibber" -eq 0 ]; then
-select_pricing_api="1"
-use_awattar_api
-fi
 
 if ((include_second_day == 1)); then
 
