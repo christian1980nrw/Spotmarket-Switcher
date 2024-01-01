@@ -193,7 +193,7 @@ switchablesockets_at_solar_breakeven_logic=0
 
 # Enable or disable Victron Venus OS Solar Charger control:
 # 1 = Control the charger, 0 = Do not control the charger.
-use_victron_charger=1
+use_victron_charger=0
 
 # Energy loss percentage in the charging/discharging process:
 # This value accounts for energy lost during charging and discharging of the battery.
