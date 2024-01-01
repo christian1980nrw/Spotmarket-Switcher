@@ -195,9 +195,9 @@ elif [ "$price_unit" = "total" ]; then
         print total
     }' "$file" > "$output_file"
 elif [ "$price_unit" = "tax" ]; then
-    awk -v vat_rate="$vat_rate" '/data_price_hour_rel_.*_amount: / {
+    awk -v vat_rate="$vat_rate" -v energy_fee="$energy_fee" '/data_price_hour_rel_.*_amount: / {
         amount = substr($0, index($0, ":") + 2)
-        tax = amount * (1 + vat_rate)
+        tax = (amount * vat_rate) + energy_fee
         print tax
     }' "$file" > "$output_file"
 else
