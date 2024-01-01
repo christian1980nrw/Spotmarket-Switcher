@@ -659,25 +659,28 @@ is_charging_economical() {
 get_target_soc() {
     local megajoule=$1
     local result=""
-
-    for ((i = 1; i < ${#config_matrix_target_soc_weather[@]}; i++)); do
+    for ((i = 0; i < ${#config_matrix_target_soc_weather[@]}; i++)); do
         IFS=' ' read -ra line <<< "${config_matrix_target_soc_weather[$i]}"
+        if (( i < ${#config_matrix_target_soc_weather[@]} - 1 )); then
+            next_line="${config_matrix_target_soc_weather[$((i + 1))]}"
+            IFS=' ' read -ra next_line <<< "$next_line"
 
-        if awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[i-1]%% *}" \
-            -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= lower && megajoule < upper)}'; then
-            result=$(awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[i-1]%% *}" \
-                -v upper="${line[0]}" -v lower_soc="${config_matrix_target_soc_weather[i-1]##* }" -v upper_soc="${line[1]}" \
-                'BEGIN {printf "%.0f", lower_soc + (megajoule - lower) * (upper_soc - lower_soc) / (upper - lower)}')
+            if awk -v megajoule="$megajoule" -v lower="${line[0]}" -v upper="${next_line[0]}" \
+                'BEGIN {exit !(megajoule >= lower && megajoule < upper)}'; then
+                result=$(awk -v megajoule="$megajoule" -v lower="${line[0]}" \
+                    -v upper="${next_line[0]}" -v lower_soc="${line[1]}" -v upper_soc="${next_line[1]}" \
+                    'BEGIN {printf "%.0f", lower_soc + (megajoule - lower) * (upper_soc - lower_soc) / (upper - lower)}')
+                break
+            fi
+        fi
+
+        if [ $i -eq 0 ] && \
+           awk -v megajoule="$megajoule" -v lower="${line[0]}" 'BEGIN {exit !(megajoule < lower)}'; then
+            result="${line[1]}"
             break
         fi
 
-        if awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[1]%% *}" \
-            'BEGIN {exit !(megajoule <= lower)}'; then
-            result="${config_matrix_target_soc_weather[1]##* }"
-            break
-        fi
-
-        if (( i == ${#config_matrix_target_soc_weather[@]} - 1 )) && \
+        if [ $i -eq ${#config_matrix_target_soc_weather[@]} - 1 ] && \
            awk -v megajoule="$megajoule" -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= upper)}'; then
             result="${line[1]}"
             break
@@ -686,6 +689,7 @@ get_target_soc() {
 
     echo "${result:-"No target SoC found."}"
 }
+
 
 # Function to manage charging
 manage_charging() {
