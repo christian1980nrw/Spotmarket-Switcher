@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-VERSION="2.4.4"
+VERSION="2.4.6-DEV"
 
 set -e
 
@@ -16,10 +15,10 @@ fi
 #######################################
 
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=4 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=5 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="4" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="5" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -56,9 +55,9 @@ else
         ["in_Domain"]="string"
         ["out_Domain"]="string"
         ["entsoe_eu_api_security_token"]="string"
-        ["tibber_prices"]="energy|total|tax"
+        ["price_unit"]="energy|total|tax"
         ["tibber_api_key"]="string"
-        ["config_version"]="4"
+        ["config_version"]="5"
     )
 
     declare -A config_values
@@ -186,7 +185,25 @@ download_awattar_prices() {
         log_message "D: Download of file '$file' from URL '$url' successful." >&2
     fi
     echo >>"$file"
-    awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" >"$output_file"
+	
+if [ "$price_unit" = "energy" ]; then
+    awk '/data_price_hour_rel_.*_amount: / {print substr($0, index($0, ":") + 2)}' "$file" > "$output_file"
+elif [ "$price_unit" = "total" ]; then
+    awk -v vat_rate="$vat_rate" -v energy_fee="$energy_fee" '/data_price_hour_rel_.*_amount: / {
+        amount = substr($0, index($0, ":") + 2)
+        total = amount * (1 + vat_rate) + energy_fee
+        print total
+    }' "$file" > "$output_file"
+elif [ "$price_unit" = "tax" ]; then
+    awk -v vat_rate="$vat_rate" '/data_price_hour_rel_.*_amount: / {
+        amount = substr($0, index($0, ":") + 2)
+        tax = amount * (1 + vat_rate)
+        print tax
+    }' "$file" > "$output_file"
+else
+    log_message "E: Invalid value at awattar_prices. Check config.txt"
+fi
+
     sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
     timestamp=$(TZ=$TZ date +%d)
     echo "date_now_day: $timestamp" >>"$output_file"
@@ -235,9 +252,7 @@ download_tibber_prices() {
     if [ "$include_second_day" = 0 ]; then
         cp "$file16" "$file12"
     else
-    
     sed -n '4,$p' "$file14" | grep '"total"' | sort -t':' -k2 -n > "$file12"
-
     fi
 
     timestamp=$(TZ=$TZ date +%d)
@@ -245,9 +260,9 @@ download_tibber_prices() {
     echo "date_now_day: $timestamp" >>"$file17"
 
     if [ ! -s "$file16" ]; then
-        log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key."
+        log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
+         use_tibber=0
         rm "$file"
-        exit_with_cleanup 1
     fi
 }
 
@@ -370,7 +385,7 @@ download_solarenergy() {
         fi
 
         if ! curl "$link3" -o "$file3"; then
-            log_message "E: Download of solarenergy data from '$link3' failed. Solarenergy will be ignored."
+            log_message "E: Download of solarenergy data from '$link3' failed. Old data will be used if downloaded already."
         elif ! test -f "$file3"; then
             log_message "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
         fi
@@ -396,8 +411,45 @@ download_solarenergy() {
 get_current_awattar_day() { current_awattar_day=$(sed -n 3p $file1 | grep -Eo '[0-9]+'); }
 get_current_awattar_day2() { current_awattar_day2=$(sed -n 3p $file2 | grep -Eo '[0-9]+'); }
 
+use_awattar_api() {
+    # Test if Awattar today data exists
+    if test -f "$file1"; then
+        # Test if data is current
+        get_current_awattar_day
+        if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
+            log_message "I: aWATTar today-data is up to date." false
+        else
+            log_message "I: aWATTar today-data is outdated, fetching new data." false
+            rm -f $file1 $file6 $file7
+            download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
+        fi
+    else # Data file1 does not exist
+        log_message "I: Fetching today-data data from aWATTar." false
+        download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
+    fi
+	}
+	
+use_awattar_tomorrow_api() {
+        # Test if Awattar tomorrow data exists
+        if test -f "$file2"; then
+            # Test if data is current
+            get_current_awattar_day2
+            if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
+                log_message "I: aWATTar tomorrow-data is up to date." false
+            else
+                log_message "I: aWATTar tomorrow-data is outdated, fetching new data." false
+                rm -f $file3
+                download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
+            fi
+        else # Data file2 does not exist
+            log_message "I: aWATTar tomorrow-data does not exist, fetching data." false
+            download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
+        fi
+		}
+	
+
 get_awattar_prices() {
-    current_price=$(sed -n $((2 * $(TZ=$TZ date +%k) + 39))p $file1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tail -n1)
+    current_price=$(sed -n "$((now_linenumber))p" "$file6")
     for i in $(seq 1 $loop_hours); do
         eval P$i=$(sed -n ${i}p "$file7")
     done
@@ -405,21 +457,76 @@ get_awattar_prices() {
     average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
 }
 
+use_tibber_api() {
+    # Test if Tibber today data exists
+    if test -f "$file14"; then
+        # Test if data is current
+        get_current_tibber_day
+        if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
+            log_message "I: Tibber today-data is up to date." false
+        else
+            log_message "I: Tibber today-data is outdated, fetching new data." false
+            rm -f "$file12" "$file14" "$file15" "$file16"
+            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+        fi
+    else # Tibber data does not exist
+        log_message "I: Fetching today-data data from Tibber." false
+        download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+    fi
+	}
+	
+use_tibber_tomorrow_api() {
+        if [ ! -s "$file18" ]; then
+            rm -f "$file17" "$file18"
+            log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
+            rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
+            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+            sort -t, -k1.9n $file17 >>"$file12"
+        fi
+	}
+
 get_tibber_prices() {
-    current_price=$(sed -n "${now_linenumber}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file15")
+    current_price=$(sed -n "${now_linenumber}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file15")
     for i in $(seq 1 $loop_hours); do
-        eval P$i=$(sed -n "${i}s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12")
+        eval P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")
     done
-    highest_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
-    average_price=$(sed -n "s/.*\"${tibber_prices}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
+    highest_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
+    average_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
 }
 
 get_current_entsoe_day() { current_entsoe_day=$(sed -n 25p "$file10" | grep -Eo '[0-9]+'); }
 
 get_current_tibber_day() { current_tibber_day=$(sed -n 25p "$file15" | grep -Eo '[0-9]+'); }
 
+use_entsoe_api() {
+    # Test if Entsoe today data exists
+    if test -f "$file10"; then
+        # Test if data is current
+        get_current_entsoe_day
+        if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
+            log_message "I: Entsoe today-data is up to date." false
+        else
+            log_message "I: Entsoe today-data is outdated, fetching new data." false
+            rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
+            download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
+        fi
+    else # Entsoe data does not exist
+        log_message "I: Fetching today-data data from Entsoe." false
+        download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
+    fi
+	}
+	
+use_entsoe_tomorrow_api() {
+        # Test if Entsoe tomorrow data exists
+        if [ ! -s "$file9" ]; then
+            log_message "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
+            rm -f "$file5" "$file9" "$file13"
+            download_entsoe_prices "$link5" "$file5" "$file13" $((RANDOM % 21 + 10))
+        fi
+		}
+
 get_entsoe_prices() {
-    current_price=$(sed -n ${now_linenumber}p "$file10")
+    current_price=$(sed -n "${now_linenumber}p" "$file10")
     for i in $(seq 1 $loop_hours); do
         eval P$i=$(sed -n ${i}p "$file19")
     done
@@ -552,25 +659,28 @@ is_charging_economical() {
 get_target_soc() {
     local megajoule=$1
     local result=""
-
-    for ((i = 1; i < ${#config_matrix_target_soc_weather[@]}; i++)); do
+    for ((i = 0; i < ${#config_matrix_target_soc_weather[@]}; i++)); do
         IFS=' ' read -ra line <<< "${config_matrix_target_soc_weather[$i]}"
+        if (( i < ${#config_matrix_target_soc_weather[@]} - 1 )); then
+            next_line="${config_matrix_target_soc_weather[$((i + 1))]}"
+            IFS=' ' read -ra next_line <<< "$next_line"
 
-        if awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[i-1]%% *}" \
-            -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= lower && megajoule < upper)}'; then
-            result=$(awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[i-1]%% *}" \
-                -v upper="${line[0]}" -v lower_soc="${config_matrix_target_soc_weather[i-1]##* }" -v upper_soc="${line[1]}" \
-                'BEGIN {printf "%.0f", lower_soc + (megajoule - lower) * (upper_soc - lower_soc) / (upper - lower)}')
+            if awk -v megajoule="$megajoule" -v lower="${line[0]}" -v upper="${next_line[0]}" \
+                'BEGIN {exit !(megajoule >= lower && megajoule < upper)}'; then
+                result=$(awk -v megajoule="$megajoule" -v lower="${line[0]}" \
+                    -v upper="${next_line[0]}" -v lower_soc="${line[1]}" -v upper_soc="${next_line[1]}" \
+                    'BEGIN {printf "%.0f", lower_soc + (megajoule - lower) * (upper_soc - lower_soc) / (upper - lower)}')
+                break
+            fi
+        fi
+
+        if [ $i -eq 0 ] && \
+           awk -v megajoule="$megajoule" -v lower="${line[0]}" 'BEGIN {exit !(megajoule < lower)}'; then
+            result="${line[1]}"
             break
         fi
 
-        if awk -v megajoule="$megajoule" -v lower="${config_matrix_target_soc_weather[1]%% *}" \
-            'BEGIN {exit !(megajoule <= lower)}'; then
-            result="${config_matrix_target_soc_weather[1]##* }"
-            break
-        fi
-
-        if (( i == ${#config_matrix_target_soc_weather[@]} - 1 )) && \
+        if [ $i -eq ${#config_matrix_target_soc_weather[@]} - 1 ] && \
            awk -v megajoule="$megajoule" -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= upper)}'; then
             result="${line[1]}"
             break
@@ -579,6 +689,7 @@ get_target_soc() {
 
     echo "${result:-"No target SoC found."}"
 }
+
 
 # Function to manage charging
 manage_charging() {
@@ -764,6 +875,8 @@ exit_with_cleanup() {
     exit $1
 }
 
+
+
 ####################################
 ###    Begin of the script...    ###
 ####################################
@@ -902,98 +1015,39 @@ log_message "I: Spotmarket-Switcher - Version $VERSION"
 parse_and_validate_config "$DIR/$CONFIG"
 
 if ((select_pricing_api == 1)); then
-    # Test if Awattar today data exists
-    if test -f "$file1"; then
-        # Test if data is current
-        get_current_awattar_day
-        if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
-            log_message "I: aWATTar today-data is up to date." false
-        else
-            log_message "I: aWATTar today-data is outdated, fetching new data." false
-            rm -f $file1 $file6 $file7
-            download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
-        fi
-    else # Data file1 does not exist
-        log_message "I: Fetching today-data data from aWATTar." false
-        download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
-    fi
+	use_awattar_api
 
 elif ((select_pricing_api == 2)); then
-    # Test if Entsoe today data exists
-    if test -f "$file10"; then
-        # Test if data is current
-        get_current_entsoe_day
-        if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_message "I: Entsoe today-data is up to date." false
-        else
-            log_message "I: Entsoe today-data is outdated, fetching new data." false
-            rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
-            download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
-        fi
-    else # Entsoe data does not exist
-        log_message "I: Fetching today-data data from Entsoe." false
-        download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
-    fi
+	use_entsoe_api
 
 elif ((select_pricing_api == 3)); then
-
-    # Test if Tibber today data exists
-    if test -f "$file14"; then
-        # Test if data is current
-        get_current_tibber_day
-        if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_message "I: Tibber today-data is up to date." false
-        else
-            log_message "I: Tibber today-data is outdated, fetching new data." false
-            rm -f "$file12" "$file14" "$file15" "$file16"
-            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
-        fi
-    else # Tibber data does not exist
-        log_message "I: Fetching today-data data from Tibber." false
-        download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
+	use_tibber=1
+	use_tibber_api
+    
+    if [ "$use_tibber" -eq 0 ]; then
+    select_pricing_api="1"
+    use_awattar_api
     fi
+	
+	
 fi
+
 
 if ((include_second_day == 1)); then
 
     if ((select_pricing_api == 1)); then
 
-        # Test if Awattar tomorrow data exists
-        if test -f "$file2"; then
-            # Test if data is current
-            get_current_awattar_day2
-            if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
-                log_message "I: aWATTar tomorrow-data is up to date." false
-            else
-                log_message "I: aWATTar tomorrow-data is outdated, fetching new data." false
-                rm -f $file3
-                download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
-            fi
-        else # Data file2 does not exist
-            log_message "I: aWATTar tomorrow-data does not exist, fetching data." false
-            download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
-        fi
+use_awattar_tomorrow_api
 
     elif ((select_pricing_api == 2)); then
 
-        # Test if Entsoe tomorrow data exists
-        if [ ! -s "$file9" ]; then
-            log_message "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
-            rm -f "$file5" "$file9" "$file13"
-            download_entsoe_prices "$link5" "$file5" "$file13" $((RANDOM % 21 + 10))
-        fi
+use_entsoe_tomorrow_api
 
     elif ((select_pricing_api == 3)); then
 
-        if [ ! -s "$file18" ]; then
-            rm -f "$file17" "$file18"
-            log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
-            rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
-            download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
-            sort -t, -k1.9n $file17 >>"$file12"
-        fi
+use_tibber_tomorrow_api
 
-    fi
+fi
 
 fi # Include second day
 
@@ -1007,10 +1061,20 @@ if [ "$include_second_day" = 1 ]; then
         loop_hours=48
     fi
 	echo "Data available for $loop_hours hours."
+	
+	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
+		log_message "E: Next day prices delayed at Tibber API. Fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		select_pricing_api="1"
+		use_awattar_tomorrow_api
+		if [ -f "$file2" ] && [ "$(wc -l <"$file2")" -gt 10 ]; then
+        loop_hours=48
+		fi
+	fi
+	
 fi
 
 if ((select_pricing_api == 1)); then
-    Unit="Cent/kWh net"
+    Unit="Cent/kWh $price_unit price"
     get_awattar_prices
     get_awattar_prices_integer
 elif ((select_pricing_api == 2)); then
@@ -1018,7 +1082,7 @@ elif ((select_pricing_api == 2)); then
     get_entsoe_prices
     get_prices_integer_entsoe
 elif ((select_pricing_api == 3)); then
-    Unit="EUR/kWh $tibber_prices price"
+    Unit="EUR/kWh $price_unit price"
     get_tibber_prices
     get_tibber_prices_integer
 fi
