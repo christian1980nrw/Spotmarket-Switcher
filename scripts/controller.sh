@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.6-DEV"
+VERSION="2.4.6"
 
 set -e
 
