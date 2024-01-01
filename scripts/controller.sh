@@ -1063,7 +1063,8 @@ if [ "$include_second_day" = 1 ]; then
 	echo "Data available for $loop_hours hours."
 	
 	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
-		log_message "E: Next day prices delayed at Tibber API. Fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		log_message "E: Next day prices delayed at Tibber API. Waiting 60 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		sleep 60
 		select_pricing_api="1"
 		use_awattar_tomorrow_api
 		if [ -f "$file2" ] && [ "$(wc -l <"$file2")" -gt 10 ]; then
