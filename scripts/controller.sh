@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.6"
+VERSION="2.4.7"
 
 set -e
 
@@ -934,7 +934,7 @@ else
 fi
 
 if [ -f "$DIR/license.txt" ]; then
-    # Include the configuration file
+    # Include the license file
     source "$DIR/license.txt"
 else
     log_message "E: The file $DIR/license.txt was not found! Please read the license.txt file and save it together with the config.txt in the same directory. Thank you." false
@@ -1305,7 +1305,7 @@ evaluate_conditions() {
     for index in "${!conditions[@]}"; do
         if ((conditions[index])) && [[ $condition_met -eq 0 ]]; then
             eval $execute_ref_name=1
-            eval $condition_met_ref_name=\"${descriptions[index]}\"
+			eval "$condition_met_ref_name='${descriptions[index]}'"
             condition_met=1
             [[ $DEBUG -ne 1 ]] && break
         fi
