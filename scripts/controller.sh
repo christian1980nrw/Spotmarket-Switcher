@@ -912,6 +912,11 @@ if [ 0 -lt $use_victron_charger ]; then
     charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
     SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+if [ -z "$SOC_percent" ] || ! [[ "$SOC_percent" =~ ^(100(\.0+)?$|[0-9]{1,2}(\.[0-9]+)?$) ]]; then
+    log_message 'E: SOC cannot be read properly. Please check at your shell if the command "dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue" is returning a valid output. Maybe your OS version has none or another output as expected.'
+    exit 1
+fi
+
 fi
 
 for tool in $tools; do
@@ -1221,7 +1226,7 @@ if [ "$loop_hours" = 48 ]; then
         declare "$charge_var_name=$charge_value"
         declare "$switchable_sockets_var_name=$switchable_sockets_value"
 
-    if [ $SOC_percent -ge $discharge_value ]; then
+    if [ "$SOC_percent" -ge "$discharge_value" ]; then
         declare "$discharge_var_name=1"
 		if [ -n "$DEBUG" ]; then
         log_message "D: $discharge_var_name=1"
