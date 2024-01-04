@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.7"
+VERSION="2.4.8"
 
 set -e
 
@@ -911,7 +911,7 @@ if [ 0 -lt $use_victron_charger ]; then
     charger_get_inverter_status="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower GetValue"
     charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
-    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print $3}') # This will get the battery state of charge (SOC) from a Victron Energy system
+    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}') # This will get the battery state of charge (SOC) from a Victron Energy system
 if [ -z "$SOC_percent" ] || ! [[ "$SOC_percent" =~ ^(100(\.0+)?$|[0-9]{1,2}(\.[0-9]+)?$) ]]; then
     log_message 'E: SOC cannot be read properly. Please check at your shell if the command "dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue" is returning a valid output. Maybe your OS version has none or another output as expected.'
     exit 1
