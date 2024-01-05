@@ -488,7 +488,7 @@ use_tibber_tomorrow_api() {
 get_tibber_prices() {
     current_price=$(sed -n "${now_linenumber}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file15")
     for i in $(seq 1 $loop_hours); do
-        eval P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")
+        eval "P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")"
     done
     highest_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
     average_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
@@ -553,7 +553,7 @@ get_awattar_prices_integer() {
         price_vars+="P$i "
     done
     price_vars+="average_price highest_price current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh"
-    convert_vars_to_integer 15 $price_vars
+    convert_vars_to_integer 15 "$price_vars"
 }
 
 get_tibber_prices_integer() {
@@ -647,7 +647,7 @@ is_charging_economical() {
     if [ -n "$DEBUG" ]; then
         log_message "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
         reference_price_euro=$(millicentToEuro $reference_price)
-        total_cost_euro=$(millicentToEuro $total_cost)
+        total_cost_euro=$(millicentToEuro "$total_cost")
         is_economical_str=$([ "$is_economical" -eq 1 ] && echo "false" || echo "true")
         log_message "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str." >&2
     fi
@@ -1073,8 +1073,8 @@ if [ "$include_second_day" = 1 ]; then
 	echo "Data available for $loop_hours hours."
 	
 	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
-		log_message "E: Next day prices delayed at Tibber API. Waiting 120 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
-		sleep 120
+		log_message "E: Next day prices delayed at Tibber API. Waiting 60 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		sleep 60
 		select_pricing_api="1"
 		use_awattar_api
 		use_awattar_tomorrow_api
