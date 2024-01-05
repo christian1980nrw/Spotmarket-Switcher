@@ -907,14 +907,19 @@ if [ 0 -lt $use_victron_charger ]; then
     tools="$tools dbus"
     charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
     charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-    charger_command_set_SOC_target="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue -- "
+    charger_command_set_SOC_target="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue --"
     charger_get_inverter_status="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower GetValue"
     charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
-    SOC_percent=$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}') # This will get the battery state of charge (SOC) from a Victron Energy system
-if [ -z "$SOC_percent" ] || ! [[ "$SOC_percent" =~ ^(100(\.0+)?$|[0-9]{1,2}(\.[0-9]+)?$) ]]; then
-    log_message 'E: SOC cannot be read properly. Please check at your shell if the command "dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue" is returning a valid output. Maybe your OS version has none or another output as expected.'
+	SOC_percent="$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}' | tr -d '[:space:]')"
+	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
+    log_message 'E: SOC cannot be read properly. Value is not an integer.'
     exit 1
+	elif (( SOC_percent < 0 || SOC_percent > 100 )); then
+    log_message "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
+    exit 1
+fi
+
 fi
 
 fi
@@ -1283,8 +1288,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
     target_soc=$(get_target_soc "$solarenergy_today")
     log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc % calculated. The rest is reserved for solar."
-    $charger_command_set_SOC_target $target_soc >/dev/null
-
+    eval "$charger_command_set_SOC_target $target_soc" >/dev/null
     if [ ! -s $file3 ]; then
         log_message "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
     fi
