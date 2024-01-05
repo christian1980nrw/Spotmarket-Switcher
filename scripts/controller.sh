@@ -918,9 +918,7 @@ if [ 0 -lt $use_victron_charger ]; then
 	elif (( SOC_percent < 0 || SOC_percent > 100 )); then
     log_message "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
     exit 1
-fi
-
-fi
+	fi
 
 fi
 
