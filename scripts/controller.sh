@@ -488,7 +488,7 @@ use_tibber_tomorrow_api() {
 get_tibber_prices() {
     current_price=$(sed -n "${now_linenumber}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file15")
     for i in $(seq 1 $loop_hours); do
-        eval "P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")"
+        eval P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")
     done
     highest_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
     average_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
