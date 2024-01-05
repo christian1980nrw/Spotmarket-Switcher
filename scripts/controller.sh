@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.8"
+VERSION="2.4.9"
 
 set -e
 
@@ -451,7 +451,7 @@ use_awattar_tomorrow_api() {
 get_awattar_prices() {
     current_price=$(sed -n "$((now_linenumber))p" "$file6")
     for i in $(seq 1 $loop_hours); do
-        eval P$i=$(sed -n ${i}p "$file7")
+        eval "P$i=$(sed -n "${i}p" "$file7")"
     done
     highest_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | tail -n1)
     average_price=$(grep -E '^[0-9]+\.[0-9]+$' "$file7" | awk '{sum+=$1; count++} END {if (count > 0) print sum/count}')
@@ -659,7 +659,7 @@ is_charging_economical() {
 get_target_soc() {
     local megajoule=$1
     local result=""
-    for ((i = 0; i < ${#config_matrix_target_soc_weather[@]}; i++)); do
+    for ((i = 0; i < ${#config_matrix_target_soc_weather[@]} - 1; i++)); do
         IFS=' ' read -ra line <<< "${config_matrix_target_soc_weather[$i]}"
         if (( i < ${#config_matrix_target_soc_weather[@]} - 1 )); then
             next_line="${config_matrix_target_soc_weather[$((i + 1))]}"
@@ -829,7 +829,7 @@ euroToMillicent() {
     fi
 
     # Replace each comma with a period, fixme if this is wrong
-    euro=$(echo "$euro" | sed 's/,/./g')
+    euro="${euro//,/.}"
 
     v=$(awk -v euro="$euro" -v potency="$potency" 'BEGIN {printf "%.0f", euro * (10 ^ potency)}')
 
@@ -844,7 +844,9 @@ euroToMillicent() {
 
 log_message() {
     local msg="$1"
-    local prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1)
+    local prefix
+    prefix=$(echo "$msg" | head -n 1 | cut -d' ' -f1)
+
     local color="\033[1m"
     local writeToLog=true
 
@@ -903,7 +905,7 @@ if [ -f "$DIR/$CONFIG" ]; then
 
 num_tools_missing=0
 tools="awk curl cat sed sort head tail"
-if [ 0 -lt $use_victron_charger ]; then
+if [ 0 -lt "$use_victron_charger" ]; then
     tools="$tools dbus"
     charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
     charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
@@ -1071,8 +1073,8 @@ if [ "$include_second_day" = 1 ]; then
 	echo "Data available for $loop_hours hours."
 	
 	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
-		log_message "E: Next day prices delayed at Tibber API. Waiting 60 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
-		sleep 60
+		log_message "E: Next day prices delayed at Tibber API. Waiting 120 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		sleep 120
 		select_pricing_api="1"
 		use_awattar_api
 		use_awattar_tomorrow_api
