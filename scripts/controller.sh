@@ -680,7 +680,7 @@ get_target_soc() {
             break
         fi
 
-        if [ $i -eq ${#config_matrix_target_soc_weather[@]} - 1 ] && \
+        if [ $i -eq $((${#config_matrix_target_soc_weather[@]} - 1)) ] && \
            awk -v megajoule="$megajoule" -v upper="${line[0]}" 'BEGIN {exit !(megajoule >= upper)}'; then
             result="${line[1]}"
             break
