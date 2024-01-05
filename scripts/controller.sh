@@ -488,7 +488,7 @@ use_tibber_tomorrow_api() {
 get_tibber_prices() {
     current_price=$(sed -n "${now_linenumber}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file15")
     for i in $(seq 1 $loop_hours); do
-        eval P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")
+        eval "P$i=$(sed -n "${i}s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12")"
     done
     highest_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk 'BEGIN {max = 0} {if ($1 > max) max = $1} END {print max}')
     average_price=$(sed -n "s/.*\"${price_unit}\":\([^,]*\),.*/\1/p" "$file12" | awk '{sum += $1} END {print sum/NR}')
@@ -553,7 +553,7 @@ get_awattar_prices_integer() {
         price_vars+="P$i "
     done
     price_vars+="average_price highest_price current_price start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh"
-    convert_vars_to_integer 15 "$price_vars"
+    convert_vars_to_integer 15 $price_vars
 }
 
 get_tibber_prices_integer() {
