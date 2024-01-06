@@ -904,7 +904,7 @@ if [ -f "$DIR/$CONFIG" ]; then
     source "$DIR/$CONFIG"
 
 num_tools_missing=0
-SOC_percent=0 # Set to 0 first (maybe no charger is activated).
+SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="awk curl cat sed sort head tail"
 if [ 0 -lt "$use_victron_charger" ]; then
     tools="$tools dbus"
@@ -1279,17 +1279,25 @@ done
 
 fi
 
-log_message "I: Charge at prices: $charge_table"
-log_message "I: Dynamic ESS discharge (depending SOC) at prices: $discharge_table"
-log_message "I: Switchable sockets at prices: $switchable_sockets_table"
+	if (( SOC_percent != -1 )); then
+		log_message "I: Charge at prices: $charge_table"
+		log_message "I: Dynamic ESS discharge (depending SOC) at prices: $discharge_table"
+	fi
+
+	if (( use_shelly_wlan_sockets + use_fritz_dect_sockets > 0 )); then
+		log_message "I: Switchable sockets at prices: $switchable_sockets_table"
+	fi
+
 
 if ((use_solarweather_api_to_abort == 1)); then
     log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
     log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
     log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
+if ((SOC_percent != -1)); then	
     target_soc=$(get_target_soc "$solarenergy_today")
     log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc % calculated. The rest is reserved for solar."
-    eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+	eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+fi
     if [ ! -s $file3 ]; then
         log_message "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
     fi
