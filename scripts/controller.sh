@@ -904,6 +904,7 @@ if [ -f "$DIR/$CONFIG" ]; then
     source "$DIR/$CONFIG"
 
 num_tools_missing=0
+SOC_percent=0 # Set to 0 first (maybe no charger is activated).
 tools="awk curl cat sed sort head tail"
 if [ 0 -lt "$use_victron_charger" ]; then
     tools="$tools dbus"
