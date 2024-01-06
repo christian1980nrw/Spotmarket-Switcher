@@ -1295,7 +1295,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     fi
     find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
 else
-    log_message "W: skip Solarweather. not activated"
+    log_message "D: skip Solarweather. not activated"
 fi
 charging_condition_met=""
 discharging_condition_met=""
@@ -1415,7 +1415,7 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
     manage_charging "off" "Charging was not executed."
 else
-    log_message "W: skip Victron Charger. not activated"
+    log_message "D: skip Victron Charger. not activated"
 fi
 
 
