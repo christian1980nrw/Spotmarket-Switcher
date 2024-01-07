@@ -173,7 +173,7 @@ download_awattar_prices() {
     fi
     if ! curl "$url" >"$file"; then
         log_message "E: Download of aWATTar prices from '$url' to '$file' failed."
-		rm $file
+		rm "$file"
         exit_with_cleanup 1
     fi
 
@@ -263,7 +263,7 @@ download_tibber_prices() {
     if [ ! -s "$file16" ]; then
         log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
          use_tibber=0
-		 rm $file
+		 rm "$file"
     fi
 }
 
