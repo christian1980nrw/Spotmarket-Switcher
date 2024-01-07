@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.10"
+VERSION="2.4.11"
 
 set -e
 
@@ -583,38 +583,58 @@ get_prices_integer_entsoe() {
     convert_vars_to_integer 15 start_price feedin_price energy_fee abort_price battery_lifecycle_costs_cent_per_kwh
 }
 
+get_temp_today() {
+    if [ ! -s "$file3" ]; then return; fi
+    temp_today=$(sed '2!d' "$file3" | cut -d',' -f1)
+}
+
+get_temp_tomorrow() {
+    if [ ! -s "$file3" ]; then return; fi
+    temp_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f1)
+}
+
+get_snow_today() {
+    if [ ! -s "$file3" ]; then return; fi
+    snow_today=$(sed '2!d' "$file3" | cut -d',' -f2)
+}
+
+get_snow_tomorrow() {
+    if [ ! -s "$file3" ]; then return; fi
+    snow_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f2)
+}
+
 get_solarenergy_today() {
     if [ ! -s "$file3" ]; then return; fi
-    solarenergy_today=$(sed '2!d' "$file3" | cut -d',' -f2)
+    solarenergy_today=$(sed '2!d' "$file3" | cut -d',' -f4)
     solarenergy_today_integer=$(euroToMillicent "${solarenergy_today}" 15)
     abort_solar_yield_today_integer=$(euroToMillicent "${abort_solar_yield_today}" 15)
 }
 
 get_solarenergy_tomorrow() {
     if [ ! -s "$file3" ]; then return; fi
-    solarenergy_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f2)
+    solarenergy_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f4)
     solarenergy_tomorrow_integer=$(euroToMillicent "$solarenergy_tomorrow" 15)
     abort_solar_yield_tomorrow_integer=$(euroToMillicent "${abort_solar_yield_tomorrow}" 15)
 }
 
 get_cloudcover_today() {
     if [ ! -s "$file3" ]; then return; fi
-    cloudcover_today=$(sed '2!d' "$file3" | cut -d',' -f1)
+    cloudcover_today=$(sed '2!d' "$file3" | cut -d',' -f4)
 }
 
 get_cloudcover_tomorrow() {
     if [ ! -s "$file3" ]; then return; fi
-    cloudcover_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f1)
+    cloudcover_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f4)
 }
 
 get_sunrise_today() {
     if [ ! -s "$file3" ]; then return; fi
-    sunrise_today=$(sed '2!d' "$file3" | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
+    sunrise_today=$(sed '2!d' "$file3" | cut -d',' -f5 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
 
 get_sunset_today() {
     if [ ! -s "$file3" ]; then return; fi
-    sunset_today=$(sed '2!d' "$file3" | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
+    sunset_today=$(sed '2!d' "$file3" | cut -d',' -f6 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
 
 get_suntime_today() {
@@ -713,10 +733,10 @@ manage_charging() {
 
     if [[ $action == "on" ]]; then
         $charger_command_charge >/dev/null
-        log_message "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent%. $reason"
+        log_message "I: Victron scheduled charging is ON. $reason"
     else
         $charger_command_stop_charging >/dev/null
-        log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent%. $reason"
+        log_message "I: Victron scheduled charging is OFF. $reason"
     fi
 }
 
@@ -727,10 +747,10 @@ manage_discharging() {
 
     if [[ $action == "on" ]]; then
         $charger_enable_inverter >/dev/null
-        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent%. $reason"
+        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent%."
     else
         $charger_disable_inverter >/dev/null
-        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent%. $reason"
+        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent%."
     fi
 }
 
@@ -1012,7 +1032,7 @@ fi
 now_linenumber=$((getnow + 1))
 link1="https://api.awattar.$awattar/v1/marketdata/current.yaml"
 link2="http://api.awattar.$awattar/v1/marketdata/current.yaml?tomorrow=include"
-link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=solarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
+link3="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/$latitude%2C%20$longitude/$todayyear-$todaymonth-$today2/$tomorrowyear-$tomorrowmonth-$tomorrow2?unitGroup=metric&elements=snowdepth%2Ctemp%2Csolarenergy%2Ccloudcover%2Csunrise%2Csunset&include=days&key=$visualcrossing_api_key&contentType=csv"
 link4="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$yesteryear$yestermonth$yesterday&periodEnd=$todayyear$todaymonth$today"
 link5="https://web-api.tp.entsoe.eu/api?securityToken=$entsoe_eu_api_security_token&documentType=A44&in_Domain=$in_Domain&out_Domain=$out_Domain&periodStart=$todayyear$todaymonth$today&periodEnd=$tomorrowyear$tomorrowmonth$tomorrow"
 link6="https://api.tibber.com/v1-beta/gql"
@@ -1122,6 +1142,10 @@ fi
 
 if ((use_solarweather_api_to_abort == 1)); then
     download_solarenergy
+	get_temp_today
+	get_temp_tomorrow
+	get_snow_today
+	get_snow_tomorrow
     get_solarenergy_today
     get_solarenergy_tomorrow
     get_cloudcover_today
@@ -1312,14 +1336,21 @@ fi
 if ((use_solarweather_api_to_abort == 1)); then
     if [ -f "$file3" ] && [ -s "$file3" ]; then
         log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
-        log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
-        log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
+        log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds. The temperature is "$temp_today"°C with "$snow_today"cm snowdepth."
+        log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds. The temperature will be "$temp_tomorrow"°C with "$snow_tomorrow"cm snowdepth."
+		
+		if awk -v temp="$temp_today" -v snow="$snow_today" 'BEGIN { exit !(temp < 0 && snow > 0) }'; then
+		target_soc=$(get_target_soc 0)
+		log_message "I: There is snow on the solar panels at negative degrees. Target SOC will be set to $target_soc% (max value of the matrix)."
+		eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+		else
+		if ((SOC_percent != -1)); then
+			target_soc=$(get_target_soc "$solarenergy_today")
+			log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
+			eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+		fi
+fi
 
-        if ((SOC_percent != -1)); then	
-            target_soc=$(get_target_soc "$solarenergy_today")
-            log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
-	        eval "$charger_command_set_SOC_target $target_soc" >/dev/null
-        fi
     else
         log_message "E: No solar data. Please check your internet connection and API Key or wait if it is a temporary error."
 		    if ((SOC_percent != -1)); then	
@@ -1449,26 +1480,26 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
     if [ "$economic_check" -eq 0 ]; then
         manage_charging "on" "Charging based on condition met of: $charging_condition_met."
     elif [ "$economic_check" -eq 1 ] && is_charging_economical $highest_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") €) comparison makes sense. Total cost=$(millicentToEuro "$total_cost_integer") €"
+        manage_charging "on" "Charging based on highest price ($(millicentToEuro "$highest_price_integer") €) comparison makes sense. Total charging costs=$(millicentToEuro "$total_cost_integer") €"
     elif [ "$economic_check" -eq 2 ] && is_charging_economical $average_price_integer $total_cost_integer; then
-        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. Total cost=$(millicentToEuro "$total_cost_integer") €"
+        manage_charging "on" "Charging based on average price ($(millicentToEuro "$average_price_integer") €) comparison makes sense. Total charging costs=$(millicentToEuro "$total_cost_integer") €"
     else
         reason_msg="Considering charging losses and costs, charging is too expensive."
         economic="expensive"
-        manage_charging "off" "$reason_msg (Total cost=$(millicentToEuro "$total_cost_integer") €)"
+        manage_charging "off" "$reason_msg (Total charging costs=$(millicentToEuro "$total_cost_integer") €)"
     fi
 elif ((execute_charging != 1 && use_victron_charger == 1)); then
-    manage_charging "off" "Charging was not executed."
+    manage_charging "off" "Charging was not executed. (Total charging costs=$(millicentToEuro "$total_cost_integer") €)"
 else
-    log_message "D: skip Victron Charger. not activated"
+    log_message "D: skip Victron Charger. not activated "
 fi
 
 
 if ((execute_discharging == 1 && use_victron_charger == 1)); then
-         manage_discharging "on" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
+         manage_discharging "on" "$reason_msg (Total charging costs=$(millicentToEuro "$total_cost_integer") €)"
 fi
 if ((execute_discharging == 0 && use_victron_charger == 1)); then
-         manage_discharging "off" "$reason_msg (total_cost=$(millicentToEuro "$total_cost_integer") €)"
+         manage_discharging "off" "$reason_msg (Total charging costs=$(millicentToEuro "$total_cost_integer") €)"
 fi
 
 # Execute Fritz DECT on command
