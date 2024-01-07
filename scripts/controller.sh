@@ -390,11 +390,15 @@ download_solarenergy() {
             log_message "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
         fi
 
-        if grep -q "API" "$file3"; then
-            log_message "E: Error, there is a problem with the Solarweather-API."
+		if [ -f "$file3" ]; then
+			if grep -q "API" "$file3"; then
+			log_message "E: Error, there is a problem with the Solarweather-API."
 			cat "$file3"
-            return 1
-        fi
+			echo
+			rm "$file3"
+		fi
+	fi
+
 
         if [ -n "$DEBUG" ]; then
             log_message "D: File3 $file3 downloaded" >&2
@@ -579,34 +583,43 @@ get_prices_integer_entsoe() {
 }
 
 get_solarenergy_today() {
-    solarenergy_today=$(sed '2!d' $file3 | cut -d',' -f2)
+    if [ ! -s "$file3" ]; then return; fi
+    solarenergy_today=$(sed '2!d' "$file3" | cut -d',' -f2)
     solarenergy_today_integer=$(euroToMillicent "${solarenergy_today}" 15)
     abort_solar_yield_today_integer=$(euroToMillicent "${abort_solar_yield_today}" 15)
 }
 
 get_solarenergy_tomorrow() {
-    solarenergy_tomorrow=$(sed '3!d' $file3 | cut -d',' -f2)
+    if [ ! -s "$file3" ]; then return; fi
+    solarenergy_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f2)
     solarenergy_tomorrow_integer=$(euroToMillicent "$solarenergy_tomorrow" 15)
     abort_solar_yield_tomorrow_integer=$(euroToMillicent "${abort_solar_yield_tomorrow}" 15)
 }
 
 get_cloudcover_today() {
-    cloudcover_today=$(sed '2!d' $file3 | cut -d',' -f1)
+    if [ ! -s "$file3" ]; then return; fi
+    cloudcover_today=$(sed '2!d' "$file3" | cut -d',' -f1)
 }
 
 get_cloudcover_tomorrow() {
-    cloudcover_tomorrow=$(sed '3!d' $file3 | cut -d',' -f1)
+    if [ ! -s "$file3" ]; then return; fi
+    cloudcover_tomorrow=$(sed '3!d' "$file3" | cut -d',' -f1)
 }
 
 get_sunrise_today() {
-    sunrise_today=$(sed '2!d' $file3 | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
+    if [ ! -s "$file3" ]; then return; fi
+    sunrise_today=$(sed '2!d' "$file3" | cut -d',' -f3 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
 
 get_sunset_today() {
-    sunset_today=$(sed '2!d' $file3 | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
+    if [ ! -s "$file3" ]; then return; fi
+    sunset_today=$(sed '2!d' "$file3" | cut -d',' -f4 | cut -d 'T' -f2 | awk -F: '{ print $1 ":" $2 }')
 }
 
 get_suntime_today() {
+    if [ ! -s "$file3" ]; then return; fi
+    get_sunrise_today
+    get_sunset_today
     suntime_today=$((($(TZ=$TZ date -d "1970-01-01 $sunset_today" +%s) - $(TZ=$TZ date -d "1970-01-01 $sunrise_today" +%s)) / 60))
 }
 
@@ -699,10 +712,10 @@ manage_charging() {
 
     if [[ $action == "on" ]]; then
         $charger_command_charge >/dev/null
-        log_message "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent %. $reason"
+        log_message "I: Victron scheduled charging is ON. Battery SOC is at $SOC_percent%. $reason"
     else
         $charger_command_stop_charging >/dev/null
-        log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent %. $reason"
+        log_message "I: Victron scheduled charging is OFF. Battery SOC is at $SOC_percent%. $reason"
     fi
 }
 
@@ -713,10 +726,10 @@ manage_discharging() {
 
     if [[ $action == "on" ]]; then
         $charger_enable_inverter >/dev/null
-        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent %. $reason"
+        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent%. $reason"
     else
         $charger_disable_inverter >/dev/null
-        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent %. $reason"
+        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent%. $reason"
     fi
 }
 
@@ -1291,21 +1304,29 @@ fi
 
 
 if ((use_solarweather_api_to_abort == 1)); then
-    log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
-    log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
-    log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
-if ((SOC_percent != -1)); then	
-    target_soc=$(get_target_soc "$solarenergy_today")
-    log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc % calculated. The rest is reserved for solar."
-	eval "$charger_command_set_SOC_target $target_soc" >/dev/null
-fi
-    if [ ! -s $file3 ]; then
-        log_message "E: File '$file3' is empty, please check your API Key if download is still not possible tomorrow."
+    if [ -f "$file3" ] && [ -s "$file3" ]; then
+        log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
+        log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds."
+        log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds."
+
+        if ((SOC_percent != -1)); then	
+            target_soc=$(get_target_soc "$solarenergy_today")
+            log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
+	        eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+        fi
+    else
+        log_message "E: No solar data. Please check your internet connection and API Key or wait if it is a temporary error."
+		    if ((SOC_percent != -1)); then	
+            target_soc=$(get_target_soc "$solarenergy_today")
+            log_message "E: A SOC charge-target of $target_soc% will be used without valid solarweather-data."
+	        eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+        fi
     fi
-    find "$file3" -size 0 -delete # FIXME - looks wrong and complicated - simple RM included in prior if clause?
 else
     log_message "D: skip Solarweather. not activated"
 fi
+
+
 charging_condition_met=""
 discharging_condition_met=""
 switchablesockets_condition_met=""
@@ -1391,11 +1412,20 @@ log_message "D: After evaluating discharging conditions - execute_discharging: $
 log_message "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
 fi
 
-if ((use_solarweather_api_to_abort == 1)); then
-    check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today. No need to charge or swtich."
+check_abort_conditions() {
+    if [ ! -s "$file3" ]; then 
+        log_message "E: File '$file3' does not exist or is empty."
+        return
+    fi
+    check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today. No need to charge or switch."
     check_abort_condition $((abort_solar_yield_today_integer <= solarenergy_today_integer)) "There is enough solarenergy today. No need to charge or switch."
-    check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough sun tomorrow. No need to charge or switch."
+    check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough solarenergy tomorrow. No need to charge or switch."
+}
+
+if ((use_solarweather_api_to_abort == 1)); then
+    check_abort_conditions
 fi
+
 
 check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
 
