@@ -173,6 +173,7 @@ download_awattar_prices() {
     fi
     if ! curl "$url" >"$file"; then
         log_message "E: Download of aWATTar prices from '$url' to '$file' failed."
+		rm $file
         exit_with_cleanup 1
     fi
 
@@ -216,7 +217,7 @@ fi
 }
 
 get_tibber_api() {
-    curl --location --request POST 'https://api.tibber.com/v1-beta/gql' \
+    curl --location --request POST $link6 \
         --header 'Content-Type: application/json' \
         --header "Authorization: Bearer $tibber_api_key" \
         --data-raw '{"query":"{viewer{homes{currentSubscription{priceInfo{current{total energy tax startsAt}today{total energy tax startsAt}tomorrow{total energy tax startsAt}}}}}}"}' |
@@ -262,7 +263,7 @@ download_tibber_prices() {
     if [ ! -s "$file16" ]; then
         log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
          use_tibber=0
-        rm "$file"
+		 rm $file
     fi
 }
 
@@ -885,7 +886,12 @@ log_message() {
 
 exit_with_cleanup() {
     log_message "I: Cleanup and exit with error $1"
+	if ((use_victron_charger == 1)); then
     manage_charging "off" "Turn off charging."
+	fi
+	if ((execute_discharging == 0 && use_victron_charger == 1)); then
+         manage_discharging "on" "Spotmarket-Switcher is disabling itself. Maybe there is no internet connection."
+    fi
     manage_fritz_sockets "off"
     manage_shelly_sockets "off"
     exit $1
