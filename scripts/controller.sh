@@ -262,9 +262,15 @@ download_tibber_prices() {
 
     if [ ! -s "$file16" ]; then
         log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
-         use_tibber=0
-		 rm "$file"
-    fi
+        use_tibber=0
+		rm "$file"
+		select_pricing_api="1"
+		use_awattar_api
+		use_awattar_tomorrow_api
+		if [ -f "$file2" ] && [ "$(wc -l <"$file2")" -gt 10 ]; then
+        loop_hours=48
+		fi
+	fi
 }
 
 download_entsoe_prices() {
@@ -1114,8 +1120,8 @@ if [ "$include_second_day" = 1 ]; then
 	echo "Data available for $loop_hours hours."
 	
 	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
-		log_message "E: Next day prices delayed at Tibber API. Waiting 60 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
-		sleep 60
+		log_message "E: Next day prices delayed at Tibber API. Waiting 120 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		sleep 120
 		select_pricing_api="1"
 		use_awattar_api
 		use_awattar_tomorrow_api
