@@ -63,6 +63,7 @@ else
     declare -A config_values
 fi
 
+
 parse_and_validate_config() {
     if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
         # Für Bash-Version <= 4, überprüfe nur config_version=1
@@ -144,6 +145,7 @@ parse_and_validate_config() {
             return 1
         else
             echo "Config validation passed."
+			
             return 0
         fi
     fi
@@ -924,7 +926,21 @@ exit_with_cleanup() {
     exit $1
 }
 
-
+checkAndClean() {
+    scriptFile1="$DIR/$CONFIG"
+    scriptFile2="$DIR/controller.sh"
+    currentTime=$(date +%s)
+    lastModified1=$(stat -c %Y "$scriptFile1")
+    lastModified2=$(stat -c %Y "$scriptFile2")
+    difference1=$(( (currentTime - lastModified1) / 60 ))
+    difference2=$(( (currentTime - lastModified2) / 60 ))
+    if [ $difference1 -lt 60 ] || [ $difference2 -lt 60 ]; then
+        log_message "I: Config or Controller was changed within the last 60 minutes. Cleaning /tmp directory."
+        rm -f /tmp/tibber*.*
+        rm -f /tmp/awattar*.*
+		rm -f /tmp/entsoe*.*
+    fi
+}
 
 ####################################
 ###    Begin of the script...    ###
@@ -1071,6 +1087,8 @@ log_message "I: Bash Version: $(bash --version | head -n 1)"
 log_message "I: Spotmarket-Switcher - Version $VERSION"
 
 parse_and_validate_config "$DIR/$CONFIG"
+
+checkAndClean
 
 if ((select_pricing_api == 1)); then
 	use_awattar_api
