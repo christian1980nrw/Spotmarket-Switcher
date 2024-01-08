@@ -930,8 +930,14 @@ checkAndClean() {
     scriptFile1="$DIR/$CONFIG"
     scriptFile2="$DIR/controller.sh"
     currentTime=$(date +%s)
-    lastModified1=$(stat -c %Y "$scriptFile1")
-    lastModified2=$(stat -c %Y "$scriptFile2")
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        lastModified1=$(stat -f "%m" "$scriptFile1")
+        lastModified2=$(stat -f "%m" "$scriptFile2")
+    else
+        lastModified1=$(stat -c %Y "$scriptFile1")
+        lastModified2=$(stat -c %Y "$scriptFile2")
+    fi
     difference1=$(( (currentTime - lastModified1) / 60 ))
     difference2=$(( (currentTime - lastModified2) / 60 ))
     if [ $difference1 -lt 60 ] || [ $difference2 -lt 60 ]; then
@@ -939,6 +945,7 @@ checkAndClean() {
         rm -f /tmp/tibber*.*
         rm -f /tmp/awattar*.*
 		rm -f /tmp/entsoe*.*
+		rm -f /tmp/expected_solarenergy.csv
     fi
 }
 
