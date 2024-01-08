@@ -261,9 +261,10 @@ download_tibber_prices() {
     echo "date_now_day: $timestamp" >>"$file17"
 
     if [ ! -s "$file16" ]; then
-        log_message "E: Tibber prices cannot be extracted to '$file16', please check your Tibber API Key. Fallback to aWATTar API."
+        log_message "E: Tibber prices cannot be extracted to '$file16', please check your internet connection and Tibber API Key. Waiting 120 seconds and fallback to aWATTar API."
         use_tibber=0
 		rm "$file"
+		sleep 120
 		select_pricing_api="1"
 		use_awattar_api
 		use_awattar_tomorrow_api
