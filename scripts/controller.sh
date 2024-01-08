@@ -945,7 +945,7 @@ checkAndClean() {
         rm -f /tmp/tibber*.*
         rm -f /tmp/awattar*.*
 		rm -f /tmp/entsoe*.*
-		rm -f /tmp/expected_solarenergy.csv
+		rm -f $file3
     fi
 }
 
