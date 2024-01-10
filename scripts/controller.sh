@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.11"
+VERSION="2.4.12"
 
 set -e
 
@@ -769,8 +769,9 @@ check_abort_condition() {
     local log_message=$2
 
     if ((condition_result)); then
-        log_message "I: $log_message Abort."
+        log_message "I: $log_message Abort and turn ESS on to disable Spotmaktet-Switcher."
         execute_charging=0
+		execute_discharging=1
         execute_switchablesockets_on=0
     fi
 }
