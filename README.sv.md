@@ -6,7 +6,7 @@
 
 ## Välkommen till Spotmarket-Switcher-förrådet!
 
-Vad gör den här programvaran?
+Vad gör denna programvara?
 Spotmarket-Switcher är ett lättanvänt mjukvaruverktyg som hjälper dig att spara pengar på dina energiräkningar. Om du har en smart batteriladdare eller enheter som varmvattenberedare som kan slås på och stängas av automatiskt, är detta verktyg perfekt för dig! Den sätter smart på dina enheter när energipriserna är låga, särskilt användbart om dina energikostnader ändras varje timme.
 
 Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera energianvändningen effektivt, inte bara spara kostnader utan också optimera användningen av förnybara energikällor. Det är ett bra exempel på hur smart teknik kan användas för att hantera energiförbrukningen på ett mer hållbart och kostnadseffektivt sätt. (blå = användning av batteri, röd = rutnät, gul = solenergi)
@@ -23,6 +23,7 @@ Detta typiska resultat visar Spotmarket-Switchers förmåga att automatisera ene
 Varför använda Spotmarket-Switcher?
 
 -   Spara pengar: Det sätter på dina enheter när energin är billigare, vilket minskar dina räkningar.
+-   Spara pengar: Använd din lagrade solenergi till högsta priser.
 -   Energieffektiv: Genom att använda energi när den är i överskott (som blåsiga nätter) bidrar du till en grönare planet.
 -   Smart användning: Ladda automatiskt din batterilagring eller slå på enheter som varmvattenberedare vid de bästa tiderna.
 
@@ -42,7 +43,7 @@ Intresserad?
 -   Kolla in våra detaljerade instruktioner för olika system som Victron Venus OS, Windows eller Linux-inställningar. Vi har sett till att stegen är enkla att följa.
 -   Var med och gör energianvändningen smartare och mer kostnadseffektiv! För frågor, förslag eller feedback är du välkommen att höra av dig.
 
-Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
+Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
 Ta en titt på controller.sh och sök efter charger_command_turnon så att du kan se hur enkelt den kan anpassas.
 Skapa en github-gaffel och dela din anpassning så att andra användare kan dra nytta av den.
 
