@@ -2,27 +2,28 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch ](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
+[Tschechisch](README.cs.md)-[dänisch](README.da.md)-[Deutsch](README.de.md)-[Englisch](README.md)-[Spanisch](README.es.md)-[estnisch](README.et.md)-[finnisch](README.fi.md)-[Französisch](README.fr.md)-[griechisch](README.el.md)-[Italienisch](README.it.md)-[Niederländisch](README.nl.md)-[norwegisch](README.no.md)-[Polieren](README.pl.md)-[Portugiesisch](README.pt.md)-[Schwedisch](README.sv.md)-[japanisch](README.ja.md)
 
 ## Willkommen im Spotmarket-Switcher-Repository!
 
 Was macht diese Software?
-Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter haben, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
+Spotmarket-Switcher ist ein benutzerfreundliches Softwaretool, mit dem Sie Geld bei Ihren Energierechnungen sparen können. Wenn Sie über ein intelligentes Batterieladegerät oder Geräte wie Warmwasserbereiter verfügen, die sich automatisch ein- und ausschalten können, ist dieses Tool perfekt für Sie! Es schaltet Ihre Geräte intelligent ein, wenn die Energiepreise niedrig sind, was besonders nützlich ist, wenn sich Ihre Energiekosten stündlich ändern.
 
-Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Energieverbrauch effizient zu automatisieren und so nicht nur Kosten zu sparen, sondern auch die Nutzung erneuerbarer Energiequellen zu optimieren. Es ist ein großartiges Beispiel dafür, wie intelligente Technologie genutzt werden kann, um den Energieverbrauch nachhaltiger und kostengünstiger zu steuern. (blau = Batterienutzung, rot = Netz, gelb = Solar)
+This typical result showcases the Spotmarket-Switcher's ability to automate energy usage efficiently, not only saving costs but also optimizing the use of renewable energy sources. It's a great example of how smart technology can be used to manage energy consumption in a more sustainable and cost-effective manner. (blue = use of battery, red = grid, yellow = solar)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Nachtnutzung: Nachts, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (Spitze rot angezeigt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
--   Wirtschaftlichkeit beim Batterieladen: Das Programm hat sich strategisch entschieden, den Batteriespeicher in dieser Zeit nicht zu laden. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Dieser Ansatz stellt sicher, dass das Laden der Batterie nur dann erfolgt, wenn es am kostengünstigsten ist.
--   Optimale Nutzung der Batterie während der Spitzenzeiten: An diesem Tag waren die Stunden mit dem höchsten Energiebedarf morgens und abends. In diesen Zeiträumen nutzt der Spotmarket-Switcher die gespeicherte Batterieenergie (blau dargestellt) und vermeidet so hohe Stromkosten.
+-   Wirtschaftlichkeit beim Batterieladen: Das Programm hat sich strategisch entschieden, den Batteriespeicher in dieser Zeit nicht zu laden. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Durch diesen Ansatz wird sichergestellt, dass die Batterie nur dann aufgeladen wird, wenn es am kostengünstigsten ist.
+-   Optimale Batterieausnutzung während der Spitzenzeiten: An diesem Tag waren die energieintensivsten Stunden morgens und abends am teuersten. In diesen Zeiträumen nutzt der Spotmarket-Switcher die gespeicherte Batterieenergie (blau dargestellt) und vermeidet so hohe Stromkosten.
 -   Batteriereservierung für Stunden mit hohen Kosten: Nach den Zeiträumen mit hohen Kosten wurde das Energiespeichersystem (ESS) der Batterie abgeschaltet. Abends gegen 20:00 Uhr war es nicht leer. Diese Maßnahme wurde ergriffen, um ausreichend Batteriekapazität für die bevorstehenden teuren Stunden am nächsten Morgen zu reservieren. Dies antizipiert künftige Hochkostenperioden und stellt sicher, dass gespeicherte Energie zur Kostenminimierung verfügbar ist.
 
 Warum Spotmarket-Switcher verwenden?
 
 -   Sparen Sie Geld: Es schaltet Ihre Geräte ein, wenn der Strom günstiger ist, und senkt so Ihre Rechnungen.
+-   Sparen Sie Geld: Nutzen Sie Ihren gespeicherten Solarstrom zu Höchstpreisen.
 -   Energieeffizient: Indem Sie Energie nutzen, wenn ein Überschuss vorhanden ist (z. B. in windigen Nächten), tragen Sie zu einem grüneren Planeten bei.
 -   Intelligente Nutzung: Laden Sie Ihren Batteriespeicher automatisch auf oder schalten Sie Geräte wie Warmwasserbereiter zu den besten Zeiten ein.
 
@@ -113,7 +114,7 @@ Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzug
 Sie erhalten einen Bonus (das Angebot variiert**zwischen 50 und 120 Euro**) für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass einige Angebote ohne Mindestvertragslaufzeit sind. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
 
-Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Empfehlungslink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
+Wenn Sie aus Österreich kommen, können Sie uns mit unterstützen[aWATTar Österreich (Referenzlink)](https://www.awattar.at/services/offers/promotecustomers). Bitte nutzen Sie`3KEHMQN2F`als Code.
 
 ## Haftungsausschluss
 
