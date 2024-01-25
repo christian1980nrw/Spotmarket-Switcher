@@ -23,6 +23,7 @@ Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyz
 Dlaczego warto używać Spotmarket-Switcher?
 
 -   Oszczędzaj pieniądze: Włącza Twoje urządzenia, gdy energia jest tańsza, obniżając rachunki.
+-   Oszczędzaj pieniądze: Wykorzystaj zmagazynowaną energię słoneczną po najwyższych cenach.
 -   Energooszczędność: Wykorzystując energię, gdy jest jej w nadmiarze (np. wietrzne noce), przyczyniasz się do tworzenia bardziej ekologicznej planety.
 -   Inteligentne użytkowanie: automatycznie ładuj akumulator lub włączaj urządzenia, takie jak podgrzewacze wody, w najlepszym momencie.
 
@@ -79,7 +80,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowany, może zostać tymczasowo aktywowany przez skrypt.
+Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
 
 -   Instrukcje instalacji Spotmarket-Switcher w systemie Windows 10 lub 11 w celu przeprowadzenia testów bez urządzeń Victron (tylko gniazda przełączalne).
 
