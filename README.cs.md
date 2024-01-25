@@ -9,7 +9,7 @@
 Co tento software dělá?
 Spotmarket-Switcher je snadno použitelný softwarový nástroj, který vám pomůže ušetřit peníze na účtech za energii. Pokud máte chytrou nabíječku baterií nebo zařízení, jako jsou ohřívače vody, které se mohou automaticky zapínat a vypínat, je tento nástroj pro vás ideální! Chytře zapíná vaše zařízení, když jsou ceny energie nízké, zvláště užitečné, pokud se vaše náklady na energii mění každou hodinu.
 
-Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně automatizovat spotřebu energie, nejen šetřit náklady, ale také optimalizovat využití obnovitelných zdrojů energie. Je to skvělý příklad toho, jak lze chytrou technologii využít ke správě spotřeby energie udržitelnějším a nákladově efektivnějším způsobem. (modrá = použití baterie, červená = síť, žlutá = solární)
+Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně automatizovat spotřebu energie, nejen šetřit náklady, ale také optimalizovat využití obnovitelných zdrojů energie. Je to skvělý příklad toho, jak lze chytrou technologii využít ke správě spotřeby energie udržitelnějším a nákladově efektivnějším způsobem. (modrá = využití baterie, červená = síť, žlutá = solární)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
@@ -23,6 +23,7 @@ Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně autom
 Proč používat Spotmarket-Switcher?
 
 -   Ušetřete peníze: Zapne vaše zařízení, když je energie levnější, a sníží vaše účty.
+-   Ušetřete peníze: Využijte uloženou solární energii za nejvyšší ceny.
 -   Energeticky efektivní: Používáním energie, když je jí přebytek (jako jsou větrné noci), přispíváte k zelenější planetě.
 -   Chytré využití: Automaticky nabijte své úložiště baterie nebo zapněte zařízení, jako jsou ohřívače vody, v nejlepší časy.
 
@@ -48,7 +49,7 @@ Vytvořte prosím github fork a sdílejte své přizpůsobení, aby z něj mohli
 
 ## Zdroj dat
 
-Software v současné době využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
+Software v současnosti využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
 Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
 Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
@@ -95,7 +96,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`a k úpravě nastavení použijte`vi /path/to/save/config.txt`
+    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:
