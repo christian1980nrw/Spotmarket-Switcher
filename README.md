@@ -21,6 +21,7 @@ This typical result showcases the Spotmarket-Switcher's ability to automate ener
 
 Why Use Spotmarket-Switcher?
 - Save Money: It turns on your devices when energy is cheaper, cutting down your bills.
+- Save Money: Discharge your stored solar energy at highest prices.
 - Energy Efficient: By using energy when it's in surplus (like windy nights), you contribute to a greener planet.
 - Smart Usage: Automatically charge your battery storage or power up devices like water heaters at the best times.
     
