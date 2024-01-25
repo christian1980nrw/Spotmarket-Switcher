@@ -18,11 +18,12 @@ Questo risultato tipico dimostra la capacità di Spotmarket-Switcher di automati
 -   Utilizzo notturno: durante la notte, quando i prezzi dell'energia erano al minimo, lo Spotmarket-Switcher ha attivato in modo intelligente una presa commutabile per alimentare la pompa di calore dell'acqua calda (picco indicato in rosso). Ciò dimostra la capacità del sistema di identificare e utilizzare periodi energetici a basso costo per attività ad alto consumo energetico.
 -   Efficienza economica nella ricarica della batteria: il programma ha deciso strategicamente di non caricare la batteria durante questo periodo. Questa decisione si è basata su un controllo economico che ha tenuto conto delle perdite di tariffazione e le ha confrontate con i prezzi medi o più alti dell'energia del giorno. Questo approccio garantisce che la ricarica della batteria avvenga solo quando è più conveniente.
 -   Utilizzo ottimale della batteria durante le ore di punta: al giorno d'oggi, le ore più costose dal punto di vista energetico erano la mattina e la sera. Durante questi periodi, lo Spotmarket-Switcher utilizzava l'energia immagazzinata nella batteria (mostrata in blu), evitando così elevati costi dell'elettricità.
--   Prenotazione della batteria per ore a costo elevato: dopo aver registrato i periodi a costo elevato, il sistema di accumulo dell'energia (ESS) della batteria è stato disattivato. Non era vuoto la sera intorno alle 20:00. Questa azione è stata intrapresa per riservare una capacità della batteria sufficiente per le prossime ore costose del mattino successivo. Ciò anticipa futuri periodi di costi elevati e garantisce che l’energia immagazzinata sia disponibile per ridurre al minimo i costi.
+-   Battery Reservation for High-Cost Hours: Post the high-cost periods, the battery's Energy Storage System (ESS) was turned off. It was not empty in the evening around 20:00. This action was taken to reserve sufficient battery capacity for the upcoming expensive hours in the next morning. This anticipates future high-cost periods and ensures that stored energy is available to minimize costs.
 
 Perché utilizzare Spotmarket-Switcher?
 
--   Risparmia denaro: accende i tuoi dispositivi quando l'energia costa meno, riducendo le bollette.
+-   Save Money: It turns on your devices when energy is cheaper, cutting down your bills.
+-   Risparmia denaro: usa l'energia solare immagazzinata ai prezzi più alti.
 -   Efficienza energetica: utilizzando l'energia quando è in surplus (come nelle notti ventose), contribuisci a un pianeta più verde.
 -   Utilizzo intelligente: carica automaticamente la batteria o accendi dispositivi come gli scaldabagni nei momenti migliori.
 
