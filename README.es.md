@@ -23,6 +23,7 @@ Este resultado típico muestra la capacidad de Spotmarket-Switcher para automati
 ¿Por qué utilizar Spotmarket-Switcher?
 
 -   Ahorre dinero: enciende sus dispositivos cuando la energía es más barata, lo que reduce sus facturas.
+-   Ahorre dinero: utilice su energía solar almacenada a los precios más altos.
 -   Eficiencia energética: al utilizar energía cuando sobra (como en las noches con viento), contribuyes a un planeta más verde.
 -   Uso inteligente: cargue automáticamente la batería de almacenamiento o encienda dispositivos como calentadores de agua en los mejores momentos.
 
@@ -63,7 +64,7 @@ Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando un
 
 2.  Ejecute el script del instalador con opciones adicionales para preparar todo en un subdirectorio para su inspección. Por ejemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    If you're using Victron Venus OS, the correct DESTDIR should be `/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
+    Si utiliza Victron Venus OS, el DESTDIR correcto debería ser`/`(el directorio raíz). Siéntase libre de explorar los archivos instalados en`/tmp/foo`.
     En un Cerbo GX, el sistema de archivos está montado en solo lectura. Ver<https://www.victronenergy.com/live/ccgx:root_access>. Para que se pueda escribir en el sistema de archivos, debe ejecutar el siguiente comando antes de ejecutar el script de instalación:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
@@ -113,7 +114,7 @@ Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásic
 Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
-Si eres de Austria, puedes apoyarnos usando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
+Si eres de Austria, puedes apoyarnos utilizando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.
 
 ## Descargo de responsabilidad
 
