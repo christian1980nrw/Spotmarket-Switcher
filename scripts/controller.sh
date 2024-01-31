@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.12"
+VERSION="2.4.13"
 
 set -e
 
@@ -763,16 +763,23 @@ manage_discharging() {
     fi
 }
 
-# Function to check abort conditions and log a message
+# Functions to check abort conditions and log a message
 check_abort_condition() {
     local condition_result=$1
     local log_message=$2
-
     if ((condition_result)); then
         log_message "I: $log_message Abort and turn ESS on to disable Spotmaktet-Switcher."
         execute_charging=0
 		execute_discharging=1
         execute_switchablesockets_on=0
+    fi
+}
+check_ess_abort_condition() {
+    local condition_result=$1
+    local log_message=$2
+    if ((condition_result)); then
+        log_message "I: $log_message Turn ESS on to enable discharging."
+		execute_discharging=1
     fi
 }
 
@@ -1489,6 +1496,7 @@ check_abort_conditions() {
     check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today. No need to charge or switch."
     check_abort_condition $((abort_solar_yield_today_integer <= solarenergy_today_integer)) "There is enough solarenergy today. No need to charge or switch."
     check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough solarenergy tomorrow. No need to charge or switch."
+	check_ess_abort_condition $((SOC_percent >= 90)) "The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
 }
 
 if ((use_solarweather_api_to_abort == 1)); then
