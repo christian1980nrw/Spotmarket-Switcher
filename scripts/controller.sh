@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.13"
+VERSION="2.4.13-DEV"
 
 set -e
 
@@ -763,26 +763,6 @@ manage_discharging() {
     fi
 }
 
-# Functions to check abort conditions and log a message
-check_abort_condition() {
-    local condition_result=$1
-    local log_message=$2
-    if ((condition_result)); then
-        log_message "I: $log_message Abort and turn ESS on to disable Spotmaktet-Switcher."
-        execute_charging=0
-		execute_discharging=1
-        execute_switchablesockets_on=0
-    fi
-}
-check_ess_abort_condition() {
-    local condition_result=$1
-    local log_message=$2
-    if ((condition_result)); then
-        log_message "I: $log_message Turn ESS on to enable discharging."
-		execute_discharging=1
-    fi
-}
-
 # Function to manage fritz sockets and log a message
 manage_fritz_sockets() {
     if [ -n "$DEBUG" ]; then
@@ -1488,22 +1468,43 @@ log_message "D: After evaluating discharging conditions - execute_discharging: $
 log_message "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
 fi
 
-check_abort_conditions() {
+if ((use_solarweather_api_to_abort == 1)); then
+    
     if [ ! -s "$file3" ]; then 
         log_message "E: File '$file3' does not exist or is empty."
         return
     fi
-    check_abort_condition $((abort_suntime <= suntime_today)) "There are enough sun minutes today. No need to charge or switch."
-    check_abort_condition $((abort_solar_yield_today_integer <= solarenergy_today_integer)) "There is enough solarenergy today. No need to charge or switch."
-    check_abort_condition $((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)) "There is enough solarenergy tomorrow. No need to charge or switch."
-	check_ess_abort_condition $((SOC_percent >= 90)) "The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
-}
 
-if ((use_solarweather_api_to_abort == 1)); then
-    check_abort_conditions
+    if ((abort_solar_yield_today_integer <= solarenergy_today_integer)) && ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
+        log_message "I: There is enough solarenergy today and tomorrow. ESS can be used normal and no need to switch or charge. Spotmarket-Switcher will be disabled."
+        execute_charging=0
+        execute_discharging=1
+        execute_switchablesockets_on=0
+    else
+        log_message "I: Not enough solarenergy today or tomorrow. Spotmarket-Switcher will manage discharging (ESS), charging and switching."
+    fi
+
+    if ((abort_suntime <= suntime_today)); then
+        log_message "I: There are enough sun minutes today. No need to charge or switch."
+        execute_charging=0
+        execute_discharging=1
+        execute_switchablesockets_on=0
+    fi
+
 fi
 
-check_abort_condition $((abort_price_integer <= current_price_integer)) "Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
+if ((SOC_percent >= 90)); then
+    log_message "I: The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
+    execute_discharging=1
+fi
+
+if ((abort_price_integer <= current_price_integer)); then
+    log_message "I: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
+    execute_charging=0
+    execute_discharging=1
+    execute_switchablesockets_on=0
+fi
+
 
 # If any charging condition is met, start charging
 percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
