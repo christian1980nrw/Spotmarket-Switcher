@@ -1485,7 +1485,7 @@ if ((use_solarweather_api_to_abort == 1)); then
     fi
 
     if ((abort_suntime <= suntime_today)); then
-        log_message "I: There are enough sun minutes today. No need to charge or switch."
+        log_message "I: There are enough sun minutes today. Spotmarket-Switcher will be disabled."
         execute_charging=0
         execute_discharging=1
         execute_switchablesockets_on=0
@@ -1499,7 +1499,7 @@ if ((SOC_percent >= 90)); then
 fi
 
 if ((abort_price_integer <= current_price_integer)); then
-    log_message "I: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Abort. ($(millicentToEuro "$abort_price_integer")€)"
+    log_message "I: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Spotmarket-Switcher will be disabled if higher than ($(millicentToEuro "$abort_price_integer")€)."
     execute_charging=0
     execute_discharging=1
     execute_switchablesockets_on=0
