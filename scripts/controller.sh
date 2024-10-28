@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 VERSION="2.4.12"
 
@@ -15,10 +15,10 @@ fi
 #######################################
 
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=5 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=6 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="5" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="6" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -28,7 +28,7 @@ else
         ["shelly_ips"]="^\(\".*\"\)$"
         ["shellyuser"]="string"
         ["shellypasswd"]="string"
-        ["use_victron_charger"]="0|1"
+        ["use_charger"]="0|1|2"
         ["limit_inverter_power_after_enabling"]="^(-1|[0-9]{2,5})$"
         ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
         ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
@@ -57,7 +57,12 @@ else
         ["entsoe_eu_api_security_token"]="string"
         ["price_unit"]="energy|total|tax"
         ["tibber_api_key"]="string"
-        ["config_version"]="5"
+        ["mqtt_broker_host_publish"]="string"
+        ["mqtt_broker_host_subscribe"]="string"
+        ["mqtt_broker_port_publish"]="^[0-9]*$"
+        ["mqtt_broker_Port_subscribe"]="^[0-9]*$"
+        ["mqtt_broker_topic_publish"]="string"
+        ["mqtt_broker_topic_subscribe"]="string"
     )
 
     declare -A config_values
@@ -741,11 +746,13 @@ manage_charging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        $charger_command_charge >/dev/null
-        log_message "I: Victron scheduled charging is ON. $reason"
+        charger_command_charge >/dev/null
+        log_message "I: Charging is ON. $reason"
+
     else
-        $charger_command_stop_charging >/dev/null
-        log_message "I: Victron scheduled charging is OFF. $reason"
+        charger_command_stop_charging >/dev/null
+        log_message "I: Charging is OFF. $reason"
+
     fi
 }
 
@@ -755,11 +762,13 @@ manage_discharging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        $charger_enable_inverter >/dev/null
-        log_message "I: Victron discharging (ESS) is ON. Battery SOC is at $SOC_percent%."
+        charger_enable_inverter >/dev/null
+        log_message "I: Discharging is ON. Battery SOC is at $SOC_percent%."
+        
     else
-        $charger_disable_inverter >/dev/null
-        log_message "I: Victron discharging (ESS) is OFF. Battery SOC is at $SOC_percent%."
+        charger_disable_inverter >/dev/null
+        log_message "I: Discharging is OFF. Battery SOC is at $SOC_percent%."
+
     fi
 }
 
@@ -799,7 +808,7 @@ manage_fritz_socket() {
     local action=$1
     local socket=$2
 
-    if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && [ "$use_victron_charger" == "1" ]; then
+    if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && [ "$use_charger" != "0" ]; then
         log_message "I: Disabling inverter while switching."
         $charger_disable_inverter >/dev/null
     fi
@@ -846,7 +855,7 @@ manage_shelly_sockets() {
 manage_shelly_socket() {
     local action=$1
     local ip=$2
-    if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && [ "$use_victron_charger" == "1" ]; then
+    if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && [ "$use_charger" != "0" ]; then
         log_message "I: Disabling inverter while switching."
         $charger_disable_inverter >/dev/null
     fi
@@ -916,10 +925,10 @@ log_message() {
 
 exit_with_cleanup() {
     log_message "I: Cleanup and exit with error $1"
-	if ((use_victron_charger == 1)); then
+	if ((use_charger != 0)); then
     manage_charging "off" "Turn off charging."
 	fi
-	if ((execute_discharging == 0 && use_victron_charger == 1)); then
+	if ((execute_discharging == 0 && use_charger != 0)); then
          manage_discharging "on" "Spotmarket-Switcher is disabling itself. Maybe there is no internet connection."
     fi
     manage_fritz_sockets "off"
@@ -974,17 +983,65 @@ fi
 if [ -f "$DIR/$CONFIG" ]; then
     source "$DIR/$CONFIG"
 
+# Victron Charging
 num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="awk curl cat sed sort head tail"
-if [ 0 -lt "$use_victron_charger" ]; then
+if [ "$use_charger" == "1" ]; then
     tools="$tools dbus"
-    charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
-    charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-    charger_command_set_SOC_target="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue --"
-    charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
-    charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
+    charger_command_charge() {
+        "dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
+        }
+    charger_command_stop_charging() {
+        "dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
+        }
+    charger_command_set_SOC_target() {
+        "dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue --"
+        }
+    charger_disable_inverter() {
+        "dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
+        }
+    charger_enable_inverter() {
+        "dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
+        }
+    charger_command_charge
+    charger_command_stop_charging
+    charger_command_set_SOC_target
+    charger_disable_inverter
+    charger_enable_inverter
 	SOC_percent="$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}' | tr -d '[:space:]')"
+	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
+    log_message 'E: SOC cannot be read properly. Value is not an integer.'
+    exit 1
+	elif (( SOC_percent < 0 || SOC_percent > 100 )); then
+    log_message "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
+    exit 1
+	fi
+
+fi
+# MQTT Charging
+num_tools_missing=0
+SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
+tools="curl mosquitto_sub "
+if [ "$use_charger" == "2" ]; then
+    tools="$tools curl"
+    charger_command_charge() { 
+        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m true
+        }
+    charger_command_stop_charging() {
+        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false
+        }   
+    charger_command_set_SOC_target() {
+        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc
+        }
+    charger_disable_inverter() {
+        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false
+        }
+    charger_enable_inverter() {
+        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true
+        }
+    tools="$tools mosquitto_sub"
+	SOC_percent=$(mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_Port_subscribe -t $mqtt_broker_topic_subscribe -C 1)
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
     log_message 'E: SOC cannot be read properly. Value is not an integer.'
     exit 1
@@ -1502,7 +1559,7 @@ percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_i
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
 # If any charging condition is met, start charging
-if ((execute_charging == 1 && use_victron_charger == 1)); then
+if ((execute_charging == 1 && use_charger != 0)); then
     economic=""
     # Evaluate if charging is economical
     percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
@@ -1519,17 +1576,17 @@ if ((execute_charging == 1 && use_victron_charger == 1)); then
         economic="expensive"
         manage_charging "off" "$reason_msg Total charging costs: $(millicentToEuro "$total_cost_integer")€"
     fi
-elif ((execute_charging != 1 && use_victron_charger == 1)); then
+elif ((execute_charging != 1 && use_charger != 0)); then
     manage_charging "off" "Charging was not executed. Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 else
-    log_message "D: skip Victron Charger. not activated "
+    log_message "D: skip Charger. not activated "
 fi
 
 
-if ((execute_discharging == 1 && use_victron_charger == 1)); then
+if ((execute_discharging == 1 && use_charger != 0)); then
          manage_discharging "on" "$reason_msg Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 fi
-if ((execute_discharging == 0 && use_victron_charger == 1)); then
+if ((execute_discharging == 0 && use_charger != 0)); then
          manage_discharging "off" "$reason_msg Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 fi
 
