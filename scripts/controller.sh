@@ -986,7 +986,7 @@ if [ -f "$DIR/$CONFIG" ]; then
 # Victron Charging
 num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
-tools="awk curl cat sed sort head tail"
+tools="awk cat sed sort head tail"
 if [ "$use_charger" == "1" ]; then
     tools="$tools dbus"
     charger_command_charge() {
@@ -1024,7 +1024,7 @@ num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="curl mosquitto_sub "
 if [ "$use_charger" == "2" ]; then
-    tools="$tools curl"
+    tools="$tools mosquitto_pub"
     charger_command_charge() { 
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m true
         }
