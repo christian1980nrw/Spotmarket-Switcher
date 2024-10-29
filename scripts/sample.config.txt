@@ -204,7 +204,7 @@ reenable_inverting_at_soc=90
 
 # MQTT Subscriber Settings:
 mqtt_broker_host_subscribe="192.168.178.181"
-mqtt_broker_Port_subscribe="1883"
+mqtt_broker_port_subscribe="1883"
 mqtt_broker_topic_subscribe="evcc/site/batterySoc"
 
 # MQTT Publisher Settings:
