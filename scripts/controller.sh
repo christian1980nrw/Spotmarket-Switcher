@@ -1555,8 +1555,8 @@ if ((use_solarweather_api_to_abort == 1)); then
     fi
 
 fi
-if ((reenable_inverter_at_fullbatt == 1)); then
-if (( SOC_percent >= reenable_inverter_at_soc )); then
+if ((reenable_inverting_at_fullbatt == 1)); then
+if (( SOC_percent >= reenable_inverting_at_soc )); then
     log_message "I: The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
     execute_discharging=1
     fi
