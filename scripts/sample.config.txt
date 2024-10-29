@@ -13,7 +13,7 @@ TZ="Europe/Amsterdam"
 
 # Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
 # You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
-config_version=5
+config_version=6
 
 #######################
 # API Selection
@@ -188,20 +188,22 @@ charge_at_solar_breakeven_logic=0
 switchablesockets_at_solar_breakeven_logic=0
 
 #######################
-# Victron Venus OS Solar Charger Setup
+# Charger Setup
 #######################
 
-# Enable or disable Victron Venus OS Solar Charger control:
-# 1 = Control the charger, 0 = Do not control the charger.
-use_victron_charger=0
+# Enable or disable Charger control:
+# 2 = MQTT-Charger 1 = Control the Victron charger, 0 = Do not control the charger.
+use_charger=2
 
 # Energy loss percentage in the charging/discharging process:
 # This value accounts for energy lost during charging and discharging of the battery.
-energy_loss_percent=23.3
+# energy_loss_percent=23.3
+energy_loss_percent=20.0
 
 # Battery lifecycle cost per kWh in cents:
 # Represents the cost associated with the battery's lifespan and usage.
-battery_lifecycle_costs_cent_per_kwh=4.444444
+# battery_lifecycle_costs_cent_per_kwh=4.444444
+battery_lifecycle_costs_cent_per_kwh=5.72
 # Note: If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and
 # the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
 
@@ -219,6 +221,21 @@ disable_inverting_while_only_switching=1
 # This is useful if you have a 'Limit inverter power' setting configured in the Energy Storage System (ESS) menu and want to ensure it's respected after the inverter is re-enabled.
 # Note: If 'disable_inverting_while_only_switching' is used, this setting ensures that your preferred inverter power limit is reinstated after inverting is re-enabled.
 limit_inverter_power_after_enabling=-1
+
+#######################
+# MQTT Setup
+#######################
+
+# MQTT Subscriber Settings:
+mqtt_broker_host_subscribe="192.168.178.181"
+mqtt_broker_Port_subscribe="1883"
+mqtt_broker_topic_subscribe="evcc/site/batterySoc"
+
+# MQTT Publisher Settings:
+mqtt_broker_host_publish="192.168.178.202"
+mqtt_broker_port_publish="1883"
+mqtt_broker_topic_publish="spotmarket-switcher"
+
 
 #######################
 # Switchable Sockets Setup (Fritz DECT and Shelly Wifi Plugs)
