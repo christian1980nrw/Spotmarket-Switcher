@@ -988,14 +988,38 @@ if [ "$use_charger" == "1" ]; then
 	fi
 
 fi
+
+
 # MQTT Charging
 if [ "$use_charger" == "2" ]; then
+
+# Check for required MQTT commands
+if ! command -v mosquitto_pub &> /dev/null || ! command -v mosquitto_sub &> /dev/null; then
+    echo "Error: mosquitto_pub or mosquitto_sub command not found. Please install mosquitto-clients."
+    exit 1
+fi
+
+# Validate MQTT ports
+if ! [[ "$mqtt_broker_port_publish" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_publish" -le 65535 ]]; then
+    echo "Error: Invalid mqtt_broker_port_publish: $mqtt_broker_port_publish. Port must be between 1 and 65535."
+    exit 1
+fi
+if ! [[ "$mqtt_broker_port_subscribe" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_subscribe" -le 65535 ]]; then
+    echo "Error: Invalid mqtt_broker_port_subscribe: $mqtt_broker_port_subscribe. Port must be between 1 and 65535."
+    exit 1
+fi
+
 num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
-tools="$tools mosquitto_pub"
+tools="$tools mosquitto_sub mosquitto_pub"
 
     charger_command_charge() { 
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m true
+        if [ -z "$mqtt_broker_host_publish" ] || [ -z "$mqtt_broker_port_publish" ] || [ -z "$mqtt_broker_topic_publish" ]; then
+    echo "Error: MQTT configuration variables are not set."
+    exit 1
+fi
+
+  "$mqtt_broker_topic_publish/charger_command" -m true
         }
     charger_command_stop_charging() {
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false
@@ -1010,7 +1034,7 @@ tools="$tools mosquitto_pub"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true
         }
     tools="$tools mosquitto_sub"
-	SOC_percent=$(mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_Port_subscribe -t $mqtt_broker_topic_subscribe -C 1)
+	SOC_percent=$(mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_port_subscribe -t $mqtt_broker_topic_subscribe -C 1)
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
     log_message 'E: SOC cannot be read properly. Value is not an integer.'
     exit 1
@@ -1531,8 +1555,8 @@ if ((use_solarweather_api_to_abort == 1)); then
     fi
 
 fi
-if ((reenable_inverting_at_fullbatt == 1)); then
-if (( SOC_percent >= reenable_inverting_at_soc )); then
+if ((reenable_inverter_at_fullbatt == 1)); then
+if (( SOC_percent >= reenable_inverter_at_soc )); then
     log_message "I: The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
     execute_discharging=1
     fi
