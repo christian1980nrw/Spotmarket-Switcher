@@ -13,7 +13,7 @@ TZ="Europe/Amsterdam"
 
 # Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
 # You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
-config_version=6
+config_version=7
 
 #######################
 # API Selection
@@ -27,7 +27,7 @@ select_pricing_api=1
 #   Entsoe:  Many more countrys available but free API key needed, see https://www.entsoe.eu/data/map/
 
 # Include prices for the next day in calculations:
-# 0 = No (use only today's prices), 1 = Yes (use today's and tomorrow's prices when available (today in the afternoon)).
+# 0 = No (use only today's prices), 1 = Yes use todays and tomorrows prices when available today in the afternoon.
 include_second_day=1
 # Note: If you activate this and the prices decrease over several days,
 # it is possible that there will be no charging or switching for several days until the lowest prices are reached.
@@ -81,27 +81,6 @@ tibber_api_key="YOURAPIKEY"
 # "energy" for spot market prices, "total" for total prices including taxes fees, "tax" for taxes and fees only.
 price_unit=energy
 
-# Energy Fee (energy_fee):
-# This represents additional costs associated with electricity consumption, including taxes, levies, and other charges.
-# The value is in cents per kWh and is added to the market price of electricity in economic calculations.
-# This fee is particularly relevant when the market price of electricity is very low or zero, as these additional costs still apply.
-# Example: If you pay an energy fee of 17 cents per kWh, including taxes and other charges, set this value to 17.0.
-vat_rate=0.19 # (Germany: 19% Mehrwertsteuer / tax)
-energy_fee=19.99 # proofs of origin, allocations, duties and taxes see below (in case if stock price is at 0 Cent/kWh)
-
-# For example the energy fee in germany is the sum out of:
-#    Netznutzungsentgelt (Grid Usage Fee)
-#    Konzessionsabgabe (Concession Fee)
-#    Stromsteuer (Electricity Tax)
-#    Offshore Netzumlage (Offshore Grid Surcharge)
-#    KWKG Umlage (Combined Heat and Power Act Surcharge)
-#    Strom NEV Umlage (Renewable Energy Sources Act Surcharge)
-#    Weitere Beschaffungskosten (Additional Procurement Costs)
-#
-#    Calculation:
-#    Tax = vat-rate × Energy + energy_fee
-#    Total Price = Energy + Tax
-
 
 #######################
 # Solar Weather API Settings
@@ -116,16 +95,16 @@ visualcrossing_api_key="YOURAPIKEY"
 # 1 = Use solar data to decide on operations, 0 = Do not use solar data.
 use_solarweather_api_to_abort=0
 
-# Solar energy thresholds to abort operations:
+# Solar energy thresholds to abort operations (it will only be aborted if both days have more solar energy as the abort value):
 # If the expected solar energy (in megajoules per square meter) exceeds these values,
 # operations like charging will be aborted to utilize solar energy instead.
 # To find the kilowatt hour value from megajoules, divide by 3.6.
-abort_solar_yield_today=10.0
-abort_solar_yield_tomorrow=15.0
+abort_solar_yield_today=7.5
+abort_solar_yield_tomorrow=7.5
 
 # Minimum sun minutes per day to abort operations:
 # If the expected amount of sunlight (in minutes) exceeds this value, operations will be halted.
-abort_suntime=700
+abort_suntime=800
 
 # Geographic coordinates for solar data:
 # Used by the solar weather API to fetch relevant solar energy data for your location.
@@ -152,6 +131,27 @@ economic_check=0
 # The value is in cents per kWh and is used in calculations to determine if it's more economical to store energy in the battery or to sell it back to the grid.
 # Example: If your feed-in tariff is 9.87 cents per kWh, set this value to 9.87.
 feedin_price=9.87
+
+# Energy Fee (energy_fee):
+# This represents additional costs associated with electricity consumption, including taxes, levies, and other charges.
+# The value is in cents per kWh and is added to the market price of electricity in economic calculations.
+# This fee is particularly relevant when the market price of electricity is very low or zero, as these additional costs still apply.
+# Example: If you pay an energy fee of 17 cents per kWh, including taxes and other charges, set this value to 17.0.
+vat_rate=0.19 # (Germany: 19% Mehrwertsteuer / tax)
+energy_fee=19.99 # proofs of origin, allocations, duties and taxes see below (in case if stock price is at 0 Cent/kWh)
+
+# For example the energy fee in germany is the sum out of:
+#    Netznutzungsentgelt (Grid Usage Fee)
+#    Konzessionsabgabe (Concession Fee)
+#    Stromsteuer (Electricity Tax)
+#    Offshore Netzumlage (Offshore Grid Surcharge)
+#    KWKG Umlage (Combined Heat and Power Act Surcharge)
+#    Strom NEV Umlage (Renewable Energy Sources Act Surcharge)
+#    Weitere Beschaffungskosten (Additional Procurement Costs)
+#
+#    Calculation:
+#    Tax = vat-rate × Energy + energy_fee
+#    Total Price = Energy + Tax
 
 #######################
 # Start/Stop Logic Settings
@@ -191,19 +191,35 @@ switchablesockets_at_solar_breakeven_logic=0
 # Charger Setup
 #######################
 
-# Enable or disable Charger control:
-# 2 = MQTT-Charger 1 = Control the Victron charger, 0 = Do not control the charger.
-use_charger=2
+# Enable or disable Charger:
+# 1 = Victron charger, 2 = MQTT-Charger, 0 = No charger.
+use_charger=0
+reenable_inverting_at_fullbatt=1
+# This is important on a DC-AC system to enable grid-feedin if the battery is getting full.
+reenable_inverting_at_soc=90
+
+#######################
+# MQTT-Charger Setup
+#######################
+
+# MQTT Subscriber Settings:
+mqtt_broker_host_subscribe="192.168.178.181"
+mqtt_broker_Port_subscribe="1883"
+mqtt_broker_topic_subscribe="evcc/site/batterySoc"
+
+# MQTT Publisher Settings:
+mqtt_broker_host_publish="192.168.178.202"
+mqtt_broker_port_publish="1883"
+mqtt_broker_topic_publish="spotmarket-switcher"
+
 
 # Energy loss percentage in the charging/discharging process:
 # This value accounts for energy lost during charging and discharging of the battery.
-# energy_loss_percent=23.3
-energy_loss_percent=20.0
+energy_loss_percent=23.3
 
 # Battery lifecycle cost per kWh in cents:
 # Represents the cost associated with the battery's lifespan and usage.
-# battery_lifecycle_costs_cent_per_kwh=4.444444
-battery_lifecycle_costs_cent_per_kwh=5.72
+battery_lifecycle_costs_cent_per_kwh=4.444444
 # Note: If you are using a chinese 5KWh LifePo4 battery (4.5 KWh useable) with 6000 cycles and
 # the rebuying price is at 1200 EUR, the calculation will be 1200*100/6000/4,5.
 
@@ -221,21 +237,6 @@ disable_inverting_while_only_switching=1
 # This is useful if you have a 'Limit inverter power' setting configured in the Energy Storage System (ESS) menu and want to ensure it's respected after the inverter is re-enabled.
 # Note: If 'disable_inverting_while_only_switching' is used, this setting ensures that your preferred inverter power limit is reinstated after inverting is re-enabled.
 limit_inverter_power_after_enabling=-1
-
-#######################
-# MQTT Setup
-#######################
-
-# MQTT Subscriber Settings:
-mqtt_broker_host_subscribe="192.168.178.181"
-mqtt_broker_Port_subscribe="1883"
-mqtt_broker_topic_subscribe="evcc/site/batterySoc"
-
-# MQTT Publisher Settings:
-mqtt_broker_host_publish="192.168.178.202"
-mqtt_broker_port_publish="1883"
-mqtt_broker_topic_publish="spotmarket-switcher"
-
 
 #######################
 # Switchable Sockets Setup (Fritz DECT and Shelly Wifi Plugs)
@@ -345,12 +346,13 @@ shellypasswd="YOURPASSWORD" # only if used
 		"0 10 0"                     # [24] Price 48
 	)
 
+
 # Mini-Matrix for Dynamic SOC Based on Solar Energy:
-# This matrix defines target SoC values based on expected solar energy (in MJ/m²).
+# This matrix defines dynamic target SoC values based on expected solar energy (in MJ/m²).
 config_matrix_target_soc_weather=(
     "1.5 90"  # At 1.5 MJ/m², target SoC is 90%
-    "3.5 20"  # At 3.5 MJ/m², target SoC is 20%
+    "4.0 20"  # At 4.0 MJ/m², target SoC is 20%
 )
 # Note: # All the other values between this will be calculated automatically.
-# If the sun will be more than 3.5 megajoule, the 20% will still be used as calculation result.
+# If the sun will be more than 4.0 megajoule, the 20% will still be used as calculation result.
 # If there will be enough sun, the battery capacity will be reserved for solar energy.
