@@ -60,7 +60,7 @@ else
         ["mqtt_broker_host_publish"]="string"
         ["mqtt_broker_host_subscribe"]="string"
         ["mqtt_broker_port_publish"]="^[0-9]*$"
-        ["mqtt_broker_Port_subscribe"]="^[0-9]*$"
+        ["mqtt_broker_port_subscribe"]="^[0-9]*$"
         ["mqtt_broker_topic_publish"]="string"
         ["mqtt_broker_topic_subscribe"]="string"
         ["reenable_inverting_at_fullbatt"]="0|1"
