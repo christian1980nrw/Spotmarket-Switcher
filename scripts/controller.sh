@@ -793,7 +793,7 @@ manage_fritz_socket() {
     local action=$1
     local socket=$2
 
-if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" == "1" ]; }; then
+if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
     log_message "I: Disabling inverter while switching."
     $charger_disable_inverter >/dev/null
 fi
@@ -840,7 +840,7 @@ manage_shelly_sockets() {
 manage_shelly_socket() {
     local action=$1
     local ip=$2
-	if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" == "1" ]; }; then
+	if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
         log_message "I: Disabling inverter while switching."
         $charger_disable_inverter >/dev/null
     fi
@@ -910,10 +910,10 @@ log_message() {
 
 exit_with_cleanup() {
     log_message "I: Cleanup and exit with error $1"
-	if ((use_charger == 1)); then
+	if ((use_charger != 0)); then
     manage_charging "off" "Turn off charging."
 	fi
-	if ((execute_discharging == 0 && (use_charger == 1))); then
+	if ((execute_discharging == 0 && (use_charger != 0))); then
          manage_discharging "on" "Spotmarket-Switcher is disabling itself. Maybe there is no internet connection."
     fi
     manage_fritz_sockets "off"
@@ -993,23 +993,48 @@ fi
 # MQTT Charging
 if [ "$use_charger" == "2" ]; then
 
+# Check for required MQTT commands
+if ! command -v mosquitto_pub &> /dev/null || ! command -v mosquitto_sub &> /dev/null; then
+    echo "Error: mosquitto_pub or mosquitto_sub command not found. Please install mosquitto-clients."
+    exit 1
+fi
+
+# Validate MQTT ports
+if ! [[ "$mqtt_broker_port_publish" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_publish" -le 65535 ]]; then
+    echo "Error: Invalid mqtt_broker_port_publish: $mqtt_broker_port_publish. Port must be between 1 and 65535."
+    exit 1
+fi
+if ! [[ "$mqtt_broker_port_subscribe" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_subscribe" -le 65535 ]]; then
+    echo "Error: Invalid mqtt_broker_port_subscribe: $mqtt_broker_port_subscribe. Port must be between 1 and 65535."
+    exit 1
+fi
+
 num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="$tools mosquitto_sub mosquitto_pub"
 
     charger_command_charge() { 
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m true
+        if [ -z "$mqtt_broker_host_publish" ] || [ -z "$mqtt_broker_port_publish" ] || [ -z "$mqtt_broker_topic_publish" ]; then
+    echo "Error: MQTT configuration variables are not set."
+    exit 1
+fi
+
+  "$mqtt_broker_topic_publish/charger_command" -m true
         }
     charger_command_stop_charging() {
+	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false
         }   
     charger_command_set_SOC_target() {
+	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc
         }
     charger_disable_inverter() {
+	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false
         }
     charger_enable_inverter() {
+	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true
         }
     tools="$tools mosquitto_sub"
@@ -1554,7 +1579,7 @@ percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_i
 total_cost_integer=$((current_price_integer + percent_of_current_price_integer + battery_lifecycle_costs_cent_per_kwh_integer))
 
 # If any charging condition is met, start charging
-if ((execute_charging == 1 && use_charger == 1)); then
+if ((execute_charging == 1 && use_charger != 0)); then
     economic=""
     # Evaluate if charging is economical
     percent_of_current_price_integer=$(awk "BEGIN {printf \"%.0f\", $current_price_integer*$energy_loss_percent/100}")
@@ -1571,17 +1596,17 @@ if ((execute_charging == 1 && use_charger == 1)); then
         economic="expensive"
         manage_charging "off" "$reason_msg Total charging costs: $(millicentToEuro "$total_cost_integer")€"
     fi
-elif ((execute_charging != 1 && use_charger == 1)); then
+elif ((execute_charging != 1 && use_charger != 0)); then
     manage_charging "off" "Charging was not executed. Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 else
     log_message "D: Skip charger. Not activated. "
 fi
 
 
-if ((execute_discharging == 1 && use_charger == 1)); then
+if ((execute_discharging == 1 && use_charger != 0)); then
          manage_discharging "on" "$reason_msg Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 fi
-if ((execute_discharging == 0 && use_charger == 1)); then
+if ((execute_discharging == 0 && use_charger != 0)); then
          manage_discharging "off" "$reason_msg Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 fi
 
