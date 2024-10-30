@@ -1014,31 +1014,55 @@ SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="$tools mosquitto_sub mosquitto_pub"
 
     charger_command_charge() { 
-        if [ -z "$mqtt_broker_host_publish" ] || [ -z "$mqtt_broker_port_publish" ] || [ -z "$mqtt_broker_topic_publish" ]; then
-    echo "Error: MQTT configuration variables are not set."
-    exit 1
-fi
-
-  "$mqtt_broker_topic_publish/charger_command" -m true
+		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command -m true"
+        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m true
         }
     charger_command_stop_charging() {
-	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false"
+	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command -m false"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false
         }   
     charger_command_set_SOC_target() {
-	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc"
+	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command_set_SOC_target -m $target_soc"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc
         }
     charger_disable_inverter() {
-	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false"
+	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m false"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false
         }
     charger_enable_inverter() {
-	log_message "I: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true"
+	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m true"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true
         }
-    tools="$tools mosquitto_sub"
-	SOC_percent=$(mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_port_subscribe -t $mqtt_broker_topic_subscribe -C 1)
+
+if [ -z "$mqtt_broker_host_subscribe" ] || [ -z "$mqtt_broker_port_subscribe" ] || [ -z "$mqtt_broker_topic_subscribe" ]; then
+    echo "Error: MQTT subscribe variables are not fully configured."
+    exit 1
+fi
+SOC_file=$(mktemp)
+mosquitto_sub -h "$mqtt_broker_host_subscribe" -p "$mqtt_broker_port_subscribe" -t "$mqtt_broker_topic_subscribe" -C 1 > "$SOC_file" &
+MOSQUITTO_PID=$!
+timeout=5
+counter=0
+
+while kill -0 "$MOSQUITTO_PID" 2>/dev/null; do
+    sleep 1
+    counter=$((counter + 1))
+    if [ "$counter" -ge "$timeout" ]; then
+        kill "$MOSQUITTO_PID"
+        log_message "E: Failed to retrieve SOC_percent from MQTT. Timeout executing mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_port_subscribe -t $mqtt_broker_topic_subscribe -C 1"
+        rm "$SOC_file"
+        exit 1
+    fi
+done
+
+SOC_percent=$(cat "$SOC_file")
+rm "$SOC_file"
+
+if [ -z "$SOC_percent" ]; then
+    echo "Error: Failed to retrieve SOC_percent from MQTT."
+    exit 1
+fi
+
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
     log_message 'E: SOC cannot be read properly. Value is not an integer.'
     exit 1
