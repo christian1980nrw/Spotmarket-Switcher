@@ -748,10 +748,10 @@ manage_charging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        $charger_command_charge >/dev/null
+        charger_command_charge >/dev/null
         log_message "I: Charging is ON. $reason"
     else
-        $charger_command_stop_charging >/dev/null
+        charger_command_stop_charging >/dev/null
         log_message "I: Charging is OFF. $reason"
     fi
 }
@@ -762,10 +762,10 @@ manage_discharging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        $charger_enable_inverter >/dev/null
+        charger_enable_inverter >/dev/null
         log_message "I: Discharging is ON. Battery SOC is at $SOC_percent%."
     else
-        $charger_disable_inverter >/dev/null
+        charger_disable_inverter >/dev/null
         log_message "I: Discharging is OFF. Battery SOC is at $SOC_percent%."
     fi
 }
@@ -795,7 +795,7 @@ manage_fritz_socket() {
 
 if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
     log_message "I: Disabling inverter while switching."
-    $charger_disable_inverter >/dev/null
+    charger_disable_inverter >/dev/null
 fi
     local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
     curl -s "$url" >/dev/null || log_message "E: Could not call URL '$url' to switch $action said switch - ignored."
@@ -842,7 +842,7 @@ manage_shelly_socket() {
     local ip=$2
 	if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
         log_message "I: Disabling inverter while switching."
-        $charger_disable_inverter >/dev/null
+        charger_disable_inverter >/dev/null
     fi
     curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_message "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
 }
