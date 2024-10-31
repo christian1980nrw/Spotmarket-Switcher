@@ -995,17 +995,17 @@ if [ "$use_charger" == "2" ]; then
 
 # Check for required MQTT commands
 if ! command -v mosquitto_pub &> /dev/null || ! command -v mosquitto_sub &> /dev/null; then
-    echo "Error: mosquitto_pub or mosquitto_sub command not found. Please install mosquitto-clients."
+    log_message "E: Error. mosquitto_pub or mosquitto_sub command not found. Please install mosquitto-clients."
     exit 1
 fi
 
 # Validate MQTT ports
 if ! [[ "$mqtt_broker_port_publish" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_publish" -le 65535 ]]; then
-    echo "Error: Invalid mqtt_broker_port_publish: $mqtt_broker_port_publish. Port must be between 1 and 65535."
+    log_message "E: Error. Invalid mqtt_broker_port_publish: $mqtt_broker_port_publish. Port must be between 1 and 65535."
     exit 1
 fi
 if ! [[ "$mqtt_broker_port_subscribe" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_subscribe" -le 65535 ]]; then
-    echo "Error: Invalid mqtt_broker_port_subscribe: $mqtt_broker_port_subscribe. Port must be between 1 and 65535."
+    log_message "E: Error. Invalid mqtt_broker_port_subscribe: $mqtt_broker_port_subscribe. Port must be between 1 and 65535."
     exit 1
 fi
 
@@ -1022,20 +1022,20 @@ tools="$tools mosquitto_sub mosquitto_pub"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false
         }   
     charger_command_set_SOC_target() {
-	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command_set_SOC_target -m $target_soc"
+		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command_set_SOC_target -m $target_soc"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc
         }
     charger_disable_inverter() {
-	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m false"
+		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m false"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false
         }
     charger_enable_inverter() {
-	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m true"
+		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m true"
         mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true
         }
 
 if [ -z "$mqtt_broker_host_subscribe" ] || [ -z "$mqtt_broker_port_subscribe" ] || [ -z "$mqtt_broker_topic_subscribe" ]; then
-    echo "Error: MQTT subscribe variables are not fully configured."
+    log_message "E: Error. MQTT subscribe variables are not fully configured."
     exit 1
 fi
 SOC_file=$(mktemp)
@@ -1059,7 +1059,7 @@ SOC_percent=$(cat "$SOC_file")
 rm "$SOC_file"
 
 if [ -z "$SOC_percent" ]; then
-    echo "Error: Failed to retrieve SOC_percent from MQTT."
+    log_message "E: Error. Failed to retrieve SOC_percent from MQTT."
     exit 1
 fi
 
