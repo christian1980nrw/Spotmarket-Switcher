@@ -2,11 +2,11 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[Engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[Français ](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
-Hva gjør denne programvaren?
+Hva gjør denne programvaren? 
 Spotmarket-Switcher er et brukervennlig programvareverktøy som hjelper deg å spare penger på strømregningen. Hvis du har en smart batterilader eller enheter som varmtvannsberedere som kan slå seg på og av automatisk, er dette verktøyet perfekt for deg! Den slår på enhetene dine på en smart måte når energiprisene er lave, spesielt nyttig hvis energikostnadene dine endres hver time.
 
 Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere energibruk effektivt, ikke bare spare kostnader, men også optimalisere bruken av fornybare energikilder. Det er et godt eksempel på hvordan smart teknologi kan brukes til å styre energiforbruket på en mer bærekraftig og kostnadseffektiv måte. (blå = bruk av batteri, rød = rutenett, gul = solenergi)
@@ -23,7 +23,7 @@ Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere ene
 Hvorfor bruke Spotmarket-Switcher?
 
 -   Spar penger: Den slår på enhetene dine når energien er billigere, og reduserer regningene dine.
--   Spar penger: Bruk din lagrede solenergi til høyeste priser.
+-   Spar penger: Bruk din lagrede solenergi til de høyeste prisene.
 -   Energieffektiv: Ved å bruke energi når det er i overskudd (som vindfulle netter), bidrar du til en grønnere planet.
 -   Smart bruk: Lad batterilagringen automatisk eller slå på enheter som varmtvannsberedere på de beste tidspunktene.
 
@@ -32,13 +32,14 @@ Støttede systemer er for øyeblikket:
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
+-   [MQTT lader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
 
-Starter:
+Komme i gang:
 
 -   Last ned og installer: Konfigurasjonsprosessen er enkel. Last ned skriptet, juster noen innstillinger, og du er klar til å gå.
 -   Planlegg og slapp av: Sett den opp én gang, og den kjører automatisk. Ingen daglige problemer!
 
-Interested?
+Interessert?
 
 -   Sjekk ut våre detaljerte instruksjoner for forskjellige systemer som Victron Venus OS, Windows eller Linux-oppsett. Vi har sørget for at trinnene er enkle å følge.
 -   Bli med oss ​​for å gjøre energibruken smartere og mer kostnadseffektiv! For spørsmål, forslag eller tilbakemeldinger, ta gjerne kontakt.
@@ -53,18 +54,21 @@ Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
 Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)En mer detaljert logg kan sees med følgende kommando ved skallet ditt:
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Installasjon
 
-Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
+Å sette opp Spotmarket-Switcher er en enkel prosess. Hvis du allerede kjører en UNIX-basert maskin, for eksempel macOS, Linux eller Windows med Linux-delsystemet, følger du disse trinnene for å installere programvaren:
 
 1.  Last ned installasjonsskriptet fra GitHub-depotet ved å bruke[denne hyperkoblingen](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller kjør følgende kommando i terminalen din:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kjør installasjonsskriptet med flere alternativer for å forberede alt i en underkatalog for inspeksjonen din. For eksempel:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
-    If you're using Victron Venus OS, the correct DESTDIR should be `/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
+    Hvis du bruker Victron Venus OS, bør riktig DESTDIR være`/`(rotkatalogen). Utforsk gjerne de installerte filene i`/tmp/foo`.
     På en Cerbo GX er filsystemet montert skrivebeskyttet. Se<https://www.victronenergy.com/live/ccgx:root_access>. For å gjøre filsystemet skrivbart må du utføre følgende kommando før du kjører installasjonsskriptet:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
@@ -85,11 +89,11 @@ Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte ti
 -   Instruksjoner for å installere Spotmarket-Switcher på et Windows 10- eller 11-system for testing uten Victron-enheter (kun koblingsbare stikkontakter).
 
     -   lansering`cmd.exe`som administrator
-    -   Tast inn`wsl --install -d Debian`
+    -   Gå`wsl --install -d Debian`
     -   Skriv inn et nytt brukernavn som`admin`
     -   Skriv inn et nytt passord
-    -   Tast inn`sudo su`og skriv inn passordet ditt
-    -   Tast inn`apt-get update && apt-get install wget curl`
+    -   Gå`sudo su`og skriv inn passordet ditt
+    -   Gå`apt-get update && apt-get install wget curl`
     -   Fortsett med den manuelle Linux-beskrivelsen nedenfor (installasjonsskriptet er ikke kompatibelt).
     -   Ikke glem at hvis du lukker skallet, vil Windows stoppe systemet.
 
