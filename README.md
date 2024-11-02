@@ -52,7 +52,7 @@ Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
 A more detailed log can be seen with the folowing command at your shell:
    ```
-    /data/etc/Spotmarket-Switcher
+    cd /data/etc/Spotmarket-Switcher
     DEBUG=1 bash ./controller.sh
    ```
 
