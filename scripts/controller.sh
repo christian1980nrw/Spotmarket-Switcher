@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.14-DEV"
+VERSION="2.4.14"
 
 set -e
 
