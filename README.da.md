@@ -2,11 +2,11 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[Norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
-Hvad laver denne software?
+Hvad laver denne software? 
 Spotmarket-Switcher er et letanvendeligt softwareværktøj, der hjælper dig med at spare penge på dine energiregninger. Hvis du har en smart batterioplader eller enheder som vandvarmere, der kan tænde og slukke automatisk, er dette værktøj perfekt til dig! Den tænder smart for dine enheder, når energipriserne er lave, især nyttigt, hvis dine energiomkostninger ændrer sig hver time.
 
 Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energiforbruget effektivt, ikke kun spare omkostninger, men også optimere brugen af ​​vedvarende energikilder. Det er et godt eksempel på, hvordan smart teknologi kan bruges til at styre energiforbruget på en mere bæredygtig og omkostningseffektiv måde. (blå = brug af batteri, rød = gitter, gul = solenergi)
@@ -32,6 +32,7 @@ Understøttede systemer er i øjeblikket:
 -   Shelly-produkter (f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)omskiftelige stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
+-   [MQTT oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladere, der kan styres af myg MQTT-kommandoer)
 
 Kom godt i gang:
 
@@ -44,7 +45,7 @@ Interesseret?
 -   Vær med til at gøre energiforbruget smartere og mere omkostningseffektivt! For spørgsmål, forslag eller feedback er du velkommen til at kontakte os.
 
 Koden er enkel, så den nemt kan tilpasses til andre energilagringssystemer, hvis du er i stand til at styre opladningen med Linux-shell-kommandoer.
-Tag et kig på controller.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
+Tag et kig på controlleren.sh og søg efter charger_command_turnon, så du kan se, hvor nemt det kan tilpasses.
 Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel af den.
 
 ## Datakilde
@@ -53,7 +54,10 @@ Softwaren bruger i øjeblikket EPEX Spot-timepriser leveret af tre gratis API'er
 Den integrerede gratis Entso-E API leverer energiprisdata for følgende lande:
 Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjekkiet (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrig (FR), Georgien (GE), Tyskland (DE), Grækenland (GR), Ungarn (HU), Irland (IE), Italien (IT), Kosovo (XK), Letland (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumænien (RO), Serbien (RS), Slovakiet (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Tyrkiet (TR), Ukraine (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)En mere detaljeret log kan ses med følgende kommando ved din shell:
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Installation
 
@@ -78,19 +82,19 @@ For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.
 
 -   Hvis du bruger Victron Venus OS:
     -   Rediger derefter variablerne med en teksteditor i`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelse. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Opsæt en ESS-opladningsplan (se det medfølgende skærmbillede). I eksemplet oplades batteriet op til 50 % om natten, hvis det er aktiveret, andre opladningstider på dagen ignoreres. Hvis det ikke ønskes, skal du oprette en tidsplan for alle døgnets 24 timer. Husk at deaktivere den efter oprettelsen. Kontroller, at systemtiden (som vist øverst til højre på skærmen) er nøjagtig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdefinerede tidspunkter. Deaktiveret som standard, kan være midlertidigt aktiveret af scriptet.
 
 -   Instruktioner til installation af Spotmarket-Switcher på et Windows 10- eller 11-system til test uden Victron-enheder (kun omskiftelige stik).
 
     -   lancering`cmd.exe`som administrator
-    -   Gå ind`wsl --install -d Debian`
+    -   Indtast`wsl --install -d Debian`
     -   Indtast et nyt brugernavn som`admin`
-    -   Indtast et nyt kodeord
-    -   Gå ind`sudo su`og skriv din adgangskode
-    -   Gå ind`apt-get update && apt-get install wget curl`
-    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscript er ikke kompatibelt).
+    -   Indtast en ny adgangskode
+    -   Indtast`sudo su`og skriv din adgangskode
+    -   Indtast`apt-get update && apt-get install wget curl`
+    -   Fortsæt med den manuelle Linux-beskrivelse nedenfor (installationsscriptet er ikke kompatibelt).
     -   Glem ikke, hvis du lukker skallen, vil Windows stoppe systemet.
 
 
@@ -109,7 +113,7 @@ Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støt
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Hvis du er fra Tyskland og interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e)eller ved at indtaste koden`ojgfbx2e`i din app. Både du og projektet får**50 euro bonus for hardware**. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+Hvis du er fra Tyskland og interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e)eller ved at indtaste koden`ojgfbx2e`i din app. Både du og projektet får**50 euro bonus for hardware**. Bemærk venligst, at en smartmåler eller en Pulse-IR er påkrævet for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan du stadig støtte projektet[Octopus Energy (henvisningslink)](https://share.octopusenergy.de/glass-raven-58).
 Du modtager en bonus (tilbuddet varierer**mellem 50 og 120 euro**) for dig selv og også for projektet.
 Octopus har den fordel, at nogle tilbud er uden minimumskontraktperiode. De er for eksempel ideelle til at sætte en tarif på pause baseret på børskurser.
