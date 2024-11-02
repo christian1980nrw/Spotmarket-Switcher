@@ -30,7 +30,7 @@ Supported systems are currently:
 - Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
-- [MQTT charger](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/) chargers that are uasable by mosquitto MQTT commands
+- [MQTT charger](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/) (chargers that are usable by mosquitto MQTT commands)
 
 Getting Started:
 - Download and Install: The setup process is straightforward. Download the script, adjust a few settings, and you're ready to go.
