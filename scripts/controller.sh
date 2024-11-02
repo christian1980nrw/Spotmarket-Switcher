@@ -74,7 +74,7 @@ fi
 parse_and_validate_config() {
     if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
         # Für Bash-Version <= 4, überprüfe nur config_version=1
-	log_message "W: Due to the older Bash version, the configuration validation is skipped."
+	log_message  >&2 "W: Due to the older Bash version, the configuration validation is skipped."
         local file="$1"
         local version_valid=false
         while IFS='=' read -r key value; do
@@ -87,7 +87,7 @@ parse_and_validate_config() {
         done <"$file"
         
         if [[ "$version_valid" == false ]]; then
-            log_message "E: Error: config_version=$valid_config_version is missing or the configuration is invalid."
+            log_message  >&2 "E: Error: config_version=$valid_config_version is missing or the configuration is invalid."
             return 1
         fi
         return 0
@@ -177,22 +177,22 @@ download_awattar_prices() {
     local sleep_time="$4"
 
     if [ -z "$DEBUG" ]; then
-        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
+        log_message  >&2 "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
         sleep "$sleep_time"
     fi
     if ! curl "$url" >"$file"; then
-        log_message "E: Download of aWATTar prices from '$url' to '$file' failed."
+        log_message  >&2 "E: Download of aWATTar prices from '$url' to '$file' failed."
 		rm "$file"
         exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
-        log_message "E: Could not get aWATTar prices from '$url' to feed file '$file'."
+        log_message  >&2 "E: Could not get aWATTar prices from '$url' to feed file '$file'."
         exit_with_cleanup 1
     fi
 
     if [ -n "$DEBUG" ]; then
-        log_message "D: Download of file '$file' from URL '$url' successful." >&2
+        log_message  >&2 "D: Download of file '$file' from URL '$url' successful."
     fi
     echo >>"$file"
 	
@@ -211,7 +211,7 @@ elif [ "$price_unit" = "tax" ]; then
         print tax
     }' "$file" > "$output_file"
 else
-    log_message "E: Invalid value at awattar_prices. Check config.txt"
+    log_message  >&2 "E: Invalid value at awattar_prices. Check config.txt"
 fi
 
     sort -g "$output_file" >"${output_file%.*}_sorted.${output_file##*.}"
@@ -221,7 +221,7 @@ fi
 
     if [ -f "$file2" ] && [ "$(wc -l <"$file1")" = "$(wc -l <"$file2")" ]; then
         rm -f "$file2"
-        log_message "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online." false
+        log_message  >&2 "I: File '$file2' has no tomorrow data, we have to try it again until the new prices are online." false
     fi
 }
 
@@ -245,13 +245,13 @@ download_tibber_prices() {
     local sleep_time="$3"
 
     if [ -z "$DEBUG" ]; then
-        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
+        log_message  >&2 "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
         sleep "$sleep_time"
     else
-        log_message "D: No delay of download of Tibber data since DEBUG variable set."
+        log_message  >&2 "D: No delay of download of Tibber data since DEBUG variable set."
     fi
     if ! get_tibber_api | tr -d '{}[]' >"$file"; then
-        log_message "E: Download of Tibber prices from '$url' to '$file' failed."
+        log_message  >&2 "E: Download of Tibber prices from '$url' to '$file' failed."
         exit_with_cleanup 1
     fi
 
@@ -270,7 +270,7 @@ download_tibber_prices() {
     echo "date_now_day: $timestamp" >>"$file17"
 
     if [ ! -s "$file16" ]; then
-        log_message "E: Tibber prices cannot be extracted to '$file16', please check your internet connection and Tibber API Key. Waiting 120 seconds and fallback to aWATTar API."
+        log_message  >&2 "E: Tibber prices cannot be extracted to '$file16', please check your internet connection and Tibber API Key. Waiting 120 seconds and fallback to aWATTar API."
         use_tibber=0
 		rm "$file"
 		sleep 120
@@ -290,30 +290,30 @@ download_entsoe_prices() {
     local sleep_time="$4"
 
     if [ -z "$DEBUG" ]; then
-        log_message "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
+        log_message  >&2 "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
         sleep "$sleep_time"
     else
-        log_message "D: No delay of download of entsoe data since DEBUG variable set." >&2
+        log_message  >&2 "D: No delay of download of entsoe data since DEBUG variable set."
     fi
 
     if ! curl "$url" >"$file"; then
-        log_message "E: Retrieval of entsoe data from '$url' into file '$file' failed."
+        log_message  >&2 "E: Retrieval of entsoe data from '$url' into file '$file' failed."
         exit_with_cleanup 1
     fi
 
     if ! test -f "$file"; then
-        log_message "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
+        log_message  >&2 "E: Could not find file '$file' with entsoe price data. Curl itself reported success."
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_message "D: Entsoe file '$file' with price data downloaded" >&2; fi
+    if [ -n "$DEBUG" ]; then log_message  >&2 "D: Entsoe file '$file' with price data downloaded"; fi
 
     if [ ! -s "$file" ]; then
-        log_message "E: Entsoe file '$file' is empty, please check your entsoe API Key."
+        log_message  >&2 "E: Entsoe file '$file' is empty, please check your entsoe API Key."
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded" >&2; fi
+    if [ -n "$DEBUG" ]; then log_message  >&2 "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded"; fi
 
     awk '
 	            error_found=0
@@ -395,21 +395,21 @@ download_solarenergy() {
     if ((use_solarweather_api_to_abort == 1)); then
         delay=$((RANDOM % 15 + 1))
         if [ -z "$DEBUG" ]; then
-            log_message "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API." false
+            log_message  >&2 "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API." false
             sleep "$delay"
         else
-            log_message "D: No delay of download of solarenergy data since DEBUG variable set." >&2
+            log_message  >&2 "D: No delay of download of solarenergy data since DEBUG variable set."
         fi
 
         if ! curl "$link3" -o "$file3"; then
-            log_message "E: Download of solarenergy data from '$link3' failed. Old data will be used if downloaded already."
+            log_message  >&2 "E: Download of solarenergy data from '$link3' failed. Old data will be used if downloaded already."
         elif ! test -f "$file3"; then
-            log_message "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
+            log_message  >&2 "E: Could not get solarenergy data, missing file '$file3'. Solarenergy will be ignored."
         fi
 
 		if [ -f "$file3" ]; then
 			if grep -q "API" "$file3"; then
-			log_message "E: Error, there is a problem with the Solarweather-API."
+			log_message  >&2 "E: Error, there is a problem with the Solarweather-API."
 			cat "$file3"
 			echo
 			rm "$file3"
@@ -418,13 +418,13 @@ download_solarenergy() {
 
 
         if [ -n "$DEBUG" ]; then
-            log_message "D: File3 $file3 downloaded" >&2
+            log_message  >&2 "D: File3 $file3 downloaded"
         fi
         if ! test -f "$file3"; then
-            log_message "E: Could not find downloaded file '$file3' with solarenergy data. Solarenergy will be ignored."
+            log_message  >&2 "E: Could not find downloaded file '$file3' with solarenergy data. Solarenergy will be ignored."
         fi
         if [ -n "$DEBUG" ]; then
-            log_message "D: Solarenergy data downloaded to file '$file3'."
+            log_message  >&2 "D: Solarenergy data downloaded to file '$file3'."
         fi
     fi
 }
@@ -438,14 +438,14 @@ use_awattar_api() {
         # Test if data is current
         get_current_awattar_day
         if [ "$current_awattar_day" = "$(TZ=$TZ date +%-d)" ]; then
-            log_message "I: aWATTar today-data is up to date." false
+            log_message  >&2 "I: aWATTar today-data is up to date." false
         else
-            log_message "I: aWATTar today-data is outdated, fetching new data." false
+            log_message  >&2 "I: aWATTar today-data is outdated, fetching new data." false
             rm -f $file1 $file6 $file7
             download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
         fi
     else # Data file1 does not exist
-        log_message "I: Fetching today-data data from aWATTar." false
+        log_message  >&2 "I: Fetching today-data data from aWATTar." false
         download_awattar_prices "$link1" "$file1" "$file6" $((RANDOM % 21 + 10))
     fi
 	}
@@ -456,14 +456,14 @@ use_awattar_tomorrow_api() {
             # Test if data is current
             get_current_awattar_day2
             if [ "$current_awattar_day2" = "$(TZ=$TZ date +%-d)" ]; then
-                log_message "I: aWATTar tomorrow-data is up to date." false
+                log_message  >&2 "I: aWATTar tomorrow-data is up to date." false
             else
-                log_message "I: aWATTar tomorrow-data is outdated, fetching new data." false
+                log_message  >&2 "I: aWATTar tomorrow-data is outdated, fetching new data." false
                 rm -f $file3
                 download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
             fi
         else # Data file2 does not exist
-            log_message "I: aWATTar tomorrow-data does not exist, fetching data." false
+            log_message  >&2 "I: aWATTar tomorrow-data does not exist, fetching data." false
             download_awattar_prices "$link2" "$file2" "$file6" $((RANDOM % 21 + 10))
         fi
 		}
@@ -484,14 +484,14 @@ use_tibber_api() {
         # Test if data is current
         get_current_tibber_day
         if [ "$current_tibber_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_message "I: Tibber today-data is up to date." false
+            log_message  >&2 "I: Tibber today-data is up to date." false
         else
-            log_message "I: Tibber today-data is outdated, fetching new data." false
+            log_message  >&2 "I: Tibber today-data is outdated, fetching new data." false
             rm -f "$file12" "$file14" "$file15" "$file16"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
         fi
     else # Tibber data does not exist
-        log_message "I: Fetching today-data data from Tibber." false
+        log_message  >&2 "I: Fetching today-data data from Tibber." false
         download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
     fi
 	}
@@ -499,7 +499,7 @@ use_tibber_api() {
 use_tibber_tomorrow_api() {
         if [ ! -s "$file18" ]; then
             rm -f "$file17" "$file18"
-            log_message "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
+            log_message  >&2 "I: File '$file18' has no tomorrow data, we have to try it again until the new prices are online." false
             rm -f "$file12" "$file14" "$file15" "$file16" "$file17" "$file18"
             download_tibber_prices "$link6" "$file14" $((RANDOM % 21 + 10))
             sort -t, -k1.9n $file17 >>"$file12"
@@ -525,14 +525,14 @@ use_entsoe_api() {
         # Test if data is current
         get_current_entsoe_day
         if [ "$current_entsoe_day" = "$(TZ=$TZ date +%d)" ]; then
-            log_message "I: Entsoe today-data is up to date." false
+            log_message  >&2 "I: Entsoe today-data is up to date." false
         else
-            log_message "I: Entsoe today-data is outdated, fetching new data." false
+            log_message  >&2 "I: Entsoe today-data is outdated, fetching new data." false
             rm -f "$file4" "$file5" "$file8" "$file9" "$file10" "$file11" "$file13" "$file19"
             download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
         fi
     else # Entsoe data does not exist
-        log_message "I: Fetching today-data data from Entsoe." false
+        log_message  >&2 "I: Fetching today-data data from Entsoe." false
         download_entsoe_prices "$link4" "$file4" "$file10" $((RANDOM % 21 + 10))
     fi
 	}
@@ -540,7 +540,7 @@ use_entsoe_api() {
 use_entsoe_tomorrow_api() {
         # Test if Entsoe tomorrow data exists
         if [ ! -s "$file9" ]; then
-            log_message "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
+            log_message  >&2 "I: File '$file9' has no tomorrow data, we have to try it again until the new prices are online." false
             rm -f "$file5" "$file9" "$file13"
             download_entsoe_prices "$link5" "$file5" "$file13" $((RANDOM % 21 + 10))
         fi
@@ -563,7 +563,7 @@ convert_vars_to_integer() {
         printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
         local value="${!integer_var}" # Speichern Sie den Wert in einer temporären Variable
         if [ -n "$DEBUG" ]; then
-            log_message "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}" >&2
+            log_message  >&2 "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}"
         fi
     done
 }
@@ -673,7 +673,7 @@ evaluate_conditions() {
             condition_met_description="${descriptions[$i]}"
 
             if [[ $DEBUG -eq 1 ]]; then
-                log_message "D: Condition met: ${condition_met_description}"
+                log_message  >&2 "D: Condition met: ${condition_met_description}"
             fi
 
             # Exit the loop if a condition is met
@@ -695,11 +695,11 @@ is_charging_economical() {
     [[ $reference_price -ge $total_cost ]] && is_economical=0
 
     if [ -n "$DEBUG" ]; then
-        log_message "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]." >&2
+        log_message  >&2 "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]."
         reference_price_euro=$(millicentToEuro $reference_price)
         total_cost_euro=$(millicentToEuro "$total_cost")
         is_economical_str=$([ "$is_economical" -eq 1 ] && echo "false" || echo "true")
-        log_message "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str." >&2
+        log_message  >&2 "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str."
     fi
 
     return $is_economical
@@ -748,11 +748,13 @@ manage_charging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        charger_command_charge >/dev/null
-        log_message "I: Charging is ON. $reason"
+		log_message  >&2 "D: Executing $charger_command_charge"
+        $charger_command_charge >/dev/null
+        log_message  >&2 "I: Charging is ON. $reason"
     else
-        charger_command_stop_charging >/dev/null
-        log_message "I: Charging is OFF. $reason"
+		log_message  >&2 "D: Executing $charger_command_stop_charging"
+        $charger_command_stop_charging >/dev/null
+        log_message  >&2 "I: Charging is OFF. $reason"
     fi
 }
 
@@ -762,30 +764,32 @@ manage_discharging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-        charger_enable_inverter >/dev/null
-        log_message "I: Discharging is ON. Battery SOC is at $SOC_percent%."
+		log_message  >&2 "D: Executing $charger_enable_inverter"
+        $charger_enable_inverter >/dev/null
+        log_message  >&2 "I: Discharging is ON. Battery SOC is at $SOC_percent%."
     else
-        charger_disable_inverter >/dev/null
-        log_message "I: Discharging is OFF. Battery SOC is at $SOC_percent%."
+		log_message  >&2 "D: Executing $charger_disable_inverter"
+        $charger_disable_inverter >/dev/null
+        log_message  >&2 "I: Discharging is OFF. Battery SOC is at $SOC_percent%."
     fi
 }
 
 # Function to manage fritz sockets and log a message
 manage_fritz_sockets() {
     if [ -n "$DEBUG" ]; then
-    log_message "D: Managing Fritz sockets - Action: $action, execute_switchablesockets_on: $execute_switchablesockets_on"
+    log_message  >&2 "D: Managing Fritz sockets - Action: $action, execute_switchablesockets_on: $execute_switchablesockets_on"
 	fi
     local action=$1
 
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 
     if fritz_login; then
-        log_message "I: Turning $action Fritz sockets."
+        log_message  >&2 "I: Turning $action Fritz sockets."
         for socket in "${sockets[@]}"; do
             [ "$socket" != "0" ] && manage_fritz_socket "$action" "$socket"
         done
     else
-        log_message "E: Fritz login failed."
+        log_message  >&2 "E: Fritz login failed."
     fi
 }
 
@@ -794,11 +798,12 @@ manage_fritz_socket() {
     local socket=$2
 
 if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
-    log_message "I: Disabling inverter while switching."
-    charger_disable_inverter >/dev/null
+    log_message  >&2 "I: Disabling inverter while switching."
+	log_message  >&2 "D: Executing $charger_disable_inverter"
+    $charger_disable_inverter >/dev/null
 fi
     local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
-    curl -s "$url" >/dev/null || log_message "E: Could not call URL '$url' to switch $action said switch - ignored."
+    curl -s "$url" >/dev/null || log_message  >&2 "E: Could not call URL '$url' to switch $action said switch - ignored."
 }
 
 fritz_login() {
@@ -806,7 +811,7 @@ fritz_login() {
     sid=""
     challenge=$(curl -s "http://$fbox/login_sid.lua" | grep -o "<Challenge>[a-z0-9]\{8\}" | cut -d'>' -f 2)
     if [ -z "$challenge" ]; then
-        log_message "E: Could not retrieve challenge from login_sid.lua."
+        log_message  >&2 "E: Could not retrieve challenge from login_sid.lua."
         return 1
     fi
 
@@ -815,12 +820,12 @@ fritz_login() {
         grep -o "<SID>[a-z0-9]\{16\}" | cut -d'>' -f 2)
 
     if [ "$sid" = "0000000000000000" ]; then
-        log_message "E: Login to Fritz!Box failed."
+        log_message  >&2 "E: Login to Fritz!Box failed."
         return 1
     fi
 
     if [ -n "$DEBUG" ]; then
-        log_message "D: Login to Fritz!Box successful." >&2
+        log_message  >&2 "D: Login to Fritz!Box successful."
     fi
     return 0
 }
@@ -831,7 +836,7 @@ manage_shelly_sockets() {
 
     [ "$action" != "off" ] && action=$([ "$execute_switchablesockets_on" == "1" ] && echo "on" || echo "off")
 
-    log_message "I: Turning $action Shelly sockets."
+    log_message  >&2 "I: Turning $action Shelly sockets."
     for ip in "${shelly_ips[@]}"; do
         [ "$ip" != "0" ] && manage_shelly_socket "$action" "$ip"
     done
@@ -841,10 +846,10 @@ manage_shelly_socket() {
     local action=$1
     local ip=$2
 	if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
-        log_message "I: Disabling inverter while switching."
-        charger_disable_inverter >/dev/null
+        log_message  >&2 "I: Disabling inverter while switching."
+        $charger_disable_inverter >/dev/null
     fi
-    curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_message "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
+    curl -s -u "$shellyuser:$shellypasswd" "http://$ip/relay/0?turn=$action" -o /dev/null || log_message  >&2 "E: Could not execute switch-$action of Shelly socket with IP $ip - ignored."
 }
 
 millicentToEuro() {
@@ -873,8 +878,8 @@ euroToMillicent() {
     v=$(awk -v euro="$euro" -v potency="$potency" 'BEGIN {printf "%.0f", euro * (10 ^ potency)}')
 
     if [ -z "$v" ]; then
-        log_message "E: Could not translate '$euro' to an integer."
-        log_message "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
+        log_message  >&2 "E: Could not translate '$euro' to an integer."
+        log_message  >&2 "E: Called from ${FUNCNAME[1]} at line ${BASH_LINENO[0]}"
         return 1
     fi
     echo "$v"
@@ -909,7 +914,7 @@ log_message() {
 }
 
 exit_with_cleanup() {
-    log_message "I: Cleanup and exit with error $1"
+    log_message  >&2 "I: Cleanup and exit with error $1"
 	if ((use_charger != 0)); then
     manage_charging "off" "Turn off charging."
 	fi
@@ -936,7 +941,7 @@ checkAndClean() {
     difference1=$(( (currentTime - lastModified1) / 60 ))
     difference2=$(( (currentTime - lastModified2) / 60 ))
     if [ $difference1 -lt 60 ] || [ $difference2 -lt 60 ]; then
-        log_message "I: Config or Controller was changed within the last 60 minutes. Cleaning /tmp directory."
+        log_message  >&2 "I: Config or Controller was changed within the last 60 minutes. Cleaning /tmp directory."
         rm -f /tmp/tibber*.*
         rm -f /tmp/awattar*.*
 		rm -f /tmp/entsoe*.*
@@ -980,10 +985,10 @@ if [ "$use_charger" == "1" ]; then
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
 	SOC_percent="$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}' | tr -d '[:space:]')"
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
-    log_message 'E: SOC cannot be read properly. Value is not an integer.'
+    log_message  >&2 "E: SOC cannot be read properly. Value is not an integer."
     exit 1
-	elif (( SOC_percent < 0 || SOC_percent > 100 )); then
-    log_message "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
+	elif (( $SOC_percent < 0 || $SOC_percent > 100 )); then
+    log_message  >&2 "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
     exit 1
 	fi
 
@@ -995,17 +1000,17 @@ if [ "$use_charger" == "2" ]; then
 
 # Check for required MQTT commands
 if ! command -v mosquitto_pub &> /dev/null || ! command -v mosquitto_sub &> /dev/null; then
-    log_message "E: Error. mosquitto_pub or mosquitto_sub command not found. Please install mosquitto-clients."
+    log_message  >&2 "E: Error. mosquitto_pub or mosquitto_sub command not found. Please install mosquitto-clients."
     exit 1
 fi
 
 # Validate MQTT ports
 if ! [[ "$mqtt_broker_port_publish" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_publish" -le 65535 ]]; then
-    log_message "E: Error. Invalid mqtt_broker_port_publish: $mqtt_broker_port_publish. Port must be between 1 and 65535."
+    log_message  >&2 "E: Error. Invalid mqtt_broker_port_publish: $mqtt_broker_port_publish. Port must be between 1 and 65535."
     exit 1
 fi
 if ! [[ "$mqtt_broker_port_subscribe" =~ ^[1-9][0-9]{0,4}$ && "$mqtt_broker_port_subscribe" -le 65535 ]]; then
-    log_message "E: Error. Invalid mqtt_broker_port_subscribe: $mqtt_broker_port_subscribe. Port must be between 1 and 65535."
+    log_message  >&2 "E: Error. Invalid mqtt_broker_port_subscribe: $mqtt_broker_port_subscribe. Port must be between 1 and 65535."
     exit 1
 fi
 
@@ -1013,29 +1018,14 @@ num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="$tools mosquitto_sub mosquitto_pub"
 
-    charger_command_charge() { 
-		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command -m true"
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m true
-        }
-    charger_command_stop_charging() {
-	log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command -m false"
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command" -m false
-        }   
-    charger_command_set_SOC_target() {
-		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command_set_SOC_target -m $target_soc"
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m $target_soc
-        }
-    charger_disable_inverter() {
-		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m false"
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m false
-        }
-    charger_enable_inverter() {
-		log_message "D: executing mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m true"
-        mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t "$mqtt_broker_topic_publish/charger_inverter" -m true
-        }
+    charger_command_charge="mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command -m true"
+    charger_command_stop_charging="mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command -m false"
+    charger_command_set_SOC_target="mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_command_set_SOC_target -m $target_soc"
+	charger_disable_inverter="mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m false"
+    charger_enable_inverter="mosquitto_pub -h $mqtt_broker_host_publish -p $mqtt_broker_port_publish -t $mqtt_broker_topic_publish/charger_inverter -m true"
 
 if [ -z "$mqtt_broker_host_subscribe" ] || [ -z "$mqtt_broker_port_subscribe" ] || [ -z "$mqtt_broker_topic_subscribe" ]; then
-    log_message "E: Error. MQTT subscribe variables are not fully configured."
+    log_message  >&2 "E: Error. MQTT subscribe variables are not fully configured."
     exit 1
 fi
 SOC_file=$(mktemp)
@@ -1049,7 +1039,7 @@ while kill -0 "$MOSQUITTO_PID" 2>/dev/null; do
     counter=$((counter + 1))
     if [ "$counter" -ge "$timeout" ]; then
         kill "$MOSQUITTO_PID"
-        log_message "E: Failed to retrieve SOC_percent from MQTT. Timeout executing mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_port_subscribe -t $mqtt_broker_topic_subscribe -C 1"
+        log_message  >&2 "E: Failed to retrieve SOC_percent from MQTT. Timeout executing mosquitto_sub -h $mqtt_broker_host_subscribe -p $mqtt_broker_port_subscribe -t $mqtt_broker_topic_subscribe -C 1"
         rm "$SOC_file"
         exit 1
     fi
@@ -1059,15 +1049,15 @@ SOC_percent=$(cat "$SOC_file")
 rm "$SOC_file"
 
 if [ -z "$SOC_percent" ]; then
-    log_message "E: Error. Failed to retrieve SOC_percent from MQTT."
+    log_message  >&2 "E: Error. Failed to retrieve SOC_percent from MQTT."
     exit 1
 fi
 
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
-    log_message 'E: SOC cannot be read properly. Value is not an integer.'
+    log_message  >&2 "E: SOC cannot be read properly. Value is not an integer."
     exit 1
-	elif (( SOC_percent < 0 || SOC_percent > 100 )); then
-    log_message "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
+	elif (( $SOC_percent < 0 || $SOC_percent > 100 )); then
+    log_message  >&2 "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
     exit 1
 	fi
 
@@ -1075,20 +1065,20 @@ fi
 
 for tool in $tools; do
     if ! which "$tool" >/dev/null; then
-        log_message "E: Please ensure the tool '$tool' is found."
+        log_message  >&2 "E: Please ensure the tool '$tool' is found."
         num_tools_missing=$((num_tools_missing + 1))
     fi
 done
 
 if [ $num_tools_missing -gt 0 ]; then
-    log_message "E: $num_tools_missing tools are missing."
+    log_message  >&2 "E: $num_tools_missing tools are missing."
     exit 127
 fi
 
 unset num_tools_missing
 
 else
-    log_message "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
+    log_message  >&2 "E: The file $DIR/$CONFIG was not found! Configure the existing sample.config.txt file and then save it as config.txt in the same directory." false
     exit 127
 fi
 
@@ -1096,7 +1086,7 @@ if [ -f "$DIR/license.txt" ]; then
     # Include the license file
     source "$DIR/license.txt"
 else
-    log_message "E: The file $DIR/license.txt was not found! Please read the license.txt file and save it together with the config.txt in the same directory. Thank you." false
+    log_message  >&2 "E: The file $DIR/license.txt was not found! Please read the license.txt file and save it together with the config.txt in the same directory. Thank you." false
     exit 127
 fi
 
@@ -1104,7 +1094,7 @@ if [ -z "$UNAME" ]; then
     UNAME=$(uname)
 fi
 if [ "Darwin" = "$UNAME" ]; then
-    log_message "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
+    log_message  >&2 "W: MacOS has a different implementation of 'date' - use conda if hunting a bug on a mac".
 fi
 
 # further API parameters (no need to edit)
@@ -1168,8 +1158,8 @@ file19=/tmp/entsoe_prices_sorted.txt
 
 echo >>"$LOG_FILE"
 
-log_message "I: Bash Version: $(bash --version | head -n 1)"
-log_message "I: Spotmarket-Switcher - Version $VERSION"
+log_message  >&2 "I: Bash Version: $(bash --version | head -n 1)"
+log_message  >&2 "I: Spotmarket-Switcher - Version $VERSION"
 
 parse_and_validate_config "$DIR/$CONFIG"
 
@@ -1224,7 +1214,7 @@ if [ "$include_second_day" = 1 ]; then
 	echo "Data available for $loop_hours hours."
 	
 	if [ "$select_pricing_api" -eq 3 ] && [ "$loop_hours" -eq 24 ] && [ "$getnow" -ge 13 ] && [ "$include_second_day" -eq 1 ]; then
-		log_message "E: Next day prices delayed at Tibber API. Waiting 120 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
+		log_message  >&2 "E: Next day prices delayed at Tibber API. Waiting 120 seconds and fallback to aWATTar API. Please ask the Tibber-Team, to get better and to overtake the faster aWATTar API at the data retrieval race."
 		sleep 120
 		select_pricing_api="1"
 		use_awattar_api
@@ -1265,10 +1255,10 @@ if ((use_solarweather_api_to_abort == 1)); then
     get_suntime_today
 fi
 
-log_message "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
-log_message "I: Current price is $current_price $Unit."
-log_message "I: The average price will be $average_price $Unit."
-log_message "I: Highest price will be $highest_price $Unit."
+log_message  >&2 "I: Please verify correct system time and timezone:\n   $(TZ=$TZ date)"
+log_message  >&2 "I: Current price is $current_price $Unit."
+log_message  >&2 "I: The average price will be $average_price $Unit."
+log_message  >&2 "I: Highest price will be $highest_price $Unit."
 price_table=""
 for i in $(seq 1 $loop_hours); do
     eval price=\$P$i
@@ -1278,7 +1268,7 @@ for i in $(seq 1 $loop_hours); do
         price_table+="\n                  "
     fi
 done
-log_message "I: Sorted prices: $price_table"
+log_message  >&2 "I: Sorted prices: $price_table"
 
 if [ "$loop_hours" = 24 ]; then
 
@@ -1313,17 +1303,17 @@ if [ "$loop_hours" = 24 ]; then
     if [ $SOC_percent -ge $discharge_value ]; then
         declare "$discharge_var_name=1"
 		if [ -n "$DEBUG" ]; then
-        log_message "D: $discharge_var_name=1"
+        log_message  >&2 "D: $discharge_var_name=1"
 		fi
     else
         declare "$discharge_var_name=0"
 		if [ -n "$DEBUG" ]; then
-        log_message "D: $discharge_var_name=0"
+        log_message  >&2 "D: $discharge_var_name=0"
 		fi
     fi
 		if [ -n "$DEBUG" ]; then
-        log_message "D: $charge_var_name=$charge_value"
-        log_message "D: $switchable_sockets_var_name=$switchable_sockets_value"
+        log_message  >&2 "D: $charge_var_name=$charge_value"
+        log_message  >&2 "D: $switchable_sockets_var_name=$switchable_sockets_value"
 		fi
     done
 	
@@ -1389,17 +1379,17 @@ if [ "$loop_hours" = 48 ]; then
     if [ "$SOC_percent" -ge "$discharge_value" ]; then
         declare "$discharge_var_name=1"
 		if [ -n "$DEBUG" ]; then
-        log_message "D: $discharge_var_name=1"
+        log_message  >&2 "D: $discharge_var_name=1"
 		fi
     else
         declare "$discharge_var_name=0"
 		if [ -n "$DEBUG" ]; then
-        log_message "D: $discharge_var_name=0"
+        log_message  >&2 "D: $discharge_var_name=0"
 		fi
     fi
 	    if [ -n "$DEBUG" ]; then
-        log_message "D: $charge_var_name=$charge_value"
-        log_message "D: $switchable_sockets_var_name=$switchable_sockets_value"
+        log_message  >&2 "D: $charge_var_name=$charge_value"
+        log_message  >&2 "D: $switchable_sockets_var_name=$switchable_sockets_value"
 		fi
     done
 
@@ -1433,44 +1423,44 @@ done
 
 fi
 
-	if (( SOC_percent != -1 )); then
-		log_message "I: Charge at prices: $charge_table"
-		log_message "I: Dynamic ESS discharge (depending SOC) at prices: $discharge_table"
+	if (( $SOC_percent != -1 )); then
+		log_message  >&2 "I: Charge at prices: $charge_table"
+		log_message  >&2 "I: Dynamic ESS discharge (depending SOC) at prices: $discharge_table"
 	fi
 
 	if (( use_shelly_wlan_sockets + use_fritz_dect_sockets > 0 )); then
-		log_message "I: Switchable sockets at prices: $switchable_sockets_table"
+		log_message  >&2 "I: Switchable sockets at prices: $switchable_sockets_table"
 	fi
 
 
 if ((use_solarweather_api_to_abort == 1)); then
     if [ -f "$file3" ] && [ -s "$file3" ]; then
-        log_message "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
-        log_message "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds. The temperature is "$temp_today"°C with "$snow_today"cm snowdepth."
-        log_message "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds. The temperature will be "$temp_tomorrow"°C with "$snow_tomorrow"cm snowdepth."
+        log_message  >&2 "I: Sunrise today will be $sunrise_today and sunset will be $sunset_today. Suntime will be $suntime_today minutes."
+        log_message  >&2 "I: Solarenergy today will be $solarenergy_today megajoule per sqaremeter with $cloudcover_today percent clouds. The temperature is "$temp_today"°C with "$snow_today"cm snowdepth."
+        log_message  >&2 "I: Solarenergy tomorrow will be $solarenergy_tomorrow megajoule per squaremeter with $cloudcover_tomorrow percent clouds. The temperature will be "$temp_tomorrow"°C with "$snow_tomorrow"cm snowdepth."
 		
 		if awk -v temp="$temp_today" -v snow="$snow_today" 'BEGIN { exit !(temp < 0 && snow > 1) }'; then
 		target_soc=$(get_target_soc 0)
-		log_message "I: There is snow on the solar panels (snowdepth > 1cm) at negative degrees. Target SOC will be set to $target_soc% (max value of the matrix)."
+		log_message  >&2 "I: There is snow on the solar panels (snowdepth > 1cm) at negative degrees. Target SOC will be set to $target_soc% (max value of the matrix)."
 		eval "$charger_command_set_SOC_target $target_soc" >/dev/null
 		else
-		if ((SOC_percent != -1)); then
+		if (($SOC_percent != -1)); then
 			target_soc=$(get_target_soc "$solarenergy_today")
-			log_message "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
+			log_message  >&2 "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
 			eval "$charger_command_set_SOC_target $target_soc" >/dev/null
 		fi
 fi
 
     else
-        log_message "E: No solar data. Please check your internet connection and API Key or wait if it is a temporary error."
-		    if ((SOC_percent != -1)); then	
+        log_message  >&2 "E: No solar data. Please check your internet connection and API Key or wait if it is a temporary error."
+		    if (($SOC_percent != -1)); then	
             target_soc=$(get_target_soc "$solarenergy_today")
-            log_message "E: A SOC charge-target of $target_soc% will be used without valid solarweather-data."
+            log_message  >&2 "E: A SOC charge-target of $target_soc% will be used without valid solarweather-data."
 	        eval "$charger_command_set_SOC_target $target_soc" >/dev/null
         fi
     fi
 else
-    log_message "D: skip Solarweather. not activated"
+    log_message  >&2 "D: skip Solarweather. not activated"
 fi
 
 
@@ -1545,38 +1535,38 @@ for ((i=1; i<=$loop_hours; i++)); do
 done
 
 if [ -n "$DEBUG" ]; then
-log_message "D: Before evaluating charging conditions - execute_charging: $execute_charging"
-log_message "D: Before evaluating discharging conditions - execute_discharging: $execute_discharging"
-log_message "D: Before evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on"
+log_message  >&2 "D: Before evaluating charging conditions - execute_charging: $execute_charging"
+log_message  >&2 "D: Before evaluating discharging conditions - execute_discharging: $execute_discharging"
+log_message  >&2 "D: Before evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on"
 fi
 evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
 evaluate_conditions discharging_conditions[@] discharging_descriptions[@] "execute_discharging" "discharging_condition_met"
 evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets_on" "switchablesockets_condition_met"
 
 if [ -n "$DEBUG" ]; then
-log_message "D: After evaluating charging conditions - execute_charging: $execute_charging "
-log_message "D: After evaluating discharging conditions - execute_discharging: $execute_discharging "
-log_message "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
+log_message  >&2 "D: After evaluating charging conditions - execute_charging: $execute_charging "
+log_message  >&2 "D: After evaluating discharging conditions - execute_discharging: $execute_discharging "
+log_message  >&2 "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
 fi
 
 if ((use_solarweather_api_to_abort == 1)); then
     
     if [ ! -s "$file3" ]; then 
-        log_message "E: File '$file3' does not exist or is empty."
+        log_message  >&2 "E: File '$file3' does not exist or is empty."
         return
     fi
 
     if ((abort_solar_yield_today_integer <= solarenergy_today_integer)) && ((abort_solar_yield_tomorrow_integer <= solarenergy_tomorrow_integer)); then
-        log_message "I: There is enough solarenergy today and tomorrow. ESS can be used normal and no need to switch or charge. Spotmarket-Switcher will be disabled."
+        log_message  >&2 "I: There is enough solarenergy today and tomorrow. ESS can be used normal and no need to switch or charge. Spotmarket-Switcher will be disabled."
         execute_charging=0
         execute_discharging=1
         execute_switchablesockets_on=0
     else
-        log_message "I: Not enough solarenergy today or tomorrow. Spotmarket-Switcher will manage discharging (ESS), charging and switching."
+        log_message  >&2 "I: Not enough solarenergy today or tomorrow. Spotmarket-Switcher will manage discharging (ESS), charging and switching."
     fi
 
     if ((abort_suntime <= suntime_today)); then
-        log_message "I: There are enough sun minutes today. Spotmarket-Switcher will be disabled."
+        log_message  >&2 "I: There are enough sun minutes today. Spotmarket-Switcher will be disabled."
         execute_charging=0
         execute_discharging=1
         execute_switchablesockets_on=0
@@ -1584,14 +1574,14 @@ if ((use_solarweather_api_to_abort == 1)); then
 
 fi
 if ((reenable_inverting_at_fullbatt == 1)); then
-if (( SOC_percent >= reenable_inverting_at_soc )); then
-    log_message "I: The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
+if (( $SOC_percent >= reenable_inverting_at_soc )); then
+    log_message  >&2 "I: The battery is getting full. Re-enabling inverter. This is important on a DC-AC system to enable grid-feedin."
     execute_discharging=1
     fi
 fi
 
 if ((abort_price_integer <= current_price_integer)); then
-    log_message "I: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Spotmarket-Switcher will be disabled if higher than ($(millicentToEuro "$abort_price_integer")€)."
+    log_message  >&2 "I: Current price ($(millicentToEuro "$current_price_integer")€) is too high. Spotmarket-Switcher will be disabled if higher than ($(millicentToEuro "$abort_price_integer")€)."
     execute_charging=0
     execute_discharging=1
     execute_switchablesockets_on=0
@@ -1623,7 +1613,7 @@ if ((execute_charging == 1 && use_charger != 0)); then
 elif ((execute_charging != 1 && use_charger != 0)); then
     manage_charging "off" "Charging was not executed. Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 else
-    log_message "D: Skip charger. Not activated. "
+    log_message  >&2 "D: Skip charger. Not activated. "
 fi
 
 
@@ -1638,13 +1628,13 @@ fi
 if ((use_fritz_dect_sockets == 1)); then
     manage_fritz_sockets
 else
-    log_message "D: skip Fritz DECT. not activated"
+    log_message  >&2 "D: skip Fritz DECT. not activated"
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
     manage_shelly_sockets
 else
-    log_message "D: skip Shelly Api. not activated"
+    log_message  >&2 "D: skip Shelly Api. not activated"
 fi
 
 echo >>"$LOG_FILE"
@@ -1652,7 +1642,7 @@ echo >>"$LOG_FILE"
 # Rotating log files
 if [ -f "$LOG_FILE" ]; then
     if [ "$(du -k "$LOG_FILE" | awk '{print $1}')" -gt "$LOG_MAX_SIZE" ]; then
-        log_message "I: Rotating log files"
+        log_message  >&2 "I: Rotating log files"
         mv "$LOG_FILE" "${LOG_FILE}.$(date +%Y%m%d%H%M%S)"
         touch "$LOG_FILE"
         find . -maxdepth 1 -name "${LOG_FILE}*" -type f -exec ls -1t {} + |
@@ -1663,5 +1653,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-    log_message "D: [ OK ]" >&2
+    log_message  >&2 "D: [ OK ]"
 fi
