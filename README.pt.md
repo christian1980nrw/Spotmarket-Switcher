@@ -6,7 +6,7 @@
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
-O que este software está fazendo?
+O que este software está fazendo? 
 Spotmarket-Switcher é uma ferramenta de software fácil de usar que ajuda você a economizar dinheiro em suas contas de energia. Se você possui um carregador de bateria inteligente ou dispositivos como aquecedores de água que podem ligar e desligar automaticamente, esta ferramenta é perfeita para você! Ele liga seus dispositivos de forma inteligente quando os preços da energia estão baixos, especialmente útil se os custos de energia mudam a cada hora.
 
 Este resultado típico demonstra a capacidade do Spotmarket-Switcher de automatizar o uso de energia de forma eficiente, não apenas economizando custos, mas também otimizando o uso de fontes de energia renováveis. É um excelente exemplo de como a tecnologia inteligente pode ser utilizada para gerir o consumo de energia de uma forma mais sustentável e económica. (azul = uso de bateria, vermelho = rede, amarelo = solar)
@@ -30,8 +30,9 @@ Por que usar o Spotmarket-Switcher?
 Os sistemas suportados são atualmente:
 
 -   Produtos Shelly (como[Plugue Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
--   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/)tomadas comutáveis
+-   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)e[210](https://avm.de/produkte/smart-home/fritzdect-210/)tomadas comutáveis
 -   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
+-   [Carregador MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(carregadores controláveis ​​por comandos MQTT do mosquito)
 
 Começando:
 
@@ -53,11 +54,14 @@ O software atualmente utiliza preços por hora EPEX Spot fornecidos por três AP
 A API gratuita integrada Entso-E fornece dados sobre preços de energia dos seguintes países:
 Albânia (AL), Áustria (AT), Bélgica (BE), Bósnia e Herz. (BA), Bulgária (BG), Croácia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estónia (EE), Finlândia (FI), França (FR), Geórgia (GE), Alemanha (DE), Grécia (GR), Hungria (HU), Irlanda (IE), Itália (IT), Kosovo (XK), Letónia (LV), Lituânia (LT), Luxemburgo (LU), Malta (MT), Moldávia (MD), Montenegro (ME), Países Baixos (NL), Macedónia do Norte (MK), Noruega (NO), Polónia (PL), Portugal (PT), Roménia (RO), Sérvia (RS), Eslováquia (SK) , Eslovénia (SI), Espanha (ES), Suécia (SE), Suíça (CH), Turquia (TR), Ucrânia (UA), Reino Unido (UK) ver[Plataforma Entso-E de Transparência](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Um log mais detalhado pode ser visto com o seguinte comando em seu shell:
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Instalação
 
-Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
+Configurar o Spotmarket-Switcher é um processo simples. Se você já estiver executando uma máquina baseada em UNIX, como macOS, Linux ou Windows com o subsistema Linux, siga estas etapas para instalar o software:
 
 1.  Baixe o script de instalação do repositório GitHub usando[este hiperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)ou execute o seguinte comando em seu terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
@@ -65,7 +69,7 @@ Setting up the Spotmarket-Switcher is a straightforward process. If you are alre
 2.  Execute o script do instalador com opções adicionais para preparar tudo em um subdiretório para sua inspeção. Por exemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Se você estiver usando Victron Venus OS, o DESTDIR correto deve ser`/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
-    On a Cerbo GX the filesystem is mounted read only. See <https://www.victronenergy.com/live/ccgx:root_access>. Para tornar o sistema de arquivos gravável, você precisa executar o seguinte comando antes de executar o script de instalação:
+    Em um Cerbo GX o sistema de arquivos é montado somente leitura. Ver<https://www.victronenergy.com/live/ccgx:root_access>. Para tornar o sistema de arquivos gravável, você precisa executar o seguinte comando antes de executar o script de instalação:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Observe que, embora este software esteja atualmente otimizado para o sistema operacional Venus, ele pode ser adaptado para outros tipos de Linux, como Debian/Ubuntu em um Raspberry Pi ou outra placa pequena. Um candidato principal é certamente[OpenWRT](https://www.openwrt.org). Usar uma máquina desktop é adequado para fins de teste, mas quando usado 24 horas por dia, 7 dias por semana, seu maior consumo de energia é preocupante.
@@ -87,7 +91,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
     -   lançar`cmd.exe`como administrador
     -   Digitar`wsl --install -d Debian`
     -   Digite um novo nome de usuário como`admin`
-    -   Insira uma nova senha
+    -   Digite uma nova senha
     -   Digitar`sudo su`e digite sua senha
     -   Digitar`apt-get update && apt-get install wget curl`
     -   Continue com a descrição manual do Linux abaixo (o script do instalador não é compatível).
@@ -95,7 +99,7 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 
 -   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
-    -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
+    -   Copy the shell script (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   os comandos são`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`e para editar suas configurações use`vi /path/to/save/config.txt`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
     -   Exemplo de crontab:
