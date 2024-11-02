@@ -2,11 +2,11 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[Inglise](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[Portuguese ](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
+[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[inglise keel](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
-Mida see tarkvara teeb?
+Mida see tarkvara teeb? 
 Spotmarket-Switcher on lihtsalt kasutatav tarkvaratööriist, mis aitab säästa raha oma energiaarvetelt. Kui teil on nutikas akulaadija või sellised seadmed nagu boilerid, mis võivad automaatselt sisse ja välja lülituda, on see tööriist teile ideaalne! See lülitab teie seadmed nutikalt sisse, kui energiahinnad on madalad, eriti kasulik siis, kui teie energiakulud muutuvad iga tunni tagant.
 
 See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiakasutust automatiseerida, mitte ainult kulusid kokku hoida, vaid optimeerida ka taastuvate energiaallikate kasutamist. See on suurepärane näide sellest, kuidas nutikat tehnoloogiat saab kasutada energiatarbimise säästlikumaks ja kulutõhusamaks juhtimiseks. (sinine = aku kasutamine, punane = võrk, kollane = päikeseenergia)
@@ -29,9 +29,10 @@ Miks kasutada Spotmarket-Switcherit?
 
 Toetatud süsteemid on praegu:
 
--   Shelly tooted (nt[Shelly pistik S](https://shellyparts.de/products/shelly-plus-plug-s)või[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly tooted (nt[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)või[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)lülitatavad pistikupesad
 -   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu[MultiPlus-II seeria](https://www.victronenergy.com/inverters-chargers)
+-   [MQTT laadija](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laadijad, mida saab juhtida sääse MQTT käskudega)
 
 Alustamine:
 
@@ -44,7 +45,7 @@ Kas olete huvitatud?
 -   Liituge meiega, et muuta energiakasutus nutikamaks ja kuluefektiivsemaks! Kui teil on küsimusi, soovitusi või tagasisidet, võtke julgelt ühendust.
 
 Kood on lihtne, nii et seda saab hõlpsasti kohandada muude energiasalvestussüsteemidega, kui saate laadida laadimist Linuxi kestakäskude abil.
-Vaadake aadressi controller.sh ja otsige üles Charger_command_turnon, et näha, kui lihtne on seda kohandada.
+Palun vaadake aadressi controller.sh ja otsige üles Charger_command_turnon, et näha, kui lihtne on seda kohandada.
 Looge githubi kahvel ja jagage oma kohandusi, et teised kasutajad saaksid sellest kasu.
 
 ## Andmeallikas
@@ -53,7 +54,10 @@ Tarkvara kasutab praegu EPEX Spoti tunnihindu, mida pakuvad kolm tasuta API-d (T
 Integreeritud tasuta Entso-E API pakub energiahinna andmeid järgmistest riikidest:
 Albaania (AL), Austria (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaaria (BG), Horvaatia (HR), Küpros (CY), Tšehhi Vabariik (CZ), Taani (DK), Eesti (EE), Soome (FI), Prantsusmaa (FR), Gruusia (GE), Saksamaa (DE), Kreeka (GR), Ungari (HU), Iirimaa (IE), Itaalia (IT), Kosovo (XK), Läti (LV), Leedu (LT), Luksemburg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Põhja-Makedoonia (MK), Norra (NO), Poola (PL), Portugal (PT), Rumeenia (RO), Serbia (RS), Slovakkia (SK) , Sloveenia (SI), Hispaania (ES), Rootsi (SE), Šveits (CH), Türgi (TR), Ukraina (UA), Ühendkuningriik (UK) vt.[Läbipaistvus Entso-E platvorm](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Üksikasjalikumat logi näete oma kestas järgmise käsuga:
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Paigaldamine
 
@@ -65,16 +69,16 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
 2.  Käivitage installiskript koos lisavalikutega, et alamkataloogis kõik kontrollimiseks ette valmistada. Näiteks:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Kui kasutate operatsioonisüsteemi Victron Venus, peaks DESTDIR olema õige`/`(juurkataloog). Tutvuge installitud failidega`/tmp/foo`.
-    Cerbo GX-i failisüsteem on ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
+    Cerbo GX-ile on failisüsteem ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada muudele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi-l või mõnel muul väikesel tahvlil. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
+Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada teistele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadi jaoks. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
 
 ### Juurdepääs Venus OS-ile
 
 Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Installi skripti täitmine
+### Installi skripti käivitamine
 
 -   Kui kasutate operatsioonisüsteemi Victron Venus:
     -   Seejärel muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/config.txt`.
@@ -85,11 +89,11 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
 -   Juhised Spotmarket-Switcheri installimiseks Windows 10 või 11 süsteemi, et testida ilma Victroni seadmeteta (ainult lülitatavad pistikupesad).
 
     -   käivitada`cmd.exe`administraatorina
-    -   Sisenema`wsl --install -d Debian`
+    -   Sisestage`wsl --install -d Debian`
     -   Sisestage uus kasutajanimi nagu`admin`
     -   Sisestage uus parool
-    -   Sisenema`sudo su`ja tippige oma parool
-    -   Sisenema`apt-get update && apt-get install wget curl`
+    -   Sisestage`sudo su`ja tippige oma parool
+    -   Sisestage`apt-get update && apt-get install wget curl`
     -   Jätkake allpool oleva Linuxi käsitsi kirjeldusega (installeri skript ei ühildu).
     -   Ärge unustage, et kui sulgete kesta, peatab Windows süsteemi.
 
@@ -110,7 +114,7 @@ Kui leiate, et see projekt on väärtuslik, kaaluge sponsoreerimist ja edasise a
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Kui olete Saksamaalt ja olete huvitatud dünaamilisele elektritariifile üleminekust, saate projekti toetada, registreerudes selle kaudu[Tibber (viitelink)](https://invite.tibber.com/ojgfbx2e)või sisestades koodi`ojgfbx2e`teie rakenduses. Saate nii teie kui ka projekt**50 eurot lisatasu riistvara eest**. Pange tähele, et tunnitariifi jaoks on vaja nutikat arvestit või Pulse-IR-i (<https://tibber.com/de/store/produkt/pulse-ir>) .
-Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate siiski projekti toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
+Kui vajate maagaasi tariifi või eelistate klassikalist elektritariifi, saate projekti siiski toetada[Octopus Energy (viitelink)](https://share.octopusenergy.de/glass-raven-58).
 Saate boonuse (pakkumine on erinev**vahemikus 50-120 eurot**) endale ja ka projektile.
 Kaheksajala eeliseks on see, et mõned pakkumised on ilma minimaalse lepingu tähtajata. Need sobivad ideaalselt näiteks börsihindadel põhineva tariifi peatamiseks.
 

@@ -2,21 +2,21 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[Angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
+[Čeština](README.cs.md)-[dánština](README.da.md)-[Němec](README.de.md)-[angličtina](README.md)-[španělština](README.es.md)-[estonština](README.et.md)-[finština](README.fi.md)-[francouzština](README.fr.md)-[řecký](README.el.md)-[italština](README.it.md)-[holandský](README.nl.md)-[norský](README.no.md)-[polština](README.pl.md)-[portugalština](README.pt.md)-[švédský](README.sv.md)-[japonský](README.ja.md)
 
 ## Vítejte v úložišti Spotmarket-Switcher!
 
-Co tento software dělá?
+Co tento software dělá? 
 Spotmarket-Switcher je snadno použitelný softwarový nástroj, který vám pomůže ušetřit peníze na účtech za energii. Pokud máte chytrou nabíječku baterií nebo zařízení, jako jsou ohřívače vody, které se mohou automaticky zapínat a vypínat, je tento nástroj pro vás ideální! Chytře zapíná vaše zařízení, když jsou ceny energie nízké, zvláště užitečné, pokud se vaše náklady na energii mění každou hodinu.
 
-Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně automatizovat spotřebu energie, nejen šetřit náklady, ale také optimalizovat využití obnovitelných zdrojů energie. Je to skvělý příklad toho, jak lze chytrou technologii využít ke správě spotřeby energie udržitelnějším a nákladově efektivnějším způsobem. (modrá = využití baterie, červená = síť, žlutá = solární)
+Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně automatizovat spotřebu energie, nejen šetřit náklady, ale také optimalizovat využití obnovitelných zdrojů energie. Je to skvělý příklad toho, jak lze chytrou technologii využít ke správě spotřeby energie udržitelnějším a nákladově efektivnějším způsobem. (modrá = použití baterie, červená = síť, žlutá = solární)
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
 -   Noční použití: Během noci, kdy byly ceny energie nejnižší, Spotmarket-Switcher chytře aktivoval přepínatelnou zásuvku pro zapnutí tepelného čerpadla pro teplou vodu (špička označená červeně). To ukazuje schopnost systému identifikovat a využívat nízkonákladová energetická období pro energeticky náročné úkoly.
--   Ekonomická efektivita při nabíjení baterií: Program se strategicky rozhodl během této doby nenabíjet úložiště baterií. Toto rozhodnutí bylo založeno na ekonomické kontrole, která zohledňovala ztráty z nabíjení a porovnávala je s průměrnými nebo nejvyššími cenami energie v daný den. Tento přístup zajišťuje, že nabíjení baterie probíhá pouze tehdy, když je to nákladově nejefektivnější.
+-   Ekonomická efektivita při nabíjení baterií: Program se strategicky rozhodl během této doby nenabíjet úložiště baterií. Toto rozhodnutí bylo založeno na ekonomické kontrole, která zohlednila ztráty z nabíjení a porovnala je s průměrnými nebo nejvyššími cenami energie v daný den. Tento přístup zajišťuje, že nabíjení baterie probíhá pouze tehdy, když je to nákladově nejefektivnější.
 -   Optimální využití baterie ve špičce: V tento den byly nejdražší hodiny energie ráno a večer. Během těchto období Spotmarket-Switcher využíval uloženou energii baterie (zobrazená modře), čímž se vyhnul vysokým nákladům na elektřinu.
 -   Rezervace baterie pro hodiny s vysokými náklady: Po období s vysokými náklady byl systém ukládání energie (ESS) baterie vypnutý. Večer kolem 20:00 nebylo prázdno. Toto opatření bylo přijato za účelem rezervace dostatečné kapacity baterie pro nadcházející drahé hodiny příštího rána. To předvídá budoucí období vysokých nákladů a zajišťuje dostupnost akumulované energie pro minimalizaci nákladů.
 
@@ -32,13 +32,14 @@ Aktuálně jsou podporované systémy:
 -   Produkty Shelly (jako např[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)nebo[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)a[210](https://avm.de/produkte/smart-home/fritzdect-210/)vypínatelné zásuvky
 -   [Victron](https://www.victronenergy.com/)Systémy ukládání energie Venus OS, jako je např[Řada MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
+-   [nabíječka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(nabíječky, které lze ovládat příkazy mosquitto MQTT)
 
 Začínáme:
 
 -   Stáhnout a nainstalovat: Proces instalace je přímočarý. Stáhněte si skript, upravte pár nastavení a můžete začít.
 -   Plán a relax: Nastavte to jednou a spustí se automaticky. Žádné každodenní starosti!
 
-Zájem?
+Máte zájem?
 
 -   Podívejte se na naše podrobné pokyny pro různé systémy, jako je nastavení Victron Venus OS, Windows nebo Linux. Ujistili jsme se, že kroky lze snadno sledovat.
 -   Přidejte se k nám a snažte se využívat energii chytřeji a efektivněji! V případě jakýchkoli dotazů, návrhů nebo zpětné vazby se neváhejte obrátit.
@@ -49,11 +50,14 @@ Vytvořte prosím github fork a sdílejte své přizpůsobení, aby z něj mohli
 
 ## Zdroj dat
 
-Software v současnosti využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
+Software v současné době využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
 Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
 Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Podrobnější protokol lze zobrazit pomocí následujícího příkazu ve vašem shellu:
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Instalace
 
@@ -84,10 +88,10 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokyny k instalaci Spotmarket-Switcher na systém Windows 10 nebo 11 pro testování bez zařízení Victron (pouze přepínatelné zásuvky).
 
-    -   zahájení`cmd.exe`jako správce
+    -   zahájit`cmd.exe`jako správce
     -   Vstupte`wsl --install -d Debian`
     -   Zadejte nové uživatelské jméno jako`admin`
-    -   vložte nové heslo
+    -   Zadejte nové heslo
     -   Vstupte`sudo su`a zadejte své heslo
     -   Vstupte`apt-get update && apt-get install wget curl`
     -   Pokračujte níže uvedeným manuálem pro Linux (instalační skript není kompatibilní).
@@ -96,7 +100,7 @@ Snímek obrazovky ukazuje konfiguraci automatického nabíjení během uživatel
 
 -   Pokud používáte systém Linux, jako je Ubuntu nebo Debian:
     -   Zkopírujte skript shellu (`controller.sh`) na vlastní místo a upravte proměnné podle svých potřeb.
-    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt` and to edit your settings use `vi /path/to/save/config.txt`
+    -   příkazy jsou`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`a k úpravě nastavení použijte`vi /path/to/save/config.txt`
     -   Vytvořte crontab nebo jinou metodu plánování pro spuštění tohoto skriptu na začátku každé hodiny.
     -   Ukázka Crontabu:
           Ke spuštění řídicího skriptu každou hodinu použijte následující záznam crontab:

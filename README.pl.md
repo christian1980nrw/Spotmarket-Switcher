@@ -2,11 +2,11 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Czech](README.cs.md)-[duński](README.da.md)-[Niemiecki](README.de.md)-[język angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[Francuski](README.fr.md)-[grecki](README.el.md)-[Włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[język japoński](README.ja.md)
+[czeski](README.cs.md)-[duński](README.da.md)-[niemiecki](README.de.md)-[angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[francuski](README.fr.md)-[grecki](README.el.md)-[włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
-Co robi to oprogramowanie?
+Co robi to oprogramowanie? 
 Spotmarket-Switcher to łatwe w użyciu narzędzie programowe, które pomaga zaoszczędzić pieniądze na rachunkach za energię. Jeśli masz inteligentną ładowarkę do akumulatorów lub urządzenia takie jak podgrzewacze wody, które mogą włączać się i wyłączać automatycznie, to narzędzie jest idealne dla Ciebie! Inteligentnie włącza Twoje urządzenia, gdy ceny energii są niskie, co jest szczególnie przydatne, jeśli koszty energii zmieniają się co godzinę.
 
 Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyzacji zużycia energii, nie tylko oszczędzając koszty, ale także optymalizując wykorzystanie odnawialnych źródeł energii. To doskonały przykład tego, jak można wykorzystać inteligentną technologię do zarządzania zużyciem energii w bardziej zrównoważony i opłacalny sposób. (niebieski = użycie baterii, czerwony = siatka, żółty = energia słoneczna)
@@ -32,6 +32,7 @@ Obsługiwane systemy to obecnie:
 -   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
+-   [Ładowarka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ładowarki sterowane za pomocą poleceń Mosquitto MQTT)
 
 Pierwsze kroki:
 
@@ -53,7 +54,10 @@ Oprogramowanie obecnie wykorzystuje ceny godzinowe EPEX Spot dostarczane przez t
 Zintegrowany bezpłatny interfejs API Entso-E dostarcza dane o cenach energii w następujących krajach:
 Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), Chorwacja (HR), Cypr (CY), Czechy (CZ), Dania (DK), Estonia (EE), Finlandia (FI), Francja (FR), Gruzja (GE), Niemcy (DE), Grecja (GR), Węgry (HU), Irlandia (IE), Włochy (IT), Kosowo (XK), Łotwa (LV), Litwa (LT), Luksemburg (LU), Malta (MT), Mołdawia (MD), Czarnogóra (ME), Holandia (NL), Macedonia Północna (MK), Norwegia (NO), Polska (PL), Portugalia (PT), Rumunia (RO), Serbia (RS), Słowacja (SK) , Słowenia (SI), Hiszpania (ES), Szwecja (SE), Szwajcaria (CH), Turcja (TR), Ukraina (UA), Wielka Brytania (UK) patrz[Przejrzystość platformy Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Bardziej szczegółowy dziennik można wyświetlić za pomocą następującego polecenia w powłoce:
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Instalacja
 
@@ -87,7 +91,7 @@ Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zde
     -   początek`cmd.exe`jako Administrator
     -   Wchodzić`wsl --install -d Debian`
     -   Wprowadź nową nazwę użytkownika, np`admin`
-    -   Wpisz nowe hasło
+    -   Wprowadź nowe hasło
     -   Wchodzić`sudo su`i wpisz swoje hasło
     -   Wchodzić`apt-get update && apt-get install wget curl`
     -   Kontynuuj, korzystając z poniższego opisu ręcznego systemu Linux (skrypt instalatora nie jest kompatybilny).

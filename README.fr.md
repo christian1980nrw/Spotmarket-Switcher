@@ -2,11 +2,11 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[Italian ](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[Portugais](README.pt.md)-[suédois](README.sv.md)-[Japonais](README.ja.md)
+[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[portugais](README.pt.md)-[suédois](README.sv.md)-[japonais](README.ja.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
-Que fait ce logiciel ?
+Que fait ce logiciel ? 
 Spotmarket-Switcher est un outil logiciel facile à utiliser qui vous aide à économiser de l'argent sur vos factures d'énergie. Si vous disposez d'un chargeur de batterie intelligent ou d'appareils comme des chauffe-eau qui peuvent s'allumer et s'éteindre automatiquement, cet outil est parfait pour vous ! Il allume intelligemment vos appareils lorsque les prix de l'énergie sont bas, ce qui est particulièrement utile si vos coûts énergétiques changent toutes les heures.
 
 Ce résultat typique met en valeur la capacité du Spotmarket-Switcher à automatiser efficacement la consommation d'énergie, non seulement en réduisant les coûts, mais également en optimisant l'utilisation des sources d'énergie renouvelables. C'est un excellent exemple de la façon dont la technologie intelligente peut être utilisée pour gérer la consommation d'énergie de manière plus durable et plus rentable. (bleu = utilisation de la batterie, rouge = réseau, jaune = solaire)
@@ -32,6 +32,7 @@ Les systèmes pris en charge sont actuellement :
 -   Produits Shelly (tels que[Prise Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)et[210](https://avm.de/produkte/smart-home/fritzdect-210/)prises commutables
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme le[Série MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
+-   [Chargeur MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(chargeurs contrôlables par les commandes Mosquito MQTT)
 
 Commencer:
 
@@ -47,13 +48,16 @@ Le code est simple et peut facilement être adapté à d'autres systèmes de sto
 Veuillez jeter un œil au contrôleur.sh et recherchez charger_command_turnon afin de voir à quel point il peut être facilement adapté.
 Veuillez créer un fork github et partager votre personnalisation afin que d'autres utilisateurs puissent en bénéficier.
 
-## La source de données
+## Source de données
 
 Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
 Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK) , Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Un journal plus détaillé peut être consulté avec la commande suivante sur votre shell :
+
+     cd /data/etc/Spotmarket-Switcher
+     DEBUG=1 bash ./controller.sh
 
 ## Installation
 
@@ -68,7 +72,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
     Sur un Cerbo GX, le système de fichiers est monté en lecture seule. Voir<https://www.victronenergy.com/live/ccgx:root_access>. Afin de rendre le système de fichiers accessible en écriture, vous devez exécuter la commande suivante avant d'exécuter le script d'installation :
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
@@ -87,7 +91,7 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
     -   lancement`cmd.exe`en tant qu'administrateur
     -   Entrer`wsl --install -d Debian`
     -   Entrez un nouveau nom d'utilisateur comme`admin`
-    -   entrer un nouveau mot de passe
+    -   Entrez un nouveau mot de passe
     -   Entrer`sudo su`et tapez votre mot de passe
     -   Entrer`apt-get update && apt-get install wget curl`
     -   Continuez avec la description manuelle de Linux ci-dessous (le script d'installation n'est pas compatible).
@@ -107,12 +111,12 @@ La capture d'écran montre la configuration de la recharge automatisée pendant 
 Si vous trouvez ce projet utile, veuillez envisager de le parrainer et de soutenir son développement ultérieur via ces liens :
 
 -   [Révolution](https://revolut.me/christqki2)
--   [Pay Pal](https://paypal.me/christian1980nrw)
+-   [Paypal](https://paypal.me/christian1980nrw)
 
 Si vous résidez en Allemagne et souhaitez passer à un tarif d'électricité dynamique, vous pouvez soutenir le projet en vous inscrivant via ce lien.[Tibber (lien de parrainage)](https://invite.tibber.com/ojgfbx2e)ou en saisissant le code`ojgfbx2e`dans votre application. Vous et le projet recevrez**50 euros de bonus pour le matériel**. Veuillez noter qu'un compteur intelligent ou un Pulse-IR est requis pour un tarif horaire (<https://tibber.com/de/store/produkt/pulse-ir>) .
 Si vous avez besoin d'un tarif de gaz naturel ou préférez un tarif d'électricité classique, vous pouvez toujours soutenir le projet[Octopus Energy (lien de parrainage)](https://share.octopusenergy.de/glass-raven-58).
 Vous recevez un bonus (l'offre varie**entre 50 et 120 euros**) pour vous-même et aussi pour le projet.
-Octopus présente l'avantage que certaines offres sont sans durée minimale de contrat. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
+Octopus a l'avantage que certaines offres sont sans durée minimale de contrat. Ils sont idéaux, par exemple, pour suspendre un tarif basé sur les cours boursiers.
 
 Si vous résidez en Autriche, vous pouvez nous soutenir en utilisant[aWATTar Autriche (lien de référence)](https://www.awattar.at/services/offers/promotecustomers). Veuillez utiliser`3KEHMQN2F`comme code.
 

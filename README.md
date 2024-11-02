@@ -30,6 +30,7 @@ Supported systems are currently:
 - Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
+- [MQTT charger](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/) (chargers that are controlable by mosquitto MQTT commands)
 
 Getting Started:
 - Download and Install: The setup process is straightforward. Download the script, adjust a few settings, and you're ready to go.
@@ -50,7 +51,11 @@ The integrated free Entso-E API is providing energy-price-data of the folowing c
 Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show). 
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)
-
+A more detailed log can be seen with the folowing command at your shell:
+   ```
+    cd /data/etc/Spotmarket-Switcher
+    DEBUG=1 bash ./controller.sh
+   ```
 
 ## Installation
 
