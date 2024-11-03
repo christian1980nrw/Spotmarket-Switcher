@@ -769,7 +769,7 @@ manage_discharging() {
         $charger_enable_inverter >/dev/null
         log_message >&2 "I: Discharging is ON. Battery SOC is at $SOC_percent%."
     else
-		log_message "D: Executing $charger_disable_inverter"
+		log_message "I: Executing $charger_disable_inverter"
         $charger_disable_inverter >/dev/null
         log_message >&2 "I: Discharging is OFF. Battery SOC is at $SOC_percent%."
     fi
@@ -1491,8 +1491,8 @@ if ((use_solarweather_api_to_abort == 1)); then
 				eval "$charger_command_set_SOC_target" >/dev/null
     else
 	if [ "$use_charger" == "2" ]; then
-		log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\": $target_soc}\""
-        charger_command_set_SOC_target="mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\": $target_soc}\""
+		log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\":$target_soc}\""
+        charger_command_set_SOC_target="mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\":$target_soc}\""
 		eval "$charger_command_set_SOC_target" >/dev/null
 	fi
     fi
