@@ -15,10 +15,10 @@ fi
 #######################################
 
 if [[ ${BASH_VERSINFO[0]} -le 4 ]]; then
-    valid_config_version=7 # Please increase this value by 1 when changing the configuration variables
+    valid_config_version=8 # Please increase this value by 1 when changing the configuration variables
 else
     declare -A valid_vars=(
-    	["config_version"]="7" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
+    	["config_version"]="8" # Please increase this value by 1 if variables are added or deleted in the valid_vars array
         ["use_fritz_dect_sockets"]="0|1"
         ["fbox"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
         ["user"]="string"
@@ -57,6 +57,8 @@ else
         ["entsoe_eu_api_security_token"]="string"
         ["price_unit"]="energy|total|tax"
         ["tibber_api_key"]="string"
+        ["venus_os_mqtt_ip"]="^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+        ["venus_os_mqtt_port"]="^[0-9]*$"
         ["mqtt_broker_host_publish"]="string"
         ["mqtt_broker_host_subscribe"]="string"
         ["mqtt_broker_port_publish"]="^[0-9]*$"
@@ -191,7 +193,7 @@ download_awattar_prices() {
     fi
 
     if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: Download of file '$file' from URL '$url' successful."
+        log_message "D: Download of file '$file' from URL '$url' successful."
     fi
     echo >>"$file"
 	
@@ -247,7 +249,7 @@ download_tibber_prices() {
         log_message >&2 "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API." false
         sleep "$sleep_time"
     else
-        log_message >&2 "D: No delay of download of Tibber data since DEBUG variable set."
+        log_message "D: No delay of download of Tibber data since DEBUG variable set."
     fi
     if ! get_tibber_api | tr -d '{}[]' >"$file"; then
         log_message >&2 "E: Download of Tibber prices from '$url' to '$file' failed."
@@ -292,7 +294,7 @@ download_entsoe_prices() {
         log_message >&2 "I: Please be patient. First we wait $sleep_time seconds in case the system clock is not syncronized and not to overload the API."
         sleep "$sleep_time"
     else
-        log_message >&2 "D: No delay of download of entsoe data since DEBUG variable set."
+        log_message "D: No delay of download of entsoe data since DEBUG variable set."
     fi
 
     if ! curl "$url" >"$file"; then
@@ -305,14 +307,14 @@ download_entsoe_prices() {
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_message >&2 "D: Entsoe file '$file' with price data downloaded"; fi
+    if [ -n "$DEBUG" ]; then log_message "D: Entsoe file '$file' with price data downloaded"; fi
 
     if [ ! -s "$file" ]; then
         log_message >&2 "E: Entsoe file '$file' is empty, please check your entsoe API Key."
         exit_with_cleanup 1
     fi
 
-    if [ -n "$DEBUG" ]; then log_message >&2 "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded"; fi
+    if [ -n "$DEBUG" ]; then log_message "D: No delay of download of entsoe data since DEBUG variable set." "D: Entsoe file '$file' with price data downloaded"; fi
 
     awk '
 	            error_found=0
@@ -397,7 +399,7 @@ download_solarenergy() {
             log_message >&2 "I: Please be patient. A delay of $delay seconds will help avoid overloading the Solarweather-API." false
             sleep "$delay"
         else
-            log_message >&2 "D: No delay of download of solarenergy data since DEBUG variable set."
+            log_message "D: No delay of download of solarenergy data since DEBUG variable set."
         fi
 
         if ! curl "$link3" -o "$file3"; then
@@ -417,13 +419,13 @@ download_solarenergy() {
 
 
         if [ -n "$DEBUG" ]; then
-            log_message >&2 "D: File3 $file3 downloaded"
+            log_message "D: File3 $file3 downloaded"
         fi
         if ! test -f "$file3"; then
             log_message >&2 "E: Could not find downloaded file '$file3' with solarenergy data. Solarenergy will be ignored."
         fi
         if [ -n "$DEBUG" ]; then
-            log_message >&2 "D: Solarenergy data downloaded to file '$file3'."
+            log_message "D: Solarenergy data downloaded to file '$file3'."
         fi
     fi
 }
@@ -562,7 +564,7 @@ convert_vars_to_integer() {
         printf -v "$integer_var" '%s' "$(euroToMillicent "${!var}" "$potency")"
         local value="${!integer_var}" # Speichern Sie den Wert in einer temporären Variable
         if [ -n "$DEBUG" ]; then
-            log_message >&2 "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}"
+            log_message "D: Variable: $var | Original: ${!var} | Integer: $value | Len: ${#value}"
         fi
     done
 }
@@ -672,7 +674,7 @@ evaluate_conditions() {
             condition_met_description="${descriptions[$i]}"
 
             if [[ $DEBUG -eq 1 ]]; then
-                log_message >&2 "D: Condition met: ${condition_met_description}"
+                log_message "D: Condition met: ${condition_met_description}"
             fi
 
             # Exit the loop if a condition is met
@@ -694,11 +696,11 @@ is_charging_economical() {
     [[ $reference_price -ge $total_cost ]] && is_economical=0
 
     if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]."
+        log_message "D: is_charging_economical [ $is_economical - $([ "$is_economical" -eq 1 ] && echo "false" || echo "true") ]."
         reference_price_euro=$(millicentToEuro $reference_price)
         total_cost_euro=$(millicentToEuro "$total_cost")
         is_economical_str=$([ "$is_economical" -eq 1 ] && echo "false" || echo "true")
-        log_message >&2 "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str."
+        log_message "D: if [ reference_price $reference_price_euro > total_cost $total_cost_euro ] result is $is_economical_str."
     fi
 
     return $is_economical
@@ -747,11 +749,11 @@ manage_charging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-		log_message >&2 "D: Executing $charger_command_charge"
+		log_message >&2 "I: Executing $charger_command_charge"
         $charger_command_charge >/dev/null
         log_message >&2 "I: Charging is ON. $reason"
     else
-		log_message >&2 "D: Executing $charger_command_stop_charging"
+		log_message >&2 "I: Executing $charger_command_stop_charging"
         $charger_command_stop_charging >/dev/null
         log_message >&2 "I: Charging is OFF. $reason"
     fi
@@ -763,11 +765,11 @@ manage_discharging() {
     local reason=$2
 
     if [[ $action == "on" ]]; then
-		log_message >&2 "D: Executing $charger_enable_inverter"
+		log_message >&2 "I: Executing $charger_enable_inverter"
         $charger_enable_inverter >/dev/null
         log_message >&2 "I: Discharging is ON. Battery SOC is at $SOC_percent%."
     else
-		log_message >&2 "D: Executing $charger_disable_inverter"
+		log_message "D: Executing $charger_disable_inverter"
         $charger_disable_inverter >/dev/null
         log_message >&2 "I: Discharging is OFF. Battery SOC is at $SOC_percent%."
     fi
@@ -776,7 +778,7 @@ manage_discharging() {
 # Function to manage fritz sockets and log a message
 manage_fritz_sockets() {
     if [ -n "$DEBUG" ]; then
-    log_message >&2 "D: Managing Fritz sockets - Action: $action, execute_switchablesockets_on: $execute_switchablesockets_on"
+    log_message "D: Managing Fritz sockets - Action: $action, execute_switchablesockets_on: $execute_switchablesockets_on"
 	fi
     local action=$1
 
@@ -798,7 +800,7 @@ manage_fritz_socket() {
 
 if [ "$1" != "off" ] && [ "$economic" == "expensive" ] && { [ "$use_charger" != "0" ]; }; then
     log_message >&2 "I: Disabling inverter while switching."
-	log_message >&2 "D: Executing $charger_disable_inverter"
+	log_message >&2 "I: Executing $charger_disable_inverter"
     $charger_disable_inverter >/dev/null
 fi
     local url="http://$fbox/webservices/homeautoswitch.lua?sid=$sid&ain=$socket&switchcmd=setswitch$action"
@@ -824,7 +826,7 @@ fritz_login() {
     fi
 
     if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: Login to Fritz!Box successful."
+        log_message "D: Login to Fritz!Box successful."
     fi
     return 0
 }
@@ -975,11 +977,14 @@ if [ -f "$DIR/$CONFIG" ]; then
 num_tools_missing=0
 SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="awk curl cat sed sort head tail"
+
+# Victron DBUS Charger
+
 if [ "$use_charger" == "1" ]; then
     tools="$tools dbus"
     charger_command_charge="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
     charger_command_stop_charging="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
-    charger_command_set_SOC_target="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue --"
+    charger_command_set_SOC_target="dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue -- $target_soc"
     charger_disable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
 	SOC_percent="$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}' | tr -d '[:space:]')"
@@ -993,8 +998,46 @@ if [ "$use_charger" == "1" ]; then
 
 fi
 
-# MQTT Charging
+# Victron MQTT Charger
 if [ "$use_charger" == "2" ]; then
+
+serial_number=$(mosquitto_sub -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -t "${MQTT_TOPIC_PREFIX}N/#" -C 1 | grep -o '"value":"[^,]*' | sed 's/"value"://' | cut -d '}' -f 1 | tr -d '"')
+
+if [[ -z "$serial_number" ]]; then
+  log_message >&2 "E: Victron MQTT system not found. Exit."
+  exit 1
+fi
+
+MQTT_TOPIC_SUB=N/$serial_number/system/0/Dc/Battery/Soc
+MQTT_TOPIC_PUB=R/$serial_number/keepalive
+MQTT_TOPIC_SUB_CHARGE=W/$serial_number/settings/0/Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day
+MQTT_TOPIC_SUB_STOP_CHARGE=W/$serial_number/settings/0/Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day
+MQTT_TOPIC_SUB_SET_SOC=W/$serial_number/settings/0/Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc
+MQTT_TOPIC_SUB_DISABLE_INV=W/$serial_number/settings/0/Settings/CGwacs/MaxDischargePower
+MQTT_TOPIC_SUB_ENABLE_INV=W/$serial_number/settings/0/Settings/CGwacs/MaxDischargePower
+
+keepalive_pid=""
+send_keepalive_for_charger2() {
+    while [ "$use_charger" == "2" ]; do
+    mosquitto_pub -t "$MQTT_TOPIC_PUB" -m "" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port"
+    sleep 5
+    done
+}
+    send_keepalive_for_charger2 &
+    keepalive_pid=$!
+
+SOC_percent=$(mosquitto_sub -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -t $MQTT_TOPIC_SUB -C 1 | grep -o '"value":[^,]*' | sed 's/"value"://' | cut -d '.' -f 1)
+charger_command_charge="mosquitto_pub -t $MQTT_TOPIC_SUB_CHARGE -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m {\"value\":7}"
+charger_command_stop_charging="mosquitto_pub -t $MQTT_TOPIC_SUB_STOP_CHARGE -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m {\"value\":-7}"
+charger_command_set_SOC_target="mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\":$target_soc}\""
+charger_disable_inverter="mosquitto_pub -t $MQTT_TOPIC_SUB_DISABLE_INV -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m {\"value\":0}"
+charger_enable_inverter="mosquitto_pub -t $MQTT_TOPIC_SUB_ENABLE_INV -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m {\"value\":$limit_inverter_power_after_enabling}"
+
+fi
+
+
+# other MQTT Charger
+if [ "$use_charger" == "3" ]; then
 
 # Check for required MQTT commands
 if ! command -v mosquitto_pub &> /dev/null || ! command -v mosquitto_sub &> /dev/null; then
@@ -1299,17 +1342,17 @@ if [ "$loop_hours" = 24 ]; then
     if [ $SOC_percent -ge $discharge_value ]; then
         declare "$discharge_var_name=1"
 		if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: $discharge_var_name=1"
+        log_message "D: $discharge_var_name=1"
 		fi
     else
         declare "$discharge_var_name=0"
 		if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: $discharge_var_name=0"
+        log_message "D: $discharge_var_name=0"
 		fi
     fi
 		if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: $charge_var_name=$charge_value"
-        log_message >&2 "D: $switchable_sockets_var_name=$switchable_sockets_value"
+        log_message "D: $charge_var_name=$charge_value"
+        log_message "D: $switchable_sockets_var_name=$switchable_sockets_value"
 		fi
     done
 	
@@ -1375,17 +1418,17 @@ if [ "$loop_hours" = 48 ]; then
     if [ "$SOC_percent" -ge "$discharge_value" ]; then
         declare "$discharge_var_name=1"
 		if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: $discharge_var_name=1"
+        log_message "D: $discharge_var_name=1"
 		fi
     else
         declare "$discharge_var_name=0"
 		if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: $discharge_var_name=0"
+        log_message "D: $discharge_var_name=0"
 		fi
     fi
 	    if [ -n "$DEBUG" ]; then
-        log_message >&2 "D: $charge_var_name=$charge_value"
-        log_message >&2 "D: $switchable_sockets_var_name=$switchable_sockets_value"
+        log_message "D: $charge_var_name=$charge_value"
+        log_message "D: $switchable_sockets_var_name=$switchable_sockets_value"
 		fi
     done
 
@@ -1438,12 +1481,23 @@ if ((use_solarweather_api_to_abort == 1)); then
 		if awk -v temp="$temp_today" -v snow="$snow_today" 'BEGIN { exit !(temp < 0 && snow > 1) }'; then
 		target_soc=$(get_target_soc 0)
 		log_message >&2 "I: There is snow on the solar panels (snowdepth > 1cm) at negative degrees. Target SOC will be set to $target_soc% (max value of the matrix)."
-		eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+		eval "$charger_command_set_SOC_target" >/dev/null
 		else
 		if (($SOC_percent != -1)); then
 			target_soc=$(get_target_soc "$solarenergy_today")
 			log_message >&2 "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
-			eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+			    if [ -z "$target_soc" ]; then
+				log_message >&2 "I: Executing $charger_command_set_SOC_target"
+				eval "$charger_command_set_SOC_target" >/dev/null
+    else
+	if [ "$use_charger" == "2" ]; then
+		log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\": $target_soc}\""
+        charger_command_set_SOC_target="mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\": $target_soc}\""
+		eval "$charger_command_set_SOC_target" >/dev/null
+	fi
+    fi
+
+			
 		fi
 fi
 
@@ -1452,11 +1506,11 @@ fi
 		    if (($SOC_percent != -1)); then	
             target_soc=$(get_target_soc "$solarenergy_today")
             log_message >&2 "E: A SOC charge-target of $target_soc% will be used without valid solarweather-data."
-	        eval "$charger_command_set_SOC_target $target_soc" >/dev/null
+	        eval "$charger_command_set_SOC_target" >/dev/null
         fi
     fi
 else
-    log_message >&2 "D: skip Solarweather. not activated"
+    log_message "D: skip Solarweather. not activated"
 fi
 
 charging_condition_met=""
@@ -1530,18 +1584,18 @@ for ((i=1; i<=$loop_hours; i++)); do
 done
 
 if [ -n "$DEBUG" ]; then
-log_message >&2 "D: Before evaluating charging conditions - execute_charging: $execute_charging"
-log_message >&2 "D: Before evaluating discharging conditions - execute_discharging: $execute_discharging"
-log_message >&2 "D: Before evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on"
+log_message "D: Before evaluating charging conditions - execute_charging: $execute_charging"
+log_message "D: Before evaluating discharging conditions - execute_discharging: $execute_discharging"
+log_message "D: Before evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on"
 fi
 evaluate_conditions charging_conditions[@] charging_descriptions[@] "execute_charging" "charging_condition_met"
 evaluate_conditions discharging_conditions[@] discharging_descriptions[@] "execute_discharging" "discharging_condition_met"
 evaluate_conditions switchablesockets_conditions[@] switchablesockets_conditions_descriptions[@] "execute_switchablesockets_on" "switchablesockets_condition_met"
 
 if [ -n "$DEBUG" ]; then
-log_message >&2 "D: After evaluating charging conditions - execute_charging: $execute_charging "
-log_message >&2 "D: After evaluating discharging conditions - execute_discharging: $execute_discharging "
-log_message >&2 "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
+log_message "D: After evaluating charging conditions - execute_charging: $execute_charging "
+log_message "D: After evaluating discharging conditions - execute_discharging: $execute_discharging "
+log_message "D: After evaluating switchable sockets conditions - execute_switchablesockets_on: $execute_switchablesockets_on "
 fi
 
 if ((use_solarweather_api_to_abort == 1)); then
@@ -1607,7 +1661,7 @@ if ((execute_charging == 1 && use_charger != 0)); then
 elif ((execute_charging != 1 && use_charger != 0)); then
     manage_charging "off" "Charging was not executed. Total charging costs: $(millicentToEuro "$total_cost_integer")€"
 else
-    log_message >&2 "D: Skip charger. Not activated. "
+    log_message "D: Skip charger. Not activated. "
 fi
 
 if ((execute_discharging == 1 && use_charger != 0)); then
@@ -1621,15 +1675,20 @@ fi
 if ((use_fritz_dect_sockets == 1)); then
     manage_fritz_sockets
 else
-    log_message >&2 "D: skip Fritz DECT. not activated"
+    log_message "D: skip Fritz DECT. not activated"
 fi
 
 if ((use_shelly_wlan_sockets == 1)); then
     manage_shelly_sockets
 else
-    log_message >&2 "D: skip Shelly Api. not activated"
+    log_message "D: skip Shelly Api. not activated"
 fi
-
+cleanup() {
+    if [ -n "$keepalive_pid" ]; then
+        kill "$keepalive_pid" 2>/dev/null
+        wait "$keepalive_pid" 2>/dev/null
+    fi
+}
 echo >>"$LOG_FILE"
 
 # Rotating log files
@@ -1646,5 +1705,5 @@ if [ -f "$LOG_FILE" ]; then
 fi
 
 if [ -n "$DEBUG" ]; then
-    log_message >&2 "D: [ OK ]"
+    log_message "D: [ OK ]"
 fi
