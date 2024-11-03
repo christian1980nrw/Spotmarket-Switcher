@@ -31,8 +31,8 @@ Ondersteunde systemen zijn momenteel:
 
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
--   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)
--   [MQTT-oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladers die bestuurbaar zijn door Mosquitto MQTT-opdrachten)
+-   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)(Dbus op localhost en MQTT via LAN worden ondersteund)
+-   [andere MQTT-oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladers die bestuurbaar zijn door Mosquitto MQTT-opdrachten)
 
 Aan de slag:
 
@@ -81,7 +81,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 ### Uitvoering van het installatiescript
 
 -   Als u Victron Venus OS gebruikt:
-    -   Bewerk vervolgens de variabelen met een teksteditor in`/data/etc/Spotmarket-Switcher/config.txt`.
+    -   Bewerk vervolgens de variabelen met een teksteditor`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Stel een ESS-laadschema in (zie de meegeleverde schermafbeelding). In het voorbeeld laadt de batterij 's nachts tot 50% op, indien geactiveerd, andere oplaadtijden van de dag worden genegeerd. Indien niet gewenst, maak dan een schema voor alle 24 uur van de dag. Vergeet niet om het na het maken te deactiveren. Controleer of de systeemtijd (zoals weergegeven in de rechterbovenhoek van het scherm) juist is.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
