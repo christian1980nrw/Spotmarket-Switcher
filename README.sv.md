@@ -25,14 +25,14 @@ Varför använda Spotmarket-Switcher?
 -   Spara pengar: Det sätter på dina enheter när energin är billigare, vilket minskar dina räkningar.
 -   Spara pengar: Använd din lagrade solenergi till högsta priser.
 -   Energieffektiv: Genom att använda energi när den är i överskott (som blåsiga nätter) bidrar du till en grönare planet.
--   Smart användning: Ladda din batterilagring automatiskt eller slå på enheter som varmvattenberedare vid de bästa tiderna.
+-   Smart användning: Ladda din batterilagring automatiskt eller slå på enheter som vattenvärmare vid de bästa tiderna.
 
 System som stöds är för närvarande:
 
 -   Shelly-produkter (t.ex[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)och[210](https://avm.de/produkte/smart-home/fritzdect-210/)omkopplingsbara uttag
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
--   [MQTT laddare](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laddare som kan styras av mygga MQTT-kommandon)
+-   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystem som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost och MQTT by LAN stöds)
+-   [annan MQTT-laddare](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laddare som kan styras av mygga MQTT-kommandon)
 
 Komma igång:
 
@@ -44,7 +44,7 @@ Intresserad?
 -   Kolla in våra detaljerade instruktioner för olika system som Victron Venus OS, Windows eller Linux-inställningar. Vi har sett till att stegen är enkla att följa.
 -   Var med och gör energianvändningen smartare och mer kostnadseffektiv! För frågor, förslag eller feedback är du välkommen att höra av dig.
 
-Koden är enkel så att den lätt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
+Koden är enkel så att den enkelt kan anpassas till andra energilagringssystem om du kan styra laddningen med Linux-skalkommandon.
 Ta en titt på controller.sh och sök efter charger_command_turnon så att du kan se hur enkelt den kan anpassas.
 Skapa en github-gaffel och dela din anpassning så att andra användare kan dra nytta av den.
 
@@ -52,7 +52,7 @@ Skapa en github-gaffel och dela din anpassning så att andra användare kan dra 
 
 Mjukvaran använder för närvarande EPEX Spot timpriser som tillhandahålls av tre gratis API:er (Tibber, aWATTar & Entso-E).
 Den integrerade kostnadsfria Entso-E API tillhandahåller energiprisdata för följande länder:
-Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjeckien (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgien (GE), Tyskland (DE), Grekland (GR), Ungern (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldavien (MD), Montenegro (ME), Nederländerna (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slovakien (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Turkiet (TR), Ukraina (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albanien (AL), Österrike (AT), Belgien (BE), Bosnien och Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjeckien (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgien (GE), Tyskland (DE), Grekland (GR), Ungern (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldavien (MD), Montenegro (ME), Nederländerna (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slovakien (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Turkiet (TR), Ukraina (UA), Storbritannien (UK) se[Transparens Entso-E-plattform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)En mer detaljerad logg kan ses med följande kommando i ditt skal:
 
@@ -118,7 +118,7 @@ Om du behöver en naturgastariff eller föredrar en klassisk eltaxa kan du fortf
 Du får en bonus (erbjudandet varierar**mellan 50 och 120 euro**) för dig själv och även för projektet.
 Octopus har fördelen att vissa erbjudanden är utan minimikontraktstid. De är till exempel idealiska för att pausa en tariff baserad på börskurser.
 
-Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Vänligen använd`3KEHMQN2F`som kod.
+Om du är från Österrike kan du stödja oss genom att använda[aWATTar Österrike (referenslänk)](https://www.awattar.at/services/offers/promotecustomers). Använd gärna`3KEHMQN2F`som kod.
 
 ## Ansvarsfriskrivning
 
