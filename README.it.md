@@ -31,8 +31,8 @@ I sistemi supportati sono attualmente:
 
 -   Prodotti Shelly (come[Shelly Spina S](https://shellyparts.de/products/shelly-plus-plug-s)O[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)E[210](https://avm.de/produkte/smart-home/fritzdect-210/)prese commutabili
--   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
--   [Caricabatterie MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(caricabatterie controllabili tramite comandi Mosquitto MQTT)
+-   [Victron](https://www.victronenergy.com/)I sistemi di accumulo di energia Venus OS come il[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Dbus su localhost e MQTT su LAN sono supportati)
+-   [altro caricabatterie MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(caricabatterie controllabili tramite comandi Mosquitto MQTT)
 
 Iniziare:
 
@@ -41,7 +41,7 @@ Iniziare:
 
 Interessato?
 
--   Consulta le nostre istruzioni dettagliate per diversi sistemi come le configurazioni del sistema operativo Victron Venus, Windows o Linux. Ci siamo assicurati che i passaggi siano facili da seguire.
+-   Consulta le nostre istruzioni dettagliate per diversi sistemi come le configurazioni Victron Venus OS, Windows o Linux. Ci siamo assicurati che i passaggi siano facili da seguire.
 -   Unisciti a noi per rendere l’uso dell’energia più intelligente ed economico! Per qualsiasi domanda, suggerimento o feedback, non esitate a contattarci.
 
 Il codice è semplice in modo che possa essere facilmente adattato ad altri sistemi di accumulo di energia se si è in grado di controllare la ricarica tramite i comandi della shell Linux.
@@ -72,7 +72,7 @@ La configurazione di Spotmarket-Switcher è un processo semplice. Se stai già u
     Su un Cerbo GX il filesystem è montato in sola lettura. Vedere<https://www.victronenergy.com/live/ccgx:root_access>. Per rendere scrivibile il filesystem è necessario eseguire il seguente comando prima di eseguire lo script di installazione:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Tieni presente che sebbene questo software sia attualmente ottimizzato per il sistema operativo Venus, può essere adattato ad altre versioni di Linux, come Debian/Ubuntu su un Raspberry Pi o un'altra piccola scheda. Un ottimo candidato lo è certamente[OpenWRT](https://www.openwrt.org). L'uso di una macchina desktop va bene a scopo di test, ma quando viene utilizzato 24 ore su 24, 7 giorni su 7, il suo consumo energetico maggiore è preoccupante.
+Tieni presente che sebbene questo software sia attualmente ottimizzato per il sistema operativo Venus, può essere adattato ad altre versioni Linux, come Debian/Ubuntu su un Raspberry Pi o un'altra piccola scheda. Un ottimo candidato lo è certamente[OpenWRT](https://www.openwrt.org). L'uso di una macchina desktop va bene a scopo di test, ma quando viene utilizzato 24 ore su 24, 7 giorni su 7, il suo consumo energetico maggiore è preoccupante.
 
 ### Accesso al sistema operativo Venus
 
@@ -99,7 +99,7 @@ Lo screenshot mostra la configurazione della ricarica automatizzata durante gli 
 
 
 -   Se utilizzi un sistema Linux come Ubuntu o Debian:
-    -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regolare le variabili in base alle proprie esigenze.
+    -   Copia lo script della shell (`controller.sh`) in una posizione personalizzata e regola le variabili in base alle tue esigenze.
     -   i comandi sono`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`e per modificare le impostazioni utilizzare`vi /path/to/save/config.txt`
     -   Crea un crontab o un altro metodo di pianificazione per eseguire questo script all'inizio di ogni ora.
     -   Crontab di esempio:

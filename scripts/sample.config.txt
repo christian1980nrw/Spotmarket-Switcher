@@ -13,7 +13,7 @@ TZ="Europe/Amsterdam"
 
 # Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
 # You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
-config_version=7
+config_version=8
 
 #######################
 # API Selection
@@ -192,14 +192,28 @@ switchablesockets_at_solar_breakeven_logic=0
 #######################
 
 # Enable or disable Charger:
-# 1 = Victron charger, 2 = MQTT-Charger, 0 = No charger.
+# 1 = Victron charger by dbus at localhost, 2= Victron charger by MQTT, 3 = other MQTT-Charger, 0 = No charger.
 use_charger=0
 reenable_inverting_at_fullbatt=1
 # This is important on a DC-AC system to enable grid-feedin if the battery is getting full.
 reenable_inverting_at_soc=90
+# limit_inverter_power_after_enabling (currently Victron only)
+# This setting specifies a power limit for the inverter when it is re-enabled after being disabled.
+# -1 = No limit. The inverter will operate at its full capacity when re-enabled.
+# Any positive value (e.g., 1000) = Set a specific limit (in watts). For example, setting this to 1000 will limit the inverter's output to 1000 watts.
+# This is useful if you have a 'Limit inverter power' setting configured in the Energy Storage System (ESS) menu and want to ensure it's respected after the inverter is re-enabled.
+# Note: If 'disable_inverting_while_only_switching' is used, this setting ensures that your preferred inverter power limit is reinstated after inverting is re-enabled.
+limit_inverter_power_after_enabling=-1
 
 #######################
-# MQTT-Charger Setup
+# Victron Venus OS MQTT-Charger Setup
+#######################
+
+venus_os_mqtt_ip=127.0.0.1 # replace by your ip if installed on a different system
+venus_os_mqtt_port=1883
+
+#######################
+# other MQTT-Charger Setup Example
 #######################
 
 # MQTT Subscriber Settings:
@@ -230,13 +244,6 @@ battery_lifecycle_costs_cent_per_kwh=4.444444
 # Essentially, when set to 1, the system prioritizes maintaining battery charge over supplying AC power from the battery when charging is not economically feasible.
 disable_inverting_while_only_switching=1
 
-# limit_inverter_power_after_enabling
-# This setting specifies a power limit for the inverter when it is re-enabled after being disabled.
-# -1 = No limit. The inverter will operate at its full capacity when re-enabled.
-# Any positive value (e.g., 1000) = Set a specific limit (in watts). For example, setting this to 1000 will limit the inverter's output to 1000 watts.
-# This is useful if you have a 'Limit inverter power' setting configured in the Energy Storage System (ESS) menu and want to ensure it's respected after the inverter is re-enabled.
-# Note: If 'disable_inverting_while_only_switching' is used, this setting ensures that your preferred inverter power limit is reinstated after inverting is re-enabled.
-limit_inverter_power_after_enabling=-1
 
 #######################
 # Switchable Sockets Setup (Fritz DECT and Shelly Wifi Plugs)

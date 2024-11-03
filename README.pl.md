@@ -16,7 +16,7 @@ Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyz
 </p>
 
 -   Użycie w nocy: W nocy, kiedy ceny energii były najniższe, Spotmarket-Switcher w inteligentny sposób aktywował przełączane gniazdko, aby włączyć pompę ciepła do ciepłej wody (skok zaznaczony na czerwono). Pokazuje to zdolność systemu do identyfikowania i wykorzystywania okresów niskiego zużycia energii do zadań energochłonnych.
--   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu akumulatora w tym czasie. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
+-   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu akumulatora w tym czasie. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie baterii będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
 -   Optymalne wykorzystanie baterii w godzinach szczytu: W tym dniu najdroższe godziny zużycia energii przypadały na poranek i wieczór. W tych okresach Spotmarket-Switcher wykorzystywał zmagazynowaną energię akumulatora (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej.
 -   Rezerwacja akumulatora na godziny o najwyższych kosztach: Po okresach o najwyższych kosztach system magazynowania energii (ESS) akumulatora został wyłączony. Wieczorem około 20:00 nie było pusto. Działanie to podjęto, aby zarezerwować wystarczającą pojemność baterii na nadchodzące drogie godziny następnego ranka. Pozwala to przewidzieć przyszłe okresy wysokich kosztów i zapewnić dostępność zmagazynowanej energii w celu zminimalizowania kosztów.
 
@@ -24,15 +24,15 @@ Dlaczego warto używać Spotmarket-Switcher?
 
 -   Oszczędzaj pieniądze: Włącza Twoje urządzenia, gdy energia jest tańsza, obniżając rachunki.
 -   Oszczędzaj pieniądze: Wykorzystaj zmagazynowaną energię słoneczną po najwyższych cenach.
--   Energooszczędność: Wykorzystując energię, gdy jest jej w nadmiarze (np. wietrzne noce), przyczyniasz się do tworzenia bardziej ekologicznej planety.
+-   Energooszczędność: Wykorzystując energię, gdy jest jej w nadmiarze (np. w wietrzne noce), przyczyniasz się do tworzenia bardziej ekologicznej planety.
 -   Inteligentne użytkowanie: automatycznie ładuj akumulator lub włączaj urządzenia, takie jak podgrzewacze wody, w najlepszym momencie.
 
 Obsługiwane systemy to obecnie:
 
 -   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
--   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
--   [Ładowarka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ładowarki sterowane za pomocą poleceń Mosquitto MQTT)
+-   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Obsługiwane jest Dbus na localhost i MQTT przez LAN)
+-   [inna ładowarka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ładowarki sterowane za pomocą poleceń Mosquitto MQTT)
 
 Pierwsze kroki:
 

@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[inglise keel](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
+[tšehhi](README.cs.md)-[taani keel](README.da.md)-[saksa keel](README.de.md)-[inglise keel](README.md)-[hispaania keel](README.es.md)-[Estonian](README.et.md)-[soome keel](README.fi.md)-[prantsuse keel](README.fr.md)-[kreeka keel](README.el.md)-[itaalia keel](README.it.md)-[hollandi keel](README.nl.md)-[norra keel](README.no.md)-[poola keel](README.pl.md)-[portugali keel](README.pt.md)-[rootsi keel](README.sv.md)-[Jaapani](README.ja.md)
 
 ## Tere tulemast Spotmarket-Switcheri hoidlasse!
 
@@ -15,7 +15,7 @@ See tüüpiline tulemus näitab Spotmarket-Switcheri võimet tõhusalt energiaka
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Öine kasutamine: öösel, kui energiahinnad olid madalaimad, aktiveeris Spotmarket-Switcher nutikalt lülitatava pistikupesa kuuma vee soojuspumba sisselülitamiseks (punasega näidatud nael). See näitab süsteemi võimet tuvastada ja kasutada madala hinnaga energiaperioode energiamahukate ülesannete jaoks.
+-   Öine kasutamine: öösel, kui energiahinnad olid madalaimad, aktiveeris Spotmarket-Switcher nutikalt lülitatava pistikupesa kuuma vee soojuspumba sisselülitamiseks (punasega tähistatud piisk). See näitab süsteemi võimet tuvastada ja kasutada madala hinnaga energiaperioode energiamahukate ülesannete jaoks.
 -   Aku laadimise majanduslik efektiivsus: programm otsustas strateegiliselt mitte laadida selle aja jooksul aku salvestusruumi. See otsus põhines majanduslikul kontrollil, milles võeti arvesse laadimiskadusid ja võrreldi neid päeva keskmiste või kõrgeimate energiahindadega. See lähenemisviis tagab, et aku laadimine toimub ainult siis, kui see on kõige kuluefektiivsem.
 -   Aku optimaalne kasutamine tipptundidel: sel päeval olid kõige kallimad energiatunnid hommikul ja õhtul. Nendel perioodidel kasutas Spotmarket-Switcher salvestatud akuenergiat (näidatud sinisega), vältides sellega suuri elektrikulusid.
 -   Aku reserveerimine kallite tundide jaoks: pärast kallite perioodide lõppu lülitati aku energiasalvestussüsteem (ESS) välja. Õhtul kella 20 paiku see tühi ei olnud. See toiming tehti selleks, et reserveerida piisav aku võimsus järgmise hommiku eelseisvate kallite tundide jaoks. See näeb ette tulevasi kõrgeid kuluperioode ja tagab salvestatud energia kättesaadavuse kulude minimeerimiseks.
@@ -31,13 +31,13 @@ Toetatud süsteemid on praegu:
 
 -   Shelly tooted (nt[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)või[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)lülitatavad pistikupesad
--   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu[MultiPlus-II seeria](https://www.victronenergy.com/inverters-chargers)
--   [MQTT laadija](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laadijad, mida saab juhtida sääse MQTT käskudega)
+-   [Victron](https://www.victronenergy.com/)Venus OS-i energiasalvestussüsteemid nagu[MultiPlus-II seeria](https://www.victronenergy.com/inverters-chargers)(Dbus kohalikus hostis ja MQTT LAN-i kaudu on toetatud)
+-   [muu MQTT laadija](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laadijad, mida saab juhtida sääse MQTT käskudega)
 
 Alustamine:
 
 -   Laadige alla ja installige: häälestusprotsess on lihtne. Laadige skript alla, kohandage mõnda seadet ja oletegi valmis.
--   Ajastage ja lõõgastuge: seadistage see üks kord ja see töötab automaatselt. Ei mingit igapäevast tüli!
+-   Ajastage ja lõdvestage: seadistage see üks kord ja see töötab automaatselt. Ei mingit igapäevast tüli!
 
 Kas olete huvitatud?
 
@@ -45,7 +45,7 @@ Kas olete huvitatud?
 -   Liituge meiega, et muuta energiakasutus nutikamaks ja kuluefektiivsemaks! Kui teil on küsimusi, soovitusi või tagasisidet, võtke julgelt ühendust.
 
 Kood on lihtne, nii et seda saab hõlpsasti kohandada muude energiasalvestussüsteemidega, kui saate laadida laadimist Linuxi kestakäskude abil.
-Palun vaadake aadressi controller.sh ja otsige üles Charger_command_turnon, et näha, kui lihtne on seda kohandada.
+Vaadake aadressi controller.sh ja otsige üles Charger_command_turnon, et näha, kui lihtne on seda kohandada.
 Looge githubi kahvel ja jagage oma kohandusi, et teised kasutajad saaksid sellest kasu.
 
 ## Andmeallikas
@@ -72,19 +72,19 @@ Spotmarket-Switcheri seadistamine on lihtne protsess. Kui kasutate juba UNIX-põ
     Cerbo GX-ile on failisüsteem ühendatud ainult lugemiseks. Vaata<https://www.victronenergy.com/live/ccgx:root_access>. Failisüsteemi kirjutatavaks muutmiseks peate enne installiskripti käivitamist käivitama järgmise käsu:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada teistele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadi jaoks. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine sobib testimiseks, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
+Pange tähele, et kuigi see tarkvara on praegu Venus OS-i jaoks optimeeritud, saab seda kohandada teistele Linuxi maitsetele, nagu Debian/Ubuntu Raspberry Pi või mõne muu väikese plaadi jaoks. Peakandidaat on kindlasti[OpenWRT](https://www.openwrt.org). Lauaarvuti kasutamine on testimiseks sobiv, kuid ööpäevaringsel kasutamisel on selle suurem energiatarve murettekitav.
 
 ### Juurdepääs Venus OS-ile
 
 Juhised Venus OS-ile juurdepääsu kohta leiate aadressilt<https://www.victronenergy.com/live/ccgx:root_access>.
 
-### Installi skripti käivitamine
+### Installi skripti täitmine
 
--   Kui kasutate operatsioonisüsteemi Victron Venus:
+-   Kui kasutate Victron Venus OS-i:
     -   Seejärel muutke muutujaid tekstiredaktoriga`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Seadistage ESS-i laadimisgraafik (vt kaasasolevat ekraanipilti). Näites laeb aku öösel kuni 50%, kui see on aktiveeritud, teisi päevaseid laadimisaegu eiratakse. Kui ei soovi, koosta ajakava kõigi 24 tunni jaoks. Ärge unustage seda pärast loomist deaktiveerida. Veenduge, et süsteemiaeg (nagu on näidatud ekraani paremas ülanurgas) on täpne.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi deaktiveeritud, skript võib ajutiselt aktiveerida.
+Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud aegadel. Vaikimisi desaktiveeritud, skript võib ajutiselt aktiveerida.
 
 -   Juhised Spotmarket-Switcheri installimiseks Windows 10 või 11 süsteemi, et testida ilma Victroni seadmeteta (ainult lülitatavad pistikupesad).
 
@@ -103,7 +103,7 @@ Ekraanipilt näitab automaatse laadimise konfiguratsiooni kasutaja määratud ae
     -   käsud on`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja seadete muutmiseks kasutage`vi /path/to/save/config.txt`
     -   Selle skripti käivitamiseks iga tunni alguses looge crontab või muu ajastamismeetod.
     -   Crontabi näidis:
-          Kasutage juhtskripti käivitamiseks iga tund järgmist crontab-kirjet:
+          Juhtskripti käivitamiseks iga tund kasutage järgmist crontab-kirjet:
           Avage oma terminal ja sisestage`crontab -e`, seejärel sisestage järgmine rida:`0 * * * * /path/to/controller.sh`
 
 ### Tugi ja panus :+1:

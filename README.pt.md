@@ -6,8 +6,8 @@
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
-O que este software está fazendo? 
-Spotmarket-Switcher é uma ferramenta de software fácil de usar que ajuda você a economizar dinheiro em suas contas de energia. Se você possui um carregador de bateria inteligente ou dispositivos como aquecedores de água que podem ligar e desligar automaticamente, esta ferramenta é perfeita para você! Ele liga seus dispositivos de forma inteligente quando os preços da energia estão baixos, especialmente útil se os custos de energia mudam a cada hora.
+What is this software doing? 
+Spotmarket-Switcher is an easy-to-use software tool that helps you save money on your energy bills. If you have a smart battery charger or devices like water heaters that can turn on and off automatically, this tool is perfect for you! It smartly switches on your devices when energy prices are low, especially useful if your energy costs change every hour.
 
 Este resultado típico demonstra a capacidade do Spotmarket-Switcher de automatizar o uso de energia de forma eficiente, não apenas economizando custos, mas também otimizando o uso de fontes de energia renováveis. É um excelente exemplo de como a tecnologia inteligente pode ser utilizada para gerir o consumo de energia de uma forma mais sustentável e económica. (azul = uso de bateria, vermelho = rede, amarelo = solar)
 
@@ -31,8 +31,8 @@ Os sistemas suportados são atualmente:
 
 -   Produtos Shelly (como[Plugue Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)e[210](https://avm.de/produkte/smart-home/fritzdect-210/)tomadas comutáveis
--   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)
--   [Carregador MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(carregadores controláveis ​​por comandos MQTT do mosquito)
+-   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)(Dbus em localhost e MQTT por LAN são suportados)
+-   [outro carregador MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(carregadores controláveis ​​por comandos MQTT do mosquito)
 
 Começando:
 
@@ -66,7 +66,7 @@ Configurar o Spotmarket-Switcher é um processo simples. Se você já estiver ex
 1.  Baixe o script de instalação do repositório GitHub usando[este hiperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)ou execute o seguinte comando em seu terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Execute o script do instalador com opções adicionais para preparar tudo em um subdiretório para sua inspeção. Por exemplo:
+2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Se você estiver usando Victron Venus OS, o DESTDIR correto deve ser`/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
     Em um Cerbo GX o sistema de arquivos é montado somente leitura. Ver<https://www.victronenergy.com/live/ccgx:root_access>. Para tornar o sistema de arquivos gravável, você precisa executar o seguinte comando antes de executar o script de instalação:
@@ -82,7 +82,7 @@ Para obter instruções sobre como acessar o Venus OS, consulte<https://www.vict
 
 -   Se você estiver usando o sistema operacional Victron Venus:
     -   Em seguida, edite as variáveis ​​com um editor de texto em`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se estiver ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Configure um cronograma de cobrança de ESS (consulte a captura de tela fornecida). No exemplo, a bateria carrega até 50% à noite se ativada, outros horários de carregamento do dia são ignorados. Caso não queira, crie uma programação para todas as 24 horas do dia. Lembre-se de desativá-lo após a criação. Verifique se a hora do sistema (conforme mostrado no canto superior direito da tela) está correta.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 A captura de tela mostra a configuração do carregamento automatizado durante os horários definidos pelo usuário. Desativado por padrão, pode ser ativado temporariamente pelo script.
 
@@ -99,10 +99,10 @@ A captura de tela mostra a configuração do carregamento automatizado durante o
 
 
 -   Se você estiver usando um sistema Linux como Ubuntu ou Debian:
-    -   Copy the shell script (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
+    -   Copie o script de shell (`controller.sh`) para um local personalizado e ajuste as variáveis ​​de acordo com suas necessidades.
     -   os comandos são`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`e para editar suas configurações use`vi /path/to/save/config.txt`
     -   Crie um crontab ou outro método de agendamento para executar este script no início de cada hora.
-    -   Exemplo de crontab:
+    -   Exemplo de Crontab:
           Use a seguinte entrada crontab para executar o script de controle a cada hora:
           Abra seu terminal e digite`crontab -e`e insira a seguinte linha:`0 * * * * /path/to/controller.sh`
 

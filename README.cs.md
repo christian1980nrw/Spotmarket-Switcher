@@ -16,7 +16,7 @@ Tento typický výsledek ukazuje schopnost Spotmarket-Switcheru efektivně autom
 </p>
 
 -   Noční použití: Během noci, kdy byly ceny energie nejnižší, Spotmarket-Switcher chytře aktivoval přepínatelnou zásuvku pro zapnutí tepelného čerpadla pro teplou vodu (špička označená červeně). To ukazuje schopnost systému identifikovat a využívat nízkonákladová energetická období pro energeticky náročné úkoly.
--   Ekonomická efektivita při nabíjení baterií: Program se strategicky rozhodl během této doby nenabíjet úložiště baterií. Toto rozhodnutí bylo založeno na ekonomické kontrole, která zohlednila ztráty z nabíjení a porovnala je s průměrnými nebo nejvyššími cenami energie v daný den. Tento přístup zajišťuje, že nabíjení baterie probíhá pouze tehdy, když je to nákladově nejefektivnější.
+-   Ekonomická efektivita při nabíjení baterií: Program se strategicky rozhodl během této doby nenabíjet úložiště baterií. Toto rozhodnutí bylo založeno na ekonomické kontrole, která zohledňovala ztráty z nabíjení a porovnávala je s průměrnými nebo nejvyššími cenami energie v daný den. Tento přístup zajišťuje, že nabíjení baterie probíhá pouze tehdy, když je to nákladově nejefektivnější.
 -   Optimální využití baterie ve špičce: V tento den byly nejdražší hodiny energie ráno a večer. Během těchto období Spotmarket-Switcher využíval uloženou energii baterie (zobrazená modře), čímž se vyhnul vysokým nákladům na elektřinu.
 -   Rezervace baterie pro hodiny s vysokými náklady: Po období s vysokými náklady byl systém ukládání energie (ESS) baterie vypnutý. Večer kolem 20:00 nebylo prázdno. Toto opatření bylo přijato za účelem rezervace dostatečné kapacity baterie pro nadcházející drahé hodiny příštího rána. To předvídá budoucí období vysokých nákladů a zajišťuje dostupnost akumulované energie pro minimalizaci nákladů.
 
@@ -25,14 +25,14 @@ Proč používat Spotmarket-Switcher?
 -   Ušetřete peníze: Zapne vaše zařízení, když je energie levnější, a sníží vaše účty.
 -   Ušetřete peníze: Využijte uloženou solární energii za nejvyšší ceny.
 -   Energeticky efektivní: Používáním energie, když je jí přebytek (jako jsou větrné noci), přispíváte k zelenější planetě.
--   Chytré využití: Automaticky nabijte své úložiště baterie nebo zapněte zařízení, jako jsou ohřívače vody, v nejlepší časy.
+-   Chytré využití: Automaticky nabijte úložiště baterie nebo zapněte zařízení, jako jsou ohřívače vody, v nejlepší časy.
 
 Aktuálně jsou podporované systémy:
 
 -   Produkty Shelly (jako např[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)nebo[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)a[210](https://avm.de/produkte/smart-home/fritzdect-210/)vypínatelné zásuvky
--   [Victron](https://www.victronenergy.com/)Systémy ukládání energie Venus OS, jako je např[Řada MultiPlus-II](https://www.victronenergy.com/inverters-chargers)
--   [nabíječka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(nabíječky, které lze ovládat příkazy mosquitto MQTT)
+-   [Victron](https://www.victronenergy.com/)Systémy ukládání energie Venus OS, jako je např[Řada MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Dbus na localhost a MQTT přes LAN jsou podporovány)
+-   [jiná nabíječka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(nabíječky, které lze ovládat příkazy mosquitto MQTT)
 
 Začínáme:
 
@@ -52,7 +52,7 @@ Vytvořte prosím github fork a sdílejte své přizpůsobení, aby z něj mohli
 
 Software v současné době využívá hodinové ceny EPEX Spot poskytované třemi bezplatnými API (Tibber, aWATTar & Entso-E).
 Integrované bezplatné Entso-E API poskytuje údaje o cenách energie v následujících zemích:
-Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK) , Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz.[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), Chorvatsko (HR), Kypr (CY), Česká republika (CZ), Dánsko (DK), Estonsko (EE), Finsko (FI), Francie (FR), Gruzie (GE), Německo (DE), Řecko (GR), Maďarsko (HU), Irsko (IE), Itálie (IT), Kosovo (XK), Lotyšsko (LV), Litva (LT), Lucembursko (LU), Malta (MT), Moldavsko (MD), Černá Hora (ME), Nizozemsko (NL), Severní Makedonie (MK), Norsko (NO), Polsko (PL), Portugalsko (PT), Rumunsko (RO), Srbsko (RS), Slovensko (SK), Slovinsko (SI), Španělsko (ES), Švédsko (SE), Švýcarsko (CH), Turecko (TR), Ukrajina (UA), Spojené království (UK) viz[Transparentnost Platforma Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Podrobnější protokol lze zobrazit pomocí následujícího příkazu ve vašem shellu:
 
@@ -61,7 +61,7 @@ Albánie (AL), Rakousko (AT), Belgie (BE), Bosna a Herc. (BA), Bulharsko (BG), C
 
 ## Instalace
 
-Nastavení Spotmarket-Switcheru je jednoduchý proces. Pokud již používáte počítač se systémem UNIX, jako je macOS, Linux nebo Windows se subsystémem Linux, nainstalujte software podle následujících kroků:
+Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
 
 1.  Stáhněte si instalační skript z úložiště GitHub pomocí[tento hypertextový odkaz](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)nebo ve svém terminálu spusťte následující příkaz:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
