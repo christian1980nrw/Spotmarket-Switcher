@@ -28,7 +28,7 @@ else
         ["shelly_ips"]="^\(\".*\"\)$"
         ["shellyuser"]="string"
         ["shellypasswd"]="string"
-        ["use_charger"]="0|1|2"
+        ["use_charger"]="0|1|2|3"
         ["limit_inverter_power_after_enabling"]="^(-1|[0-9]{2,5})$"
         ["energy_loss_percent"]="[0-9]+(\.[0-9]+)?"
         ["battery_lifecycle_costs_cent_per_kwh"]="[0-9]+(\.[0-9]+)?"
@@ -1095,8 +1095,8 @@ if [ -z "$SOC_percent" ]; then
 fi
 
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
-    log_message >&2 "E: SOC cannot be read properly. Value is not an integer."
-    exit 1
+    log_message >&2 "D: SOC cannot be read properly. Value is not an integer and will be convert."
+    SOC_percent=${SOC_percent%.*}
 	elif (( $SOC_percent < 0 || $SOC_percent > 100 )); then
     log_message >&2 "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
     exit 1
