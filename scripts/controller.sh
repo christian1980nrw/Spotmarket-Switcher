@@ -989,7 +989,7 @@ if [ "$use_charger" == "1" ]; then
     charger_enable_inverter="dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- $limit_inverter_power_after_enabling"
 	SOC_percent="$(dbus-send --system --print-reply --dest=com.victronenergy.system /Dc/Battery/Soc com.victronenergy.BusItem.GetValue | grep variant | awk '{print int($3)}' | tr -d '[:space:]')"
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
-    log_message >&2 "d: SOC cannot be read properly. Value is not an integer and will be convert."
+    log_message >&2 "D: SOC cannot be read properly. Value is not an integer and will be convert."
     SOC_percent=${SOC_percent%.*}
 	elif (( $SOC_percent < 0 || $SOC_percent > 100 )); then
     log_message >&2 "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
@@ -1095,7 +1095,7 @@ if [ -z "$SOC_percent" ]; then
 fi
 
 	if ! [[ "$SOC_percent" =~ ^[0-9]+$ ]]; then
-    log_message >&2 "d: SOC cannot be read properly. Value is not an integer and will be convert."
+    log_message >&2 "D: SOC cannot be read properly. Value is not an integer and will be convert."
     SOC_percent=${SOC_percent%.*}
 	elif (( $SOC_percent < 0 || $SOC_percent > 100 )); then
     log_message >&2 "E: SOC value out of range: $SOC_percent. Valid range is 0-100."
