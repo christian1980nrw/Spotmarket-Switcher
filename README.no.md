@@ -31,13 +31,13 @@ Støttede systemer er for øyeblikket:
 
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
--   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)
--   [MQTT lader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
+-   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost og MQTT by LAN støttes)
+-   [annen MQTT-lader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
 
 Komme i gang:
 
 -   Last ned og installer: Konfigurasjonsprosessen er enkel. Last ned skriptet, juster noen innstillinger, og du er klar til å gå.
--   Planlegg og slapp av: Sett den opp én gang, og den kjører automatisk. Ingen daglige problemer!
+-   Planlegg og slapp av: Sett den opp én gang, og den kjører automatisk. Ingen daglig stress!
 
 Interessert?
 
