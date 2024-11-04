@@ -13,7 +13,7 @@ TZ="Europe/Amsterdam"
 
 # Configuration file version: Used to ensure compatibility with the Spotmarket-Switcher software.
 # You'll see a warning while running the Spotmarket-Switcher if you are using an outdated config version.
-config_version=8
+config_version=9
 
 #######################
 # API Selection
@@ -192,7 +192,7 @@ switchablesockets_at_solar_breakeven_logic=0
 #######################
 
 # Enable or disable Charger:
-# 1 = Victron charger by dbus at localhost, 2= Victron charger by MQTT, 3 = other MQTT-Charger, 0 = No charger.
+# 0 = No charger, 1 = Victron charger by dbus at localhost, 2= Victron charger by MQTT over localhost or LAN, 3 = other MQTT-Charger, 4 = sonnenBatterie
 use_charger=0
 reenable_inverting_at_fullbatt=1
 # This is important on a DC-AC system to enable grid-feedin if the battery is getting full.
@@ -225,6 +225,15 @@ mqtt_broker_topic_subscribe="evcc/site/batterySoc"
 mqtt_broker_host_publish="192.168.178.202"
 mqtt_broker_port_publish="1883"
 mqtt_broker_topic_publish="spotmarket-switcher"
+
+
+#######################
+# sonnenBatterie-Charger Setup (experimental / untested beta)
+#######################
+
+sonnen_API_KEY="YOURAPIKEY"
+sonnen_API_URL="http://192.168.0.10:80/api/v2"
+sonnen_API_WATT=4600 # Set the charging power you want to use if spotmarket-switcher starts charging (sonnenBatterie 10 4,6 kW maximum is 4600)
 
 
 # Energy loss percentage in the charging/discharging process:
