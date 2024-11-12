@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.16-DEV"
+VERSION="2.4.17-DEV"
 
 set -e
 
@@ -985,22 +985,27 @@ tools="awk curl cat sed sort head tail"
 if [ "$use_charger" == "1" ]; then
     tools="$tools dbus"
 charger_command_charge() {
+	log_message >&2 "I: Executing dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7"
     dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- 7
 }
 
 charger_command_stop_charging() {
+	log_message >&2 "I: Executing dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7"
     dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day SetValue -- -7
 }
 
 charger_command_set_SOC_target() {
+	log_message >&2 "I: Executing dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue -- "$target_soc""
     dbus -y com.victronenergy.settings /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc SetValue -- "$target_soc"
 }
 
 charger_disable_inverter() {
+	log_message >&2 "I: Executing dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0"
     dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- 0
 }
 
 charger_enable_inverter() {
+	log_message >&2 "I: Executing dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- "$limit_inverter_power_after_enabling""
     dbus -y com.victronenergy.settings /Settings/CGwacs/MaxDischargePower SetValue -- "$limit_inverter_power_after_enabling"
 }
 
@@ -1045,22 +1050,27 @@ send_keepalive_for_charger2() {
 
 SOC_percent=$(mosquitto_sub -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -t $MQTT_TOPIC_SUB -C 1 | grep -o '"value":[^,]*' | sed 's/"value"://' | cut -d '.' -f 1)
 charger_command_charge() {
-    mosquitto_pub -t "$MQTT_TOPIC_SUB_CHARGE" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":7}"
+	log_message >&2 "I: Executing mosquitto_pub -t "$MQTT_TOPIC_SUB_STOP_CHARGE" -h "$venus_os_mqtt_ip" -p $venus_os_mqtt_port -m "{\"value\":7}""
+    mosquitto_pub -t "$MQTT_TOPIC_SUB_STOP_CHARGE" -h "$venus_os_mqtt_ip" -p $venus_os_mqtt_port -m "{\"value\":7}"
 }
 
 charger_command_stop_charging() {
-    mosquitto_pub -t "$MQTT_TOPIC_SUB_STOP_CHARGE" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":-7}"
+	log_message >&2 "I: Executing mosquitto_pub -t "$MQTT_TOPIC_SUB_STOP_CHARGE" -h "$venus_os_mqtt_ip" -p $venus_os_mqtt_port -m "{\"value\":-7}""
+    mosquitto_pub -t "$MQTT_TOPIC_SUB_STOP_CHARGE" -h "$venus_os_mqtt_ip" -p $venus_os_mqtt_port -m "{\"value\":-7}"
 }
 
 charger_command_set_SOC_target() {
-    mosquitto_pub -t "$MQTT_TOPIC_SUB_SET_SOC" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":$target_soc}"
+	log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\":$target_soc}\""
+    mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m "{\"value\":$target_soc}"
 }
 
 charger_disable_inverter() {
+	log_message >&2 "I: Executing mosquitto_pub -t "$MQTT_TOPIC_SUB_DISABLE_INV" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":0}""
     mosquitto_pub -t "$MQTT_TOPIC_SUB_DISABLE_INV" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":0}"
 }
 
 charger_enable_inverter() {
+	log_message >&2 "I: Executing mosquitto_pub -t "$MQTT_TOPIC_SUB_ENABLE_INV" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":$limit_inverter_power_after_enabling}""
     mosquitto_pub -t "$MQTT_TOPIC_SUB_ENABLE_INV" -h "$venus_os_mqtt_ip" -p "$venus_os_mqtt_port" -m "{\"value\":$limit_inverter_power_after_enabling}"
 }
 
@@ -1091,22 +1101,27 @@ SOC_percent=-1 # Set to negative -1 first (maybe no charger is activated).
 tools="$tools mosquitto_sub mosquitto_pub"
 
 charger_command_charge() {
+	log_message >&2 "I: Executing mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_command" -m true"
     mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_command" -m true
 }
 
 charger_command_stop_charging() {
+	log_message >&2 "I: Executing mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_command" -m false"
     mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_command" -m false
 }
 
 charger_command_set_SOC_target() {
+	log_message >&2 "I: Executing mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m "$target_soc""
     mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_command_set_SOC_target" -m "$target_soc"
 }
 
 charger_disable_inverter() {
+	log_message >&2 "I: Executing mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_inverter" -m false"
     mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_inverter" -m false
 }
 
 charger_enable_inverter() {
+	log_message >&2 "I: Executing mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_inverter" -m true"
     mosquitto_pub -h "$mqtt_broker_host_publish" -p "$mqtt_broker_port_publish" -t "$mqtt_broker_topic_publish/charger_inverter" -m true
 }
 
@@ -1154,51 +1169,53 @@ fi
 
 if [ "$use_charger" == "4" ]; then
 
-SOC_percent=$(curl --max-time 5 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/latestdata" | awk -F'[,{}:]' '{for(i=1;i<=NF;i++) if ($i ~ /"USOC"/) print $(i+1)}')
+SOC_percent=$(curl --max-time 5 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/latestdata" | awk -F'[,{}:]' '{for(i=1;i<=NF;i++) if ($i ~ /"RSOC"/) print $(i+1)}')
 
     if [ -z "$SOC_percent" ]; then
         log_message >&2 "E: Timeout while trying to read RSOC from the charger."
         exit 1
     fi
 
-
 charger_command_charge() {
- curl -X PUT -d EM_USOC="$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+	log_message >&2 "I: Executing curl -X PUT -d EM_OperatingMode=1 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
+    curl -X PUT -d EM_OperatingMode=1 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+    sleep 1
+	log_message >&2 "I: Executing curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/charge/$sonnen_API_WATT""
+    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/charge/$sonnen_API_WATT"
 }
 
-# Funktion im Hintergrund starten
-#charger_command_charge &
-
-
 charger_command_stop_charging() {
-    curl -X PUT -d EM_USOC=0 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+	log_message >&2 "I: Executing curl -X PUT -d EM_OperatingMode=2 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
+    curl -X PUT -d EM_OperatingMode=2 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+    sleep 1
+	log_message >&2 "I: Executing curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/discharge/0""
+    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/discharge/0"
 }
 
 charger_command_set_SOC_target() {
-    echo Nothing to do at sonnen charger
+	log_message >&2 "I: Executing curl -X PUT -d EM_USOC="$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
+    curl -X PUT -d EM_USOC="$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
 }
 
 charger_disable_inverter() {
-	curl -X PUT -d EM_USOC="$SOC_percent" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-#	sleep 1
-#    curl -X PUT -d EM_OperatingMode=1 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-#    sleep 1
-#    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/discharge/0"
-#    sleep 1
-#    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/charge/0"
+	log_message >&2 "I: Executing curl -X PUT -d EM_OperatingMode=1 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
+    curl -X PUT -d EM_OperatingMode=1 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+    sleep 1
+	log_message >&2 "I: Executing curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/discharge/0""
+    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/discharge/0"
+    sleep 1
+	log_message >&2 "I: Executing curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/charge/0""
+    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/charge/0"
 }
 
 charger_enable_inverter() {
-	curl -X PUT -d EM_USOC=0 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-#	sleep 1
-#    curl -X PUT -d EM_OperatingMode=2 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-#	sleep 1
-#    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/discharge/$sonnen_API_WATT"
-#    sleep 1
-#    curl -X POST --header "Auth-Token: $sonnen_API_KEY" -d '' "$sonnen_API_URL/setpoint/charge/$sonnen_API_WATT"
+	log_message >&2 "I: Executing curl -X PUT -d EM_OperatingMode=2 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
+    curl -X PUT -d EM_OperatingMode=2 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
 }
 
+
 fi
+
 
 for tool in $tools; do
     if ! which "$tool" >/dev/null; then
@@ -1582,14 +1599,13 @@ if ((use_solarweather_api_to_abort == 1)); then
 		if (($SOC_percent != -1)); then
 			target_soc=$(get_target_soc "$solarenergy_today")
 			log_message >&2 "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
-			    if [ -z "$target_soc" ]; then
-				charger_command_set_SOC_target >/dev/null
-    else
-	if [ "$use_charger" == "2" ]; then
-		log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\":$target_soc}\""
-        mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\":$target_soc}\" >/dev/null
-	fi
-    fi
+			charger_command_set_SOC_target >/dev/null
+    
+#	if [ "$use_charger" == "2" ]; then
+#		log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\":$target_soc}\""
+ #       mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\":$target_soc}\" >/dev/null
+#	fi
+    
 
 			
 		fi
