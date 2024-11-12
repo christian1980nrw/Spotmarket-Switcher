@@ -1601,13 +1601,6 @@ if ((use_solarweather_api_to_abort == 1)); then
 			log_message >&2 "I: At $solarenergy_today megajoule there will be a dynamic SOC charge-target of $target_soc% calculated. The rest is reserved for solar."
 			charger_command_set_SOC_target >/dev/null
     
-#	if [ "$use_charger" == "2" ]; then
-#		log_message >&2 "I: Executing mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\"value\":$target_soc}\""
- #       mosquitto_pub -t $MQTT_TOPIC_SUB_SET_SOC -h $venus_os_mqtt_ip -p $venus_os_mqtt_port -m \"{\\\"value\\\":$target_soc}\" >/dev/null
-#	fi
-    
-
-			
 		fi
 fi
 
