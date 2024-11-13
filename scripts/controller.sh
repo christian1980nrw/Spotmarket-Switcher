@@ -1192,7 +1192,7 @@ charger_command_stop_charging() {
 }
 
 charger_command_set_SOC_target() {
-    echo Nothing to do at sonnen charger. >nul
+    echo Nothing to do at sonnen charger. >/dev/null
 }
 
 charger_disable_inverter() {
