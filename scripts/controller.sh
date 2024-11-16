@@ -1173,7 +1173,7 @@ fi
 # sonnenBatterie (experimental)
 
 if [ "$use_charger" == "4" ]; then
-    echo curl --max-time 5 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/latestdata"
+
     SOC_percent=$(curl --max-time 5 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/latestdata" | awk -F'[,{}:]' '{for(i=1;i<=NF;i++) if ($i ~ /"USOC"/) print $(i+1)}')
 
     if [ -z "$SOC_percent" ]; then
