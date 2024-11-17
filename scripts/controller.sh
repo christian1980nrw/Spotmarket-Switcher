@@ -957,6 +957,22 @@ checkAndClean() {
     fi
 }
 
+fetch_prices() {
+    if [ "$select_pricing_api" -eq 1 ]; then
+        Unit="Cent/kWh $price_unit price"
+        get_awattar_prices
+        get_awattar_prices_integer
+    elif [ "$select_pricing_api" -eq 2 ]; then
+        Unit="EUR/MWh net"
+        get_entsoe_prices
+        get_prices_integer_entsoe
+    elif [ "$select_pricing_api" -eq 3 ]; then
+        Unit="EUR/kWh $price_unit price"
+        get_tibber_prices
+        get_tibber_prices_integer
+    fi
+}
+
 ####################################
 ###    Begin of the script...    ###
 ####################################
@@ -1371,19 +1387,7 @@ if [ "$include_second_day" = 1 ]; then
 	
 fi
 
-if ((select_pricing_api == 1)); then
-    Unit="Cent/kWh $price_unit price"
-    get_awattar_prices
-    get_awattar_prices_integer
-elif ((select_pricing_api == 2)); then
-    Unit="EUR/MWh net"
-    get_entsoe_prices
-    get_prices_integer_entsoe
-elif ((select_pricing_api == 3)); then
-    Unit="EUR/kWh $price_unit price"
-    get_tibber_prices
-    get_tibber_prices_integer
-fi
+fetch_prices
 
 if ((use_solarweather_api_to_abort == 1)); then
     download_solarenergy
@@ -1414,6 +1418,38 @@ for i in $(seq 1 $loop_hours); do
     fi
 done
 log_message >&2 "I: Sorted prices: $price_table"
+if [ "$include_second_day" -eq 1 ]; then
+    price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
+    log_message >&2 "D: number of prices: $price_count"
+
+    if [ "$price_count" -le 24 ]; then
+        log_message >&2 "I: time is 13:00. Extra checking and waiting for 48-hr prices every 5 minutes..."
+
+        current_hour=$(date +%H)
+        if [ "$current_hour" -eq 13 ]; then
+            while [ "$current_hour" -eq 13 ]; do
+			fetch_prices
+			price_table=""
+			for i in $(seq 1 $loop_hours); do
+				eval price=\$P$i
+				price_table+="$i:$price "
+
+				if [ $((i % 12)) -eq 0 ]; then
+				price_table+="\n                  "
+				fi
+			done
+			log_message >&2 "I: Sorted prices: $price_table"
+                price_count=$(echo "$price_table" | tr ' ' '\n' | wc -l)
+                if [ "$price_count" -gt 24 ]; then
+                    break
+                else
+                    sleep 300
+                fi
+                current_hour=$(date +%H)
+            done
+        fi
+    fi
+fi
 
 if [ "$loop_hours" = 24 ]; then
 
