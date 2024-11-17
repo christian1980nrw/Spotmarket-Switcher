@@ -1182,12 +1182,12 @@ if [ "$use_charger" == "4" ]; then
     fi
 
     charger_command_charge() {
-        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$target_soc --header Auth-Token: $sonnen_API_KEY $sonnen_API_URL/configurations"
+        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$target_soc --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
         curl -X PUT -d "EM_USOC=$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
     }
 
     charger_command_stop_charging() {
-        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header Auth-Token: $sonnen_API_KEY $sonnen_API_URL/configurations"
+        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
         curl -X PUT -d "EM_USOC=0" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
     }
 
@@ -1197,18 +1197,17 @@ if [ "$use_charger" == "4" ]; then
 
     charger_disable_inverter() {
         if ((charging == 0)); then
-            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$SOC_percent --header Auth-Token: $sonnen_API_KEY $sonnen_API_URL/configurations"
+            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$SOC_percent --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
             curl -X PUT -d "EM_USOC=$SOC_percent" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
         fi
     }
 
     charger_enable_inverter() {
         if ((charging == 0)); then
-            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header Auth-Token: $sonnen_API_KEY $sonnen_API_URL/configurations"
+            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
             curl -X PUT -d "EM_USOC=0" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
         fi
     }
-
 fi
 
 for tool in $tools; do
