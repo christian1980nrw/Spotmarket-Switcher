@@ -32,6 +32,7 @@ Les systèmes pris en charge sont actuellement :
 -   Produits Shelly (tels que[Prise Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)et[210](https://avm.de/produkte/smart-home/fritzdect-210/)prises commutables
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme le[Série MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Dbus sur localhost et MQTT par LAN sont pris en charge)
+-   [fils](https://www.sonnen.de/)Systèmes AC-AC comme[fils batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testé avec la version logicielle 1.15.6 sur LAN sur un système autonome sans SonnenCommunity ou sonnenVPP.
 -   [autre chargeur MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(chargeurs contrôlables par les commandes Mosquito MQTT)
 
 Commencer:
@@ -72,7 +73,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
     Sur un Cerbo GX, le système de fichiers est monté en lecture seule. Voir<https://www.victronenergy.com/live/ccgx:root_access>. Afin de rendre le système de fichiers accessible en écriture, vous devez exécuter la commande suivante avant d'exécuter le script d'installation :
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OpenWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
