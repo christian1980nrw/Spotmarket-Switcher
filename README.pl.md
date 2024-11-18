@@ -32,7 +32,7 @@ Obsługiwane systemy to obecnie:
 -   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Obsługiwane jest Dbus na localhost i MQTT przez LAN)
--   [sonnen](https://www.sonnen.de/)Systemy AC-AC, takie jak[bateria Sonnena 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testowano z wersją oprogramowania 1.15.6 przez sieć LAN na samodzielnym systemie bez SonnenCommunity i sonnenVPP.
+-   [sonnen](https://www.sonnen.de/)/[bateria Sonnena 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testowano z wersją oprogramowania 1.15.6 przez sieć LAN na samodzielnym systemie bez SonnenCommunity i sonnenVPP.
 -   [inna ładowarka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ładowarki sterowane za pomocą poleceń Mosquitto MQTT)
 
 Pierwsze kroki:
