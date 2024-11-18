@@ -30,7 +30,7 @@ Supported systems are currently:
 - Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s) or [Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 - [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/) and [210](https://avm.de/produkte/smart-home/fritzdect-210/) switchable sockets
 - [Victron](https://www.victronenergy.com/) Venus OS Energy Storage Systems like the [MultiPlus-II series](https://www.victronenergy.com/inverters-chargers) (Dbus at localhost and MQTT by LAN is supported)
-- [sonnen](https://www.sonnen.de/) AC-AC systems like [sonnen Batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Tested with software version 1.15.6 over LAN at a standalone system without SonnenCommunity or sonnenVPP.
+- [sonnen](https://www.sonnen.de/) [sonnen Batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/) Tested with software version 1.15.6 over LAN at a standalone system without SonnenCommunity or sonnenVPP.
 - [other MQTT charger](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/) (chargers that are controlable by mosquitto MQTT commands)
 
 Getting Started:
