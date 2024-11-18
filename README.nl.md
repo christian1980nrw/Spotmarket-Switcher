@@ -32,6 +32,7 @@ Ondersteunde systemen zijn momenteel:
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)(Dbus op localhost en MQTT via LAN worden ondersteund)
+-   [zon](https://www.sonnen.de/)AC-AC-systemen zoals[sonnenbatterij 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Getest met softwareversie 1.15.6 via LAN op een standalone systeem zonder SonnenCommunity of sonnenVPP.
 -   [andere MQTT-oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladers die bestuurbaar zijn door Mosquitto MQTT-opdrachten)
 
 Aan de slag:
@@ -69,7 +70,7 @@ Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op
 2.  Voer het installatiescript uit met extra opties om alles in een submap voor te bereiden voor uw inspectie. Bijvoorbeeld:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Als u Victron Venus OS gebruikt, zou de juiste DESTDIR moeten zijn`/`(de hoofdmap). Voel je vrij om de geïnstalleerde bestanden te verkennen in`/tmp/foo`.
-    Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem beschrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
+    Op een Cerbo GX is het bestandssysteem alleen-lezen aangekoppeld. Zien<https://www.victronenergy.com/live/ccgx:root_access>. Om het bestandssysteem schrijfbaar te maken, moet u de volgende opdracht uitvoeren voordat u het installatiescript uitvoert:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
 Houd er rekening mee dat hoewel deze software momenteel is geoptimaliseerd voor het Venus OS, deze kan worden aangepast aan andere Linux-smaken, zoals Debian/Ubuntu op een Raspberry Pi of een ander klein bord. Een topkandidaat is dat zeker[OpenWRT](https://www.openwrt.org). Het gebruik van een desktopmachine is prima voor testdoeleinden, maar bij 24/7 gebruik is het grotere stroomverbruik een probleem.
@@ -86,7 +87,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
 
--   Instructies voor het installeren van de Spotmarket-Switcher op een Windows 10- of 11-systeem voor testen zonder Victron-apparaten (alleen schakelbare stopcontacten).
+-   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
 
     -   launch`cmd.exe`als Beheerder
     -   Binnenkomen`wsl --install -d Debian`
