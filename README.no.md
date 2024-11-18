@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md) - [fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md) - [japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -23,7 +23,7 @@ Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere ene
 Hvorfor bruke Spotmarket-Switcher?
 
 -   Spar penger: Den slår på enhetene dine når energien er billigere, og reduserer regningene dine.
--   Spar penger: Bruk din lagrede solenergi til de høyeste prisene.
+-   Spar penger: Bruk din lagrede solenergi til høyeste priser.
 -   Energieffektiv: Ved å bruke energi når det er i overskudd (som vindfulle netter), bidrar du til en grønnere planet.
 -   Smart bruk: Lad batterilagringen automatisk eller slå på enheter som varmtvannsberedere på de beste tidspunktene.
 
@@ -32,6 +32,7 @@ Støttede systemer er for øyeblikket:
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost og MQTT by LAN støttes)
+-   [sonnen](https://www.sonnen.de/)AC-AC-systemer som[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testet med programvareversjon 1.15.6 over LAN på et frittstående system uten SonnenCommunity eller sonnenVPP.
 -   [annen MQTT-lader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
 
 Komme i gang:
@@ -81,7 +82,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 ### Utførelse av installasjonsskriptet
 
 -   Hvis du bruker Victron Venus OS:
-    -   Rediger deretter variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/config.txt`.
+    -   Then edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/config.txt`.
     -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist øverst til høyre på skjermen) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
