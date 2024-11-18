@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[czeski](README.cs.md)-[duński](README.da.md)-[niemiecki](README.de.md)-[angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[francuski](README.fr.md)-[grecki](README.el.md)-[włoski](README.it.md)-[Holenderski](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[szwedzki](README.sv.md)-[japoński](README.ja.md)
+[czeski](README.cs.md)-[duński](README.da.md)-[niemiecki](README.de.md)-[angielski](README.md)-[hiszpański](README.es.md)-[estoński](README.et.md)-[fiński](README.fi.md)-[francuski](README.fr.md)-[grecki](README.el.md)-[włoski](README.it.md)-[Nederlands ](README.nl.md)-[norweski](README.no.md)-[Polski](README.pl.md)-[portugalski](README.pt.md)-[Svenska ](README.sv.md)-[japoński](README.ja.md)
 
 ## Witamy w repozytorium Spotmarket-Switcher!
 
