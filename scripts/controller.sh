@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.17"
+VERSION="2.4.17-DEV"
 
 set -e
 
@@ -957,6 +957,22 @@ checkAndClean() {
     fi
 }
 
+fetch_prices() {
+    if [ "$select_pricing_api" -eq 1 ]; then
+        Unit="Cent/kWh $price_unit price"
+        get_awattar_prices
+        get_awattar_prices_integer
+    elif [ "$select_pricing_api" -eq 2 ]; then
+        Unit="EUR/MWh net"
+        get_entsoe_prices
+        get_prices_integer_entsoe
+    elif [ "$select_pricing_api" -eq 3 ]; then
+        Unit="EUR/kWh $price_unit price"
+        get_tibber_prices
+        get_tibber_prices_integer
+    fi
+}
+
 ####################################
 ###    Begin of the script...    ###
 ####################################
@@ -1174,41 +1190,40 @@ fi
 
 if [ "$use_charger" == "4" ]; then
 
-SOC_percent=$(curl --max-time 5 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/latestdata" | awk -F'[,{}:]' '{for(i=1;i<=NF;i++) if ($i ~ /"USOC"/) print $(i+1)}')
+    SOC_percent=$(curl --max-time 5 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/latestdata" | awk -F'[,{}:]' '{for(i=1;i<=NF;i++) if ($i ~ /"USOC"/) print $(i+1)}')
 
     if [ -z "$SOC_percent" ]; then
         log_message >&2 "E: Timeout while trying to read RSOC from the charger."
         exit 1
     fi
 
-charger_command_charge() {
-	log_message >&2 "I: Executing curl -X PUT -d EM_USOC="$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
-	curl -X PUT -d EM_USOC="$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-}
+    charger_command_charge() {
+        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$target_soc --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
+        curl -X PUT -d "EM_USOC=$target_soc" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+    }
 
-charger_command_stop_charging() {
-	log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
-    curl -X PUT -d EM_USOC=0 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-}
+    charger_command_stop_charging() {
+        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
+        curl -X PUT -d "EM_USOC=0" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+    }
 
-charger_command_set_SOC_target() {
-    echo Nothing to do at sonnen charger. >/dev/null
-}
+    charger_command_set_SOC_target() {
+        echo "Nothing to do at sonnen charger." >/dev/null
+    }
 
-charger_disable_inverter() {
-	if ((charging == 0)); then
-	log_message >&2 "I: Executing curl -X PUT -d EM_USOC="$SOC_percent" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
-	curl -X PUT -d EM_USOC="$SOC_percent" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-	fi
-}
+    charger_disable_inverter() {
+        if ((charging == 0)); then
+            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$SOC_percent --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
+            curl -X PUT -d "EM_USOC=$SOC_percent" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+        fi
+    }
 
-charger_enable_inverter() {
-	if ((charging == 0)); then
-	log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations""
-	curl -X PUT -d EM_USOC=0 --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
-	fi
-}
-
+    charger_enable_inverter() {
+        if ((charging == 0)); then
+            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
+            curl -X PUT -d "EM_USOC=0" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+        fi
+    }
 fi
 
 for tool in $tools; do
@@ -1372,19 +1387,7 @@ if [ "$include_second_day" = 1 ]; then
 	
 fi
 
-if ((select_pricing_api == 1)); then
-    Unit="Cent/kWh $price_unit price"
-    get_awattar_prices
-    get_awattar_prices_integer
-elif ((select_pricing_api == 2)); then
-    Unit="EUR/MWh net"
-    get_entsoe_prices
-    get_prices_integer_entsoe
-elif ((select_pricing_api == 3)); then
-    Unit="EUR/kWh $price_unit price"
-    get_tibber_prices
-    get_tibber_prices_integer
-fi
+fetch_prices
 
 if ((use_solarweather_api_to_abort == 1)); then
     download_solarenergy
@@ -1415,6 +1418,37 @@ for i in $(seq 1 $loop_hours); do
     fi
 done
 log_message >&2 "I: Sorted prices: $price_table"
+if [ "$include_second_day" -eq 1 ]; then
+    price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
+    log_message >&2 "D: number of prices: $price_count"
+
+    if [ "$price_count" -le 24 ]; then
+        current_hour=$(date +%H)
+        if [ "$current_hour" -eq 13 ]; then
+			log_message >&2 "I: time is > 13:00 and price data delayed. Extra checking and waiting for new prices every 5 minutes..."
+            while [ "$current_hour" -eq 13 ]; do
+			fetch_prices
+			price_table=""
+			for i in $(seq 1 $loop_hours); do
+				eval price=\$P$i
+				price_table+="$i:$price "
+
+				if [ $((i % 12)) -eq 0 ]; then
+				price_table+="\n                  "
+				fi
+			done
+			log_message >&2 "I: Sorted prices: $price_table"
+                price_count=$(echo "$price_table" | tr ' ' '\n' | wc -l)
+                if [ "$price_count" -gt 24 ]; then
+                    break
+                else
+                    sleep 300
+                fi
+                current_hour=$(date +%H)
+            done
+        fi
+    fi
+fi
 
 if [ "$loop_hours" = 24 ]; then
 
