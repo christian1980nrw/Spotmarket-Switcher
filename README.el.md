@@ -32,7 +32,7 @@
 -   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
 -   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Υποστηρίζεται Dbus σε localhost και MQTT μέσω LAN)
--   [sonnen](https://www.sonnen.de/)Συστήματα AC-AC όπως[μπαταρία sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Δοκιμασμένο με την έκδοση λογισμικού 1.15.6 μέσω LAN σε αυτόνομο σύστημα χωρίς SonnenCommunity ή sonnenVPP.
+-   [sonnen](https://www.sonnen.de/)/[μπαταρία sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Δοκιμασμένο με την έκδοση λογισμικού 1.15.6 μέσω LAN σε αυτόνομο σύστημα χωρίς SonnenCommunity ή sonnenVPP.
 -   [άλλος φορτιστής MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(φορτιστές που ελέγχονται με εντολές MQTT κουνουπιών)
 
 Ξεκινώντας:
@@ -53,7 +53,7 @@
 
 Το λογισμικό χρησιμοποιεί επί του παρόντος ωριαίες τιμές EPEX Spot που παρέχονται από τρία δωρεάν API (Tibber, aWATTar & Entso-E).
 Το ενσωματωμένο δωρεάν Entso-E API παρέχει δεδομένα τιμών ενέργειας για τις ακόλουθες χώρες:
-Αλβανία (AL), Αυστρία (AT), Βέλγιο (BE), Βοσνία και Ερτζ. (BA), Βουλγαρία (BG), Κροατία (HR), Κύπρος (CY), Τσεχία (CZ), Δανία (DK), Εσθονία (EE), Φινλανδία (FI), Γαλλία (FR), Γεωργία (GE), Γερμανία (DE), Ελλάδα (GR), Ουγγαρία (HU), Ιρλανδία (IE), Ιταλία (IT), Κοσσυφοπέδιο (XK), Λετονία (LV), Λιθουανία (LT), Λουξεμβούργο (LU), Μάλτα (MT), Μολδαβία (MD), Μαυροβούνιο (ME), Ολλανδία (NL), Βόρεια Μακεδονία (MK), Νορβηγία (NO), Πολωνία (PL), Πορτογαλία (PT), Ρουμανία (RO), Σερβία (RS), Σλοβακία (SK) , Σλοβενία ​​(SI), Ισπανία (ES), Σουηδία (SE), Ελβετία (CH), Τουρκία (TR), Ουκρανία (UA), Ηνωμένο Βασίλειο (UK) βλ.[Διαφάνεια Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Αλβανία (AL), Αυστρία (AT), Βέλγιο (BE), Βοσνία και Ερτζ. (BA), Βουλγαρία (BG), Κροατία (HR), Κύπρος (CY), Τσεχία (CZ), Δανία (DK), Εσθονία (EE), Φινλανδία (FI), Γαλλία (FR), Γεωργία (GE), Γερμανία (DE), Ελλάδα (GR), Ουγγαρία (HU), Ιρλανδία (IE), Ιταλία (IT), Κοσσυφοπέδιο (XK), Λετονία (LV), Λιθουανία (LT), Λουξεμβούργο (LU), Μάλτα (MT), Μολδαβία (MD), Μαυροβούνιο (ME), Ολλανδία (NL), Βόρεια Μακεδονία (MK), Νορβηγία (NO), Πολωνία (PL), Πορτογαλία (PT), Ρουμανία (RO), Σερβία (RS), Σλοβακία (SK), Σλοβενία ​​(SI) , Ισπανία (ES), Σουηδία (SE), Ελβετία (CH), Τουρκία (TR), Ουκρανία (UA), Ηνωμένο Βασίλειο (UK) βλ.[Διαφάνεια Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Μπορείτε να δείτε ένα πιο λεπτομερές αρχείο καταγραφής με την ακόλουθη εντολή στο κέλυφός σας:
 
@@ -85,7 +85,7 @@
     -   Στη συνέχεια, επεξεργαστείτε τις μεταβλητές με ένα πρόγραμμα επεξεργασίας κειμένου`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Ρυθμίστε ένα πρόγραμμα φόρτισης ESS (ανατρέξτε στο στιγμιότυπο οθόνης που παρέχεται). Στο παράδειγμα, η μπαταρία φορτίζει τη νύχτα έως και 50% εάν ενεργοποιηθεί, ενώ άλλες ώρες φόρτισης της ημέρας αγνοούνται. Εάν δεν θέλετε, δημιουργήστε ένα πρόγραμμα για όλες τις 24 ώρες της ημέρας. Θυμηθείτε να το απενεργοποιήσετε μετά τη δημιουργία. Βεβαιωθείτε ότι η ώρα συστήματος (όπως φαίνεται στην επάνω δεξιά γωνία της οθόνης) είναι ακριβής.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
-The Screenshot is showing the configuration of automated charging during user defined times. Deactivated by default, may be temporarily activated by the script.
+Το στιγμιότυπο οθόνης δείχνει τη διαμόρφωση της αυτοματοποιημένης φόρτισης σε χρόνους που καθορίζονται από τον χρήστη. Απενεργοποιημένο από προεπιλογή, μπορεί να ενεργοποιηθεί προσωρινά από το σενάριο.
 
 -   Οδηγίες για την εγκατάσταση του Spotmarket-Switcher σε σύστημα Windows 10 ή 11 για δοκιμή χωρίς συσκευές Victron (μόνο πρίζες με δυνατότητα μεταγωγής).
 
