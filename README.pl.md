@@ -16,7 +16,7 @@ Ten typowy wynik pokazuje zdolność Spotmarket-Switcher do efektywnej automatyz
 </p>
 
 -   Użycie w nocy: W nocy, kiedy ceny energii były najniższe, Spotmarket-Switcher w inteligentny sposób aktywował przełączane gniazdko, aby włączyć pompę ciepła do ciepłej wody (skok zaznaczony na czerwono). Pokazuje to zdolność systemu do identyfikowania i wykorzystywania okresów niskiego zużycia energii do zadań energochłonnych.
--   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu akumulatora w tym czasie. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie baterii będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
+-   Efektywność ekonomiczna ładowania akumulatorów: w ramach programu strategicznie podjęto decyzję o nieładowaniu akumulatora w tym czasie. Decyzja ta została podjęta na podstawie analizy ekonomicznej, w której uwzględniono straty podczas ładowania i porównano je ze średnimi lub najwyższymi cenami energii w danym dniu. Takie podejście gwarantuje, że ładowanie akumulatora będzie miało miejsce tylko wtedy, gdy jest to najbardziej opłacalne.
 -   Optymalne wykorzystanie baterii w godzinach szczytu: W tym dniu najdroższe godziny zużycia energii przypadały na poranek i wieczór. W tych okresach Spotmarket-Switcher wykorzystywał zmagazynowaną energię akumulatora (pokazaną na niebiesko), unikając w ten sposób wysokich kosztów energii elektrycznej.
 -   Rezerwacja akumulatora na godziny o najwyższych kosztach: Po okresach o najwyższych kosztach system magazynowania energii (ESS) akumulatora został wyłączony. Wieczorem około 20:00 nie było pusto. Działanie to podjęto, aby zarezerwować wystarczającą pojemność baterii na nadchodzące drogie godziny następnego ranka. Pozwala to przewidzieć przyszłe okresy wysokich kosztów i zapewnić dostępność zmagazynowanej energii w celu zminimalizowania kosztów.
 
@@ -24,7 +24,7 @@ Dlaczego warto używać Spotmarket-Switcher?
 
 -   Oszczędzaj pieniądze: Włącza Twoje urządzenia, gdy energia jest tańsza, obniżając rachunki.
 -   Oszczędzaj pieniądze: Wykorzystaj zmagazynowaną energię słoneczną po najwyższych cenach.
--   Energooszczędność: Wykorzystując energię, gdy jest jej w nadmiarze (np. w wietrzne noce), przyczyniasz się do tworzenia bardziej ekologicznej planety.
+-   Energooszczędność: Wykorzystując energię, gdy jest jej w nadmiarze (np. wietrzne noce), przyczyniasz się do tworzenia bardziej ekologicznej planety.
 -   Inteligentne użytkowanie: automatycznie ładuj akumulator lub włączaj urządzenia, takie jak podgrzewacze wody, w najlepszym momencie.
 
 Obsługiwane systemy to obecnie:
@@ -32,6 +32,7 @@ Obsługiwane systemy to obecnie:
 -   Produkty Shelly (np[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)Lub[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)I[210](https://avm.de/produkte/smart-home/fritzdect-210/)przełączalne gniazda
 -   [Victron](https://www.victronenergy.com/)Systemy magazynowania energii Venus OS, takie jak[Seria MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Obsługiwane jest Dbus na localhost i MQTT przez LAN)
+-   [sonnen](https://www.sonnen.de/)Systemy AC-AC, takie jak[bateria Sonnena 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testowano z wersją oprogramowania 1.15.6 przez sieć LAN na samodzielnym systemie bez SonnenCommunity i sonnenVPP.
 -   [inna ładowarka MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ładowarki sterowane za pomocą poleceń Mosquitto MQTT)
 
 Pierwsze kroki:
@@ -52,7 +53,7 @@ Utwórz widelec Github i udostępnij swoją personalizację, aby inni użytkowni
 
 Oprogramowanie obecnie wykorzystuje ceny godzinowe EPEX Spot dostarczane przez trzy bezpłatne interfejsy API (Tibber, aWATTar i Entso-E).
 Zintegrowany bezpłatny interfejs API Entso-E dostarcza dane o cenach energii w następujących krajach:
-Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), Chorwacja (HR), Cypr (CY), Czechy (CZ), Dania (DK), Estonia (EE), Finlandia (FI), Francja (FR), Gruzja (GE), Niemcy (DE), Grecja (GR), Węgry (HU), Irlandia (IE), Włochy (IT), Kosowo (XK), Łotwa (LV), Litwa (LT), Luksemburg (LU), Malta (MT), Mołdawia (MD), Czarnogóra (ME), Holandia (NL), Macedonia Północna (MK), Norwegia (NO), Polska (PL), Portugalia (PT), Rumunia (RO), Serbia (RS), Słowacja (SK) , Słowenia (SI), Hiszpania (ES), Szwecja (SE), Szwajcaria (CH), Turcja (TR), Ukraina (UA), Wielka Brytania (UK) patrz[Przejrzystość platformy Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albania (AL), Austria (AT), Belgia (BE), Bośnia i Herz. (BA), Bułgaria (BG), Chorwacja (HR), Cypr (CY), Czechy (CZ), Dania (DK), Estonia (EE), Finlandia (FI), Francja (FR), Gruzja (GE), Niemcy (DE), Grecja (GR), Węgry (HU), Irlandia (IE), Włochy (IT), Kosowo (XK), Łotwa (LV), Litwa (LT), Luksemburg (LU), Malta (MT), Mołdawia (MD), Czarnogóra (ME), Holandia (NL), Macedonia Północna (MK), Norwegia (NO), Polska (PL), Portugalia (PT), Rumunia (RO), Serbia (RS), Słowacja (SK), Słowenia (SI), Hiszpania (ES), Szwecja (SE), Szwajcaria (CH), Turcja (TR), Ukraina (UA), Wielka Brytania Królestwo (UK) patrz[Przejrzystość platformy Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Bardziej szczegółowy dziennik można wyświetlić za pomocą następującego polecenia w powłoce:
 
@@ -82,7 +83,7 @@ Instrukcje dotyczące dostępu do systemu operacyjnego Venus znajdują się w se
 
 -   Jeśli używasz systemu operacyjnego Victron Venus:
     -   Następnie edytuj zmienne za pomocą edytora tekstu`/data/etc/Spotmarket-Switcher/config.txt`.
-    -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby dezaktywować go po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
+    -   Skonfiguruj harmonogram opłat ESS (patrz dostarczony zrzut ekranu). W przykładzie akumulator ładuje się w nocy do 50%, jeśli jest aktywowany, inne pory ładowania w ciągu dnia są ignorowane. Jeśli nie jest to pożądane, utwórz harmonogram na wszystkie 24 godziny w ciągu dnia. Pamiętaj, aby go dezaktywować po utworzeniu. Sprawdź, czy czas systemowy (jak pokazano w prawym górnym rogu ekranu) jest dokładny.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Zrzut ekranu przedstawia konfigurację automatycznego ładowania w godzinach zdefiniowanych przez użytkownika. Domyślnie dezaktywowana, może zostać tymczasowo aktywowana przez skrypt.
 
