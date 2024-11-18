@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.17-DEV"
+VERSION="2.4.17"
 
 set -e
 
@@ -67,9 +67,9 @@ else
         ["mqtt_broker_topic_subscribe"]="string"
         ["reenable_inverting_at_fullbatt"]="0|1"
         ["reenable_inverting_at_soc"]="^([1-9][0-9]?|100)$"
-		["sonnen_API_KEY"]="string"
+        ["sonnen_API_KEY"]="string"
         ["sonnen_API_URL"]="string"
-		["sonnen_API_WATT"]="^(-1|[0-9]{1,3}|[1-3][0-9]{3}|4[0-5][0-9]{2}|4600)$"
+        ["sonnen_minimum_SoC"]="^([0-9][0-9]?|100)$"
 		)
 
     declare -A config_values
@@ -1186,7 +1186,7 @@ fi
 
 fi
 
-# sonnenBatterie (experimental)
+# sonnenBatterie
 
 if [ "$use_charger" == "4" ]; then
 
@@ -1203,8 +1203,8 @@ if [ "$use_charger" == "4" ]; then
     }
 
     charger_command_stop_charging() {
-        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
-        curl -X PUT -d "EM_USOC=0" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+        log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$sonnen_minimum_SoC --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
+        curl -X PUT -d "EM_USOC=$sonnen_minimum_SoC" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
     }
 
     charger_command_set_SOC_target() {
@@ -1220,8 +1220,8 @@ if [ "$use_charger" == "4" ]; then
 
     charger_enable_inverter() {
         if ((charging == 0)); then
-            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=0 --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
-            curl -X PUT -d "EM_USOC=0" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
+            log_message >&2 "I: Executing curl -X PUT -d EM_USOC=$sonnen_minimum_SoC --header \"Auth-Token: $sonnen_API_KEY\" $sonnen_API_URL/configurations"
+            curl -X PUT -d "EM_USOC=$sonnen_minimum_SoC" --header "Auth-Token: $sonnen_API_KEY" "$sonnen_API_URL/configurations"
         fi
     }
 fi
@@ -1420,12 +1420,10 @@ done
 log_message >&2 "I: Sorted prices: $price_table"
 if [ "$include_second_day" -eq 1 ]; then
     price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
-    log_message >&2 "D: number of prices: $price_count"
-
     if [ "$price_count" -le 24 ]; then
         current_hour=$(date +%H)
         if [ "$current_hour" -eq 13 ]; then
-			log_message >&2 "I: time is > 13:00 and price data delayed. Extra checking and waiting for new prices every 5 minutes..."
+			log_message >&2 "I: time is > 13:00 and price data delayed. $price_count prices available. Extra checking and waiting for new prices every 5 minutes..."
             while [ "$current_hour" -eq 13 ]; do
 			fetch_prices
 			price_table=""
@@ -1438,7 +1436,7 @@ if [ "$include_second_day" -eq 1 ]; then
 				fi
 			done
 			log_message >&2 "I: Sorted prices: $price_table"
-                price_count=$(echo "$price_table" | tr ' ' '\n' | wc -l)
+			price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
                 if [ "$price_count" -gt 24 ]; then
                     break
                 else
