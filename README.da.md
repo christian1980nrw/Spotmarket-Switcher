@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md) - [svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -15,7 +15,7 @@ Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energ
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (spike indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
+-   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (spids angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
 -   Økonomisk effektivitet i batteriopladning: Programmet besluttede strategisk ikke at oplade batterilageret i denne periode. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
 -   Optimal brug af batteriet i myldretiden: På denne dag var de dyreste energitimer morgen og aften. I disse perioder brugte Spotmarket-Switcheren den lagrede batteri-energi (vist med blåt), og dermed undgik høje el-omkostninger.
 -   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Dette forudser fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at minimere omkostningerne.
@@ -32,7 +32,7 @@ Understøttede systemer er i øjeblikket:
 -   Shelly-produkter (f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)omskiftelige stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost og MQTT by LAN er understøttet)
--   [sonnen](https://www.sonnen.de/)/[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testet med softwareversion 1.15.6 over LAN på et selvstændigt system uden SonnenCommunity eller sonnenVPP.
+-   [sonnen](https://www.sonnen.de/)/[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/) Tested with software version 1.15.6 over LAN at a standalone system without SonnenCommunity or sonnenVPP.
 -   [anden MQTT oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladere, der kan styres af myg MQTT-kommandoer)
 
 Kom godt i gang:
@@ -53,7 +53,7 @@ Opret en github-gaffel og del din tilpasning, så andre brugere kan drage fordel
 
 Softwaren bruger i øjeblikket EPEX Spot-timepriser leveret af tre gratis API'er (Tibber, aWATTar & Entso-E).
 Den integrerede gratis Entso-E API leverer energiprisdata for følgende lande:
-Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjekkiet (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrig (FR), Georgien (GE), Tyskland (DE), Grækenland (GR), Ungarn (HU), Irland (IE), Italien (IT), Kosovo (XK), Letland (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumænien (RO), Serbien (RS), Slovakiet (SK) , Slovenien (SI), Spanien (ES), Sverige (SE), Schweiz (CH), Tyrkiet (TR), Ukraine (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG), Kroatien (HR), Cypern (CY), Tjekkiet (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrig (FR), Georgien (GE), Tyskland (DE), Grækenland (GR), Ungarn (HU), Irland (IE), Italien (IT), Kosovo (XK), Letland (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Holland (NL), Nordmakedonien (MK), Norge (NO), Polen (PL), Portugal (PT), Rumænien (RO), Serbien (RS), Slovakiet (SK), Slovenien (SI), Spanien (ES) , Sverige (SE), Schweiz (CH), Tyrkiet (TR), Ukraine (UA), Storbritannien (UK) se[Transparency Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)En mere detaljeret log kan ses med følgende kommando på din shell:
 
@@ -64,7 +64,7 @@ Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG)
 
 Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører en UNIX-baseret maskine, såsom macOS, Linux eller Windows med Linux-undersystemet, skal du følge disse trin for at installere softwaren:
 
-1.  Download installationsscriptet fra GitHub-lageret ved at bruge[dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
+1.  Download installationsscriptet fra GitHub-lageret ved at bruge[dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kør installationsscriptet med yderligere muligheder for at forberede alt i en undermappe til din inspektion. For eksempel:
@@ -75,7 +75,7 @@ Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører 
 
 Bemærk venligst, at selvom denne software i øjeblikket er optimeret til Venus OS, kan den tilpasses til andre Linux-varianter, som Debian/Ubuntu på en Raspberry Pi eller et andet lille bord. En topkandidat er bestemt[OpenWRT](https://www.openwrt.org). Brug af en stationær maskine er fint til testformål, men når den er i 24/7 brug, er dens større strømforbrug et problem.
 
-### Adgang til Venus OS
+### Access to Venus OS
 
 For instruktioner om adgang til Venus OS, se venligst<https://www.victronenergy.com/live/ccgx:root_access>.
 
@@ -89,7 +89,7 @@ Skærmbilledet viser konfigurationen af ​​automatisk opladning på brugerdef
 
 -   Instruktioner til installation af Spotmarket-Switcher på et Windows 10- eller 11-system til test uden Victron-enheder (kun omskiftelige stik).
 
-    -   lancering`cmd.exe`som administrator
+    -   lancering`cmd.exe` as Administrator
     -   Indtast`wsl --install -d Debian`
     -   Indtast et nyt brugernavn som`admin`
     -   Indtast en ny adgangskode
