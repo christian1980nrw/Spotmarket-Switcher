@@ -15,8 +15,8 @@ Dieses typische Ergebnis zeigt die Fähigkeit des Spotmarket-Switchers, den Ener
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Nachtnutzung: In der Nacht, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (Spitze rot angezeigt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
--   Wirtschaftlichkeit beim Batterieladen: Das Programm hat sich strategisch entschieden, den Batteriespeicher in dieser Zeit nicht zu laden. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Durch diesen Ansatz wird sichergestellt, dass die Batterie nur dann aufgeladen wird, wenn es am kostengünstigsten ist.
+-   Nachtnutzung: Nachts, als die Energiepreise am niedrigsten waren, aktivierte der Spotmarket-Switcher intelligent eine schaltbare Steckdose, um die Warmwasser-Wärmepumpe einzuschalten (Spitze rot angezeigt). Dies zeigt die Fähigkeit des Systems, kostengünstige Energieperioden für energieintensive Aufgaben zu identifizieren und zu nutzen.
+-   Wirtschaftlichkeit beim Batterieladen: Das Programm hat sich strategisch entschieden, den Batteriespeicher in dieser Zeit nicht zu laden. Diese Entscheidung basierte auf einer wirtschaftlichen Prüfung, bei der Ladeverluste berücksichtigt und mit den durchschnittlichen bzw. höchsten Energiepreisen des Tages verglichen wurden. Dieser Ansatz stellt sicher, dass das Laden der Batterie nur dann erfolgt, wenn es am kostengünstigsten ist.
 -   Optimale Batterieausnutzung während der Spitzenzeiten: An diesem Tag waren die energieintensivsten Stunden morgens und abends am teuersten. In diesen Zeiträumen nutzt der Spotmarket-Switcher die gespeicherte Batterieenergie (blau dargestellt) und vermeidet so hohe Stromkosten.
 -   Batteriereservierung für Stunden mit hohen Kosten: Nach den Zeiträumen mit hohen Kosten wurde das Energiespeichersystem (ESS) der Batterie abgeschaltet. Abends gegen 20:00 Uhr war es nicht leer. Diese Maßnahme wurde ergriffen, um ausreichend Batteriekapazität für die bevorstehenden teuren Stunden am nächsten Morgen zu reservieren. Dies antizipiert künftige Hochkostenperioden und stellt sicher, dass gespeicherte Energie zur Kostenminimierung verfügbar ist.
 
@@ -32,6 +32,7 @@ Unterstützte Systeme sind derzeit:
 -   Shelly-Produkte (wie z[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)oder[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)Und[210](https://avm.de/produkte/smart-home/fritzdect-210/)schaltbare Steckdosen
 -   [Victron](https://www.victronenergy.com/)Venus OS Energiespeichersysteme wie das[MultiPlus-II-Serie](https://www.victronenergy.com/inverters-chargers)(Dbus bei localhost und MQTT per LAN wird unterstützt)
+-   [sonnen](https://www.sonnen.de/)AC-AC-Systeme mögen[sonnen Batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Getestet mit Softwareversion 1.15.6 über LAN an einem Standalone-System ohne SonnenCommunity oder sonnenVPP.
 -   [anderes MQTT-Ladegerät](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(Ladegeräte, die durch Mosquito MQTT-Befehle steuerbar sind)
 
 Erste Schritte:
@@ -54,7 +55,7 @@ Die Software nutzt derzeit EPEX Spot-Stundenpreise, die von drei kostenlosen API
 Die integrierte kostenlose Entso-E API stellt Energiepreisdaten der folgenden Länder bereit:
 Albanien (AL), Österreich (AT), Belgien (BE), Bosnien und Herz. (BA), Bulgarien (BG), Kroatien (HR), Zypern (CY), Tschechische Republik (CZ), Dänemark (DK), Estland (EE), Finnland (FI), Frankreich (FR), Georgien (GE), Deutschland (DE), Griechenland (GR), Ungarn (HU), Irland (IE), Italien (IT), Kosovo (XK), Lettland (LV), Litauen (LT), Luxemburg (LU), Malta (MT), Moldawien (MD), Montenegro (ME), Niederlande (NL), Nordmazedonien (MK), Norwegen (NO), Polen (PL), Portugal (PT), Rumänien (RO), Serbien (RS), Slowakei (SK) , Slowenien (SI), Spanien (ES), Schweden (SE), Schweiz (CH), Türkei (TR), Ukraine (UA), Vereinigtes Königreich (UK) siehe[Transparenz Entso-E-Plattform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
-![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Ein detaillierteres Protokoll können Sie mit dem folgenden Befehl in Ihrer Shell anzeigen:
+![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Ein detaillierteres Protokoll können Sie mit dem folgenden Befehl in Ihrer Shell einsehen:
 
      cd /data/etc/Spotmarket-Switcher
      DEBUG=1 bash ./controller.sh
@@ -102,9 +103,9 @@ Der Screenshot zeigt die Konfiguration des automatischen Ladens zu benutzerdefin
     -   Kopieren Sie das Shell-Skript (`controller.sh`) an einen benutzerdefinierten Speicherort und passen Sie die Variablen entsprechend Ihren Anforderungen an.
     -   Die Befehle sind`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`und zum Bearbeiten Ihrer Einstellungen verwenden Sie`vi /path/to/save/config.txt`
     -   Erstellen Sie eine Crontab oder eine andere Planungsmethode, um dieses Skript zu Beginn jeder Stunde auszuführen.
-    -   Sample Crontab:
-          Use the following crontab entry to execute the control script every hour:
-          Open your terminal and enter `crontab -e`, dann fügen Sie die folgende Zeile ein:`0 * * * * /path/to/controller.sh`
+    -   Beispiel-Crontab:
+          Verwenden Sie den folgenden Crontab-Eintrag, um das Steuerskript stündlich auszuführen:
+          Öffnen Sie Ihr Terminal und betreten Sie es`crontab -e`, dann fügen Sie die folgende Zeile ein:`0 * * * * /path/to/controller.sh`
 
 ### Unterstützung und Beitrag :+1:
 
@@ -113,7 +114,7 @@ Wenn Sie dieses Projekt wertvoll finden, denken Sie bitte darüber nach, die wei
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Wenn Sie aus Deutschland kommen und an einem Wechsel zu einem dynamischen Stromtarif interessiert sind, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e)oder durch Eingabe des Codes`ojgfbx2e`in Ihrer App. Sowohl Sie als auch das Projekt erhalten**50 Euro Bonus für Hardware**. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>).
+Wenn Sie aus Deutschland kommen und Interesse an der Umstellung auf einen dynamischen Stromtarif haben, können Sie das Projekt unterstützen, indem Sie sich hier anmelden[Tibber (Empfehlungslink)](https://invite.tibber.com/ojgfbx2e)oder durch Eingabe des Codes`ojgfbx2e`in Ihrer App. Sowohl Sie als auch das Projekt erhalten**50 Euro Bonus für Hardware**. Bitte beachten Sie, dass für einen Stundentarif ein Smart Meter oder ein Pulse-IR erforderlich ist (<https://tibber.com/de/store/produkt/pulse-ir>).
 Wenn Sie einen Erdgastarif benötigen oder einen klassischen Stromtarif bevorzugen, können Sie das Projekt trotzdem unterstützen[Octopus Energy (Empfehlungslink)](https://share.octopusenergy.de/glass-raven-58).
 Sie erhalten einen Bonus (das Angebot variiert**zwischen 50 und 120 Euro**) für sich selbst und auch für das Projekt.
 Octopus hat den Vorteil, dass einige Angebote ohne Mindestvertragslaufzeit sind. Sie eignen sich beispielsweise ideal, um einen an Börsenkursen orientierten Tarif zu pausieren.
