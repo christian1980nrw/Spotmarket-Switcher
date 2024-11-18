@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md) - [fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md) - [japansk](README.ja.md)
+[tsjekkisk](README.cs.md)-[dansk](README.da.md)-[Deutsch ](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[gresk](README.el.md)-[italiensk](README.it.md)-[nederlandsk](README.nl.md)-[Norsk](README.no.md)-[Pusse](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -32,10 +32,10 @@ Støttede systemer er for øyeblikket:
 -   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost og MQTT by LAN støttes)
--   [sonnen](https://www.sonnen.de/)AC-AC-systemer som[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testet med programvareversjon 1.15.6 over LAN på et frittstående system uten SonnenCommunity eller sonnenVPP.
--   [annen MQTT-lader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
+-   [sonnen](https://www.sonnen.de/)/[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testet med programvareversjon 1.15.6 over LAN på et frittstående system uten SonnenCommunity eller sonnenVPP.
+-   [other MQTT charger](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
 
-Komme i gang:
+Getting Started:
 
 -   Last ned og installer: Konfigurasjonsprosessen er enkel. Last ned skriptet, juster noen innstillinger, og du er klar til å gå.
 -   Planlegg og slapp av: Sett den opp én gang, og den kjører automatisk. Ingen daglig stress!
@@ -53,7 +53,7 @@ Opprett en github-gaffel og del tilpasningen din slik at andre brukere kan dra n
 
 Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
-Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spania (ES) , Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)En mer detaljert logg kan sees med følgende kommando ved skallet ditt:
 
@@ -82,7 +82,7 @@ For instruksjoner om tilgang til Venus OS, se<https://www.victronenergy.com/live
 ### Utførelse av installasjonsskriptet
 
 -   Hvis du bruker Victron Venus OS:
-    -   Then edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/config.txt`.
+    -   Rediger deretter variablene med et tekstredigeringsprogram i`/data/etc/Spotmarket-Switcher/config.txt`.
     -   Sett opp en ESS-ladeplan (se skjermbildet som følger med). I eksemplet lades batteriet om natten opp til 50 % hvis det er aktivert, andre ladetider på dagen ignoreres. Hvis du ikke ønsker det, lag en tidsplan for alle døgnets 24 timer. Husk å deaktivere den etter oppretting. Kontroller at systemtiden (som vist øverst til høyre på skjermen) er nøyaktig.![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 Skjermbildet viser konfigurasjonen av automatisk lading under brukerdefinerte tider. Deaktivert som standard, kan være midlertidig aktivert av skriptet.
@@ -119,7 +119,7 @@ Trenger du en naturgasstariff eller foretrekker en klassisk strømtariff, kan du
 Du mottar en bonus (tilbudet varierer**mellom 50 og 120 euro**) for deg selv og også for prosjektet.
 Octopus har den fordelen at noen tilbud er uten minimumskontraktstid. De er ideelle for for eksempel å sette en tariff basert på børskurser på pause.
 
-Hvis du er fra Østerrike kan du støtte oss ved å bruke[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers). Vennligst bruk`3KEHMQN2F`som kode.
+Hvis du er fra Østerrike kan du støtte oss ved å bruke[aWATTar Østerrike (henvisningslenke)](https://www.awattar.at/services/offers/promotecustomers). Vennligst bruk`3KEHMQN2F` as code.
 
 ## Ansvarsfraskrivelse
 
