@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tšekki](README.cs.md)-[tanskalainen](README.da.md)-[Deutsch ](README.de.md)-[englanti](README.md)-[espanja](README.es.md)-[virolainen](README.et.md)-[Finnish](README.fi.md)-[ranskalainen](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[hollantilainen](README.nl.md)-[norjalainen](README.no.md)-[Kiillottaa](README.pl.md)-[portugali](README.pt.md)-[ruotsinkielinen](README.sv.md)-[日本語 ](README.ja.md)
+[Tšekki](README.cs.md)-[tanskalainen](README.da.md)-[saksaksi](README.de.md)-[englanti](README.md)-[espanja](README.es.md)-[virolainen](README.et.md)-[Finnish](README.fi.md)-[ranskalainen](README.fr.md)-[kreikkalainen](README.el.md)-[italialainen](README.it.md)-[hollantilainen](README.nl.md)-[norjalainen](README.no.md)-[Kiillottaa](README.pl.md)-[portugali](README.pt.md)-[ruotsinkielinen](README.sv.md)-[japanilainen](README.ja.md)
 
 ## Tervetuloa Spotmarket-Switcher-tietovarastoon!
 
@@ -29,10 +29,10 @@ Miksi käyttää Spotmarket-Switcheria?
 
 Tuetut järjestelmät ovat tällä hetkellä:
 
--   Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten[MultiPlus-II sarja](https://www.victronenergy.com/inverters-chargers)(Dbus at localhost ja MQTT by LAN ovat tuettuja)
--   [sonnen](https://www.sonnen.de/) AC-AC systems like [Sonnen akku 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testattu ohjelmistoversiolla 1.15.6 LAN:n kautta erillisessä järjestelmässä ilman SonnenCommunitya tai sonnenVPP:tä.
+-   [sonnen](https://www.sonnen.de/)/[Sonnen akku 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testattu ohjelmistoversiolla 1.15.6 LAN:n kautta erillisessä järjestelmässä ilman SonnenCommunitya tai sonnenVPP:tä.
 -   [toinen MQTT laturi](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laturit, joita ohjataan hyttysen MQTT-komennoilla)
 
 Aloitus:
@@ -101,7 +101,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
 
 -   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
     -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
-    -   komennot ovat`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja muokataksesi asetuksia käytä`vi /path/to/save/config.txt`
+    -   the commands are `cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja muokataksesi asetuksia käytä`vi /path/to/save/config.txt`
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
