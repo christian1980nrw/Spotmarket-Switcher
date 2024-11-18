@@ -32,7 +32,7 @@ Ondersteunde systemen zijn momenteel:
 -   Shelly-producten (zoals[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)of[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)En[210](https://avm.de/produkte/smart-home/fritzdect-210/)schakelbare stopcontacten
 -   [Victron](https://www.victronenergy.com/)Venus OS energieopslagsystemen zoals de[MultiPlus-II-serie](https://www.victronenergy.com/inverters-chargers)(Dbus op localhost en MQTT via LAN worden ondersteund)
--   [zon](https://www.sonnen.de/)AC-AC-systemen zoals[sonnenbatterij 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Getest met softwareversie 1.15.6 via LAN op een standalone systeem zonder SonnenCommunity of sonnenVPP.
+-   [zon](https://www.sonnen.de/)/[sonnenbatterij 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Getest met softwareversie 1.15.6 via LAN op een standalone systeem zonder SonnenCommunity of sonnenVPP.
 -   [andere MQTT-oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladers die bestuurbaar zijn door Mosquitto MQTT-opdrachten)
 
 Aan de slag:
@@ -64,7 +64,7 @@ Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (
 
 Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op UNIX gebaseerde machine gebruikt, zoals macOS, Linux of Windows met het Linux-subsysteem, volgt u deze stappen om de software te installeren:
 
-1.  Download het installatiescript uit de GitHub-opslagplaats met behulp van[deze hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), of voer de volgende opdracht uit in uw terminal:
+1.  Download het installatiescript uit de GitHub-opslagplaats met behulp van[deze hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Voer het installatiescript uit met extra opties om alles in een submap voor te bereiden voor uw inspectie. Bijvoorbeeld:
@@ -87,7 +87,7 @@ Voor instructies over toegang tot het Venus OS raadpleegt u<https://www.victrone
 
 De schermafbeelding toont de configuratie van automatisch opladen tijdens door de gebruiker gedefinieerde tijden. Standaard gedeactiveerd, kan tijdelijk worden geactiveerd door het script.
 
--   Instructions to install the Spotmarket-Switcher on a Windows 10 or 11 system for testing without Victron devices (only switchable sockets).
+-   Instructies voor het installeren van de Spotmarket-Switcher op een Windows 10- of 11-systeem voor testen zonder Victron-apparaten (alleen schakelbare stopcontacten).
 
     -   launch`cmd.exe`als Beheerder
     -   Binnenkomen`wsl --install -d Debian`
