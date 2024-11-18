@@ -32,6 +32,7 @@ Tuetut järjestelmät ovat tällä hetkellä:
 -   Shelly-tuotteet (esim[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)tai[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)ja[210](https://avm.de/produkte/smart-home/fritzdect-210/)kytkettävät pistorasiat
 -   [Victron](https://www.victronenergy.com/)Venus OS -energian varastointijärjestelmät, kuten[MultiPlus-II sarja](https://www.victronenergy.com/inverters-chargers)(Dbus at localhost ja MQTT by LAN ovat tuettuja)
+-   [sonnen](https://www.sonnen.de/)/[Sonnen akku 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testattu ohjelmistoversiolla 1.15.6 LAN:n kautta erillisessä järjestelmässä ilman SonnenCommunitya tai sonnenVPP:tä.
 -   [toinen MQTT laturi](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(laturit, joita ohjataan hyttysen MQTT-komennoilla)
 
 Aloitus:
@@ -44,7 +45,7 @@ Kiinnostunut?
 -   Tutustu yksityiskohtaisiin ohjeisiimme eri järjestelmille, kuten Victron Venus OS, Windows- tai Linux-asennuksille. Olemme varmistaneet, että vaiheet ovat helppoja seurata.
 -   Tule mukaan tekemään energiankäytöstä älykkäämpää ja kustannustehokkaampaa! Jos sinulla on kysyttävää, ehdotuksia tai palautetta, ota rohkeasti yhteyttä.
 
-Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energianvarastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
+Koodi on yksinkertainen, joten se voidaan helposti sovittaa muihin energian varastointijärjestelmiin, jos pystyt ohjaamaan latausta Linuxin komentotulkkikomennoilla.
 Katso tiedosto controller.sh ja hae charger_command_turnon, jotta näet kuinka helppoa se voidaan mukauttaa.
 Luo github-haarukka ja jaa mukauksesi, jotta muut käyttäjät voivat hyötyä siitä.
 
@@ -52,7 +53,7 @@ Luo github-haarukka ja jaa mukauksesi, jotta muut käyttäjät voivat hyötyä s
 
 Ohjelmisto käyttää tällä hetkellä kolmen ilmaisen API:n (Tibber, aWATTar & Entso-E) tarjoamia EPEX Spot -tuntihintoja.
 Integroitu ilmainen Entso-E API tarjoaa energian hintatietoja seuraavista maista:
-Albania (AL), Itävalta (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tšekki (CZ), Tanska (DK), Viro (EE), Suomi (FI), Ranska (FR), Georgia (GE), Saksa (DE), Kreikka (GR), Unkari (HU), Irlanti (IE), Italia (IT), Kosovo (XK), Latvia (LV), Liettua (LT), Luxemburg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Alankomaat (NL), Pohjois-Makedonia (MK), Norja (NO), Puola (PL), Portugali (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Espanja (ES), Ruotsi (SE), Sveitsi (CH), Turkki (TR), Ukraina (UA), Yhdistynyt kuningaskunta (UK) ks.[Transparency Entso-E -alusta](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albania (AL), Itävalta (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tšekki (CZ), Tanska (DK), Viro (EE), Suomi (FI), Ranska (FR), Georgia (GE), Saksa (DE), Kreikka (GR), Unkari (HU), Irlanti (IE), Italia (IT), Kosovo (XK), Latvia (LV), Liettua (LT), Luxemburg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Alankomaat (NL), Pohjois-Makedonia (MK), Norja (NO), Puola (PL), Portugali (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Espanja (ES), Ruotsi (SE), Sveitsi (CH), Turkki (TR), Ukraina (UA), Yhdistynyt kuningaskunta (UK) ks[Transparency Entso-E -alusta](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Tarkempi loki voidaan nähdä seuraavalla komennolla shellissäsi:
 
@@ -63,7 +64,7 @@ Albania (AL), Itävalta (AT), Belgia (BE), Bosnia ja Herz. (BA), Bulgaria (BG), 
 
 Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät jo UNIX-pohjaista konetta, kuten macOS, Linux tai Windows, jossa on Linux-alijärjestelmä, asenna ohjelmisto seuraavasti:
 
-1.  Lataa asennusskripti GitHub-arkistosta käyttämällä[tämä hyperlinkki](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), tai suorita seuraava komento päätteessäsi:
+1.  Lataa asennusskripti GitHub-arkistosta käyttämällä[tämä hyperlinkki](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)tai suorita seuraava komento päätteessäsi:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Suorita asennuskomentosarja lisäasetuksineen valmistaaksesi kaiken alihakemistossa tarkastusta varten. Esimerkiksi:
@@ -72,7 +73,7 @@ Spotmarket-Switcherin määrittäminen on suoraviivainen prosessi. Jos käytät 
     Cerbo GX:ssä tiedostojärjestelmä on asennettu vain luku -tilassa. Katso<https://www.victronenergy.com/live/ccgx:root_access>. Jotta tiedostojärjestelmästä tulee kirjoitettava, sinun on suoritettava seuraava komento ennen asennuskomentosarjan suorittamista:
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, sitä voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntuun Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
+Huomaa, että vaikka tämä ohjelmisto on tällä hetkellä optimoitu Venus-käyttöjärjestelmälle, se voidaan mukauttaa muihin Linux-malleihin, kuten Debian/Ubuntuun Raspberry Pi:llä tai muulla pienellä levyllä. Ensisijainen ehdokas on varmasti[OpenWRT](https://www.openwrt.org). Pöytäkoneen käyttö on hyvä testaustarkoituksiin, mutta 24/7 käytössä sen suurempi virrankulutus on huolestuttava.
 
 ### Pääsy Venus-käyttöjärjestelmään
 
@@ -100,7 +101,7 @@ Kuvakaappaus näyttää automaattisen latauksen kokoonpanon käyttäjän määri
 
 -   Jos käytät Linux-järjestelmää, kuten Ubuntua tai Debiania:
     -   Kopioi komentotulkin komentosarja (`controller.sh`) mukautettuun paikkaan ja säädä muuttujia tarpeidesi mukaan.
-    -   komennot ovat`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja muokataksesi asetuksiasi käytä`vi /path/to/save/config.txt`
+    -   komennot ovat`cd /path/to/save/ && curl -s -O "https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/scripts/{controller.sh,sample.config.txt,license.txt}" && chmod +x ./controller.sh && mv sample.config.txt config.txt`ja muokataksesi asetuksia käytä`vi /path/to/save/config.txt`
     -   Luo crontab tai muu ajoitusmenetelmä suorittaaksesi tämän skriptin jokaisen tunnin alussa.
     -   Esimerkki Crontab:
           Käytä seuraavaa crontab-merkintää suorittaaksesi ohjauskomentosarjan tunnin välein:
@@ -114,7 +115,7 @@ Jos pidät tätä projektia arvokkaana, harkitse sponsorointia ja jatkokehitykse
 -   [PayPal](https://paypal.me/christian1980nrw)
 
 Jos olet Saksasta ja olet kiinnostunut siirtymään dynaamiseen sähkötariffiin, voit tukea hanketta rekisteröitymällä tällä[Tibber (viittauslinkki)](https://invite.tibber.com/ojgfbx2e)tai syöttämällä koodi`ojgfbx2e`sovelluksessasi. Sekä sinä että projekti saavat**50 euron bonus laitteistolle**. Huomaa, että tuntitariffiin tarvitaan älymittari tai Pulse-IR (<https://tibber.com/de/store/produkt/pulse-ir>) .
-Jos tarvitset maakaasutariffia tai haluat klassisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
+Jos tarvitset maakaasutariffia tai haluat perinteisen sähkötariffin, voit silti tukea hanketta[Octopus Energy (viittauslinkki)](https://share.octopusenergy.de/glass-raven-58).
 Saat bonuksen (tarjous vaihtelee**50-120 euron välillä**) itsellesi ja myös projektille.
 Octopusilla on se etu, että osa tarjouksista on ilman vähimmäissopimusta. Ne soveltuvat ihanteellisesti esimerkiksi pörssihintoihin perustuvan tariffin keskeyttämiseen.
 

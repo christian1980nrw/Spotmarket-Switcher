@@ -6,8 +6,8 @@
 
 ## Bem-vindo ao repositório Spotmarket-Switcher!
 
-What is this software doing? 
-Spotmarket-Switcher is an easy-to-use software tool that helps you save money on your energy bills. If you have a smart battery charger or devices like water heaters that can turn on and off automatically, this tool is perfect for you! It smartly switches on your devices when energy prices are low, especially useful if your energy costs change every hour.
+O que este software está fazendo? 
+Spotmarket-Switcher é uma ferramenta de software fácil de usar que ajuda você a economizar dinheiro em suas contas de energia. Se você possui um carregador de bateria inteligente ou dispositivos como aquecedores de água que podem ligar e desligar automaticamente, esta ferramenta é perfeita para você! Ele liga seus dispositivos de forma inteligente quando os preços da energia estão baixos, especialmente útil se os custos de energia mudam a cada hora.
 
 Este resultado típico demonstra a capacidade do Spotmarket-Switcher de automatizar o uso de energia de forma eficiente, não apenas economizando custos, mas também otimizando o uso de fontes de energia renováveis. É um excelente exemplo de como a tecnologia inteligente pode ser utilizada para gerir o consumo de energia de uma forma mais sustentável e económica. (azul = uso de bateria, vermelho = rede, amarelo = solar)
 
@@ -32,6 +32,7 @@ Os sistemas suportados são atualmente:
 -   Produtos Shelly (como[Plugue Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)e[210](https://avm.de/produkte/smart-home/fritzdect-210/)tomadas comutáveis
 -   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)(Dbus em localhost e MQTT por LAN são suportados)
+-   [filho](https://www.sonnen.de/)/[bateria sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testado com software versão 1.15.6 em LAN em um sistema independente sem SonnenCommunity ou sonnenVPP.
 -   [outro carregador MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(carregadores controláveis ​​por comandos MQTT do mosquito)
 
 Começando:
@@ -66,7 +67,7 @@ Configurar o Spotmarket-Switcher é um processo simples. Se você já estiver ex
 1.  Baixe o script de instalação do repositório GitHub usando[este hiperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh)ou execute o seguinte comando em seu terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
-2.  Run the installer script with additional options to prepare everything in a subdirectory for your inspection. For example:
+2.  Execute o script do instalador com opções adicionais para preparar tudo em um subdiretório para sua inspeção. Por exemplo:
         DESTDIR=/tmp/foo sh victron-venus-os-install.sh
     Se você estiver usando Victron Venus OS, o DESTDIR correto deve ser`/`(o diretório raiz). Sinta-se à vontade para explorar os arquivos instalados em`/tmp/foo`.
     Em um Cerbo GX o sistema de arquivos é montado somente leitura. Ver<https://www.victronenergy.com/live/ccgx:root_access>. Para tornar o sistema de arquivos gravável, você precisa executar o seguinte comando antes de executar o script de instalação:

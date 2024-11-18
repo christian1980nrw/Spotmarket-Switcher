@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[αγγλικός](README.md)-[ισπανικά](README.es.md)-[Εσθονική](README.et.md)-[φινλανδικός](README.fi.md)-[Γάλλος](README.fr.md)-[ελληνικά](README.el.md)-[ιταλικά](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογάλος](README.pt.md)-[σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
+[Τσέχος](README.cs.md)-[δανικός](README.da.md)-[Γερμανός](README.de.md)-[αγγλικός](README.md)-[ισπανικά](README.es.md)-[Εσθονικά](README.et.md)-[φινλανδικός](README.fi.md)-[Γάλλος](README.fr.md)-[ελληνικά](README.el.md)-[ιταλικά](README.it.md)-[Ολλανδός](README.nl.md)-[Νορβηγός](README.no.md)-[Στίλβωση](README.pl.md)-[Πορτογάλος](README.pt.md)-[σουηδικά](README.sv.md)-[Ιαπωνικά](README.ja.md)
 
 ## Καλώς ήρθατε στο αποθετήριο Spotmarket-Switcher!
 
@@ -15,7 +15,7 @@
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Νυχτερινή χρήση: Κατά τη διάρκεια της νύχτας, όταν οι τιμές της ενέργειας βρίσκονταν στο χαμηλότερο επίπεδο, το Spotmarket-Switcher ενεργοποίησε έξυπνα μια πρίζα για να ενεργοποιήσει την αντλία θερμότητας ζεστού νερού (η ακίδα υποδεικνύεται με κόκκινο). Αυτό δείχνει την ικανότητα του συστήματος να εντοπίζει και να χρησιμοποιεί ενεργειακές περιόδους χαμηλού κόστους για εργασίες έντασης ενέργειας.
+-   Νυχτερινή χρήση: Κατά τη διάρκεια της νύχτας, όταν οι τιμές της ενέργειας βρίσκονταν στο χαμηλότερο επίπεδο, το Spotmarket-Switcher ενεργοποίησε έξυπνα μια πρίζα για να ενεργοποιήσει την αντλία θερμότητας ζεστού νερού (η ακίδα υποδεικνύεται με κόκκινο χρώμα). Αυτό δείχνει την ικανότητα του συστήματος να εντοπίζει και να χρησιμοποιεί ενεργειακές περιόδους χαμηλού κόστους για εργασίες έντασης ενέργειας.
 -   Οικονομική απόδοση στη φόρτιση μπαταρίας: Το πρόγραμμα αποφάσισε στρατηγικά να μην φορτίσει το χώρο αποθήκευσης της μπαταρίας κατά τη διάρκεια αυτής της περιόδου. Αυτή η απόφαση βασίστηκε σε οικονομικό έλεγχο που έλαβε υπόψη τις ζημίες χρέωσης και τις σύγκρινε με τις μέσες ή τις υψηλότερες τιμές ενέργειας της ημέρας. Αυτή η προσέγγιση διασφαλίζει ότι η φόρτιση της μπαταρίας πραγματοποιείται μόνο όταν είναι η πιο οικονομική.
 -   Βέλτιστη χρήση της μπαταρίας κατά τις ώρες αιχμής: Αυτή τη μέρα, οι πιο ακριβές ώρες ενέργειας ήταν το πρωί και το βράδυ. Κατά τη διάρκεια αυτών των περιόδων, το Spotmarket-Switcher χρησιμοποιούσε την αποθηκευμένη ενέργεια μπαταρίας (εμφανίζεται με μπλε χρώμα), αποφεύγοντας έτσι το υψηλό κόστος ηλεκτρικής ενέργειας.
 -   Κράτηση μπαταρίας για ώρες υψηλού κόστους: Μετά τις περιόδους υψηλού κόστους, το Σύστημα αποθήκευσης ενέργειας της μπαταρίας (ESS) απενεργοποιήθηκε. Δεν ήταν άδειο το βράδυ γύρω στις 20:00. Αυτή η ενέργεια έγινε για να κρατηθεί επαρκής χωρητικότητα μπαταρίας για τις επόμενες ακριβές ώρες το επόμενο πρωί. Αυτό προβλέπει μελλοντικές περιόδους υψηλού κόστους και διασφαλίζει ότι η αποθηκευμένη ενέργεια είναι διαθέσιμη για την ελαχιστοποίηση του κόστους.
@@ -31,7 +31,8 @@
 
 -   Προϊόντα Shelly (όπως[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)ή[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)και[210](https://avm.de/produkte/smart-home/fritzdect-210/)πρίζες που διακόπτονται
--   [Victron](https://www.victronenergy.com/)Venus OS Συστήματα αποθήκευσης ενέργειας όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Υποστηρίζεται Dbus σε localhost και MQTT μέσω LAN)
+-   [Victron](https://www.victronenergy.com/)Συστήματα αποθήκευσης ενέργειας Venus OS όπως το[Σειρά MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Υποστηρίζεται Dbus σε localhost και MQTT μέσω LAN)
+-   [sonnen](https://www.sonnen.de/)/[μπαταρία sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Δοκιμασμένο με την έκδοση λογισμικού 1.15.6 μέσω LAN σε αυτόνομο σύστημα χωρίς SonnenCommunity ή sonnenVPP.
 -   [άλλος φορτιστής MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(φορτιστές που ελέγχονται με εντολές MQTT κουνουπιών)
 
 Ξεκινώντας:
@@ -50,9 +51,9 @@
 
 ## Πηγή δεδομένων
 
-The software currently utilizes EPEX Spot hourly prices provided by three free APIs (Tibber, aWATTar & Entso-E).
-The integrated free Entso-E API is providing energy-price-data of the folowing countrys:
-Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), Croatia (HR), Cyprus (CY), Czech Republic (CZ), Denmark (DK), Estonia (EE), Finland (FI), France (FR), Georgia (GE), Germany (DE), Greece (GR), Hungary (HU), Ireland (IE), Italy (IT), Kosovo (XK), Latvia (LV), Lithuania (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Netherlands (NL), North Macedonia (MK), Norway (NO), Poland (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spain (ES), Sweden (SE), Switzerland (CH), Turkey (TR), Ukraine (UA), United Kingdom (UK) see [Διαφάνεια Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Το λογισμικό χρησιμοποιεί επί του παρόντος ωριαίες τιμές EPEX Spot που παρέχονται από τρία δωρεάν API (Tibber, aWATTar & Entso-E).
+Το ενσωματωμένο δωρεάν Entso-E API παρέχει δεδομένα τιμών ενέργειας για τις ακόλουθες χώρες:
+Αλβανία (AL), Αυστρία (AT), Βέλγιο (BE), Βοσνία και Ερτζ. (BA), Βουλγαρία (BG), Κροατία (HR), Κύπρος (CY), Τσεχία (CZ), Δανία (DK), Εσθονία (EE), Φινλανδία (FI), Γαλλία (FR), Γεωργία (GE), Γερμανία (DE), Ελλάδα (GR), Ουγγαρία (HU), Ιρλανδία (IE), Ιταλία (IT), Κοσσυφοπέδιο (XK), Λετονία (LV), Λιθουανία (LT), Λουξεμβούργο (LU), Μάλτα (MT), Μολδαβία (MD), Μαυροβούνιο (ME), Ολλανδία (NL), Βόρεια Μακεδονία (MK), Νορβηγία (NO), Πολωνία (PL), Πορτογαλία (PT), Ρουμανία (RO), Σερβία (RS), Σλοβακία (SK) , Σλοβενία ​​(SI), Ισπανία (ES), Σουηδία (SE), Ελβετία (CH), Τουρκία (TR), Ουκρανία (UA), Ηνωμένο Βασίλειο (UK) βλ.[Διαφάνεια Entso-E Platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Μπορείτε να δείτε ένα πιο λεπτομερές αρχείο καταγραφής με την ακόλουθη εντολή στο κέλυφός σας:
 
@@ -122,4 +123,4 @@ Albania (AL), Austria (AT), Belgium (BE), Bosnia and Herz. (BA), Bulgaria (BG), 
 
 ## Αρνηση
 
-Παρακαλούμε σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Σημειώστε τους όρους χρήσης στο<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>

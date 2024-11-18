@@ -2,12 +2,12 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[チェコ語](README.cs.md)-[Dansk ](README.da.md)-[ドイツ語](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリア語](README.it.md)-[オランダ語](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデン語](README.sv.md)-[日本語](README.ja.md)
+[チェコ語](README.cs.md)-[デンマーク語](README.da.md)-[ドイツ語](README.de.md)-[英語](README.md)-[スペイン語](README.es.md)-[エストニア語](README.et.md)-[フィンランド語](README.fi.md)-[フランス語](README.fr.md)-[ギリシャ語](README.el.md)-[イタリア語](README.it.md)-[オランダ語](README.nl.md)-[ノルウェー語](README.no.md)-[研磨](README.pl.md)-[ポルトガル語](README.pt.md)-[スウェーデン語](README.sv.md)-[日本語](README.ja.md)
 
 ## Spotmarket-Switcher リポジトリへようこそ!
 
 このソフトウェアは何をしているのでしょうか? 
-Spotmarket-Switcher は、光熱費の節約に役立つ使いやすいソフトウェア ツールです。スマートバッテリー充電器や、自動的にオン/オフできる給湯器などのデバイスをお持ちの場合、このツールは最適です。エネルギー価格が安いときにデバイスの電源をスマートにオンにします。エネルギーコストが時間ごとに変化する場合に特に便利です。
+Spotmarket-Switcher は、光熱費の節約に役立つ使いやすいソフトウェア ツールです。スマートバッテリー充電器や、自動的にオン/オフできる給湯器などのデバイスをお持ちの場合、このツールは最適です。エネルギー価格が安いときにデバイスのスイッチをスマートにオンにします。エネルギーコストが時間ごとに変化する場合に特に便利です。
 
 この典型的な結果は、エネルギー使用を効率的に自動化し、コストを節約するだけでなく、再生可能エネルギー源の使用を最適化するスポットマーケット スイッチャーの能力を示しています。これは、スマート テクノロジーを使用して、より持続可能かつコスト効率の高い方法でエネルギー消費を管理できることを示す好例です。 (青 = バッテリーの使用、赤 = グリッド、黄 = ソーラー)
 
@@ -15,7 +15,7 @@ Spotmarket-Switcher は、光熱費の節約に役立つ使いやすいソフト
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   夜間の使用: エネルギー価格が最低だった夜間に、Spotmarket-Switcher は切り替え可能なソケットをスマートに起動して温水ヒート ポンプ (赤で示されたスパイク) に電力を供給しました。これは、エネルギーを大量に消費するタスクのために低コストのエネルギー期間を特定して利用するシステムの能力を示しています。
+-   夜間の使用: エネルギー価格が最低だった夜間に、Spotmarket-Switcher は切り替え可能なソケットをスマートに起動して、温水ヒート ポンプ (赤で示されているスパイク) に電力を供給しました。これは、エネルギーを大量に消費するタスクのために低コストのエネルギー期間を特定して利用するシステムの能力を示しています。
 -   バッテリー充電の経済効率: プログラムは、この期間中はバッテリー ストレージを充電しないことを戦略的に決定しました。この決定は、充電損失を考慮し、それをその日の平均または最高のエネルギー価格と比較する経済的チェックに基づいていました。このアプローチにより、最もコスト効率が高いときにのみバッテリーの充電が行われるようになります。
 -   ピーク時間帯におけるバッテリーの最適な使用: この日、エネルギー消費が最も高かった時間帯は朝と夕方でした。これらの期間中、Spotmarket-Switcher は蓄えられたバッテリー エネルギー (青色で表示) を使用し、高い電気代を回避していました。
 -   高コスト時間帯のバッテリー予約: 高コスト時間帯の後、バッテリーのエネルギー貯蔵システム (ESS) がオフになりました。夕方20時頃でも空いていました。この措置は、翌朝の高価な時間帯に備えて十分なバッテリー容量を確保するために行われました。これにより、将来の高コスト期間を予測し、貯蔵されたエネルギーを確実に利用してコストを最小限に抑えることができます。
@@ -29,9 +29,10 @@ Spotmarket-Switcher を使用する理由
 
 現在サポートされているシステムは次のとおりです。
 
--   シェリー製品（など）[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[シェリープラス](https://shellyparts.de/products/shelly-plus-1pm))
+-   シェリー製品（[シェリープラグS](https://shellyparts.de/products/shelly-plus-plug-s)または[シェリープラス](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMフリッツ!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)そして[210](https://avm.de/produkte/smart-home/fritzdect-210/)切り替え可能なソケット
--   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)(ローカルホストでのDbusとLANによるMQTTがサポートされています)
+-   [ビクトロン](https://www.victronenergy.com/)Venus OS エネルギー貯蔵システムのような[マルチプラスⅡシリーズ](https://www.victronenergy.com/inverters-chargers)(ローカルホストのDbusとLANによるMQTTがサポートされています)
+-   [ソンネン](https://www.sonnen.de/)/[ソネンバッテリー10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)SonnenCommunity または SonnenVPP を使用しないスタンドアロン システムで LAN 経由でソフトウェア バージョン 1.15.6 を使用してテストされました。
 -   [その他のMQTT充電器](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(mosquitto MQTT コマンドで制御可能な充電器)
 
 はじめる：
@@ -41,8 +42,8 @@ Spotmarket-Switcher を使用する理由
 
 興味がある？
 
--   Victron Venus OS、Windows、Linux セットアップなどのさまざまなシステムの詳細な手順を確認してください。手順を簡単に実行できるようにしました。
--   エネルギー利用をより賢く、よりコスト効率の高いものにするために私たちと一緒に取り組みましょう!ご質問、ご提案、フィードバックがございましたら、お気軽にお問い合わせください。
+-   Victron Venus OS、Windows、Linux セットアップなどのさまざまなシステムの詳細な手順を確認してください。手順は簡単に実行できるようにしました。
+-   エネルギー利用をより賢く、よりコスト効率の高いものにするために、私たちと一緒に取り組んでください。ご質問、ご提案、フィードバックがございましたら、お気軽にお問い合わせください。
 
 コードはシンプルなので、Linux シェル コマンドで充電を制御できれば、他のエネルギー貯蔵システムにも簡単に適用できます。
 controller.sh を見て、charger_command_turnon を検索すると、どれだけ簡単に適応できるかがわかります。
@@ -72,7 +73,7 @@ Spotmarket-Switcher のセットアップは簡単なプロセスです。 macOS
     Cerbo GX では、ファイルシステムは読み取り専用でマウントされます。見る<https://www.victronenergy.com/live/ccgx:root_access>。ファイルシステムを書き込み可能にするには、インストール スクリプトを実行する前に次のコマンドを実行する必要があります。
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi または別の小型ボード上の Debian/Ubuntu など、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
+このソフトウェアは現在 Venus OS 用に最適化されていますが、Raspberry Pi 上の Debian/Ubuntu やその他の小型ボードなど、他の Linux フレーバーにも適応できることに注意してください。最有力候補は間違いなく[OpenWRT](https://www.openwrt.org)。デスクトップ マシンをテスト目的で使用するのは問題ありませんが、24 時間 365 日使用する場合、消費電力が大きくなることが懸念されます。
 
 ### Venus OS へのアクセス
 
@@ -113,7 +114,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 -   [レボリュート](https://revolut.me/christqki2)
 -   [ペイパル](https://paypal.me/christian1980nrw)
 
-ドイツ在住で、動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)またはコードを入力することで`ojgfbx2e`あなたのアプリで。あなたとプロジェクトの両方が受け取ります**ハードウェアには 50 ユーロのボーナス**。時間料金の場合はスマートメーターまたはPulse-IRが必要となりますのでご注意ください（<https://tibber.com/de/store/produkt/pulse-ir>）。
+ドイツ在住で、動的な電気料金への切り替えに興味がある場合は、これを使用してサインアップしてプロジェクトをサポートできます。[ティバー (参照リンク)](https://invite.tibber.com/ojgfbx2e)またはコードを入力することで`ojgfbx2e`あなたのアプリで。あなたとプロジェクトの両方が受け取ります**ハードウェアには 50 ユーロのボーナス**。時間料金にはスマート メーターまたは Pulse-IR が必要であることに注意してください (<https://tibber.com/de/store/produkt/pulse-ir>）。
 天然ガス料金が必要な場合、または従来の電気料金を希望する場合でも、プロジェクトをサポートできます。[オクトパスエナジー（紹介リンク）](https://share.octopusenergy.de/glass-raven-58)。
 ボーナスを受け取ります（オファーは異なります）**50ユーロから120ユーロの間**）自分自身にとっても、プロジェクトにとっても。
 オクトパスには、最低契約期間のないオファーもあるという利点があります。たとえば、証券取引所の価格に基づいて関税を一時停止する場合に最適です。

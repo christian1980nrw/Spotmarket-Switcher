@@ -24,7 +24,7 @@ Este resultado típico muestra la capacidad de Spotmarket-Switcher para automati
 
 -   Ahorre dinero: enciende sus dispositivos cuando la energía es más barata, lo que reduce sus facturas.
 -   Ahorre dinero: utilice su energía solar almacenada a los precios más altos.
--   Eficiencia energética: al utilizar energía cuando sobra (como en las noches con viento), contribuyes a un planeta más verde.
+-   Energy Efficient: By using energy when it's in surplus (like windy nights), you contribute to a greener planet.
 -   Uso inteligente: cargue automáticamente la batería de almacenamiento o encienda dispositivos como calentadores de agua en los mejores momentos.
 
 Los sistemas compatibles actualmente son:
@@ -32,6 +32,7 @@ Los sistemas compatibles actualmente son:
 -   Productos Shelly (como[Tapón Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)o[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)y[210](https://avm.de/produkte/smart-home/fritzdect-210/)enchufes conmutables
 -   [victron](https://www.victronenergy.com/)Sistemas de almacenamiento de energía Venus OS como el[Serie MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Se admite Dbus en localhost y MQTT por LAN)
+-   [sonen](https://www.sonnen.de/)/[batería del sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Probado con la versión de software 1.15.6 a través de LAN en un sistema independiente sin SonnenCommunity o sonnenVPP.
 -   [Otro cargador MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(cargadores que son controlables mediante comandos mosquitto MQTT)
 
 Empezando:
@@ -52,7 +53,7 @@ Cree una bifurcación de github y comparta su personalización para que otros us
 
 Actualmente, el software utiliza precios por hora EPEX Spot proporcionados por tres API gratuitas (Tibber, aWATTar y Entso-E).
 La API Entso-E gratuita integrada proporciona datos sobre precios de energía de los siguientes países:
-Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), Croacia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Alemania (DE), Grecia (GR), Hungría (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Letonia (LV), Lituania (LT), Luxemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Países Bajos (NL), Macedonia del Norte (MK), Noruega (NO), Polonia (PL), Portugal (PT), Rumania (RO), Serbia (RS), Eslovaquia (SK) , Eslovenia (SI), España (ES), Suecia (SE), Suiza (CH), Turquía (TR), Ucrania (UA), Reino Unido (UK) ver[Plataforma Transparencia Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), Croacia (HR), Chipre (CY), República Checa (CZ), Dinamarca (DK), Estonia (EE), Finlandia (FI), Francia (FR), Georgia (GE), Alemania (DE), Grecia (GR), Hungría (HU), Irlanda (IE), Italia (IT), Kosovo (XK), Letonia (LV), Lituania (LT), Luxemburgo (LU), Malta (MT), Moldavia (MD), Montenegro (ME), Países Bajos (NL), Macedonia del Norte (MK), Noruega (NO), Polonia (PL), Portugal (PT), Rumania (RO), Serbia (RS), Eslovaquia (SK), Eslovenia (SI), España (ES), Suecia (SE), Suiza (CH), Turquía (TR), Ucrania (UA), Reino Unido (UK) ver[Plataforma Transparencia Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Se puede ver un registro más detallado con el siguiente comando en su shell:
 
@@ -61,7 +62,7 @@ Albania (AL), Austria (AT), Bélgica (BE), Bosnia y Herz. (BA), Bulgaria (BG), C
 
 ## Instalación
 
-Configurar Spotmarket-Switcher es un proceso sencillo. Si ya está ejecutando una máquina basada en UNIX, como macOS, Linux o Windows con el subsistema Linux, siga estos pasos para instalar el software:
+Setting up the Spotmarket-Switcher is a straightforward process. If you are already running a UNIX-based machine, such as macOS, Linux, or Windows with the Linux subsystem, follow these steps to install the software:
 
 1.  Descargue el script de instalación desde el repositorio de GitHub usando[este hipervínculo](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), o ejecute el siguiente comando en su terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
@@ -115,7 +116,7 @@ Si encuentra valioso este proyecto, considere patrocinar y apoyar un mayor desar
 
 Si eres de Alemania y estás interesado en cambiar a una tarifa eléctrica dinámica, puedes apoyar el proyecto registrándote usando este[Tibber (enlace de referencia)](https://invite.tibber.com/ojgfbx2e)o ingresando el código`ojgfbx2e`en tu aplicación. Tanto tú como el proyecto recibiréis**Bonificación de 50 euros por hardware**. Tenga en cuenta que se requiere un medidor inteligente o un Pulse-IR para una tarifa por hora (<https://tibber.com/de/store/produkt/pulse-ir>).
 Si necesitas una tarifa de gas natural o prefieres una tarifa eléctrica clásica, aún puedes apoyar el proyecto[Octopus Energy (enlace de referencia)](https://share.octopusenergy.de/glass-raven-58).
-Recibes un bono (la oferta varía**entre 50 y 120 euros**) para usted y también para el proyecto.
+Recibes un bono (la oferta varía**entre 50 y 120 euros**) para ti y también para el proyecto.
 Octopus tiene la ventaja de que algunas ofertas no tienen un plazo mínimo de contrato. Son ideales, por ejemplo, para pausar una tarifa basada en los precios de bolsa.
 
 Si eres de Austria, puedes apoyarnos utilizando[aWATTar Austria (enlace de referencia)](https://www.awattar.at/services/offers/promotecustomers). Por favor haz uso de`3KEHMQN2F`como código.

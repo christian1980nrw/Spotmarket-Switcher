@@ -23,15 +23,16 @@ Dette typiske resultatet viser Spotmarket-Switchers evne til å automatisere ene
 Hvorfor bruke Spotmarket-Switcher?
 
 -   Spar penger: Den slår på enhetene dine når energien er billigere, og reduserer regningene dine.
--   Spar penger: Bruk din lagrede solenergi til de høyeste prisene.
+-   Spar penger: Bruk din lagrede solenergi til høyeste priser.
 -   Energieffektiv: Ved å bruke energi når det er i overskudd (som vindfulle netter), bidrar du til en grønnere planet.
 -   Smart bruk: Lad batterilagringen automatisk eller slå på enheter som varmtvannsberedere på de beste tidspunktene.
 
 Støttede systemer er for øyeblikket:
 
--   Shelly-produkter (som f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
+-   Shelly products (such as [Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)byttebare stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost og MQTT by LAN støttes)
+-   [sonnen](https://www.sonnen.de/)/[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testet med programvareversjon 1.15.6 over LAN på et frittstående system uten SonnenCommunity eller sonnenVPP.
 -   [annen MQTT-lader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(ladere som kan kontrolleres av mygg MQTT-kommandoer)
 
 Komme i gang:
@@ -52,7 +53,7 @@ Opprett en github-gaffel og del tilpasningen din slik at andre brukere kan dra n
 
 Programvaren bruker for tiden EPEX Spot-timepriser levert av tre gratis API-er (Tibber, aWATTar & Entso-E).
 Den integrerte gratis Entso-E API gir energiprisdata for følgende land:
-Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK) , Slovenia (SI), Spania (ES), Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albania (AL), Østerrike (AT), Belgia (BE), Bosnia og Herz. (BA), Bulgaria (BG), Kroatia (HR), Kypros (CY), Tsjekkia (CZ), Danmark (DK), Estland (EE), Finland (FI), Frankrike (FR), Georgia (GE), Tyskland (DE), Hellas (GR), Ungarn (HU), Irland (IE), Italia (IT), Kosovo (XK), Latvia (LV), Litauen (LT), Luxembourg (LU), Malta (MT), Moldova (MD), Montenegro (ME), Nederland (NL), Nord-Makedonia (MK), Norge (NO), Polen (PL), Portugal (PT), Romania (RO), Serbia (RS), Slovakia (SK), Slovenia (SI), Spania (ES) , Sverige (SE), Sveits (CH), Tyrkia (TR), Ukraina (UA), Storbritannia (Storbritannia) se[Transparency Entso-E-plattformen](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)En mer detaljert logg kan sees med følgende kommando ved skallet ditt:
 

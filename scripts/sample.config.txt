@@ -208,14 +208,12 @@ limit_inverter_power_after_enabling=-1
 #######################
 # Victron Venus OS MQTT-Charger Setup
 #######################
-
 venus_os_mqtt_ip=127.0.0.1 # replace by your ip if installed on a different system
 venus_os_mqtt_port=1883
 
 #######################
 # other MQTT-Charger Setup Example
 #######################
-
 # MQTT Subscriber Settings:
 mqtt_broker_host_subscribe="192.168.178.181"
 mqtt_broker_port_subscribe="1883"
@@ -226,15 +224,12 @@ mqtt_broker_host_publish="192.168.178.202"
 mqtt_broker_port_publish="1883"
 mqtt_broker_topic_publish="spotmarket-switcher"
 
-
 #######################
-# sonnenBatterie-Charger Setup (experimental / untested beta)
+# sonnenBatterie-Charger Setup
 #######################
-
 sonnen_API_KEY="YOURAPIKEY"
 sonnen_API_URL="http://192.168.0.10:80/api/v2"
-sonnen_API_WATT=4600 # Set the charging power you want to use if spotmarket-switcher starts charging (sonnenBatterie 10 4,6 kW maximum is 4600)
-
+sonnen_minimum_SoC=0 # Please enter the lowest SoC in percent to which the battery is allowed to be discharged (default 0).
 
 # Energy loss percentage in the charging/discharging process:
 # This value accounts for energy lost during charging and discharging of the battery.

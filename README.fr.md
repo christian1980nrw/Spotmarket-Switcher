@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tchèque](README.cs.md)-[danois](README.da.md)-[Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[portugais](README.pt.md)-[suédois](README.sv.md)-[japonais](README.ja.md)
+[tchèque](README.cs.md)-[danois](README.da.md) - [Allemand](README.de.md)-[Anglais](README.md)-[Espagnol](README.es.md)-[estonien](README.et.md)-[finlandais](README.fi.md)-[Français](README.fr.md)-[grec](README.el.md)-[italien](README.it.md)-[Néerlandais](README.nl.md)-[norvégien](README.no.md)-[polonais](README.pl.md)-[portugais](README.pt.md)-[suédois](README.sv.md)-[japonais](README.ja.md)
 
 ## Bienvenue dans le référentiel Spotmarket-Switcher !
 
@@ -32,6 +32,7 @@ Les systèmes pris en charge sont actuellement :
 -   Produits Shelly (tels que[Prise Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)et[210](https://avm.de/produkte/smart-home/fritzdect-210/)prises commutables
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme le[Série MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Dbus sur localhost et MQTT par LAN sont pris en charge)
+-   [fils](https://www.sonnen.de/)/[fils batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testé avec la version logicielle 1.15.6 sur LAN sur un système autonome sans SonnenCommunity ou sonnenVPP.
 -   [autre chargeur MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(chargeurs contrôlables par les commandes Mosquito MQTT)
 
 Commencer:
