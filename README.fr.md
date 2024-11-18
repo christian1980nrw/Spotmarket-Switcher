@@ -32,7 +32,7 @@ Les systèmes pris en charge sont actuellement :
 -   Produits Shelly (tels que[Prise Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)et[210](https://avm.de/produkte/smart-home/fritzdect-210/)prises commutables
 -   [Victron](https://www.victronenergy.com/)Systèmes de stockage d'énergie Venus OS comme le[Série MultiPlus-II](https://www.victronenergy.com/inverters-chargers)(Dbus sur localhost et MQTT par LAN sont pris en charge)
--   [fils](https://www.sonnen.de/)Systèmes AC-AC comme[fils batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testé avec la version logicielle 1.15.6 sur LAN sur un système autonome sans SonnenCommunity ou sonnenVPP.
+-   [fils](https://www.sonnen.de/)/[fils batterie 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testé avec la version logicielle 1.15.6 sur LAN sur un système autonome sans SonnenCommunity ou sonnenVPP.
 -   [autre chargeur MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(chargeurs contrôlables par les commandes Mosquito MQTT)
 
 Commencer:
@@ -53,7 +53,7 @@ Veuillez créer un fork github et partager votre personnalisation afin que d'aut
 
 Le logiciel utilise actuellement les prix horaires EPEX Spot fournis par trois API gratuites (Tibber, aWATTar et Entso-E).
 L'API Entso-E gratuite intégrée fournit des données sur les prix de l'énergie des pays suivants :
-Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK) , Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albanie (AL), Autriche (AT), Belgique (BE), Bosnie-Herzégovine. (BA), Bulgarie (BG), Croatie (HR), Chypre (CY), République tchèque (CZ), Danemark (DK), Estonie (EE), Finlande (FI), France (FR), Géorgie (GE), Allemagne (DE), Grèce (GR), Hongrie (HU), Irlande (IE), Italie (IT), Kosovo (XK), Lettonie (LV), Lituanie (LT), Luxembourg (LU), Malte (MT), Moldavie (MD), Monténégro (ME), Pays-Bas (NL), Macédoine du Nord (MK), Norvège (NO), Pologne (PL), Portugal (PT), Roumanie (RO), Serbie (RS), Slovaquie (SK), Slovénie (SI), Espagne (ES), Suède (SE), Suisse (CH), Turquie (TR), Ukraine (UA), Royaume-Uni (UK) voir[Plateforme Transparence Entso-E](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Un journal plus détaillé peut être consulté avec la commande suivante sur votre shell :
 
@@ -73,7 +73,7 @@ La configuration de Spotmarket-Switcher est un processus simple. Si vous exécut
     Sur un Cerbo GX, le système de fichiers est monté en lecture seule. Voir<https://www.victronenergy.com/live/ccgx:root_access>. Afin de rendre le système de fichiers accessible en écriture, vous devez exécuter la commande suivante avant d'exécuter le script d'installation :
         /opt/victronenergy/swupdate-scripts/resize2fs.sh
 
-Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OpenWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
+Veuillez noter que même si ce logiciel est actuellement optimisé pour le système d'exploitation Venus, il peut être adapté à d'autres versions de Linux, comme Debian/Ubuntu sur un Raspberry Pi ou une autre petite carte. Un candidat de choix est certainement[OuvrirWRT](https://www.openwrt.org). L'utilisation d'un ordinateur de bureau convient parfaitement à des fins de test, mais lorsqu'elle est utilisée 24 heures sur 24 et 7 jours sur 7, sa consommation d'énergie plus importante est préoccupante.
 
 ### Accès au système d'exploitation Venus
 
