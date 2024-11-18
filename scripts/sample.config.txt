@@ -229,6 +229,7 @@ mqtt_broker_topic_publish="spotmarket-switcher"
 #######################
 sonnen_API_KEY="YOURAPIKEY"
 sonnen_API_URL="http://192.168.0.10:80/api/v2"
+sonnen_minimum_SoC=0 # Please enter the lowest SoC in percent to which the battery is allowed to be discharged (default 0).
 
 # Energy loss percentage in the charging/discharging process:
 # This value accounts for energy lost during charging and discharging of the battery.
