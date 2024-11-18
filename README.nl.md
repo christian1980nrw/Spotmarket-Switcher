@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[Tsjechisch](README.cs.md)-[Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japanse](README.ja.md)
+[Tsjechisch](README.cs.md) - [Deens](README.da.md)-[Duits](README.de.md)-[Engels](README.md)-[Spaans](README.es.md)-[Ests](README.et.md)-[Fins](README.fi.md)-[Frans](README.fr.md)-[Grieks](README.el.md)-[Italiaans](README.it.md)-[Nederlands](README.nl.md)-[Noors](README.no.md)-[Pools](README.pl.md)-[Portugees](README.pt.md)-[Zweeds](README.sv.md)-[Japanse](README.ja.md)
 
 ## Welkom bij de Spotmarket-Switcher-repository!
 
@@ -53,7 +53,7 @@ Maak een github-fork en deel uw aanpassingen zodat andere gebruikers ervan kunne
 
 De software maakt momenteel gebruik van EPEX Spot-uurprijzen die worden aangeboden door drie gratis API's (Tibber, aWATTar en Entso-E).
 De geïntegreerde gratis Entso-E API levert energieprijsgegevens van de volgende landen:
-Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (BG), Kroatië (HR), Cyprus (CY), Tsjechië (CZ), Denemarken (DK), Estland (EE), Finland (FI), Frankrijk (FR), Georgië (GE), Duitsland (DE), Griekenland (GR), Hongarije (HU), Ierland (IE), Italië (IT), Kosovo (XK), Letland (LV), Litouwen (LT), Luxemburg (LU), Malta (MT), Moldavië (MD), Montenegro (ME), Nederland (NL), Noord-Macedonië (MK), Noorwegen (NO), Polen (PL), Portugal (PT), Roemenië (RO), Servië (RS), Slowakije (SK) , Slovenië (SI), Spanje (ES), Zweden (SE), Zwitserland (CH), Turkije (TR), Oekraïne (UA), Verenigd Koninkrijk (UK) zie[Transparantie Entso-E-platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (BG), Kroatië (HR), Cyprus (CY), Tsjechië (CZ), Denemarken (DK), Estland (EE), Finland (FI), Frankrijk (FR), Georgië (GE), Duitsland (DE), Griekenland (GR), Hongarije (HU), Ierland (IE), Italië (IT), Kosovo (XK), Letland (LV), Litouwen (LT), Luxemburg (LU), Malta (MT), Moldavië (MD), Montenegro (ME), Nederland (NL), Noord-Macedonië (MK), Noorwegen (NO), Polen (PL), Portugal (PT), Roemenië (RO), Servië (RS), Slowakije (SK), Slovenië (SI), Spanje (ES), Zweden (SE), Zwitserland (CH), Turkije (TR), Oekraïne (UA), Verenigd Koninkrijk (UK) zie[Transparantie Entso-E-platform](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)Een meer gedetailleerd logboek kan worden bekeken met de volgende opdracht op uw shell:
 
@@ -64,7 +64,7 @@ Albanië (AL), Oostenrijk (AT), België (BE), Bosnië en Herz. (BA), Bulgarije (
 
 Het opzetten van de Spotmarket-Switcher is een eenvoudig proces. Als u al een op UNIX gebaseerde machine gebruikt, zoals macOS, Linux of Windows met het Linux-subsysteem, volgt u deze stappen om de software te installeren:
 
-1.  Download het installatiescript uit de GitHub-opslagplaats met behulp van[deze hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
+1.  Download het installatiescript uit de GitHub-opslagplaats met behulp van[deze hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), of voer de volgende opdracht uit in uw terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Voer het installatiescript uit met extra opties om alles in een submap voor te bereiden voor uw inspectie. Bijvoorbeeld:
@@ -96,7 +96,7 @@ De schermafbeelding toont de configuratie van automatisch opladen tijdens door d
     -   Binnenkomen`sudo su`en typ uw wachtwoord
     -   Binnenkomen`apt-get update && apt-get install wget curl`
     -   Ga verder met de onderstaande handleiding voor Linux (installatiescript is niet compatibel).
-    -   Vergeet niet dat Windows het systeem zal stoppen als u de shell sluit.
+    -   Dont forget if you close the shell, Windows will stop the system.
 
 
 -   Als je een Linux-systeem zoals Ubuntu of Debian gebruikt:
@@ -123,4 +123,4 @@ Als u uit Oostenrijk komt, kunt u ons steunen door gebruik te maken van[aWATTar 
 
 ## Vrijwaring
 
-Let op de gebruiksvoorwaarden op<https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
+Please note the terms of use at <https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/License.md>
