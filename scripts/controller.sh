@@ -1423,10 +1423,9 @@ if [ "$include_second_day" -eq 1 ]; then
     log_message >&2 "D: number of prices: $price_count"
 
     if [ "$price_count" -le 24 ]; then
-        log_message >&2 "I: time is 13:00. Extra checking and waiting for 48-hr prices every 5 minutes..."
-
         current_hour=$(date +%H)
         if [ "$current_hour" -eq 13 ]; then
+			log_message >&2 "I: time is > 13:00 and price data delayed. Extra checking and waiting for new prices every 5 minutes..."
             while [ "$current_hour" -eq 13 ]; do
 			fetch_prices
 			price_table=""
