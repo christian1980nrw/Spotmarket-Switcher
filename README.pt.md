@@ -119,7 +119,7 @@ Se necessita de uma tarifa de gás natural ou prefere uma tarifa clássica de el
 Você recebe um bônus (a oferta varia**entre 50 e 120 euros**) para você e também para o projeto.
 Octopus tem a vantagem de algumas ofertas não terem prazo mínimo de contrato. São ideais, por exemplo, para pausar uma tarifa baseada em preços de bolsa.
 
-Se você é da Áustria, pode nos apoiar usando[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F`como código.
+Se você é da Áustria, pode nos apoiar usando[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers). Por favor, faça uso`3KEHMQN2F`como código.
 
 ## Isenção de responsabilidade
 
