@@ -32,7 +32,7 @@ Os sistemas suportados são atualmente:
 -   Produtos Shelly (como[Plugue Shelly S](https://shellyparts.de/products/shelly-plus-plug-s)ou[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)e[210](https://avm.de/produkte/smart-home/fritzdect-210/)tomadas comutáveis
 -   [Victron](https://www.victronenergy.com/)Sistemas de armazenamento de energia Venus OS como o[MultiPlus-II series](https://www.victronenergy.com/inverters-chargers)(Dbus em localhost e MQTT por LAN são suportados)
--   [filho](https://www.sonnen.de/)Sistemas AC-AC como[bateria sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/). Testado com software versão 1.15.6 em LAN em um sistema independente sem SonnenCommunity ou sonnenVPP.
+-   [filho](https://www.sonnen.de/)/[bateria sonnen 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testado com software versão 1.15.6 em LAN em um sistema independente sem SonnenCommunity ou sonnenVPP.
 -   [outro carregador MQTT](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(carregadores controláveis ​​por comandos MQTT do mosquito)
 
 Começando:
@@ -119,7 +119,7 @@ Se necessita de uma tarifa de gás natural ou prefere uma tarifa clássica de el
 Você recebe um bônus (a oferta varia**entre 50 e 120 euros**) para você e também para o projeto.
 Octopus tem a vantagem de algumas ofertas não terem prazo mínimo de contrato. São ideais, por exemplo, para pausar uma tarifa baseada em preços de bolsa.
 
-Se você é da Áustria, pode nos apoiar usando[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers). Por favor, faça uso`3KEHMQN2F`como código.
+Se você é da Áustria, pode nos apoiar usando[aWATTar Áustria (link de referência)](https://www.awattar.at/services/offers/promotecustomers). Please make use of `3KEHMQN2F`como código.
 
 ## Isenção de responsabilidade
 
