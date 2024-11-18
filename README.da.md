@@ -2,7 +2,7 @@
     <img width="33%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/SpotmarketSwitcherLogo.png?raw=true"> 
 </p>
 
-[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md)-[svensk](README.sv.md)-[japansk](README.ja.md)
+[tjekkisk](README.cs.md)-[Dansk](README.da.md)-[tysk](README.de.md)-[engelsk](README.md)-[spansk](README.es.md)-[estisk](README.et.md)-[finsk](README.fi.md)-[fransk](README.fr.md)-[græsk](README.el.md)-[italiensk](README.it.md)-[hollandsk](README.nl.md)-[norsk](README.no.md)-[Polere](README.pl.md)-[portugisisk](README.pt.md) - [svensk](README.sv.md)-[japansk](README.ja.md)
 
 ## Velkommen til Spotmarket-Switcher-depotet!
 
@@ -15,10 +15,10 @@ Dette typiske resultat viser Spotmarket-Switchers evne til at automatisere energ
     <img width="50%" src="https://github.com/christian1980nrw/Spotmarket-Switcher/blob/main/Screenshot.jpg?raw=true"> 
 </p>
 
--   Natbrug: I løbet af natten, hvor energipriserne var på det laveste, aktiverede Spotmarket-Switcher smart en omskiftelig stikkontakt til at tænde for varmtvandsvarmepumpen (spids angivet med rødt). Dette viser systemets evne til at identificere og udnytte billige energiperioder til energikrævende opgaver.
+-   Nighttime Usage: During the night, when energy prices were at their lowest, the Spotmarket-Switcher smartly activated a switchable socket to power up the hot water heat pump (spike indicated in red). This shows the system's ability to identify and utilize low-cost energy periods for energy-intensive tasks.
 -   Økonomisk effektivitet i batteriopladning: Programmet besluttede strategisk ikke at oplade batterilageret i denne periode. Denne beslutning var baseret på en økonomisk kontrol, der tog hensyn til opladningstab og sammenlignede dem med dagens gennemsnitlige eller højeste energipriser. Denne tilgang sikrer, at batteriopladning kun sker, når det er mest omkostningseffektivt.
--   Optimal brug af batteriet i myldretiden: På denne dag var de dyreste energitimer morgen og aften. I disse perioder brugte Spotmarket-Switcher den lagrede batteri-energi (vist med blåt), og dermed undgåede høje el-omkostninger.
--   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Dette foregriber fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at minimere omkostningerne.
+-   Optimal brug af batteriet i myldretiden: På denne dag var de dyreste energitimer morgen og aften. I disse perioder brugte Spotmarket-Switcheren den lagrede batteri-energi (vist med blåt), og dermed undgik høje el-omkostninger.
+-   Batterireservation til højomkostningstimer: Efter højomkostningsperioderne blev batteriets energilagersystem (ESS) slukket. Der var ikke tomt om aftenen omkring klokken 20.00. Denne handling blev truffet for at reservere tilstrækkelig batterikapacitet til de kommende dyre timer næste morgen. Dette forudser fremtidige højomkostningsperioder og sikrer, at lagret energi er tilgængelig for at minimere omkostningerne.
 
 Hvorfor bruge Spotmarket-Switcher?
 
@@ -32,12 +32,12 @@ Understøttede systemer er i øjeblikket:
 -   Shelly-produkter (f.eks[Shelly Plug S](https://shellyparts.de/products/shelly-plus-plug-s)eller[Shelly Plus](https://shellyparts.de/products/shelly-plus-1pm))
 -   [AVMFritz!DECT200](https://avm.de/produkte/smart-home/fritzdect-200/)og[210](https://avm.de/produkte/smart-home/fritzdect-210/)omskiftelige stikkontakter
 -   [Victron](https://www.victronenergy.com/)Venus OS energilagringssystemer som[MultiPlus-II-serien](https://www.victronenergy.com/inverters-chargers)(Dbus på localhost og MQTT by LAN er understøttet)
--   [sonnen](https://www.sonnen.de/)[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testet med softwareversion 1.15.6 over LAN på et selvstændigt system uden SonnenCommunity eller sonnenVPP.
+-   [sonnen](https://www.sonnen.de/)/[Sonnen batteri 10](https://sonnen.de/stromspeicher/sonnenbatterie-10/)Testet med softwareversion 1.15.6 over LAN på et selvstændigt system uden SonnenCommunity eller sonnenVPP.
 -   [anden MQTT oplader](http://www.steves-internet-guide.com/mosquitto_pub-sub-clients/)(opladere, der kan styres af myg MQTT-kommandoer)
 
 Kom godt i gang:
 
--   Download og installer: Opsætningsprocessen er ligetil. Download scriptet, juster et par indstillinger, og du er klar til at gå.
+-   Download og installer: Opsætningsprocessen er ligetil. Download scriptet, juster nogle få indstillinger, og du er klar til at gå.
 -   Planlæg og slap af: Indstil det én gang, og det kører automatisk. Ingen daglig besvær!
 
 Interesseret?
@@ -64,7 +64,7 @@ Albanien (AL), Østrig (AT), Belgien (BE), Bosnien og Herz. (BA), Bulgarien (BG)
 
 Opsætning af Spotmarket-Switcher er en ligetil proces. Hvis du allerede kører en UNIX-baseret maskine, såsom macOS, Linux eller Windows med Linux-undersystemet, skal du følge disse trin for at installere softwaren:
 
-1.  Download installationsscriptet fra GitHub-lageret ved at bruge[dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), eller udfør følgende kommando i din terminal:
+1.  Download installationsscriptet fra GitHub-lageret ved at bruge[dette hyperlink](https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh), or execute the following command in your terminal:
         wget https://raw.githubusercontent.com/christian1980nrw/Spotmarket-Switcher/main/victron-venus-os-install.sh
 
 2.  Kør installationsscriptet med yderligere muligheder for at forberede alt i en undermappe til din inspektion. For eksempel:
@@ -114,7 +114,7 @@ Hvis du finder dette projekt værdifuldt, kan du overveje at sponsorere og støt
 -   [Revolut](https://revolut.me/christqki2)
 -   [PayPal](https://paypal.me/christian1980nrw)
 
-Hvis du er fra Tyskland og interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e)eller ved at indtaste koden`ojgfbx2e`i din app. Både du og projektet får**50 euro bonus for hardware**. Bemærk venligst, at en smartmåler eller en Pulse-IR er påkrævet for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
+Hvis du er fra Tyskland og interesseret i at skifte til en dynamisk eltakst, kan du støtte projektet ved at tilmelde dig ved hjælp af denne[Tibber (henvisningslink)](https://invite.tibber.com/ojgfbx2e)eller ved at indtaste koden`ojgfbx2e`i din app. Både du og projektet får**50 euro bonus for hardware**. Bemærk venligst, at der kræves en smartmåler eller en Pulse-IR for en timetakst (<https://tibber.com/de/store/produkt/pulse-ir>).
 Har du brug for en naturgastakst eller foretrækker du en klassisk el-takst, kan du stadig støtte projektet[Octopus Energy (henvisningslink)](https://share.octopusenergy.de/glass-raven-58).
 Du modtager en bonus (tilbuddet varierer**mellem 50 og 120 euro**) for dig selv og også for projektet.
 Octopus har den fordel, at nogle tilbud er uden minimumskontraktperiode. De er for eksempel ideelle til at sætte en tarif på pause baseret på børskurser.
