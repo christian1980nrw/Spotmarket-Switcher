@@ -53,7 +53,7 @@ controller.sh を見て、charger_command_turnon を検索すると、どれだ�
 
 このソフトウェアは現在、3 つの無料 API (Tibber、aWATTar、Entso-E) によって提供される EPEX スポットの時間料金を利用しています。
 統合された無料の Entso-E API は、次の国のエネルギー価格データを提供します。
-アルバニア (AL)、オーストリア (AT)、ベルギー (BE)、ボスニア・ヘルツ。 (BA)、ブルガリア (BG)、クロアチア (HR)、キプロス (CY)、チェコ共和国 (CZ)、デンマーク (DK)、エストニア (EE)、フィンランド (FI)、フランス (FR)、ジョージア (GE)、ドイツ (DE)、ギリシャ (GR)、ハンガリー (HU)、アイルランド (IE)、イタリア (IT)、コソボ (XK)、ラトビア (LV)、リトアニア (LT)、ルクセンブルク (LU)、マルタ (MT)、モルドバ (MD)、モンテネグロ (ME)、オランダ (NL)、北マケドニア (MK)、ノルウェー (NO)、ポーランド (PL)、ポルトガル (PT)、ルーマニア (RO) 、セルビア (RS)、スロバキア (SK)、スロベニア (SI)、スペイン (ES)、スウェーデン (SE)、スイス (CH)、トルコ (TR)、ウクライナ(UA)、英国 (UK) を参照[透明性 Entso-E プラットフォーム](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
+アルバニア (AL)、オーストリア (AT)、ベルギー (BE)、ボスニア・ヘルツ。 (BA)、ブルガリア (BG)、クロアチア (HR)、キプロス (CY)、チェコ共和国 (CZ)、デンマーク (DK)、エストニア (EE)、フィンランド (FI)、フランス (FR)、ジョージア (GE)、ドイツ (DE)、ギリシャ (GR)、ハンガリー (HU)、アイルランド (IE)、イタリア (IT)、コソボ (XK)、ラトビア (LV)、リトアニア (LT)、ルクセンブルク (LU)、マルタ (MT)、モルドバ (MD)、モンテネグロ (ME)、オランダ (NL)、北マケドニア (MK)、ノルウェー (NO)、ポーランド (PL)、ポルトガル (PT)、ルーマニア (RO)、セルビア (RS)、スロバキア (SK) 、スロベニア (SI)、スペイン (ES)、スウェーデン (SE)、スイス (CH)、トルコ (TR)、ウクライナ (UA)、英国 (UK) を参照[透明性 Entso-E プラットフォーム](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show).
 
 ![Screenshot 2023-12-15 221401](https://github.com/christian1980nrw/Spotmarket-Switcher/assets/6513794/25992602-b0a2-48ff-bd4c-64a6f8182297)シェルで次のコマンドを使用すると、より詳細なログを確認できます。
 
@@ -82,7 +82,7 @@ Venus OS へのアクセス手順については、以下を参照してくだ�
 ### インストールスクリプトの実行
 
 -   Victron Venus OS を使用している場合:
-    -   Then edit the variables with a text editor in `/data/etc/Spotmarket-Switcher/config.txt`.
+    -   次に、テキストエディタで変数を編集します。`/data/etc/Spotmarket-Switcher/config.txt`.
     -   ESS 充電スケジュールを設定します (提供されたスクリーンショットを参照)。この例では、バッテリーがアクティブになっている場合、夜間に最大 50% まで充電され、一日の他の充電時間は無視されます。望ましくない場合は、1 日 24 時間すべてのスケジュールを作成します。作成後は忘れずに無効化してください。システム時刻 (画面の右上に表示) が正確であることを確認します。![grafik](https://user-images.githubusercontent.com/6513794/206877184-b8bf0752-b5d5-4c1b-af15-800b6499cfc7.png)
 
 スクリーンショットは、ユーザーが定義した時間中の自動充電の構成を示しています。デフォルトでは非アクティブ化されていますが、スクリプトによって一時的にアクティブ化される場合があります。
