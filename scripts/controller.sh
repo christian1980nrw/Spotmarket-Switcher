@@ -67,9 +67,8 @@ else
         ["mqtt_broker_topic_subscribe"]="string"
         ["reenable_inverting_at_fullbatt"]="0|1"
         ["reenable_inverting_at_soc"]="^([1-9][0-9]?|100)$"
-		["sonnen_API_KEY"]="string"
+        ["sonnen_API_KEY"]="string"
         ["sonnen_API_URL"]="string"
-		["sonnen_API_WATT"]="^(-1|[0-9]{1,3}|[1-3][0-9]{3}|4[0-5][0-9]{2}|4600)$"
 		)
 
     declare -A config_values
