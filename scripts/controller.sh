@@ -1434,7 +1434,6 @@ if [ "$include_second_day" -eq 1 ]; then
 				if [ $((i % 12)) -eq 0 ]; then
 				price_table+="\n                  "
 				fi
-			current_hour=$(date +%H)
 			done
 			log_message >&2 "I: Sorted prices: $price_table"
 			price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
