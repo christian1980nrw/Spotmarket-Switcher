@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="2.4.17"
+VERSION="2.4.17-DEV"
 
 set -e
 
@@ -1420,7 +1420,7 @@ done
 log_message >&2 "I: Sorted prices: $price_table"
 if [ "$include_second_day" -eq 1 ]; then
     price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
-    if [ "$price_count" -le 24 ]; then
+    if [ "$price_count" -le 25 ]; then
         current_hour=$(date +%H)
         if [ "$current_hour" -eq 13 ]; then
 			log_message >&2 "I: time is > 13:00 and price data delayed. $price_count prices available. Extra checking and waiting for new prices every 5 minutes..."
@@ -1434,6 +1434,7 @@ if [ "$include_second_day" -eq 1 ]; then
 				if [ $((i % 12)) -eq 0 ]; then
 				price_table+="\n                  "
 				fi
+			current_hour=$(date +%H)
 			done
 			log_message >&2 "I: Sorted prices: $price_table"
 			price_count=$(echo "$price_table" | grep -oE '[0-9]+:[0-9]+\.[0-9]+' | wc -l)
